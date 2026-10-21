@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-36:word:memorable",
+    "correctText": "memorable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-36:i01",
+    "correctText": "I think the holiday will be memorable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-36:i02",
+    "correctText": "I think the holiday will be memorable.",
+    "correctResponseId": "en:lesson-16:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-36:i03",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-36:word:uneventful",
+    "correctText": "uneventful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-36:i04",
+    "correctText": "I think the journey will be uneventful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-36:i05",
+    "correctText": "I think the journey will be uneventful.",
+    "correctResponseId": "en:lesson-16:session-36:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-36:i06",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-36:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-36:word:unplanned",
+    "correctText": "unplanned",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-36:i07",
+    "correctText": "I am going to cover an unplanned expense.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-36:i08",
+    "correctText": "I am going to cover an unplanned expense.",
+    "correctResponseId": "en:lesson-16:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-36:i09",
+    "correctText": "am going to cover",
+    "correctResponseId": "en:lesson-16:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-36:word:last-minute",
+    "correctText": "last-minute",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-36:i10",
+    "correctText": "We are making a last-minute visit tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-36:i11",
+    "correctText": "We are making a last-minute visit tomorrow.",
+    "correctResponseId": "en:lesson-16:session-36:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-36:i12",
+    "correctText": "are making",
+    "correctResponseId": "en:lesson-16:session-36:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-36:i13",
+    "correctText": "en:lesson-16:session-36:i13:p1=memorable\nen:lesson-16:session-36:i13:p2=uneventful\nen:lesson-16:session-36:i13:p3=unplanned\nen:lesson-16:session-36:i13:p4=last-minute",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-36:i14",
+    "correctText": "I think the holiday will be memorable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-36:i15",
+    "correctText": "I am going to cover an unplanned expense.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-36:i16",
+    "correctText": "We are making a last-minute visit tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-36:i17",
+    "correctText": "I think the journey will be uneventful.",
+    "correctResponseId": null
+  }
+]

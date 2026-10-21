@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-35:word:demanding",
+    "correctText": "demanding",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-35:i01",
+    "correctText": "I think the course will be demanding.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-35:i02",
+    "correctText": "I think the course will be demanding.",
+    "correctResponseId": "en:lesson-16:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-35:i03",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-35:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-35:word:rewarding",
+    "correctText": "rewarding",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-35:i04",
+    "correctText": "I think the experience will be rewarding.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-35:i05",
+    "correctText": "I think the experience will be rewarding.",
+    "correctResponseId": "en:lesson-16:session-35:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-35:i06",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-35:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-35:word:time-consuming",
+    "correctText": "time-consuming",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-35:i07",
+    "correctText": "I am going to finish a time-consuming task.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-35:i08",
+    "correctText": "I am going to finish a time-consuming task.",
+    "correctResponseId": "en:lesson-16:session-35:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-35:i09",
+    "correctText": "am going to finish",
+    "correctResponseId": "en:lesson-16:session-35:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-35:word:straightforward",
+    "correctText": "straightforward",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-35:i10",
+    "correctText": "We are taking a straightforward route tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-35:i11",
+    "correctText": "We are taking a straightforward route tomorrow.",
+    "correctResponseId": "en:lesson-16:session-35:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-35:i12",
+    "correctText": "are taking",
+    "correctResponseId": "en:lesson-16:session-35:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-35:i13",
+    "correctText": "en:lesson-16:session-35:i13:p1=demanding\nen:lesson-16:session-35:i13:p2=rewarding\nen:lesson-16:session-35:i13:p3=time-consuming\nen:lesson-16:session-35:i13:p4=straightforward",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-35:i14",
+    "correctText": "I think the course will be demanding.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-35:i15",
+    "correctText": "I am going to finish a time-consuming task.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-35:i16",
+    "correctText": "We are taking a straightforward route tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-35:i17",
+    "correctText": "I think the experience will be rewarding.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,2347 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-16:session-35",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-16:session-35:word:demanding",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — demanding",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:word:demanding:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — demanding",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:word:demanding:audio",
+            "transcript": "demanding"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-35:word:demanding:r1",
+              "targetText": "demanding",
+              "meaningByLocale": {
+                "ru": "требующий много сил или внимания.",
+                "uk": "такий, що потребує багато сил або уваги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "demanding",
+            "definitionByLocale": {
+              "ru": "требующий много сил или внимания.",
+              "uk": "такий, що потребує багато сил або уваги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы делитесь предположением о сложности будущего курса. Передайте мнение-прогноз через will. Скажите: «Думаю, курс потребует много усилий».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы делитесь предположением о сложности будущего курса. Передайте мнение-прогноз через will. Скажите: «Думаю, курс потребует много усилий».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think the course will be demanding.",
+          "localizedMeaning": {
+            "ru": "Вы делитесь предположением о сложности будущего курса. Передайте мнение-прогноз через will. Скажите: «Думаю, курс потребует много усилий».",
+            "uk": "Ви ділитеся припущенням про складність майбутнього курсу. Передайте думку-прогноз через will. Скажіть: «Думаю, курс потребуватиме багато зусиль»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "course",
+            "will",
+            "be",
+            "demanding"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-35:i02:r1",
+            "text": "I think the course will be demanding."
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i02:r2",
+            "text": "I think the course is going to be demanding."
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i02:r3",
+            "text": "I think the course will to be demanding."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:i02:audio",
+            "transcript": "I think the course will be demanding."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-35:i02:r1",
+              "targetText": "I think the course will be demanding.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i02:r2",
+              "targetText": "I think the course is going to be demanding.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i02:r3",
+              "targetText": "I think the course will to be demanding.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-35:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the course will be demanding.",
+                "uk": "У записі звучить I think the course will be demanding."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the course will be demanding.",
+                "uk": "У записі звучить I think the course will be demanding."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы делитесь предположением о сложности будущего курса. Передайте мнение-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-35:i03:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i03:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i03:r3",
+            "text": "will to be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы делитесь предположением о сложности будущего курса. Передайте мнение-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы делитесь предположением о сложности будущего курса. Передайте мнение-прогноз через will.",
+            "uk": "Ви ділитеся припущенням про складність майбутнього курсу. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think the course ___ demanding.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-35:i03:r1",
+              "text": "will be"
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i03:r2",
+              "text": "is going to be"
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i03:r3",
+              "text": "will to be"
+            }
+          ],
+          "testedDimension": "Вы делитесь предположением о сложности будущего курса. Передайте мнение-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-35:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы делитесь предположением о сложности будущего курса. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы делитесь предположением о сложности будущего курса. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will be.",
+                "uk": "Потрібна правильно побудована повна форма: will be."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:word:rewarding",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rewarding",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:word:rewarding:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rewarding",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:word:rewarding:audio",
+            "transcript": "rewarding"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-35:word:rewarding:r1",
+              "targetText": "rewarding",
+              "meaningByLocale": {
+                "ru": "приносящий удовлетворение и ощущение пользы.",
+                "uk": "такий, що приносить задоволення й відчуття користі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rewarding",
+            "definitionByLocale": {
+              "ru": "приносящий удовлетворение и ощущение пользы.",
+              "uk": "такий, що приносить задоволення й відчуття користі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы предполагаете, что помощь на местном празднике окажется полезным и приятным опытом. Передайте мнение-прогноз через will. Скажите: «Думаю, этот опыт принесёт удовлетворение и пользу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы предполагаете, что помощь на местном празднике окажется полезным и приятным опытом. Передайте мнение-прогноз через will. Скажите: «Думаю, этот опыт принесёт удовлетворение и пользу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think the experience will be rewarding.",
+          "localizedMeaning": {
+            "ru": "Вы предполагаете, что помощь на местном празднике окажется полезным и приятным опытом. Передайте мнение-прогноз через will. Скажите: «Думаю, этот опыт принесёт удовлетворение и пользу».",
+            "uk": "Ви припускаєте, що допомога на місцевому святі виявиться корисним і приємним досвідом. Передайте думку-прогноз через will. Скажіть: «Думаю, цей досвід принесе задоволення й користь»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "experience",
+            "will",
+            "be",
+            "rewarding"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-35:i05:r1",
+            "text": "I think the experience will be rewarding."
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i05:r2",
+            "text": "I think the experience is going to be rewarding."
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i05:r3",
+            "text": "I think the experience will to be rewarding."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:i05:audio",
+            "transcript": "I think the experience will be rewarding."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-35:i05:r1",
+              "targetText": "I think the experience will be rewarding.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i05:r2",
+              "targetText": "I think the experience is going to be rewarding.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i05:r3",
+              "targetText": "I think the experience will to be rewarding.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-35:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the experience will be rewarding.",
+                "uk": "У записі звучить I think the experience will be rewarding."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the experience will be rewarding.",
+                "uk": "У записі звучить I think the experience will be rewarding."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы предполагаете, что помощь на местном празднике окажется полезным и приятным опытом. Передайте мнение-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-35:i06:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i06:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i06:r3",
+            "text": "will to be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы предполагаете, что помощь на местном празднике окажется полезным и приятным опытом. Передайте мнение-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы предполагаете, что помощь на местном празднике окажется полезным и приятным опытом. Передайте мнение-прогноз через will.",
+            "uk": "Ви припускаєте, що допомога на місцевому святі виявиться корисним і приємним досвідом. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think the experience ___ rewarding.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-35:i06:r1",
+              "text": "will be"
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i06:r2",
+              "text": "is going to be"
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i06:r3",
+              "text": "will to be"
+            }
+          ],
+          "testedDimension": "Вы предполагаете, что помощь на местном празднике окажется полезным и приятным опытом. Передайте мнение-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-35:i06:r2",
+              "correct": false,
+              "testedDimension": "Вы предполагаете, что помощь на местном празднике окажется полезным и приятным опытом. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i06:r3",
+              "correct": false,
+              "testedDimension": "Вы предполагаете, что помощь на местном празднике окажется полезным и приятным опытом. Передайте мнение-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will be.",
+                "uk": "Потрібна правильно побудована повна форма: will be."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:word:time-consuming",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — time-consuming",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:word:time-consuming:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — time-consuming",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:word:time-consuming:audio",
+            "transcript": "time-consuming"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-35:word:time-consuming:r1",
+              "targetText": "time-consuming",
+              "meaningByLocale": {
+                "ru": "занимающий много времени.",
+                "uk": "такий, що забирає багато часу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "time-consuming",
+            "definitionByLocale": {
+              "ru": "занимающий много времени.",
+              "uk": "такий, що забирає багато часу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы решили закончить длительное дело. Пока это ваше намерение, не договорённость. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь закончить дело, которое занимает много времени».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили закончить длительное дело. Пока это ваше намерение, не договорённость. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь закончить дело, которое занимает много времени».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to finish a time-consuming task.",
+          "localizedMeaning": {
+            "ru": "Вы решили закончить длительное дело. Пока это ваше намерение, не договорённость. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь закончить дело, которое занимает много времени».",
+            "uk": "Ви вирішили закінчити тривалу справу. Поки це ваш намір, не домовленість. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся закінчити справу, яка забирає багато часу»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "finish",
+            "a",
+            "time-consuming",
+            "task"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-35:i08:r1",
+            "text": "I am going to finish a time-consuming task."
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i08:r2",
+            "text": "I am finishing a time-consuming task."
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i08:r3",
+            "text": "I is going to finish a time-consuming task."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:i08:audio",
+            "transcript": "I am going to finish a time-consuming task."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-35:i08:r1",
+              "targetText": "I am going to finish a time-consuming task.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i08:r2",
+              "targetText": "I am finishing a time-consuming task.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i08:r3",
+              "targetText": "I is going to finish a time-consuming task.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-35:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to finish a time-consuming task.",
+                "uk": "У записі звучить I am going to finish a time-consuming task."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to finish a time-consuming task.",
+                "uk": "У записі звучить I am going to finish a time-consuming task."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы решили закончить длительное дело. Пока это ваше намерение, не договорённость. Передайте заранее принятое намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-35:i09:r1",
+            "text": "am going to finish"
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i09:r2",
+            "text": "am finishing"
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i09:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили закончить длительное дело. Пока это ваше намерение, не договорённость. Передайте заранее принятое намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили закончить длительное дело. Пока это ваше намерение, не договорённость. Передайте заранее принятое намерение через going to.",
+            "uk": "Ви вирішили закінчити тривалу справу. Поки це ваш намір, не домовленість. Передайте заздалегідь прийнятий намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ a time-consuming task.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-35:i09:r1",
+              "text": "am going to finish"
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i09:r2",
+              "text": "am finishing"
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i09:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Вы решили закончить длительное дело. Пока это ваше намерение, не договорённость. Передайте заранее принятое намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-35:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы решили закончить длительное дело. Пока это ваше намерение, не договорённость. Передайте заранее принятое намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы решили закончить длительное дело. Пока это ваше намерение, не договорённость. Передайте заранее принятое намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: am going to finish.",
+                "uk": "Потрібна правильно побудована повна форма: am going to finish."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:word:straightforward",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — straightforward",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:word:straightforward:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — straightforward",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:word:straightforward:audio",
+            "transcript": "straightforward"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-35:word:straightforward:r1",
+              "targetText": "straightforward",
+              "meaningByLocale": {
+                "ru": "простой и понятный, без сложностей.",
+                "uk": "простий і зрозумілий, без складнощів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "straightforward",
+            "definitionByLocale": {
+              "ru": "простой и понятный, без сложностей.",
+              "uk": "простий і зрозумілий, без складнощів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с другом уже согласовали простой маршрут на завтра и время выезда. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы едем простым маршрутом завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с другом уже согласовали простой маршрут на завтра и время выезда. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы едем простым маршрутом завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are taking a straightforward route tomorrow.",
+          "localizedMeaning": {
+            "ru": "Вы с другом уже согласовали простой маршрут на завтра и время выезда. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы едем простым маршрутом завтра».",
+            "uk": "Ви з другом уже узгодили простий маршрут на завтра й час виїзду. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми їдемо простим маршрутом завтра»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "taking",
+            "a",
+            "straightforward",
+            "route",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-35:i11:r1",
+            "text": "We are taking a straightforward route tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i11:r2",
+            "text": "We are going to take a straightforward route tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i11:r3",
+            "text": "We is taking a straightforward route tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:i11:audio",
+            "transcript": "We are taking a straightforward route tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-35:i11:r1",
+              "targetText": "We are taking a straightforward route tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i11:r2",
+              "targetText": "We are going to take a straightforward route tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i11:r3",
+              "targetText": "We is taking a straightforward route tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-35:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are taking a straightforward route tomorrow.",
+                "uk": "У записі звучить We are taking a straightforward route tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are taking a straightforward route tomorrow.",
+                "uk": "У записі звучить We are taking a straightforward route tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы с другом уже согласовали простой маршрут на завтра и время выезда. Передайте подтверждённую договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-35:i12:r1",
+            "text": "are taking"
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i12:r2",
+            "text": "are going to take"
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i12:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с другом уже согласовали простой маршрут на завтра и время выезда. Передайте подтверждённую договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с другом уже согласовали простой маршрут на завтра и время выезда. Передайте подтверждённую договорённость через Present Continuous.",
+            "uk": "Ви з другом уже узгодили простий маршрут на завтра й час виїзду. Передайте підтверджену домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ a straightforward route tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-35:i12:r1",
+              "text": "are taking"
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i12:r2",
+              "text": "are going to take"
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i12:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Вы с другом уже согласовали простой маршрут на завтра и время выезда. Передайте подтверждённую договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-35:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы с другом уже согласовали простой маршрут на завтра и время выезда. Передайте подтверждённую договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы с другом уже согласовали простой маршрут на завтра и время выезда. Передайте подтверждённую договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: are taking.",
+                "uk": "Потрібна правильно побудована повна форма: are taking."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-35:i13:p1",
+              "target": "demanding",
+              "meaningByLocale": {
+                "ru": "требующий много сил или внимания",
+                "uk": "такий, що потребує багато сил або уваги"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-35:i13:p2",
+              "target": "rewarding",
+              "meaningByLocale": {
+                "ru": "приносящий удовлетворение и ощущение пользы",
+                "uk": "такий, що приносить задоволення й відчуття користі"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-35:i13:p3",
+              "target": "time-consuming",
+              "meaningByLocale": {
+                "ru": "занимающий много времени",
+                "uk": "такий, що забирає багато часу"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-35:i13:p4",
+              "target": "straightforward",
+              "meaningByLocale": {
+                "ru": "простой и понятный, без сложностей",
+                "uk": "простий і зрозумілий, без складнощів"
+              }
+            }
+          ],
+          "leftColumn": [
+            "demanding",
+            "rewarding",
+            "time-consuming",
+            "straightforward"
+          ],
+          "rightColumn": [
+            "требующий много сил или внимания",
+            "приносящий удовлетворение и ощущение пользы",
+            "занимающий много времени",
+            "простой и понятный, без сложностей"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:i14:audio",
+            "transcript": "I think the course will be demanding."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think the course will be demanding.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "course",
+            "will",
+            "be",
+            "demanding"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное намерение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное намерение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:i15:audio",
+            "transcript": "I am going to finish a time-consuming task."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to finish a time-consuming task.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "finish",
+            "a",
+            "time-consuming",
+            "task"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте подтверждённую договорённость через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:i16:audio"
+        ],
+        "accessibilityLabel": "Передайте подтверждённую договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:i16:audio",
+            "transcript": "We are taking a straightforward route tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are taking a straightforward route tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте мнение-прогноз через will.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:i17:audio"
+        ],
+        "accessibilityLabel": "Передайте мнение-прогноз через will.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:i17:audio",
+            "transcript": "I think the experience will be rewarding."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think the experience will be rewarding.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-16:session-35:word:demanding",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — demanding",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:word:demanding:audio"
+        ],
+        "accessibilityLabel": "Картка слова — demanding",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:word:demanding:audio",
+            "transcript": "demanding"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-35:word:demanding:r1",
+              "targetText": "demanding",
+              "meaningByLocale": {
+                "ru": "требующий много сил или внимания.",
+                "uk": "такий, що потребує багато сил або уваги."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "demanding",
+            "definitionByLocale": {
+              "ru": "требующий много сил или внимания.",
+              "uk": "такий, що потребує багато сил або уваги."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви ділитеся припущенням про складність майбутнього курсу. Передайте думку-прогноз через will. Скажіть: «Думаю, курс потребуватиме багато зусиль».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви ділитеся припущенням про складність майбутнього курсу. Передайте думку-прогноз через will. Скажіть: «Думаю, курс потребуватиме багато зусиль».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think the course will be demanding.",
+          "localizedMeaning": {
+            "ru": "Вы делитесь предположением о сложности будущего курса. Передайте мнение-прогноз через will. Скажите: «Думаю, курс потребует много усилий».",
+            "uk": "Ви ділитеся припущенням про складність майбутнього курсу. Передайте думку-прогноз через will. Скажіть: «Думаю, курс потребуватиме багато зусиль»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "course",
+            "will",
+            "be",
+            "demanding"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-35:i02:r1",
+            "text": "I think the course will be demanding."
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i02:r2",
+            "text": "I think the course is going to be demanding."
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i02:r3",
+            "text": "I think the course will to be demanding."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:i02:audio",
+            "transcript": "I think the course will be demanding."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-35:i02:r1",
+              "targetText": "I think the course will be demanding.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i02:r2",
+              "targetText": "I think the course is going to be demanding.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i02:r3",
+              "targetText": "I think the course will to be demanding.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-35:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the course will be demanding.",
+                "uk": "У записі звучить I think the course will be demanding."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the course will be demanding.",
+                "uk": "У записі звучить I think the course will be demanding."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви ділитеся припущенням про складність майбутнього курсу. Передайте думку-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-35:i03:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i03:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i03:r3",
+            "text": "will to be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви ділитеся припущенням про складність майбутнього курсу. Передайте думку-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы делитесь предположением о сложности будущего курса. Передайте мнение-прогноз через will.",
+            "uk": "Ви ділитеся припущенням про складність майбутнього курсу. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think the course ___ demanding.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-35:i03:r1",
+              "text": "will be"
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i03:r2",
+              "text": "is going to be"
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i03:r3",
+              "text": "will to be"
+            }
+          ],
+          "testedDimension": "Ви ділитеся припущенням про складність майбутнього курсу. Передайте думку-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-35:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви ділитеся припущенням про складність майбутнього курсу. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви ділитеся припущенням про складність майбутнього курсу. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will be.",
+                "uk": "Потрібна правильно побудована повна форма: will be."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:word:rewarding",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rewarding",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:word:rewarding:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rewarding",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:word:rewarding:audio",
+            "transcript": "rewarding"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-35:word:rewarding:r1",
+              "targetText": "rewarding",
+              "meaningByLocale": {
+                "ru": "приносящий удовлетворение и ощущение пользы.",
+                "uk": "такий, що приносить задоволення й відчуття користі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rewarding",
+            "definitionByLocale": {
+              "ru": "приносящий удовлетворение и ощущение пользы.",
+              "uk": "такий, що приносить задоволення й відчуття користі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви припускаєте, що допомога на місцевому святі виявиться корисним і приємним досвідом. Передайте думку-прогноз через will. Скажіть: «Думаю, цей досвід принесе задоволення й користь».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви припускаєте, що допомога на місцевому святі виявиться корисним і приємним досвідом. Передайте думку-прогноз через will. Скажіть: «Думаю, цей досвід принесе задоволення й користь».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think the experience will be rewarding.",
+          "localizedMeaning": {
+            "ru": "Вы предполагаете, что помощь на местном празднике окажется полезным и приятным опытом. Передайте мнение-прогноз через will. Скажите: «Думаю, этот опыт принесёт удовлетворение и пользу».",
+            "uk": "Ви припускаєте, що допомога на місцевому святі виявиться корисним і приємним досвідом. Передайте думку-прогноз через will. Скажіть: «Думаю, цей досвід принесе задоволення й користь»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "experience",
+            "will",
+            "be",
+            "rewarding"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-35:i05:r1",
+            "text": "I think the experience will be rewarding."
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i05:r2",
+            "text": "I think the experience is going to be rewarding."
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i05:r3",
+            "text": "I think the experience will to be rewarding."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:i05:audio",
+            "transcript": "I think the experience will be rewarding."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-35:i05:r1",
+              "targetText": "I think the experience will be rewarding.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i05:r2",
+              "targetText": "I think the experience is going to be rewarding.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i05:r3",
+              "targetText": "I think the experience will to be rewarding.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-35:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the experience will be rewarding.",
+                "uk": "У записі звучить I think the experience will be rewarding."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the experience will be rewarding.",
+                "uk": "У записі звучить I think the experience will be rewarding."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви припускаєте, що допомога на місцевому святі виявиться корисним і приємним досвідом. Передайте думку-прогноз через will.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-35:i06:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i06:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i06:r3",
+            "text": "will to be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви припускаєте, що допомога на місцевому святі виявиться корисним і приємним досвідом. Передайте думку-прогноз через will.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы предполагаете, что помощь на местном празднике окажется полезным и приятным опытом. Передайте мнение-прогноз через will.",
+            "uk": "Ви припускаєте, що допомога на місцевому святі виявиться корисним і приємним досвідом. Передайте думку-прогноз через will."
+          },
+          "gappedTargetPhrase": "I think the experience ___ rewarding.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-35:i06:r1",
+              "text": "will be"
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i06:r2",
+              "text": "is going to be"
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i06:r3",
+              "text": "will to be"
+            }
+          ],
+          "testedDimension": "Ви припускаєте, що допомога на місцевому святі виявиться корисним і приємним досвідом. Передайте думку-прогноз через will.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-35:i06:r2",
+              "correct": false,
+              "testedDimension": "Ви припускаєте, що допомога на місцевому святі виявиться корисним і приємним досвідом. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i06:r3",
+              "correct": false,
+              "testedDimension": "Ви припускаєте, що допомога на місцевому святі виявиться корисним і приємним досвідом. Передайте думку-прогноз через will.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: will be.",
+                "uk": "Потрібна правильно побудована повна форма: will be."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:word:time-consuming",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — time-consuming",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:word:time-consuming:audio"
+        ],
+        "accessibilityLabel": "Картка слова — time-consuming",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:word:time-consuming:audio",
+            "transcript": "time-consuming"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-35:word:time-consuming:r1",
+              "targetText": "time-consuming",
+              "meaningByLocale": {
+                "ru": "занимающий много времени.",
+                "uk": "такий, що забирає багато часу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "time-consuming",
+            "definitionByLocale": {
+              "ru": "занимающий много времени.",
+              "uk": "такий, що забирає багато часу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вирішили закінчити тривалу справу. Поки це ваш намір, не домовленість. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся закінчити справу, яка забирає багато часу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили закінчити тривалу справу. Поки це ваш намір, не домовленість. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся закінчити справу, яка забирає багато часу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to finish a time-consuming task.",
+          "localizedMeaning": {
+            "ru": "Вы решили закончить длительное дело. Пока это ваше намерение, не договорённость. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь закончить дело, которое занимает много времени».",
+            "uk": "Ви вирішили закінчити тривалу справу. Поки це ваш намір, не домовленість. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся закінчити справу, яка забирає багато часу»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "finish",
+            "a",
+            "time-consuming",
+            "task"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-35:i08:r1",
+            "text": "I am going to finish a time-consuming task."
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i08:r2",
+            "text": "I am finishing a time-consuming task."
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i08:r3",
+            "text": "I is going to finish a time-consuming task."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:i08:audio",
+            "transcript": "I am going to finish a time-consuming task."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-35:i08:r1",
+              "targetText": "I am going to finish a time-consuming task.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i08:r2",
+              "targetText": "I am finishing a time-consuming task.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i08:r3",
+              "targetText": "I is going to finish a time-consuming task.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-35:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to finish a time-consuming task.",
+                "uk": "У записі звучить I am going to finish a time-consuming task."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to finish a time-consuming task.",
+                "uk": "У записі звучить I am going to finish a time-consuming task."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вирішили закінчити тривалу справу. Поки це ваш намір, не домовленість. Передайте заздалегідь прийнятий намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-35:i09:r1",
+            "text": "am going to finish"
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i09:r2",
+            "text": "am finishing"
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i09:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили закінчити тривалу справу. Поки це ваш намір, не домовленість. Передайте заздалегідь прийнятий намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили закончить длительное дело. Пока это ваше намерение, не договорённость. Передайте заранее принятое намерение через going to.",
+            "uk": "Ви вирішили закінчити тривалу справу. Поки це ваш намір, не домовленість. Передайте заздалегідь прийнятий намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ a time-consuming task.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-35:i09:r1",
+              "text": "am going to finish"
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i09:r2",
+              "text": "am finishing"
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i09:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Ви вирішили закінчити тривалу справу. Поки це ваш намір, не домовленість. Передайте заздалегідь прийнятий намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-35:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви вирішили закінчити тривалу справу. Поки це ваш намір, не домовленість. Передайте заздалегідь прийнятий намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви вирішили закінчити тривалу справу. Поки це ваш намір, не домовленість. Передайте заздалегідь прийнятий намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: am going to finish.",
+                "uk": "Потрібна правильно побудована повна форма: am going to finish."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:word:straightforward",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — straightforward",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:word:straightforward:audio"
+        ],
+        "accessibilityLabel": "Картка слова — straightforward",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:word:straightforward:audio",
+            "transcript": "straightforward"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-35:word:straightforward:r1",
+              "targetText": "straightforward",
+              "meaningByLocale": {
+                "ru": "простой и понятный, без сложностей.",
+                "uk": "простий і зрозумілий, без складнощів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "straightforward",
+            "definitionByLocale": {
+              "ru": "простой и понятный, без сложностей.",
+              "uk": "простий і зрозумілий, без складнощів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з другом уже узгодили простий маршрут на завтра й час виїзду. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми їдемо простим маршрутом завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з другом уже узгодили простий маршрут на завтра й час виїзду. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми їдемо простим маршрутом завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are taking a straightforward route tomorrow.",
+          "localizedMeaning": {
+            "ru": "Вы с другом уже согласовали простой маршрут на завтра и время выезда. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы едем простым маршрутом завтра».",
+            "uk": "Ви з другом уже узгодили простий маршрут на завтра й час виїзду. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми їдемо простим маршрутом завтра»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "taking",
+            "a",
+            "straightforward",
+            "route",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-35:i11:r1",
+            "text": "We are taking a straightforward route tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i11:r2",
+            "text": "We are going to take a straightforward route tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i11:r3",
+            "text": "We is taking a straightforward route tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:i11:audio",
+            "transcript": "We are taking a straightforward route tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-35:i11:r1",
+              "targetText": "We are taking a straightforward route tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i11:r2",
+              "targetText": "We are going to take a straightforward route tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i11:r3",
+              "targetText": "We is taking a straightforward route tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-35:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are taking a straightforward route tomorrow.",
+                "uk": "У записі звучить We are taking a straightforward route tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are taking a straightforward route tomorrow.",
+                "uk": "У записі звучить We are taking a straightforward route tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви з другом уже узгодили простий маршрут на завтра й час виїзду. Передайте підтверджену домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-35:i12:r1",
+            "text": "are taking"
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i12:r2",
+            "text": "are going to take"
+          },
+          {
+            "responseId": "en:lesson-16:session-35:i12:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з другом уже узгодили простий маршрут на завтра й час виїзду. Передайте підтверджену домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с другом уже согласовали простой маршрут на завтра и время выезда. Передайте подтверждённую договорённость через Present Continuous.",
+            "uk": "Ви з другом уже узгодили простий маршрут на завтра й час виїзду. Передайте підтверджену домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ a straightforward route tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-35:i12:r1",
+              "text": "are taking"
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i12:r2",
+              "text": "are going to take"
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i12:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Ви з другом уже узгодили простий маршрут на завтра й час виїзду. Передайте підтверджену домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-35:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви з другом уже узгодили простий маршрут на завтра й час виїзду. Передайте підтверджену домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+                "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-35:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви з другом уже узгодили простий маршрут на завтра й час виїзду. Передайте підтверджену домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна правильно построенная полная форма: are taking.",
+                "uk": "Потрібна правильно побудована повна форма: are taking."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-35:i13:p1",
+              "target": "demanding",
+              "meaningByLocale": {
+                "ru": "требующий много сил или внимания",
+                "uk": "такий, що потребує багато сил або уваги"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-35:i13:p2",
+              "target": "rewarding",
+              "meaningByLocale": {
+                "ru": "приносящий удовлетворение и ощущение пользы",
+                "uk": "такий, що приносить задоволення й відчуття користі"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-35:i13:p3",
+              "target": "time-consuming",
+              "meaningByLocale": {
+                "ru": "занимающий много времени",
+                "uk": "такий, що забирає багато часу"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-35:i13:p4",
+              "target": "straightforward",
+              "meaningByLocale": {
+                "ru": "простой и понятный, без сложностей",
+                "uk": "простий і зрозумілий, без складнощів"
+              }
+            }
+          ],
+          "leftColumn": [
+            "demanding",
+            "rewarding",
+            "time-consuming",
+            "straightforward"
+          ],
+          "rightColumn": [
+            "такий, що потребує багато сил або уваги",
+            "такий, що приносить задоволення й відчуття користі",
+            "такий, що забирає багато часу",
+            "простий і зрозумілий, без складнощів"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почутий прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почутий прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:i14:audio",
+            "transcript": "I think the course will be demanding."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think the course will be demanding.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "course",
+            "will",
+            "be",
+            "demanding"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почутий намір",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почутий намір",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:i15:audio",
+            "transcript": "I am going to finish a time-consuming task."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to finish a time-consuming task.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "finish",
+            "a",
+            "time-consuming",
+            "task"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте підтверджену домовленість через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:i16:audio"
+        ],
+        "accessibilityLabel": "Передайте підтверджену домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:i16:audio",
+            "transcript": "We are taking a straightforward route tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are taking a straightforward route tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-35:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Передайте думку-прогноз через will.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-35:i17:audio"
+        ],
+        "accessibilityLabel": "Передайте думку-прогноз через will.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-35:i17:audio",
+            "transcript": "I think the experience will be rewarding."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think the experience will be rewarding.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-16:session-35:word:demanding",
+      "correctText": "demanding",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-35:i01",
+      "correctText": "I think the course will be demanding.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-35:i02",
+      "correctText": "I think the course will be demanding.",
+      "correctResponseId": "en:lesson-16:session-35:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-35:i03",
+      "correctText": "will be",
+      "correctResponseId": "en:lesson-16:session-35:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-35:word:rewarding",
+      "correctText": "rewarding",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-35:i04",
+      "correctText": "I think the experience will be rewarding.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-35:i05",
+      "correctText": "I think the experience will be rewarding.",
+      "correctResponseId": "en:lesson-16:session-35:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-35:i06",
+      "correctText": "will be",
+      "correctResponseId": "en:lesson-16:session-35:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-35:word:time-consuming",
+      "correctText": "time-consuming",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-35:i07",
+      "correctText": "I am going to finish a time-consuming task.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-35:i08",
+      "correctText": "I am going to finish a time-consuming task.",
+      "correctResponseId": "en:lesson-16:session-35:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-35:i09",
+      "correctText": "am going to finish",
+      "correctResponseId": "en:lesson-16:session-35:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-35:word:straightforward",
+      "correctText": "straightforward",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-35:i10",
+      "correctText": "We are taking a straightforward route tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-35:i11",
+      "correctText": "We are taking a straightforward route tomorrow.",
+      "correctResponseId": "en:lesson-16:session-35:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-35:i12",
+      "correctText": "are taking",
+      "correctResponseId": "en:lesson-16:session-35:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-35:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-35:i14",
+      "correctText": "I think the course will be demanding.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-35:i15",
+      "correctText": "I am going to finish a time-consuming task.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-35:i16",
+      "correctText": "We are taking a straightforward route tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-35:i17",
+      "correctText": "I think the experience will be rewarding.",
+      "correctResponseId": null
+    }
+  ]
+}

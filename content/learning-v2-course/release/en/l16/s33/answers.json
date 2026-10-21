@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-33:word:manageable",
+    "correctText": "manageable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-33:i01",
+    "correctText": "I think the task will be manageable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-33:i02",
+    "correctText": "I think the task will be manageable.",
+    "correctResponseId": "en:lesson-16:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-33:i03",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-33:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-33:word:unavoidable",
+    "correctText": "unavoidable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-33:i04",
+    "correctText": "I think the delay will be unavoidable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-33:i05",
+    "correctText": "I think the delay will be unavoidable.",
+    "correctResponseId": "en:lesson-16:session-33:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-33:i06",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-33:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-33:word:unnecessary",
+    "correctText": "unnecessary",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-33:i07",
+    "correctText": "I am going to cancel an unnecessary trip.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-33:i08",
+    "correctText": "I am going to cancel an unnecessary trip.",
+    "correctResponseId": "en:lesson-16:session-33:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-33:i09",
+    "correctText": "am going to cancel",
+    "correctResponseId": "en:lesson-16:session-33:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-33:word:worthwhile",
+    "correctText": "worthwhile",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-33:i10",
+    "correctText": "We are joining a worthwhile activity tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-33:i11",
+    "correctText": "We are joining a worthwhile activity tomorrow.",
+    "correctResponseId": "en:lesson-16:session-33:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-33:i12",
+    "correctText": "are joining",
+    "correctResponseId": "en:lesson-16:session-33:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-33:i13",
+    "correctText": "en:lesson-16:session-33:i13:p1=manageable\nen:lesson-16:session-33:i13:p2=unavoidable\nen:lesson-16:session-33:i13:p3=unnecessary\nen:lesson-16:session-33:i13:p4=worthwhile",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-33:i14",
+    "correctText": "I think the task will be manageable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-33:i15",
+    "correctText": "I am going to cancel an unnecessary trip.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-33:i16",
+    "correctText": "We are joining a worthwhile activity tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-33:i17",
+    "correctText": "I think the delay will be unavoidable.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,1129 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-33:word:manageable",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — manageable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-33:word:manageable:audio"
+      ],
+      "accessibilityLabel": "Картка слова — manageable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-33:word:manageable:audio",
+          "transcript": "manageable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-33:word:manageable:r1",
+            "targetText": "manageable",
+            "meaningByLocale": {
+              "ru": "посильный, с которым можно справиться.",
+              "uk": "посильний, з яким можна впоратися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "manageable",
+          "definitionByLocale": {
+            "ru": "посильный, с которым можно справиться.",
+            "uk": "посильний, з яким можна впоратися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-33:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви висловлюєте думку про майбутнє завдання. Передайте думку-прогноз через will. Скажіть: «Думаю, завдання буде посильним».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви висловлюєте думку про майбутнє завдання. Передайте думку-прогноз через will. Скажіть: «Думаю, завдання буде посильним».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the task will be manageable.",
+        "localizedMeaning": {
+          "ru": "Вы высказываете мнение о будущей задаче. Передайте мнение-прогноз через will. Скажите: «Думаю, задача будет посильной».",
+          "uk": "Ви висловлюєте думку про майбутнє завдання. Передайте думку-прогноз через will. Скажіть: «Думаю, завдання буде посильним»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "task",
+          "will",
+          "be",
+          "manageable"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-33:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-33:i02:r1",
+          "text": "I think the task will be manageable."
+        },
+        {
+          "responseId": "en:lesson-16:session-33:i02:r2",
+          "text": "I think the task is going to be manageable."
+        },
+        {
+          "responseId": "en:lesson-16:session-33:i02:r3",
+          "text": "I think the task will to be manageable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-33:i02:audio",
+          "transcript": "I think the task will be manageable."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-33:i02:r1",
+            "targetText": "I think the task will be manageable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i02:r2",
+            "targetText": "I think the task is going to be manageable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i02:r3",
+            "targetText": "I think the task will to be manageable.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the task will be manageable.",
+              "uk": "У записі звучить I think the task will be manageable."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the task will be manageable.",
+              "uk": "У записі звучить I think the task will be manageable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-33:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви висловлюєте думку про майбутнє завдання. Передайте думку-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-33:i03:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-33:i03:r2",
+          "text": "is going to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-33:i03:r3",
+          "text": "will to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви висловлюєте думку про майбутнє завдання. Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы высказываете мнение о будущей задаче. Передайте мнение-прогноз через will.",
+          "uk": "Ви висловлюєте думку про майбутнє завдання. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the task ___ manageable.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-33:i03:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i03:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i03:r3",
+            "text": "will to be"
+          }
+        ],
+        "testedDimension": "Ви висловлюєте думку про майбутнє завдання. Передайте думку-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-33:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви висловлюєте думку про майбутнє завдання. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви висловлюєте думку про майбутнє завдання. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will be.",
+              "uk": "Потрібна правильно побудована повна форма: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-33:word:unavoidable",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — unavoidable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-33:word:unavoidable:audio"
+      ],
+      "accessibilityLabel": "Картка слова — unavoidable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-33:word:unavoidable:audio",
+          "transcript": "unavoidable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-33:word:unavoidable:r1",
+            "targetText": "unavoidable",
+            "meaningByLocale": {
+              "ru": "неизбежный, которого нельзя избежать.",
+              "uk": "неминучий, якого не можна уникнути."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unavoidable",
+          "definitionByLocale": {
+            "ru": "неизбежный, которого нельзя избежать.",
+            "uk": "неминучий, якого не можна уникнути."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-33:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви припускаєте, що затримки не вдасться уникнути. Передайте думку-прогноз через will. Скажіть: «Думаю, затримка буде неминучою».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви припускаєте, що затримки не вдасться уникнути. Передайте думку-прогноз через will. Скажіть: «Думаю, затримка буде неминучою».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the delay will be unavoidable.",
+        "localizedMeaning": {
+          "ru": "Вы предполагаете, что задержки не удастся избежать. Передайте мнение-прогноз через will. Скажите: «Думаю, задержка будет неизбежной».",
+          "uk": "Ви припускаєте, що затримки не вдасться уникнути. Передайте думку-прогноз через will. Скажіть: «Думаю, затримка буде неминучою»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "delay",
+          "will",
+          "be",
+          "unavoidable"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-33:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-33:i05:r1",
+          "text": "I think the delay will be unavoidable."
+        },
+        {
+          "responseId": "en:lesson-16:session-33:i05:r2",
+          "text": "I think the delay is going to be unavoidable."
+        },
+        {
+          "responseId": "en:lesson-16:session-33:i05:r3",
+          "text": "I think the delay will to be unavoidable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-33:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-33:i05:audio",
+          "transcript": "I think the delay will be unavoidable."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-33:i05:r1",
+            "targetText": "I think the delay will be unavoidable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i05:r2",
+            "targetText": "I think the delay is going to be unavoidable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i05:r3",
+            "targetText": "I think the delay will to be unavoidable.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-33:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the delay will be unavoidable.",
+              "uk": "У записі звучить I think the delay will be unavoidable."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the delay will be unavoidable.",
+              "uk": "У записі звучить I think the delay will be unavoidable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-33:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви припускаєте, що затримки не вдасться уникнути. Передайте думку-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-33:i06:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-33:i06:r2",
+          "text": "is going to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-33:i06:r3",
+          "text": "will to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви припускаєте, що затримки не вдасться уникнути. Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы предполагаете, что задержки не удастся избежать. Передайте мнение-прогноз через will.",
+          "uk": "Ви припускаєте, що затримки не вдасться уникнути. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the delay ___ unavoidable.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-33:i06:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i06:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i06:r3",
+            "text": "will to be"
+          }
+        ],
+        "testedDimension": "Ви припускаєте, що затримки не вдасться уникнути. Передайте думку-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-33:i06:r2",
+            "correct": false,
+            "testedDimension": "Ви припускаєте, що затримки не вдасться уникнути. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i06:r3",
+            "correct": false,
+            "testedDimension": "Ви припускаєте, що затримки не вдасться уникнути. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will be.",
+              "uk": "Потрібна правильно побудована повна форма: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-33:word:unnecessary",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — unnecessary",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-33:word:unnecessary:audio"
+      ],
+      "accessibilityLabel": "Картка слова — unnecessary",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-33:word:unnecessary:audio",
+          "transcript": "unnecessary"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-33:word:unnecessary:r1",
+            "targetText": "unnecessary",
+            "meaningByLocale": {
+              "ru": "ненужный, без которого можно обойтись.",
+              "uk": "непотрібний, без якого можна обійтися."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unnecessary",
+          "definitionByLocale": {
+            "ru": "ненужный, без которого можно обойтись.",
+            "uk": "непотрібний, без якого можна обійтися."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-33:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви вирішили відмовитися від непотрібної поїздки; поки це ваш намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся скасувати непотрібну поїздку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили відмовитися від непотрібної поїздки; поки це ваш намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся скасувати непотрібну поїздку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to cancel an unnecessary trip.",
+        "localizedMeaning": {
+          "ru": "Вы решили отказаться от ненужной поездки; пока это ваше намерение. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь отменить ненужную поездку».",
+          "uk": "Ви вирішили відмовитися від непотрібної поїздки; поки це ваш намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся скасувати непотрібну поїздку»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "cancel",
+          "an",
+          "unnecessary",
+          "trip"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-33:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-33:i08:r1",
+          "text": "I am going to cancel an unnecessary trip."
+        },
+        {
+          "responseId": "en:lesson-16:session-33:i08:r2",
+          "text": "I am cancelling an unnecessary trip."
+        },
+        {
+          "responseId": "en:lesson-16:session-33:i08:r3",
+          "text": "I is going to cancel an unnecessary trip."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-33:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-33:i08:audio",
+          "transcript": "I am going to cancel an unnecessary trip."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-33:i08:r1",
+            "targetText": "I am going to cancel an unnecessary trip.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i08:r2",
+            "targetText": "I am cancelling an unnecessary trip.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i08:r3",
+            "targetText": "I is going to cancel an unnecessary trip.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-33:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to cancel an unnecessary trip.",
+              "uk": "У записі звучить I am going to cancel an unnecessary trip."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to cancel an unnecessary trip.",
+              "uk": "У записі звучить I am going to cancel an unnecessary trip."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-33:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вирішили відмовитися від непотрібної поїздки; поки це ваш намір. Передайте заздалегідь прийнятий намір через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-33:i09:r1",
+          "text": "am going to cancel"
+        },
+        {
+          "responseId": "en:lesson-16:session-33:i09:r2",
+          "text": "am cancelling"
+        },
+        {
+          "responseId": "en:lesson-16:session-33:i09:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили відмовитися від непотрібної поїздки; поки це ваш намір. Передайте заздалегідь прийнятий намір через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы решили отказаться от ненужной поездки; пока это ваше намерение. Передайте заранее принятое намерение через going to.",
+          "uk": "Ви вирішили відмовитися від непотрібної поїздки; поки це ваш намір. Передайте заздалегідь прийнятий намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ an unnecessary trip.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-33:i09:r1",
+            "text": "am going to cancel"
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i09:r2",
+            "text": "am cancelling"
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i09:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Ви вирішили відмовитися від непотрібної поїздки; поки це ваш намір. Передайте заздалегідь прийнятий намір через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-33:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви вирішили відмовитися від непотрібної поїздки; поки це ваш намір. Передайте заздалегідь прийнятий намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви вирішили відмовитися від непотрібної поїздки; поки це ваш намір. Передайте заздалегідь прийнятий намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: am going to cancel.",
+              "uk": "Потрібна правильно побудована повна форма: am going to cancel."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-33:word:worthwhile",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — worthwhile",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-33:word:worthwhile:audio"
+      ],
+      "accessibilityLabel": "Картка слова — worthwhile",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-33:word:worthwhile:audio",
+          "transcript": "worthwhile"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-33:word:worthwhile:r1",
+            "targetText": "worthwhile",
+            "meaningByLocale": {
+              "ru": "стоящий затраченных времени или усилий.",
+              "uk": "вартий витрачених часу або зусиль."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "worthwhile",
+          "definitionByLocale": {
+            "ru": "стоящий затраченных времени или усилий.",
+            "uk": "вартий витрачених часу або зусиль."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-33:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви з другом записалися на завтрашнє корисне заняття, час підтверджено. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми беремо участь у вартому зусиль занятті завтра».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви з другом записалися на завтрашнє корисне заняття, час підтверджено. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми беремо участь у вартому зусиль занятті завтра».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are joining a worthwhile activity tomorrow.",
+        "localizedMeaning": {
+          "ru": "Вы с другом записались на завтрашнее полезное занятие, время подтверждено. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы участвуем в стоящем занятии завтра».",
+          "uk": "Ви з другом записалися на завтрашнє корисне заняття, час підтверджено. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми беремо участь у вартому зусиль занятті завтра»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "joining",
+          "a",
+          "worthwhile",
+          "activity",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-33:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-33:i11:r1",
+          "text": "We are joining a worthwhile activity tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-33:i11:r2",
+          "text": "We are going to join a worthwhile activity tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-33:i11:r3",
+          "text": "We is joining a worthwhile activity tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-33:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-33:i11:audio",
+          "transcript": "We are joining a worthwhile activity tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-33:i11:r1",
+            "targetText": "We are joining a worthwhile activity tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i11:r2",
+            "targetText": "We are going to join a worthwhile activity tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i11:r3",
+            "targetText": "We is joining a worthwhile activity tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-33:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are joining a worthwhile activity tomorrow.",
+              "uk": "У записі звучить We are joining a worthwhile activity tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are joining a worthwhile activity tomorrow.",
+              "uk": "У записі звучить We are joining a worthwhile activity tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-33:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви з другом записалися на завтрашнє корисне заняття, час підтверджено. Передайте підтверджену домовленість через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-33:i12:r1",
+          "text": "are joining"
+        },
+        {
+          "responseId": "en:lesson-16:session-33:i12:r2",
+          "text": "are going to join"
+        },
+        {
+          "responseId": "en:lesson-16:session-33:i12:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви з другом записалися на завтрашнє корисне заняття, час підтверджено. Передайте підтверджену домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы с другом записались на завтрашнее полезное занятие, время подтверждено. Передайте подтверждённую договорённость через Present Continuous.",
+          "uk": "Ви з другом записалися на завтрашнє корисне заняття, час підтверджено. Передайте підтверджену домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ a worthwhile activity tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-33:i12:r1",
+            "text": "are joining"
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i12:r2",
+            "text": "are going to join"
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i12:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Ви з другом записалися на завтрашнє корисне заняття, час підтверджено. Передайте підтверджену домовленість через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-33:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви з другом записалися на завтрашнє корисне заняття, час підтверджено. Передайте підтверджену домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-33:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви з другом записалися на завтрашнє корисне заняття, час підтверджено. Передайте підтверджену домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: are joining.",
+              "uk": "Потрібна правильно побудована повна форма: are joining."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-33:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-33:i13:p1",
+            "target": "manageable",
+            "meaningByLocale": {
+              "ru": "посильный, с которым можно справиться",
+              "uk": "посильний, з яким можна впоратися"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-33:i13:p2",
+            "target": "unavoidable",
+            "meaningByLocale": {
+              "ru": "неизбежный, которого нельзя избежать",
+              "uk": "неминучий, якого не можна уникнути"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-33:i13:p3",
+            "target": "unnecessary",
+            "meaningByLocale": {
+              "ru": "ненужный, без которого можно обойтись",
+              "uk": "непотрібний, без якого можна обійтися"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-33:i13:p4",
+            "target": "worthwhile",
+            "meaningByLocale": {
+              "ru": "стоящий затраченных времени или усилий",
+              "uk": "вартий витрачених часу або зусиль"
+            }
+          }
+        ],
+        "leftColumn": [
+          "manageable",
+          "unavoidable",
+          "unnecessary",
+          "worthwhile"
+        ],
+        "rightColumn": [
+          "посильний, з яким можна впоратися",
+          "неминучий, якого не можна уникнути",
+          "непотрібний, без якого можна обійтися",
+          "вартий витрачених часу або зусиль"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-33:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почутий прогноз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-33:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почутий прогноз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-33:i14:audio",
+          "transcript": "I think the task will be manageable."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I think the task will be manageable.",
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "task",
+          "will",
+          "be",
+          "manageable"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-33:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-33:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-33:i15:audio",
+          "transcript": "I am going to cancel an unnecessary trip."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to cancel an unnecessary trip.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "cancel",
+          "an",
+          "unnecessary",
+          "trip"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-33:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте підтверджену домовленість через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-33:i16:audio"
+      ],
+      "accessibilityLabel": "Передайте підтверджену домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-33:i16:audio",
+          "transcript": "We are joining a worthwhile activity tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are joining a worthwhile activity tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-33:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте думку-прогноз через will.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-33:i17:audio"
+      ],
+      "accessibilityLabel": "Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-33:i17:audio",
+          "transcript": "I think the delay will be unavoidable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I think the delay will be unavoidable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "90a2af91fd5fcb70d0caafb28192c79ddcd46ac277d419c8058a5612fec2766e"
+}

@@ -1,0 +1,1129 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-36",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-36:word:memorable",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — memorable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-36:word:memorable:audio"
+      ],
+      "accessibilityLabel": "Картка слова — memorable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-36:word:memorable:audio",
+          "transcript": "memorable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-36:word:memorable:r1",
+            "targetText": "memorable",
+            "meaningByLocale": {
+              "ru": "запоминающийся.",
+              "uk": "незабутній, такий, що запам’ятовується."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "memorable",
+          "definitionByLocale": {
+            "ru": "запоминающийся.",
+            "uk": "незабутній, такий, що запам’ятовується."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-36:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви ділитеся надією-прогнозом про майбутню відпустку. Передайте думку-прогноз через will. Скажіть: «Думаю, відпустка запам’ятається».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви ділитеся надією-прогнозом про майбутню відпустку. Передайте думку-прогноз через will. Скажіть: «Думаю, відпустка запам’ятається».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the holiday will be memorable.",
+        "localizedMeaning": {
+          "ru": "Вы делитесь надеждой-прогнозом о предстоящем отпуске. Передайте мнение-прогноз через will. Скажите: «Думаю, отпуск запомнится».",
+          "uk": "Ви ділитеся надією-прогнозом про майбутню відпустку. Передайте думку-прогноз через will. Скажіть: «Думаю, відпустка запам’ятається»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "holiday",
+          "will",
+          "be",
+          "memorable"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-36:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-36:i02:r1",
+          "text": "I think the holiday will be memorable."
+        },
+        {
+          "responseId": "en:lesson-16:session-36:i02:r2",
+          "text": "I think the holiday is going to be memorable."
+        },
+        {
+          "responseId": "en:lesson-16:session-36:i02:r3",
+          "text": "I think the holiday will to be memorable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-36:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-36:i02:audio",
+          "transcript": "I think the holiday will be memorable."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-36:i02:r1",
+            "targetText": "I think the holiday will be memorable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i02:r2",
+            "targetText": "I think the holiday is going to be memorable.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i02:r3",
+            "targetText": "I think the holiday will to be memorable.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-36:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the holiday will be memorable.",
+              "uk": "У записі звучить I think the holiday will be memorable."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the holiday will be memorable.",
+              "uk": "У записі звучить I think the holiday will be memorable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-36:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви ділитеся надією-прогнозом про майбутню відпустку. Передайте думку-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-36:i03:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-36:i03:r2",
+          "text": "is going to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-36:i03:r3",
+          "text": "will to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви ділитеся надією-прогнозом про майбутню відпустку. Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы делитесь надеждой-прогнозом о предстоящем отпуске. Передайте мнение-прогноз через will.",
+          "uk": "Ви ділитеся надією-прогнозом про майбутню відпустку. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the holiday ___ memorable.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-36:i03:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i03:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i03:r3",
+            "text": "will to be"
+          }
+        ],
+        "testedDimension": "Ви ділитеся надією-прогнозом про майбутню відпустку. Передайте думку-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-36:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви ділитеся надією-прогнозом про майбутню відпустку. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви ділитеся надією-прогнозом про майбутню відпустку. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will be.",
+              "uk": "Потрібна правильно побудована повна форма: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-36:word:uneventful",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — uneventful",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-36:word:uneventful:audio"
+      ],
+      "accessibilityLabel": "Картка слова — uneventful",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-36:word:uneventful:audio",
+          "transcript": "uneventful"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-36:word:uneventful:r1",
+            "targetText": "uneventful",
+            "meaningByLocale": {
+              "ru": "прошедший или проходящий без особых событий.",
+              "uk": "такий, що минає без особливих подій."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "uneventful",
+          "definitionByLocale": {
+            "ru": "прошедший или проходящий без особых событий.",
+            "uk": "такий, що минає без особливих подій."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-36:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви припускаєте спокійну поїздку без пригод. Передайте думку-прогноз через will. Скажіть: «Думаю, поїздка мине без особливих подій».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви припускаєте спокійну поїздку без пригод. Передайте думку-прогноз через will. Скажіть: «Думаю, поїздка мине без особливих подій».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the journey will be uneventful.",
+        "localizedMeaning": {
+          "ru": "Вы предполагаете спокойную поездку без происшествий. Передайте мнение-прогноз через will. Скажите: «Думаю, поездка пройдёт без особых событий».",
+          "uk": "Ви припускаєте спокійну поїздку без пригод. Передайте думку-прогноз через will. Скажіть: «Думаю, поїздка мине без особливих подій»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "journey",
+          "will",
+          "be",
+          "uneventful"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-36:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-36:i05:r1",
+          "text": "I think the journey will be uneventful."
+        },
+        {
+          "responseId": "en:lesson-16:session-36:i05:r2",
+          "text": "I think the journey is going to be uneventful."
+        },
+        {
+          "responseId": "en:lesson-16:session-36:i05:r3",
+          "text": "I think the journey will to be uneventful."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-36:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-36:i05:audio",
+          "transcript": "I think the journey will be uneventful."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-36:i05:r1",
+            "targetText": "I think the journey will be uneventful.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i05:r2",
+            "targetText": "I think the journey is going to be uneventful.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i05:r3",
+            "targetText": "I think the journey will to be uneventful.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-36:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the journey will be uneventful.",
+              "uk": "У записі звучить I think the journey will be uneventful."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the journey will be uneventful.",
+              "uk": "У записі звучить I think the journey will be uneventful."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-36:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви припускаєте спокійну поїздку без пригод. Передайте думку-прогноз через will.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-36:i06:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-36:i06:r2",
+          "text": "is going to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-36:i06:r3",
+          "text": "will to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви припускаєте спокійну поїздку без пригод. Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы предполагаете спокойную поездку без происшествий. Передайте мнение-прогноз через will.",
+          "uk": "Ви припускаєте спокійну поїздку без пригод. Передайте думку-прогноз через will."
+        },
+        "gappedTargetPhrase": "I think the journey ___ uneventful.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-36:i06:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i06:r2",
+            "text": "is going to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i06:r3",
+            "text": "will to be"
+          }
+        ],
+        "testedDimension": "Ви припускаєте спокійну поїздку без пригод. Передайте думку-прогноз через will.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-36:i06:r2",
+            "correct": false,
+            "testedDimension": "Ви припускаєте спокійну поїздку без пригод. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i06:r3",
+            "correct": false,
+            "testedDimension": "Ви припускаєте спокійну поїздку без пригод. Передайте думку-прогноз через will.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: will be.",
+              "uk": "Потрібна правильно побудована повна форма: will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-36:word:unplanned",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — unplanned",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-36:word:unplanned:audio"
+      ],
+      "accessibilityLabel": "Картка слова — unplanned",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-36:word:unplanned:audio",
+          "transcript": "unplanned"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-36:word:unplanned:r1",
+            "targetText": "unplanned",
+            "meaningByLocale": {
+              "ru": "незапланированный.",
+              "uk": "незапланований."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unplanned",
+          "definitionByLocale": {
+            "ru": "незапланированный.",
+            "uk": "незапланований."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-36:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "З’явилася непередбачена витрата. Ви вже вирішили оплатити її; повідомляєте про намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся покрити незаплановану витрату».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’явилася непередбачена витрата. Ви вже вирішили оплатити її; повідомляєте про намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся покрити незаплановану витрату».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to cover an unplanned expense.",
+        "localizedMeaning": {
+          "ru": "Появился непредвиденный расход. Вы уже решили оплатить его; сообщаете о намерении. Передайте заранее принятое намерение через going to. Скажите: «Я собираюсь покрыть незапланированный расход».",
+          "uk": "З’явилася непередбачена витрата. Ви вже вирішили оплатити її; повідомляєте про намір. Передайте заздалегідь прийнятий намір через going to. Скажіть: «Я збираюся покрити незаплановану витрату»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "cover",
+          "an",
+          "unplanned",
+          "expense"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-36:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-36:i08:r1",
+          "text": "I am going to cover an unplanned expense."
+        },
+        {
+          "responseId": "en:lesson-16:session-36:i08:r2",
+          "text": "I am covering an unplanned expense."
+        },
+        {
+          "responseId": "en:lesson-16:session-36:i08:r3",
+          "text": "I is going to cover an unplanned expense."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-36:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-36:i08:audio",
+          "transcript": "I am going to cover an unplanned expense."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-36:i08:r1",
+            "targetText": "I am going to cover an unplanned expense.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i08:r2",
+            "targetText": "I am covering an unplanned expense.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i08:r3",
+            "targetText": "I is going to cover an unplanned expense.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-36:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to cover an unplanned expense.",
+              "uk": "У записі звучить I am going to cover an unplanned expense."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to cover an unplanned expense.",
+              "uk": "У записі звучить I am going to cover an unplanned expense."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-36:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "З’явилася непередбачена витрата. Ви вже вирішили оплатити її; повідомляєте про намір. Передайте заздалегідь прийнятий намір через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-36:i09:r1",
+          "text": "am going to cover"
+        },
+        {
+          "responseId": "en:lesson-16:session-36:i09:r2",
+          "text": "am covering"
+        },
+        {
+          "responseId": "en:lesson-16:session-36:i09:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’явилася непередбачена витрата. Ви вже вирішили оплатити її; повідомляєте про намір. Передайте заздалегідь прийнятий намір через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Появился непредвиденный расход. Вы уже решили оплатить его; сообщаете о намерении. Передайте заранее принятое намерение через going to.",
+          "uk": "З’явилася непередбачена витрата. Ви вже вирішили оплатити її; повідомляєте про намір. Передайте заздалегідь прийнятий намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ an unplanned expense.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-36:i09:r1",
+            "text": "am going to cover"
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i09:r2",
+            "text": "am covering"
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i09:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "З’явилася непередбачена витрата. Ви вже вирішили оплатити її; повідомляєте про намір. Передайте заздалегідь прийнятий намір через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-36:i09:r2",
+            "correct": false,
+            "testedDimension": "З’явилася непередбачена витрата. Ви вже вирішили оплатити її; повідомляєте про намір. Передайте заздалегідь прийнятий намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i09:r3",
+            "correct": false,
+            "testedDimension": "З’явилася непередбачена витрата. Ви вже вирішили оплатити її; повідомляєте про намір. Передайте заздалегідь прийнятий намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: am going to cover.",
+              "uk": "Потрібна правильно побудована повна форма: am going to cover."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-36:word:last-minute",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — last-minute",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-36:word:last-minute:audio"
+      ],
+      "accessibilityLabel": "Картка слова — last-minute",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-36:word:last-minute:audio",
+          "transcript": "last-minute"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-36:word:last-minute:r1",
+            "targetText": "last-minute",
+            "meaningByLocale": {
+              "ru": "возникший или сделанный в последний момент.",
+              "uk": "такий, що виник або був зроблений в останню мить."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "last-minute",
+          "definitionByLocale": {
+            "ru": "возникший или сделанный в последний момент.",
+            "uk": "такий, що виник або був зроблений в останню мить."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-36:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Лише сьогодні ви з господарями остаточно узгодили завтрашній візит. Домовленість підтверджена. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми їдемо з візитом завтра, домовившись в останню мить».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Лише сьогодні ви з господарями остаточно узгодили завтрашній візит. Домовленість підтверджена. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми їдемо з візитом завтра, домовившись в останню мить».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are making a last-minute visit tomorrow.",
+        "localizedMeaning": {
+          "ru": "Только сегодня вы с хозяевами окончательно согласовали завтрашний визит. Договорённость подтверждена. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы едем с визитом завтра, договорившись в последний момент».",
+          "uk": "Лише сьогодні ви з господарями остаточно узгодили завтрашній візит. Домовленість підтверджена. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми їдемо з візитом завтра, домовившись в останню мить»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "making",
+          "a",
+          "last-minute",
+          "visit",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-36:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-36:i11:r1",
+          "text": "We are making a last-minute visit tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-36:i11:r2",
+          "text": "We are going to make a last-minute visit tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-36:i11:r3",
+          "text": "We is making a last-minute visit tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-36:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-36:i11:audio",
+          "transcript": "We are making a last-minute visit tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-36:i11:r1",
+            "targetText": "We are making a last-minute visit tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i11:r2",
+            "targetText": "We are going to make a last-minute visit tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i11:r3",
+            "targetText": "We is making a last-minute visit tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-36:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are making a last-minute visit tomorrow.",
+              "uk": "У записі звучить We are making a last-minute visit tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are making a last-minute visit tomorrow.",
+              "uk": "У записі звучить We are making a last-minute visit tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-36:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Лише сьогодні ви з господарями остаточно узгодили завтрашній візит. Домовленість підтверджена. Передайте підтверджену домовленість через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-36:i12:r1",
+          "text": "are making"
+        },
+        {
+          "responseId": "en:lesson-16:session-36:i12:r2",
+          "text": "are going to make"
+        },
+        {
+          "responseId": "en:lesson-16:session-36:i12:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Лише сьогодні ви з господарями остаточно узгодили завтрашній візит. Домовленість підтверджена. Передайте підтверджену домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Только сегодня вы с хозяевами окончательно согласовали завтрашний визит. Договорённость подтверждена. Передайте подтверждённую договорённость через Present Continuous.",
+          "uk": "Лише сьогодні ви з господарями остаточно узгодили завтрашній візит. Домовленість підтверджена. Передайте підтверджену домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ a last-minute visit tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-36:i12:r1",
+            "text": "are making"
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i12:r2",
+            "text": "are going to make"
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i12:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Лише сьогодні ви з господарями остаточно узгодили завтрашній візит. Домовленість підтверджена. Передайте підтверджену домовленість через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-36:i12:r2",
+            "correct": false,
+            "testedDimension": "Лише сьогодні ви з господарями остаточно узгодили завтрашній візит. Домовленість підтверджена. Передайте підтверджену домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
+              "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-36:i12:r3",
+            "correct": false,
+            "testedDimension": "Лише сьогодні ви з господарями остаточно узгодили завтрашній візит. Домовленість підтверджена. Передайте підтверджену домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна правильно построенная полная форма: are making.",
+              "uk": "Потрібна правильно побудована повна форма: are making."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-36:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-36:i13:p1",
+            "target": "memorable",
+            "meaningByLocale": {
+              "ru": "запоминающийся",
+              "uk": "незабутній, такий, що запам’ятовується"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-36:i13:p2",
+            "target": "uneventful",
+            "meaningByLocale": {
+              "ru": "прошедший или проходящий без особых событий",
+              "uk": "такий, що минає без особливих подій"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-36:i13:p3",
+            "target": "unplanned",
+            "meaningByLocale": {
+              "ru": "незапланированный",
+              "uk": "незапланований"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-36:i13:p4",
+            "target": "last-minute",
+            "meaningByLocale": {
+              "ru": "возникший или сделанный в последний момент",
+              "uk": "такий, що виник або був зроблений в останню мить"
+            }
+          }
+        ],
+        "leftColumn": [
+          "memorable",
+          "uneventful",
+          "unplanned",
+          "last-minute"
+        ],
+        "rightColumn": [
+          "незабутній, такий, що запам’ятовується",
+          "такий, що минає без особливих подій",
+          "незапланований",
+          "такий, що виник або був зроблений в останню мить"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-36:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почутий прогноз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-36:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почутий прогноз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-36:i14:audio",
+          "transcript": "I think the holiday will be memorable."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I think the holiday will be memorable.",
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "holiday",
+          "will",
+          "be",
+          "memorable"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-36:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-36:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-36:i15:audio",
+          "transcript": "I am going to cover an unplanned expense."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to cover an unplanned expense.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "cover",
+          "an",
+          "unplanned",
+          "expense"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-36:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте підтверджену домовленість через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-36:i16:audio"
+      ],
+      "accessibilityLabel": "Передайте підтверджену домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-36:i16:audio",
+          "transcript": "We are making a last-minute visit tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are making a last-minute visit tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-36:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Передайте думку-прогноз через will.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-36:i17:audio"
+      ],
+      "accessibilityLabel": "Передайте думку-прогноз через will.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-36:i17:audio",
+          "transcript": "I think the journey will be uneventful."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I think the journey will be uneventful.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cd0b101bcf344be81b524bf67debd74c385f7f5a2a839e8860e70e83771e4014"
+}

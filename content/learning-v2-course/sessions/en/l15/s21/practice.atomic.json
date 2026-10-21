@@ -1,0 +1,2337 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-15:session-21",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-15:session-21:word:playdate",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — playdate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:word:playdate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — playdate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:word:playdate:audio",
+            "transcript": "playdate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-21:word:playdate:r1",
+              "targetText": "playdate",
+              "meaningByLocale": {
+                "ru": "встреча детей, чтобы поиграть вместе, согласованная родителями.",
+                "uk": "зустріч дітей, щоб пограти разом, узгоджена батьками."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "playdate",
+            "definitionByLocale": {
+              "ru": "встреча детей, чтобы поиграть вместе, согласованная родителями.",
+              "uk": "зустріч дітей, щоб пограти разом, узгоджена батьками."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с другой семьёй согласовали встречу детей у вас дома в субботу. Скажите: «Мы устраиваем встречу детей для игр в субботу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с другой семьёй согласовали встречу детей у вас дома в субботу. Скажите: «Мы устраиваем встречу детей для игр в субботу»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are having a playdate on Saturday.",
+          "localizedMeaning": {
+            "ru": "Вы с другой семьёй согласовали встречу детей у вас дома в субботу. Скажите: «Мы устраиваем встречу детей для игр в субботу»",
+            "uk": "Ви з іншою сім’єю узгодили зустріч дітей у вас удома в суботу. Скажіть: «Ми влаштовуємо зустріч дітей для ігор у суботу»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "having",
+            "a",
+            "playdate",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-21:i02:r1",
+            "text": "We are having a playdate on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i02:r2",
+            "text": "We am having a playdate on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i02:r3",
+            "text": "We is having a playdate on Saturday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:i02:audio",
+            "transcript": "We are having a playdate on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-21:i02:r1",
+              "targetText": "We are having a playdate on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i02:r2",
+              "targetText": "We am having a playdate on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i02:r3",
+              "targetText": "We is having a playdate on Saturday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-21:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are having a playdate on Saturday.",
+                "uk": "У записі звучить We are having a playdate on Saturday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are having a playdate on Saturday.",
+                "uk": "У записі звучить We are having a playdate on Saturday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Будущая договорённость. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-21:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "We ___ having a playdate on Saturday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-21:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Будущая договорённость. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-21:i03:r2",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i03:r3",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:word:sleepover",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sleepover",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:word:sleepover:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sleepover",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:word:sleepover:audio",
+            "transcript": "sleepover"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-21:word:sleepover:r1",
+              "targetText": "sleepover",
+              "meaningByLocale": {
+                "ru": "ночёвка в гостях, обычно у друзей.",
+                "uk": "ночівля в гостях, зазвичай у друзів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sleepover",
+            "definitionByLocale": {
+              "ru": "ночёвка в гостях, обычно у друзей.",
+              "uk": "ночівля в гостях, зазвичай у друзів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы пригласили друзей остаться на ночь в пятницу; они и родители согласны. Скажите: «Я устраиваю ночёвку друзей у себя в пятницу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы пригласили друзей остаться на ночь в пятницу; они и родители согласны. Скажите: «Я устраиваю ночёвку друзей у себя в пятницу»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am having a sleepover on Friday.",
+          "localizedMeaning": {
+            "ru": "Вы пригласили друзей остаться на ночь в пятницу; они и родители согласны. Скажите: «Я устраиваю ночёвку друзей у себя в пятницу»",
+            "uk": "Ви запросили друзів залишитися на ніч у п’ятницю; вони й батьки згодні. Скажіть: «Я влаштовую ночівлю друзів у себе в п’ятницю»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "having",
+            "a",
+            "sleepover",
+            "on",
+            "Friday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-21:i05:r1",
+            "text": "I am having a sleepover on Friday."
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i05:r2",
+            "text": "I is having a sleepover on Friday."
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i05:r3",
+            "text": "I are having a sleepover on Friday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:i05:audio",
+            "transcript": "I am having a sleepover on Friday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-21:i05:r1",
+              "targetText": "I am having a sleepover on Friday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i05:r2",
+              "targetText": "I is having a sleepover on Friday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i05:r3",
+              "targetText": "I are having a sleepover on Friday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-21:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am having a sleepover on Friday.",
+                "uk": "У записі звучить I am having a sleepover on Friday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am having a sleepover on Friday.",
+                "uk": "У записі звучить I am having a sleepover on Friday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Будущая договорённость. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-21:i06:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "I ___ having a sleepover on Friday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-21:i06:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i06:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Будущая договорённость. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-21:i06:r2",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма am.",
+                "uk": "З цим підметом потрібна форма am."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i06:r3",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна am.",
+                "uk": "Для цього підмета потрібна am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:word:potluck",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — potluck",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:word:potluck:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — potluck",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:word:potluck:audio",
+            "transcript": "potluck"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-21:word:potluck:r1",
+              "targetText": "potluck",
+              "meaningByLocale": {
+                "ru": "встреча за едой, на которую каждый приносит блюдо.",
+                "uk": "зустріч за їжею, на яку кожен приносить страву."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "potluck",
+            "definitionByLocale": {
+              "ru": "встреча за едой, на которую каждый приносит блюдо.",
+              "uk": "зустріч за їжею, на яку кожен приносить страву."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша соседка подтвердила участие в завтрашнем общем обеде. Каждый приносит еду. Скажите: «Она приходит завтра на общий обед, куда каждый приносит блюдо»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша соседка подтвердила участие в завтрашнем общем обеде. Каждый приносит еду. Скажите: «Она приходит завтра на общий обед, куда каждый приносит блюдо»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is coming to the potluck tomorrow.",
+          "localizedMeaning": {
+            "ru": "Ваша соседка подтвердила участие в завтрашнем общем обеде. Каждый приносит еду. Скажите: «Она приходит завтра на общий обед, куда каждый приносит блюдо»",
+            "uk": "Ваша сусідка підтвердила участь у завтрашньому спільному обіді. Кожен приносить їжу. Скажіть: «Вона приходить завтра на спільний обід, куди кожен приносить страву»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "coming",
+            "to",
+            "the",
+            "potluck",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-21:i08:r1",
+            "text": "She is coming to the potluck tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i08:r2",
+            "text": "She am coming to the potluck tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i08:r3",
+            "text": "She are coming to the potluck tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:i08:audio",
+            "transcript": "She is coming to the potluck tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-21:i08:r1",
+              "targetText": "She is coming to the potluck tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i08:r2",
+              "targetText": "She am coming to the potluck tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i08:r3",
+              "targetText": "She are coming to the potluck tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-21:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is coming to the potluck tomorrow.",
+                "uk": "У записі звучить She is coming to the potluck tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is coming to the potluck tomorrow.",
+                "uk": "У записі звучить She is coming to the potluck tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Будущая договорённость. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-21:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "She ___ coming to the potluck tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-21:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i09:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Будущая договорённость. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-21:i09:r2",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i09:r3",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:word:reunion",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — reunion",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:word:reunion:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — reunion",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:word:reunion:audio",
+            "transcript": "reunion"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-21:word:reunion:r1",
+              "targetText": "reunion",
+              "meaningByLocale": {
+                "ru": "встреча людей, которые давно не виделись.",
+                "uk": "зустріч людей, які давно не бачилися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reunion",
+            "definitionByLocale": {
+              "ru": "встреча людей, которые давно не виделись.",
+              "uk": "зустріч людей, які давно не бачилися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваши родители подтвердили участие во встрече бывших одноклассников в воскресенье. Скажите: «Они идут на встречу старых знакомых в воскресенье»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши родители подтвердили участие во встрече бывших одноклассников в воскресенье. Скажите: «Они идут на встречу старых знакомых в воскресенье»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are attending a reunion on Sunday.",
+          "localizedMeaning": {
+            "ru": "Ваши родители подтвердили участие во встрече бывших одноклассников в воскресенье. Скажите: «Они идут на встречу старых знакомых в воскресенье»",
+            "uk": "Ваші батьки підтвердили участь у зустрічі колишніх однокласників у неділю. Скажіть: «Вони йдуть на зустріч давніх знайомих у неділю»"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "attending",
+            "a",
+            "reunion",
+            "on",
+            "Sunday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-21:i11:r1",
+            "text": "They are attending a reunion on Sunday."
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i11:r2",
+            "text": "They am attending a reunion on Sunday."
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i11:r3",
+            "text": "They is attending a reunion on Sunday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:i11:audio",
+            "transcript": "They are attending a reunion on Sunday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-21:i11:r1",
+              "targetText": "They are attending a reunion on Sunday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i11:r2",
+              "targetText": "They am attending a reunion on Sunday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i11:r3",
+              "targetText": "They is attending a reunion on Sunday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-21:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are attending a reunion on Sunday.",
+                "uk": "У записі звучить They are attending a reunion on Sunday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are attending a reunion on Sunday.",
+                "uk": "У записі звучить They are attending a reunion on Sunday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Будущая договорённость. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-21:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i12:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "They ___ attending a reunion on Sunday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-21:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i12:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i12:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Будущая договорённость. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-21:i12:r2",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i12:r3",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-21:i13:p1",
+              "target": "playdate",
+              "meaningByLocale": {
+                "ru": "встреча детей, чтобы поиграть вместе, согласованная родителями",
+                "uk": "зустріч дітей, щоб пограти разом, узгоджена батьками"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-21:i13:p2",
+              "target": "sleepover",
+              "meaningByLocale": {
+                "ru": "ночёвка в гостях, обычно у друзей",
+                "uk": "ночівля в гостях, зазвичай у друзів"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-21:i13:p3",
+              "target": "potluck",
+              "meaningByLocale": {
+                "ru": "встреча за едой, на которую каждый приносит блюдо",
+                "uk": "зустріч за їжею, на яку кожен приносить страву"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-21:i13:p4",
+              "target": "reunion",
+              "meaningByLocale": {
+                "ru": "встреча людей, которые давно не виделись",
+                "uk": "зустріч людей, які давно не бачилися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "playdate",
+            "sleepover",
+            "potluck",
+            "reunion"
+          ],
+          "rightColumn": [
+            "встреча детей, чтобы поиграть вместе, согласованная родителями",
+            "ночёвка в гостях, обычно у друзей",
+            "встреча за едой, на которую каждый приносит блюдо",
+            "встреча людей, которые давно не виделись"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:i14:audio",
+            "transcript": "We are meeting our friends tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting our friends tomorrow.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "our",
+            "friends",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:i15:audio",
+            "transcript": "She is bringing a salad."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She is bringing a salad.",
+          "orderedTokens": [
+            "She",
+            "is",
+            "bringing",
+            "a",
+            "salad"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы с соседями согласовали встречу детей для игр на завтра. Скажите это",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:i16:audio"
+        ],
+        "accessibilityLabel": "Вы с соседями согласовали встречу детей для игр на завтра. Скажите это",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:i16:audio",
+            "transcript": "We are having a playdate tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are having a playdate tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы подтвердили участие в общем обеде завтра, на который каждый приносит блюдо. Скажите: я прихожу завтра",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:i17:audio"
+        ],
+        "accessibilityLabel": "Вы подтвердили участие в общем обеде завтра, на который каждый приносит блюдо. Скажите: я прихожу завтра",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:i17:audio",
+            "transcript": "I am coming to the potluck tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am coming to the potluck tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-15:session-21:word:playdate",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — playdate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:word:playdate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — playdate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:word:playdate:audio",
+            "transcript": "playdate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-21:word:playdate:r1",
+              "targetText": "playdate",
+              "meaningByLocale": {
+                "ru": "встреча детей, чтобы поиграть вместе, согласованная родителями.",
+                "uk": "зустріч дітей, щоб пограти разом, узгоджена батьками."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "playdate",
+            "definitionByLocale": {
+              "ru": "встреча детей, чтобы поиграть вместе, согласованная родителями.",
+              "uk": "зустріч дітей, щоб пограти разом, узгоджена батьками."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з іншою сім’єю узгодили зустріч дітей у вас удома в суботу. Скажіть: «Ми влаштовуємо зустріч дітей для ігор у суботу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з іншою сім’єю узгодили зустріч дітей у вас удома в суботу. Скажіть: «Ми влаштовуємо зустріч дітей для ігор у суботу»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are having a playdate on Saturday.",
+          "localizedMeaning": {
+            "ru": "Вы с другой семьёй согласовали встречу детей у вас дома в субботу. Скажите: «Мы устраиваем встречу детей для игр в субботу»",
+            "uk": "Ви з іншою сім’єю узгодили зустріч дітей у вас удома в суботу. Скажіть: «Ми влаштовуємо зустріч дітей для ігор у суботу»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "having",
+            "a",
+            "playdate",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-21:i02:r1",
+            "text": "We are having a playdate on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i02:r2",
+            "text": "We am having a playdate on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i02:r3",
+            "text": "We is having a playdate on Saturday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:i02:audio",
+            "transcript": "We are having a playdate on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-21:i02:r1",
+              "targetText": "We are having a playdate on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i02:r2",
+              "targetText": "We am having a playdate on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i02:r3",
+              "targetText": "We is having a playdate on Saturday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-21:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are having a playdate on Saturday.",
+                "uk": "У записі звучить We are having a playdate on Saturday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are having a playdate on Saturday.",
+                "uk": "У записі звучить We are having a playdate on Saturday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Майбутня домовленість. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-21:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Майбутня домовленість. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "We ___ having a playdate on Saturday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-21:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-21:i03:r2",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i03:r3",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:word:sleepover",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sleepover",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:word:sleepover:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sleepover",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:word:sleepover:audio",
+            "transcript": "sleepover"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-21:word:sleepover:r1",
+              "targetText": "sleepover",
+              "meaningByLocale": {
+                "ru": "ночёвка в гостях, обычно у друзей.",
+                "uk": "ночівля в гостях, зазвичай у друзів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sleepover",
+            "definitionByLocale": {
+              "ru": "ночёвка в гостях, обычно у друзей.",
+              "uk": "ночівля в гостях, зазвичай у друзів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви запросили друзів залишитися на ніч у п’ятницю; вони й батьки згодні. Скажіть: «Я влаштовую ночівлю друзів у себе в п’ятницю»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви запросили друзів залишитися на ніч у п’ятницю; вони й батьки згодні. Скажіть: «Я влаштовую ночівлю друзів у себе в п’ятницю»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am having a sleepover on Friday.",
+          "localizedMeaning": {
+            "ru": "Вы пригласили друзей остаться на ночь в пятницу; они и родители согласны. Скажите: «Я устраиваю ночёвку друзей у себя в пятницу»",
+            "uk": "Ви запросили друзів залишитися на ніч у п’ятницю; вони й батьки згодні. Скажіть: «Я влаштовую ночівлю друзів у себе в п’ятницю»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "having",
+            "a",
+            "sleepover",
+            "on",
+            "Friday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-21:i05:r1",
+            "text": "I am having a sleepover on Friday."
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i05:r2",
+            "text": "I is having a sleepover on Friday."
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i05:r3",
+            "text": "I are having a sleepover on Friday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:i05:audio",
+            "transcript": "I am having a sleepover on Friday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-21:i05:r1",
+              "targetText": "I am having a sleepover on Friday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i05:r2",
+              "targetText": "I is having a sleepover on Friday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i05:r3",
+              "targetText": "I are having a sleepover on Friday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-21:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am having a sleepover on Friday.",
+                "uk": "У записі звучить I am having a sleepover on Friday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am having a sleepover on Friday.",
+                "uk": "У записі звучить I am having a sleepover on Friday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Майбутня домовленість. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-21:i06:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Майбутня домовленість. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "I ___ having a sleepover on Friday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-21:i06:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i06:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-21:i06:r2",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма am.",
+                "uk": "З цим підметом потрібна форма am."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i06:r3",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна am.",
+                "uk": "Для цього підмета потрібна am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:word:potluck",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — potluck",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:word:potluck:audio"
+        ],
+        "accessibilityLabel": "Картка слова — potluck",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:word:potluck:audio",
+            "transcript": "potluck"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-21:word:potluck:r1",
+              "targetText": "potluck",
+              "meaningByLocale": {
+                "ru": "встреча за едой, на которую каждый приносит блюдо.",
+                "uk": "зустріч за їжею, на яку кожен приносить страву."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "potluck",
+            "definitionByLocale": {
+              "ru": "встреча за едой, на которую каждый приносит блюдо.",
+              "uk": "зустріч за їжею, на яку кожен приносить страву."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сусідка підтвердила участь у завтрашньому спільному обіді. Кожен приносить їжу. Скажіть: «Вона приходить завтра на спільний обід, куди кожен приносить страву»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сусідка підтвердила участь у завтрашньому спільному обіді. Кожен приносить їжу. Скажіть: «Вона приходить завтра на спільний обід, куди кожен приносить страву»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is coming to the potluck tomorrow.",
+          "localizedMeaning": {
+            "ru": "Ваша соседка подтвердила участие в завтрашнем общем обеде. Каждый приносит еду. Скажите: «Она приходит завтра на общий обед, куда каждый приносит блюдо»",
+            "uk": "Ваша сусідка підтвердила участь у завтрашньому спільному обіді. Кожен приносить їжу. Скажіть: «Вона приходить завтра на спільний обід, куди кожен приносить страву»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "coming",
+            "to",
+            "the",
+            "potluck",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-21:i08:r1",
+            "text": "She is coming to the potluck tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i08:r2",
+            "text": "She am coming to the potluck tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i08:r3",
+            "text": "She are coming to the potluck tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:i08:audio",
+            "transcript": "She is coming to the potluck tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-21:i08:r1",
+              "targetText": "She is coming to the potluck tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i08:r2",
+              "targetText": "She am coming to the potluck tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i08:r3",
+              "targetText": "She are coming to the potluck tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-21:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is coming to the potluck tomorrow.",
+                "uk": "У записі звучить She is coming to the potluck tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is coming to the potluck tomorrow.",
+                "uk": "У записі звучить She is coming to the potluck tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Майбутня домовленість. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-21:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Майбутня домовленість. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "She ___ coming to the potluck tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-21:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i09:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-21:i09:r2",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i09:r3",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:word:reunion",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — reunion",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:word:reunion:audio"
+        ],
+        "accessibilityLabel": "Картка слова — reunion",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:word:reunion:audio",
+            "transcript": "reunion"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-21:word:reunion:r1",
+              "targetText": "reunion",
+              "meaningByLocale": {
+                "ru": "встреча людей, которые давно не виделись.",
+                "uk": "зустріч людей, які давно не бачилися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reunion",
+            "definitionByLocale": {
+              "ru": "встреча людей, которые давно не виделись.",
+              "uk": "зустріч людей, які давно не бачилися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваші батьки підтвердили участь у зустрічі колишніх однокласників у неділю. Скажіть: «Вони йдуть на зустріч давніх знайомих у неділю»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші батьки підтвердили участь у зустрічі колишніх однокласників у неділю. Скажіть: «Вони йдуть на зустріч давніх знайомих у неділю»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are attending a reunion on Sunday.",
+          "localizedMeaning": {
+            "ru": "Ваши родители подтвердили участие во встрече бывших одноклассников в воскресенье. Скажите: «Они идут на встречу старых знакомых в воскресенье»",
+            "uk": "Ваші батьки підтвердили участь у зустрічі колишніх однокласників у неділю. Скажіть: «Вони йдуть на зустріч давніх знайомих у неділю»"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "attending",
+            "a",
+            "reunion",
+            "on",
+            "Sunday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-21:i11:r1",
+            "text": "They are attending a reunion on Sunday."
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i11:r2",
+            "text": "They am attending a reunion on Sunday."
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i11:r3",
+            "text": "They is attending a reunion on Sunday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:i11:audio",
+            "transcript": "They are attending a reunion on Sunday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-21:i11:r1",
+              "targetText": "They are attending a reunion on Sunday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i11:r2",
+              "targetText": "They am attending a reunion on Sunday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i11:r3",
+              "targetText": "They is attending a reunion on Sunday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-21:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are attending a reunion on Sunday.",
+                "uk": "У записі звучить They are attending a reunion on Sunday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are attending a reunion on Sunday.",
+                "uk": "У записі звучить They are attending a reunion on Sunday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Майбутня домовленість. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-21:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-21:i12:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Майбутня домовленість. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "They ___ attending a reunion on Sunday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-21:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i12:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i12:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-21:i12:r2",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-21:i12:r3",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-21:i13:p1",
+              "target": "playdate",
+              "meaningByLocale": {
+                "ru": "встреча детей, чтобы поиграть вместе, согласованная родителями",
+                "uk": "зустріч дітей, щоб пограти разом, узгоджена батьками"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-21:i13:p2",
+              "target": "sleepover",
+              "meaningByLocale": {
+                "ru": "ночёвка в гостях, обычно у друзей",
+                "uk": "ночівля в гостях, зазвичай у друзів"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-21:i13:p3",
+              "target": "potluck",
+              "meaningByLocale": {
+                "ru": "встреча за едой, на которую каждый приносит блюдо",
+                "uk": "зустріч за їжею, на яку кожен приносить страву"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-21:i13:p4",
+              "target": "reunion",
+              "meaningByLocale": {
+                "ru": "встреча людей, которые давно не виделись",
+                "uk": "зустріч людей, які давно не бачилися"
+              }
+            }
+          ],
+          "leftColumn": [
+            "playdate",
+            "sleepover",
+            "potluck",
+            "reunion"
+          ],
+          "rightColumn": [
+            "зустріч дітей, щоб пограти разом, узгоджена батьками",
+            "ночівля в гостях, зазвичай у друзів",
+            "зустріч за їжею, на яку кожен приносить страву",
+            "зустріч людей, які давно не бачилися"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:i14:audio",
+            "transcript": "We are meeting our friends tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting our friends tomorrow.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "our",
+            "friends",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:i15:audio",
+            "transcript": "She is bringing a salad."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She is bringing a salad.",
+          "orderedTokens": [
+            "She",
+            "is",
+            "bringing",
+            "a",
+            "salad"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви із сусідами узгодили зустріч дітей для ігор на завтра. Скажіть це",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:i16:audio"
+        ],
+        "accessibilityLabel": "Ви із сусідами узгодили зустріч дітей для ігор на завтра. Скажіть це",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:i16:audio",
+            "transcript": "We are having a playdate tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are having a playdate tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-21:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви підтвердили участь у спільному обіді завтра, на який кожен приносить страву. Скажіть: я приходжу завтра",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-21:i17:audio"
+        ],
+        "accessibilityLabel": "Ви підтвердили участь у спільному обіді завтра, на який кожен приносить страву. Скажіть: я приходжу завтра",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-21:i17:audio",
+            "transcript": "I am coming to the potluck tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am coming to the potluck tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-15:session-21:word:playdate",
+      "correctText": "playdate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-21:i01",
+      "correctText": "We are having a playdate on Saturday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-21:i02",
+      "correctText": "We are having a playdate on Saturday.",
+      "correctResponseId": "en:lesson-15:session-21:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-21:i03",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-15:session-21:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-21:word:sleepover",
+      "correctText": "sleepover",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-21:i04",
+      "correctText": "I am having a sleepover on Friday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-21:i05",
+      "correctText": "I am having a sleepover on Friday.",
+      "correctResponseId": "en:lesson-15:session-21:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-21:i06",
+      "correctText": "am",
+      "correctResponseId": "en:lesson-15:session-21:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-21:word:potluck",
+      "correctText": "potluck",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-21:i07",
+      "correctText": "She is coming to the potluck tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-21:i08",
+      "correctText": "She is coming to the potluck tomorrow.",
+      "correctResponseId": "en:lesson-15:session-21:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-21:i09",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-15:session-21:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-21:word:reunion",
+      "correctText": "reunion",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-21:i10",
+      "correctText": "They are attending a reunion on Sunday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-21:i11",
+      "correctText": "They are attending a reunion on Sunday.",
+      "correctResponseId": "en:lesson-15:session-21:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-21:i12",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-15:session-21:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-21:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-21:i14",
+      "correctText": "We are meeting our friends tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-21:i15",
+      "correctText": "She is bringing a salad.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-21:i16",
+      "correctText": "We are having a playdate tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-21:i17",
+      "correctText": "I am coming to the potluck tomorrow.",
+      "correctResponseId": null
+    }
+  ]
+}

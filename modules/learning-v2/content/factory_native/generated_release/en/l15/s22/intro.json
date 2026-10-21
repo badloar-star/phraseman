@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "review: Present Continuous for agreed future arrangements",
+    "uk": "review: Present Continuous for agreed future arrangements"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Время уже согласовано",
+        "uk": "Час уже узгоджено"
+      },
+      "bodyByLocale": {
+        "ru": "school play — спектакль, который ставят ученики школы. Вы с семьёй купили билеты на школьный спектакль в пятницу. We are watching the school play on Friday. — Мы смотрим школьный спектакль в пятницу. Здесь Present Continuous обозначает уже согласованное будущее дело.",
+        "uk": "school play — вистава, яку ставлять учні школи. Ви із сім’єю купили квитки на шкільну виставу в п’ятницю. We are watching the school play on Friday. — Ми дивимося шкільну виставу в п’ятницю. Тут Present Continuous означає вже узгоджену майбутню справу."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-22:intro1:r1",
+              "text": "We are watching the school play on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-22:intro1:r2",
+              "text": "We am watching the school play on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-22:intro1:r3",
+              "text": "We is watching the school play on Friday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-22:intro1:r1",
+              "text": "We are watching the school play on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-22:intro1:r2",
+              "text": "We am watching the school play on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-22:intro1:r3",
+              "text": "We is watching the school play on Friday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "О чём договорились",
+        "uk": "Про що домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "rehearsal — репетиция; matinee — дневной спектакль или сеанс. Руководитель подтвердил, что ждёт вас на завтрашней репетиции. I am attending a rehearsal tomorrow. — Я иду на репетицию завтра. Выберите правильную форму be.",
+        "uk": "rehearsal — репетиція; matinee — денна вистава або сеанс. Керівник підтвердив, що чекає на вас на завтрашній репетиції. I am attending a rehearsal tomorrow. — Я йду на репетицію завтра. Виберіть правильну форму be."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-22:intro2:r1",
+              "text": "I am attending a rehearsal tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-22:intro2:r2",
+              "text": "I is attending a rehearsal tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-22:intro2:r3",
+              "text": "I are attending a rehearsal tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-22:intro2:r1",
+              "text": "I am attending a rehearsal tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-22:intro2:r2",
+              "text": "I is attending a rehearsal tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-22:intro2:r3",
+              "text": "I are attending a rehearsal tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Договорённость на конкретное время",
+        "uk": "Домовленість на конкретний час"
+      },
+      "bodyByLocale": {
+        "ru": "front row — первый ряд перед сценой. Друзья купили билеты в первый ряд на сегодняшний вечерний спектакль. They are sitting in the front row tonight. — Они сидят в первом ряду сегодня вечером. Слова времени показывают: речь о будущем, а не о действии сейчас.",
+        "uk": "front row — перший ряд перед сценою. Друзі купили квитки в перший ряд на сьогоднішню вечірню виставу. They are sitting in the front row tonight. — Вони сидять у першому ряді сьогодні ввечері. Слова часу показують: ідеться про майбутнє, а не про дію зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-22:intro3:r1",
+              "text": "They are sitting in the front row tonight."
+            },
+            {
+              "responseId": "en:lesson-15:session-22:intro3:r2",
+              "text": "They am sitting in the front row tonight."
+            },
+            {
+              "responseId": "en:lesson-15:session-22:intro3:r3",
+              "text": "They is sitting in the front row tonight."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-22:intro3:r1",
+              "text": "They are sitting in the front row tonight."
+            },
+            {
+              "responseId": "en:lesson-15:session-22:intro3:r2",
+              "text": "They am sitting in the front row tonight."
+            },
+            {
+              "responseId": "en:lesson-15:session-22:intro3:r3",
+              "text": "They is sitting in the front row tonight."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d27e038ffbeac1082a3142e2a31404eff5570c4c844020ad5d74b5c871e576ec"
+}

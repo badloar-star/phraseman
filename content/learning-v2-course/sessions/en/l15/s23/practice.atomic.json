@@ -1,0 +1,2339 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-15:session-23",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-15:session-23:word:flower-arranging",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — flower arranging",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:word:flower-arranging:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — flower arranging",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:word:flower-arranging:audio",
+            "transcript": "flower arranging"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-23:word:flower-arranging:r1",
+              "targetText": "flower arranging",
+              "meaningByLocale": {
+                "ru": "составление цветочных композиций.",
+                "uk": "складання квіткових композицій."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flower arranging",
+            "definitionByLocale": {
+              "ru": "составление цветочных композиций.",
+              "uk": "складання квіткових композицій."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы записались на завтрашнее вводное занятие по составлению цветочных композиций. Скажите: «Я пробую составлять цветочные композиции завтра»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы записались на завтрашнее вводное занятие по составлению цветочных композиций. Скажите: «Я пробую составлять цветочные композиции завтра»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am trying flower arranging tomorrow.",
+          "localizedMeaning": {
+            "ru": "Вы записались на завтрашнее вводное занятие по составлению цветочных композиций. Скажите: «Я пробую составлять цветочные композиции завтра»",
+            "uk": "Ви записалися на завтрашнє вступне заняття зі складання квіткових композицій. Скажіть: «Я пробую складати квіткові композиції завтра»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "trying",
+            "flower",
+            "arranging",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-23:i02:r1",
+            "text": "I am trying flower arranging tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i02:r2",
+            "text": "I is trying flower arranging tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i02:r3",
+            "text": "I are trying flower arranging tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:i02:audio",
+            "transcript": "I am trying flower arranging tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-23:i02:r1",
+              "targetText": "I am trying flower arranging tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i02:r2",
+              "targetText": "I is trying flower arranging tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i02:r3",
+              "targetText": "I are trying flower arranging tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-23:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am trying flower arranging tomorrow.",
+                "uk": "У записі звучить I am trying flower arranging tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am trying flower arranging tomorrow.",
+                "uk": "У записі звучить I am trying flower arranging tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Будущая договорённость. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-23:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "I ___ trying flower arranging tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-23:i03:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Будущая договорённость. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-23:i03:r2",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма am.",
+                "uk": "З цим підметом потрібна форма am."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i03:r3",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна am.",
+                "uk": "Для цього підмета потрібна am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:word:pottery",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pottery",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:word:pottery:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pottery",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:word:pottery:audio",
+            "transcript": "pottery"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-23:word:pottery:r1",
+              "targetText": "pottery",
+              "meaningByLocale": {
+                "ru": "изготовление посуды и других изделий из глины.",
+                "uk": "виготовлення посуду й інших виробів із глини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pottery",
+            "definitionByLocale": {
+              "ru": "изготовление посуды и других изделий из глины.",
+              "uk": "виготовлення посуду й інших виробів із глини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с другом забронировали два места на воскресном занятии по работе с глиной. Скажите: «Мы пробуем гончарное дело в воскресенье»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с другом забронировали два места на воскресном занятии по работе с глиной. Скажите: «Мы пробуем гончарное дело в воскресенье»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are trying pottery on Sunday.",
+          "localizedMeaning": {
+            "ru": "Вы с другом забронировали два места на воскресном занятии по работе с глиной. Скажите: «Мы пробуем гончарное дело в воскресенье»",
+            "uk": "Ви з другом забронювали два місця на недільному занятті з роботи з глиною. Скажіть: «Ми пробуємо гончарство в неділю»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "trying",
+            "pottery",
+            "on",
+            "Sunday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-23:i05:r1",
+            "text": "We are trying pottery on Sunday."
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i05:r2",
+            "text": "We am trying pottery on Sunday."
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i05:r3",
+            "text": "We is trying pottery on Sunday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:i05:audio",
+            "transcript": "We are trying pottery on Sunday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-23:i05:r1",
+              "targetText": "We are trying pottery on Sunday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i05:r2",
+              "targetText": "We am trying pottery on Sunday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i05:r3",
+              "targetText": "We is trying pottery on Sunday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-23:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are trying pottery on Sunday.",
+                "uk": "У записі звучить We are trying pottery on Sunday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are trying pottery on Sunday.",
+                "uk": "У записі звучить We are trying pottery on Sunday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Будущая договорённость. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-23:i06:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i06:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i06:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "We ___ trying pottery on Sunday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-23:i06:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i06:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i06:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Будущая договорённость. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-23:i06:r2",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i06:r3",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:word:open-day",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — open day",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:word:open-day:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — open day",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:word:open-day:audio",
+            "transcript": "open day"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-23:word:open-day:r1",
+              "targetText": "open day",
+              "meaningByLocale": {
+                "ru": "день открытых дверей.",
+                "uk": "день відкритих дверей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "open day",
+            "definitionByLocale": {
+              "ru": "день открытых дверей.",
+              "uk": "день відкритих дверей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра зарегистрировалась на день открытых дверей колледжа в субботу. Скажите: «Она идёт на день открытых дверей в субботу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра зарегистрировалась на день открытых дверей колледжа в субботу. Скажите: «Она идёт на день открытых дверей в субботу»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is attending an open day on Saturday.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра зарегистрировалась на день открытых дверей колледжа в субботу. Скажите: «Она идёт на день открытых дверей в субботу»",
+            "uk": "Ваша сестра зареєструвалася на день відкритих дверей коледжу в суботу. Скажіть: «Вона йде на день відкритих дверей в суботу»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "attending",
+            "an",
+            "open",
+            "day",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-23:i08:r1",
+            "text": "She is attending an open day on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i08:r2",
+            "text": "She am attending an open day on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i08:r3",
+            "text": "She are attending an open day on Saturday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:i08:audio",
+            "transcript": "She is attending an open day on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-23:i08:r1",
+              "targetText": "She is attending an open day on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i08:r2",
+              "targetText": "She am attending an open day on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i08:r3",
+              "targetText": "She are attending an open day on Saturday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-23:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is attending an open day on Saturday.",
+                "uk": "У записі звучить She is attending an open day on Saturday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is attending an open day on Saturday.",
+                "uk": "У записі звучить She is attending an open day on Saturday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Будущая договорённость. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-23:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "She ___ attending an open day on Saturday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-23:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i09:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Будущая договорённость. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-23:i09:r2",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i09:r3",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:word:taster-session",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — taster session",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:word:taster-session:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — taster session",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:word:taster-session:audio",
+            "transcript": "taster session"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-23:word:taster-session:r1",
+              "targetText": "taster session",
+              "meaningByLocale": {
+                "ru": "пробное занятие для знакомства с новым делом.",
+                "uk": "пробне заняття для знайомства з новою справою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "taster session",
+            "definitionByLocale": {
+              "ru": "пробное занятие для знакомства с новым делом.",
+              "uk": "пробне заняття для знайомства з новою справою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваши родители записались на завтрашнее пробное занятие в студии. Скажите: «Они идут на пробное занятие завтра»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши родители записались на завтрашнее пробное занятие в студии. Скажите: «Они идут на пробное занятие завтра»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are attending a taster session tomorrow.",
+          "localizedMeaning": {
+            "ru": "Ваши родители записались на завтрашнее пробное занятие в студии. Скажите: «Они идут на пробное занятие завтра»",
+            "uk": "Ваші батьки записалися на завтрашнє пробне заняття в студії. Скажіть: «Вони йдуть на пробне заняття завтра»"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "attending",
+            "a",
+            "taster",
+            "session",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-23:i11:r1",
+            "text": "They are attending a taster session tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i11:r2",
+            "text": "They am attending a taster session tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i11:r3",
+            "text": "They is attending a taster session tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:i11:audio",
+            "transcript": "They are attending a taster session tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-23:i11:r1",
+              "targetText": "They are attending a taster session tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i11:r2",
+              "targetText": "They am attending a taster session tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i11:r3",
+              "targetText": "They is attending a taster session tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-23:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are attending a taster session tomorrow.",
+                "uk": "У записі звучить They are attending a taster session tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are attending a taster session tomorrow.",
+                "uk": "У записі звучить They are attending a taster session tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Будущая договорённость. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-23:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i12:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "They ___ attending a taster session tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-23:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i12:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i12:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Будущая договорённость. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-23:i12:r2",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i12:r3",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-23:i13:p1",
+              "target": "flower arranging",
+              "meaningByLocale": {
+                "ru": "составление цветочных композиций",
+                "uk": "складання квіткових композицій"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-23:i13:p2",
+              "target": "pottery",
+              "meaningByLocale": {
+                "ru": "изготовление посуды и других изделий из глины",
+                "uk": "виготовлення посуду й інших виробів із глини"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-23:i13:p3",
+              "target": "open day",
+              "meaningByLocale": {
+                "ru": "день открытых дверей",
+                "uk": "день відкритих дверей"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-23:i13:p4",
+              "target": "taster session",
+              "meaningByLocale": {
+                "ru": "пробное занятие для знакомства с новым делом",
+                "uk": "пробне заняття для знайомства з новою справою"
+              }
+            }
+          ],
+          "leftColumn": [
+            "flower arranging",
+            "pottery",
+            "open day",
+            "taster session"
+          ],
+          "rightColumn": [
+            "составление цветочных композиций",
+            "изготовление посуды и других изделий из глины",
+            "день открытых дверей",
+            "пробное занятие для знакомства с новым делом"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:i14:audio",
+            "transcript": "I am trying a new class tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am trying a new class tomorrow.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "trying",
+            "a",
+            "new",
+            "class",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:i15:audio",
+            "transcript": "We are meeting at the college."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting at the college.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "at",
+            "the",
+            "college"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы записались на пробное занятие в пятницу. Скажите это",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:i16:audio"
+        ],
+        "accessibilityLabel": "Вы записались на пробное занятие в пятницу. Скажите это",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:i16:audio",
+            "transcript": "I am attending a taster session on Friday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am attending a taster session on Friday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы с другом записались попробовать гончарное дело завтра. Скажите это",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:i17:audio"
+        ],
+        "accessibilityLabel": "Вы с другом записались попробовать гончарное дело завтра. Скажите это",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:i17:audio",
+            "transcript": "We are trying pottery tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are trying pottery tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-15:session-23:word:flower-arranging",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — flower arranging",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:word:flower-arranging:audio"
+        ],
+        "accessibilityLabel": "Картка слова — flower arranging",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:word:flower-arranging:audio",
+            "transcript": "flower arranging"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-23:word:flower-arranging:r1",
+              "targetText": "flower arranging",
+              "meaningByLocale": {
+                "ru": "составление цветочных композиций.",
+                "uk": "складання квіткових композицій."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "flower arranging",
+            "definitionByLocale": {
+              "ru": "составление цветочных композиций.",
+              "uk": "складання квіткових композицій."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви записалися на завтрашнє вступне заняття зі складання квіткових композицій. Скажіть: «Я пробую складати квіткові композиції завтра»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви записалися на завтрашнє вступне заняття зі складання квіткових композицій. Скажіть: «Я пробую складати квіткові композиції завтра»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am trying flower arranging tomorrow.",
+          "localizedMeaning": {
+            "ru": "Вы записались на завтрашнее вводное занятие по составлению цветочных композиций. Скажите: «Я пробую составлять цветочные композиции завтра»",
+            "uk": "Ви записалися на завтрашнє вступне заняття зі складання квіткових композицій. Скажіть: «Я пробую складати квіткові композиції завтра»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "trying",
+            "flower",
+            "arranging",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-23:i02:r1",
+            "text": "I am trying flower arranging tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i02:r2",
+            "text": "I is trying flower arranging tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i02:r3",
+            "text": "I are trying flower arranging tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:i02:audio",
+            "transcript": "I am trying flower arranging tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-23:i02:r1",
+              "targetText": "I am trying flower arranging tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i02:r2",
+              "targetText": "I is trying flower arranging tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i02:r3",
+              "targetText": "I are trying flower arranging tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-23:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am trying flower arranging tomorrow.",
+                "uk": "У записі звучить I am trying flower arranging tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am trying flower arranging tomorrow.",
+                "uk": "У записі звучить I am trying flower arranging tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Майбутня домовленість. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-23:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Майбутня домовленість. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "I ___ trying flower arranging tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-23:i03:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-23:i03:r2",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма am.",
+                "uk": "З цим підметом потрібна форма am."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i03:r3",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна am.",
+                "uk": "Для цього підмета потрібна am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:word:pottery",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pottery",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:word:pottery:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pottery",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:word:pottery:audio",
+            "transcript": "pottery"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-23:word:pottery:r1",
+              "targetText": "pottery",
+              "meaningByLocale": {
+                "ru": "изготовление посуды и других изделий из глины.",
+                "uk": "виготовлення посуду й інших виробів із глини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pottery",
+            "definitionByLocale": {
+              "ru": "изготовление посуды и других изделий из глины.",
+              "uk": "виготовлення посуду й інших виробів із глини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з другом забронювали два місця на недільному занятті з роботи з глиною. Скажіть: «Ми пробуємо гончарство в неділю»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з другом забронювали два місця на недільному занятті з роботи з глиною. Скажіть: «Ми пробуємо гончарство в неділю»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are trying pottery on Sunday.",
+          "localizedMeaning": {
+            "ru": "Вы с другом забронировали два места на воскресном занятии по работе с глиной. Скажите: «Мы пробуем гончарное дело в воскресенье»",
+            "uk": "Ви з другом забронювали два місця на недільному занятті з роботи з глиною. Скажіть: «Ми пробуємо гончарство в неділю»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "trying",
+            "pottery",
+            "on",
+            "Sunday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-23:i05:r1",
+            "text": "We are trying pottery on Sunday."
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i05:r2",
+            "text": "We am trying pottery on Sunday."
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i05:r3",
+            "text": "We is trying pottery on Sunday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:i05:audio",
+            "transcript": "We are trying pottery on Sunday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-23:i05:r1",
+              "targetText": "We are trying pottery on Sunday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i05:r2",
+              "targetText": "We am trying pottery on Sunday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i05:r3",
+              "targetText": "We is trying pottery on Sunday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-23:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are trying pottery on Sunday.",
+                "uk": "У записі звучить We are trying pottery on Sunday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are trying pottery on Sunday.",
+                "uk": "У записі звучить We are trying pottery on Sunday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Майбутня домовленість. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-23:i06:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i06:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i06:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Майбутня домовленість. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "We ___ trying pottery on Sunday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-23:i06:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i06:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i06:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-23:i06:r2",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i06:r3",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:word:open-day",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — open day",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:word:open-day:audio"
+        ],
+        "accessibilityLabel": "Картка слова — open day",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:word:open-day:audio",
+            "transcript": "open day"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-23:word:open-day:r1",
+              "targetText": "open day",
+              "meaningByLocale": {
+                "ru": "день открытых дверей.",
+                "uk": "день відкритих дверей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "open day",
+            "definitionByLocale": {
+              "ru": "день открытых дверей.",
+              "uk": "день відкритих дверей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра зареєструвалася на день відкритих дверей коледжу в суботу. Скажіть: «Вона йде на день відкритих дверей в суботу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра зареєструвалася на день відкритих дверей коледжу в суботу. Скажіть: «Вона йде на день відкритих дверей в суботу»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is attending an open day on Saturday.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра зарегистрировалась на день открытых дверей колледжа в субботу. Скажите: «Она идёт на день открытых дверей в субботу»",
+            "uk": "Ваша сестра зареєструвалася на день відкритих дверей коледжу в суботу. Скажіть: «Вона йде на день відкритих дверей в суботу»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "attending",
+            "an",
+            "open",
+            "day",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-23:i08:r1",
+            "text": "She is attending an open day on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i08:r2",
+            "text": "She am attending an open day on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i08:r3",
+            "text": "She are attending an open day on Saturday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:i08:audio",
+            "transcript": "She is attending an open day on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-23:i08:r1",
+              "targetText": "She is attending an open day on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i08:r2",
+              "targetText": "She am attending an open day on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i08:r3",
+              "targetText": "She are attending an open day on Saturday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-23:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is attending an open day on Saturday.",
+                "uk": "У записі звучить She is attending an open day on Saturday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is attending an open day on Saturday.",
+                "uk": "У записі звучить She is attending an open day on Saturday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Майбутня домовленість. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-23:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Майбутня домовленість. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "She ___ attending an open day on Saturday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-23:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i09:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-23:i09:r2",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i09:r3",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:word:taster-session",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — taster session",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:word:taster-session:audio"
+        ],
+        "accessibilityLabel": "Картка слова — taster session",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:word:taster-session:audio",
+            "transcript": "taster session"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-23:word:taster-session:r1",
+              "targetText": "taster session",
+              "meaningByLocale": {
+                "ru": "пробное занятие для знакомства с новым делом.",
+                "uk": "пробне заняття для знайомства з новою справою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "taster session",
+            "definitionByLocale": {
+              "ru": "пробное занятие для знакомства с новым делом.",
+              "uk": "пробне заняття для знайомства з новою справою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваші батьки записалися на завтрашнє пробне заняття в студії. Скажіть: «Вони йдуть на пробне заняття завтра»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші батьки записалися на завтрашнє пробне заняття в студії. Скажіть: «Вони йдуть на пробне заняття завтра»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are attending a taster session tomorrow.",
+          "localizedMeaning": {
+            "ru": "Ваши родители записались на завтрашнее пробное занятие в студии. Скажите: «Они идут на пробное занятие завтра»",
+            "uk": "Ваші батьки записалися на завтрашнє пробне заняття в студії. Скажіть: «Вони йдуть на пробне заняття завтра»"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "attending",
+            "a",
+            "taster",
+            "session",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-23:i11:r1",
+            "text": "They are attending a taster session tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i11:r2",
+            "text": "They am attending a taster session tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i11:r3",
+            "text": "They is attending a taster session tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:i11:audio",
+            "transcript": "They are attending a taster session tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-23:i11:r1",
+              "targetText": "They are attending a taster session tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i11:r2",
+              "targetText": "They am attending a taster session tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i11:r3",
+              "targetText": "They is attending a taster session tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-23:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are attending a taster session tomorrow.",
+                "uk": "У записі звучить They are attending a taster session tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are attending a taster session tomorrow.",
+                "uk": "У записі звучить They are attending a taster session tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Майбутня домовленість. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-23:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-23:i12:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Майбутня домовленість. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "They ___ attending a taster session tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-23:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i12:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i12:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-23:i12:r2",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-23:i12:r3",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-23:i13:p1",
+              "target": "flower arranging",
+              "meaningByLocale": {
+                "ru": "составление цветочных композиций",
+                "uk": "складання квіткових композицій"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-23:i13:p2",
+              "target": "pottery",
+              "meaningByLocale": {
+                "ru": "изготовление посуды и других изделий из глины",
+                "uk": "виготовлення посуду й інших виробів із глини"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-23:i13:p3",
+              "target": "open day",
+              "meaningByLocale": {
+                "ru": "день открытых дверей",
+                "uk": "день відкритих дверей"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-23:i13:p4",
+              "target": "taster session",
+              "meaningByLocale": {
+                "ru": "пробное занятие для знакомства с новым делом",
+                "uk": "пробне заняття для знайомства з новою справою"
+              }
+            }
+          ],
+          "leftColumn": [
+            "flower arranging",
+            "pottery",
+            "open day",
+            "taster session"
+          ],
+          "rightColumn": [
+            "складання квіткових композицій",
+            "виготовлення посуду й інших виробів із глини",
+            "день відкритих дверей",
+            "пробне заняття для знайомства з новою справою"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:i14:audio",
+            "transcript": "I am trying a new class tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am trying a new class tomorrow.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "trying",
+            "a",
+            "new",
+            "class",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:i15:audio",
+            "transcript": "We are meeting at the college."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting at the college.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "at",
+            "the",
+            "college"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви записалися на пробне заняття в п’ятницю. Скажіть це",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:i16:audio"
+        ],
+        "accessibilityLabel": "Ви записалися на пробне заняття в п’ятницю. Скажіть це",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:i16:audio",
+            "transcript": "I am attending a taster session on Friday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am attending a taster session on Friday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-23:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви з другом записалися спробувати гончарство завтра. Скажіть це",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-23:i17:audio"
+        ],
+        "accessibilityLabel": "Ви з другом записалися спробувати гончарство завтра. Скажіть це",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-23:i17:audio",
+            "transcript": "We are trying pottery tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are trying pottery tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-15:session-23:word:flower-arranging",
+      "correctText": "flower arranging",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-23:i01",
+      "correctText": "I am trying flower arranging tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-23:i02",
+      "correctText": "I am trying flower arranging tomorrow.",
+      "correctResponseId": "en:lesson-15:session-23:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-23:i03",
+      "correctText": "am",
+      "correctResponseId": "en:lesson-15:session-23:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-23:word:pottery",
+      "correctText": "pottery",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-23:i04",
+      "correctText": "We are trying pottery on Sunday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-23:i05",
+      "correctText": "We are trying pottery on Sunday.",
+      "correctResponseId": "en:lesson-15:session-23:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-23:i06",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-15:session-23:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-23:word:open-day",
+      "correctText": "open day",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-23:i07",
+      "correctText": "She is attending an open day on Saturday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-23:i08",
+      "correctText": "She is attending an open day on Saturday.",
+      "correctResponseId": "en:lesson-15:session-23:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-23:i09",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-15:session-23:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-23:word:taster-session",
+      "correctText": "taster session",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-23:i10",
+      "correctText": "They are attending a taster session tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-23:i11",
+      "correctText": "They are attending a taster session tomorrow.",
+      "correctResponseId": "en:lesson-15:session-23:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-23:i12",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-15:session-23:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-23:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-23:i14",
+      "correctText": "I am trying a new class tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-23:i15",
+      "correctText": "We are meeting at the college.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-23:i16",
+      "correctText": "I am attending a taster session on Friday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-23:i17",
+      "correctText": "We are trying pottery tomorrow.",
+      "correctResponseId": null
+    }
+  ]
+}

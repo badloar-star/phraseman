@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-15:session-23",
+  "entries": [
+    {
+      "interactionId": "en:lesson-15:session-23:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-23:intro1:r2": {
+          "ru": "Выберите am с I, is с she, are с we или they.",
+          "uk": "Виберіть am з I, is із she, are з we або they."
+        },
+        "en:lesson-15:session-23:intro1:r3": {
+          "ru": "Форма be должна подходить к подлежащему.",
+          "uk": "Форма be має відповідати підмету."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-15:session-23:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-23:intro2:r2": {
+          "ru": "Выберите am с I, is с she, are с we или they.",
+          "uk": "Виберіть am з I, is із she, are з we або they."
+        },
+        "en:lesson-15:session-23:intro2:r3": {
+          "ru": "Форма be должна подходить к подлежащему.",
+          "uk": "Форма be має відповідати підмету."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-15:session-23:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-23:intro3:r2": {
+          "ru": "Выберите am с I, is с she, are с we или they.",
+          "uk": "Виберіть am з I, is із she, are з we або they."
+        },
+        "en:lesson-15:session-23:intro3:r3": {
+          "ru": "Форма be должна подходить к подлежащему.",
+          "uk": "Форма be має відповідати підмету."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "aa9c9966725fe17fcf988af203ba29622e2aea8a351d309c0f7b08f9751b5ac5"
+}

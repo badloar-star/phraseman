@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-23:word:flower-arranging",
+    "correctText": "flower arranging",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-23:i01",
+    "correctText": "I am trying flower arranging tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-23:i02",
+    "correctText": "I am trying flower arranging tomorrow.",
+    "correctResponseId": "en:lesson-15:session-23:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-23:i03",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-15:session-23:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-23:word:pottery",
+    "correctText": "pottery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-23:i04",
+    "correctText": "We are trying pottery on Sunday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-23:i05",
+    "correctText": "We are trying pottery on Sunday.",
+    "correctResponseId": "en:lesson-15:session-23:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-23:i06",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-23:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-23:word:open-day",
+    "correctText": "open day",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-23:i07",
+    "correctText": "She is attending an open day on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-23:i08",
+    "correctText": "She is attending an open day on Saturday.",
+    "correctResponseId": "en:lesson-15:session-23:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-23:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-23:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-23:word:taster-session",
+    "correctText": "taster session",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-23:i10",
+    "correctText": "They are attending a taster session tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-23:i11",
+    "correctText": "They are attending a taster session tomorrow.",
+    "correctResponseId": "en:lesson-15:session-23:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-23:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-23:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-23:i13",
+    "correctText": "en:lesson-15:session-23:i13:p1=flower arranging\nen:lesson-15:session-23:i13:p2=pottery\nen:lesson-15:session-23:i13:p3=open day\nen:lesson-15:session-23:i13:p4=taster session",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-23:i14",
+    "correctText": "I am trying a new class tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-23:i15",
+    "correctText": "We are meeting at the college.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-23:i16",
+    "correctText": "I am attending a taster session on Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-23:i17",
+    "correctText": "We are trying pottery tomorrow.",
+    "correctResponseId": null
+  }
+]

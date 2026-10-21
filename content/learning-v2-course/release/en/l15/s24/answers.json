@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-24:word:stopover",
+    "correctText": "stopover",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-24:i01",
+    "correctText": "We are having a stopover in Paris tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-24:i02",
+    "correctText": "We are having a stopover in Paris tomorrow.",
+    "correctResponseId": "en:lesson-15:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-24:i03",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-24:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-24:word:outbound",
+    "correctText": "outbound",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-24:i04",
+    "correctText": "I am taking the outbound flight tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-24:i05",
+    "correctText": "I am taking the outbound flight tomorrow.",
+    "correctResponseId": "en:lesson-15:session-24:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-24:i06",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-15:session-24:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-24:word:guided-tour",
+    "correctText": "guided tour",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-24:i07",
+    "correctText": "She is joining a guided tour on Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-24:i08",
+    "correctText": "She is joining a guided tour on Friday.",
+    "correctResponseId": "en:lesson-15:session-24:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-24:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-24:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-24:word:carpool",
+    "correctText": "carpool",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-24:i10",
+    "correctText": "We often carpool.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-24:i11",
+    "correctText": "They are carpooling tomorrow.",
+    "correctResponseId": "en:lesson-15:session-24:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-24:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-24:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-24:i13",
+    "correctText": "en:lesson-15:session-24:i13:p1=stopover\nen:lesson-15:session-24:i13:p2=outbound\nen:lesson-15:session-24:i13:p3=guided tour\nen:lesson-15:session-24:i13:p4=carpool",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-24:i14",
+    "correctText": "We are flying tomorrow morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-24:i15",
+    "correctText": "I am meeting you at the airport.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-24:i16",
+    "correctText": "We are having a stopover in Rome on Monday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-24:i17",
+    "correctText": "I am joining a guided tour tomorrow.",
+    "correctResponseId": null
+  }
+]

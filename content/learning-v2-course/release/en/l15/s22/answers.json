@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-22:word:school-play",
+    "correctText": "school play",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-22:i01",
+    "correctText": "We are watching the school play on Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-22:i02",
+    "correctText": "We are watching the school play on Friday.",
+    "correctResponseId": "en:lesson-15:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-22:i03",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-22:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-22:word:rehearsal",
+    "correctText": "rehearsal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-22:i04",
+    "correctText": "I am attending a rehearsal tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-22:i05",
+    "correctText": "I am attending a rehearsal tomorrow.",
+    "correctResponseId": "en:lesson-15:session-22:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-22:i06",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-15:session-22:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-22:word:matinee",
+    "correctText": "matinee",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-22:i07",
+    "correctText": "She is watching a matinee on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-22:i08",
+    "correctText": "She is watching a matinee on Saturday.",
+    "correctResponseId": "en:lesson-15:session-22:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-22:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-22:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-22:word:front-row",
+    "correctText": "front row",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-22:i10",
+    "correctText": "They are sitting in the front row tonight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-22:i11",
+    "correctText": "They are sitting in the front row tonight.",
+    "correctResponseId": "en:lesson-15:session-22:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-22:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-22:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-22:i13",
+    "correctText": "en:lesson-15:session-22:i13:p1=school play\nen:lesson-15:session-22:i13:p2=rehearsal\nen:lesson-15:session-22:i13:p3=matinee\nen:lesson-15:session-22:i13:p4=front row",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-22:i14",
+    "correctText": "We are watching a play tonight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-22:i15",
+    "correctText": "She is meeting us at seven.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-22:i16",
+    "correctText": "I am attending a rehearsal on Monday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-22:i17",
+    "correctText": "We are sitting in the front row tomorrow.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-21:word:playdate",
+    "correctText": "playdate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-21:i01",
+    "correctText": "We are having a playdate on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-21:i02",
+    "correctText": "We are having a playdate on Saturday.",
+    "correctResponseId": "en:lesson-15:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-21:i03",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-21:word:sleepover",
+    "correctText": "sleepover",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-21:i04",
+    "correctText": "I am having a sleepover on Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-21:i05",
+    "correctText": "I am having a sleepover on Friday.",
+    "correctResponseId": "en:lesson-15:session-21:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-21:i06",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-15:session-21:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-21:word:potluck",
+    "correctText": "potluck",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-21:i07",
+    "correctText": "She is coming to the potluck tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-21:i08",
+    "correctText": "She is coming to the potluck tomorrow.",
+    "correctResponseId": "en:lesson-15:session-21:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-21:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-21:word:reunion",
+    "correctText": "reunion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-21:i10",
+    "correctText": "They are attending a reunion on Sunday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-21:i11",
+    "correctText": "They are attending a reunion on Sunday.",
+    "correctResponseId": "en:lesson-15:session-21:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-21:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-21:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-21:i13",
+    "correctText": "en:lesson-15:session-21:i13:p1=playdate\nen:lesson-15:session-21:i13:p2=sleepover\nen:lesson-15:session-21:i13:p3=potluck\nen:lesson-15:session-21:i13:p4=reunion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-21:i14",
+    "correctText": "We are meeting our friends tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-21:i15",
+    "correctText": "She is bringing a salad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-21:i16",
+    "correctText": "We are having a playdate tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-21:i17",
+    "correctText": "I am coming to the potluck tomorrow.",
+    "correctResponseId": null
+  }
+]

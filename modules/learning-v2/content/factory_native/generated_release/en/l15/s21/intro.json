@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "review: Present Continuous for agreed future arrangements",
+    "uk": "review: Present Continuous for agreed future arrangements"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Время уже согласовано",
+        "uk": "Час уже узгоджено"
+      },
+      "bodyByLocale": {
+        "ru": "playdate — встреча детей, чтобы поиграть вместе, согласованная родителями. Вы с другой семьёй согласовали встречу детей у вас дома в субботу. We are having a playdate on Saturday. — Мы устраиваем встречу детей для игр в субботу. Здесь Present Continuous обозначает уже согласованное будущее дело.",
+        "uk": "playdate — зустріч дітей, щоб пограти разом, узгоджена батьками. Ви з іншою сім’єю узгодили зустріч дітей у вас удома в суботу. We are having a playdate on Saturday. — Ми влаштовуємо зустріч дітей для ігор у суботу. Тут Present Continuous означає вже узгоджену майбутню справу."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-21:intro1:r1",
+              "text": "We are having a playdate on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-21:intro1:r2",
+              "text": "We am having a playdate on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-21:intro1:r3",
+              "text": "We is having a playdate on Saturday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-21:intro1:r1",
+              "text": "We are having a playdate on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-21:intro1:r2",
+              "text": "We am having a playdate on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-21:intro1:r3",
+              "text": "We is having a playdate on Saturday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "О чём договорились",
+        "uk": "Про що домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "sleepover — ночёвка в гостях, обычно у друзей; potluck — встреча за едой, на которую каждый приносит блюдо. Вы пригласили друзей остаться на ночь в пятницу; они и родители согласны. I am having a sleepover on Friday. — Я устраиваю ночёвку друзей у себя в пятницу. Выберите правильную форму be.",
+        "uk": "sleepover — ночівля в гостях, зазвичай у друзів; potluck — зустріч за їжею, на яку кожен приносить страву. Ви запросили друзів залишитися на ніч у п’ятницю; вони й батьки згодні. I am having a sleepover on Friday. — Я влаштовую ночівлю друзів у себе в п’ятницю. Виберіть правильну форму be."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-21:intro2:r1",
+              "text": "I am having a sleepover on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-21:intro2:r2",
+              "text": "I is having a sleepover on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-21:intro2:r3",
+              "text": "I are having a sleepover on Friday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-21:intro2:r1",
+              "text": "I am having a sleepover on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-21:intro2:r2",
+              "text": "I is having a sleepover on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-21:intro2:r3",
+              "text": "I are having a sleepover on Friday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Договорённость на конкретное время",
+        "uk": "Домовленість на конкретний час"
+      },
+      "bodyByLocale": {
+        "ru": "reunion — встреча людей, которые давно не виделись. Ваши родители подтвердили участие во встрече бывших одноклассников в воскресенье. They are attending a reunion on Sunday. — Они идут на встречу старых знакомых в воскресенье. Слова времени показывают: речь о будущем, а не о действии сейчас.",
+        "uk": "reunion — зустріч людей, які давно не бачилися. Ваші батьки підтвердили участь у зустрічі колишніх однокласників у неділю. They are attending a reunion on Sunday. — Вони йдуть на зустріч давніх знайомих у неділю. Слова часу показують: ідеться про майбутнє, а не про дію зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-21:intro3:r1",
+              "text": "They are attending a reunion on Sunday."
+            },
+            {
+              "responseId": "en:lesson-15:session-21:intro3:r2",
+              "text": "They am attending a reunion on Sunday."
+            },
+            {
+              "responseId": "en:lesson-15:session-21:intro3:r3",
+              "text": "They is attending a reunion on Sunday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-21:intro3:r1",
+              "text": "They are attending a reunion on Sunday."
+            },
+            {
+              "responseId": "en:lesson-15:session-21:intro3:r2",
+              "text": "They am attending a reunion on Sunday."
+            },
+            {
+              "responseId": "en:lesson-15:session-21:intro3:r3",
+              "text": "They is attending a reunion on Sunday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "521fc7b33d60f2862f35e6ce99583b01b17eaf6541acbcf6e40a0f4babaa71f4"
+}

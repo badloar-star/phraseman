@@ -1,0 +1,1126 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-22",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-22:word:school-play",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — school play",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-22:word:school-play:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — school play",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-22:word:school-play:audio",
+          "transcript": "school play"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-22:word:school-play:r1",
+            "targetText": "school play",
+            "meaningByLocale": {
+              "ru": "спектакль, который ставят ученики школы.",
+              "uk": "вистава, яку ставлять учні школи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "school play",
+          "definitionByLocale": {
+            "ru": "спектакль, который ставят ученики школы.",
+            "uk": "вистава, яку ставлять учні школи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-22:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы с семьёй купили билеты на школьный спектакль в пятницу. Скажите: «Мы смотрим школьный спектакль в пятницу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы с семьёй купили билеты на школьный спектакль в пятницу. Скажите: «Мы смотрим школьный спектакль в пятницу»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are watching the school play on Friday.",
+        "localizedMeaning": {
+          "ru": "Вы с семьёй купили билеты на школьный спектакль в пятницу. Скажите: «Мы смотрим школьный спектакль в пятницу»",
+          "uk": "Ви із сім’єю купили квитки на шкільну виставу в п’ятницю. Скажіть: «Ми дивимося шкільну виставу в п’ятницю»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "watching",
+          "the",
+          "school",
+          "play",
+          "on",
+          "Friday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-22:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-22:i02:r1",
+          "text": "We are watching the school play on Friday."
+        },
+        {
+          "responseId": "en:lesson-15:session-22:i02:r2",
+          "text": "We am watching the school play on Friday."
+        },
+        {
+          "responseId": "en:lesson-15:session-22:i02:r3",
+          "text": "We is watching the school play on Friday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-22:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-22:i02:audio",
+          "transcript": "We are watching the school play on Friday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-22:i02:r1",
+            "targetText": "We are watching the school play on Friday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i02:r2",
+            "targetText": "We am watching the school play on Friday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i02:r3",
+            "targetText": "We is watching the school play on Friday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-22:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are watching the school play on Friday.",
+              "uk": "У записі звучить We are watching the school play on Friday."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are watching the school play on Friday.",
+              "uk": "У записі звучить We are watching the school play on Friday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-22:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Будущая договорённость. Выберите am, is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-22:i03:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-22:i03:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-22:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Будущая договорённость. Выберите am, is или are",
+          "uk": "Майбутня домовленість. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "We ___ watching the school play on Friday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-22:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Будущая договорённость. Выберите am, is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-22:i03:r2",
+            "correct": false,
+            "testedDimension": "Будущая договорённость. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма are.",
+              "uk": "З цим підметом потрібна форма are."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i03:r3",
+            "correct": false,
+            "testedDimension": "Будущая договорённость. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна are.",
+              "uk": "Для цього підмета потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-22:word:rehearsal",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rehearsal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-22:word:rehearsal:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rehearsal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-22:word:rehearsal:audio",
+          "transcript": "rehearsal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-22:word:rehearsal:r1",
+            "targetText": "rehearsal",
+            "meaningByLocale": {
+              "ru": "репетиция.",
+              "uk": "репетиція."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rehearsal",
+          "definitionByLocale": {
+            "ru": "репетиция.",
+            "uk": "репетиція."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-22:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Руководитель подтвердил, что ждёт вас на завтрашней репетиции. Скажите: «Я иду на репетицию завтра»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Руководитель подтвердил, что ждёт вас на завтрашней репетиции. Скажите: «Я иду на репетицию завтра»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am attending a rehearsal tomorrow.",
+        "localizedMeaning": {
+          "ru": "Руководитель подтвердил, что ждёт вас на завтрашней репетиции. Скажите: «Я иду на репетицию завтра»",
+          "uk": "Керівник підтвердив, що чекає на вас на завтрашній репетиції. Скажіть: «Я йду на репетицію завтра»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "attending",
+          "a",
+          "rehearsal",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-22:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-22:i05:r1",
+          "text": "I am attending a rehearsal tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-22:i05:r2",
+          "text": "I is attending a rehearsal tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-22:i05:r3",
+          "text": "I are attending a rehearsal tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-22:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-22:i05:audio",
+          "transcript": "I am attending a rehearsal tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-22:i05:r1",
+            "targetText": "I am attending a rehearsal tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i05:r2",
+            "targetText": "I is attending a rehearsal tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i05:r3",
+            "targetText": "I are attending a rehearsal tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-22:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am attending a rehearsal tomorrow.",
+              "uk": "У записі звучить I am attending a rehearsal tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am attending a rehearsal tomorrow.",
+              "uk": "У записі звучить I am attending a rehearsal tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-22:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Будущая договорённость. Выберите am, is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-22:i06:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-22:i06:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-22:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Будущая договорённость. Выберите am, is или are",
+          "uk": "Майбутня домовленість. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "I ___ attending a rehearsal tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-22:i06:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Будущая договорённость. Выберите am, is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-22:i06:r2",
+            "correct": false,
+            "testedDimension": "Будущая договорённость. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма am.",
+              "uk": "З цим підметом потрібна форма am."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i06:r3",
+            "correct": false,
+            "testedDimension": "Будущая договорённость. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна am.",
+              "uk": "Для цього підмета потрібна am."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-22:word:matinee",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — matinee",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-22:word:matinee:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — matinee",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-22:word:matinee:audio",
+          "transcript": "matinee"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-22:word:matinee:r1",
+            "targetText": "matinee",
+            "meaningByLocale": {
+              "ru": "дневной спектакль или сеанс.",
+              "uk": "денна вистава або сеанс."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "matinee",
+          "definitionByLocale": {
+            "ru": "дневной спектакль или сеанс.",
+            "uk": "денна вистава або сеанс."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-22:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У вашей мамы уже есть билет на дневной спектакль в субботу. Скажите: «Она смотрит дневной спектакль в субботу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У вашей мамы уже есть билет на дневной спектакль в субботу. Скажите: «Она смотрит дневной спектакль в субботу»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is watching a matinee on Saturday.",
+        "localizedMeaning": {
+          "ru": "У вашей мамы уже есть билет на дневной спектакль в субботу. Скажите: «Она смотрит дневной спектакль в субботу»",
+          "uk": "У вашої мами вже є квиток на денну виставу в суботу. Скажіть: «Вона дивиться денну виставу в суботу»"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "watching",
+          "a",
+          "matinee",
+          "on",
+          "Saturday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-22:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-22:i08:r1",
+          "text": "She is watching a matinee on Saturday."
+        },
+        {
+          "responseId": "en:lesson-15:session-22:i08:r2",
+          "text": "She am watching a matinee on Saturday."
+        },
+        {
+          "responseId": "en:lesson-15:session-22:i08:r3",
+          "text": "She are watching a matinee on Saturday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-22:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-22:i08:audio",
+          "transcript": "She is watching a matinee on Saturday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-22:i08:r1",
+            "targetText": "She is watching a matinee on Saturday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i08:r2",
+            "targetText": "She am watching a matinee on Saturday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i08:r3",
+            "targetText": "She are watching a matinee on Saturday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-22:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is watching a matinee on Saturday.",
+              "uk": "У записі звучить She is watching a matinee on Saturday."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is watching a matinee on Saturday.",
+              "uk": "У записі звучить She is watching a matinee on Saturday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-22:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Будущая договорённость. Выберите am, is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-22:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-22:i09:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-22:i09:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Будущая договорённость. Выберите am, is или are",
+          "uk": "Майбутня домовленість. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "She ___ watching a matinee on Saturday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-22:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i09:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Будущая договорённость. Выберите am, is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-22:i09:r2",
+            "correct": false,
+            "testedDimension": "Будущая договорённость. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма is.",
+              "uk": "З цим підметом потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i09:r3",
+            "correct": false,
+            "testedDimension": "Будущая договорённость. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна is.",
+              "uk": "Для цього підмета потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-22:word:front-row",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — front row",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-22:word:front-row:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — front row",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-22:word:front-row:audio",
+          "transcript": "front row"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-22:word:front-row:r1",
+            "targetText": "front row",
+            "meaningByLocale": {
+              "ru": "первый ряд перед сценой.",
+              "uk": "перший ряд перед сценою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "front row",
+          "definitionByLocale": {
+            "ru": "первый ряд перед сценой.",
+            "uk": "перший ряд перед сценою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-22:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друзья купили билеты в первый ряд на сегодняшний вечерний спектакль. Скажите: «Они сидят в первом ряду сегодня вечером»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друзья купили билеты в первый ряд на сегодняшний вечерний спектакль. Скажите: «Они сидят в первом ряду сегодня вечером»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are sitting in the front row tonight.",
+        "localizedMeaning": {
+          "ru": "Друзья купили билеты в первый ряд на сегодняшний вечерний спектакль. Скажите: «Они сидят в первом ряду сегодня вечером»",
+          "uk": "Друзі купили квитки в перший ряд на сьогоднішню вечірню виставу. Скажіть: «Вони сидять у першому ряді сьогодні ввечері»"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "sitting",
+          "in",
+          "the",
+          "front",
+          "row",
+          "tonight"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-22:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-22:i11:r1",
+          "text": "They are sitting in the front row tonight."
+        },
+        {
+          "responseId": "en:lesson-15:session-22:i11:r2",
+          "text": "They am sitting in the front row tonight."
+        },
+        {
+          "responseId": "en:lesson-15:session-22:i11:r3",
+          "text": "They is sitting in the front row tonight."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-22:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-22:i11:audio",
+          "transcript": "They are sitting in the front row tonight."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-22:i11:r1",
+            "targetText": "They are sitting in the front row tonight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i11:r2",
+            "targetText": "They am sitting in the front row tonight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i11:r3",
+            "targetText": "They is sitting in the front row tonight.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-22:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are sitting in the front row tonight.",
+              "uk": "У записі звучить They are sitting in the front row tonight."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are sitting in the front row tonight.",
+              "uk": "У записі звучить They are sitting in the front row tonight."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-22:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Будущая договорённость. Выберите am, is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-22:i12:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-22:i12:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-22:i12:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Будущая договорённость. Выберите am, is или are",
+          "uk": "Майбутня домовленість. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "They ___ sitting in the front row tonight.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-22:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i12:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Будущая договорённость. Выберите am, is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-22:i12:r2",
+            "correct": false,
+            "testedDimension": "Будущая договорённость. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма are.",
+              "uk": "З цим підметом потрібна форма are."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-22:i12:r3",
+            "correct": false,
+            "testedDimension": "Будущая договорённость. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна are.",
+              "uk": "Для цього підмета потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-22:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-22:i13:p1",
+            "target": "school play",
+            "meaningByLocale": {
+              "ru": "спектакль, который ставят ученики школы",
+              "uk": "вистава, яку ставлять учні школи"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-22:i13:p2",
+            "target": "rehearsal",
+            "meaningByLocale": {
+              "ru": "репетиция",
+              "uk": "репетиція"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-22:i13:p3",
+            "target": "matinee",
+            "meaningByLocale": {
+              "ru": "дневной спектакль или сеанс",
+              "uk": "денна вистава або сеанс"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-22:i13:p4",
+            "target": "front row",
+            "meaningByLocale": {
+              "ru": "первый ряд перед сценой",
+              "uk": "перший ряд перед сценою"
+            }
+          }
+        ],
+        "leftColumn": [
+          "school play",
+          "rehearsal",
+          "matinee",
+          "front row"
+        ],
+        "rightColumn": [
+          "спектакль, который ставят ученики школы",
+          "репетиция",
+          "дневной спектакль или сеанс",
+          "первый ряд перед сценой"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-22:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-22:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-22:i14:audio",
+          "transcript": "We are watching a play tonight."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are watching a play tonight.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "watching",
+          "a",
+          "play",
+          "tonight"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-22:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-22:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-22:i15:audio",
+          "transcript": "She is meeting us at seven."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is meeting us at seven.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "meeting",
+          "us",
+          "at",
+          "seven"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-22:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы подтвердили, что придёте на репетицию в понедельник. Скажите это",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-22:i16:audio"
+      ],
+      "accessibilityLabel": "Вы подтвердили, что придёте на репетицию в понедельник. Скажите это",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-22:i16:audio",
+          "transcript": "I am attending a rehearsal on Monday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am attending a rehearsal on Monday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-22:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ваши с другом билеты на завтра — в первый ряд. Скажите: мы сидим в первом ряду завтра",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-22:i17:audio"
+      ],
+      "accessibilityLabel": "Ваши с другом билеты на завтра — в первый ряд. Скажите: мы сидим в первом ряду завтра",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-22:i17:audio",
+          "transcript": "We are sitting in the front row tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are sitting in the front row tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "242535abb998b4fd04b0e346a3c30ca095342ed44ab9724d80792f580f989096"
+}

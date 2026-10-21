@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "review: Present Continuous for agreed future arrangements",
+    "uk": "review: Present Continuous for agreed future arrangements"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Время уже согласовано",
+        "uk": "Час уже узгоджено"
+      },
+      "bodyByLocale": {
+        "ru": "stopover — остановка в промежуточном городе во время дальней поездки. В ваших билетах уже указана остановка в Париже на завтра. We are having a stopover in Paris tomorrow. — У нас остановка в Париже завтра. Здесь Present Continuous обозначает уже согласованное будущее дело.",
+        "uk": "stopover — зупинка в проміжному місті під час далекої поїздки. У ваших квитках уже зазначена зупинка в Парижі на завтра. We are having a stopover in Paris tomorrow. — У нас зупинка в Парижі завтра. Тут Present Continuous означає вже узгоджену майбутню справу."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-24:intro1:r1",
+              "text": "We are having a stopover in Paris tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-24:intro1:r2",
+              "text": "We am having a stopover in Paris tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-24:intro1:r3",
+              "text": "We is having a stopover in Paris tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-24:intro1:r1",
+              "text": "We are having a stopover in Paris tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-24:intro1:r2",
+              "text": "We am having a stopover in Paris tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-24:intro1:r3",
+              "text": "We is having a stopover in Paris tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "О чём договорились",
+        "uk": "Про що домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "outbound — в направлении туда, от места отправления; guided tour — экскурсия с гидом. Вы купили билеты туда и обратно. Завтра у вас рейс туда. I am taking the outbound flight tomorrow. — Я лечу рейсом туда завтра. Выберите правильную форму be.",
+        "uk": "outbound — у напрямку туди, від місця відправлення; guided tour — екскурсія з гідом. Ви купили квитки туди й назад. Завтра у вас рейс туди. I am taking the outbound flight tomorrow. — Я лечу рейсом туди завтра. Виберіть правильну форму be."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-24:intro2:r1",
+              "text": "I am taking the outbound flight tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-24:intro2:r2",
+              "text": "I is taking the outbound flight tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-24:intro2:r3",
+              "text": "I are taking the outbound flight tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-24:intro2:r1",
+              "text": "I am taking the outbound flight tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-24:intro2:r2",
+              "text": "I is taking the outbound flight tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-24:intro2:r3",
+              "text": "I are taking the outbound flight tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Договорённость на конкретное время",
+        "uk": "Домовленість на конкретний час"
+      },
+      "bodyByLocale": {
+        "ru": "carpool — ехать вместе на одной машине, разделяя поездку. Ваши друзья договорились завтра поехать на работу одной машиной. They are carpooling tomorrow. — Они едут вместе на одной машине завтра. Слова времени показывают: речь о будущем, а не о действии сейчас.",
+        "uk": "carpool — їхати разом однією машиною, розділяючи поїздку. Ваші друзі домовилися завтра поїхати на роботу однією машиною. They are carpooling tomorrow. — Вони їдуть разом однією машиною завтра. Слова часу показують: ідеться про майбутнє, а не про дію зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-24:intro3:r1",
+              "text": "They are carpooling tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-24:intro3:r2",
+              "text": "They am carpooling tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-24:intro3:r3",
+              "text": "They is carpooling tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-24:intro3:r1",
+              "text": "They are carpooling tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-24:intro3:r2",
+              "text": "They am carpooling tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-24:intro3:r3",
+              "text": "They is carpooling tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "05a6ab75445b7a310bf3d92eb33186ae009686cec277488f65ad681dabaee72e"
+}

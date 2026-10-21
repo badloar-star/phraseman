@@ -5635,4 +5635,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: Present Continuous for agreed future arrangements","uk":"review: Present Continuous for agreed future arrangements"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 15","uk":"Англійська · Урок 15"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 15, sessionOrdinal: 21,
+    sourceFingerprint: "42f5b2552f5b25b2a16e71496f1918b8d483c02452c2ab07d5304eac7b46eb21",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: Present Continuous for agreed future arrangements","uk":"review: Present Continuous for agreed future arrangements"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 15","uk":"Англійська · Урок 15"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 15, sessionOrdinal: 22,
+    sourceFingerprint: "e43a9b64ae317675fc94215ef90f0edbe0a0ccc8c5c3c4604d28d9987c7081e0",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: Present Continuous for agreed future arrangements","uk":"review: Present Continuous for agreed future arrangements"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 15","uk":"Англійська · Урок 15"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 15, sessionOrdinal: 23,
+    sourceFingerprint: "8fe693a8de541a5e897209b63bed82c2bc67bf11da41a46a0b4e7187c778cbaf",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: Present Continuous for agreed future arrangements","uk":"review: Present Continuous for agreed future arrangements"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 15","uk":"Англійська · Урок 15"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 15, sessionOrdinal: 24,
+    sourceFingerprint: "2cc83919744d46b6c19bd7423f3d20f1f9759ba8ad2fb85b79839c9ae2d805fc",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: Present Continuous for agreed future arrangements","uk":"review: Present Continuous for agreed future arrangements"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 15","uk":"Англійська · Урок 15"}),
+  }),
 ]);

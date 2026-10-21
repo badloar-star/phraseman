@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-52:intro1:r2": {
+          "ru": "Один этап: lasts с s.",
+          "uk": "Один етап: lasts із s."
+        },
+        "en:lesson-10:session-52:intro1:r3": {
+          "ru": "Здесь нужна личная форма lasts.",
+          "uk": "Тут потрібна особова форма lasts."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-52:intro2:r2": {
+          "ru": "С we нужна review без s.",
+          "uk": "З we потрібна review без s."
+        },
+        "en:lesson-10:session-52:intro2:r3": {
+          "ru": "Здесь нужна review.",
+          "uk": "Тут потрібна review."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-52:intro3:r2": {
+          "ru": "Перед investigating нужна are.",
+          "uk": "Перед investigating потрібна are."
+        },
+        "en:lesson-10:session-52:intro3:r3": {
+          "ru": "Правильно investigating, без e.",
+          "uk": "Правильно investigating, без e."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4e064b57146ada22df44a522bb66564502142b1bd1bf68d0a977ea30ed6a7491"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "This phase lasts a week; We review the roadmap every month; We are investigating a bottleneck",
+    "uk": "This phase lasts a week; We review the roadmap every month; We are investigating a bottleneck"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Длительность этапа",
+        "uk": "Тривалість етапу"
+      },
+      "bodyByLocale": {
+        "ru": "Phase — «этап», часть процесса или проекта. По плану этот этап длится неделю: This phase lasts a week — «Этот этап длится неделю». Установленную длительность описываем через Present Simple. После this phase нужна lasts с s.",
+        "uk": "Phase — «етап», частина процесу або проєкту. За планом цей етап триває тиждень: This phase lasts a week — «Цей етап триває тиждень». Установлену тривалість описуємо через Present Simple. Після this phase потрібна lasts із s."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-52:intro1:r1",
+              "text": "This phase lasts a week."
+            },
+            {
+              "responseId": "en:lesson-10:session-52:intro1:r2",
+              "text": "This phase last a week."
+            },
+            {
+              "responseId": "en:lesson-10:session-52:intro1:r3",
+              "text": "This phase lasting a week."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-52:intro1:r1",
+              "text": "This phase lasts a week."
+            },
+            {
+              "responseId": "en:lesson-10:session-52:intro1:r2",
+              "text": "This phase last a week."
+            },
+            {
+              "responseId": "en:lesson-10:session-52:intro1:r3",
+              "text": "This phase lasting a week."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Регулярно обсуждаем план",
+        "uk": "Регулярно обговорюємо план"
+      },
+      "bodyByLocale": {
+        "ru": "Roadmap здесь — «план развития», общий план основных этапов и целей проекта. Команда обсуждает его ежемесячно: We review the roadmap every month — «Мы пересматриваем план развития каждый месяц». Это регулярная работа: Present Simple.",
+        "uk": "Roadmap тут — «план розвитку», загальний план основних етапів і цілей проєкту. Команда обговорює його щомісяця: We review the roadmap every month — «Ми переглядаємо план розвитку щомісяця». Це регулярна робота: Present Simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-52:intro2:r1",
+              "text": "We review the roadmap every month."
+            },
+            {
+              "responseId": "en:lesson-10:session-52:intro2:r2",
+              "text": "We reviews the roadmap every month."
+            },
+            {
+              "responseId": "en:lesson-10:session-52:intro2:r3",
+              "text": "We reviewing the roadmap every month."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-52:intro2:r1",
+              "text": "We review the roadmap every month."
+            },
+            {
+              "responseId": "en:lesson-10:session-52:intro2:r2",
+              "text": "We reviews the roadmap every month."
+            },
+            {
+              "responseId": "en:lesson-10:session-52:intro2:r3",
+              "text": "We reviewing the roadmap every month."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ищем причину задержки",
+        "uk": "Шукаємо причину затримки"
+      },
+      "bodyByLocale": {
+        "ru": "Bottleneck — «узкое место»: участок процесса, который ограничивает скорость всей работы. Сейчас команда выясняет, почему задания задерживаются на одном этапе: We are investigating a bottleneck — «Мы изучаем узкое место». Текущая работа: are + investigating. У investigate перед ing убираем e.",
+        "uk": "Bottleneck — «вузьке місце»: ділянка процесу, яка обмежує швидкість усієї роботи. Зараз команда з’ясовує, чому завдання затримуються на одному етапі: We are investigating a bottleneck — «Ми досліджуємо вузьке місце». Поточна робота: are + investigating. У investigate перед ing прибираємо e."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-52:intro3:r1",
+              "text": "We are investigating a bottleneck."
+            },
+            {
+              "responseId": "en:lesson-10:session-52:intro3:r2",
+              "text": "We investigating a bottleneck."
+            },
+            {
+              "responseId": "en:lesson-10:session-52:intro3:r3",
+              "text": "We are investigateing a bottleneck."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-52:intro3:r1",
+              "text": "We are investigating a bottleneck."
+            },
+            {
+              "responseId": "en:lesson-10:session-52:intro3:r2",
+              "text": "We investigating a bottleneck."
+            },
+            {
+              "responseId": "en:lesson-10:session-52:intro3:r3",
+              "text": "We are investigateing a bottleneck."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6e2cbb358e6400e4d52495e60a75e29e367885489a6d58bf7af7641f81a3f964"
+}

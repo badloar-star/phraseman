@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-34:word:ceremony",
+      "interactionId": "en:lesson-10:session-34:word:grandson",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — ceremony",
+      "prompt": "Карточка слова — grandson",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-34:word:ceremony:audio"
+        "en:lesson-10:session-34:word:grandson:audio"
       ],
-      "accessibilityLabel": "Карточка слова — ceremony",
+      "accessibilityLabel": "Карточка слова — grandson",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-34:word:ceremony:audio",
-          "transcript": "ceremony"
+          "audioTargetId": "en:lesson-10:session-34:word:grandson:audio",
+          "transcript": "grandson"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-34:word:ceremony:r1",
-            "targetText": "ceremony",
+            "responseId": "en:lesson-10:session-34:word:grandson:r1",
+            "targetText": "grandson",
             "meaningByLocale": {
-              "ru": "«церемония». The ceremony is starting now. — «Церемония сейчас начинается». Официальное мероприятие с определённым порядком действий.",
-              "uk": "«церемонія». The ceremony is starting now. — «Церемонія зараз починається». Офіційний захід із певним порядком дій."
+              "ru": "«внук». My grandson is playing. — «Мой внук играет».",
+              "uk": "«онук». My grandson is playing. — «Мій онук грається»."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "ceremony",
+          "word": "grandson",
           "definitionByLocale": {
-            "ru": "«церемония». The ceremony is starting now. — «Церемония сейчас начинается». Официальное мероприятие с определённым порядком действий.",
-            "uk": "«церемонія». The ceremony is starting now. — «Церемонія зараз починається». Офіційний захід із певним порядком дій."
+            "ru": "«внук». My grandson is playing. — «Мой внук играет».",
+            "uk": "«онук». My grandson is playing. — «Мій онук грається»."
           }
         }
       },
@@ -52,24 +52,23 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ведущая выходит, зал затихает. Скажите: «Церемония сейчас начинается». Поставьте now в конце",
+      "prompt": "Скажите, что ваш внук сейчас играет",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ведущая выходит, зал затихает. Скажите: «Церемония сейчас начинается». Поставьте now в конце",
+      "accessibilityLabel": "Скажите, что ваш внук сейчас играет",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The ceremony is starting now.",
+        "targetPhrase": "My grandson is playing.",
         "localizedMeaning": {
-          "ru": "Ведущая выходит, зал затихает. Скажите: «Церемония сейчас начинается». Поставьте now в конце",
-          "uk": "Ведуча виходить, зал затихає. Скажіть: «Церемонія зараз починається». Поставте now у кінці"
+          "ru": "Скажите, что ваш внук сейчас играет",
+          "uk": "Скажіть, що ваш онук зараз грається"
         },
         "orderedTokens": [
-          "The",
-          "ceremony",
+          "My",
+          "grandson",
           "is",
-          "starting",
-          "now"
+          "playing"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -90,15 +89,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-34:i02:r1",
-          "text": "The ceremony is in the hall."
+          "text": "My grandson is reading."
         },
         {
           "responseId": "en:lesson-10:session-34:i02:r2",
-          "text": "The ceremony is in the garden."
+          "text": "My grandson is playing."
         },
         {
           "responseId": "en:lesson-10:session-34:i02:r3",
-          "text": "The meeting is in the hall."
+          "text": "Your grandson is reading."
         }
       ],
       "mediaIds": [],
@@ -110,23 +109,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-34:i02:audio",
-          "transcript": "The ceremony is in the hall."
+          "transcript": "My grandson is reading."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-34:i02:r1",
-            "targetText": "The ceremony is in the hall.",
+            "targetText": "My grandson is reading.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-34:i02:r2",
-            "targetText": "The ceremony is in the garden.",
+            "targetText": "My grandson is playing.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-34:i02:r3",
-            "targetText": "The meeting is in the hall.",
+            "targetText": "Your grandson is reading.",
             "meaningByLocale": null
           }
         ],
@@ -137,8 +136,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The ceremony is in the hall.",
-              "uk": "У записі звучить The ceremony is in the hall."
+              "ru": "В записи звучит My grandson is reading.",
+              "uk": "У записі звучить My grandson is reading."
             }
           },
           {
@@ -146,8 +145,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The ceremony is in the hall.",
-              "uk": "У записі звучить The ceremony is in the hall."
+              "ru": "В записи звучит My grandson is reading.",
+              "uk": "У записі звучить My grandson is reading."
             }
           }
         ],
@@ -162,63 +161,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы приходите каждый год. Выберите форму come",
+      "prompt": "Выберите форму be для одного внука",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-34:i03:r1",
-          "text": "come"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-10:session-34:i03:r2",
-          "text": "comes"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-10:session-34:i03:r3",
-          "text": "coming"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы приходите каждый год. Выберите форму come",
+      "accessibilityLabel": "Выберите форму be для одного внука",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы приходите каждый год. Выберите форму come",
-          "uk": "Ви приходите щороку. Виберіть форму come"
+          "ru": "Выберите форму be для одного внука",
+          "uk": "Виберіть форму be для одного онука"
         },
-        "gappedTargetPhrase": "We ___ here every year.",
+        "gappedTargetPhrase": "My grandson ___ playing.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-34:i03:r1",
-            "text": "come"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-34:i03:r2",
-            "text": "comes"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-34:i03:r3",
-            "text": "coming"
+            "text": "am"
           }
         ],
-        "testedDimension": "Вы приходите каждый год. Выберите форму come",
+        "testedDimension": "Выберите форму be для одного внука",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-34:i03:r2",
             "correct": false,
-            "testedDimension": "Вы приходите каждый год. Выберите форму come",
+            "testedDimension": "Выберите форму be для одного внука",
             "feedbackByLocale": {
-              "ru": "С we нужна come без s.",
-              "uk": "З we потрібна come без s."
+              "ru": "Один grandson: нужна is.",
+              "uk": "Один grandson: потрібна is."
             }
           },
           {
             "responseId": "en:lesson-10:session-34:i03:r3",
             "correct": false,
-            "testedDimension": "Вы приходите каждый год. Выберите форму come",
+            "testedDimension": "Выберите форму be для одного внука",
             "feedbackByLocale": {
-              "ru": "Для этой привычки нужна come.",
-              "uk": "Для цієї звички потрібна come."
+              "ru": "Am используется с I. Здесь нужна is.",
+              "uk": "Am вживається з I. Тут потрібна is."
             }
           }
         ]
@@ -226,32 +225,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-34:word:rostrum",
+      "interactionId": "en:lesson-10:session-34:word:granddaughter",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — rostrum",
+      "prompt": "Карточка слова — granddaughter",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-34:word:rostrum:audio"
+        "en:lesson-10:session-34:word:granddaughter:audio"
       ],
-      "accessibilityLabel": "Карточка слова — rostrum",
+      "accessibilityLabel": "Карточка слова — granddaughter",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-34:word:rostrum:audio",
-          "transcript": "rostrum"
+          "audioTargetId": "en:lesson-10:session-34:word:granddaughter:audio",
+          "transcript": "granddaughter"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-34:word:rostrum:r1",
-            "targetText": "rostrum",
+            "responseId": "en:lesson-10:session-34:word:granddaughter:r1",
+            "targetText": "granddaughter",
             "meaningByLocale": {
-              "ru": "«помост для выступающих». The speaker is on the rostrum. — «Выступающий на помосте». Здесь небольшое возвышение, с которого произносят речь.",
-              "uk": "«поміст для промовців». The speaker is on the rostrum. — «Промовець на помості». Тут невелике підвищення, з якого виголошують промову."
+              "ru": "«внучка». My granddaughter is reading. — «Моя внучка читает».",
+              "uk": "«онука». My granddaughter is reading. — «Моя онука читає»."
             }
           }
         ],
@@ -259,10 +258,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "rostrum",
+          "word": "granddaughter",
           "definitionByLocale": {
-            "ru": "«помост для выступающих». The speaker is on the rostrum. — «Выступающий на помосте». Здесь небольшое возвышение, с которого произносят речь.",
-            "uk": "«поміст для промовців». The speaker is on the rostrum. — «Промовець на помості». Тут невелике підвищення, з якого виголошують промову."
+            "ru": "«внучка». My granddaughter is reading. — «Моя внучка читает».",
+            "uk": "«онука». My granddaughter is reading. — «Моя онука читає»."
           }
         }
       },
@@ -274,25 +273,23 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг не видит выступающего. Укажите, где он: «Выступающий на помосте»",
+      "prompt": "Скажите, что ваша внучка сейчас читает",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг не видит выступающего. Укажите, где он: «Выступающий на помосте»",
+      "accessibilityLabel": "Скажите, что ваша внучка сейчас читает",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The speaker is on the rostrum.",
+        "targetPhrase": "My granddaughter is reading.",
         "localizedMeaning": {
-          "ru": "Друг не видит выступающего. Укажите, где он: «Выступающий на помосте»",
-          "uk": "Друг не бачить промовця. Укажіть, де він: «Промовець на помості»"
+          "ru": "Скажите, что ваша внучка сейчас читает",
+          "uk": "Скажіть, що ваша онука зараз читає"
         },
         "orderedTokens": [
-          "The",
-          "speaker",
+          "My",
+          "granddaughter",
           "is",
-          "on",
-          "the",
-          "rostrum"
+          "reading"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -313,15 +310,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-34:i05:r1",
-          "text": "The rostrum is beside the window."
+          "text": "My granddaughter is playing."
         },
         {
           "responseId": "en:lesson-10:session-34:i05:r2",
-          "text": "The rostrum is beside the door."
+          "text": "My grandson is playing."
         },
         {
           "responseId": "en:lesson-10:session-34:i05:r3",
-          "text": "The table is beside the window."
+          "text": "My granddaughter is reading."
         }
       ],
       "mediaIds": [],
@@ -333,23 +330,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-34:i05:audio",
-          "transcript": "The rostrum is beside the window."
+          "transcript": "My granddaughter is playing."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-34:i05:r1",
-            "targetText": "The rostrum is beside the window.",
+            "targetText": "My granddaughter is playing.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-34:i05:r2",
-            "targetText": "The rostrum is beside the door.",
+            "targetText": "My grandson is playing.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-34:i05:r3",
-            "targetText": "The table is beside the window.",
+            "targetText": "My granddaughter is reading.",
             "meaningByLocale": null
           }
         ],
@@ -360,8 +357,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The rostrum is beside the window.",
-              "uk": "У записі звучить The rostrum is beside the window."
+              "ru": "В записи звучит My granddaughter is playing.",
+              "uk": "У записі звучить My granddaughter is playing."
             }
           },
           {
@@ -369,8 +366,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The rostrum is beside the window.",
-              "uk": "У записі звучить The rostrum is beside the window."
+              "ru": "В записи звучит My granddaughter is playing.",
+              "uk": "У записі звучить My granddaughter is playing."
             }
           }
         ],
@@ -385,63 +382,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выступающий стоит на поверхности помоста. Выберите предлог",
+      "prompt": "Выберите форму read после is",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-34:i06:r1",
-          "text": "on"
+          "text": "reading"
         },
         {
           "responseId": "en:lesson-10:session-34:i06:r2",
-          "text": "in"
+          "text": "read"
         },
         {
           "responseId": "en:lesson-10:session-34:i06:r3",
-          "text": "under"
+          "text": "reads"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выступающий стоит на поверхности помоста. Выберите предлог",
+      "accessibilityLabel": "Выберите форму read после is",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выступающий стоит на поверхности помоста. Выберите предлог",
-          "uk": "Промовець стоїть на поверхні помосту. Виберіть прийменник"
+          "ru": "Выберите форму read после is",
+          "uk": "Виберіть форму read після is"
         },
-        "gappedTargetPhrase": "The speaker is ___ the rostrum.",
+        "gappedTargetPhrase": "My granddaughter is ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-34:i06:r1",
-            "text": "on"
+            "text": "reading"
           },
           {
             "responseId": "en:lesson-10:session-34:i06:r2",
-            "text": "in"
+            "text": "read"
           },
           {
             "responseId": "en:lesson-10:session-34:i06:r3",
-            "text": "under"
+            "text": "reads"
           }
         ],
-        "testedDimension": "Выступающий стоит на поверхности помоста. Выберите предлог",
+        "testedDimension": "Выберите форму read после is",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-34:i06:r2",
             "correct": false,
-            "testedDimension": "Выступающий стоит на поверхности помоста. Выберите предлог",
+            "testedDimension": "Выберите форму read после is",
             "feedbackByLocale": {
-              "ru": "На поверхности — on, не in.",
-              "uk": "На поверхні — on, не in."
+              "ru": "После is для действия сейчас нужна reading.",
+              "uk": "Після is для дії зараз потрібна reading."
             }
           },
           {
             "responseId": "en:lesson-10:session-34:i06:r3",
             "correct": false,
-            "testedDimension": "Выступающий стоит на поверхности помоста. Выберите предлог",
+            "testedDimension": "Выберите форму read после is",
             "feedbackByLocale": {
-              "ru": "Under означает под, здесь нужно on.",
-              "uk": "Under означає під, тут потрібне on."
+              "ru": "Здесь is reading, не is reads.",
+              "uk": "Тут is reading, не is reads."
             }
           }
         ]
@@ -449,32 +446,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-34:word:dignitary",
+      "interactionId": "en:lesson-10:session-34:word:teenager",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — dignitary",
+      "prompt": "Карточка слова — teenager",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-34:word:dignitary:audio"
+        "en:lesson-10:session-34:word:teenager:audio"
       ],
-      "accessibilityLabel": "Карточка слова — dignitary",
+      "accessibilityLabel": "Карточка слова — teenager",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-34:word:dignitary:audio",
-          "transcript": "dignitary"
+          "audioTargetId": "en:lesson-10:session-34:word:teenager:audio",
+          "transcript": "teenager"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-34:word:dignitary:r1",
-            "targetText": "dignitary",
+            "responseId": "en:lesson-10:session-34:word:teenager:r1",
+            "targetText": "teenager",
             "meaningByLocale": {
-              "ru": "«высокопоставленное лицо». A dignitary is visiting today. — «Сегодня приезжает высокопоставленное лицо». Человек, занимающий важную официальную должность.",
-              "uk": "«високопосадовець». A dignitary is visiting today. — «Сьогодні приїздить високопосадовець». Людина, яка обіймає важливу офіційну посаду."
+              "ru": "«подросток», человек от 13 до 19 лет. My son is a teenager. — «Мой сын — подросток».",
+              "uk": "«підліток», людина від 13 до 19 років. My son is a teenager. — «Мій син — підліток»."
             }
           }
         ],
@@ -482,10 +479,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "dignitary",
+          "word": "teenager",
           "definitionByLocale": {
-            "ru": "«высокопоставленное лицо». A dignitary is visiting today. — «Сегодня приезжает высокопоставленное лицо». Человек, занимающий важную официальную должность.",
-            "uk": "«високопосадовець». A dignitary is visiting today. — «Сьогодні приїздить високопосадовець». Людина, яка обіймає важливу офіційну посаду."
+            "ru": "«подросток», человек от 13 до 19 лет. My son is a teenager. — «Мой сын — подросток».",
+            "uk": "«підліток», людина від 13 до 19 років. My son is a teenager. — «Мій син — підліток»."
           }
         }
       },
@@ -497,24 +494,24 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "На церемонию сегодня приезжает важный официальный гость. Скажите: «Сегодня приезжает высокопоставленное лицо». Поставьте today в конце",
+      "prompt": "Скажите, что ваш сын — подросток",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "На церемонию сегодня приезжает важный официальный гость. Скажите: «Сегодня приезжает высокопоставленное лицо». Поставьте today в конце",
+      "accessibilityLabel": "Скажите, что ваш сын — подросток",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "A dignitary is visiting today.",
+        "targetPhrase": "My son is a teenager.",
         "localizedMeaning": {
-          "ru": "На церемонию сегодня приезжает важный официальный гость. Скажите: «Сегодня приезжает высокопоставленное лицо». Поставьте today в конце",
-          "uk": "На церемонію сьогодні приїздить важливий офіційний гість. Скажіть: «Сьогодні приїздить високопосадовець». Поставте today у кінці"
+          "ru": "Скажите, что ваш сын — подросток",
+          "uk": "Скажіть, що ваш син — підліток"
         },
         "orderedTokens": [
-          "A",
-          "dignitary",
+          "My",
+          "son",
           "is",
-          "visiting",
-          "today"
+          "a",
+          "teenager"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -535,15 +532,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-34:i08:r1",
-          "text": "The dignitary is sitting in the front row."
+          "text": "My daughter is a teenager."
         },
         {
           "responseId": "en:lesson-10:session-34:i08:r2",
-          "text": "The dignitary is standing in the front row."
+          "text": "My son is a teenager."
         },
         {
           "responseId": "en:lesson-10:session-34:i08:r3",
-          "text": "The photographer is sitting in the front row."
+          "text": "Your daughter is a teenager."
         }
       ],
       "mediaIds": [],
@@ -555,23 +552,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-34:i08:audio",
-          "transcript": "The dignitary is sitting in the front row."
+          "transcript": "My daughter is a teenager."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-34:i08:r1",
-            "targetText": "The dignitary is sitting in the front row.",
+            "targetText": "My daughter is a teenager.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-34:i08:r2",
-            "targetText": "The dignitary is standing in the front row.",
+            "targetText": "My son is a teenager.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-34:i08:r3",
-            "targetText": "The photographer is sitting in the front row.",
+            "targetText": "Your daughter is a teenager.",
             "meaningByLocale": null
           }
         ],
@@ -582,8 +579,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The dignitary is sitting in the front row.",
-              "uk": "У записі звучить The dignitary is sitting in the front row."
+              "ru": "В записи звучит My daughter is a teenager.",
+              "uk": "У записі звучить My daughter is a teenager."
             }
           },
           {
@@ -591,8 +588,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The dignitary is sitting in the front row.",
-              "uk": "У записі звучить The dignitary is sitting in the front row."
+              "ru": "В записи звучит My daughter is a teenager.",
+              "uk": "У записі звучить My daughter is a teenager."
             }
           }
         ],
@@ -607,63 +604,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Гость сейчас сидит в первом ряду. Выберите правильное написание",
+      "prompt": "Выберите артикль перед teenager",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-34:i09:r1",
-          "text": "sitting"
+          "text": "a"
         },
         {
           "responseId": "en:lesson-10:session-34:i09:r2",
-          "text": "siting"
+          "text": "an"
         },
         {
           "responseId": "en:lesson-10:session-34:i09:r3",
-          "text": "sit"
+          "text": "some"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Гость сейчас сидит в первом ряду. Выберите правильное написание",
+      "accessibilityLabel": "Выберите артикль перед teenager",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Гость сейчас сидит в первом ряду. Выберите правильное написание",
-          "uk": "Гість зараз сидить у першому ряду. Виберіть правильне написання"
+          "ru": "Выберите артикль перед teenager",
+          "uk": "Виберіть артикль перед teenager"
         },
-        "gappedTargetPhrase": "The dignitary is ___ in the front row.",
+        "gappedTargetPhrase": "My son is ___ teenager.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-34:i09:r1",
-            "text": "sitting"
+            "text": "a"
           },
           {
             "responseId": "en:lesson-10:session-34:i09:r2",
-            "text": "siting"
+            "text": "an"
           },
           {
             "responseId": "en:lesson-10:session-34:i09:r3",
-            "text": "sit"
+            "text": "some"
           }
         ],
-        "testedDimension": "Гость сейчас сидит в первом ряду. Выберите правильное написание",
+        "testedDimension": "Выберите артикль перед teenager",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-34:i09:r2",
             "correct": false,
-            "testedDimension": "Гость сейчас сидит в первом ряду. Выберите правильное написание",
+            "testedDimension": "Выберите артикль перед teenager",
             "feedbackByLocale": {
-              "ru": "В sitting удваивается t.",
-              "uk": "У sitting подвоюється t."
+              "ru": "Teenager начинается с согласного звука: a.",
+              "uk": "Teenager починається з приголосного звука: a."
             }
           },
           {
             "responseId": "en:lesson-10:session-34:i09:r3",
             "correct": false,
-            "testedDimension": "Гость сейчас сидит в первом ряду. Выберите правильное написание",
+            "testedDimension": "Выберите артикль перед teenager",
             "feedbackByLocale": {
-              "ru": "После is для текущего действия нужна форма sitting.",
-              "uk": "Після is для поточної дії потрібна форма sitting."
+              "ru": "Здесь один человек: a teenager.",
+              "uk": "Тут одна людина: a teenager."
             }
           }
         ]
@@ -671,32 +668,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-34:word:commendation",
+      "interactionId": "en:lesson-10:session-34:word:adult",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — commendation",
+      "prompt": "Карточка слова — adult",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-34:word:commendation:audio"
+        "en:lesson-10:session-34:word:adult:audio"
       ],
-      "accessibilityLabel": "Карточка слова — commendation",
+      "accessibilityLabel": "Карточка слова — adult",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-34:word:commendation:audio",
-          "transcript": "commendation"
+          "audioTargetId": "en:lesson-10:session-34:word:adult:audio",
+          "transcript": "adult"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-34:word:commendation:r1",
-            "targetText": "commendation",
+            "responseId": "en:lesson-10:session-34:word:adult:r1",
+            "targetText": "adult",
             "meaningByLocale": {
-              "ru": "«официальная похвала». She deserves a commendation. — «Она заслуживает официальной похвалы». Здесь публичное признание хорошей работы.",
-              "uk": "«офіційна похвала». She deserves a commendation. — «Вона заслуговує на офіційну похвалу». Тут публічне визнання доброї роботи."
+              "ru": "«взрослый». One adult ticket, please. — «Один взрослый билет, пожалуйста».",
+              "uk": "«дорослий». One adult ticket, please. — «Один дорослий квиток, будь ласка»."
             }
           }
         ],
@@ -704,10 +701,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "commendation",
+          "word": "adult",
           "definitionByLocale": {
-            "ru": "«официальная похвала». She deserves a commendation. — «Она заслуживает официальной похвалы». Здесь публичное признание хорошей работы.",
-            "uk": "«офіційна похвала». She deserves a commendation. — «Вона заслуговує на офіційну похвалу». Тут публічне визнання доброї роботи."
+            "ru": "«взрослый». One adult ticket, please. — «Один взрослый билет, пожалуйста».",
+            "uk": "«дорослий». One adult ticket, please. — «Один дорослий квиток, будь ласка»."
           }
         }
       },
@@ -719,23 +716,23 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ваша знакомая много помогала людям. Скажите о ней: «Она заслуживает официальной похвалы»",
+      "prompt": "Попросите один взрослый билет. Please поставьте в конце",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ваша знакомая много помогала людям. Скажите о ней: «Она заслуживает официальной похвалы»",
+      "accessibilityLabel": "Попросите один взрослый билет. Please поставьте в конце",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She deserves a commendation.",
+        "targetPhrase": "One adult ticket, please.",
         "localizedMeaning": {
-          "ru": "Ваша знакомая много помогала людям. Скажите о ней: «Она заслуживает официальной похвалы»",
-          "uk": "Ваша знайома багато допомагала людям. Скажіть про неї: «Вона заслуговує на офіційну похвалу»"
+          "ru": "Попросите один взрослый билет. Please поставьте в конце",
+          "uk": "Попросіть один дорослий квиток. Please поставте в кінці"
         },
         "orderedTokens": [
-          "She",
-          "deserves",
-          "a",
-          "commendation"
+          "One",
+          "adult",
+          "ticket,",
+          "please"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -756,15 +753,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-34:i11:r1",
-          "text": "She is receiving a commendation."
+          "text": "Two adult tickets, please."
         },
         {
           "responseId": "en:lesson-10:session-34:i11:r2",
-          "text": "He is receiving a commendation."
+          "text": "One adult ticket, please."
         },
         {
           "responseId": "en:lesson-10:session-34:i11:r3",
-          "text": "She is receiving a letter."
+          "text": "Three adult tickets, please."
         }
       ],
       "mediaIds": [],
@@ -776,23 +773,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-34:i11:audio",
-          "transcript": "She is receiving a commendation."
+          "transcript": "Two adult tickets, please."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-34:i11:r1",
-            "targetText": "She is receiving a commendation.",
+            "targetText": "Two adult tickets, please.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-34:i11:r2",
-            "targetText": "He is receiving a commendation.",
+            "targetText": "One adult ticket, please.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-34:i11:r3",
-            "targetText": "She is receiving a letter.",
+            "targetText": "Three adult tickets, please.",
             "meaningByLocale": null
           }
         ],
@@ -803,8 +800,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит She is receiving a commendation.",
-              "uk": "У записі звучить She is receiving a commendation."
+              "ru": "В записи звучит Two adult tickets, please.",
+              "uk": "У записі звучить Two adult tickets, please."
             }
           },
           {
@@ -812,8 +809,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит She is receiving a commendation.",
-              "uk": "У записі звучить She is receiving a commendation."
+              "ru": "В записи звучит Two adult tickets, please.",
+              "uk": "У записі звучить Two adult tickets, please."
             }
           }
         ],
@@ -828,63 +825,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму deserve с she",
+      "prompt": "Выберите форму ticket после one",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-34:i12:r1",
-          "text": "deserves"
+          "text": "ticket"
         },
         {
           "responseId": "en:lesson-10:session-34:i12:r2",
-          "text": "deserve"
+          "text": "tickets"
         },
         {
           "responseId": "en:lesson-10:session-34:i12:r3",
-          "text": "is deserve"
+          "text": "ticketing"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму deserve с she",
+      "accessibilityLabel": "Выберите форму ticket после one",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму deserve с she",
-          "uk": "Виберіть форму deserve з she"
+          "ru": "Выберите форму ticket после one",
+          "uk": "Виберіть форму ticket після one"
         },
-        "gappedTargetPhrase": "She ___ a commendation.",
+        "gappedTargetPhrase": "One adult ___, please.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-34:i12:r1",
-            "text": "deserves"
+            "text": "ticket"
           },
           {
             "responseId": "en:lesson-10:session-34:i12:r2",
-            "text": "deserve"
+            "text": "tickets"
           },
           {
             "responseId": "en:lesson-10:session-34:i12:r3",
-            "text": "is deserve"
+            "text": "ticketing"
           }
         ],
-        "testedDimension": "Выберите форму deserve с she",
+        "testedDimension": "Выберите форму ticket после one",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-34:i12:r2",
             "correct": false,
-            "testedDimension": "Выберите форму deserve с she",
+            "testedDimension": "Выберите форму ticket после one",
             "feedbackByLocale": {
-              "ru": "С she нужна deserves с s.",
-              "uk": "З she потрібна deserves із s."
+              "ru": "После one нужен ticket без s.",
+              "uk": "Після one потрібен ticket без s."
             }
           },
           {
             "responseId": "en:lesson-10:session-34:i12:r3",
             "correct": false,
-            "testedDimension": "Выберите форму deserve с she",
+            "testedDimension": "Выберите форму ticket после one",
             "feedbackByLocale": {
-              "ru": "Is deserve неверно; здесь нужна deserves.",
-              "uk": "Is deserve неправильно; тут потрібна deserves."
+              "ru": "Билет здесь — ticket.",
+              "uk": "Квиток тут — ticket."
             }
           }
         ]
@@ -897,58 +894,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините слова с переводом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините слова с переводом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-34:i13:p1",
-            "target": "ceremony",
+            "target": "grandson",
             "meaningByLocale": {
-              "ru": "церемония",
-              "uk": "церемонія"
+              "ru": "внук",
+              "uk": "онук"
             }
           },
           {
             "pairId": "en:lesson-10:session-34:i13:p2",
-            "target": "rostrum",
+            "target": "granddaughter",
             "meaningByLocale": {
-              "ru": "помост для выступающих",
-              "uk": "поміст для промовців"
+              "ru": "внучка",
+              "uk": "онука"
             }
           },
           {
             "pairId": "en:lesson-10:session-34:i13:p3",
-            "target": "dignitary",
+            "target": "teenager",
             "meaningByLocale": {
-              "ru": "высокопоставленное лицо",
-              "uk": "високопосадовець"
+              "ru": "подросток",
+              "uk": "підліток"
             }
           },
           {
             "pairId": "en:lesson-10:session-34:i13:p4",
-            "target": "commendation",
+            "target": "adult",
             "meaningByLocale": {
-              "ru": "официальная похвала",
-              "uk": "офіційна похвала"
+              "ru": "взрослый",
+              "uk": "дорослий"
             }
           }
         ],
         "leftColumn": [
-          "ceremony",
-          "rostrum",
-          "dignitary",
-          "commendation"
+          "grandson",
+          "granddaughter",
+          "teenager",
+          "adult"
         ],
         "rightColumn": [
-          "церемония",
-          "помост для выступающих",
-          "высокопоставленное лицо",
-          "официальная похвала"
+          "внук",
+          "внучка",
+          "подросток",
+          "взрослый"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -970,27 +967,26 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-34:i14:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Соберите услышанную фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-34:i14:audio",
-          "transcript": "The ceremony is starting now."
+          "transcript": "My granddaughter is reading."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The ceremony is starting now.",
+        "hiddenTargetPhrase": "My granddaughter is reading.",
         "orderedTokens": [
-          "The",
-          "ceremony",
+          "My",
+          "granddaughter",
           "is",
-          "starting",
-          "now"
+          "reading"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1004,24 +1000,60 @@
     {
       "interactionId": "en:lesson-10:session-34:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает, часто ли вы посещаете эту ежегодную церемонию. Скажите: «Мы приходим сюда каждый год»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-34:i15:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает, часто ли вы посещаете эту ежегодную церемонию. Скажите: «Мы приходим сюда каждый год»",
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-34:i15:audio",
+          "transcript": "One adult ticket, please."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "One adult ticket, please.",
+        "orderedTokens": [
+          "One",
+          "adult",
+          "ticket,",
+          "please"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-34:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что ваш внук сейчас спит",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-34:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что ваш внук сейчас спит",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-34:i15:audio",
-          "transcript": "We come here every year."
+          "audioTargetId": "en:lesson-10:session-34:i16:audio",
+          "transcript": "My grandson is sleeping."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We come here every year.",
+        "targetPhrase": "My grandson is sleeping.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1035,72 +1067,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-34:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Друг спрашивает, где выступающий. Скажите: «Выступающий на помосте»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Друг спрашивает, где выступающий. Скажите: «Выступающий на помосте»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The speaker is on the rostrum.",
-        "localizedMeaning": {
-          "ru": "Друг спрашивает, где выступающий. Скажите: «Выступающий на помосте»",
-          "uk": "Друг запитує, де промовець. Скажіть: «Промовець на помості»"
-        },
-        "orderedTokens": [
-          "The",
-          "speaker",
-          "is",
-          "on",
-          "the",
-          "rostrum"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-34:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Знакомая помогала людям весь год. Друг спрашивает, заслуживает ли она публичной благодарности. Скажите: «Она заслуживает официальной похвалы»",
+      "prompt": "Скажите, что ваша внучка сейчас ест",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-34:i17:audio"
       ],
-      "accessibilityLabel": "Знакомая помогала людям весь год. Друг спрашивает, заслуживает ли она публичной благодарности. Скажите: «Она заслуживает официальной похвалы»",
+      "accessibilityLabel": "Скажите, что ваша внучка сейчас ест",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-34:i17:audio",
-          "transcript": "She deserves a commendation."
+          "transcript": "My granddaughter is eating."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She deserves a commendation.",
+        "targetPhrase": "My granddaughter is eating.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1117,5 +1106,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "983a89d737f5579c910950da062c2517384ab9efd777a76e9ce5e4711de72cf1"
+  "learnerFingerprint": "9937fe0cb415763f6963b183560e84b39810b8e2dd4b4826cc5c98e00b9fcbbb"
 }

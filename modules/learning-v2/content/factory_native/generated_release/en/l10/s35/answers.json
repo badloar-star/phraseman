@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-35:word:keepsake",
-    "correctText": "keepsake",
+    "interactionId": "en:lesson-10:session-35:word:birthday",
+    "correctText": "birthday",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-35:i01",
-    "correctText": "This badge is a keepsake.",
+    "correctText": "My birthday is today.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-35:i02",
-    "correctText": "I keep this photo as a keepsake.",
+    "correctText": "My birthday is today.",
     "correctResponseId": "en:lesson-10:session-35:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-35:i03",
-    "correctText": "meet",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-35:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-35:word:milestone",
-    "correctText": "milestone",
+    "interactionId": "en:lesson-10:session-35:word:wedding",
+    "correctText": "wedding",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-35:i04",
-    "correctText": "Fifty years is a milestone.",
+    "correctText": "The wedding is today.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-35:i05",
-    "correctText": "This is an important milestone.",
+    "correctText": "The wedding is in July.",
     "correctResponseId": "en:lesson-10:session-35:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-35:i06",
-    "correctText": "is",
+    "correctText": "in",
     "correctResponseId": "en:lesson-10:session-35:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-35:word:scrapbook",
-    "correctText": "scrapbook",
+    "interactionId": "en:lesson-10:session-35:word:celebrate",
+    "correctText": "celebrate",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-35:i07",
-    "correctText": "I am making a scrapbook.",
+    "correctText": "We celebrate at home.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-35:i08",
-    "correctText": "The scrapbook is on the table.",
+    "correctText": "We are celebrating.",
     "correctResponseId": "en:lesson-10:session-35:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-35:i09",
-    "correctText": "making",
+    "correctText": "celebrating",
     "correctResponseId": "en:lesson-10:session-35:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-35:word:jubilee",
-    "correctText": "jubilee",
+    "interactionId": "en:lesson-10:session-35:word:have-fun",
+    "correctText": "have fun",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-35:i10",
-    "correctText": "We are celebrating the jubilee.",
+    "correctText": "Have fun.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-35:i11",
-    "correctText": "The jubilee is in June.",
+    "correctText": "We are having fun.",
     "correctResponseId": "en:lesson-10:session-35:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-35:i12",
-    "correctText": "celebrating",
+    "correctText": "having",
     "correctResponseId": "en:lesson-10:session-35:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-35:i13",
-    "correctText": "en:lesson-10:session-35:i13:p1=keepsake\nen:lesson-10:session-35:i13:p2=milestone\nen:lesson-10:session-35:i13:p3=scrapbook\nen:lesson-10:session-35:i13:p4=jubilee",
+    "correctText": "en:lesson-10:session-35:i13:p1=birthday\nen:lesson-10:session-35:i13:p2=wedding\nen:lesson-10:session-35:i13:p3=celebrate\nen:lesson-10:session-35:i13:p4=have fun",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-35:i14",
-    "correctText": "I am making a scrapbook.",
+    "correctText": "We celebrate at home.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-35:i15",
-    "correctText": "We meet here every year.",
+    "correctText": "The wedding is today.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-35:i16",
-    "correctText": "This badge is a keepsake.",
+    "correctText": "Happy birthday!",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-35:i17",
-    "correctText": "We are celebrating the jubilee.",
+    "correctText": "I am having fun.",
     "correctResponseId": null
   }
 ]

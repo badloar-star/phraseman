@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-34:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-34:intro1:r2": {
-          "ru": "Нужен is перед starting.",
-          "uk": "Потрібне is перед starting."
+          "ru": "Для действия сейчас нужна is перед playing.",
+          "uk": "Для дії зараз потрібна is перед playing."
         },
         "en:lesson-10:session-34:intro1:r3": {
-          "ru": "Одна церемония: is.",
-          "uk": "Одна церемонія: is."
+          "ru": "Один grandson: нужна is, не are.",
+          "uk": "Один grandson: потрібна is, не are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-34:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-34:intro2:r2": {
-          "ru": "С we нужна come.",
-          "uk": "З we потрібна come."
+          "ru": "Один son: нужна is.",
+          "uk": "Один son: потрібна is."
         },
         "en:lesson-10:session-34:intro2:r3": {
-          "ru": "Для привычки здесь нужна come.",
-          "uk": "Для звички тут потрібна come."
+          "ru": "Перед teenager здесь нужен a.",
+          "uk": "Перед teenager тут потрібен a."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-34:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-34:intro3:r2": {
-          "ru": "С she нужна deserves.",
-          "uk": "З she потрібна deserves."
+          "ru": "После one нужен ticket в единственном числе.",
+          "uk": "Після one потрібен ticket в однині."
         },
         "en:lesson-10:session-34:intro3:r3": {
-          "ru": "Is перед deserve не нужен.",
-          "uk": "Is перед deserve не потрібне."
+          "ru": "Перед ticket здесь adult без s.",
+          "uk": "Перед ticket тут adult без s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "5c205c39ef2fcd197974acc42e15f939c9e6fd43daa58bc4181b91f4e84a7519"
+  "auxiliaryFingerprint": "c5bf1713a123e38dca1c21e79eaa17585bd5b8feade198e5a20b27c44cd01fa6"
 }

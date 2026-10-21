@@ -1,151 +1,151 @@
-# Англійська · Урок 10 · Заняття 35 — Ювілей школи
+# Англійська · Урок 10 · Заняття 35 — Родинне свято
 
-**Ситуація.** Обговорити річницю відкриття школи, пам’ятні речі та підготовку свята.
+**Ситуація.** Привітати з днем народження, сказати про весілля й описати свято.
 
-**Що ви опануєте:** We meet here every year; I am making a scrapbook; We are celebrating the jubilee
-**Нові слова:** keepsake, milestone, scrapbook, jubilee
+**Що ви опануєте:** Happy birthday; The wedding is today; We celebrate at home; We are having fun
+**Нові слова:** birthday, wedding, celebrate, have fun
 
 ## Інтро 1
 
-### Річниця школи
+### День народження й весілля
 
-Повторімо anniversary — «річниця». Ви приходите до своєї колишньої школи на річницю її відкриття щороку: We meet here every year — «Ми зустрічаємося тут щороку». Every year указує на повторювану дію: використовуємо Present Simple. Сьогодні школі виповнюється п’ятдесят років.
+У друга сьогодні день народження. Birthday — «день народження»: Happy birthday! — «З днем народження!» Wedding — «весілля»: The wedding is today — «Весілля сьогодні». Одне свято — the wedding — поєднується з is. Тепер друг запитує, коли весілля вашої сестри. Дайте відповідь, що воно сьогодні.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **We meet here every year.**
-- ❌ We meets here every year. — *З we потрібна meet без s.*
-- ❌ We meeting here every year. — *Для звички тут потрібна meet.*
+- ✅ **The wedding is today.**
+- ❌ The wedding are today. — *Одне wedding: потрібна is.*
+- ❌ The wedding am today. — *Am вживається з I. Тут потрібна is.*
 
 ---
 
 ## Інтро 2
 
-### Збираємо спогади
+### Як ви святкуєте
 
-Scrapbook — «альбом для пам’ятних матеріалів»: у нього вклеюють фотографії, вирізки та інші речі. Ви зараз оформлюєте такий альбом: I am making a scrapbook — «Я роблю альбом для пам’ятних матеріалів». Для дії зараз використовуємо am + making. У make перед ing прибираємо кінцеву e.
+Друг запитує, де ваша родина зазвичай відзначає дні народження. Celebrate — «святкувати, відзначати»: We celebrate at home — «Ми святкуємо вдома». Йдеться про звичний порядок, тому celebrate. Якщо свято триває зараз: We are celebrating — «Ми зараз святкуємо».
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I am making a scrapbook.**
-- ❌ I making a scrapbook. — *Перед making потрібне am.*
-- ❌ I am makeing a scrapbook. — *Правильно making, без e.*
+- ✅ **We celebrate at home.**
+- ❌ We celebrates at home. — *З we потрібна celebrate без s.*
+- ❌ We celebrating at home. — *Для звички тут потрібна celebrate.*
 
 ---
 
 ## Інтро 3
 
-### Особлива річниця
+### Весело провести час
 
-Jubilee — «ювілей», святкування особливої річниці, наприклад п’ятдесятиріччя. Сьогодні ви берете участь у шкільному святі: We are celebrating the jubilee — «Ми святкуємо ювілей». Тут ідеться про сьогоднішнє святкування, тому використовуємо are + celebrating.
+На святі ви граєте й смієтеся. Have fun — «веселитися, гарно проводити час»: We are having fun — «Ми весело проводимо час». Тут have описує заняття, тому для того, що відбувається зараз, можна сказати are having. Це не значення «володіти річчю».
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **We are celebrating the jubilee.**
-- ❌ We is celebrating the jubilee. — *З we потрібна are.*
-- ❌ We are celebrate the jubilee. — *Після are потрібна celebrating.*
+- ✅ **We are having fun.**
+- ❌ We is having fun. — *З we потрібна are.*
+- ❌ We are have fun. — *Після are тут потрібна having.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — keepsake**
-<!-- interaction_id: en:lesson-10:session-35:word:keepsake; family: word_card -->
-> **keepsake** — «пам’ятна річ». This badge is a keepsake. — «Цей значок — пам’ятна річ». Його зберігають на згадку про людину чи подію.
+**1 · Картка слова — birthday**
+<!-- interaction_id: en:lesson-10:session-35:word:birthday; family: word_card -->
+> **birthday** — «день народження». Happy birthday! — «З днем народження!»
 
-**2 · Ви зберегли значок зі шкільного свята. Поясніть другу: «Цей значок — пам’ятна річ»**
+**2 · Скажіть, що ваш день народження сьогодні. Today поставте в кінці**
 <!-- interaction_id: en:lesson-10:session-35:i01; family: phrase_builder -->
-Плитки: `keepsake` `a` `is` `badge` `This` → **This badge is a keepsake.**
+Плитки: `today` `is` `birthday` `My` → **My birthday is today.**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-35:i02; family: listen_choose -->
-🔊 *I keep this photo as a keepsake.* → **I keep this photo as a keepsake.** · I keep this letter as a keepsake. · We keep this photo as a keepsake.
-- I keep this letter as a keepsake. — *У записі звучить I keep this photo as a keepsake.*
-- We keep this photo as a keepsake. — *У записі звучить I keep this photo as a keepsake.*
+🔊 *My birthday is today.* → **My birthday is today.** · Your birthday is today. · My birthday is tomorrow.
+- Your birthday is today. — *У записі звучить My birthday is today.*
+- My birthday is tomorrow. — *У записі звучить My birthday is today.*
 
-**4 · Ви зустрічаєтеся тут щороку. Виберіть форму meet**
+**4 · Виберіть дієслово для одного дня народження**
 <!-- interaction_id: en:lesson-10:session-35:i03; family: context_gap_grammar -->
-We ___ here every year. → **meet** · meets · meeting
-- meets — *З we потрібна meet без s.*
-- meeting — *Для цієї звички потрібна meet.*
+My birthday ___ today. → **is** · are · am
+- are — *Один birthday: потрібна is.*
+- am — *Am вживається з I. Тут потрібна is.*
 
-**5 · Картка слова — milestone**
-<!-- interaction_id: en:lesson-10:session-35:word:milestone; family: word_card -->
-> **milestone** — «важлива віха». Fifty years is a milestone. — «П’ятдесят років — важлива віха». Тут значущий етап в історії школи, а не дорожній стовп.
+**5 · Картка слова — wedding**
+<!-- interaction_id: en:lesson-10:session-35:word:wedding; family: word_card -->
+> **wedding** — «весілля». The wedding is today. — «Весілля сьогодні».
 
-**6 · Школі п’ятдесят років. Наголосіть на значущості цієї річниці: «П’ятдесят років — важлива віха»**
+**6 · Скажіть, що весілля сьогодні. Today поставте в кінці**
 <!-- interaction_id: en:lesson-10:session-35:i04; family: phrase_builder -->
-Плитки: `milestone` `a` `is` `years` `Fifty` → **Fifty years is a milestone.**
+Плитки: `today` `is` `wedding` `The` → **The wedding is today.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-35:i05; family: listen_choose -->
-🔊 *This is an important milestone.* → **This is an important milestone.** · This is an important meeting. · That is an important milestone.
-- This is an important meeting. — *У записі звучить This is an important milestone.*
-- That is an important milestone. — *У записі звучить This is an important milestone.*
+🔊 *The wedding is in July.* → **The wedding is in July.** · The wedding is in June. · The wedding is in August.
+- The wedding is in June. — *У записі звучить The wedding is in July.*
+- The wedding is in August. — *У записі звучить The wedding is in July.*
 
-**8 · П’ятдесят років розглядаємо як єдиний період. Виберіть зв’язку**
+**8 · Виберіть прийменник перед July**
 <!-- interaction_id: en:lesson-10:session-35:i06; family: context_gap_grammar -->
-Fifty years ___ a milestone. → **is** · am · be
-- am — *Am уживається з I; тут потрібне is.*
-- be — *Тут потрібна особова форма is.*
+The wedding is ___ July. → **in** · on · at
+- on — *Перед місяцем потрібна in.*
+- at — *Перед місяцем потрібна in.*
 
-**9 · Картка слова — scrapbook**
-<!-- interaction_id: en:lesson-10:session-35:word:scrapbook; family: word_card -->
-> **scrapbook** — «альбом для пам’ятних матеріалів». I am making a scrapbook. — «Я роблю альбом для пам’ятних матеріалів». У нього вклеюють фотографії, вирізки та інші пам’ятні речі.
+**9 · Картка слова — celebrate**
+<!-- interaction_id: en:lesson-10:session-35:word:celebrate; family: word_card -->
+> **celebrate** — «святкувати, відзначати». We celebrate at home. — «Ми святкуємо вдома».
 
-**10 · Ви зараз вклеюєте шкільні фотографії та вирізки. Скажіть: «Я роблю альбом для пам’ятних матеріалів»**
+**10 · Скажіть, що зазвичай святкуєте вдома, використовуючи фразу з пояснення**
 <!-- interaction_id: en:lesson-10:session-35:i07; family: phrase_builder -->
-Плитки: `scrapbook` `a` `making` `am` `I` → **I am making a scrapbook.**
+Плитки: `home` `at` `celebrate` `We` → **We celebrate at home.**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-35:i08; family: listen_choose -->
-🔊 *The scrapbook is on the table.* → **The scrapbook is on the table.** · The scrapbook is under the table. · The notebook is on the table.
-- The scrapbook is under the table. — *У записі звучить The scrapbook is on the table.*
-- The notebook is on the table. — *У записі звучить The scrapbook is on the table.*
+🔊 *We are celebrating.* → **We are celebrating.** · They are celebrating. · We celebrate.
+- They are celebrating. — *У записі звучить We are celebrating.*
+- We celebrate. — *У записі звучить We are celebrating.*
 
-**12 · Виберіть правильне написання форми make**
+**12 · Свято триває зараз. Виберіть форму celebrate після are**
 <!-- interaction_id: en:lesson-10:session-35:i09; family: context_gap_grammar -->
-I am ___ a scrapbook. → **making** · makeing · make
-- makeing — *У make перед ing прибираємо e: making.*
-- make — *Для дії зараз після am потрібна making.*
+We are ___. → **celebrating** · celebrate · celebrates
+- celebrate — *Після are потрібна celebrating.*
+- celebrates — *Для дії зараз тут are celebrating.*
 
-**13 · Картка слова — jubilee**
-<!-- interaction_id: en:lesson-10:session-35:word:jubilee; family: word_card -->
-> **jubilee** — «ювілей». We are celebrating the jubilee. — «Ми святкуємо ювілей». Тут святкування п’ятдесятиріччя школи.
+**13 · Картка слова — have fun**
+<!-- interaction_id: en:lesson-10:session-35:word:have-fun; family: word_card -->
+> **have fun** — «веселитися, гарно проводити час». We are having fun. — «Ми весело проводимо час».
 
-**14 · Друг запитує про сьогоднішнє шкільне свято. Скажіть: «Ми святкуємо ювілей»**
+**14 · Друг іде на свято. Побажайте йому гарно провести час: почніть із have**
 <!-- interaction_id: en:lesson-10:session-35:i10; family: phrase_builder -->
-Плитки: `jubilee` `the` `celebrating` `are` `We` → **We are celebrating the jubilee.**
+Плитки: `fun` `Have` → **Have fun.**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-35:i11; family: listen_choose -->
-🔊 *The jubilee is in June.* → **The jubilee is in June.** · The jubilee is in July. · The meeting is in June.
-- The jubilee is in July. — *У записі звучить The jubilee is in June.*
-- The meeting is in June. — *У записі звучить The jubilee is in June.*
+🔊 *We are having fun.* → **We are having fun.** · They are having fun. · I am having fun.
+- They are having fun. — *У записі звучить We are having fun.*
+- I am having fun. — *У записі звучить We are having fun.*
 
-**16 · Ви зараз берете участь у святі. Виберіть форму celebrating**
+**16 · Ви весело проводите час зараз. Виберіть форму have після are**
 <!-- interaction_id: en:lesson-10:session-35:i12; family: context_gap_grammar -->
-We are ___ the jubilee. → **celebrating** · celebrate · celebrates
-- celebrate — *Після are тут потрібна celebrating.*
-- celebrates — *Для поточної дії потрібна celebrating.*
+We are ___ fun. → **having** · have · has
+- have — *Після are тут потрібна having.*
+- has — *Тут are having, не are has.*
 
-**17 · З’єднайте слова зі значеннями**
+**17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-10:session-35:i13; family: speed_match -->
-keepsake — пам’ятна річ · milestone — важлива віха · scrapbook — альбом для пам’ятних матеріалів · jubilee — ювілей
+birthday — день народження · wedding — весілля · celebrate — святкувати · have fun — веселитися
 
-**18 · Послухайте й складіть фразу**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-35:i14; family: listen_build_dictation -->
-🔊 *I am making a scrapbook.* Плитки: `scrapbook` `a` `making` `am` `I` → **I am making a scrapbook.**
+🔊 *We celebrate at home.* Плитки: `home` `at` `celebrate` `We` → **We celebrate at home.**
 
-**19 · Друг запитує, чи регулярно колишні учні зустрічаються в школі. Скажіть: «Ми зустрічаємося тут щороку»**
-<!-- interaction_id: en:lesson-10:session-35:i15; family: scripted_repeat_compare -->
-🎙 **We meet here every year.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-35:i15; family: listen_build_dictation -->
+🔊 *The wedding is today.* Плитки: `today` `is` `wedding` `The` → **The wedding is today.**
 
-**20 · Покажіть другу збережений шкільний значок. Скажіть: «Цей значок — пам’ятна річ»**
-<!-- interaction_id: en:lesson-10:session-35:i16; family: phrase_builder -->
-Плитки: `keepsake` `a` `is` `badge` `This` → **This badge is a keepsake.**
+**20 · Привітайте друга з днем народження**
+<!-- interaction_id: en:lesson-10:session-35:i16; family: scripted_repeat_compare -->
+🎙 **Happy birthday!**
 
-**21 · Ви в школі на святкуванні її п’ятдесятиріччя. Знайомий телефонує й запитує, чим ви займаєтеся. Скажіть: «Ми святкуємо ювілей»**
-<!-- interaction_id: en:lesson-10:session-35:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **We are celebrating the jubilee.**
+**21 · Скажіть про себе, що зараз весело проводите час**
+<!-- interaction_id: en:lesson-10:session-35:i17; family: scripted_repeat_compare -->
+🎙 **I am having fun.**
 

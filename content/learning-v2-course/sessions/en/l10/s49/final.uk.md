@@ -1,49 +1,49 @@
-# Англійська · Урок 10 · Заняття 49 — Спостерігаємо за погодою
+# Англійська · Урок 10 · Заняття 49 — Яка температура надворі
 
-**Ситуація.** Обговорити прогноз і поточні спостереження за погодою.
+**Ситуація.** Подивитися прогноз перед прогулянкою й назвати температуру.
 
-**Що ви опануєте:** We check the forecast every morning; The humidity is rising; We are checking the barometer
-**Нові слова:** forecast, humidity, barometer, precipitation
+**Що ви опануєте:** I am checking the forecast; What is the temperature; It is one degree; It is minus two
+**Нові слова:** forecast, temperature, degree, minus
 
 ## Інтро 1
 
-### Ранкова звичка
+### Перед прогулянкою
 
-Forecast — «прогноз». Тут ідеться про погоду. Перед виходом команда читає його щоранку: We check the forecast every morning — «Ми перевіряємо прогноз щоранку». Це звичка: Present Simple.
+Ви дивитеся погоду в телефоні. Forecast — «прогноз»: I am checking the forecast — «Я дивлюся прогноз». Дія відбувається зараз: am checking. У розмові про погоду the forecast — прогноз погоди.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **We check the forecast every morning.**
-- ❌ We checks the forecast every morning. — *З we потрібна check без s.*
-- ❌ We checking the forecast every morning. — *Тут потрібна особова форма check.*
+- ✅ **I am checking the forecast.**
+- ❌ I checking the forecast. — *Перед checking потрібна am.*
+- ❌ I am check the forecast. — *Після am потрібна checking.*
 
 ---
 
 ## Інтро 2
 
-### Вологість зростає
+### Скільки градусів
 
-Humidity — «вологість повітря». Показник змінюється саме зараз: The humidity is rising — «Вологість зростає». Для поточної зміни використовуємо is + rising. У rise перед ing прибираємо e.
+Друг запитує, наскільки холодно надворі. Temperature — «температура»: What is the temperature? — «Яка температура?» Degree — «градус»: It is one degree — «Один градус». Після one — degree без s, після two — degrees. Тут говоримо про градуси Цельсія.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **The humidity is rising.**
-- ❌ The humidity is riseing. — *Правильно rising, без e.*
-- ❌ The humidity rising. — *Перед rising потрібна is.*
+- ✅ **It is one degree.**
+- ❌ It is one degrees. — *Після one потрібен degree без s.*
+- ❌ It are one degree. — *З it потрібна is.*
 
 ---
 
 ## Інтро 3
 
-### Дивимося на прилад
+### Нижче нуля
 
-Barometer — «барометр», прилад для вимірювання атмосферного тиску. Ви з колегою зараз перевіряєте прилад: We are checking the barometer — «Ми перевіряємо барометр». Поточна робота: are + checking.
+У телефоні вказано −2 °C. Minus — «мінус»: It is minus two — «Мінус два». Ви вже обговорюєте температуру, тому слово degrees можна не повторювати. Повна фраза: It is minus two degrees.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **We are checking the barometer.**
-- ❌ We checking the barometer. — *Перед checking потрібна are.*
-- ❌ We are check the barometer. — *Після are потрібна checking.*
+- ✅ **It is minus two.**
+- ❌ It are minus two. — *З it потрібна is.*
+- ❌ It am minus two. — *Am вживається з I. Тут потрібна is.*
 
 ---
 
@@ -51,101 +51,101 @@ Barometer — «барометр», прилад для вимірювання �
 
 **1 · Картка слова — forecast**
 <!-- interaction_id: en:lesson-10:session-49:word:forecast; family: word_card -->
-> **forecast** — «прогноз». We check the forecast every morning. — «Ми перевіряємо прогноз щоранку». Тут прогноз погоди.
+> **forecast** — «прогноз». I am checking the forecast. — «Я дивлюся прогноз».
 
-**2 · Скажіть про звичку команди: «Ми перевіряємо прогноз щоранку». Поставте every morning у кінці**
+**2 · Скажіть, що зараз дивитеся прогноз**
 <!-- interaction_id: en:lesson-10:session-49:i01; family: phrase_builder -->
-Плитки: `morning` `every` `forecast` `the` `check` `We` → **We check the forecast every morning.**
+Плитки: `forecast` `the` `checking` `am` `I` → **I am checking the forecast.**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-49:i02; family: listen_choose -->
-🔊 *The forecast is on the website.* → **The forecast is on the website.** · The forecast is in the email. · The menu is on the website.
-- The forecast is in the email. — *У записі звучить The forecast is on the website.*
-- The menu is on the website. — *У записі звучить The forecast is on the website.*
+🔊 *She is checking the forecast.* → **She is checking the forecast.** · He is checking the forecast. · I am checking the forecast.
+- He is checking the forecast. — *У записі звучить She is checking the forecast.*
+- I am checking the forecast. — *У записі звучить She is checking the forecast.*
 
-**4 · Це ранкова звичка. Виберіть форму check**
+**4 · Виберіть форму check після am**
 <!-- interaction_id: en:lesson-10:session-49:i03; family: context_gap_grammar -->
-We ___ the forecast every morning. → **check** · checks · checking
-- checks — *З we потрібна check без s.*
-- checking — *Тут потрібна check.*
+I am ___ the forecast. → **checking** · check · checks
+- check — *Після am потрібна checking.*
+- checks — *Тут am checking, не am checks.*
 
-**5 · Картка слова — humidity**
-<!-- interaction_id: en:lesson-10:session-49:word:humidity; family: word_card -->
-> **humidity** — «вологість повітря». The humidity is rising. — «Вологість зростає». Тут вміст водяної пари в повітрі.
+**5 · Картка слова — temperature**
+<!-- interaction_id: en:lesson-10:session-49:word:temperature; family: word_card -->
+> **temperature** — «температура». What is the temperature? — «Яка температура?»
 
-**6 · Показник вологості підвищується саме зараз. Скажіть: «Вологість зростає»**
+**6 · Запитайте, яка температура**
 <!-- interaction_id: en:lesson-10:session-49:i04; family: phrase_builder -->
-Плитки: `rising` `is` `humidity` `The` → **The humidity is rising.**
+Плитки: `temperature` `the` `is` `What` → **What is the temperature?**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-49:i05; family: listen_choose -->
-🔊 *The humidity is high.* → **The humidity is high.** · The humidity is low. · The temperature is high.
-- The humidity is low. — *У записі звучить The humidity is high.*
-- The temperature is high. — *У записі звучить The humidity is high.*
+🔊 *The temperature is low.* → **The temperature is low.** · The temperature is high. · Is the temperature low?
+- The temperature is high. — *У записі звучить The temperature is low.*
+- Is the temperature low? — *У записі звучить The temperature is low.*
 
-**8 · Виберіть правильне написання форми rise**
+**8 · Виберіть форму be у запитанні про температуру**
 <!-- interaction_id: en:lesson-10:session-49:i06; family: context_gap_grammar -->
-The humidity is ___. → **rising** · riseing · rise
-- riseing — *Перед ing прибираємо e: rising.*
-- rise — *Після is для поточної зміни потрібна rising.*
+What ___ the temperature? → **is** · are · am
+- are — *З the temperature тут потрібна is.*
+- am — *Am вживається з I. Тут потрібна is.*
 
-**9 · Картка слова — barometer**
-<!-- interaction_id: en:lesson-10:session-49:word:barometer; family: word_card -->
-> **barometer** — «барометр». We are checking the barometer. — «Ми перевіряємо барометр». Прилад для вимірювання атмосферного тиску.
+**9 · Картка слова — degree**
+<!-- interaction_id: en:lesson-10:session-49:word:degree; family: word_card -->
+> **degree** — «градус». It is one degree. — «Один градус».
 
-**10 · Ви з колегою зараз перевіряєте прилад. Скажіть: «Ми перевіряємо барометр»**
+**10 · Надворі один градус. Скажіть про це**
 <!-- interaction_id: en:lesson-10:session-49:i07; family: phrase_builder -->
-Плитки: `barometer` `the` `checking` `are` `We` → **We are checking the barometer.**
+Плитки: `degree` `one` `is` `It` → **It is one degree.**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-49:i08; family: listen_choose -->
-🔊 *The barometer is on the wall.* → **The barometer is on the wall.** · The barometer is on the table. · The clock is on the wall.
-- The barometer is on the table. — *У записі звучить The barometer is on the wall.*
-- The clock is on the wall. — *У записі звучить The barometer is on the wall.*
+🔊 *It is two degrees.* → **It is two degrees.** · It is one degree. · It is ten degrees.
+- It is one degree. — *У записі звучить It is two degrees.*
+- It is ten degrees. — *У записі звучить It is two degrees.*
 
-**12 · Перевірка триває зараз. Виберіть допоміжне дієслово**
+**12 · Виберіть форму degree після one**
 <!-- interaction_id: en:lesson-10:session-49:i09; family: context_gap_grammar -->
-We ___ checking the barometer. → **are** · is · am
-- is — *З we потрібна are.*
-- am — *Am уживається з I.*
+It is one ___. → **degree** · degrees · degrees are
+- degrees — *Після one потрібен degree без s.*
+- degrees are — *Тут потрібен лише degree: дієслово is уже є.*
 
-**13 · Картка слова — precipitation**
-<!-- interaction_id: en:lesson-10:session-49:word:precipitation; family: word_card -->
-> **precipitation** — «опади». We measure precipitation every day. — «Ми вимірюємо кількість опадів щодня». Загальна назва дощу, снігу та інших форм води, що випадають з атмосфери.
+**13 · Картка слова — minus**
+<!-- interaction_id: en:lesson-10:session-49:word:minus; family: word_card -->
+> **minus** — «мінус». It is minus two. — «Мінус два».
 
-**14 · На станції щодня вимірюють кількість опадів. Скажіть: «Ми вимірюємо кількість опадів щодня». Поставте every day у кінці**
+**14 · Ви обговорюєте температуру. Скажіть: мінус два**
 <!-- interaction_id: en:lesson-10:session-49:i10; family: phrase_builder -->
-Плитки: `day` `every` `precipitation` `measure` `We` → **We measure precipitation every day.**
+Плитки: `two` `minus` `is` `It` → **It is minus two.**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-49:i11; family: listen_choose -->
-🔊 *The precipitation is heavy.* → **The precipitation is heavy.** · The precipitation is light. · The traffic is heavy.
-- The precipitation is light. — *У записі звучить The precipitation is heavy.*
-- The traffic is heavy. — *У записі звучить The precipitation is heavy.*
+🔊 *It is minus ten.* → **It is minus ten.** · It is minus two. · It is ten degrees.
+- It is minus two. — *У записі звучить It is minus ten.*
+- It is ten degrees. — *У записі звучить It is minus ten.*
 
-**16 · Це щоденна робота. Виберіть форму measure**
+**16 · Надворі −2 °C. Виберіть слово перед two**
 <!-- interaction_id: en:lesson-10:session-49:i12; family: context_gap_grammar -->
-We ___ precipitation every day. → **measure** · measures · measuring
-- measures — *З we потрібна measure без s.*
-- measuring — *Тут потрібна measure.*
+It is ___ two. → **minus** · one · ten
+- one — *One — один, а знак перед числом тут означає minus.*
+- ten — *Ten — десять. Для −2 тут потрібно minus two.*
 
-**17 · З’єднайте слова зі значеннями**
+**17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-10:session-49:i13; family: speed_match -->
-forecast — прогноз · humidity — вологість повітря · barometer — барометр · precipitation — опади
+forecast — прогноз · temperature — температура · degree — градус · minus — мінус
 
-**18 · Послухайте й складіть фразу**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-49:i14; family: listen_build_dictation -->
-🔊 *The humidity is rising.* Плитки: `rising` `is` `humidity` `The` → **The humidity is rising.**
+🔊 *What is the temperature?* Плитки: `temperature` `the` `is` `What` → **What is the temperature?**
 
-**19 · Колега запитує, як часто ви дивитеся прогноз. Скажіть: «Ми перевіряємо прогноз щоранку»**
-<!-- interaction_id: en:lesson-10:session-49:i15; family: scripted_repeat_compare -->
-🎙 **We check the forecast every morning.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-49:i15; family: listen_build_dictation -->
+🔊 *It is minus two.* Плитки: `two` `minus` `is` `It` → **It is minus two.**
 
-**20 · Ви спостерігаєте підвищення вологості саме зараз. Скажіть: «Вологість зростає»**
-<!-- interaction_id: en:lesson-10:session-49:i16; family: phrase_builder -->
-Плитки: `rising` `is` `humidity` `The` → **The humidity is rising.**
+**20 · Скажіть повну фразу: мінус два градуси**
+<!-- interaction_id: en:lesson-10:session-49:i16; family: scripted_repeat_compare -->
+🎙 **It is minus two degrees.**
 
-**21 · Ви з колегою перевіряєте прилад для вимірювання тиску. Керівник запитує, чим ви зараз зайняті. Скажіть: «Ми перевіряємо барометр»**
-<!-- interaction_id: en:lesson-10:session-49:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **We are checking the barometer.**
+**21 · Скажіть, що прогноз добрий**
+<!-- interaction_id: en:lesson-10:session-49:i17; family: scripted_repeat_compare -->
+🎙 **The forecast is good.**
 

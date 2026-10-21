@@ -1,151 +1,151 @@
-# Англійська · Урок 10 · Заняття 34 — На церемонії нагородження
+# Англійська · Урок 10 · Заняття 34 — На прогулянці з родиною
 
-**Ситуація.** Обговорити щорічну церемонію та розповісти, що відбувається в залі зараз.
+**Ситуація.** Розповісти про онуків, назвати вікову групу й купити квитки.
 
-**Що ви опануєте:** The ceremony is starting now; We come here every year; She deserves a commendation
-**Нові слова:** ceremony, rostrum, dignitary, commendation
+**Що ви опануєте:** My grandson is playing; My granddaughter is reading; My son is a teenager; One adult ticket, please
+**Нові слова:** grandson, granddaughter, teenager, adult
 
 ## Інтро 1
 
-### Церемонія починається
+### Онук і онука
 
-Ceremony — «церемонія», офіційний захід із певним порядком дій. Ви на щорічному нагородженні волонтерів. Світло гасне, ведуча виходить: The ceremony is starting now — «Церемонія зараз починається». Дія відбувається зараз: is + starting.
+Ви на прогулянці з онуками, знайомий запитує про них. Grandson — «онук»: My grandson is playing — «Мій онук грається». Granddaughter — «онука»: My granddaughter is reading — «Моя онука читає». Вони роблять це зараз: is + playing або reading.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **The ceremony is starting now.**
-- ❌ The ceremony starting now. — *Потрібне is перед starting.*
-- ❌ The ceremony are starting now. — *Одна церемонія: is.*
+- ✅ **My grandson is playing.**
+- ❌ My grandson playing. — *Для дії зараз потрібна is перед playing.*
+- ❌ My grandson are playing. — *Один grandson: потрібна is, не are.*
 
 ---
 
 ## Інтро 2
 
-### Щорічна зустріч
+### Підліток
 
-Ви приходите на цей захід щороку: We come here every year — «Ми приходимо сюди щороку». Повторювану дію передаємо Present Simple. А зараз ви сидите в першому ряду: We are sitting in the front row. У sitting подвоюється t.
+Друг запитує про вашого сина. Teenager — «підліток», людина від тринадцяти до дев’ятнадцяти років: My son is a teenager — «Мій син — підліток». Перед teenager тут потрібен a. Це опис віку, а не дії зараз.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **We come here every year.**
-- ❌ We comes here every year. — *З we потрібна come.*
-- ❌ We coming here every year. — *Для звички тут потрібна come.*
+- ✅ **My son is a teenager.**
+- ❌ My son are a teenager. — *Один son: потрібна is.*
+- ❌ My son is teenager. — *Перед teenager тут потрібен a.*
 
 ---
 
 ## Інтро 3
 
-### Заслужена похвала
+### Дорослий квиток
 
-Commendation — «офіційна похвала», наприклад публічна подяка за роботу. Ваша знайома багато допомагала людям: She deserves a commendation — «Вона заслуговує на офіційну похвалу». Deserves виражає вашу оцінку, тому тут використовуємо Present Simple.
+У касі ви просите квиток для себе. Adult — «дорослий»: One adult ticket, please — «Один дорослий квиток, будь ласка». Adult тут уточнює, для кого квиток. Для людини: an adult — «доросла людина».
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **She deserves a commendation.**
-- ❌ She deserve a commendation. — *З she потрібна deserves.*
-- ❌ She is deserve a commendation. — *Is перед deserve не потрібне.*
+- ✅ **One adult ticket, please.**
+- ❌ One adult tickets, please. — *Після one потрібен ticket в однині.*
+- ❌ One adults ticket, please. — *Перед ticket тут adult без s.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — ceremony**
-<!-- interaction_id: en:lesson-10:session-34:word:ceremony; family: word_card -->
-> **ceremony** — «церемонія». The ceremony is starting now. — «Церемонія зараз починається». Офіційний захід із певним порядком дій.
+**1 · Картка слова — grandson**
+<!-- interaction_id: en:lesson-10:session-34:word:grandson; family: word_card -->
+> **grandson** — «онук». My grandson is playing. — «Мій онук грається».
 
-**2 · Ведуча виходить, зал затихає. Скажіть: «Церемонія зараз починається». Поставте now у кінці**
+**2 · Скажіть, що ваш онук зараз грається**
 <!-- interaction_id: en:lesson-10:session-34:i01; family: phrase_builder -->
-Плитки: `now` `starting` `is` `ceremony` `The` → **The ceremony is starting now.**
+Плитки: `playing` `is` `grandson` `My` → **My grandson is playing.**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-34:i02; family: listen_choose -->
-🔊 *The ceremony is in the hall.* → **The ceremony is in the hall.** · The ceremony is in the garden. · The meeting is in the hall.
-- The ceremony is in the garden. — *У записі звучить The ceremony is in the hall.*
-- The meeting is in the hall. — *У записі звучить The ceremony is in the hall.*
+🔊 *My grandson is reading.* → **My grandson is reading.** · My grandson is playing. · Your grandson is reading.
+- My grandson is playing. — *У записі звучить My grandson is reading.*
+- Your grandson is reading. — *У записі звучить My grandson is reading.*
 
-**4 · Ви приходите щороку. Виберіть форму come**
+**4 · Виберіть форму be для одного онука**
 <!-- interaction_id: en:lesson-10:session-34:i03; family: context_gap_grammar -->
-We ___ here every year. → **come** · comes · coming
-- comes — *З we потрібна come без s.*
-- coming — *Для цієї звички потрібна come.*
+My grandson ___ playing. → **is** · are · am
+- are — *Один grandson: потрібна is.*
+- am — *Am вживається з I. Тут потрібна is.*
 
-**5 · Картка слова — rostrum**
-<!-- interaction_id: en:lesson-10:session-34:word:rostrum; family: word_card -->
-> **rostrum** — «поміст для промовців». The speaker is on the rostrum. — «Промовець на помості». Тут невелике підвищення, з якого виголошують промову.
+**5 · Картка слова — granddaughter**
+<!-- interaction_id: en:lesson-10:session-34:word:granddaughter; family: word_card -->
+> **granddaughter** — «онука». My granddaughter is reading. — «Моя онука читає».
 
-**6 · Друг не бачить промовця. Укажіть, де він: «Промовець на помості»**
+**6 · Скажіть, що ваша онука зараз читає**
 <!-- interaction_id: en:lesson-10:session-34:i04; family: phrase_builder -->
-Плитки: `rostrum` `the` `on` `is` `speaker` `The` → **The speaker is on the rostrum.**
+Плитки: `reading` `is` `granddaughter` `My` → **My granddaughter is reading.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-34:i05; family: listen_choose -->
-🔊 *The rostrum is beside the window.* → **The rostrum is beside the window.** · The rostrum is beside the door. · The table is beside the window.
-- The rostrum is beside the door. — *У записі звучить The rostrum is beside the window.*
-- The table is beside the window. — *У записі звучить The rostrum is beside the window.*
+🔊 *My granddaughter is playing.* → **My granddaughter is playing.** · My grandson is playing. · My granddaughter is reading.
+- My grandson is playing. — *У записі звучить My granddaughter is playing.*
+- My granddaughter is reading. — *У записі звучить My granddaughter is playing.*
 
-**8 · Промовець стоїть на поверхні помосту. Виберіть прийменник**
+**8 · Виберіть форму read після is**
 <!-- interaction_id: en:lesson-10:session-34:i06; family: context_gap_grammar -->
-The speaker is ___ the rostrum. → **on** · in · under
-- in — *На поверхні — on, не in.*
-- under — *Under означає під, тут потрібне on.*
+My granddaughter is ___. → **reading** · read · reads
+- read — *Після is для дії зараз потрібна reading.*
+- reads — *Тут is reading, не is reads.*
 
-**9 · Картка слова — dignitary**
-<!-- interaction_id: en:lesson-10:session-34:word:dignitary; family: word_card -->
-> **dignitary** — «високопосадовець». A dignitary is visiting today. — «Сьогодні приїздить високопосадовець». Людина, яка обіймає важливу офіційну посаду.
+**9 · Картка слова — teenager**
+<!-- interaction_id: en:lesson-10:session-34:word:teenager; family: word_card -->
+> **teenager** — «підліток», людина від 13 до 19 років. My son is a teenager. — «Мій син — підліток».
 
-**10 · На церемонію сьогодні приїздить важливий офіційний гість. Скажіть: «Сьогодні приїздить високопосадовець». Поставте today у кінці**
+**10 · Скажіть, що ваш син — підліток**
 <!-- interaction_id: en:lesson-10:session-34:i07; family: phrase_builder -->
-Плитки: `today` `visiting` `is` `dignitary` `A` → **A dignitary is visiting today.**
+Плитки: `teenager` `a` `is` `son` `My` → **My son is a teenager.**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-34:i08; family: listen_choose -->
-🔊 *The dignitary is sitting in the front row.* → **The dignitary is sitting in the front row.** · The dignitary is standing in the front row. · The photographer is sitting in the front row.
-- The dignitary is standing in the front row. — *У записі звучить The dignitary is sitting in the front row.*
-- The photographer is sitting in the front row. — *У записі звучить The dignitary is sitting in the front row.*
+🔊 *My daughter is a teenager.* → **My daughter is a teenager.** · My son is a teenager. · Your daughter is a teenager.
+- My son is a teenager. — *У записі звучить My daughter is a teenager.*
+- Your daughter is a teenager. — *У записі звучить My daughter is a teenager.*
 
-**12 · Гість зараз сидить у першому ряду. Виберіть правильне написання**
+**12 · Виберіть артикль перед teenager**
 <!-- interaction_id: en:lesson-10:session-34:i09; family: context_gap_grammar -->
-The dignitary is ___ in the front row. → **sitting** · siting · sit
-- siting — *У sitting подвоюється t.*
-- sit — *Після is для поточної дії потрібна форма sitting.*
+My son is ___ teenager. → **a** · an · some
+- an — *Teenager починається з приголосного звука: a.*
+- some — *Тут одна людина: a teenager.*
 
-**13 · Картка слова — commendation**
-<!-- interaction_id: en:lesson-10:session-34:word:commendation; family: word_card -->
-> **commendation** — «офіційна похвала». She deserves a commendation. — «Вона заслуговує на офіційну похвалу». Тут публічне визнання доброї роботи.
+**13 · Картка слова — adult**
+<!-- interaction_id: en:lesson-10:session-34:word:adult; family: word_card -->
+> **adult** — «дорослий». One adult ticket, please. — «Один дорослий квиток, будь ласка».
 
-**14 · Ваша знайома багато допомагала людям. Скажіть про неї: «Вона заслуговує на офіційну похвалу»**
+**14 · Попросіть один дорослий квиток. Please поставте в кінці**
 <!-- interaction_id: en:lesson-10:session-34:i10; family: phrase_builder -->
-Плитки: `commendation` `a` `deserves` `She` → **She deserves a commendation.**
+Плитки: `please` `ticket,` `adult` `One` → **One adult ticket, please.**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-34:i11; family: listen_choose -->
-🔊 *She is receiving a commendation.* → **She is receiving a commendation.** · He is receiving a commendation. · She is receiving a letter.
-- He is receiving a commendation. — *У записі звучить She is receiving a commendation.*
-- She is receiving a letter. — *У записі звучить She is receiving a commendation.*
+🔊 *Two adult tickets, please.* → **Two adult tickets, please.** · One adult ticket, please. · Three adult tickets, please.
+- One adult ticket, please. — *У записі звучить Two adult tickets, please.*
+- Three adult tickets, please. — *У записі звучить Two adult tickets, please.*
 
-**16 · Виберіть форму deserve з she**
+**16 · Виберіть форму ticket після one**
 <!-- interaction_id: en:lesson-10:session-34:i12; family: context_gap_grammar -->
-She ___ a commendation. → **deserves** · deserve · is deserve
-- deserve — *З she потрібна deserves із s.*
-- is deserve — *Is deserve неправильно; тут потрібна deserves.*
+One adult ___, please. → **ticket** · tickets · ticketing
+- tickets — *Після one потрібен ticket без s.*
+- ticketing — *Квиток тут — ticket.*
 
-**17 · З’єднайте слова зі значеннями**
+**17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-10:session-34:i13; family: speed_match -->
-ceremony — церемонія · rostrum — поміст для промовців · dignitary — високопосадовець · commendation — офіційна похвала
+grandson — онук · granddaughter — онука · teenager — підліток · adult — дорослий
 
-**18 · Послухайте й складіть фразу**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-34:i14; family: listen_build_dictation -->
-🔊 *The ceremony is starting now.* Плитки: `now` `starting` `is` `ceremony` `The` → **The ceremony is starting now.**
+🔊 *My granddaughter is reading.* Плитки: `reading` `is` `granddaughter` `My` → **My granddaughter is reading.**
 
-**19 · Друг запитує, чи часто ви відвідуєте цю щорічну церемонію. Скажіть: «Ми приходимо сюди щороку»**
-<!-- interaction_id: en:lesson-10:session-34:i15; family: scripted_repeat_compare -->
-🎙 **We come here every year.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-34:i15; family: listen_build_dictation -->
+🔊 *One adult ticket, please.* Плитки: `please` `ticket,` `adult` `One` → **One adult ticket, please.**
 
-**20 · Друг запитує, де промовець. Скажіть: «Промовець на помості»**
-<!-- interaction_id: en:lesson-10:session-34:i16; family: phrase_builder -->
-Плитки: `rostrum` `the` `on` `is` `speaker` `The` → **The speaker is on the rostrum.**
+**20 · Скажіть, що ваш онук зараз спить**
+<!-- interaction_id: en:lesson-10:session-34:i16; family: scripted_repeat_compare -->
+🎙 **My grandson is sleeping.**
 
-**21 · Знайома допомагала людям увесь рік. Друг запитує, чи заслуговує вона на публічну подяку. Скажіть: «Вона заслуговує на офіційну похвалу»**
-<!-- interaction_id: en:lesson-10:session-34:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She deserves a commendation.**
+**21 · Скажіть, що ваша онука зараз їсть**
+<!-- interaction_id: en:lesson-10:session-34:i17; family: scripted_repeat_compare -->
+🎙 **My granddaughter is eating.**
 

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-35",
   "learningOutcomeByLocale": {
-    "ru": "We meet here every year; I am making a scrapbook; We are celebrating the jubilee",
-    "uk": "We meet here every year; I am making a scrapbook; We are celebrating the jubilee"
+    "ru": "Happy birthday; The wedding is today; We celebrate at home; We are having fun",
+    "uk": "Happy birthday; The wedding is today; We celebrate at home; We are having fun"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-35:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Годовщина школы",
-        "uk": "Річниця школи"
+        "ru": "День рождения и свадьба",
+        "uk": "День народження й весілля"
       },
       "bodyByLocale": {
-        "ru": "Повторим anniversary — «годовщина». Вы приходите в свою бывшую школу на годовщину её открытия каждый год: We meet here every year — «Мы встречаемся здесь каждый год». Every year указывает на повторяющееся действие: используем Present Simple. Сегодня школе исполняется пятьдесят лет.",
-        "uk": "Повторімо anniversary — «річниця». Ви приходите до своєї колишньої школи на річницю її відкриття щороку: We meet here every year — «Ми зустрічаємося тут щороку». Every year указує на повторювану дію: використовуємо Present Simple. Сьогодні школі виповнюється п’ятдесят років."
+        "ru": "У друга сегодня день рождения. Birthday — «день рождения»: Happy birthday! — «С днём рождения!» Wedding — «свадьба»: The wedding is today — «Свадьба сегодня». Один праздник — the wedding — сочетается с is. Теперь друг спрашивает, когда свадьба вашей сестры. Ответьте, что она сегодня.",
+        "uk": "У друга сьогодні день народження. Birthday — «день народження»: Happy birthday! — «З днем народження!» Wedding — «весілля»: The wedding is today — «Весілля сьогодні». Одне свято — the wedding — поєднується з is. Тепер друг запитує, коли весілля вашої сестри. Дайте відповідь, що воно сьогодні."
       },
       "question": {
         "interactionId": "en:lesson-10:session-35:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-35:intro1:r1",
-              "text": "We meet here every year."
+              "text": "The wedding is today."
             },
             {
               "responseId": "en:lesson-10:session-35:intro1:r2",
-              "text": "We meets here every year."
+              "text": "The wedding are today."
             },
             {
               "responseId": "en:lesson-10:session-35:intro1:r3",
-              "text": "We meeting here every year."
+              "text": "The wedding am today."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-35:intro1:r1",
-              "text": "We meet here every year."
+              "text": "The wedding is today."
             },
             {
               "responseId": "en:lesson-10:session-35:intro1:r2",
-              "text": "We meets here every year."
+              "text": "The wedding are today."
             },
             {
               "responseId": "en:lesson-10:session-35:intro1:r3",
-              "text": "We meeting here every year."
+              "text": "The wedding am today."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-35:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Собираем воспоминания",
-        "uk": "Збираємо спогади"
+        "ru": "Как вы празднуете",
+        "uk": "Як ви святкуєте"
       },
       "bodyByLocale": {
-        "ru": "Scrapbook — «альбом для памятных материалов»: в него вклеивают фотографии, вырезки и другие вещи. Вы сейчас оформляете такой альбом: I am making a scrapbook — «Я делаю альбом для памятных материалов». Для действия сейчас используем am + making. У make перед ing убираем конечную e.",
-        "uk": "Scrapbook — «альбом для пам’ятних матеріалів»: у нього вклеюють фотографії, вирізки та інші речі. Ви зараз оформлюєте такий альбом: I am making a scrapbook — «Я роблю альбом для пам’ятних матеріалів». Для дії зараз використовуємо am + making. У make перед ing прибираємо кінцеву e."
+        "ru": "Друг спрашивает, где ваша семья обычно отмечает дни рождения. Celebrate — «праздновать, отмечать»: We celebrate at home — «Мы празднуем дома». Речь об обычном порядке, поэтому celebrate. Если праздник идёт сейчас: We are celebrating — «Мы сейчас празднуем».",
+        "uk": "Друг запитує, де ваша родина зазвичай відзначає дні народження. Celebrate — «святкувати, відзначати»: We celebrate at home — «Ми святкуємо вдома». Йдеться про звичний порядок, тому celebrate. Якщо свято триває зараз: We are celebrating — «Ми зараз святкуємо»."
       },
       "question": {
         "interactionId": "en:lesson-10:session-35:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-35:intro2:r1",
-              "text": "I am making a scrapbook."
+              "text": "We celebrate at home."
             },
             {
               "responseId": "en:lesson-10:session-35:intro2:r2",
-              "text": "I making a scrapbook."
+              "text": "We celebrates at home."
             },
             {
               "responseId": "en:lesson-10:session-35:intro2:r3",
-              "text": "I am makeing a scrapbook."
+              "text": "We celebrating at home."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-35:intro2:r1",
-              "text": "I am making a scrapbook."
+              "text": "We celebrate at home."
             },
             {
               "responseId": "en:lesson-10:session-35:intro2:r2",
-              "text": "I making a scrapbook."
+              "text": "We celebrates at home."
             },
             {
               "responseId": "en:lesson-10:session-35:intro2:r3",
-              "text": "I am makeing a scrapbook."
+              "text": "We celebrating at home."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-35:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Особая годовщина",
-        "uk": "Особлива річниця"
+        "ru": "Весело провести время",
+        "uk": "Весело провести час"
       },
       "bodyByLocale": {
-        "ru": "Jubilee — «юбилей», празднование особой годовщины, например пятидесятилетия. Сегодня вы участвуете в школьном празднике: We are celebrating the jubilee — «Мы празднуем юбилей». Здесь речь о сегодняшнем праздновании, поэтому используем are + celebrating.",
-        "uk": "Jubilee — «ювілей», святкування особливої річниці, наприклад п’ятдесятиріччя. Сьогодні ви берете участь у шкільному святі: We are celebrating the jubilee — «Ми святкуємо ювілей». Тут ідеться про сьогоднішнє святкування, тому використовуємо are + celebrating."
+        "ru": "На празднике вы играете и смеётесь. Have fun — «веселиться, хорошо проводить время»: We are having fun — «Мы весело проводим время». Здесь have описывает занятие, поэтому для происходящего сейчас можно сказать are having. Это не значение «владеть вещью».",
+        "uk": "На святі ви граєте й смієтеся. Have fun — «веселитися, гарно проводити час»: We are having fun — «Ми весело проводимо час». Тут have описує заняття, тому для того, що відбувається зараз, можна сказати are having. Це не значення «володіти річчю»."
       },
       "question": {
         "interactionId": "en:lesson-10:session-35:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-35:intro3:r1",
-              "text": "We are celebrating the jubilee."
+              "text": "We are having fun."
             },
             {
               "responseId": "en:lesson-10:session-35:intro3:r2",
-              "text": "We is celebrating the jubilee."
+              "text": "We is having fun."
             },
             {
               "responseId": "en:lesson-10:session-35:intro3:r3",
-              "text": "We are celebrate the jubilee."
+              "text": "We are have fun."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-35:intro3:r1",
-              "text": "We are celebrating the jubilee."
+              "text": "We are having fun."
             },
             {
               "responseId": "en:lesson-10:session-35:intro3:r2",
-              "text": "We is celebrating the jubilee."
+              "text": "We is having fun."
             },
             {
               "responseId": "en:lesson-10:session-35:intro3:r3",
-              "text": "We are celebrate the jubilee."
+              "text": "We are have fun."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "aa48e205483cde154c034c14904f26ceab7157867cfad435d5677a7958a93e2e"
+  "introFingerprint": "b6237bf9aaa057cefcf909fb15c3720b4eca5ebc528ef92d1f67f0edfdd6e96e"
 }

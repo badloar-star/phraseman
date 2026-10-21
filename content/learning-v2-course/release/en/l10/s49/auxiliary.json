@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-49:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-49:intro1:r2": {
-          "ru": "С we нужна check без s.",
-          "uk": "З we потрібна check без s."
+          "ru": "Перед checking нужна am.",
+          "uk": "Перед checking потрібна am."
         },
         "en:lesson-10:session-49:intro1:r3": {
-          "ru": "Здесь нужна личная форма check.",
-          "uk": "Тут потрібна особова форма check."
+          "ru": "После am нужна checking.",
+          "uk": "Після am потрібна checking."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-49:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-49:intro2:r2": {
-          "ru": "Правильно rising, без e.",
-          "uk": "Правильно rising, без e."
+          "ru": "После one нужен degree без s.",
+          "uk": "Після one потрібен degree без s."
         },
         "en:lesson-10:session-49:intro2:r3": {
-          "ru": "Перед rising нужна is.",
-          "uk": "Перед rising потрібна is."
+          "ru": "С it нужна is.",
+          "uk": "З it потрібна is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-49:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-49:intro3:r2": {
-          "ru": "Перед checking нужна are.",
-          "uk": "Перед checking потрібна are."
+          "ru": "С it нужна is.",
+          "uk": "З it потрібна is."
         },
         "en:lesson-10:session-49:intro3:r3": {
-          "ru": "После are нужна checking.",
-          "uk": "Після are потрібна checking."
+          "ru": "Am используется с I. Здесь нужна is.",
+          "uk": "Am вживається з I. Тут потрібна is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "baf2f181f95a8a4dd8be15e288b106e579f0c7787f07ae9940c3c3f817b29178"
+  "auxiliaryFingerprint": "d60e670ede20d3cfcd93a3c73b099c0f936603a45c05f99a4964e70b1881c425"
 }

@@ -4,32 +4,32 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-10:session-35:word:keepsake",
+        "interactionId": "en:lesson-10:session-35:word:birthday",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — keepsake",
+        "prompt": "Карточка слова — birthday",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-35:word:keepsake:audio"
+          "en:lesson-10:session-35:word:birthday:audio"
         ],
-        "accessibilityLabel": "Карточка слова — keepsake",
+        "accessibilityLabel": "Карточка слова — birthday",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-35:word:keepsake:audio",
-            "transcript": "keepsake"
+            "audioTargetId": "en:lesson-10:session-35:word:birthday:audio",
+            "transcript": "birthday"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-35:word:keepsake:r1",
-              "targetText": "keepsake",
+              "responseId": "en:lesson-10:session-35:word:birthday:r1",
+              "targetText": "birthday",
               "meaningByLocale": {
-                "ru": "«памятная вещь». This badge is a keepsake. — «Этот значок — памятная вещь». Его хранят на память о человеке или событии.",
-                "uk": "«пам’ятна річ». This badge is a keepsake. — «Цей значок — пам’ятна річ». Його зберігають на згадку про людину чи подію."
+                "ru": "«день рождения». Happy birthday! — «С днём рождения!»",
+                "uk": "«день народження». Happy birthday! — «З днем народження!»"
               }
             }
           ],
@@ -37,10 +37,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "keepsake",
+            "word": "birthday",
             "definitionByLocale": {
-              "ru": "«памятная вещь». This badge is a keepsake. — «Этот значок — памятная вещь». Его хранят на память о человеке или событии.",
-              "uk": "«пам’ятна річ». This badge is a keepsake. — «Цей значок — пам’ятна річ». Його зберігають на згадку про людину чи подію."
+              "ru": "«день рождения». Happy birthday! — «С днём рождения!»",
+              "uk": "«день народження». Happy birthday! — «З днем народження!»"
             }
           }
         },
@@ -52,24 +52,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Вы сохранили значок со школьного праздника. Объясните другу: «Этот значок — памятная вещь»",
+        "prompt": "Скажите, что ваш день рождения сегодня. Today поставьте в конце",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы сохранили значок со школьного праздника. Объясните другу: «Этот значок — памятная вещь»",
+        "accessibilityLabel": "Скажите, что ваш день рождения сегодня. Today поставьте в конце",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "This badge is a keepsake.",
+          "targetPhrase": "My birthday is today.",
           "localizedMeaning": {
-            "ru": "Вы сохранили значок со школьного праздника. Объясните другу: «Этот значок — памятная вещь»",
-            "uk": "Ви зберегли значок зі шкільного свята. Поясніть другу: «Цей значок — пам’ятна річ»"
+            "ru": "Скажите, что ваш день рождения сегодня. Today поставьте в конце",
+            "uk": "Скажіть, що ваш день народження сьогодні. Today поставте в кінці"
           },
           "orderedTokens": [
-            "This",
-            "badge",
+            "My",
+            "birthday",
             "is",
-            "a",
-            "keepsake"
+            "today"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -90,15 +89,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-35:i02:r1",
-            "text": "I keep this photo as a keepsake."
+            "text": "My birthday is today."
           },
           {
             "responseId": "en:lesson-10:session-35:i02:r2",
-            "text": "I keep this letter as a keepsake."
+            "text": "Your birthday is today."
           },
           {
             "responseId": "en:lesson-10:session-35:i02:r3",
-            "text": "We keep this photo as a keepsake."
+            "text": "My birthday is tomorrow."
           }
         ],
         "mediaIds": [],
@@ -110,23 +109,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-35:i02:audio",
-            "transcript": "I keep this photo as a keepsake."
+            "transcript": "My birthday is today."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-35:i02:r1",
-              "targetText": "I keep this photo as a keepsake.",
+              "targetText": "My birthday is today.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-35:i02:r2",
-              "targetText": "I keep this letter as a keepsake.",
+              "targetText": "Your birthday is today.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-35:i02:r3",
-              "targetText": "We keep this photo as a keepsake.",
+              "targetText": "My birthday is tomorrow.",
               "meaningByLocale": null
             }
           ],
@@ -137,8 +136,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит I keep this photo as a keepsake.",
-                "uk": "У записі звучить I keep this photo as a keepsake."
+                "ru": "В записи звучит My birthday is today.",
+                "uk": "У записі звучить My birthday is today."
               }
             },
             {
@@ -146,8 +145,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит I keep this photo as a keepsake.",
-                "uk": "У записі звучить I keep this photo as a keepsake."
+                "ru": "В записи звучит My birthday is today.",
+                "uk": "У записі звучить My birthday is today."
               }
             }
           ],
@@ -162,63 +161,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы встречаетесь здесь каждый год. Выберите форму meet",
+        "prompt": "Выберите глагол для одного дня рождения",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-35:i03:r1",
-            "text": "meet"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-35:i03:r2",
-            "text": "meets"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-35:i03:r3",
-            "text": "meeting"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы встречаетесь здесь каждый год. Выберите форму meet",
+        "accessibilityLabel": "Выберите глагол для одного дня рождения",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы встречаетесь здесь каждый год. Выберите форму meet",
-            "uk": "Ви зустрічаєтеся тут щороку. Виберіть форму meet"
+            "ru": "Выберите глагол для одного дня рождения",
+            "uk": "Виберіть дієслово для одного дня народження"
           },
-          "gappedTargetPhrase": "We ___ here every year.",
+          "gappedTargetPhrase": "My birthday ___ today.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-35:i03:r1",
-              "text": "meet"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-35:i03:r2",
-              "text": "meets"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-35:i03:r3",
-              "text": "meeting"
+              "text": "am"
             }
           ],
-          "testedDimension": "Вы встречаетесь здесь каждый год. Выберите форму meet",
+          "testedDimension": "Выберите глагол для одного дня рождения",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-35:i03:r2",
               "correct": false,
-              "testedDimension": "Вы встречаетесь здесь каждый год. Выберите форму meet",
+              "testedDimension": "Выберите глагол для одного дня рождения",
               "feedbackByLocale": {
-                "ru": "С we нужна meet без s.",
-                "uk": "З we потрібна meet без s."
+                "ru": "Один birthday: нужна is.",
+                "uk": "Один birthday: потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-35:i03:r3",
               "correct": false,
-              "testedDimension": "Вы встречаетесь здесь каждый год. Выберите форму meet",
+              "testedDimension": "Выберите глагол для одного дня рождения",
               "feedbackByLocale": {
-                "ru": "Для этой привычки нужна meet.",
-                "uk": "Для цієї звички потрібна meet."
+                "ru": "Am используется с I. Здесь нужна is.",
+                "uk": "Am вживається з I. Тут потрібна is."
               }
             }
           ]
@@ -226,32 +225,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-35:word:milestone",
+        "interactionId": "en:lesson-10:session-35:word:wedding",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — milestone",
+        "prompt": "Карточка слова — wedding",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-35:word:milestone:audio"
+          "en:lesson-10:session-35:word:wedding:audio"
         ],
-        "accessibilityLabel": "Карточка слова — milestone",
+        "accessibilityLabel": "Карточка слова — wedding",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-35:word:milestone:audio",
-            "transcript": "milestone"
+            "audioTargetId": "en:lesson-10:session-35:word:wedding:audio",
+            "transcript": "wedding"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-35:word:milestone:r1",
-              "targetText": "milestone",
+              "responseId": "en:lesson-10:session-35:word:wedding:r1",
+              "targetText": "wedding",
               "meaningByLocale": {
-                "ru": "«важная веха». Fifty years is a milestone. — «Пятьдесят лет — важная веха». Здесь значимый этап в истории школы, а не дорожный столб.",
-                "uk": "«важлива віха». Fifty years is a milestone. — «П’ятдесят років — важлива віха». Тут значущий етап в історії школи, а не дорожній стовп."
+                "ru": "«свадьба». The wedding is today. — «Свадьба сегодня».",
+                "uk": "«весілля». The wedding is today. — «Весілля сьогодні»."
               }
             }
           ],
@@ -259,10 +258,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "milestone",
+            "word": "wedding",
             "definitionByLocale": {
-              "ru": "«важная веха». Fifty years is a milestone. — «Пятьдесят лет — важная веха». Здесь значимый этап в истории школы, а не дорожный столб.",
-              "uk": "«важлива віха». Fifty years is a milestone. — «П’ятдесят років — важлива віха». Тут значущий етап в історії школи, а не дорожній стовп."
+              "ru": "«свадьба». The wedding is today. — «Свадьба сегодня».",
+              "uk": "«весілля». The wedding is today. — «Весілля сьогодні»."
             }
           }
         },
@@ -274,24 +273,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Школе пятьдесят лет. Подчеркните значимость этой годовщины: «Пятьдесят лет — важная веха»",
+        "prompt": "Скажите, что свадьба сегодня. Today поставьте в конце",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Школе пятьдесят лет. Подчеркните значимость этой годовщины: «Пятьдесят лет — важная веха»",
+        "accessibilityLabel": "Скажите, что свадьба сегодня. Today поставьте в конце",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "Fifty years is a milestone.",
+          "targetPhrase": "The wedding is today.",
           "localizedMeaning": {
-            "ru": "Школе пятьдесят лет. Подчеркните значимость этой годовщины: «Пятьдесят лет — важная веха»",
-            "uk": "Школі п’ятдесят років. Наголосіть на значущості цієї річниці: «П’ятдесят років — важлива віха»"
+            "ru": "Скажите, что свадьба сегодня. Today поставьте в конце",
+            "uk": "Скажіть, що весілля сьогодні. Today поставте в кінці"
           },
           "orderedTokens": [
-            "Fifty",
-            "years",
+            "The",
+            "wedding",
             "is",
-            "a",
-            "milestone"
+            "today"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -312,15 +310,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-35:i05:r1",
-            "text": "This is an important milestone."
+            "text": "The wedding is in July."
           },
           {
             "responseId": "en:lesson-10:session-35:i05:r2",
-            "text": "This is an important meeting."
+            "text": "The wedding is in June."
           },
           {
             "responseId": "en:lesson-10:session-35:i05:r3",
-            "text": "That is an important milestone."
+            "text": "The wedding is in August."
           }
         ],
         "mediaIds": [],
@@ -332,23 +330,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-35:i05:audio",
-            "transcript": "This is an important milestone."
+            "transcript": "The wedding is in July."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-35:i05:r1",
-              "targetText": "This is an important milestone.",
+              "targetText": "The wedding is in July.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-35:i05:r2",
-              "targetText": "This is an important meeting.",
+              "targetText": "The wedding is in June.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-35:i05:r3",
-              "targetText": "That is an important milestone.",
+              "targetText": "The wedding is in August.",
               "meaningByLocale": null
             }
           ],
@@ -359,8 +357,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит This is an important milestone.",
-                "uk": "У записі звучить This is an important milestone."
+                "ru": "В записи звучит The wedding is in July.",
+                "uk": "У записі звучить The wedding is in July."
               }
             },
             {
@@ -368,8 +366,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит This is an important milestone.",
-                "uk": "У записі звучить This is an important milestone."
+                "ru": "В записи звучит The wedding is in July.",
+                "uk": "У записі звучить The wedding is in July."
               }
             }
           ],
@@ -384,63 +382,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Пятьдесят лет рассматриваем как единый период. Выберите связку",
+        "prompt": "Выберите предлог перед July",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-35:i06:r1",
-            "text": "is"
+            "text": "in"
           },
           {
             "responseId": "en:lesson-10:session-35:i06:r2",
-            "text": "am"
+            "text": "on"
           },
           {
             "responseId": "en:lesson-10:session-35:i06:r3",
-            "text": "be"
+            "text": "at"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Пятьдесят лет рассматриваем как единый период. Выберите связку",
+        "accessibilityLabel": "Выберите предлог перед July",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Пятьдесят лет рассматриваем как единый период. Выберите связку",
-            "uk": "П’ятдесят років розглядаємо як єдиний період. Виберіть зв’язку"
+            "ru": "Выберите предлог перед July",
+            "uk": "Виберіть прийменник перед July"
           },
-          "gappedTargetPhrase": "Fifty years ___ a milestone.",
+          "gappedTargetPhrase": "The wedding is ___ July.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-35:i06:r1",
-              "text": "is"
+              "text": "in"
             },
             {
               "responseId": "en:lesson-10:session-35:i06:r2",
-              "text": "am"
+              "text": "on"
             },
             {
               "responseId": "en:lesson-10:session-35:i06:r3",
-              "text": "be"
+              "text": "at"
             }
           ],
-          "testedDimension": "Пятьдесят лет рассматриваем как единый период. Выберите связку",
+          "testedDimension": "Выберите предлог перед July",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-35:i06:r2",
               "correct": false,
-              "testedDimension": "Пятьдесят лет рассматриваем как единый период. Выберите связку",
+              "testedDimension": "Выберите предлог перед July",
               "feedbackByLocale": {
-                "ru": "Am используется с I; здесь нужно is.",
-                "uk": "Am уживається з I; тут потрібне is."
+                "ru": "Перед месяцем нужна in.",
+                "uk": "Перед місяцем потрібна in."
               }
             },
             {
               "responseId": "en:lesson-10:session-35:i06:r3",
               "correct": false,
-              "testedDimension": "Пятьдесят лет рассматриваем как единый период. Выберите связку",
+              "testedDimension": "Выберите предлог перед July",
               "feedbackByLocale": {
-                "ru": "Здесь нужна личная форма is.",
-                "uk": "Тут потрібна особова форма is."
+                "ru": "Перед месяцем нужна in.",
+                "uk": "Перед місяцем потрібна in."
               }
             }
           ]
@@ -448,32 +446,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-35:word:scrapbook",
+        "interactionId": "en:lesson-10:session-35:word:celebrate",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — scrapbook",
+        "prompt": "Карточка слова — celebrate",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-35:word:scrapbook:audio"
+          "en:lesson-10:session-35:word:celebrate:audio"
         ],
-        "accessibilityLabel": "Карточка слова — scrapbook",
+        "accessibilityLabel": "Карточка слова — celebrate",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-35:word:scrapbook:audio",
-            "transcript": "scrapbook"
+            "audioTargetId": "en:lesson-10:session-35:word:celebrate:audio",
+            "transcript": "celebrate"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-35:word:scrapbook:r1",
-              "targetText": "scrapbook",
+              "responseId": "en:lesson-10:session-35:word:celebrate:r1",
+              "targetText": "celebrate",
               "meaningByLocale": {
-                "ru": "«альбом для памятных материалов». I am making a scrapbook. — «Я делаю альбом для памятных материалов». В него вклеивают фотографии, вырезки и другие памятные вещи.",
-                "uk": "«альбом для пам’ятних матеріалів». I am making a scrapbook. — «Я роблю альбом для пам’ятних матеріалів». У нього вклеюють фотографії, вирізки та інші пам’ятні речі."
+                "ru": "«праздновать, отмечать». We celebrate at home. — «Мы празднуем дома».",
+                "uk": "«святкувати, відзначати». We celebrate at home. — «Ми святкуємо вдома»."
               }
             }
           ],
@@ -481,10 +479,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "scrapbook",
+            "word": "celebrate",
             "definitionByLocale": {
-              "ru": "«альбом для памятных материалов». I am making a scrapbook. — «Я делаю альбом для памятных материалов». В него вклеивают фотографии, вырезки и другие памятные вещи.",
-              "uk": "«альбом для пам’ятних матеріалів». I am making a scrapbook. — «Я роблю альбом для пам’ятних матеріалів». У нього вклеюють фотографії, вирізки та інші пам’ятні речі."
+              "ru": "«праздновать, отмечать». We celebrate at home. — «Мы празднуем дома».",
+              "uk": "«святкувати, відзначати». We celebrate at home. — «Ми святкуємо вдома»."
             }
           }
         },
@@ -496,24 +494,23 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Вы сейчас вклеиваете школьные фотографии и вырезки. Скажите: «Я делаю альбом для памятных материалов»",
+        "prompt": "Скажите, что обычно празднуете дома, используя фразу из объяснения",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы сейчас вклеиваете школьные фотографии и вырезки. Скажите: «Я делаю альбом для памятных материалов»",
+        "accessibilityLabel": "Скажите, что обычно празднуете дома, используя фразу из объяснения",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am making a scrapbook.",
+          "targetPhrase": "We celebrate at home.",
           "localizedMeaning": {
-            "ru": "Вы сейчас вклеиваете школьные фотографии и вырезки. Скажите: «Я делаю альбом для памятных материалов»",
-            "uk": "Ви зараз вклеюєте шкільні фотографії та вирізки. Скажіть: «Я роблю альбом для пам’ятних матеріалів»"
+            "ru": "Скажите, что обычно празднуете дома, используя фразу из объяснения",
+            "uk": "Скажіть, що зазвичай святкуєте вдома, використовуючи фразу з пояснення"
           },
           "orderedTokens": [
-            "I",
-            "am",
-            "making",
-            "a",
-            "scrapbook"
+            "We",
+            "celebrate",
+            "at",
+            "home"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -534,15 +531,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-35:i08:r1",
-            "text": "The scrapbook is on the table."
+            "text": "We are celebrating."
           },
           {
             "responseId": "en:lesson-10:session-35:i08:r2",
-            "text": "The scrapbook is under the table."
+            "text": "They are celebrating."
           },
           {
             "responseId": "en:lesson-10:session-35:i08:r3",
-            "text": "The notebook is on the table."
+            "text": "We celebrate."
           }
         ],
         "mediaIds": [],
@@ -554,23 +551,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-35:i08:audio",
-            "transcript": "The scrapbook is on the table."
+            "transcript": "We are celebrating."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-35:i08:r1",
-              "targetText": "The scrapbook is on the table.",
+              "targetText": "We are celebrating.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-35:i08:r2",
-              "targetText": "The scrapbook is under the table.",
+              "targetText": "They are celebrating.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-35:i08:r3",
-              "targetText": "The notebook is on the table.",
+              "targetText": "We celebrate.",
               "meaningByLocale": null
             }
           ],
@@ -581,8 +578,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The scrapbook is on the table.",
-                "uk": "У записі звучить The scrapbook is on the table."
+                "ru": "В записи звучит We are celebrating.",
+                "uk": "У записі звучить We are celebrating."
               }
             },
             {
@@ -590,8 +587,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The scrapbook is on the table.",
-                "uk": "У записі звучить The scrapbook is on the table."
+                "ru": "В записи звучит We are celebrating.",
+                "uk": "У записі звучить We are celebrating."
               }
             }
           ],
@@ -606,63 +603,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите правильное написание формы make",
+        "prompt": "Праздник идёт сейчас. Выберите форму celebrate после are",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-35:i09:r1",
-            "text": "making"
+            "text": "celebrating"
           },
           {
             "responseId": "en:lesson-10:session-35:i09:r2",
-            "text": "makeing"
+            "text": "celebrate"
           },
           {
             "responseId": "en:lesson-10:session-35:i09:r3",
-            "text": "make"
+            "text": "celebrates"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите правильное написание формы make",
+        "accessibilityLabel": "Праздник идёт сейчас. Выберите форму celebrate после are",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите правильное написание формы make",
-            "uk": "Виберіть правильне написання форми make"
+            "ru": "Праздник идёт сейчас. Выберите форму celebrate после are",
+            "uk": "Свято триває зараз. Виберіть форму celebrate після are"
           },
-          "gappedTargetPhrase": "I am ___ a scrapbook.",
+          "gappedTargetPhrase": "We are ___.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-35:i09:r1",
-              "text": "making"
+              "text": "celebrating"
             },
             {
               "responseId": "en:lesson-10:session-35:i09:r2",
-              "text": "makeing"
+              "text": "celebrate"
             },
             {
               "responseId": "en:lesson-10:session-35:i09:r3",
-              "text": "make"
+              "text": "celebrates"
             }
           ],
-          "testedDimension": "Выберите правильное написание формы make",
+          "testedDimension": "Праздник идёт сейчас. Выберите форму celebrate после are",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-35:i09:r2",
               "correct": false,
-              "testedDimension": "Выберите правильное написание формы make",
+              "testedDimension": "Праздник идёт сейчас. Выберите форму celebrate после are",
               "feedbackByLocale": {
-                "ru": "У make перед ing убираем e: making.",
-                "uk": "У make перед ing прибираємо e: making."
+                "ru": "После are нужна celebrating.",
+                "uk": "Після are потрібна celebrating."
               }
             },
             {
               "responseId": "en:lesson-10:session-35:i09:r3",
               "correct": false,
-              "testedDimension": "Выберите правильное написание формы make",
+              "testedDimension": "Праздник идёт сейчас. Выберите форму celebrate после are",
               "feedbackByLocale": {
-                "ru": "Для действия сейчас после am нужна making.",
-                "uk": "Для дії зараз після am потрібна making."
+                "ru": "Для действия сейчас здесь are celebrating.",
+                "uk": "Для дії зараз тут are celebrating."
               }
             }
           ]
@@ -670,32 +667,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-35:word:jubilee",
+        "interactionId": "en:lesson-10:session-35:word:have-fun",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — jubilee",
+        "prompt": "Карточка слова — have fun",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-35:word:jubilee:audio"
+          "en:lesson-10:session-35:word:have-fun:audio"
         ],
-        "accessibilityLabel": "Карточка слова — jubilee",
+        "accessibilityLabel": "Карточка слова — have fun",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-35:word:jubilee:audio",
-            "transcript": "jubilee"
+            "audioTargetId": "en:lesson-10:session-35:word:have-fun:audio",
+            "transcript": "have fun"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-35:word:jubilee:r1",
-              "targetText": "jubilee",
+              "responseId": "en:lesson-10:session-35:word:have-fun:r1",
+              "targetText": "have fun",
               "meaningByLocale": {
-                "ru": "«юбилей». We are celebrating the jubilee. — «Мы празднуем юбилей». Здесь празднование пятидесятилетия школы.",
-                "uk": "«ювілей». We are celebrating the jubilee. — «Ми святкуємо ювілей». Тут святкування п’ятдесятиріччя школи."
+                "ru": "«веселиться, хорошо проводить время». We are having fun. — «Мы весело проводим время».",
+                "uk": "«веселитися, гарно проводити час». We are having fun. — «Ми весело проводимо час»."
               }
             }
           ],
@@ -703,10 +700,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "jubilee",
+            "word": "have fun",
             "definitionByLocale": {
-              "ru": "«юбилей». We are celebrating the jubilee. — «Мы празднуем юбилей». Здесь празднование пятидесятилетия школы.",
-              "uk": "«ювілей». We are celebrating the jubilee. — «Ми святкуємо ювілей». Тут святкування п’ятдесятиріччя школи."
+              "ru": "«веселиться, хорошо проводить время». We are having fun. — «Мы весело проводим время».",
+              "uk": "«веселитися, гарно проводити час». We are having fun. — «Ми весело проводимо час»."
             }
           }
         },
@@ -718,24 +715,21 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг спрашивает о сегодняшнем школьном празднике. Скажите: «Мы празднуем юбилей»",
+        "prompt": "Друг идёт на праздник. Пожелайте ему хорошо провести время: начните с have",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг спрашивает о сегодняшнем школьном празднике. Скажите: «Мы празднуем юбилей»",
+        "accessibilityLabel": "Друг идёт на праздник. Пожелайте ему хорошо провести время: начните с have",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We are celebrating the jubilee.",
+          "targetPhrase": "Have fun.",
           "localizedMeaning": {
-            "ru": "Друг спрашивает о сегодняшнем школьном празднике. Скажите: «Мы празднуем юбилей»",
-            "uk": "Друг запитує про сьогоднішнє шкільне свято. Скажіть: «Ми святкуємо ювілей»"
+            "ru": "Друг идёт на праздник. Пожелайте ему хорошо провести время: начните с have",
+            "uk": "Друг іде на свято. Побажайте йому гарно провести час: почніть із have"
           },
           "orderedTokens": [
-            "We",
-            "are",
-            "celebrating",
-            "the",
-            "jubilee"
+            "Have",
+            "fun"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -756,15 +750,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-35:i11:r1",
-            "text": "The jubilee is in June."
+            "text": "We are having fun."
           },
           {
             "responseId": "en:lesson-10:session-35:i11:r2",
-            "text": "The jubilee is in July."
+            "text": "They are having fun."
           },
           {
             "responseId": "en:lesson-10:session-35:i11:r3",
-            "text": "The meeting is in June."
+            "text": "I am having fun."
           }
         ],
         "mediaIds": [],
@@ -776,23 +770,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-35:i11:audio",
-            "transcript": "The jubilee is in June."
+            "transcript": "We are having fun."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-35:i11:r1",
-              "targetText": "The jubilee is in June.",
+              "targetText": "We are having fun.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-35:i11:r2",
-              "targetText": "The jubilee is in July.",
+              "targetText": "They are having fun.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-35:i11:r3",
-              "targetText": "The meeting is in June.",
+              "targetText": "I am having fun.",
               "meaningByLocale": null
             }
           ],
@@ -803,8 +797,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The jubilee is in June.",
-                "uk": "У записі звучить The jubilee is in June."
+                "ru": "В записи звучит We are having fun.",
+                "uk": "У записі звучить We are having fun."
               }
             },
             {
@@ -812,8 +806,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The jubilee is in June.",
-                "uk": "У записі звучить The jubilee is in June."
+                "ru": "В записи звучит We are having fun.",
+                "uk": "У записі звучить We are having fun."
               }
             }
           ],
@@ -828,63 +822,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы сейчас участвуете в празднике. Выберите форму celebrating",
+        "prompt": "Вы весело проводите время сейчас. Выберите форму have после are",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-35:i12:r1",
-            "text": "celebrating"
+            "text": "having"
           },
           {
             "responseId": "en:lesson-10:session-35:i12:r2",
-            "text": "celebrate"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-10:session-35:i12:r3",
-            "text": "celebrates"
+            "text": "has"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы сейчас участвуете в празднике. Выберите форму celebrating",
+        "accessibilityLabel": "Вы весело проводите время сейчас. Выберите форму have после are",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы сейчас участвуете в празднике. Выберите форму celebrating",
-            "uk": "Ви зараз берете участь у святі. Виберіть форму celebrating"
+            "ru": "Вы весело проводите время сейчас. Выберите форму have после are",
+            "uk": "Ви весело проводите час зараз. Виберіть форму have після are"
           },
-          "gappedTargetPhrase": "We are ___ the jubilee.",
+          "gappedTargetPhrase": "We are ___ fun.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-35:i12:r1",
-              "text": "celebrating"
+              "text": "having"
             },
             {
               "responseId": "en:lesson-10:session-35:i12:r2",
-              "text": "celebrate"
+              "text": "have"
             },
             {
               "responseId": "en:lesson-10:session-35:i12:r3",
-              "text": "celebrates"
+              "text": "has"
             }
           ],
-          "testedDimension": "Вы сейчас участвуете в празднике. Выберите форму celebrating",
+          "testedDimension": "Вы весело проводите время сейчас. Выберите форму have после are",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-35:i12:r2",
               "correct": false,
-              "testedDimension": "Вы сейчас участвуете в празднике. Выберите форму celebrating",
+              "testedDimension": "Вы весело проводите время сейчас. Выберите форму have после are",
               "feedbackByLocale": {
-                "ru": "После are здесь нужна celebrating.",
-                "uk": "Після are тут потрібна celebrating."
+                "ru": "После are здесь нужна having.",
+                "uk": "Після are тут потрібна having."
               }
             },
             {
               "responseId": "en:lesson-10:session-35:i12:r3",
               "correct": false,
-              "testedDimension": "Вы сейчас участвуете в празднике. Выберите форму celebrating",
+              "testedDimension": "Вы весело проводите время сейчас. Выберите форму have после are",
               "feedbackByLocale": {
-                "ru": "Для текущего действия нужна celebrating.",
-                "uk": "Для поточної дії потрібна celebrating."
+                "ru": "Здесь are having, не are has.",
+                "uk": "Тут are having, не are has."
               }
             }
           ]
@@ -897,58 +891,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините слова со значениями",
+        "prompt": "Соедините слова с переводом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините слова со значениями",
+        "accessibilityLabel": "Соедините слова с переводом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-35:i13:p1",
-              "target": "keepsake",
+              "target": "birthday",
               "meaningByLocale": {
-                "ru": "памятная вещь",
-                "uk": "пам’ятна річ"
+                "ru": "день рождения",
+                "uk": "день народження"
               }
             },
             {
               "pairId": "en:lesson-10:session-35:i13:p2",
-              "target": "milestone",
+              "target": "wedding",
               "meaningByLocale": {
-                "ru": "важная веха",
-                "uk": "важлива віха"
+                "ru": "свадьба",
+                "uk": "весілля"
               }
             },
             {
               "pairId": "en:lesson-10:session-35:i13:p3",
-              "target": "scrapbook",
+              "target": "celebrate",
               "meaningByLocale": {
-                "ru": "альбом для памятных материалов",
-                "uk": "альбом для пам’ятних матеріалів"
+                "ru": "праздновать",
+                "uk": "святкувати"
               }
             },
             {
               "pairId": "en:lesson-10:session-35:i13:p4",
-              "target": "jubilee",
+              "target": "have fun",
               "meaningByLocale": {
-                "ru": "юбилей",
-                "uk": "ювілей"
+                "ru": "веселиться",
+                "uk": "веселитися"
               }
             }
           ],
           "leftColumn": [
-            "keepsake",
-            "milestone",
-            "scrapbook",
-            "jubilee"
+            "birthday",
+            "wedding",
+            "celebrate",
+            "have fun"
           ],
           "rightColumn": [
-            "памятная вещь",
-            "важная веха",
-            "альбом для памятных материалов",
-            "юбилей"
+            "день рождения",
+            "свадьба",
+            "праздновать",
+            "веселиться"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -970,27 +964,26 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послушайте и соберите фразу",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-35:i14:audio"
         ],
-        "accessibilityLabel": "Послушайте и соберите фразу",
+        "accessibilityLabel": "Соберите услышанную фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-35:i14:audio",
-            "transcript": "I am making a scrapbook."
+            "transcript": "We celebrate at home."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I am making a scrapbook.",
+          "hiddenTargetPhrase": "We celebrate at home.",
           "orderedTokens": [
-            "I",
-            "am",
-            "making",
-            "a",
-            "scrapbook"
+            "We",
+            "celebrate",
+            "at",
+            "home"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1004,24 +997,60 @@
       {
         "interactionId": "en:lesson-10:session-35:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Друг спрашивает, регулярно ли бывшие ученики встречаются в школе. Скажите: «Мы встречаемся здесь каждый год»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-35:i15:audio"
         ],
-        "accessibilityLabel": "Друг спрашивает, регулярно ли бывшие ученики встречаются в школе. Скажите: «Мы встречаемся здесь каждый год»",
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-35:i15:audio",
+            "transcript": "The wedding is today."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The wedding is today.",
+          "orderedTokens": [
+            "The",
+            "wedding",
+            "is",
+            "today"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-35:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Поздравьте друга с днём рождения",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-35:i16:audio"
+        ],
+        "accessibilityLabel": "Поздравьте друга с днём рождения",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-35:i15:audio",
-            "transcript": "We meet here every year."
+            "audioTargetId": "en:lesson-10:session-35:i16:audio",
+            "transcript": "Happy birthday!"
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We meet here every year.",
+          "targetPhrase": "Happy birthday!",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1035,71 +1064,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-35:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Покажите другу сохранённый школьный значок. Скажите: «Этот значок — памятная вещь»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Покажите другу сохранённый школьный значок. Скажите: «Этот значок — памятная вещь»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "This badge is a keepsake.",
-          "localizedMeaning": {
-            "ru": "Покажите другу сохранённый школьный значок. Скажите: «Этот значок — памятная вещь»",
-            "uk": "Покажіть другу збережений шкільний значок. Скажіть: «Цей значок — пам’ятна річ»"
-          },
-          "orderedTokens": [
-            "This",
-            "badge",
-            "is",
-            "a",
-            "keepsake"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-35:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Вы в школе на праздновании её пятидесятилетия. Знакомый звонит и спрашивает, чем вы занимаетесь. Скажите: «Мы празднуем юбилей»",
+        "prompt": "Скажите о себе, что сейчас весело проводите время",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-35:i17:audio"
         ],
-        "accessibilityLabel": "Вы в школе на праздновании её пятидесятилетия. Знакомый звонит и спрашивает, чем вы занимаетесь. Скажите: «Мы празднуем юбилей»",
+        "accessibilityLabel": "Скажите о себе, что сейчас весело проводите время",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-35:i17:audio",
-            "transcript": "We are celebrating the jubilee."
+            "transcript": "I am having fun."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We are celebrating the jubilee.",
+          "targetPhrase": "I am having fun.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -1112,32 +1099,32 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-10:session-35:word:keepsake",
+        "interactionId": "en:lesson-10:session-35:word:birthday",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — keepsake",
+        "prompt": "Картка слова — birthday",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-35:word:keepsake:audio"
+          "en:lesson-10:session-35:word:birthday:audio"
         ],
-        "accessibilityLabel": "Картка слова — keepsake",
+        "accessibilityLabel": "Картка слова — birthday",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-35:word:keepsake:audio",
-            "transcript": "keepsake"
+            "audioTargetId": "en:lesson-10:session-35:word:birthday:audio",
+            "transcript": "birthday"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-35:word:keepsake:r1",
-              "targetText": "keepsake",
+              "responseId": "en:lesson-10:session-35:word:birthday:r1",
+              "targetText": "birthday",
               "meaningByLocale": {
-                "ru": "«памятная вещь». This badge is a keepsake. — «Этот значок — памятная вещь». Его хранят на память о человеке или событии.",
-                "uk": "«пам’ятна річ». This badge is a keepsake. — «Цей значок — пам’ятна річ». Його зберігають на згадку про людину чи подію."
+                "ru": "«день рождения». Happy birthday! — «С днём рождения!»",
+                "uk": "«день народження». Happy birthday! — «З днем народження!»"
               }
             }
           ],
@@ -1145,10 +1132,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "keepsake",
+            "word": "birthday",
             "definitionByLocale": {
-              "ru": "«памятная вещь». This badge is a keepsake. — «Этот значок — памятная вещь». Его хранят на память о человеке или событии.",
-              "uk": "«пам’ятна річ». This badge is a keepsake. — «Цей значок — пам’ятна річ». Його зберігають на згадку про людину чи подію."
+              "ru": "«день рождения». Happy birthday! — «С днём рождения!»",
+              "uk": "«день народження». Happy birthday! — «З днем народження!»"
             }
           }
         },
@@ -1160,24 +1147,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Ви зберегли значок зі шкільного свята. Поясніть другу: «Цей значок — пам’ятна річ»",
+        "prompt": "Скажіть, що ваш день народження сьогодні. Today поставте в кінці",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви зберегли значок зі шкільного свята. Поясніть другу: «Цей значок — пам’ятна річ»",
+        "accessibilityLabel": "Скажіть, що ваш день народження сьогодні. Today поставте в кінці",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "This badge is a keepsake.",
+          "targetPhrase": "My birthday is today.",
           "localizedMeaning": {
-            "ru": "Вы сохранили значок со школьного праздника. Объясните другу: «Этот значок — памятная вещь»",
-            "uk": "Ви зберегли значок зі шкільного свята. Поясніть другу: «Цей значок — пам’ятна річ»"
+            "ru": "Скажите, что ваш день рождения сегодня. Today поставьте в конце",
+            "uk": "Скажіть, що ваш день народження сьогодні. Today поставте в кінці"
           },
           "orderedTokens": [
-            "This",
-            "badge",
+            "My",
+            "birthday",
             "is",
-            "a",
-            "keepsake"
+            "today"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1198,15 +1184,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-35:i02:r1",
-            "text": "I keep this photo as a keepsake."
+            "text": "My birthday is today."
           },
           {
             "responseId": "en:lesson-10:session-35:i02:r2",
-            "text": "I keep this letter as a keepsake."
+            "text": "Your birthday is today."
           },
           {
             "responseId": "en:lesson-10:session-35:i02:r3",
-            "text": "We keep this photo as a keepsake."
+            "text": "My birthday is tomorrow."
           }
         ],
         "mediaIds": [],
@@ -1218,23 +1204,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-35:i02:audio",
-            "transcript": "I keep this photo as a keepsake."
+            "transcript": "My birthday is today."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-35:i02:r1",
-              "targetText": "I keep this photo as a keepsake.",
+              "targetText": "My birthday is today.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-35:i02:r2",
-              "targetText": "I keep this letter as a keepsake.",
+              "targetText": "Your birthday is today.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-35:i02:r3",
-              "targetText": "We keep this photo as a keepsake.",
+              "targetText": "My birthday is tomorrow.",
               "meaningByLocale": null
             }
           ],
@@ -1245,8 +1231,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит I keep this photo as a keepsake.",
-                "uk": "У записі звучить I keep this photo as a keepsake."
+                "ru": "В записи звучит My birthday is today.",
+                "uk": "У записі звучить My birthday is today."
               }
             },
             {
@@ -1254,8 +1240,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит I keep this photo as a keepsake.",
-                "uk": "У записі звучить I keep this photo as a keepsake."
+                "ru": "В записи звучит My birthday is today.",
+                "uk": "У записі звучить My birthday is today."
               }
             }
           ],
@@ -1270,63 +1256,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви зустрічаєтеся тут щороку. Виберіть форму meet",
+        "prompt": "Виберіть дієслово для одного дня народження",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-35:i03:r1",
-            "text": "meet"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-35:i03:r2",
-            "text": "meets"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-35:i03:r3",
-            "text": "meeting"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви зустрічаєтеся тут щороку. Виберіть форму meet",
+        "accessibilityLabel": "Виберіть дієслово для одного дня народження",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы встречаетесь здесь каждый год. Выберите форму meet",
-            "uk": "Ви зустрічаєтеся тут щороку. Виберіть форму meet"
+            "ru": "Выберите глагол для одного дня рождения",
+            "uk": "Виберіть дієслово для одного дня народження"
           },
-          "gappedTargetPhrase": "We ___ here every year.",
+          "gappedTargetPhrase": "My birthday ___ today.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-35:i03:r1",
-              "text": "meet"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-35:i03:r2",
-              "text": "meets"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-35:i03:r3",
-              "text": "meeting"
+              "text": "am"
             }
           ],
-          "testedDimension": "Ви зустрічаєтеся тут щороку. Виберіть форму meet",
+          "testedDimension": "Виберіть дієслово для одного дня народження",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-35:i03:r2",
               "correct": false,
-              "testedDimension": "Ви зустрічаєтеся тут щороку. Виберіть форму meet",
+              "testedDimension": "Виберіть дієслово для одного дня народження",
               "feedbackByLocale": {
-                "ru": "С we нужна meet без s.",
-                "uk": "З we потрібна meet без s."
+                "ru": "Один birthday: нужна is.",
+                "uk": "Один birthday: потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-35:i03:r3",
               "correct": false,
-              "testedDimension": "Ви зустрічаєтеся тут щороку. Виберіть форму meet",
+              "testedDimension": "Виберіть дієслово для одного дня народження",
               "feedbackByLocale": {
-                "ru": "Для этой привычки нужна meet.",
-                "uk": "Для цієї звички потрібна meet."
+                "ru": "Am используется с I. Здесь нужна is.",
+                "uk": "Am вживається з I. Тут потрібна is."
               }
             }
           ]
@@ -1334,32 +1320,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-35:word:milestone",
+        "interactionId": "en:lesson-10:session-35:word:wedding",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — milestone",
+        "prompt": "Картка слова — wedding",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-35:word:milestone:audio"
+          "en:lesson-10:session-35:word:wedding:audio"
         ],
-        "accessibilityLabel": "Картка слова — milestone",
+        "accessibilityLabel": "Картка слова — wedding",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-35:word:milestone:audio",
-            "transcript": "milestone"
+            "audioTargetId": "en:lesson-10:session-35:word:wedding:audio",
+            "transcript": "wedding"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-35:word:milestone:r1",
-              "targetText": "milestone",
+              "responseId": "en:lesson-10:session-35:word:wedding:r1",
+              "targetText": "wedding",
               "meaningByLocale": {
-                "ru": "«важная веха». Fifty years is a milestone. — «Пятьдесят лет — важная веха». Здесь значимый этап в истории школы, а не дорожный столб.",
-                "uk": "«важлива віха». Fifty years is a milestone. — «П’ятдесят років — важлива віха». Тут значущий етап в історії школи, а не дорожній стовп."
+                "ru": "«свадьба». The wedding is today. — «Свадьба сегодня».",
+                "uk": "«весілля». The wedding is today. — «Весілля сьогодні»."
               }
             }
           ],
@@ -1367,10 +1353,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "milestone",
+            "word": "wedding",
             "definitionByLocale": {
-              "ru": "«важная веха». Fifty years is a milestone. — «Пятьдесят лет — важная веха». Здесь значимый этап в истории школы, а не дорожный столб.",
-              "uk": "«важлива віха». Fifty years is a milestone. — «П’ятдесят років — важлива віха». Тут значущий етап в історії школи, а не дорожній стовп."
+              "ru": "«свадьба». The wedding is today. — «Свадьба сегодня».",
+              "uk": "«весілля». The wedding is today. — «Весілля сьогодні»."
             }
           }
         },
@@ -1382,24 +1368,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Школі п’ятдесят років. Наголосіть на значущості цієї річниці: «П’ятдесят років — важлива віха»",
+        "prompt": "Скажіть, що весілля сьогодні. Today поставте в кінці",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Школі п’ятдесят років. Наголосіть на значущості цієї річниці: «П’ятдесят років — важлива віха»",
+        "accessibilityLabel": "Скажіть, що весілля сьогодні. Today поставте в кінці",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "Fifty years is a milestone.",
+          "targetPhrase": "The wedding is today.",
           "localizedMeaning": {
-            "ru": "Школе пятьдесят лет. Подчеркните значимость этой годовщины: «Пятьдесят лет — важная веха»",
-            "uk": "Школі п’ятдесят років. Наголосіть на значущості цієї річниці: «П’ятдесят років — важлива віха»"
+            "ru": "Скажите, что свадьба сегодня. Today поставьте в конце",
+            "uk": "Скажіть, що весілля сьогодні. Today поставте в кінці"
           },
           "orderedTokens": [
-            "Fifty",
-            "years",
+            "The",
+            "wedding",
             "is",
-            "a",
-            "milestone"
+            "today"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1420,15 +1405,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-35:i05:r1",
-            "text": "This is an important milestone."
+            "text": "The wedding is in July."
           },
           {
             "responseId": "en:lesson-10:session-35:i05:r2",
-            "text": "This is an important meeting."
+            "text": "The wedding is in June."
           },
           {
             "responseId": "en:lesson-10:session-35:i05:r3",
-            "text": "That is an important milestone."
+            "text": "The wedding is in August."
           }
         ],
         "mediaIds": [],
@@ -1440,23 +1425,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-35:i05:audio",
-            "transcript": "This is an important milestone."
+            "transcript": "The wedding is in July."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-35:i05:r1",
-              "targetText": "This is an important milestone.",
+              "targetText": "The wedding is in July.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-35:i05:r2",
-              "targetText": "This is an important meeting.",
+              "targetText": "The wedding is in June.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-35:i05:r3",
-              "targetText": "That is an important milestone.",
+              "targetText": "The wedding is in August.",
               "meaningByLocale": null
             }
           ],
@@ -1467,8 +1452,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит This is an important milestone.",
-                "uk": "У записі звучить This is an important milestone."
+                "ru": "В записи звучит The wedding is in July.",
+                "uk": "У записі звучить The wedding is in July."
               }
             },
             {
@@ -1476,8 +1461,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит This is an important milestone.",
-                "uk": "У записі звучить This is an important milestone."
+                "ru": "В записи звучит The wedding is in July.",
+                "uk": "У записі звучить The wedding is in July."
               }
             }
           ],
@@ -1492,63 +1477,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "П’ятдесят років розглядаємо як єдиний період. Виберіть зв’язку",
+        "prompt": "Виберіть прийменник перед July",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-35:i06:r1",
-            "text": "is"
+            "text": "in"
           },
           {
             "responseId": "en:lesson-10:session-35:i06:r2",
-            "text": "am"
+            "text": "on"
           },
           {
             "responseId": "en:lesson-10:session-35:i06:r3",
-            "text": "be"
+            "text": "at"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "П’ятдесят років розглядаємо як єдиний період. Виберіть зв’язку",
+        "accessibilityLabel": "Виберіть прийменник перед July",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Пятьдесят лет рассматриваем как единый период. Выберите связку",
-            "uk": "П’ятдесят років розглядаємо як єдиний період. Виберіть зв’язку"
+            "ru": "Выберите предлог перед July",
+            "uk": "Виберіть прийменник перед July"
           },
-          "gappedTargetPhrase": "Fifty years ___ a milestone.",
+          "gappedTargetPhrase": "The wedding is ___ July.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-35:i06:r1",
-              "text": "is"
+              "text": "in"
             },
             {
               "responseId": "en:lesson-10:session-35:i06:r2",
-              "text": "am"
+              "text": "on"
             },
             {
               "responseId": "en:lesson-10:session-35:i06:r3",
-              "text": "be"
+              "text": "at"
             }
           ],
-          "testedDimension": "П’ятдесят років розглядаємо як єдиний період. Виберіть зв’язку",
+          "testedDimension": "Виберіть прийменник перед July",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-35:i06:r2",
               "correct": false,
-              "testedDimension": "П’ятдесят років розглядаємо як єдиний період. Виберіть зв’язку",
+              "testedDimension": "Виберіть прийменник перед July",
               "feedbackByLocale": {
-                "ru": "Am используется с I; здесь нужно is.",
-                "uk": "Am уживається з I; тут потрібне is."
+                "ru": "Перед месяцем нужна in.",
+                "uk": "Перед місяцем потрібна in."
               }
             },
             {
               "responseId": "en:lesson-10:session-35:i06:r3",
               "correct": false,
-              "testedDimension": "П’ятдесят років розглядаємо як єдиний період. Виберіть зв’язку",
+              "testedDimension": "Виберіть прийменник перед July",
               "feedbackByLocale": {
-                "ru": "Здесь нужна личная форма is.",
-                "uk": "Тут потрібна особова форма is."
+                "ru": "Перед месяцем нужна in.",
+                "uk": "Перед місяцем потрібна in."
               }
             }
           ]
@@ -1556,32 +1541,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-35:word:scrapbook",
+        "interactionId": "en:lesson-10:session-35:word:celebrate",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — scrapbook",
+        "prompt": "Картка слова — celebrate",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-35:word:scrapbook:audio"
+          "en:lesson-10:session-35:word:celebrate:audio"
         ],
-        "accessibilityLabel": "Картка слова — scrapbook",
+        "accessibilityLabel": "Картка слова — celebrate",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-35:word:scrapbook:audio",
-            "transcript": "scrapbook"
+            "audioTargetId": "en:lesson-10:session-35:word:celebrate:audio",
+            "transcript": "celebrate"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-35:word:scrapbook:r1",
-              "targetText": "scrapbook",
+              "responseId": "en:lesson-10:session-35:word:celebrate:r1",
+              "targetText": "celebrate",
               "meaningByLocale": {
-                "ru": "«альбом для памятных материалов». I am making a scrapbook. — «Я делаю альбом для памятных материалов». В него вклеивают фотографии, вырезки и другие памятные вещи.",
-                "uk": "«альбом для пам’ятних матеріалів». I am making a scrapbook. — «Я роблю альбом для пам’ятних матеріалів». У нього вклеюють фотографії, вирізки та інші пам’ятні речі."
+                "ru": "«праздновать, отмечать». We celebrate at home. — «Мы празднуем дома».",
+                "uk": "«святкувати, відзначати». We celebrate at home. — «Ми святкуємо вдома»."
               }
             }
           ],
@@ -1589,10 +1574,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "scrapbook",
+            "word": "celebrate",
             "definitionByLocale": {
-              "ru": "«альбом для памятных материалов». I am making a scrapbook. — «Я делаю альбом для памятных материалов». В него вклеивают фотографии, вырезки и другие памятные вещи.",
-              "uk": "«альбом для пам’ятних матеріалів». I am making a scrapbook. — «Я роблю альбом для пам’ятних матеріалів». У нього вклеюють фотографії, вирізки та інші пам’ятні речі."
+              "ru": "«праздновать, отмечать». We celebrate at home. — «Мы празднуем дома».",
+              "uk": "«святкувати, відзначати». We celebrate at home. — «Ми святкуємо вдома»."
             }
           }
         },
@@ -1604,24 +1589,23 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Ви зараз вклеюєте шкільні фотографії та вирізки. Скажіть: «Я роблю альбом для пам’ятних матеріалів»",
+        "prompt": "Скажіть, що зазвичай святкуєте вдома, використовуючи фразу з пояснення",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви зараз вклеюєте шкільні фотографії та вирізки. Скажіть: «Я роблю альбом для пам’ятних матеріалів»",
+        "accessibilityLabel": "Скажіть, що зазвичай святкуєте вдома, використовуючи фразу з пояснення",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am making a scrapbook.",
+          "targetPhrase": "We celebrate at home.",
           "localizedMeaning": {
-            "ru": "Вы сейчас вклеиваете школьные фотографии и вырезки. Скажите: «Я делаю альбом для памятных материалов»",
-            "uk": "Ви зараз вклеюєте шкільні фотографії та вирізки. Скажіть: «Я роблю альбом для пам’ятних матеріалів»"
+            "ru": "Скажите, что обычно празднуете дома, используя фразу из объяснения",
+            "uk": "Скажіть, що зазвичай святкуєте вдома, використовуючи фразу з пояснення"
           },
           "orderedTokens": [
-            "I",
-            "am",
-            "making",
-            "a",
-            "scrapbook"
+            "We",
+            "celebrate",
+            "at",
+            "home"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1642,15 +1626,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-35:i08:r1",
-            "text": "The scrapbook is on the table."
+            "text": "We are celebrating."
           },
           {
             "responseId": "en:lesson-10:session-35:i08:r2",
-            "text": "The scrapbook is under the table."
+            "text": "They are celebrating."
           },
           {
             "responseId": "en:lesson-10:session-35:i08:r3",
-            "text": "The notebook is on the table."
+            "text": "We celebrate."
           }
         ],
         "mediaIds": [],
@@ -1662,23 +1646,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-35:i08:audio",
-            "transcript": "The scrapbook is on the table."
+            "transcript": "We are celebrating."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-35:i08:r1",
-              "targetText": "The scrapbook is on the table.",
+              "targetText": "We are celebrating.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-35:i08:r2",
-              "targetText": "The scrapbook is under the table.",
+              "targetText": "They are celebrating.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-35:i08:r3",
-              "targetText": "The notebook is on the table.",
+              "targetText": "We celebrate.",
               "meaningByLocale": null
             }
           ],
@@ -1689,8 +1673,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The scrapbook is on the table.",
-                "uk": "У записі звучить The scrapbook is on the table."
+                "ru": "В записи звучит We are celebrating.",
+                "uk": "У записі звучить We are celebrating."
               }
             },
             {
@@ -1698,8 +1682,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The scrapbook is on the table.",
-                "uk": "У записі звучить The scrapbook is on the table."
+                "ru": "В записи звучит We are celebrating.",
+                "uk": "У записі звучить We are celebrating."
               }
             }
           ],
@@ -1714,63 +1698,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть правильне написання форми make",
+        "prompt": "Свято триває зараз. Виберіть форму celebrate після are",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-35:i09:r1",
-            "text": "making"
+            "text": "celebrating"
           },
           {
             "responseId": "en:lesson-10:session-35:i09:r2",
-            "text": "makeing"
+            "text": "celebrate"
           },
           {
             "responseId": "en:lesson-10:session-35:i09:r3",
-            "text": "make"
+            "text": "celebrates"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть правильне написання форми make",
+        "accessibilityLabel": "Свято триває зараз. Виберіть форму celebrate після are",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите правильное написание формы make",
-            "uk": "Виберіть правильне написання форми make"
+            "ru": "Праздник идёт сейчас. Выберите форму celebrate после are",
+            "uk": "Свято триває зараз. Виберіть форму celebrate після are"
           },
-          "gappedTargetPhrase": "I am ___ a scrapbook.",
+          "gappedTargetPhrase": "We are ___.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-35:i09:r1",
-              "text": "making"
+              "text": "celebrating"
             },
             {
               "responseId": "en:lesson-10:session-35:i09:r2",
-              "text": "makeing"
+              "text": "celebrate"
             },
             {
               "responseId": "en:lesson-10:session-35:i09:r3",
-              "text": "make"
+              "text": "celebrates"
             }
           ],
-          "testedDimension": "Виберіть правильне написання форми make",
+          "testedDimension": "Свято триває зараз. Виберіть форму celebrate після are",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-35:i09:r2",
               "correct": false,
-              "testedDimension": "Виберіть правильне написання форми make",
+              "testedDimension": "Свято триває зараз. Виберіть форму celebrate після are",
               "feedbackByLocale": {
-                "ru": "У make перед ing убираем e: making.",
-                "uk": "У make перед ing прибираємо e: making."
+                "ru": "После are нужна celebrating.",
+                "uk": "Після are потрібна celebrating."
               }
             },
             {
               "responseId": "en:lesson-10:session-35:i09:r3",
               "correct": false,
-              "testedDimension": "Виберіть правильне написання форми make",
+              "testedDimension": "Свято триває зараз. Виберіть форму celebrate після are",
               "feedbackByLocale": {
-                "ru": "Для действия сейчас после am нужна making.",
-                "uk": "Для дії зараз після am потрібна making."
+                "ru": "Для действия сейчас здесь are celebrating.",
+                "uk": "Для дії зараз тут are celebrating."
               }
             }
           ]
@@ -1778,32 +1762,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-35:word:jubilee",
+        "interactionId": "en:lesson-10:session-35:word:have-fun",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — jubilee",
+        "prompt": "Картка слова — have fun",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-35:word:jubilee:audio"
+          "en:lesson-10:session-35:word:have-fun:audio"
         ],
-        "accessibilityLabel": "Картка слова — jubilee",
+        "accessibilityLabel": "Картка слова — have fun",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-35:word:jubilee:audio",
-            "transcript": "jubilee"
+            "audioTargetId": "en:lesson-10:session-35:word:have-fun:audio",
+            "transcript": "have fun"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-35:word:jubilee:r1",
-              "targetText": "jubilee",
+              "responseId": "en:lesson-10:session-35:word:have-fun:r1",
+              "targetText": "have fun",
               "meaningByLocale": {
-                "ru": "«юбилей». We are celebrating the jubilee. — «Мы празднуем юбилей». Здесь празднование пятидесятилетия школы.",
-                "uk": "«ювілей». We are celebrating the jubilee. — «Ми святкуємо ювілей». Тут святкування п’ятдесятиріччя школи."
+                "ru": "«веселиться, хорошо проводить время». We are having fun. — «Мы весело проводим время».",
+                "uk": "«веселитися, гарно проводити час». We are having fun. — «Ми весело проводимо час»."
               }
             }
           ],
@@ -1811,10 +1795,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "jubilee",
+            "word": "have fun",
             "definitionByLocale": {
-              "ru": "«юбилей». We are celebrating the jubilee. — «Мы празднуем юбилей». Здесь празднование пятидесятилетия школы.",
-              "uk": "«ювілей». We are celebrating the jubilee. — «Ми святкуємо ювілей». Тут святкування п’ятдесятиріччя школи."
+              "ru": "«веселиться, хорошо проводить время». We are having fun. — «Мы весело проводим время».",
+              "uk": "«веселитися, гарно проводити час». We are having fun. — «Ми весело проводимо час»."
             }
           }
         },
@@ -1826,24 +1810,21 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Друг запитує про сьогоднішнє шкільне свято. Скажіть: «Ми святкуємо ювілей»",
+        "prompt": "Друг іде на свято. Побажайте йому гарно провести час: почніть із have",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Друг запитує про сьогоднішнє шкільне свято. Скажіть: «Ми святкуємо ювілей»",
+        "accessibilityLabel": "Друг іде на свято. Побажайте йому гарно провести час: почніть із have",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We are celebrating the jubilee.",
+          "targetPhrase": "Have fun.",
           "localizedMeaning": {
-            "ru": "Друг спрашивает о сегодняшнем школьном празднике. Скажите: «Мы празднуем юбилей»",
-            "uk": "Друг запитує про сьогоднішнє шкільне свято. Скажіть: «Ми святкуємо ювілей»"
+            "ru": "Друг идёт на праздник. Пожелайте ему хорошо провести время: начните с have",
+            "uk": "Друг іде на свято. Побажайте йому гарно провести час: почніть із have"
           },
           "orderedTokens": [
-            "We",
-            "are",
-            "celebrating",
-            "the",
-            "jubilee"
+            "Have",
+            "fun"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1864,15 +1845,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-35:i11:r1",
-            "text": "The jubilee is in June."
+            "text": "We are having fun."
           },
           {
             "responseId": "en:lesson-10:session-35:i11:r2",
-            "text": "The jubilee is in July."
+            "text": "They are having fun."
           },
           {
             "responseId": "en:lesson-10:session-35:i11:r3",
-            "text": "The meeting is in June."
+            "text": "I am having fun."
           }
         ],
         "mediaIds": [],
@@ -1884,23 +1865,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-35:i11:audio",
-            "transcript": "The jubilee is in June."
+            "transcript": "We are having fun."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-35:i11:r1",
-              "targetText": "The jubilee is in June.",
+              "targetText": "We are having fun.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-35:i11:r2",
-              "targetText": "The jubilee is in July.",
+              "targetText": "They are having fun.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-35:i11:r3",
-              "targetText": "The meeting is in June.",
+              "targetText": "I am having fun.",
               "meaningByLocale": null
             }
           ],
@@ -1911,8 +1892,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The jubilee is in June.",
-                "uk": "У записі звучить The jubilee is in June."
+                "ru": "В записи звучит We are having fun.",
+                "uk": "У записі звучить We are having fun."
               }
             },
             {
@@ -1920,8 +1901,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The jubilee is in June.",
-                "uk": "У записі звучить The jubilee is in June."
+                "ru": "В записи звучит We are having fun.",
+                "uk": "У записі звучить We are having fun."
               }
             }
           ],
@@ -1936,63 +1917,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви зараз берете участь у святі. Виберіть форму celebrating",
+        "prompt": "Ви весело проводите час зараз. Виберіть форму have після are",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-35:i12:r1",
-            "text": "celebrating"
+            "text": "having"
           },
           {
             "responseId": "en:lesson-10:session-35:i12:r2",
-            "text": "celebrate"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-10:session-35:i12:r3",
-            "text": "celebrates"
+            "text": "has"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви зараз берете участь у святі. Виберіть форму celebrating",
+        "accessibilityLabel": "Ви весело проводите час зараз. Виберіть форму have після are",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы сейчас участвуете в празднике. Выберите форму celebrating",
-            "uk": "Ви зараз берете участь у святі. Виберіть форму celebrating"
+            "ru": "Вы весело проводите время сейчас. Выберите форму have после are",
+            "uk": "Ви весело проводите час зараз. Виберіть форму have після are"
           },
-          "gappedTargetPhrase": "We are ___ the jubilee.",
+          "gappedTargetPhrase": "We are ___ fun.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-35:i12:r1",
-              "text": "celebrating"
+              "text": "having"
             },
             {
               "responseId": "en:lesson-10:session-35:i12:r2",
-              "text": "celebrate"
+              "text": "have"
             },
             {
               "responseId": "en:lesson-10:session-35:i12:r3",
-              "text": "celebrates"
+              "text": "has"
             }
           ],
-          "testedDimension": "Ви зараз берете участь у святі. Виберіть форму celebrating",
+          "testedDimension": "Ви весело проводите час зараз. Виберіть форму have після are",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-35:i12:r2",
               "correct": false,
-              "testedDimension": "Ви зараз берете участь у святі. Виберіть форму celebrating",
+              "testedDimension": "Ви весело проводите час зараз. Виберіть форму have після are",
               "feedbackByLocale": {
-                "ru": "После are здесь нужна celebrating.",
-                "uk": "Після are тут потрібна celebrating."
+                "ru": "После are здесь нужна having.",
+                "uk": "Після are тут потрібна having."
               }
             },
             {
               "responseId": "en:lesson-10:session-35:i12:r3",
               "correct": false,
-              "testedDimension": "Ви зараз берете участь у святі. Виберіть форму celebrating",
+              "testedDimension": "Ви весело проводите час зараз. Виберіть форму have після are",
               "feedbackByLocale": {
-                "ru": "Для текущего действия нужна celebrating.",
-                "uk": "Для поточної дії потрібна celebrating."
+                "ru": "Здесь are having, не are has.",
+                "uk": "Тут are having, не are has."
               }
             }
           ]
@@ -2005,58 +1986,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "З’єднайте слова зі значеннями",
+        "prompt": "Поєднайте слова з перекладом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "accessibilityLabel": "Поєднайте слова з перекладом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-35:i13:p1",
-              "target": "keepsake",
+              "target": "birthday",
               "meaningByLocale": {
-                "ru": "памятная вещь",
-                "uk": "пам’ятна річ"
+                "ru": "день рождения",
+                "uk": "день народження"
               }
             },
             {
               "pairId": "en:lesson-10:session-35:i13:p2",
-              "target": "milestone",
+              "target": "wedding",
               "meaningByLocale": {
-                "ru": "важная веха",
-                "uk": "важлива віха"
+                "ru": "свадьба",
+                "uk": "весілля"
               }
             },
             {
               "pairId": "en:lesson-10:session-35:i13:p3",
-              "target": "scrapbook",
+              "target": "celebrate",
               "meaningByLocale": {
-                "ru": "альбом для памятных материалов",
-                "uk": "альбом для пам’ятних матеріалів"
+                "ru": "праздновать",
+                "uk": "святкувати"
               }
             },
             {
               "pairId": "en:lesson-10:session-35:i13:p4",
-              "target": "jubilee",
+              "target": "have fun",
               "meaningByLocale": {
-                "ru": "юбилей",
-                "uk": "ювілей"
+                "ru": "веселиться",
+                "uk": "веселитися"
               }
             }
           ],
           "leftColumn": [
-            "keepsake",
-            "milestone",
-            "scrapbook",
-            "jubilee"
+            "birthday",
+            "wedding",
+            "celebrate",
+            "have fun"
           ],
           "rightColumn": [
-            "пам’ятна річ",
-            "важлива віха",
-            "альбом для пам’ятних матеріалів",
-            "ювілей"
+            "день народження",
+            "весілля",
+            "святкувати",
+            "веселитися"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -2078,27 +2059,26 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послухайте й складіть фразу",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-35:i14:audio"
         ],
-        "accessibilityLabel": "Послухайте й складіть фразу",
+        "accessibilityLabel": "Складіть почуту фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-35:i14:audio",
-            "transcript": "I am making a scrapbook."
+            "transcript": "We celebrate at home."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I am making a scrapbook.",
+          "hiddenTargetPhrase": "We celebrate at home.",
           "orderedTokens": [
-            "I",
-            "am",
-            "making",
-            "a",
-            "scrapbook"
+            "We",
+            "celebrate",
+            "at",
+            "home"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2112,24 +2092,60 @@
       {
         "interactionId": "en:lesson-10:session-35:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Друг запитує, чи регулярно колишні учні зустрічаються в школі. Скажіть: «Ми зустрічаємося тут щороку»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-35:i15:audio"
         ],
-        "accessibilityLabel": "Друг запитує, чи регулярно колишні учні зустрічаються в школі. Скажіть: «Ми зустрічаємося тут щороку»",
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-35:i15:audio",
+            "transcript": "The wedding is today."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The wedding is today.",
+          "orderedTokens": [
+            "The",
+            "wedding",
+            "is",
+            "today"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-35:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Привітайте друга з днем народження",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-35:i16:audio"
+        ],
+        "accessibilityLabel": "Привітайте друга з днем народження",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-35:i15:audio",
-            "transcript": "We meet here every year."
+            "audioTargetId": "en:lesson-10:session-35:i16:audio",
+            "transcript": "Happy birthday!"
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We meet here every year.",
+          "targetPhrase": "Happy birthday!",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2143,71 +2159,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-35:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Покажіть другу збережений шкільний значок. Скажіть: «Цей значок — пам’ятна річ»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Покажіть другу збережений шкільний значок. Скажіть: «Цей значок — пам’ятна річ»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "This badge is a keepsake.",
-          "localizedMeaning": {
-            "ru": "Покажите другу сохранённый школьный значок. Скажите: «Этот значок — памятная вещь»",
-            "uk": "Покажіть другу збережений шкільний значок. Скажіть: «Цей значок — пам’ятна річ»"
-          },
-          "orderedTokens": [
-            "This",
-            "badge",
-            "is",
-            "a",
-            "keepsake"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-35:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Ви в школі на святкуванні її п’ятдесятиріччя. Знайомий телефонує й запитує, чим ви займаєтеся. Скажіть: «Ми святкуємо ювілей»",
+        "prompt": "Скажіть про себе, що зараз весело проводите час",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-35:i17:audio"
         ],
-        "accessibilityLabel": "Ви в школі на святкуванні її п’ятдесятиріччя. Знайомий телефонує й запитує, чим ви займаєтеся. Скажіть: «Ми святкуємо ювілей»",
+        "accessibilityLabel": "Скажіть про себе, що зараз весело проводите час",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-35:i17:audio",
-            "transcript": "We are celebrating the jubilee."
+            "transcript": "I am having fun."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We are celebrating the jubilee.",
+          "targetPhrase": "I am having fun.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -2221,83 +2195,83 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-10:session-35:word:keepsake",
-      "correctText": "keepsake",
+      "interactionId": "en:lesson-10:session-35:word:birthday",
+      "correctText": "birthday",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-35:i01",
-      "correctText": "This badge is a keepsake.",
+      "correctText": "My birthday is today.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-35:i02",
-      "correctText": "I keep this photo as a keepsake.",
+      "correctText": "My birthday is today.",
       "correctResponseId": "en:lesson-10:session-35:i02:r1"
     },
     {
       "interactionId": "en:lesson-10:session-35:i03",
-      "correctText": "meet",
+      "correctText": "is",
       "correctResponseId": "en:lesson-10:session-35:i03:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-35:word:milestone",
-      "correctText": "milestone",
+      "interactionId": "en:lesson-10:session-35:word:wedding",
+      "correctText": "wedding",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-35:i04",
-      "correctText": "Fifty years is a milestone.",
+      "correctText": "The wedding is today.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-35:i05",
-      "correctText": "This is an important milestone.",
+      "correctText": "The wedding is in July.",
       "correctResponseId": "en:lesson-10:session-35:i05:r1"
     },
     {
       "interactionId": "en:lesson-10:session-35:i06",
-      "correctText": "is",
+      "correctText": "in",
       "correctResponseId": "en:lesson-10:session-35:i06:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-35:word:scrapbook",
-      "correctText": "scrapbook",
+      "interactionId": "en:lesson-10:session-35:word:celebrate",
+      "correctText": "celebrate",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-35:i07",
-      "correctText": "I am making a scrapbook.",
+      "correctText": "We celebrate at home.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-35:i08",
-      "correctText": "The scrapbook is on the table.",
+      "correctText": "We are celebrating.",
       "correctResponseId": "en:lesson-10:session-35:i08:r1"
     },
     {
       "interactionId": "en:lesson-10:session-35:i09",
-      "correctText": "making",
+      "correctText": "celebrating",
       "correctResponseId": "en:lesson-10:session-35:i09:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-35:word:jubilee",
-      "correctText": "jubilee",
+      "interactionId": "en:lesson-10:session-35:word:have-fun",
+      "correctText": "have fun",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-35:i10",
-      "correctText": "We are celebrating the jubilee.",
+      "correctText": "Have fun.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-35:i11",
-      "correctText": "The jubilee is in June.",
+      "correctText": "We are having fun.",
       "correctResponseId": "en:lesson-10:session-35:i11:r1"
     },
     {
       "interactionId": "en:lesson-10:session-35:i12",
-      "correctText": "celebrating",
+      "correctText": "having",
       "correctResponseId": "en:lesson-10:session-35:i12:r1"
     },
     {
@@ -2307,22 +2281,22 @@
     },
     {
       "interactionId": "en:lesson-10:session-35:i14",
-      "correctText": "I am making a scrapbook.",
+      "correctText": "We celebrate at home.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-35:i15",
-      "correctText": "We meet here every year.",
+      "correctText": "The wedding is today.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-35:i16",
-      "correctText": "This badge is a keepsake.",
+      "correctText": "Happy birthday!",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-35:i17",
-      "correctText": "We are celebrating the jubilee.",
+      "correctText": "I am having fun.",
       "correctResponseId": null
     }
   ]

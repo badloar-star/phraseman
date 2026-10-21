@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-49",
   "learningOutcomeByLocale": {
-    "ru": "We check the forecast every morning; The humidity is rising; We are checking the barometer",
-    "uk": "We check the forecast every morning; The humidity is rising; We are checking the barometer"
+    "ru": "I am checking the forecast; What is the temperature; It is one degree; It is minus two",
+    "uk": "I am checking the forecast; What is the temperature; It is one degree; It is minus two"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-49:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Утренняя привычка",
-        "uk": "Ранкова звичка"
+        "ru": "Перед прогулкой",
+        "uk": "Перед прогулянкою"
       },
       "bodyByLocale": {
-        "ru": "Forecast — «прогноз». Здесь речь о погоде. Перед выходом команда читает его каждое утро: We check the forecast every morning — «Мы проверяем прогноз каждое утро». Это привычка: Present Simple.",
-        "uk": "Forecast — «прогноз». Тут ідеться про погоду. Перед виходом команда читає його щоранку: We check the forecast every morning — «Ми перевіряємо прогноз щоранку». Це звичка: Present Simple."
+        "ru": "Вы смотрите погоду в телефоне. Forecast — «прогноз»: I am checking the forecast — «Я смотрю прогноз». Действие идёт сейчас: am checking. В разговоре о погоде the forecast — прогноз погоды.",
+        "uk": "Ви дивитеся погоду в телефоні. Forecast — «прогноз»: I am checking the forecast — «Я дивлюся прогноз». Дія відбувається зараз: am checking. У розмові про погоду the forecast — прогноз погоди."
       },
       "question": {
         "interactionId": "en:lesson-10:session-49:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-49:intro1:r1",
-              "text": "We check the forecast every morning."
+              "text": "I am checking the forecast."
             },
             {
               "responseId": "en:lesson-10:session-49:intro1:r2",
-              "text": "We checks the forecast every morning."
+              "text": "I checking the forecast."
             },
             {
               "responseId": "en:lesson-10:session-49:intro1:r3",
-              "text": "We checking the forecast every morning."
+              "text": "I am check the forecast."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-49:intro1:r1",
-              "text": "We check the forecast every morning."
+              "text": "I am checking the forecast."
             },
             {
               "responseId": "en:lesson-10:session-49:intro1:r2",
-              "text": "We checks the forecast every morning."
+              "text": "I checking the forecast."
             },
             {
               "responseId": "en:lesson-10:session-49:intro1:r3",
-              "text": "We checking the forecast every morning."
+              "text": "I am check the forecast."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-49:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Влажность растёт",
-        "uk": "Вологість зростає"
+        "ru": "Сколько градусов",
+        "uk": "Скільки градусів"
       },
       "bodyByLocale": {
-        "ru": "Humidity — «влажность воздуха». Показатель меняется прямо сейчас: The humidity is rising — «Влажность растёт». Для текущего изменения используем is + rising. У rise перед ing убираем e.",
-        "uk": "Humidity — «вологість повітря». Показник змінюється саме зараз: The humidity is rising — «Вологість зростає». Для поточної зміни використовуємо is + rising. У rise перед ing прибираємо e."
+        "ru": "Друг спрашивает, насколько холодно на улице. Temperature — «температура»: What is the temperature? — «Какая температура?» Degree — «градус»: It is one degree — «Один градус». После one — degree без s, после two — degrees. Здесь говорим о градусах Цельсия.",
+        "uk": "Друг запитує, наскільки холодно надворі. Temperature — «температура»: What is the temperature? — «Яка температура?» Degree — «градус»: It is one degree — «Один градус». Після one — degree без s, після two — degrees. Тут говоримо про градуси Цельсія."
       },
       "question": {
         "interactionId": "en:lesson-10:session-49:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-49:intro2:r1",
-              "text": "The humidity is rising."
+              "text": "It is one degree."
             },
             {
               "responseId": "en:lesson-10:session-49:intro2:r2",
-              "text": "The humidity is riseing."
+              "text": "It is one degrees."
             },
             {
               "responseId": "en:lesson-10:session-49:intro2:r3",
-              "text": "The humidity rising."
+              "text": "It are one degree."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-49:intro2:r1",
-              "text": "The humidity is rising."
+              "text": "It is one degree."
             },
             {
               "responseId": "en:lesson-10:session-49:intro2:r2",
-              "text": "The humidity is riseing."
+              "text": "It is one degrees."
             },
             {
               "responseId": "en:lesson-10:session-49:intro2:r3",
-              "text": "The humidity rising."
+              "text": "It are one degree."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-49:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Смотрим на прибор",
-        "uk": "Дивимося на прилад"
+        "ru": "Ниже нуля",
+        "uk": "Нижче нуля"
       },
       "bodyByLocale": {
-        "ru": "Barometer — «барометр», прибор для измерения атмосферного давления. Вы с коллегой сейчас проверяете прибор: We are checking the barometer — «Мы проверяем барометр». Текущая работа: are + checking.",
-        "uk": "Barometer — «барометр», прилад для вимірювання атмосферного тиску. Ви з колегою зараз перевіряєте прилад: We are checking the barometer — «Ми перевіряємо барометр». Поточна робота: are + checking."
+        "ru": "В телефоне указано −2 °C. Minus — «минус»: It is minus two — «Минус два». Вы уже обсуждаете температуру, поэтому слово degrees можно не повторять. Полная фраза: It is minus two degrees.",
+        "uk": "У телефоні вказано −2 °C. Minus — «мінус»: It is minus two — «Мінус два». Ви вже обговорюєте температуру, тому слово degrees можна не повторювати. Повна фраза: It is minus two degrees."
       },
       "question": {
         "interactionId": "en:lesson-10:session-49:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-49:intro3:r1",
-              "text": "We are checking the barometer."
+              "text": "It is minus two."
             },
             {
               "responseId": "en:lesson-10:session-49:intro3:r2",
-              "text": "We checking the barometer."
+              "text": "It are minus two."
             },
             {
               "responseId": "en:lesson-10:session-49:intro3:r3",
-              "text": "We are check the barometer."
+              "text": "It am minus two."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-49:intro3:r1",
-              "text": "We are checking the barometer."
+              "text": "It is minus two."
             },
             {
               "responseId": "en:lesson-10:session-49:intro3:r2",
-              "text": "We checking the barometer."
+              "text": "It are minus two."
             },
             {
               "responseId": "en:lesson-10:session-49:intro3:r3",
-              "text": "We are check the barometer."
+              "text": "It am minus two."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "77dea9fee70757860a407be1849c9106ea3cd71eea87b88c9e68e1dc6b0a09bb"
+  "introFingerprint": "6175c1270be436b1051e45ab2cd12b302a60ec678f4d480ccdbab14d12801a81"
 }

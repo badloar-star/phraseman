@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-34",
   "learningOutcomeByLocale": {
-    "ru": "The ceremony is starting now; We come here every year; She deserves a commendation",
-    "uk": "The ceremony is starting now; We come here every year; She deserves a commendation"
+    "ru": "My grandson is playing; My granddaughter is reading; My son is a teenager; One adult ticket, please",
+    "uk": "My grandson is playing; My granddaughter is reading; My son is a teenager; One adult ticket, please"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-34:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Церемония начинается",
-        "uk": "Церемонія починається"
+        "ru": "Внук и внучка",
+        "uk": "Онук і онука"
       },
       "bodyByLocale": {
-        "ru": "Ceremony — «церемония», официальное мероприятие с определённым порядком действий. Вы на ежегодном награждении волонтёров. Свет гаснет, ведущая выходит: The ceremony is starting now — «Церемония сейчас начинается». Действие происходит сейчас: is + starting.",
-        "uk": "Ceremony — «церемонія», офіційний захід із певним порядком дій. Ви на щорічному нагородженні волонтерів. Світло гасне, ведуча виходить: The ceremony is starting now — «Церемонія зараз починається». Дія відбувається зараз: is + starting."
+        "ru": "Вы на прогулке с внуками, знакомый спрашивает о них. Grandson — «внук»: My grandson is playing — «Мой внук играет». Granddaughter — «внучка»: My granddaughter is reading — «Моя внучка читает». Они делают это сейчас: is + playing или reading.",
+        "uk": "Ви на прогулянці з онуками, знайомий запитує про них. Grandson — «онук»: My grandson is playing — «Мій онук грається». Granddaughter — «онука»: My granddaughter is reading — «Моя онука читає». Вони роблять це зараз: is + playing або reading."
       },
       "question": {
         "interactionId": "en:lesson-10:session-34:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-34:intro1:r1",
-              "text": "The ceremony is starting now."
+              "text": "My grandson is playing."
             },
             {
               "responseId": "en:lesson-10:session-34:intro1:r2",
-              "text": "The ceremony starting now."
+              "text": "My grandson playing."
             },
             {
               "responseId": "en:lesson-10:session-34:intro1:r3",
-              "text": "The ceremony are starting now."
+              "text": "My grandson are playing."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-34:intro1:r1",
-              "text": "The ceremony is starting now."
+              "text": "My grandson is playing."
             },
             {
               "responseId": "en:lesson-10:session-34:intro1:r2",
-              "text": "The ceremony starting now."
+              "text": "My grandson playing."
             },
             {
               "responseId": "en:lesson-10:session-34:intro1:r3",
-              "text": "The ceremony are starting now."
+              "text": "My grandson are playing."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-34:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ежегодная встреча",
-        "uk": "Щорічна зустріч"
+        "ru": "Подросток",
+        "uk": "Підліток"
       },
       "bodyByLocale": {
-        "ru": "Вы приходите на это мероприятие каждый год: We come here every year — «Мы приходим сюда каждый год». Повторяющееся действие передаём Present Simple. А сейчас вы сидите в первом ряду: We are sitting in the front row. В sitting удваивается t.",
-        "uk": "Ви приходите на цей захід щороку: We come here every year — «Ми приходимо сюди щороку». Повторювану дію передаємо Present Simple. А зараз ви сидите в першому ряду: We are sitting in the front row. У sitting подвоюється t."
+        "ru": "Друг спрашивает о вашем сыне. Teenager — «подросток», человек от тринадцати до девятнадцати лет: My son is a teenager — «Мой сын — подросток». Перед teenager здесь нужен a. Это описание возраста, а не действия сейчас.",
+        "uk": "Друг запитує про вашого сина. Teenager — «підліток», людина від тринадцяти до дев’ятнадцяти років: My son is a teenager — «Мій син — підліток». Перед teenager тут потрібен a. Це опис віку, а не дії зараз."
       },
       "question": {
         "interactionId": "en:lesson-10:session-34:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-34:intro2:r1",
-              "text": "We come here every year."
+              "text": "My son is a teenager."
             },
             {
               "responseId": "en:lesson-10:session-34:intro2:r2",
-              "text": "We comes here every year."
+              "text": "My son are a teenager."
             },
             {
               "responseId": "en:lesson-10:session-34:intro2:r3",
-              "text": "We coming here every year."
+              "text": "My son is teenager."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-34:intro2:r1",
-              "text": "We come here every year."
+              "text": "My son is a teenager."
             },
             {
               "responseId": "en:lesson-10:session-34:intro2:r2",
-              "text": "We comes here every year."
+              "text": "My son are a teenager."
             },
             {
               "responseId": "en:lesson-10:session-34:intro2:r3",
-              "text": "We coming here every year."
+              "text": "My son is teenager."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-34:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Заслуженная похвала",
-        "uk": "Заслужена похвала"
+        "ru": "Взрослый билет",
+        "uk": "Дорослий квиток"
       },
       "bodyByLocale": {
-        "ru": "Commendation — «официальная похвала», например публичная благодарность за работу. Ваша знакомая много помогала людям: She deserves a commendation — «Она заслуживает официальной похвалы». Deserves выражает вашу оценку, поэтому здесь используем Present Simple.",
-        "uk": "Commendation — «офіційна похвала», наприклад публічна подяка за роботу. Ваша знайома багато допомагала людям: She deserves a commendation — «Вона заслуговує на офіційну похвалу». Deserves виражає вашу оцінку, тому тут використовуємо Present Simple."
+        "ru": "В кассе вы просите билет для себя. Adult — «взрослый»: One adult ticket, please — «Один взрослый билет, пожалуйста». Adult здесь уточняет, для кого билет. Для человека: an adult — «взрослый человек».",
+        "uk": "У касі ви просите квиток для себе. Adult — «дорослий»: One adult ticket, please — «Один дорослий квиток, будь ласка». Adult тут уточнює, для кого квиток. Для людини: an adult — «доросла людина»."
       },
       "question": {
         "interactionId": "en:lesson-10:session-34:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-34:intro3:r1",
-              "text": "She deserves a commendation."
+              "text": "One adult ticket, please."
             },
             {
               "responseId": "en:lesson-10:session-34:intro3:r2",
-              "text": "She deserve a commendation."
+              "text": "One adult tickets, please."
             },
             {
               "responseId": "en:lesson-10:session-34:intro3:r3",
-              "text": "She is deserve a commendation."
+              "text": "One adults ticket, please."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-34:intro3:r1",
-              "text": "She deserves a commendation."
+              "text": "One adult ticket, please."
             },
             {
               "responseId": "en:lesson-10:session-34:intro3:r2",
-              "text": "She deserve a commendation."
+              "text": "One adult tickets, please."
             },
             {
               "responseId": "en:lesson-10:session-34:intro3:r3",
-              "text": "She is deserve a commendation."
+              "text": "One adults ticket, please."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c012a3121a2aef9032748481da04b843d1fcfb14e8f0ed4d4a64bb47faa58f1c"
+  "introFingerprint": "4ae80eee882baa4e72354527cadf10e22da0993c1e96717edff30dfbea52c43a"
 }

@@ -3768,16 +3768,16 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 34,
-    sourceFingerprint: "3d831344b4325211f18bc77186473b37295118fa033d337347c4dfd9a7123ed8",
+    sourceFingerprint: "33cf782e0c42ac65081fefe0514db62284c11848b4d70138a20cc60126d449c1",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"The ceremony is starting now; We come here every year; She deserves a commendation","uk":"The ceremony is starting now; We come here every year; She deserves a commendation"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"My grandson is playing; My granddaughter is reading; My son is a teenager; One adult ticket, please","uk":"My grandson is playing; My granddaughter is reading; My son is a teenager; One adult ticket, please"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 35,
-    sourceFingerprint: "cd54f38a0827c7b7c48b1ea9275accff94d22e25a8246ffbfc142b47329bafd0",
+    sourceFingerprint: "ff8f06b87852923c7f6ad4ed257856b0ba36c6c35bf8de987abea59723d20c83",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We meet here every year; I am making a scrapbook; We are celebrating the jubilee","uk":"We meet here every year; I am making a scrapbook; We are celebrating the jubilee"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Happy birthday; The wedding is today; We celebrate at home; We are having fun","uk":"Happy birthday; The wedding is today; We celebrate at home; We are having fun"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({
@@ -3873,9 +3873,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 49,
-    sourceFingerprint: "41900ea9aef5ad72a287890be72c0d55a67b63098b778943d4213b8f89d9ab31",
+    sourceFingerprint: "f72e9d4b795ee925e4d0bd62da3a1869a89462de9aa7b69af1575e4c00b25cb4",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We check the forecast every morning; The humidity is rising; We are checking the barometer","uk":"We check the forecast every morning; The humidity is rising; We are checking the barometer"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I am checking the forecast; What is the temperature; It is one degree; It is minus two","uk":"I am checking the forecast; What is the temperature; It is one degree; It is minus two"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({

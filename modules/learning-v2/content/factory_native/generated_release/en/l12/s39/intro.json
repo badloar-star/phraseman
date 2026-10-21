@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "checked, noticed; was/were",
+    "uk": "checked, noticed; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Маршрут",
+        "uk": "Маршрут"
+      },
+      "bodyByLocale": {
+        "ru": "Bus route — «автобусный маршрут». I checked the bus route — я проверил автобусный маршрут. В checked окончание /t/. Выберите проверку в прошлом.",
+        "uk": "Bus route — «автобусний маршрут». I checked the bus route — я перевірив автобусний маршрут. У checked закінчення /t/. Виберіть перевірку в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-39:intro1:r1",
+              "text": "I checked the bus route."
+            },
+            {
+              "responseId": "en:lesson-12:session-39:intro1:r2",
+              "text": "I check the bus route yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-39:intro1:r3",
+              "text": "I checks the bus route yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-39:intro1:r1",
+              "text": "I checked the bus route."
+            },
+            {
+              "responseId": "en:lesson-12:session-39:intro1:r2",
+              "text": "I check the bus route yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-39:intro1:r3",
+              "text": "I checks the bus route yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Стоимость и расписание",
+        "uk": "Вартість і розклад"
+      },
+      "bodyByLocale": {
+        "ru": "Bus fare — «стоимость проезда на автобусе», bus timetable — «расписание автобусов». We checked the bus timetable — мы проверили расписание автобусов. Выберите сообщение о расписании.",
+        "uk": "Bus fare — «вартість проїзду автобусом», bus timetable — «розклад автобусів». We checked the bus timetable — ми перевірили розклад автобусів. Виберіть повідомлення про розклад."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-39:intro2:r1",
+              "text": "We checked the bus timetable."
+            },
+            {
+              "responseId": "en:lesson-12:session-39:intro2:r2",
+              "text": "We checked the bus fare."
+            },
+            {
+              "responseId": "en:lesson-12:session-39:intro2:r3",
+              "text": "We check the bus timetable yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-39:intro2:r1",
+              "text": "We checked the bus timetable."
+            },
+            {
+              "responseId": "en:lesson-12:session-39:intro2:r2",
+              "text": "We checked the bus fare."
+            },
+            {
+              "responseId": "en:lesson-12:session-39:intro2:r3",
+              "text": "We check the bus timetable yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Полоса для автобусов",
+        "uk": "Смуга для автобусів"
+      },
+      "bodyByLocale": {
+        "ru": "Bus lane — «полоса для автобусов». She noticed the bus lane — она заметила автобусную полосу. Notice → noticed, окончание /t/. Выберите наблюдение, не описание полосы.",
+        "uk": "Bus lane — «смуга для автобусів». She noticed the bus lane — вона помітила автобусну смугу. Notice → noticed, закінчення /t/. Виберіть спостереження, не опис смуги."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-39:intro3:r1",
+              "text": "She noticed the bus lane."
+            },
+            {
+              "responseId": "en:lesson-12:session-39:intro3:r2",
+              "text": "The bus lane was empty."
+            },
+            {
+              "responseId": "en:lesson-12:session-39:intro3:r3",
+              "text": "She notice the bus lane yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-39:intro3:r1",
+              "text": "She noticed the bus lane."
+            },
+            {
+              "responseId": "en:lesson-12:session-39:intro3:r2",
+              "text": "The bus lane was empty."
+            },
+            {
+              "responseId": "en:lesson-12:session-39:intro3:r3",
+              "text": "She notice the bus lane yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "80fc6b443b7d383db5836a7a5d07a630000549e275bb42918976c9ce8c0bab9e"
+}

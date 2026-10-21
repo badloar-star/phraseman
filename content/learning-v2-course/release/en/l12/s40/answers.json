@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-40:word:cashew",
+    "correctText": "cashew",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-40:i01",
+    "correctText": "I chose a cashew.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-40:i02",
+    "correctText": "She chose a cashew.",
+    "correctResponseId": "en:lesson-12:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-40:i03",
+    "correctText": "chose",
+    "correctResponseId": "en:lesson-12:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-40:word:walnut",
+    "correctText": "walnut",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-40:i04",
+    "correctText": "I chose a walnut.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-40:i05",
+    "correctText": "We chose a walnut.",
+    "correctResponseId": "en:lesson-12:session-40:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-40:i06",
+    "correctText": "chose",
+    "correctResponseId": "en:lesson-12:session-40:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-40:word:hazelnut",
+    "correctText": "hazelnut",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-40:i07",
+    "correctText": "I wanted a hazelnut.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-40:i08",
+    "correctText": "She wanted hazelnuts.",
+    "correctResponseId": "en:lesson-12:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-40:i09",
+    "correctText": "wanted",
+    "correctResponseId": "en:lesson-12:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-40:word:pistachio",
+    "correctText": "pistachio",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-40:i10",
+    "correctText": "I chose a pistachio.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-40:i11",
+    "correctText": "He packed the pistachios.",
+    "correctResponseId": "en:lesson-12:session-40:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-40:i12",
+    "correctText": "packed",
+    "correctResponseId": "en:lesson-12:session-40:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-40:i13",
+    "correctText": "en:lesson-12:session-40:i13:p1=cashew\nen:lesson-12:session-40:i13:p2=walnut\nen:lesson-12:session-40:i13:p3=hazelnut\nen:lesson-12:session-40:i13:p4=pistachio",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-40:i14",
+    "correctText": "She packed the almonds.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-40:i15",
+    "correctText": "We wanted a bowl of nuts.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-40:i16",
+    "correctText": "The walnuts were on the table yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-40:i17",
+    "correctText": "I packed the pistachios for the picnic.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-37",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-37:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-37:intro1:r2": {
+          "ru": "Для прошлого нужна had.",
+          "uk": "Для минулого потрібна had."
+        },
+        "en:lesson-12:session-37:intro1:r3": {
+          "ru": "Has — не прошлое и не форма с we.",
+          "uk": "Has — не минуле й не форма з we."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-37:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-37:intro2:r2": {
+          "ru": "Это использование выхода, не наблюдение за сигнализацией.",
+          "uk": "Це використання виходу, не спостереження за сигналізацією."
+        },
+        "en:lesson-12:session-37:intro2:r3": {
+          "ru": "Для прошлого нужна noticed.",
+          "uk": "Для минулого потрібна noticed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-37:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-37:intro3:r2": {
+          "ru": "Это место расположения, не ожидание.",
+          "uk": "Це місце розташування, не очікування."
+        },
+        "en:lesson-12:session-37:intro3:r3": {
+          "ru": "Для прошлого нужна waited.",
+          "uk": "Для минулого потрібна waited."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5e9a0276f275a461b21114a8c65bd8526cc52e8ae96e1b94763a47f82e29cffa"
+}

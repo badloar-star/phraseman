@@ -1,0 +1,1111 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-40",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-40:word:cashew",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cashew",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-40:word:cashew:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cashew",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-40:word:cashew:audio",
+          "transcript": "cashew"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-40:word:cashew:r1",
+            "targetText": "cashew",
+            "meaningByLocale": {
+              "ru": "орех кешью.",
+              "uk": "горіх кеш’ю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cashew",
+          "definitionByLocale": {
+            "ru": "орех кешью.",
+            "uk": "горіх кеш’ю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-40:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я вибрав горіх кеш’ю",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я вибрав горіх кеш’ю",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I chose a cashew.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я выбрал орех кешью",
+          "uk": "Скажіть: Я вибрав горіх кеш’ю"
+        },
+        "orderedTokens": [
+          "I",
+          "chose",
+          "a",
+          "cashew"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-40:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-40:i02:r1",
+          "text": "She chose a cashew."
+        },
+        {
+          "responseId": "en:lesson-12:session-40:i02:r2",
+          "text": "She chooses a cashew."
+        },
+        {
+          "responseId": "en:lesson-12:session-40:i02:r3",
+          "text": "We chose a cashew."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-40:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-40:i02:audio",
+          "transcript": "She chose a cashew."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-40:i02:r1",
+            "targetText": "She chose a cashew.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i02:r2",
+            "targetText": "She chooses a cashew.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i02:r3",
+            "targetText": "We chose a cashew.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-40:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She chose a cashew.",
+              "uk": "У записі звучить She chose a cashew."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She chose a cashew.",
+              "uk": "У записі звучить She chose a cashew."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-40:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-40:i03:r1",
+          "text": "chose"
+        },
+        {
+          "responseId": "en:lesson-12:session-40:i03:r2",
+          "text": "choose"
+        },
+        {
+          "responseId": "en:lesson-12:session-40:i03:r3",
+          "text": "chooses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ a cashew yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-40:i03:r1",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i03:r2",
+            "text": "choose"
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i03:r3",
+            "text": "chooses"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-40:i03:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма chose.",
+              "uk": "Для минулого потрібна форма chose."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i03:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна chose.",
+              "uk": "Це не форма минулого. Потрібна chose."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-40:word:walnut",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — walnut",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-40:word:walnut:audio"
+      ],
+      "accessibilityLabel": "Картка слова — walnut",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-40:word:walnut:audio",
+          "transcript": "walnut"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-40:word:walnut:r1",
+            "targetText": "walnut",
+            "meaningByLocale": {
+              "ru": "грецкий орех.",
+              "uk": "волоський горіх."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "walnut",
+          "definitionByLocale": {
+            "ru": "грецкий орех.",
+            "uk": "волоський горіх."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-40:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я вибрав волоський горіх",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я вибрав волоський горіх",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I chose a walnut.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я выбрал грецкий орех",
+          "uk": "Скажіть: Я вибрав волоський горіх"
+        },
+        "orderedTokens": [
+          "I",
+          "chose",
+          "a",
+          "walnut"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-40:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-40:i05:r1",
+          "text": "We chose a walnut."
+        },
+        {
+          "responseId": "en:lesson-12:session-40:i05:r2",
+          "text": "We choose a walnut."
+        },
+        {
+          "responseId": "en:lesson-12:session-40:i05:r3",
+          "text": "She chose a walnut."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-40:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-40:i05:audio",
+          "transcript": "We chose a walnut."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-40:i05:r1",
+            "targetText": "We chose a walnut.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i05:r2",
+            "targetText": "We choose a walnut.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i05:r3",
+            "targetText": "She chose a walnut.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-40:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We chose a walnut.",
+              "uk": "У записі звучить We chose a walnut."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We chose a walnut.",
+              "uk": "У записі звучить We chose a walnut."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-40:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-40:i06:r1",
+          "text": "chose"
+        },
+        {
+          "responseId": "en:lesson-12:session-40:i06:r2",
+          "text": "choose"
+        },
+        {
+          "responseId": "en:lesson-12:session-40:i06:r3",
+          "text": "chooses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ a walnut yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-40:i06:r1",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i06:r2",
+            "text": "choose"
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i06:r3",
+            "text": "chooses"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-40:i06:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма chose.",
+              "uk": "Для минулого потрібна форма chose."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i06:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна chose.",
+              "uk": "Це не форма минулого. Потрібна chose."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-40:word:hazelnut",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hazelnut",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-40:word:hazelnut:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hazelnut",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-40:word:hazelnut:audio",
+          "transcript": "hazelnut"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-40:word:hazelnut:r1",
+            "targetText": "hazelnut",
+            "meaningByLocale": {
+              "ru": "лесной орех, фундук.",
+              "uk": "лісовий горіх, фундук."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hazelnut",
+          "definitionByLocale": {
+            "ru": "лесной орех, фундук.",
+            "uk": "лісовий горіх, фундук."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-40:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я хотів горіх фундука",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я хотів горіх фундука",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wanted a hazelnut.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я хотел орех фундука",
+          "uk": "Скажіть: Я хотів горіх фундука"
+        },
+        "orderedTokens": [
+          "I",
+          "wanted",
+          "a",
+          "hazelnut"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-40:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-40:i08:r1",
+          "text": "She wanted hazelnuts."
+        },
+        {
+          "responseId": "en:lesson-12:session-40:i08:r2",
+          "text": "She wants hazelnuts."
+        },
+        {
+          "responseId": "en:lesson-12:session-40:i08:r3",
+          "text": "They wanted hazelnuts."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-40:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-40:i08:audio",
+          "transcript": "She wanted hazelnuts."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-40:i08:r1",
+            "targetText": "She wanted hazelnuts.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i08:r2",
+            "targetText": "She wants hazelnuts.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i08:r3",
+            "targetText": "They wanted hazelnuts.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-40:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She wanted hazelnuts.",
+              "uk": "У записі звучить She wanted hazelnuts."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She wanted hazelnuts.",
+              "uk": "У записі звучить She wanted hazelnuts."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-40:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-40:i09:r1",
+          "text": "wanted"
+        },
+        {
+          "responseId": "en:lesson-12:session-40:i09:r2",
+          "text": "want"
+        },
+        {
+          "responseId": "en:lesson-12:session-40:i09:r3",
+          "text": "wants"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "We ___ hazelnuts yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-40:i09:r1",
+            "text": "wanted"
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i09:r2",
+            "text": "want"
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i09:r3",
+            "text": "wants"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-40:i09:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма wanted.",
+              "uk": "Для минулого потрібна форма wanted."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i09:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна wanted.",
+              "uk": "Це не форма минулого. Потрібна wanted."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-40:word:pistachio",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pistachio",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-40:word:pistachio:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pistachio",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-40:word:pistachio:audio",
+          "transcript": "pistachio"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-40:word:pistachio:r1",
+            "targetText": "pistachio",
+            "meaningByLocale": {
+              "ru": "фисташка.",
+              "uk": "фісташка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pistachio",
+          "definitionByLocale": {
+            "ru": "фисташка.",
+            "uk": "фісташка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-40:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я вибрав фісташку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я вибрав фісташку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I chose a pistachio.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я выбрал фисташку",
+          "uk": "Скажіть: Я вибрав фісташку"
+        },
+        "orderedTokens": [
+          "I",
+          "chose",
+          "a",
+          "pistachio"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-40:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-40:i11:r1",
+          "text": "He packed the pistachios."
+        },
+        {
+          "responseId": "en:lesson-12:session-40:i11:r2",
+          "text": "He packs the pistachios."
+        },
+        {
+          "responseId": "en:lesson-12:session-40:i11:r3",
+          "text": "We packed the pistachios."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-40:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-40:i11:audio",
+          "transcript": "He packed the pistachios."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-40:i11:r1",
+            "targetText": "He packed the pistachios.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i11:r2",
+            "targetText": "He packs the pistachios.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i11:r3",
+            "targetText": "We packed the pistachios.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-40:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He packed the pistachios.",
+              "uk": "У записі звучить He packed the pistachios."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He packed the pistachios.",
+              "uk": "У записі звучить He packed the pistachios."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-40:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-40:i12:r1",
+          "text": "packed"
+        },
+        {
+          "responseId": "en:lesson-12:session-40:i12:r2",
+          "text": "pack"
+        },
+        {
+          "responseId": "en:lesson-12:session-40:i12:r3",
+          "text": "packs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ the pistachios yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-40:i12:r1",
+            "text": "packed"
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i12:r2",
+            "text": "pack"
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i12:r3",
+            "text": "packs"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-40:i12:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма packed.",
+              "uk": "Для минулого потрібна форма packed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-40:i12:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна packed.",
+              "uk": "Це не форма минулого. Потрібна packed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-40:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-40:i13:p1",
+            "target": "cashew",
+            "meaningByLocale": {
+              "ru": "орех кешью",
+              "uk": "горіх кеш’ю"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-40:i13:p2",
+            "target": "walnut",
+            "meaningByLocale": {
+              "ru": "грецкий орех",
+              "uk": "волоський горіх"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-40:i13:p3",
+            "target": "hazelnut",
+            "meaningByLocale": {
+              "ru": "лесной орех, фундук",
+              "uk": "лісовий горіх, фундук"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-40:i13:p4",
+            "target": "pistachio",
+            "meaningByLocale": {
+              "ru": "фисташка",
+              "uk": "фісташка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cashew",
+          "walnut",
+          "hazelnut",
+          "pistachio"
+        ],
+        "rightColumn": [
+          "горіх кеш’ю",
+          "волоський горіх",
+          "лісовий горіх, фундук",
+          "фісташка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-40:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-40:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-40:i14:audio",
+          "transcript": "She packed the almonds."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She packed the almonds.",
+        "orderedTokens": [
+          "She",
+          "packed",
+          "the",
+          "almonds"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-40:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-40:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-40:i15:audio",
+          "transcript": "We wanted a bowl of nuts."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We wanted a bowl of nuts.",
+        "orderedTokens": [
+          "We",
+          "wanted",
+          "a",
+          "bowl",
+          "of",
+          "nuts"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-40:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: учора волоські горіхи були на столі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-40:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: учора волоські горіхи були на столі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-40:i16:audio",
+          "transcript": "The walnuts were on the table yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The walnuts were on the table yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-40:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: я запакував фісташки для пікніка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-40:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: я запакував фісташки для пікніка",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-40:i17:audio",
+          "transcript": "I packed the pistachios for the picnic."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I packed the pistachios for the picnic.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2d673fb6f86fd3a8f60b3244fc82a437b10d45d6b8639a8db81f58acec856750"
+}

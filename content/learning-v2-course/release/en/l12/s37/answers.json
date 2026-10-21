@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-37:word:fire-drill",
+    "correctText": "fire drill",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-37:i01",
+    "correctText": "We had a fire drill.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-37:i02",
+    "correctText": "She had a fire drill at school.",
+    "correctResponseId": "en:lesson-12:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-37:i03",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-12:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-37:word:fire-alarm",
+    "correctText": "fire alarm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-37:i04",
+    "correctText": "I noticed the fire alarm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-37:i05",
+    "correctText": "We noticed the fire alarm.",
+    "correctResponseId": "en:lesson-12:session-37:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-37:i06",
+    "correctText": "noticed",
+    "correctResponseId": "en:lesson-12:session-37:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-37:word:fire-exit",
+    "correctText": "fire exit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-37:i07",
+    "correctText": "We used the fire exit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-37:i08",
+    "correctText": "I used the fire exit.",
+    "correctResponseId": "en:lesson-12:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-37:i09",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-37:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-37:word:meeting-point",
+    "correctText": "meeting point",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-37:i10",
+    "correctText": "I waited at the meeting point.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-37:i11",
+    "correctText": "They waited at the meeting point.",
+    "correctResponseId": "en:lesson-12:session-37:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-37:i12",
+    "correctText": "waited",
+    "correctResponseId": "en:lesson-12:session-37:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-37:i13",
+    "correctText": "en:lesson-12:session-37:i13:p1=fire drill\nen:lesson-12:session-37:i13:p2=fire alarm\nen:lesson-12:session-37:i13:p3=fire exit\nen:lesson-12:session-37:i13:p4=meeting point",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-37:i14",
+    "correctText": "We waited outside the school.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-37:i15",
+    "correctText": "She helped her friend yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-37:i16",
+    "correctText": "The meeting point was near the gate yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-37:i17",
+    "correctText": "I noticed the fire exit near the stairs.",
+    "correctResponseId": null
+  }
+]

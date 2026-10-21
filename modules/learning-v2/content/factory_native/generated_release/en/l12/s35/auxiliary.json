@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-35",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-35:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-35:intro1:r2": {
+          "ru": "Это отец супруга или супруги, а нужна мать.",
+          "uk": "Це батько чоловіка або дружини, а потрібна мати."
+        },
+        "en:lesson-12:session-35:intro1:r3": {
+          "ru": "Для прошлого нужна visited.",
+          "uk": "Для минулого потрібна visited."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-35:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-35:intro2:r2": {
+          "ru": "Для прошлого нужна visited.",
+          "uk": "Для минулого потрібна visited."
+        },
+        "en:lesson-12:session-35:intro2:r3": {
+          "ru": "Visits — не прошлое и не форма с we.",
+          "uk": "Visits — не минуле й не форма з we."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-35:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-35:intro3:r2": {
+          "ru": "Это состояние человека, не помощь.",
+          "uk": "Це стан людини, не допомога."
+        },
+        "en:lesson-12:session-35:intro3:r3": {
+          "ru": "Для прошлого нужна helped.",
+          "uk": "Для минулого потрібна helped."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "042626cd54684c2cd4c5aadb2e34309029029fe261e92a02303329590d8deccd"
+}

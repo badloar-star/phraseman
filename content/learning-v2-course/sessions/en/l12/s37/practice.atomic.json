@@ -1,0 +1,2321 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-12:session-37",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-12:session-37:word:fire-drill",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fire drill",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:word:fire-drill:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fire drill",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:word:fire-drill:audio",
+            "transcript": "fire drill"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-37:word:fire-drill:r1",
+              "targetText": "fire drill",
+              "meaningByLocale": {
+                "ru": "учебная пожарная тревога.",
+                "uk": "навчальна пожежна тривога."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fire drill",
+            "definitionByLocale": {
+              "ru": "учебная пожарная тревога.",
+              "uk": "навчальна пожежна тривога."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: У нас была учебная пожарная тревога",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: У нас была учебная пожарная тревога",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We had a fire drill.",
+          "localizedMeaning": {
+            "ru": "Скажите: У нас была учебная пожарная тревога",
+            "uk": "Скажіть: У нас була навчальна пожежна тривога"
+          },
+          "orderedTokens": [
+            "We",
+            "had",
+            "a",
+            "fire",
+            "drill"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-37:i02:r1",
+            "text": "She had a fire drill at school."
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i02:r2",
+            "text": "She has a fire drill at school."
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i02:r3",
+            "text": "We had a fire drill at school."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:i02:audio",
+            "transcript": "She had a fire drill at school."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-37:i02:r1",
+              "targetText": "She had a fire drill at school.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i02:r2",
+              "targetText": "She has a fire drill at school.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i02:r3",
+              "targetText": "We had a fire drill at school.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-37:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had a fire drill at school.",
+                "uk": "У записі звучить She had a fire drill at school."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had a fire drill at school.",
+                "uk": "У записі звучить She had a fire drill at school."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-37:i03:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i03:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i03:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "They ___ a fire drill yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-37:i03:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i03:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i03:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-37:i03:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма had.",
+                "uk": "Для минулого потрібна форма had."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i03:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна had.",
+                "uk": "Це не форма минулого. Потрібна had."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:word:fire-alarm",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fire alarm",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:word:fire-alarm:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fire alarm",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:word:fire-alarm:audio",
+            "transcript": "fire alarm"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-37:word:fire-alarm:r1",
+              "targetText": "fire alarm",
+              "meaningByLocale": {
+                "ru": "пожарная сигнализация.",
+                "uk": "пожежна сигналізація."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fire alarm",
+            "definitionByLocale": {
+              "ru": "пожарная сигнализация.",
+              "uk": "пожежна сигналізація."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я заметил пожарную сигнализацию",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я заметил пожарную сигнализацию",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I noticed the fire alarm.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я заметил пожарную сигнализацию",
+            "uk": "Скажіть: Я помітив пожежну сигналізацію"
+          },
+          "orderedTokens": [
+            "I",
+            "noticed",
+            "the",
+            "fire",
+            "alarm"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-37:i05:r1",
+            "text": "We noticed the fire alarm."
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i05:r2",
+            "text": "We notice the fire alarm."
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i05:r3",
+            "text": "She noticed the fire alarm."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:i05:audio",
+            "transcript": "We noticed the fire alarm."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-37:i05:r1",
+              "targetText": "We noticed the fire alarm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i05:r2",
+              "targetText": "We notice the fire alarm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i05:r3",
+              "targetText": "She noticed the fire alarm.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-37:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We noticed the fire alarm.",
+                "uk": "У записі звучить We noticed the fire alarm."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We noticed the fire alarm.",
+                "uk": "У записі звучить We noticed the fire alarm."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-37:i06:r1",
+            "text": "noticed"
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i06:r2",
+            "text": "notice"
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i06:r3",
+            "text": "notices"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ the fire alarm yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-37:i06:r1",
+              "text": "noticed"
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i06:r2",
+              "text": "notice"
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i06:r3",
+              "text": "notices"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-37:i06:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма noticed.",
+                "uk": "Для минулого потрібна форма noticed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i06:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна noticed.",
+                "uk": "Це не форма минулого. Потрібна noticed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:word:fire-exit",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fire exit",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:word:fire-exit:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fire exit",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:word:fire-exit:audio",
+            "transcript": "fire exit"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-37:word:fire-exit:r1",
+              "targetText": "fire exit",
+              "meaningByLocale": {
+                "ru": "пожарный выход.",
+                "uk": "пожежний вихід."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fire exit",
+            "definitionByLocale": {
+              "ru": "пожарный выход.",
+              "uk": "пожежний вихід."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Мы воспользовались пожарным выходом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Мы воспользовались пожарным выходом",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used the fire exit.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы воспользовались пожарным выходом",
+            "uk": "Скажіть: Ми скористалися пожежним виходом"
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "the",
+            "fire",
+            "exit"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-37:i08:r1",
+            "text": "I used the fire exit."
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i08:r2",
+            "text": "I use the fire exit."
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i08:r3",
+            "text": "She used the fire exit."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:i08:audio",
+            "transcript": "I used the fire exit."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-37:i08:r1",
+              "targetText": "I used the fire exit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i08:r2",
+              "targetText": "I use the fire exit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i08:r3",
+              "targetText": "She used the fire exit.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-37:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used the fire exit.",
+                "uk": "У записі звучить I used the fire exit."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used the fire exit.",
+                "uk": "У записі звучить I used the fire exit."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-37:i09:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i09:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i09:r3",
+            "text": "uses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "They ___ the fire exit yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-37:i09:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i09:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i09:r3",
+              "text": "uses"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-37:i09:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма used.",
+                "uk": "Для минулого потрібна форма used."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i09:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна used.",
+                "uk": "Це не форма минулого. Потрібна used."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:word:meeting-point",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — meeting point",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:word:meeting-point:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — meeting point",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:word:meeting-point:audio",
+            "transcript": "meeting point"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-37:word:meeting-point:r1",
+              "targetText": "meeting point",
+              "meaningByLocale": {
+                "ru": "место встречи или сбора.",
+                "uk": "місце зустрічі або збору."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "meeting point",
+            "definitionByLocale": {
+              "ru": "место встречи или сбора.",
+              "uk": "місце зустрічі або збору."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я ждал в месте сбора",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я ждал в месте сбора",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I waited at the meeting point.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я ждал в месте сбора",
+            "uk": "Скажіть: Я чекав у місці збору"
+          },
+          "orderedTokens": [
+            "I",
+            "waited",
+            "at",
+            "the",
+            "meeting",
+            "point"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-37:i11:r1",
+            "text": "They waited at the meeting point."
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i11:r2",
+            "text": "They wait at the meeting point."
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i11:r3",
+            "text": "She waited at the meeting point."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:i11:audio",
+            "transcript": "They waited at the meeting point."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-37:i11:r1",
+              "targetText": "They waited at the meeting point.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i11:r2",
+              "targetText": "They wait at the meeting point.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i11:r3",
+              "targetText": "She waited at the meeting point.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-37:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They waited at the meeting point.",
+                "uk": "У записі звучить They waited at the meeting point."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They waited at the meeting point.",
+                "uk": "У записі звучить They waited at the meeting point."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-37:i12:r1",
+            "text": "waited"
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i12:r2",
+            "text": "wait"
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i12:r3",
+            "text": "waits"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "We ___ at the meeting point yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-37:i12:r1",
+              "text": "waited"
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i12:r2",
+              "text": "wait"
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i12:r3",
+              "text": "waits"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-37:i12:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма waited.",
+                "uk": "Для минулого потрібна форма waited."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i12:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна waited.",
+                "uk": "Це не форма минулого. Потрібна waited."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-37:i13:p1",
+              "target": "fire drill",
+              "meaningByLocale": {
+                "ru": "учебная пожарная тревога",
+                "uk": "навчальна пожежна тривога"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-37:i13:p2",
+              "target": "fire alarm",
+              "meaningByLocale": {
+                "ru": "пожарная сигнализация",
+                "uk": "пожежна сигналізація"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-37:i13:p3",
+              "target": "fire exit",
+              "meaningByLocale": {
+                "ru": "пожарный выход",
+                "uk": "пожежний вихід"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-37:i13:p4",
+              "target": "meeting point",
+              "meaningByLocale": {
+                "ru": "место встречи или сбора",
+                "uk": "місце зустрічі або збору"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fire drill",
+            "fire alarm",
+            "fire exit",
+            "meeting point"
+          ],
+          "rightColumn": [
+            "учебная пожарная тревога",
+            "пожарная сигнализация",
+            "пожарный выход",
+            "место встречи или сбора"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:i14:audio",
+            "transcript": "We waited outside the school."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We waited outside the school.",
+          "orderedTokens": [
+            "We",
+            "waited",
+            "outside",
+            "the",
+            "school"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:i15:audio",
+            "transcript": "She helped her friend yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She helped her friend yesterday.",
+          "orderedTokens": [
+            "She",
+            "helped",
+            "her",
+            "friend",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: вчера место сбора было возле ворот",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: вчера место сбора было возле ворот",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:i16:audio",
+            "transcript": "The meeting point was near the gate yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The meeting point was near the gate yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: я заметил пожарный выход возле лестницы",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: я заметил пожарный выход возле лестницы",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:i17:audio",
+            "transcript": "I noticed the fire exit near the stairs."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I noticed the fire exit near the stairs.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-12:session-37:word:fire-drill",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fire drill",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:word:fire-drill:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fire drill",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:word:fire-drill:audio",
+            "transcript": "fire drill"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-37:word:fire-drill:r1",
+              "targetText": "fire drill",
+              "meaningByLocale": {
+                "ru": "учебная пожарная тревога.",
+                "uk": "навчальна пожежна тривога."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fire drill",
+            "definitionByLocale": {
+              "ru": "учебная пожарная тревога.",
+              "uk": "навчальна пожежна тривога."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: У нас була навчальна пожежна тривога",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: У нас була навчальна пожежна тривога",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We had a fire drill.",
+          "localizedMeaning": {
+            "ru": "Скажите: У нас была учебная пожарная тревога",
+            "uk": "Скажіть: У нас була навчальна пожежна тривога"
+          },
+          "orderedTokens": [
+            "We",
+            "had",
+            "a",
+            "fire",
+            "drill"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-37:i02:r1",
+            "text": "She had a fire drill at school."
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i02:r2",
+            "text": "She has a fire drill at school."
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i02:r3",
+            "text": "We had a fire drill at school."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:i02:audio",
+            "transcript": "She had a fire drill at school."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-37:i02:r1",
+              "targetText": "She had a fire drill at school.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i02:r2",
+              "targetText": "She has a fire drill at school.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i02:r3",
+              "targetText": "We had a fire drill at school.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-37:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had a fire drill at school.",
+                "uk": "У записі звучить She had a fire drill at school."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She had a fire drill at school.",
+                "uk": "У записі звучить She had a fire drill at school."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-37:i03:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i03:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i03:r3",
+            "text": "has"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "They ___ a fire drill yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-37:i03:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i03:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i03:r3",
+              "text": "has"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-37:i03:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма had.",
+                "uk": "Для минулого потрібна форма had."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i03:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна had.",
+                "uk": "Це не форма минулого. Потрібна had."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:word:fire-alarm",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fire alarm",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:word:fire-alarm:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fire alarm",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:word:fire-alarm:audio",
+            "transcript": "fire alarm"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-37:word:fire-alarm:r1",
+              "targetText": "fire alarm",
+              "meaningByLocale": {
+                "ru": "пожарная сигнализация.",
+                "uk": "пожежна сигналізація."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fire alarm",
+            "definitionByLocale": {
+              "ru": "пожарная сигнализация.",
+              "uk": "пожежна сигналізація."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я помітив пожежну сигналізацію",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я помітив пожежну сигналізацію",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I noticed the fire alarm.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я заметил пожарную сигнализацию",
+            "uk": "Скажіть: Я помітив пожежну сигналізацію"
+          },
+          "orderedTokens": [
+            "I",
+            "noticed",
+            "the",
+            "fire",
+            "alarm"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-37:i05:r1",
+            "text": "We noticed the fire alarm."
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i05:r2",
+            "text": "We notice the fire alarm."
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i05:r3",
+            "text": "She noticed the fire alarm."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:i05:audio",
+            "transcript": "We noticed the fire alarm."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-37:i05:r1",
+              "targetText": "We noticed the fire alarm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i05:r2",
+              "targetText": "We notice the fire alarm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i05:r3",
+              "targetText": "She noticed the fire alarm.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-37:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We noticed the fire alarm.",
+                "uk": "У записі звучить We noticed the fire alarm."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We noticed the fire alarm.",
+                "uk": "У записі звучить We noticed the fire alarm."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-37:i06:r1",
+            "text": "noticed"
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i06:r2",
+            "text": "notice"
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i06:r3",
+            "text": "notices"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ the fire alarm yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-37:i06:r1",
+              "text": "noticed"
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i06:r2",
+              "text": "notice"
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i06:r3",
+              "text": "notices"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-37:i06:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма noticed.",
+                "uk": "Для минулого потрібна форма noticed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i06:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна noticed.",
+                "uk": "Це не форма минулого. Потрібна noticed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:word:fire-exit",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fire exit",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:word:fire-exit:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fire exit",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:word:fire-exit:audio",
+            "transcript": "fire exit"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-37:word:fire-exit:r1",
+              "targetText": "fire exit",
+              "meaningByLocale": {
+                "ru": "пожарный выход.",
+                "uk": "пожежний вихід."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fire exit",
+            "definitionByLocale": {
+              "ru": "пожарный выход.",
+              "uk": "пожежний вихід."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ми скористалися пожежним виходом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ми скористалися пожежним виходом",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We used the fire exit.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы воспользовались пожарным выходом",
+            "uk": "Скажіть: Ми скористалися пожежним виходом"
+          },
+          "orderedTokens": [
+            "We",
+            "used",
+            "the",
+            "fire",
+            "exit"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-37:i08:r1",
+            "text": "I used the fire exit."
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i08:r2",
+            "text": "I use the fire exit."
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i08:r3",
+            "text": "She used the fire exit."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:i08:audio",
+            "transcript": "I used the fire exit."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-37:i08:r1",
+              "targetText": "I used the fire exit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i08:r2",
+              "targetText": "I use the fire exit.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i08:r3",
+              "targetText": "She used the fire exit.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-37:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used the fire exit.",
+                "uk": "У записі звучить I used the fire exit."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used the fire exit.",
+                "uk": "У записі звучить I used the fire exit."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-37:i09:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i09:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i09:r3",
+            "text": "uses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "They ___ the fire exit yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-37:i09:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i09:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i09:r3",
+              "text": "uses"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-37:i09:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма used.",
+                "uk": "Для минулого потрібна форма used."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i09:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна used.",
+                "uk": "Це не форма минулого. Потрібна used."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:word:meeting-point",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — meeting point",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:word:meeting-point:audio"
+        ],
+        "accessibilityLabel": "Картка слова — meeting point",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:word:meeting-point:audio",
+            "transcript": "meeting point"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-37:word:meeting-point:r1",
+              "targetText": "meeting point",
+              "meaningByLocale": {
+                "ru": "место встречи или сбора.",
+                "uk": "місце зустрічі або збору."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "meeting point",
+            "definitionByLocale": {
+              "ru": "место встречи или сбора.",
+              "uk": "місце зустрічі або збору."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я чекав у місці збору",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я чекав у місці збору",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I waited at the meeting point.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я ждал в месте сбора",
+            "uk": "Скажіть: Я чекав у місці збору"
+          },
+          "orderedTokens": [
+            "I",
+            "waited",
+            "at",
+            "the",
+            "meeting",
+            "point"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-37:i11:r1",
+            "text": "They waited at the meeting point."
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i11:r2",
+            "text": "They wait at the meeting point."
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i11:r3",
+            "text": "She waited at the meeting point."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:i11:audio",
+            "transcript": "They waited at the meeting point."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-37:i11:r1",
+              "targetText": "They waited at the meeting point.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i11:r2",
+              "targetText": "They wait at the meeting point.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i11:r3",
+              "targetText": "She waited at the meeting point.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-37:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They waited at the meeting point.",
+                "uk": "У записі звучить They waited at the meeting point."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They waited at the meeting point.",
+                "uk": "У записі звучить They waited at the meeting point."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-37:i12:r1",
+            "text": "waited"
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i12:r2",
+            "text": "wait"
+          },
+          {
+            "responseId": "en:lesson-12:session-37:i12:r3",
+            "text": "waits"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "We ___ at the meeting point yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-37:i12:r1",
+              "text": "waited"
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i12:r2",
+              "text": "wait"
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i12:r3",
+              "text": "waits"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-37:i12:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма waited.",
+                "uk": "Для минулого потрібна форма waited."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-37:i12:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна waited.",
+                "uk": "Це не форма минулого. Потрібна waited."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-37:i13:p1",
+              "target": "fire drill",
+              "meaningByLocale": {
+                "ru": "учебная пожарная тревога",
+                "uk": "навчальна пожежна тривога"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-37:i13:p2",
+              "target": "fire alarm",
+              "meaningByLocale": {
+                "ru": "пожарная сигнализация",
+                "uk": "пожежна сигналізація"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-37:i13:p3",
+              "target": "fire exit",
+              "meaningByLocale": {
+                "ru": "пожарный выход",
+                "uk": "пожежний вихід"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-37:i13:p4",
+              "target": "meeting point",
+              "meaningByLocale": {
+                "ru": "место встречи или сбора",
+                "uk": "місце зустрічі або збору"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fire drill",
+            "fire alarm",
+            "fire exit",
+            "meeting point"
+          ],
+          "rightColumn": [
+            "навчальна пожежна тривога",
+            "пожежна сигналізація",
+            "пожежний вихід",
+            "місце зустрічі або збору"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:i14:audio",
+            "transcript": "We waited outside the school."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We waited outside the school.",
+          "orderedTokens": [
+            "We",
+            "waited",
+            "outside",
+            "the",
+            "school"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:i15:audio",
+            "transcript": "She helped her friend yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She helped her friend yesterday.",
+          "orderedTokens": [
+            "She",
+            "helped",
+            "her",
+            "friend",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: учора місце збору було біля воріт",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: учора місце збору було біля воріт",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:i16:audio",
+            "transcript": "The meeting point was near the gate yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The meeting point was near the gate yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-37:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: я помітив пожежний вихід біля сходів",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-37:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: я помітив пожежний вихід біля сходів",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-37:i17:audio",
+            "transcript": "I noticed the fire exit near the stairs."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I noticed the fire exit near the stairs.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-12:session-37:word:fire-drill",
+      "correctText": "fire drill",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-37:i01",
+      "correctText": "We had a fire drill.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-37:i02",
+      "correctText": "She had a fire drill at school.",
+      "correctResponseId": "en:lesson-12:session-37:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-37:i03",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-12:session-37:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-37:word:fire-alarm",
+      "correctText": "fire alarm",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-37:i04",
+      "correctText": "I noticed the fire alarm.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-37:i05",
+      "correctText": "We noticed the fire alarm.",
+      "correctResponseId": "en:lesson-12:session-37:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-37:i06",
+      "correctText": "noticed",
+      "correctResponseId": "en:lesson-12:session-37:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-37:word:fire-exit",
+      "correctText": "fire exit",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-37:i07",
+      "correctText": "We used the fire exit.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-37:i08",
+      "correctText": "I used the fire exit.",
+      "correctResponseId": "en:lesson-12:session-37:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-37:i09",
+      "correctText": "used",
+      "correctResponseId": "en:lesson-12:session-37:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-37:word:meeting-point",
+      "correctText": "meeting point",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-37:i10",
+      "correctText": "I waited at the meeting point.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-37:i11",
+      "correctText": "They waited at the meeting point.",
+      "correctResponseId": "en:lesson-12:session-37:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-37:i12",
+      "correctText": "waited",
+      "correctResponseId": "en:lesson-12:session-37:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-37:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-37:i14",
+      "correctText": "We waited outside the school.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-37:i15",
+      "correctText": "She helped her friend yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-37:i16",
+      "correctText": "The meeting point was near the gate yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-37:i17",
+      "correctText": "I noticed the fire exit near the stairs.",
+      "correctResponseId": null
+    }
+  ]
+}

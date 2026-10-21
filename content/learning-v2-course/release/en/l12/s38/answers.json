@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-38:word:desk-lamp",
+    "correctText": "desk lamp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-38:i01",
+    "correctText": "I used the desk lamp.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-38:i02",
+    "correctText": "She used the desk lamp.",
+    "correctResponseId": "en:lesson-12:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-38:i03",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-38:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-38:word:ceiling-fan",
+    "correctText": "ceiling fan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-38:i04",
+    "correctText": "We used the ceiling fan.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-38:i05",
+    "correctText": "I used the ceiling fan.",
+    "correctResponseId": "en:lesson-12:session-38:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-38:i06",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-38:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-38:word:wall-clock",
+    "correctText": "wall clock",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-38:i07",
+    "correctText": "I checked the wall clock.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-38:i08",
+    "correctText": "We checked the wall clock.",
+    "correctResponseId": "en:lesson-12:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-38:i09",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-38:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-38:word:door-chain",
+    "correctText": "door chain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-38:i10",
+    "correctText": "I checked the door chain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-38:i11",
+    "correctText": "They checked the door chain.",
+    "correctResponseId": "en:lesson-12:session-38:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-38:i12",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-38:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-38:i13",
+    "correctText": "en:lesson-12:session-38:i13:p1=desk lamp\nen:lesson-12:session-38:i13:p2=ceiling fan\nen:lesson-12:session-38:i13:p3=wall clock\nen:lesson-12:session-38:i13:p4=door chain",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-38:i14",
+    "correctText": "She cleaned the desk lamp.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-38:i15",
+    "correctText": "We checked the door handle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-38:i16",
+    "correctText": "The wall clock was above the door yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-38:i17",
+    "correctText": "I used the ceiling fan after lunch.",
+    "correctResponseId": null
+  }
+]

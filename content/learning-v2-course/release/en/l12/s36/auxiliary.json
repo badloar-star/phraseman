@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-36",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-36:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-36:intro1:r2": {
+          "ru": "Для прошлого нужна crossed.",
+          "uk": "Для минулого потрібна crossed."
+        },
+        "en:lesson-12:session-36:intro1:r3": {
+          "ru": "Crosses — не прошлое и не форма с we.",
+          "uk": "Crosses — не минуле й не форма з we."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-36:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-36:intro2:r2": {
+          "ru": "Это посещение парка, не парковка.",
+          "uk": "Це відвідування парку, не паркування."
+        },
+        "en:lesson-12:session-36:intro2:r3": {
+          "ru": "Для прошлого нужна parked.",
+          "uk": "Для минулого потрібна parked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-36:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-36:intro3:r2": {
+          "ru": "Это описание улицы, не посещение.",
+          "uk": "Це опис вулиці, не відвідування."
+        },
+        "en:lesson-12:session-36:intro3:r3": {
+          "ru": "Для прошлого нужна visited.",
+          "uk": "Для минулого потрібна visited."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c5158c393d2beec5abbdb7521ed10fceae46317a9444b2c82cd85e51eb782fe8"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "finished event: had, noticed, used, waited",
+    "uk": "finished event: had, noticed, used, waited"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Учебная тревога",
+        "uk": "Навчальна тривога"
+      },
+      "bodyByLocale": {
+        "ru": "Fire drill — «учебная пожарная тревога», тренировка, а не настоящий пожар. We had a fire drill yesterday — вчера у нас была учебная пожарная тревога. Выберите сообщение о прошлом.",
+        "uk": "Fire drill — «навчальна пожежна тривога», тренування, а не справжня пожежа. We had a fire drill yesterday — учора в нас була навчальна пожежна тривога. Виберіть повідомлення про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-37:intro1:r1",
+              "text": "We had a fire drill yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-37:intro1:r2",
+              "text": "We have a fire drill yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-37:intro1:r3",
+              "text": "We has a fire drill yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-37:intro1:r1",
+              "text": "We had a fire drill yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-37:intro1:r2",
+              "text": "We have a fire drill yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-37:intro1:r3",
+              "text": "We has a fire drill yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сигнализация и выход",
+        "uk": "Сигналізація й вихід"
+      },
+      "bodyByLocale": {
+        "ru": "Fire alarm — «пожарная сигнализация», fire exit — «пожарный выход». I noticed the fire alarm — я заметил пожарную сигнализацию. Выберите сообщение о сигнализации.",
+        "uk": "Fire alarm — «пожежна сигналізація», fire exit — «пожежний вихід». I noticed the fire alarm — я помітив пожежну сигналізацію. Виберіть повідомлення про сигналізацію."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-37:intro2:r1",
+              "text": "I noticed the fire alarm."
+            },
+            {
+              "responseId": "en:lesson-12:session-37:intro2:r2",
+              "text": "I used the fire exit."
+            },
+            {
+              "responseId": "en:lesson-12:session-37:intro2:r3",
+              "text": "I notice the fire alarm yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-37:intro2:r1",
+              "text": "I noticed the fire alarm."
+            },
+            {
+              "responseId": "en:lesson-12:session-37:intro2:r2",
+              "text": "I used the fire exit."
+            },
+            {
+              "responseId": "en:lesson-12:session-37:intro2:r3",
+              "text": "I notice the fire alarm yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Место встречи",
+        "uk": "Місце зустрічі"
+      },
+      "bodyByLocale": {
+        "ru": "Meeting point — «место встречи или сбора». We waited at the meeting point — мы ждали в месте сбора. В waited окончание /ɪd/. Это рассказ о прошедшей тренировке. Выберите сообщение об ожидании.",
+        "uk": "Meeting point — «місце зустрічі або збору». We waited at the meeting point — ми чекали в місці збору. У waited закінчення /ɪd/. Це розповідь про минуле тренування. Виберіть повідомлення про очікування."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-37:intro3:r1",
+              "text": "We waited at the meeting point."
+            },
+            {
+              "responseId": "en:lesson-12:session-37:intro3:r2",
+              "text": "The meeting point was outside."
+            },
+            {
+              "responseId": "en:lesson-12:session-37:intro3:r3",
+              "text": "We wait at the meeting point yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-37:intro3:r1",
+              "text": "We waited at the meeting point."
+            },
+            {
+              "responseId": "en:lesson-12:session-37:intro3:r2",
+              "text": "The meeting point was outside."
+            },
+            {
+              "responseId": "en:lesson-12:session-37:intro3:r3",
+              "text": "We wait at the meeting point yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e02f005c3bcf9019ccf649aa131c5f2b595209cc3204332f95e89983141df5ad"
+}

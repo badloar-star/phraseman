@@ -1,0 +1,2321 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-12:session-39",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-12:session-39:word:bus-route",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bus route",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:word:bus-route:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bus route",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:word:bus-route:audio",
+            "transcript": "bus route"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-39:word:bus-route:r1",
+              "targetText": "bus route",
+              "meaningByLocale": {
+                "ru": "автобусный маршрут.",
+                "uk": "автобусний маршрут."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bus route",
+            "definitionByLocale": {
+              "ru": "автобусный маршрут.",
+              "uk": "автобусний маршрут."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я проверил автобусный маршрут",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я проверил автобусный маршрут",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I checked the bus route.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я проверил автобусный маршрут",
+            "uk": "Скажіть: Я перевірив автобусний маршрут"
+          },
+          "orderedTokens": [
+            "I",
+            "checked",
+            "the",
+            "bus",
+            "route"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-39:i02:r1",
+            "text": "She checked the bus route."
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i02:r2",
+            "text": "She checks the bus route."
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i02:r3",
+            "text": "We checked the bus route."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:i02:audio",
+            "transcript": "She checked the bus route."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-39:i02:r1",
+              "targetText": "She checked the bus route.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i02:r2",
+              "targetText": "She checks the bus route.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i02:r3",
+              "targetText": "We checked the bus route.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She checked the bus route.",
+                "uk": "У записі звучить She checked the bus route."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She checked the bus route.",
+                "uk": "У записі звучить She checked the bus route."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-39:i03:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i03:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i03:r3",
+            "text": "checks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ the bus route yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-39:i03:r1",
+              "text": "checked"
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i03:r2",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i03:r3",
+              "text": "checks"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма checked.",
+                "uk": "Для минулого потрібна форма checked."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна checked.",
+                "uk": "Це не форма минулого. Потрібна checked."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:word:bus-fare",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bus fare",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:word:bus-fare:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bus fare",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:word:bus-fare:audio",
+            "transcript": "bus fare"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-39:word:bus-fare:r1",
+              "targetText": "bus fare",
+              "meaningByLocale": {
+                "ru": "стоимость проезда на автобусе.",
+                "uk": "вартість проїзду автобусом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bus fare",
+            "definitionByLocale": {
+              "ru": "стоимость проезда на автобусе.",
+              "uk": "вартість проїзду автобусом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Мы проверили стоимость проезда на автобусе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Мы проверили стоимость проезда на автобусе",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We checked the bus fare.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы проверили стоимость проезда на автобусе",
+            "uk": "Скажіть: Ми перевірили вартість проїзду автобусом"
+          },
+          "orderedTokens": [
+            "We",
+            "checked",
+            "the",
+            "bus",
+            "fare"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-39:i05:r1",
+            "text": "I checked the bus fare."
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i05:r2",
+            "text": "I check the bus fare."
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i05:r3",
+            "text": "She checked the bus fare."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:i05:audio",
+            "transcript": "I checked the bus fare."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-39:i05:r1",
+              "targetText": "I checked the bus fare.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i05:r2",
+              "targetText": "I check the bus fare.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i05:r3",
+              "targetText": "She checked the bus fare.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-39:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I checked the bus fare.",
+                "uk": "У записі звучить I checked the bus fare."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I checked the bus fare.",
+                "uk": "У записі звучить I checked the bus fare."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-39:i06:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i06:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i06:r3",
+            "text": "checks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "They ___ the bus fare yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-39:i06:r1",
+              "text": "checked"
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i06:r2",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i06:r3",
+              "text": "checks"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-39:i06:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма checked.",
+                "uk": "Для минулого потрібна форма checked."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i06:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна checked.",
+                "uk": "Це не форма минулого. Потрібна checked."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:word:bus-timetable",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bus timetable",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:word:bus-timetable:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bus timetable",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:word:bus-timetable:audio",
+            "transcript": "bus timetable"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-39:word:bus-timetable:r1",
+              "targetText": "bus timetable",
+              "meaningByLocale": {
+                "ru": "расписание автобусов.",
+                "uk": "розклад автобусів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bus timetable",
+            "definitionByLocale": {
+              "ru": "расписание автобусов.",
+              "uk": "розклад автобусів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я проверил расписание автобусов",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я проверил расписание автобусов",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I checked the bus timetable.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я проверил расписание автобусов",
+            "uk": "Скажіть: Я перевірив розклад автобусів"
+          },
+          "orderedTokens": [
+            "I",
+            "checked",
+            "the",
+            "bus",
+            "timetable"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-39:i08:r1",
+            "text": "He checked the bus timetable."
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i08:r2",
+            "text": "He checks the bus timetable."
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i08:r3",
+            "text": "They checked the bus timetable."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:i08:audio",
+            "transcript": "He checked the bus timetable."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-39:i08:r1",
+              "targetText": "He checked the bus timetable.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i08:r2",
+              "targetText": "He checks the bus timetable.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i08:r3",
+              "targetText": "They checked the bus timetable.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He checked the bus timetable.",
+                "uk": "У записі звучить He checked the bus timetable."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He checked the bus timetable.",
+                "uk": "У записі звучить He checked the bus timetable."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-39:i09:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i09:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i09:r3",
+            "text": "checks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "She ___ the bus timetable yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-39:i09:r1",
+              "text": "checked"
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i09:r2",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i09:r3",
+              "text": "checks"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма checked.",
+                "uk": "Для минулого потрібна форма checked."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна checked.",
+                "uk": "Це не форма минулого. Потрібна checked."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:word:bus-lane",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bus lane",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:word:bus-lane:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bus lane",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:word:bus-lane:audio",
+            "transcript": "bus lane"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-39:word:bus-lane:r1",
+              "targetText": "bus lane",
+              "meaningByLocale": {
+                "ru": "полоса для автобусов.",
+                "uk": "смуга для автобусів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bus lane",
+            "definitionByLocale": {
+              "ru": "полоса для автобусов.",
+              "uk": "смуга для автобусів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я заметил полосу для автобусов",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я заметил полосу для автобусов",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I noticed the bus lane.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я заметил полосу для автобусов",
+            "uk": "Скажіть: Я помітив смугу для автобусів"
+          },
+          "orderedTokens": [
+            "I",
+            "noticed",
+            "the",
+            "bus",
+            "lane"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-39:i11:r1",
+            "text": "We noticed the bus lane."
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i11:r2",
+            "text": "We notice the bus lane."
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i11:r3",
+            "text": "She noticed the bus lane."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:i11:audio",
+            "transcript": "We noticed the bus lane."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-39:i11:r1",
+              "targetText": "We noticed the bus lane.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i11:r2",
+              "targetText": "We notice the bus lane.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i11:r3",
+              "targetText": "She noticed the bus lane.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-39:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We noticed the bus lane.",
+                "uk": "У записі звучить We noticed the bus lane."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We noticed the bus lane.",
+                "uk": "У записі звучить We noticed the bus lane."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-39:i12:r1",
+            "text": "noticed"
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i12:r2",
+            "text": "notice"
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i12:r3",
+            "text": "notices"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ the bus lane yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-39:i12:r1",
+              "text": "noticed"
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i12:r2",
+              "text": "notice"
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i12:r3",
+              "text": "notices"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-39:i12:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма noticed.",
+                "uk": "Для минулого потрібна форма noticed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i12:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна noticed.",
+                "uk": "Це не форма минулого. Потрібна noticed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-39:i13:p1",
+              "target": "bus route",
+              "meaningByLocale": {
+                "ru": "автобусный маршрут",
+                "uk": "автобусний маршрут"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-39:i13:p2",
+              "target": "bus fare",
+              "meaningByLocale": {
+                "ru": "стоимость проезда на автобусе",
+                "uk": "вартість проїзду автобусом"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-39:i13:p3",
+              "target": "bus timetable",
+              "meaningByLocale": {
+                "ru": "расписание автобусов",
+                "uk": "розклад автобусів"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-39:i13:p4",
+              "target": "bus lane",
+              "meaningByLocale": {
+                "ru": "полоса для автобусов",
+                "uk": "смуга для автобусів"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bus route",
+            "bus fare",
+            "bus timetable",
+            "bus lane"
+          ],
+          "rightColumn": [
+            "автобусный маршрут",
+            "стоимость проезда на автобусе",
+            "расписание автобусов",
+            "полоса для автобусов"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:i14:audio",
+            "transcript": "She checked her bus pass."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She checked her bus pass.",
+          "orderedTokens": [
+            "She",
+            "checked",
+            "her",
+            "bus",
+            "pass"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:i15:audio",
+            "transcript": "We waited at the bus stop."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We waited at the bus stop.",
+          "orderedTokens": [
+            "We",
+            "waited",
+            "at",
+            "the",
+            "bus",
+            "stop"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: вчера стоимость проезда была низкой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: вчера стоимость проезда была низкой",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:i16:audio",
+            "transcript": "The bus fare was low yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The bus fare was low yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: я проверил автобусный маршрут перед обедом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: я проверил автобусный маршрут перед обедом",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:i17:audio",
+            "transcript": "I checked the bus route before lunch."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I checked the bus route before lunch.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-12:session-39:word:bus-route",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bus route",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:word:bus-route:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bus route",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:word:bus-route:audio",
+            "transcript": "bus route"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-39:word:bus-route:r1",
+              "targetText": "bus route",
+              "meaningByLocale": {
+                "ru": "автобусный маршрут.",
+                "uk": "автобусний маршрут."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bus route",
+            "definitionByLocale": {
+              "ru": "автобусный маршрут.",
+              "uk": "автобусний маршрут."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я перевірив автобусний маршрут",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я перевірив автобусний маршрут",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I checked the bus route.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я проверил автобусный маршрут",
+            "uk": "Скажіть: Я перевірив автобусний маршрут"
+          },
+          "orderedTokens": [
+            "I",
+            "checked",
+            "the",
+            "bus",
+            "route"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-39:i02:r1",
+            "text": "She checked the bus route."
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i02:r2",
+            "text": "She checks the bus route."
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i02:r3",
+            "text": "We checked the bus route."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:i02:audio",
+            "transcript": "She checked the bus route."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-39:i02:r1",
+              "targetText": "She checked the bus route.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i02:r2",
+              "targetText": "She checks the bus route.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i02:r3",
+              "targetText": "We checked the bus route.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-39:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She checked the bus route.",
+                "uk": "У записі звучить She checked the bus route."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She checked the bus route.",
+                "uk": "У записі звучить She checked the bus route."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-39:i03:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i03:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i03:r3",
+            "text": "checks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ the bus route yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-39:i03:r1",
+              "text": "checked"
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i03:r2",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i03:r3",
+              "text": "checks"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-39:i03:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма checked.",
+                "uk": "Для минулого потрібна форма checked."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i03:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна checked.",
+                "uk": "Це не форма минулого. Потрібна checked."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:word:bus-fare",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bus fare",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:word:bus-fare:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bus fare",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:word:bus-fare:audio",
+            "transcript": "bus fare"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-39:word:bus-fare:r1",
+              "targetText": "bus fare",
+              "meaningByLocale": {
+                "ru": "стоимость проезда на автобусе.",
+                "uk": "вартість проїзду автобусом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bus fare",
+            "definitionByLocale": {
+              "ru": "стоимость проезда на автобусе.",
+              "uk": "вартість проїзду автобусом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ми перевірили вартість проїзду автобусом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ми перевірили вартість проїзду автобусом",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We checked the bus fare.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы проверили стоимость проезда на автобусе",
+            "uk": "Скажіть: Ми перевірили вартість проїзду автобусом"
+          },
+          "orderedTokens": [
+            "We",
+            "checked",
+            "the",
+            "bus",
+            "fare"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-39:i05:r1",
+            "text": "I checked the bus fare."
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i05:r2",
+            "text": "I check the bus fare."
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i05:r3",
+            "text": "She checked the bus fare."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:i05:audio",
+            "transcript": "I checked the bus fare."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-39:i05:r1",
+              "targetText": "I checked the bus fare.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i05:r2",
+              "targetText": "I check the bus fare.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i05:r3",
+              "targetText": "She checked the bus fare.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-39:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I checked the bus fare.",
+                "uk": "У записі звучить I checked the bus fare."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I checked the bus fare.",
+                "uk": "У записі звучить I checked the bus fare."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-39:i06:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i06:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i06:r3",
+            "text": "checks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "They ___ the bus fare yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-39:i06:r1",
+              "text": "checked"
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i06:r2",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i06:r3",
+              "text": "checks"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-39:i06:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма checked.",
+                "uk": "Для минулого потрібна форма checked."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i06:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна checked.",
+                "uk": "Це не форма минулого. Потрібна checked."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:word:bus-timetable",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bus timetable",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:word:bus-timetable:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bus timetable",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:word:bus-timetable:audio",
+            "transcript": "bus timetable"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-39:word:bus-timetable:r1",
+              "targetText": "bus timetable",
+              "meaningByLocale": {
+                "ru": "расписание автобусов.",
+                "uk": "розклад автобусів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bus timetable",
+            "definitionByLocale": {
+              "ru": "расписание автобусов.",
+              "uk": "розклад автобусів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я перевірив розклад автобусів",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я перевірив розклад автобусів",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I checked the bus timetable.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я проверил расписание автобусов",
+            "uk": "Скажіть: Я перевірив розклад автобусів"
+          },
+          "orderedTokens": [
+            "I",
+            "checked",
+            "the",
+            "bus",
+            "timetable"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-39:i08:r1",
+            "text": "He checked the bus timetable."
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i08:r2",
+            "text": "He checks the bus timetable."
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i08:r3",
+            "text": "They checked the bus timetable."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:i08:audio",
+            "transcript": "He checked the bus timetable."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-39:i08:r1",
+              "targetText": "He checked the bus timetable.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i08:r2",
+              "targetText": "He checks the bus timetable.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i08:r3",
+              "targetText": "They checked the bus timetable.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-39:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He checked the bus timetable.",
+                "uk": "У записі звучить He checked the bus timetable."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He checked the bus timetable.",
+                "uk": "У записі звучить He checked the bus timetable."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-39:i09:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i09:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i09:r3",
+            "text": "checks"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "She ___ the bus timetable yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-39:i09:r1",
+              "text": "checked"
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i09:r2",
+              "text": "check"
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i09:r3",
+              "text": "checks"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-39:i09:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма checked.",
+                "uk": "Для минулого потрібна форма checked."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i09:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна checked.",
+                "uk": "Це не форма минулого. Потрібна checked."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:word:bus-lane",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bus lane",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:word:bus-lane:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bus lane",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:word:bus-lane:audio",
+            "transcript": "bus lane"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-39:word:bus-lane:r1",
+              "targetText": "bus lane",
+              "meaningByLocale": {
+                "ru": "полоса для автобусов.",
+                "uk": "смуга для автобусів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bus lane",
+            "definitionByLocale": {
+              "ru": "полоса для автобусов.",
+              "uk": "смуга для автобусів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я помітив смугу для автобусів",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я помітив смугу для автобусів",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I noticed the bus lane.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я заметил полосу для автобусов",
+            "uk": "Скажіть: Я помітив смугу для автобусів"
+          },
+          "orderedTokens": [
+            "I",
+            "noticed",
+            "the",
+            "bus",
+            "lane"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-39:i11:r1",
+            "text": "We noticed the bus lane."
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i11:r2",
+            "text": "We notice the bus lane."
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i11:r3",
+            "text": "She noticed the bus lane."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:i11:audio",
+            "transcript": "We noticed the bus lane."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-39:i11:r1",
+              "targetText": "We noticed the bus lane.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i11:r2",
+              "targetText": "We notice the bus lane.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i11:r3",
+              "targetText": "She noticed the bus lane.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-39:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We noticed the bus lane.",
+                "uk": "У записі звучить We noticed the bus lane."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We noticed the bus lane.",
+                "uk": "У записі звучить We noticed the bus lane."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-39:i12:r1",
+            "text": "noticed"
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i12:r2",
+            "text": "notice"
+          },
+          {
+            "responseId": "en:lesson-12:session-39:i12:r3",
+            "text": "notices"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ the bus lane yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-39:i12:r1",
+              "text": "noticed"
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i12:r2",
+              "text": "notice"
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i12:r3",
+              "text": "notices"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-39:i12:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма noticed.",
+                "uk": "Для минулого потрібна форма noticed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-39:i12:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна noticed.",
+                "uk": "Це не форма минулого. Потрібна noticed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-39:i13:p1",
+              "target": "bus route",
+              "meaningByLocale": {
+                "ru": "автобусный маршрут",
+                "uk": "автобусний маршрут"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-39:i13:p2",
+              "target": "bus fare",
+              "meaningByLocale": {
+                "ru": "стоимость проезда на автобусе",
+                "uk": "вартість проїзду автобусом"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-39:i13:p3",
+              "target": "bus timetable",
+              "meaningByLocale": {
+                "ru": "расписание автобусов",
+                "uk": "розклад автобусів"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-39:i13:p4",
+              "target": "bus lane",
+              "meaningByLocale": {
+                "ru": "полоса для автобусов",
+                "uk": "смуга для автобусів"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bus route",
+            "bus fare",
+            "bus timetable",
+            "bus lane"
+          ],
+          "rightColumn": [
+            "автобусний маршрут",
+            "вартість проїзду автобусом",
+            "розклад автобусів",
+            "смуга для автобусів"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:i14:audio",
+            "transcript": "She checked her bus pass."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She checked her bus pass.",
+          "orderedTokens": [
+            "She",
+            "checked",
+            "her",
+            "bus",
+            "pass"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:i15:audio",
+            "transcript": "We waited at the bus stop."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We waited at the bus stop.",
+          "orderedTokens": [
+            "We",
+            "waited",
+            "at",
+            "the",
+            "bus",
+            "stop"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: учора вартість проїзду була низька",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: учора вартість проїзду була низька",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:i16:audio",
+            "transcript": "The bus fare was low yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The bus fare was low yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-39:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: я перевірив автобусний маршрут перед обідом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-39:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: я перевірив автобусний маршрут перед обідом",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-39:i17:audio",
+            "transcript": "I checked the bus route before lunch."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I checked the bus route before lunch.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-12:session-39:word:bus-route",
+      "correctText": "bus route",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-39:i01",
+      "correctText": "I checked the bus route.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-39:i02",
+      "correctText": "She checked the bus route.",
+      "correctResponseId": "en:lesson-12:session-39:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-39:i03",
+      "correctText": "checked",
+      "correctResponseId": "en:lesson-12:session-39:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-39:word:bus-fare",
+      "correctText": "bus fare",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-39:i04",
+      "correctText": "We checked the bus fare.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-39:i05",
+      "correctText": "I checked the bus fare.",
+      "correctResponseId": "en:lesson-12:session-39:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-39:i06",
+      "correctText": "checked",
+      "correctResponseId": "en:lesson-12:session-39:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-39:word:bus-timetable",
+      "correctText": "bus timetable",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-39:i07",
+      "correctText": "I checked the bus timetable.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-39:i08",
+      "correctText": "He checked the bus timetable.",
+      "correctResponseId": "en:lesson-12:session-39:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-39:i09",
+      "correctText": "checked",
+      "correctResponseId": "en:lesson-12:session-39:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-39:word:bus-lane",
+      "correctText": "bus lane",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-39:i10",
+      "correctText": "I noticed the bus lane.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-39:i11",
+      "correctText": "We noticed the bus lane.",
+      "correctResponseId": "en:lesson-12:session-39:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-39:i12",
+      "correctText": "noticed",
+      "correctResponseId": "en:lesson-12:session-39:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-39:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-39:i14",
+      "correctText": "She checked her bus pass.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-39:i15",
+      "correctText": "We waited at the bus stop.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-39:i16",
+      "correctText": "The bus fare was low yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-39:i17",
+      "correctText": "I checked the bus route before lunch.",
+      "correctResponseId": null
+    }
+  ]
+}

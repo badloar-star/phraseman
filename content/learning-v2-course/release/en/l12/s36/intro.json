@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "crossed, parked, visited; was/were",
+    "uk": "crossed, parked, visited; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Главная дорога",
+        "uk": "Головна дорога"
+      },
+      "bodyByLocale": {
+        "ru": "Main road — «главная дорога». We crossed the main road — мы перешли главную дорогу. Cross → crossed, окончание /t/. Выберите прошлое действие.",
+        "uk": "Main road — «головна дорога». We crossed the main road — ми перейшли головну дорогу. Cross → crossed, закінчення /t/. Виберіть минулу дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-36:intro1:r1",
+              "text": "We crossed the main road."
+            },
+            {
+              "responseId": "en:lesson-12:session-36:intro1:r2",
+              "text": "We cross the main road yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-36:intro1:r3",
+              "text": "We crosses the main road yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-36:intro1:r1",
+              "text": "We crossed the main road."
+            },
+            {
+              "responseId": "en:lesson-12:session-36:intro1:r2",
+              "text": "We cross the main road yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-36:intro1:r3",
+              "text": "We crosses the main road yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Боковая улица и парк",
+        "uk": "Бічна вулиця й парк"
+      },
+      "bodyByLocale": {
+        "ru": "Side street — «боковая улица», public park — «общественный парк». I parked in a side street — я припарковался на боковой улице. Выберите парковку, не посещение парка.",
+        "uk": "Side street — «бічна вулиця», public park — «громадський парк». I parked in a side street — я припаркувався на бічній вулиці. Виберіть паркування, не відвідування парку."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-36:intro2:r1",
+              "text": "I parked in a side street."
+            },
+            {
+              "responseId": "en:lesson-12:session-36:intro2:r2",
+              "text": "I visited a public park."
+            },
+            {
+              "responseId": "en:lesson-12:session-36:intro2:r3",
+              "text": "I park in a side street yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-36:intro2:r1",
+              "text": "I parked in a side street."
+            },
+            {
+              "responseId": "en:lesson-12:session-36:intro2:r2",
+              "text": "I visited a public park."
+            },
+            {
+              "responseId": "en:lesson-12:session-36:intro2:r3",
+              "text": "I park in a side street yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пешеходная улица",
+        "uk": "Пішохідна вулиця"
+      },
+      "bodyByLocale": {
+        "ru": "Pedestrian street — «пешеходная улица». We visited a pedestrian street — мы побывали на пешеходной улице. В visited окончание /ɪd/. Выберите сообщение о посещении.",
+        "uk": "Pedestrian street — «пішохідна вулиця». We visited a pedestrian street — ми побували на пішохідній вулиці. У visited закінчення /ɪd/. Виберіть повідомлення про відвідування."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-36:intro3:r1",
+              "text": "We visited a pedestrian street."
+            },
+            {
+              "responseId": "en:lesson-12:session-36:intro3:r2",
+              "text": "The pedestrian street was busy."
+            },
+            {
+              "responseId": "en:lesson-12:session-36:intro3:r3",
+              "text": "We visit a pedestrian street yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-36:intro3:r1",
+              "text": "We visited a pedestrian street."
+            },
+            {
+              "responseId": "en:lesson-12:session-36:intro3:r2",
+              "text": "The pedestrian street was busy."
+            },
+            {
+              "responseId": "en:lesson-12:session-36:intro3:r3",
+              "text": "We visit a pedestrian street yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "68ee9616185d6582093b9f58d7aba90cfd0889d3be4a0c0d741e588a1746b697"
+}

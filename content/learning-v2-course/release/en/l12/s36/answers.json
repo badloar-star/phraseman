@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-36:word:main-road",
+    "correctText": "main road",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-36:i01",
+    "correctText": "I crossed the main road.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-36:i02",
+    "correctText": "She crossed the main road.",
+    "correctResponseId": "en:lesson-12:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-36:i03",
+    "correctText": "crossed",
+    "correctResponseId": "en:lesson-12:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-36:word:side-street",
+    "correctText": "side street",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-36:i04",
+    "correctText": "I parked in a side street.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-36:i05",
+    "correctText": "We parked in a side street.",
+    "correctResponseId": "en:lesson-12:session-36:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-36:i06",
+    "correctText": "parked",
+    "correctResponseId": "en:lesson-12:session-36:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-36:word:public-park",
+    "correctText": "public park",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-36:i07",
+    "correctText": "I visited a public park.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-36:i08",
+    "correctText": "He visited a public park.",
+    "correctResponseId": "en:lesson-12:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-36:i09",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-12:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-36:word:pedestrian-street",
+    "correctText": "pedestrian street",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-36:i10",
+    "correctText": "I visited a pedestrian street.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-36:i11",
+    "correctText": "They visited a pedestrian street.",
+    "correctResponseId": "en:lesson-12:session-36:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-36:i12",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-12:session-36:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-36:i13",
+    "correctText": "en:lesson-12:session-36:i13:p1=main road\nen:lesson-12:session-36:i13:p2=side street\nen:lesson-12:session-36:i13:p3=public park\nen:lesson-12:session-36:i13:p4=pedestrian street",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-36:i14",
+    "correctText": "We used the zebra crossing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-36:i15",
+    "correctText": "She walked to the station.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-36:i16",
+    "correctText": "The main road was busy yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-36:i17",
+    "correctText": "I parked in a quiet side street.",
+    "correctResponseId": null
+  }
+]

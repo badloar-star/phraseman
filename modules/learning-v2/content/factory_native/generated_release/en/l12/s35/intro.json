@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "visited, helped, thanked; was/were",
+    "uk": "visited, helped, thanked; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Родители мужа или жены",
+        "uk": "Батьки чоловіка або дружини"
+      },
+      "bodyByLocale": {
+        "ru": "Mother-in-law — «мать мужа или жены»: свекровь или тёща. Father-in-law — «отец мужа или жены»: свёкор или тесть. I visited my mother-in-law — я навестил мать своего супруга или супруги. Выберите сообщение о матери, не об отце.",
+        "uk": "Mother-in-law — «мати чоловіка або дружини»: свекруха або теща. Father-in-law — «батько чоловіка або дружини»: свекор або тесть. I visited my mother-in-law — я навідав матір свого чоловіка або своєї дружини. Виберіть повідомлення про матір, не про батька."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-35:intro1:r1",
+              "text": "I visited my mother-in-law."
+            },
+            {
+              "responseId": "en:lesson-12:session-35:intro1:r2",
+              "text": "I visited my father-in-law."
+            },
+            {
+              "responseId": "en:lesson-12:session-35:intro1:r3",
+              "text": "I visit my mother-in-law yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-35:intro1:r1",
+              "text": "I visited my mother-in-law."
+            },
+            {
+              "responseId": "en:lesson-12:session-35:intro1:r2",
+              "text": "I visited my father-in-law."
+            },
+            {
+              "responseId": "en:lesson-12:session-35:intro1:r3",
+              "text": "I visit my mother-in-law yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Прабабушка",
+        "uk": "Прабабуся"
+      },
+      "bodyByLocale": {
+        "ru": "Great-grandmother — «прабабушка», мать вашей бабушки или дедушки. We visited our great-grandmother — мы навестили прабабушку. В visited окончание /ɪd/. Выберите сообщение о прошлом.",
+        "uk": "Great-grandmother — «прабабуся», мати вашої бабусі або дідуся. We visited our great-grandmother — ми навідали прабабусю. У visited закінчення /ɪd/. Виберіть повідомлення про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-35:intro2:r1",
+              "text": "We visited our great-grandmother."
+            },
+            {
+              "responseId": "en:lesson-12:session-35:intro2:r2",
+              "text": "We visit our great-grandmother yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-35:intro2:r3",
+              "text": "We visits our great-grandmother yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-35:intro2:r1",
+              "text": "We visited our great-grandmother."
+            },
+            {
+              "responseId": "en:lesson-12:session-35:intro2:r2",
+              "text": "We visit our great-grandmother yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-35:intro2:r3",
+              "text": "We visits our great-grandmother yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Прадедушка",
+        "uk": "Прадідусь"
+      },
+      "bodyByLocale": {
+        "ru": "Great-grandfather — «прадедушка», отец вашей бабушки или дедушки. She helped her great-grandfather — она помогла прадедушке. В helped окончание /t/. Выберите помощь, не описание человека.",
+        "uk": "Great-grandfather — «прадідусь», батько вашої бабусі або дідуся. She helped her great-grandfather — вона допомогла прадідусеві. У helped закінчення /t/. Виберіть допомогу, не опис людини."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-35:intro3:r1",
+              "text": "She helped her great-grandfather."
+            },
+            {
+              "responseId": "en:lesson-12:session-35:intro3:r2",
+              "text": "Her great-grandfather was happy."
+            },
+            {
+              "responseId": "en:lesson-12:session-35:intro3:r3",
+              "text": "She help her great-grandfather yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-35:intro3:r1",
+              "text": "She helped her great-grandfather."
+            },
+            {
+              "responseId": "en:lesson-12:session-35:intro3:r2",
+              "text": "Her great-grandfather was happy."
+            },
+            {
+              "responseId": "en:lesson-12:session-35:intro3:r3",
+              "text": "She help her great-grandfather yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9720a0d2f85cca9b3c6adc7c10732c618670f07dc143205f44cd60536473e482"
+}

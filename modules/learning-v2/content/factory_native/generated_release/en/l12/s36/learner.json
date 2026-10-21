@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-36",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-36:word:main-road",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — main road",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-36:word:main-road:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — main road",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-36:word:main-road:audio",
+          "transcript": "main road"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-36:word:main-road:r1",
+            "targetText": "main road",
+            "meaningByLocale": {
+              "ru": "главная дорога.",
+              "uk": "головна дорога."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "main road",
+          "definitionByLocale": {
+            "ru": "главная дорога.",
+            "uk": "головна дорога."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-36:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я перешёл главную дорогу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я перешёл главную дорогу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I crossed the main road.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я перешёл главную дорогу",
+          "uk": "Скажіть: Я перейшов головну дорогу"
+        },
+        "orderedTokens": [
+          "I",
+          "crossed",
+          "the",
+          "main",
+          "road"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-36:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-36:i02:r1",
+          "text": "She crossed the main road."
+        },
+        {
+          "responseId": "en:lesson-12:session-36:i02:r2",
+          "text": "She crosses the main road."
+        },
+        {
+          "responseId": "en:lesson-12:session-36:i02:r3",
+          "text": "We crossed the main road."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-36:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-36:i02:audio",
+          "transcript": "She crossed the main road."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-36:i02:r1",
+            "targetText": "She crossed the main road.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i02:r2",
+            "targetText": "She crosses the main road.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i02:r3",
+            "targetText": "We crossed the main road.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-36:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She crossed the main road.",
+              "uk": "У записі звучить She crossed the main road."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She crossed the main road.",
+              "uk": "У записі звучить She crossed the main road."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-36:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-36:i03:r1",
+          "text": "crossed"
+        },
+        {
+          "responseId": "en:lesson-12:session-36:i03:r2",
+          "text": "cross"
+        },
+        {
+          "responseId": "en:lesson-12:session-36:i03:r3",
+          "text": "crosses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ the main road yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-36:i03:r1",
+            "text": "crossed"
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i03:r2",
+            "text": "cross"
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i03:r3",
+            "text": "crosses"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-36:i03:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма crossed.",
+              "uk": "Для минулого потрібна форма crossed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i03:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна crossed.",
+              "uk": "Це не форма минулого. Потрібна crossed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-36:word:side-street",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — side street",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-36:word:side-street:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — side street",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-36:word:side-street:audio",
+          "transcript": "side street"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-36:word:side-street:r1",
+            "targetText": "side street",
+            "meaningByLocale": {
+              "ru": "боковая улица.",
+              "uk": "бічна вулиця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "side street",
+          "definitionByLocale": {
+            "ru": "боковая улица.",
+            "uk": "бічна вулиця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-36:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я припарковался на боковой улице",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я припарковался на боковой улице",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I parked in a side street.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я припарковался на боковой улице",
+          "uk": "Скажіть: Я припаркувався на бічній вулиці"
+        },
+        "orderedTokens": [
+          "I",
+          "parked",
+          "in",
+          "a",
+          "side",
+          "street"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-36:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-36:i05:r1",
+          "text": "We parked in a side street."
+        },
+        {
+          "responseId": "en:lesson-12:session-36:i05:r2",
+          "text": "We park in a side street."
+        },
+        {
+          "responseId": "en:lesson-12:session-36:i05:r3",
+          "text": "She parked in a side street."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-36:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-36:i05:audio",
+          "transcript": "We parked in a side street."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-36:i05:r1",
+            "targetText": "We parked in a side street.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i05:r2",
+            "targetText": "We park in a side street.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i05:r3",
+            "targetText": "She parked in a side street.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-36:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We parked in a side street.",
+              "uk": "У записі звучить We parked in a side street."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We parked in a side street.",
+              "uk": "У записі звучить We parked in a side street."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-36:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-36:i06:r1",
+          "text": "parked"
+        },
+        {
+          "responseId": "en:lesson-12:session-36:i06:r2",
+          "text": "park"
+        },
+        {
+          "responseId": "en:lesson-12:session-36:i06:r3",
+          "text": "parks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ in a side street yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-36:i06:r1",
+            "text": "parked"
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i06:r2",
+            "text": "park"
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i06:r3",
+            "text": "parks"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-36:i06:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма parked.",
+              "uk": "Для минулого потрібна форма parked."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i06:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна parked.",
+              "uk": "Це не форма минулого. Потрібна parked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-36:word:public-park",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — public park",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-36:word:public-park:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — public park",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-36:word:public-park:audio",
+          "transcript": "public park"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-36:word:public-park:r1",
+            "targetText": "public park",
+            "meaningByLocale": {
+              "ru": "общественный парк.",
+              "uk": "громадський парк."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "public park",
+          "definitionByLocale": {
+            "ru": "общественный парк.",
+            "uk": "громадський парк."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-36:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я побывал в общественном парке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я побывал в общественном парке",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I visited a public park.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я побывал в общественном парке",
+          "uk": "Скажіть: Я побував у громадському парку"
+        },
+        "orderedTokens": [
+          "I",
+          "visited",
+          "a",
+          "public",
+          "park"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-36:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-36:i08:r1",
+          "text": "He visited a public park."
+        },
+        {
+          "responseId": "en:lesson-12:session-36:i08:r2",
+          "text": "He visits a public park."
+        },
+        {
+          "responseId": "en:lesson-12:session-36:i08:r3",
+          "text": "We visited a public park."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-36:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-36:i08:audio",
+          "transcript": "He visited a public park."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-36:i08:r1",
+            "targetText": "He visited a public park.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i08:r2",
+            "targetText": "He visits a public park.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i08:r3",
+            "targetText": "We visited a public park.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-36:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He visited a public park.",
+              "uk": "У записі звучить He visited a public park."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He visited a public park.",
+              "uk": "У записі звучить He visited a public park."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-36:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-36:i09:r1",
+          "text": "visited"
+        },
+        {
+          "responseId": "en:lesson-12:session-36:i09:r2",
+          "text": "visit"
+        },
+        {
+          "responseId": "en:lesson-12:session-36:i09:r3",
+          "text": "visits"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ a public park yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-36:i09:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i09:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i09:r3",
+            "text": "visits"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-36:i09:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма visited.",
+              "uk": "Для минулого потрібна форма visited."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i09:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна visited.",
+              "uk": "Це не форма минулого. Потрібна visited."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-36:word:pedestrian-street",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pedestrian street",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-36:word:pedestrian-street:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pedestrian street",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-36:word:pedestrian-street:audio",
+          "transcript": "pedestrian street"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-36:word:pedestrian-street:r1",
+            "targetText": "pedestrian street",
+            "meaningByLocale": {
+              "ru": "пешеходная улица.",
+              "uk": "пішохідна вулиця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pedestrian street",
+          "definitionByLocale": {
+            "ru": "пешеходная улица.",
+            "uk": "пішохідна вулиця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-36:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я побывал на пешеходной улице",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я побывал на пешеходной улице",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I visited a pedestrian street.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я побывал на пешеходной улице",
+          "uk": "Скажіть: Я побував на пішохідній вулиці"
+        },
+        "orderedTokens": [
+          "I",
+          "visited",
+          "a",
+          "pedestrian",
+          "street"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-36:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-36:i11:r1",
+          "text": "They visited a pedestrian street."
+        },
+        {
+          "responseId": "en:lesson-12:session-36:i11:r2",
+          "text": "They visit a pedestrian street."
+        },
+        {
+          "responseId": "en:lesson-12:session-36:i11:r3",
+          "text": "She visited a pedestrian street."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-36:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-36:i11:audio",
+          "transcript": "They visited a pedestrian street."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-36:i11:r1",
+            "targetText": "They visited a pedestrian street.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i11:r2",
+            "targetText": "They visit a pedestrian street.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i11:r3",
+            "targetText": "She visited a pedestrian street.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-36:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They visited a pedestrian street.",
+              "uk": "У записі звучить They visited a pedestrian street."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They visited a pedestrian street.",
+              "uk": "У записі звучить They visited a pedestrian street."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-36:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-36:i12:r1",
+          "text": "visited"
+        },
+        {
+          "responseId": "en:lesson-12:session-36:i12:r2",
+          "text": "visit"
+        },
+        {
+          "responseId": "en:lesson-12:session-36:i12:r3",
+          "text": "visits"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "We ___ a pedestrian street yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-36:i12:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i12:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i12:r3",
+            "text": "visits"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-36:i12:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма visited.",
+              "uk": "Для минулого потрібна форма visited."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-36:i12:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна visited.",
+              "uk": "Це не форма минулого. Потрібна visited."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-36:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-36:i13:p1",
+            "target": "main road",
+            "meaningByLocale": {
+              "ru": "главная дорога",
+              "uk": "головна дорога"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-36:i13:p2",
+            "target": "side street",
+            "meaningByLocale": {
+              "ru": "боковая улица",
+              "uk": "бічна вулиця"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-36:i13:p3",
+            "target": "public park",
+            "meaningByLocale": {
+              "ru": "общественный парк",
+              "uk": "громадський парк"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-36:i13:p4",
+            "target": "pedestrian street",
+            "meaningByLocale": {
+              "ru": "пешеходная улица",
+              "uk": "пішохідна вулиця"
+            }
+          }
+        ],
+        "leftColumn": [
+          "main road",
+          "side street",
+          "public park",
+          "pedestrian street"
+        ],
+        "rightColumn": [
+          "главная дорога",
+          "боковая улица",
+          "общественный парк",
+          "пешеходная улица"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-36:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-36:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-36:i14:audio",
+          "transcript": "We used the zebra crossing."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We used the zebra crossing.",
+        "orderedTokens": [
+          "We",
+          "used",
+          "the",
+          "zebra",
+          "crossing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-36:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-36:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-36:i15:audio",
+          "transcript": "She walked to the station."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She walked to the station.",
+        "orderedTokens": [
+          "She",
+          "walked",
+          "to",
+          "the",
+          "station"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-36:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера главная дорога была оживлённой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-36:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера главная дорога была оживлённой",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-36:i16:audio",
+          "transcript": "The main road was busy yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The main road was busy yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-36:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: я припарковался на тихой боковой улице",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-36:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: я припарковался на тихой боковой улице",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-36:i17:audio",
+          "transcript": "I parked in a quiet side street."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I parked in a quiet side street.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7d06837dd9e1362e2ef38d5e78985349379e663043181b344a354f7696c2dbb7"
+}

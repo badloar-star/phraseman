@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-39:word:bus-route",
+    "correctText": "bus route",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-39:i01",
+    "correctText": "I checked the bus route.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-39:i02",
+    "correctText": "She checked the bus route.",
+    "correctResponseId": "en:lesson-12:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-39:i03",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-39:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-39:word:bus-fare",
+    "correctText": "bus fare",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-39:i04",
+    "correctText": "We checked the bus fare.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-39:i05",
+    "correctText": "I checked the bus fare.",
+    "correctResponseId": "en:lesson-12:session-39:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-39:i06",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-39:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-39:word:bus-timetable",
+    "correctText": "bus timetable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-39:i07",
+    "correctText": "I checked the bus timetable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-39:i08",
+    "correctText": "He checked the bus timetable.",
+    "correctResponseId": "en:lesson-12:session-39:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-39:i09",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-39:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-39:word:bus-lane",
+    "correctText": "bus lane",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-39:i10",
+    "correctText": "I noticed the bus lane.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-39:i11",
+    "correctText": "We noticed the bus lane.",
+    "correctResponseId": "en:lesson-12:session-39:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-39:i12",
+    "correctText": "noticed",
+    "correctResponseId": "en:lesson-12:session-39:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-39:i13",
+    "correctText": "en:lesson-12:session-39:i13:p1=bus route\nen:lesson-12:session-39:i13:p2=bus fare\nen:lesson-12:session-39:i13:p3=bus timetable\nen:lesson-12:session-39:i13:p4=bus lane",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-39:i14",
+    "correctText": "She checked her bus pass.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-39:i15",
+    "correctText": "We waited at the bus stop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-39:i16",
+    "correctText": "The bus fare was low yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-39:i17",
+    "correctText": "I checked the bus route before lunch.",
+    "correctResponseId": null
+  }
+]

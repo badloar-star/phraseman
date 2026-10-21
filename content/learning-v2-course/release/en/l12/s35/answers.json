@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-35:word:mother-in-law",
+    "correctText": "mother-in-law",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-35:i01",
+    "correctText": "I visited my mother-in-law.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-35:i02",
+    "correctText": "She visited her mother-in-law.",
+    "correctResponseId": "en:lesson-12:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-35:i03",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-12:session-35:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-35:word:father-in-law",
+    "correctText": "father-in-law",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-35:i04",
+    "correctText": "I thanked my father-in-law.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-35:i05",
+    "correctText": "She thanked her father-in-law.",
+    "correctResponseId": "en:lesson-12:session-35:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-35:i06",
+    "correctText": "thanked",
+    "correctResponseId": "en:lesson-12:session-35:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-35:word:great-grandmother",
+    "correctText": "great-grandmother",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-35:i07",
+    "correctText": "I visited my great-grandmother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-35:i08",
+    "correctText": "We visited our great-grandmother.",
+    "correctResponseId": "en:lesson-12:session-35:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-35:i09",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-12:session-35:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-35:word:great-grandfather",
+    "correctText": "great-grandfather",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-35:i10",
+    "correctText": "I helped my great-grandfather.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-35:i11",
+    "correctText": "He helped his great-grandfather.",
+    "correctResponseId": "en:lesson-12:session-35:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-35:i12",
+    "correctText": "helped",
+    "correctResponseId": "en:lesson-12:session-35:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-35:i13",
+    "correctText": "en:lesson-12:session-35:i13:p1=mother-in-law\nen:lesson-12:session-35:i13:p2=father-in-law\nen:lesson-12:session-35:i13:p3=great-grandmother\nen:lesson-12:session-35:i13:p4=great-grandfather",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-35:i14",
+    "correctText": "We had tea with our family.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-35:i15",
+    "correctText": "She visited her grandma yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-35:i16",
+    "correctText": "My great-grandmother was at home yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-35:i17",
+    "correctText": "I helped my great-grandfather in the garden.",
+    "correctResponseId": null
+  }
+]

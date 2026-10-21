@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-38",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-38:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-38:intro1:r2": {
+          "ru": "Для прошлого нужна used.",
+          "uk": "Для минулого потрібна used."
+        },
+        "en:lesson-12:session-38:intro1:r3": {
+          "ru": "Uses — не прошлое и не форма с I.",
+          "uk": "Uses — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-38:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-38:intro2:r2": {
+          "ru": "Это использование вентилятора, не проверка времени.",
+          "uk": "Це використання вентилятора, не перевірка часу."
+        },
+        "en:lesson-12:session-38:intro2:r3": {
+          "ru": "Для прошлого нужна checked.",
+          "uk": "Для минулого потрібна checked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-38:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-38:intro3:r2": {
+          "ru": "Это описание цепочки, не проверка.",
+          "uk": "Це опис ланцюжка, не перевірка."
+        },
+        "en:lesson-12:session-38:intro3:r3": {
+          "ru": "Для прошлого нужна checked.",
+          "uk": "Для минулого потрібна checked."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e806f995500bf17847522a6e238a48e07106652b2dbdd1f550edf75787c953f9"
+}

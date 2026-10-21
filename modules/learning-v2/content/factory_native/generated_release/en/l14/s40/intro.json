@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "review: while + ongoing past action; when + past event",
+    "uk": "review: while + ongoing past action; when + past event"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Два действия одновременно",
+        "uk": "Дві дії одночасно"
+      },
+      "bodyByLocale": {
+        "ru": "barn — амбар, большое хозяйственное строение на ферме. I was looking at a barn while you were taking a photo. — Я смотрел на амбар, пока ты фотографировал. While вводит процесс, который шёл в то же время. Выберите два действия в прошлом.",
+        "uk": "barn — комора, велика господарська будівля на фермі. I was looking at a barn while you were taking a photo. — Я дивився на комору, поки ти фотографував. While вводить процес, який тривав у той самий час. Виберіть дві дії в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-40:intro1:r1",
+              "text": "I was looking at a barn while you were taking a photo."
+            },
+            {
+              "responseId": "en:lesson-14:session-40:intro1:r2",
+              "text": "I was looking at a barn while you was taking a photo."
+            },
+            {
+              "responseId": "en:lesson-14:session-40:intro1:r3",
+              "text": "I am looking at a barn while you were taking a photo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-40:intro1:r1",
+              "text": "I was looking at a barn while you were taking a photo."
+            },
+            {
+              "responseId": "en:lesson-14:session-40:intro1:r2",
+              "text": "I was looking at a barn while you was taking a photo."
+            },
+            {
+              "responseId": "en:lesson-14:session-40:intro1:r3",
+              "text": "I am looking at a barn while you were taking a photo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ещё два слова",
+        "uk": "Ще два слова"
+      },
+      "bodyByLocale": {
+        "ru": "stable — конюшня. henhouse — курятник. She was drawing a henhouse while I was talking. — Она рисовала курятник, пока я говорил. Выберите эту фразу о прошлом.",
+        "uk": "stable — стайня. henhouse — курник. She was drawing a henhouse while I was talking. — Вона малювала курник, поки я говорив. Виберіть цю фразу про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-40:intro2:r1",
+              "text": "She was drawing a henhouse while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-40:intro2:r2",
+              "text": "She were drawing a henhouse while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-40:intro2:r3",
+              "text": "She was drawing a henhouse while I were talking."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-40:intro2:r1",
+              "text": "She was drawing a henhouse while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-40:intro2:r2",
+              "text": "She were drawing a henhouse while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-40:intro2:r3",
+              "text": "She was drawing a henhouse while I were talking."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Процесс и звонок",
+        "uk": "Процес і дзвінок"
+      },
+      "bodyByLocale": {
+        "ru": "hay — сено, высушенная трава. We were carrying hay when you called. — Мы несли сено, когда ты позвонил. When вводит звонок: короткое событие на фоне процесса. Выберите прошлое событие called.",
+        "uk": "hay — сіно, висушена трава. We were carrying hay when you called. — Ми несли сіно, коли ти зателефонував. When вводить дзвінок: коротку подію на тлі процесу. Виберіть минулу подію called."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-40:intro3:r1",
+              "text": "We were carrying hay when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-40:intro3:r2",
+              "text": "We were carrying hay when you call."
+            },
+            {
+              "responseId": "en:lesson-14:session-40:intro3:r3",
+              "text": "We was carrying hay when you called."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-40:intro3:r1",
+              "text": "We were carrying hay when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-40:intro3:r2",
+              "text": "We were carrying hay when you call."
+            },
+            {
+              "responseId": "en:lesson-14:session-40:intro3:r3",
+              "text": "We was carrying hay when you called."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "718d0340266d67b676ac93a04617578801de46155c7855e1edf51b2393ed0872"
+}

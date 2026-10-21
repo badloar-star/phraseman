@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "review: when and while",
+    "uk": "review: when and while"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пожать плечами",
+        "uk": "Знизати плечима"
+      },
+      "bodyByLocale": {
+        "ru": "Shrug — пожать плечами. I was shrugging when you looked at me. — Я пожимал плечами, когда ты посмотрел на меня. Выберите прошлый процесс и событие.",
+        "uk": "Shrug — знизати плечима. I was shrugging when you looked at me. — Я знизував плечима, коли ти подивився на мене. Виберіть минулий процес і подію."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-36:intro1:r1",
+              "text": "I was shrugging when you looked at me."
+            },
+            {
+              "responseId": "en:lesson-14:session-36:intro1:r2",
+              "text": "I am shrugging when you looked at me."
+            },
+            {
+              "responseId": "en:lesson-14:session-36:intro1:r3",
+              "text": "I was shrugging when you look at me."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-36:intro1:r1",
+              "text": "I was shrugging when you looked at me."
+            },
+            {
+              "responseId": "en:lesson-14:session-36:intro1:r2",
+              "text": "I am shrugging when you looked at me."
+            },
+            {
+              "responseId": "en:lesson-14:session-36:intro1:r3",
+              "text": "I was shrugging when you look at me."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Понюхать и подмигнуть",
+        "uk": "Понюхати й підморгнути"
+      },
+      "bodyByLocale": {
+        "ru": "Sniff — понюхать, втянуть запах носом; wink — подмигнуть одним глазом. She was sniffing the flowers while I was talking. — Она нюхала цветы, пока я говорил. Выберите нюхать.",
+        "uk": "Sniff — понюхати, вдихнути запах носом; wink — підморгнути одним оком. She was sniffing the flowers while I was talking. — Вона нюхала квіти, поки я говорив. Виберіть нюхати."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-36:intro2:r1",
+              "text": "She was sniffing the flowers while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-36:intro2:r2",
+              "text": "She was looking at the flowers while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-36:intro2:r3",
+              "text": "She were sniffing the flowers while I was talking."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-36:intro2:r1",
+              "text": "She was sniffing the flowers while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-36:intro2:r2",
+              "text": "She was looking at the flowers while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-36:intro2:r3",
+              "text": "She were sniffing the flowers while I was talking."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Хихикать",
+        "uk": "Хихотіти"
+      },
+      "bodyByLocale": {
+        "ru": "Giggle — хихикать, тихо смеяться. We were giggling while he was telling the story. — Мы хихикали, пока он рассказывал историю. Выберите два процесса в прошлом.",
+        "uk": "Giggle — хихотіти, тихо сміятися. We were giggling while he was telling the story. — Ми хихотіли, поки він розповідав історію. Виберіть два процеси в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-36:intro3:r1",
+              "text": "We were giggling while he was telling the story."
+            },
+            {
+              "responseId": "en:lesson-14:session-36:intro3:r2",
+              "text": "We was giggling while he was telling the story."
+            },
+            {
+              "responseId": "en:lesson-14:session-36:intro3:r3",
+              "text": "We were giggling while he were telling the story."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-36:intro3:r1",
+              "text": "We were giggling while he was telling the story."
+            },
+            {
+              "responseId": "en:lesson-14:session-36:intro3:r2",
+              "text": "We was giggling while he was telling the story."
+            },
+            {
+              "responseId": "en:lesson-14:session-36:intro3:r3",
+              "text": "We were giggling while he were telling the story."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4dd30ac7bd97731369c1faf2b1244d37ee03395f9a2d97f660f21bba7e89dcb6"
+}

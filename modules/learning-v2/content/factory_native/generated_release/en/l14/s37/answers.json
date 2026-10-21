@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-37:word:sheep",
+    "correctText": "sheep",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-37:i01",
+    "correctText": "I was watching a sheep while you were taking a photo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-37:i02",
+    "correctText": "You were watching a sheep while you were taking a photo.",
+    "correctResponseId": "en:lesson-14:session-37:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-37:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-37:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-37:word:goat",
+    "correctText": "goat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-37:i04",
+    "correctText": "They were looking at a goat when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-37:i05",
+    "correctText": "You were looking at a goat when I arrived.",
+    "correctResponseId": "en:lesson-14:session-37:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-37:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-37:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-37:word:donkey",
+    "correctText": "donkey",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-37:i07",
+    "correctText": "She was drawing a donkey while I was talking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-37:i08",
+    "correctText": "You were drawing a donkey while I was talking.",
+    "correctResponseId": "en:lesson-14:session-37:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-37:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-37:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-37:word:hen",
+    "correctText": "hen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-37:i10",
+    "correctText": "We were watching a hen when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-37:i11",
+    "correctText": "You were watching a hen when you called.",
+    "correctResponseId": "en:lesson-14:session-37:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-37:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-37:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-37:i13",
+    "correctText": "en:lesson-14:session-37:i13:p1=sheep\nen:lesson-14:session-37:i13:p2=goat\nen:lesson-14:session-37:i13:p3=donkey\nen:lesson-14:session-37:i13:p4=hen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-37:i14",
+    "correctText": "I was taking photos while she was drawing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-37:i15",
+    "correctText": "We were watching the animals when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-37:i16",
+    "correctText": "She was watching a sheep while I was drawing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-37:i17",
+    "correctText": "I was looking at a goat when she arrived.",
+    "correctResponseId": null
+  }
+]

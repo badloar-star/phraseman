@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-38:word:lamb",
+    "correctText": "lamb",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-38:i01",
+    "correctText": "I was watching a lamb while you were taking a photo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-38:i02",
+    "correctText": "You were watching a lamb while you were taking a photo.",
+    "correctResponseId": "en:lesson-14:session-38:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-38:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-38:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-38:word:calf",
+    "correctText": "calf",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-38:i04",
+    "correctText": "They were looking at a calf when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-38:i05",
+    "correctText": "You were looking at a calf when I arrived.",
+    "correctResponseId": "en:lesson-14:session-38:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-38:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-38:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-38:word:foal",
+    "correctText": "foal",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-38:i07",
+    "correctText": "She was drawing a foal while I was talking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-38:i08",
+    "correctText": "You were drawing a foal while I was talking.",
+    "correctResponseId": "en:lesson-14:session-38:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-38:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-38:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-38:word:piglet",
+    "correctText": "piglet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-38:i10",
+    "correctText": "We were watching a piglet when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-38:i11",
+    "correctText": "You were watching a piglet when you called.",
+    "correctResponseId": "en:lesson-14:session-38:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-38:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-38:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-38:i13",
+    "correctText": "en:lesson-14:session-38:i13:p1=lamb\nen:lesson-14:session-38:i13:p2=calf\nen:lesson-14:session-38:i13:p3=foal\nen:lesson-14:session-38:i13:p4=piglet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-38:i14",
+    "correctText": "I was watching the animals while she was drawing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-38:i15",
+    "correctText": "They were taking photos when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-38:i16",
+    "correctText": "She was watching a lamb while I was taking a photo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-38:i17",
+    "correctText": "I was looking at a foal when she arrived.",
+    "correctResponseId": null
+  }
+]

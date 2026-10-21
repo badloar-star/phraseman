@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-33:intro1:r2": {
+          "ru": "С you нужна were.",
+          "uk": "З you потрібна were."
+        },
+        "en:lesson-14:session-33:intro1:r3": {
+          "ru": "После were нужна taking.",
+          "uk": "Після were потрібна taking."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-33:intro2:r2": {
+          "ru": "Событие в прошлом: called.",
+          "uk": "Подія в минулому: called."
+        },
+        "en:lesson-14:session-33:intro2:r3": {
+          "ru": "С I нужна was.",
+          "uk": "З I потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-33:intro3:r2": {
+          "ru": "С she нужна was.",
+          "uk": "З she потрібна was."
+        },
+        "en:lesson-14:session-33:intro3:r3": {
+          "ru": "В этом рассказе оба процесса в прошлом: was holding.",
+          "uk": "У цій розповіді обидва процеси в минулому: was holding."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "533e12a8d3598a84d8cfedba169e41b4328fd48bdaae6cf7234201b40937683b"
+}

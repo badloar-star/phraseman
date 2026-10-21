@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-35:word:reach-for",
+    "correctText": "reach for",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-35:i01",
+    "correctText": "I can reach for my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-35:i02",
+    "correctText": "You were reaching for my bag when the bus stopped.",
+    "correctResponseId": "en:lesson-14:session-35:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-35:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-35:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-35:word:step-back",
+    "correctText": "step back",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-35:i04",
+    "correctText": "Please step back.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-35:i05",
+    "correctText": "You were stepping back when the doors opened.",
+    "correctResponseId": "en:lesson-14:session-35:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-35:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-35:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-35:word:move-aside",
+    "correctText": "move aside",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-35:i07",
+    "correctText": "Please move aside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-35:i08",
+    "correctText": "You were moving aside while I was carrying the bag.",
+    "correctResponseId": "en:lesson-14:session-35:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-35:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-35:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-35:word:hold-on",
+    "correctText": "hold on",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-35:i10",
+    "correctText": "Please hold on to the rail.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-35:i11",
+    "correctText": "You were holding on to the rail while the bus was moving.",
+    "correctResponseId": "en:lesson-14:session-35:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-35:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-35:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-35:i13",
+    "correctText": "en:lesson-14:session-35:i13:p1=reach for\nen:lesson-14:session-35:i13:p2=step back\nen:lesson-14:session-35:i13:p3=move aside\nen:lesson-14:session-35:i13:p4=hold on",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-35:i14",
+    "correctText": "I was standing when the bus stopped.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-35:i15",
+    "correctText": "She was sitting while I was standing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-35:i16",
+    "correctText": "She was reaching for her bag when the doors opened.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-35:i17",
+    "correctText": "I was holding on to the rail while the bus was moving.",
+    "correctResponseId": null
+  }
+]

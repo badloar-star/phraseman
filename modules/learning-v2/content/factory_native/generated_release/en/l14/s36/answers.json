@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-36:word:shrug",
+    "correctText": "shrug",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-36:i01",
+    "correctText": "I sometimes shrug.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-36:i02",
+    "correctText": "You were shrugging when you looked at me.",
+    "correctResponseId": "en:lesson-14:session-36:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-36:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-36:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-36:word:sniff",
+    "correctText": "sniff",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-36:i04",
+    "correctText": "I sometimes sniff the flowers.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-36:i05",
+    "correctText": "You were sniffing the flowers while I was talking.",
+    "correctResponseId": "en:lesson-14:session-36:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-36:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-36:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-36:word:wink",
+    "correctText": "wink",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-36:i07",
+    "correctText": "He can wink.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-36:i08",
+    "correctText": "You were winking at me when you arrived.",
+    "correctResponseId": "en:lesson-14:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-36:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-36:word:giggle",
+    "correctText": "giggle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-36:i10",
+    "correctText": "We sometimes giggle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-36:i11",
+    "correctText": "You were giggling while he was telling the story.",
+    "correctResponseId": "en:lesson-14:session-36:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-36:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-36:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-36:i13",
+    "correctText": "en:lesson-14:session-36:i13:p1=shrug\nen:lesson-14:session-36:i13:p2=sniff\nen:lesson-14:session-36:i13:p3=wink\nen:lesson-14:session-36:i13:p4=giggle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-36:i14",
+    "correctText": "I was smiling while you were talking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-36:i15",
+    "correctText": "They were laughing when she arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-36:i16",
+    "correctText": "She was giggling while I was telling the story.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-36:i17",
+    "correctText": "I was sniffing the flowers when she arrived.",
+    "correctResponseId": null
+  }
+]

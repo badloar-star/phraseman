@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-40:word:barn",
+    "correctText": "barn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-40:i01",
+    "correctText": "I was looking at a barn while you were taking a photo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-40:i02",
+    "correctText": "You were looking at a barn while you were taking a photo.",
+    "correctResponseId": "en:lesson-14:session-40:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-40:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-40:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-40:word:stable",
+    "correctText": "stable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-40:i04",
+    "correctText": "They were cleaning the stable when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-40:i05",
+    "correctText": "You were cleaning the stable when I arrived.",
+    "correctResponseId": "en:lesson-14:session-40:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-40:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-40:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-40:word:henhouse",
+    "correctText": "henhouse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-40:i07",
+    "correctText": "She was drawing a henhouse while I was talking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-40:i08",
+    "correctText": "You were drawing a henhouse while I was talking.",
+    "correctResponseId": "en:lesson-14:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-40:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-40:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-40:word:hay",
+    "correctText": "hay",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-40:i10",
+    "correctText": "We were carrying hay when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-40:i11",
+    "correctText": "You were carrying hay when you called.",
+    "correctResponseId": "en:lesson-14:session-40:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-40:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-40:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-40:i13",
+    "correctText": "en:lesson-14:session-40:i13:p1=barn\nen:lesson-14:session-40:i13:p2=stable\nen:lesson-14:session-40:i13:p3=henhouse\nen:lesson-14:session-40:i13:p4=hay",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-40:i14",
+    "correctText": "I was walking while you were taking photos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-40:i15",
+    "correctText": "They were working when we arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-40:i16",
+    "correctText": "She was looking at a barn while I was drawing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-40:i17",
+    "correctText": "I was carrying hay when she arrived.",
+    "correctResponseId": null
+  }
+]

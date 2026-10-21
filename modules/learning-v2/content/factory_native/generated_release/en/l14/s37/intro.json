@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "review: while + ongoing past action; when + past event",
+    "uk": "review: while + ongoing past action; when + past event"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Два действия одновременно",
+        "uk": "Дві дії одночасно"
+      },
+      "bodyByLocale": {
+        "ru": "sheep — овца. I was watching a sheep while you were taking a photo. — Я наблюдал за овцой, пока ты фотографировал. While вводит процесс, который шёл в то же время. Выберите два действия в прошлом.",
+        "uk": "sheep — вівця. I was watching a sheep while you were taking a photo. — Я спостерігав за вівцею, поки ти фотографував. While вводить процес, який тривав у той самий час. Виберіть дві дії в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-37:intro1:r1",
+              "text": "I was watching a sheep while you were taking a photo."
+            },
+            {
+              "responseId": "en:lesson-14:session-37:intro1:r2",
+              "text": "I was watching a sheep while you was taking a photo."
+            },
+            {
+              "responseId": "en:lesson-14:session-37:intro1:r3",
+              "text": "I am watching a sheep while you were taking a photo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-37:intro1:r1",
+              "text": "I was watching a sheep while you were taking a photo."
+            },
+            {
+              "responseId": "en:lesson-14:session-37:intro1:r2",
+              "text": "I was watching a sheep while you was taking a photo."
+            },
+            {
+              "responseId": "en:lesson-14:session-37:intro1:r3",
+              "text": "I am watching a sheep while you were taking a photo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ещё два слова",
+        "uk": "Ще два слова"
+      },
+      "bodyByLocale": {
+        "ru": "goat — коза. donkey — осёл. She was drawing a donkey while I was talking. — Она рисовала осла, пока я говорил. Выберите эту фразу о прошлом.",
+        "uk": "goat — коза. donkey — осел. She was drawing a donkey while I was talking. — Вона малювала осла, поки я говорив. Виберіть цю фразу про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-37:intro2:r1",
+              "text": "She was drawing a donkey while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-37:intro2:r2",
+              "text": "She were drawing a donkey while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-37:intro2:r3",
+              "text": "She was drawing a donkey while I were talking."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-37:intro2:r1",
+              "text": "She was drawing a donkey while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-37:intro2:r2",
+              "text": "She were drawing a donkey while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-37:intro2:r3",
+              "text": "She was drawing a donkey while I were talking."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Процесс и звонок",
+        "uk": "Процес і дзвінок"
+      },
+      "bodyByLocale": {
+        "ru": "hen — курица, взрослая самка. We were watching a hen when you called. — Мы наблюдали за курицей, когда ты позвонил. When вводит звонок: короткое событие на фоне процесса. Выберите прошлое событие called.",
+        "uk": "hen — курка, доросла самиця. We were watching a hen when you called. — Ми спостерігали за куркою, коли ти зателефонував. When вводить дзвінок: коротку подію на тлі процесу. Виберіть минулу подію called."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-37:intro3:r1",
+              "text": "We were watching a hen when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-37:intro3:r2",
+              "text": "We were watching a hen when you call."
+            },
+            {
+              "responseId": "en:lesson-14:session-37:intro3:r3",
+              "text": "We was watching a hen when you called."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-37:intro3:r1",
+              "text": "We were watching a hen when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-37:intro3:r2",
+              "text": "We were watching a hen when you call."
+            },
+            {
+              "responseId": "en:lesson-14:session-37:intro3:r3",
+              "text": "We was watching a hen when you called."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8117fa10532129f840e89bb9b9c37baa336513270ec67f4a6518f17599232166"
+}

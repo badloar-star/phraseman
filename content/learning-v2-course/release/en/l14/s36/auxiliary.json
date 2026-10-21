@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-36",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-36:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-36:intro1:r2": {
+          "ru": "Am shrugging — сейчас.",
+          "uk": "Am shrugging — зараз."
+        },
+        "en:lesson-14:session-36:intro1:r3": {
+          "ru": "Событие в прошлом: looked.",
+          "uk": "Подія в минулому: looked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-36:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-36:intro2:r2": {
+          "ru": "Looking at — смотрела, не нюхала.",
+          "uk": "Looking at — дивилася, не нюхала."
+        },
+        "en:lesson-14:session-36:intro2:r3": {
+          "ru": "С she нужна was.",
+          "uk": "З she потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-36:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-36:intro3:r2": {
+          "ru": "С we нужна were.",
+          "uk": "З we потрібна were."
+        },
+        "en:lesson-14:session-36:intro3:r3": {
+          "ru": "С he нужна was.",
+          "uk": "З he потрібна was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bdc8fbf052fee8379531eb19831bf4a8586a14fd8b3b9715af1b611c179aba6e"
+}

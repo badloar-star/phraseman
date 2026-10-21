@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-33:word:turn-around",
+    "correctText": "turn around",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-33:i01",
+    "correctText": "Please turn around.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-33:i02",
+    "correctText": "You were turning around when you called my name.",
+    "correctResponseId": "en:lesson-14:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-33:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-33:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-33:word:look-up",
+    "correctText": "look up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-33:i04",
+    "correctText": "Please look up.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-33:i05",
+    "correctText": "You were looking up while I was taking a photo.",
+    "correctResponseId": "en:lesson-14:session-33:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-33:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-33:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-33:word:look-down",
+    "correctText": "look down",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-33:i07",
+    "correctText": "Please look down.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-33:i08",
+    "correctText": "You were looking down when you called us.",
+    "correctResponseId": "en:lesson-14:session-33:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-33:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-33:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-33:word:bend-down",
+    "correctText": "bend down",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-33:i10",
+    "correctText": "Please bend down.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-33:i11",
+    "correctText": "You were bending down while I was holding her bag.",
+    "correctResponseId": "en:lesson-14:session-33:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-33:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-33:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-33:i13",
+    "correctText": "en:lesson-14:session-33:i13:p1=turn around\nen:lesson-14:session-33:i13:p2=look up\nen:lesson-14:session-33:i13:p3=look down\nen:lesson-14:session-33:i13:p4=bend down",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-33:i14",
+    "correctText": "I was walking while you were talking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-33:i15",
+    "correctText": "She was reading when I called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-33:i16",
+    "correctText": "She was looking up while I was drawing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-33:i17",
+    "correctText": "I was bending down when she called my name.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-14:session-35",
+  "entries": [
+    {
+      "interactionId": "en:lesson-14:session-35:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-35:intro1:r2": {
+          "ru": "Am reaching — настоящее.",
+          "uk": "Am reaching — теперішній час."
+        },
+        "en:lesson-14:session-35:intro1:r3": {
+          "ru": "Прошлое событие: stopped.",
+          "uk": "Минула подія: stopped."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-35:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-35:intro2:r2": {
+          "ru": "Stepping back — отступала назад, не в сторону.",
+          "uk": "Stepping back — відступала назад, не вбік."
+        },
+        "en:lesson-14:session-35:intro2:r3": {
+          "ru": "С she нужна was.",
+          "uk": "З she потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-14:session-35:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-14:session-35:intro3:r2": {
+          "ru": "С we нужна were.",
+          "uk": "З we потрібна were."
+        },
+        "en:lesson-14:session-35:intro3:r3": {
+          "ru": "The bus — единственное число: was.",
+          "uk": "The bus — однина: was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ffd3614c2f73ea183832f4364147999c5b2067d9ffb0f15f021ef5f9b4109863"
+}

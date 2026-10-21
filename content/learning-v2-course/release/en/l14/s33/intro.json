@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "when + past event; while + ongoing past action",
+    "uk": "when + past event; while + ongoing past action"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "While: во время процесса",
+        "uk": "While: під час процесу"
+      },
+      "bodyByLocale": {
+        "ru": "Look up — поднять взгляд, посмотреть вверх. I was looking up while you were taking a photo. — Я смотрел вверх, пока ты фотографировал. While вводит продолжающееся действие; здесь два процесса идут одновременно. Выберите такую фразу.",
+        "uk": "Look up — підняти погляд, подивитися вгору. I was looking up while you were taking a photo. — Я дивився вгору, поки ти фотографував. While вводить дію, що триває; тут два процеси відбуваються одночасно. Виберіть таку фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-33:intro1:r1",
+              "text": "I was looking up while you were taking a photo."
+            },
+            {
+              "responseId": "en:lesson-14:session-33:intro1:r2",
+              "text": "I was looking up while you was taking a photo."
+            },
+            {
+              "responseId": "en:lesson-14:session-33:intro1:r3",
+              "text": "I was looking up while you were take a photo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-33:intro1:r1",
+              "text": "I was looking up while you were taking a photo."
+            },
+            {
+              "responseId": "en:lesson-14:session-33:intro1:r2",
+              "text": "I was looking up while you was taking a photo."
+            },
+            {
+              "responseId": "en:lesson-14:session-33:intro1:r3",
+              "text": "I was looking up while you were take a photo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "When: событие в тот момент",
+        "uk": "When: подія в той момент"
+      },
+      "bodyByLocale": {
+        "ru": "Turn around — повернуться, обернуться; look down — опустить взгляд, посмотреть вниз. I was turning around when you called my name. — Я поворачивался, когда ты назвал моё имя. When здесь вводит короткое событие called. Не сводите правило к запрету: when тоже может сочетаться с процессом, но сейчас сравниваем эти две модели.",
+        "uk": "Turn around — повернутися, озирнутися; look down — опустити погляд, подивитися вниз. I was turning around when you called my name. — Я повертався, коли ти назвав моє ім’я. When тут вводить коротку подію called. Не зводьте правило до заборони: when теж може поєднуватися з процесом, але зараз порівнюємо ці дві моделі."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-33:intro2:r1",
+              "text": "I was turning around when you called my name."
+            },
+            {
+              "responseId": "en:lesson-14:session-33:intro2:r2",
+              "text": "I was turning around when you call my name."
+            },
+            {
+              "responseId": "en:lesson-14:session-33:intro2:r3",
+              "text": "I were turning around when you called my name."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-33:intro2:r1",
+              "text": "I was turning around when you called my name."
+            },
+            {
+              "responseId": "en:lesson-14:session-33:intro2:r2",
+              "text": "I was turning around when you call my name."
+            },
+            {
+              "responseId": "en:lesson-14:session-33:intro2:r3",
+              "text": "I were turning around when you called my name."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Наклониться",
+        "uk": "Нахилитися"
+      },
+      "bodyByLocale": {
+        "ru": "Bend down — наклониться вниз. She was bending down while I was holding her bag. — Она наклонялась, пока я держал её сумку. Здесь оба действия происходили одновременно. Выберите две формы прошлого процесса.",
+        "uk": "Bend down — нахилитися вниз. She was bending down while I was holding her bag. — Вона нахилялася, поки я тримав її сумку. Тут обидві дії відбувалися одночасно. Виберіть дві форми минулого процесу."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-33:intro3:r1",
+              "text": "She was bending down while I was holding her bag."
+            },
+            {
+              "responseId": "en:lesson-14:session-33:intro3:r2",
+              "text": "She were bending down while I was holding her bag."
+            },
+            {
+              "responseId": "en:lesson-14:session-33:intro3:r3",
+              "text": "She was bending down while I am holding her bag."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-33:intro3:r1",
+              "text": "She was bending down while I was holding her bag."
+            },
+            {
+              "responseId": "en:lesson-14:session-33:intro3:r2",
+              "text": "She were bending down while I was holding her bag."
+            },
+            {
+              "responseId": "en:lesson-14:session-33:intro3:r3",
+              "text": "She was bending down while I am holding her bag."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "79a5fe3b1a03d4d7c9b64f429249a62b8161f8edcb45c16566756cf83c6637f7"
+}

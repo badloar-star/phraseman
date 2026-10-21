@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-39:word:duckling",
+    "correctText": "duckling",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-39:i01",
+    "correctText": "I was watching a duckling while you were taking a photo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-39:i02",
+    "correctText": "You were watching a duckling while you were taking a photo.",
+    "correctResponseId": "en:lesson-14:session-39:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-39:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-39:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-39:word:chick",
+    "correctText": "chick",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-39:i04",
+    "correctText": "They were looking at a chick when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-39:i05",
+    "correctText": "You were looking at a chick when I arrived.",
+    "correctResponseId": "en:lesson-14:session-39:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-39:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-39:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-39:word:goose",
+    "correctText": "goose",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-39:i07",
+    "correctText": "She was drawing a goose while I was talking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-39:i08",
+    "correctText": "You were drawing a goose while I was talking.",
+    "correctResponseId": "en:lesson-14:session-39:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-39:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-39:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-39:word:turkey",
+    "correctText": "turkey",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-39:i10",
+    "correctText": "We were watching a turkey when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-39:i11",
+    "correctText": "You were watching a turkey when you called.",
+    "correctResponseId": "en:lesson-14:session-39:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-39:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-39:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-39:i13",
+    "correctText": "en:lesson-14:session-39:i13:p1=duckling\nen:lesson-14:session-39:i13:p2=chick\nen:lesson-14:session-39:i13:p3=goose\nen:lesson-14:session-39:i13:p4=turkey",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-39:i14",
+    "correctText": "I was looking at the birds while you were talking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-39:i15",
+    "correctText": "She was drawing when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-39:i16",
+    "correctText": "She was watching a duckling while I was drawing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-39:i17",
+    "correctText": "I was looking at a goose when she arrived.",
+    "correctResponseId": null
+  }
+]

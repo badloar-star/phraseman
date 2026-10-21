@@ -1,0 +1,1111 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-06",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-06:word:bead",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bead",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-06:word:bead:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bead",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-06:word:bead:audio",
+          "transcript": "bead"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-06:word:bead:r1",
+            "targetText": "bead",
+            "meaningByLocale": {
+              "ru": "бусина.",
+              "uk": "намистина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bead",
+          "definitionByLocale": {
+            "ru": "бусина.",
+            "uk": "намистина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-06:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Это бусина».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Это бусина».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a bead.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Это бусина».",
+          "uk": "Скажіть: «Це намистина»."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "bead"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-06:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-06:i02:r1",
+          "text": "This is a bead."
+        },
+        {
+          "responseId": "en:lesson-17:session-06:i02:r2",
+          "text": "This is an bead."
+        },
+        {
+          "responseId": "en:lesson-17:session-06:i02:r3",
+          "text": "This is bead."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-06:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-06:i02:audio",
+          "transcript": "This is a bead."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-06:i02:r1",
+            "targetText": "This is a bead.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i02:r2",
+            "targetText": "This is an bead.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i02:r3",
+            "targetText": "This is bead.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-06:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is a bead.",
+              "uk": "У записі звучить This is a bead."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is a bead.",
+              "uk": "У записі звучить This is a bead."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-06:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-06:i03:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-17:session-06:i03:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-17:session-06:i03:r3",
+          "text": "the two"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для указанного количества или общего названия.",
+          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+        },
+        "gappedTargetPhrase": "This is ___ bead.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-06:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i03:r3",
+            "text": "the two"
+          }
+        ],
+        "testedDimension": "Выберите форму для указанного количества или общего названия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-06:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "Bead начинается с согласного звука: a bead.",
+              "uk": "Bead починається з приголосного звука: a bead."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "Bead начинается с согласного звука: a bead.",
+              "uk": "Bead починається з приголосного звука: a bead."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-06:word:sequin",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sequin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-06:word:sequin:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sequin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-06:word:sequin:audio",
+          "transcript": "sequin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-06:word:sequin:r1",
+            "targetText": "sequin",
+            "meaningByLocale": {
+              "ru": "пайетка, маленький блестящий кружок для украшения ткани.",
+              "uk": "паєтка, маленький блискучий кружечок для оздоблення тканини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sequin",
+          "definitionByLocale": {
+            "ru": "пайетка, маленький блестящий кружок для украшения ткани.",
+            "uk": "паєтка, маленький блискучий кружечок для оздоблення тканини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-06:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «На ткани две пайетки». У sequin множественное число — sequins.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «На ткани две пайетки». У sequin множественное число — sequins.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There are two sequins on the fabric.",
+        "localizedMeaning": {
+          "ru": "Скажите: «На ткани две пайетки». У sequin множественное число — sequins.",
+          "uk": "Скажіть: «На тканині дві паєтки». У sequin множина — sequins."
+        },
+        "orderedTokens": [
+          "There",
+          "are",
+          "two",
+          "sequins",
+          "on",
+          "the",
+          "fabric"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-06:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-06:i05:r1",
+          "text": "There are two sequins on the fabric."
+        },
+        {
+          "responseId": "en:lesson-17:session-06:i05:r2",
+          "text": "There are two sequin on the fabric."
+        },
+        {
+          "responseId": "en:lesson-17:session-06:i05:r3",
+          "text": "There are a two sequins on the fabric."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-06:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-06:i05:audio",
+          "transcript": "There are two sequins on the fabric."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-06:i05:r1",
+            "targetText": "There are two sequins on the fabric.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i05:r2",
+            "targetText": "There are two sequin on the fabric.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i05:r3",
+            "targetText": "There are a two sequins on the fabric.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-06:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There are two sequins on the fabric.",
+              "uk": "У записі звучить There are two sequins on the fabric."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There are two sequins on the fabric.",
+              "uk": "У записі звучить There are two sequins on the fabric."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-06:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-06:i06:r1",
+          "text": "sequins"
+        },
+        {
+          "responseId": "en:lesson-17:session-06:i06:r2",
+          "text": "sequin"
+        },
+        {
+          "responseId": "en:lesson-17:session-06:i06:r3",
+          "text": "a sequin"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для указанного количества или общего названия.",
+          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+        },
+        "gappedTargetPhrase": "There are two ___ on the fabric.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-06:i06:r1",
+            "text": "sequins"
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i06:r2",
+            "text": "sequin"
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i06:r3",
+            "text": "a sequin"
+          }
+        ],
+        "testedDimension": "Выберите форму для указанного количества или общего названия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-06:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "После two нужно множественное sequins.",
+              "uk": "Після two потрібна множина sequins."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "После two нужно множественное sequins.",
+              "uk": "Після two потрібна множина sequins."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-06:word:glitter",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — glitter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-06:word:glitter:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — glitter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-06:word:glitter:audio",
+          "transcript": "glitter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-06:word:glitter:r1",
+            "targetText": "glitter",
+            "meaningByLocale": {
+              "ru": "декоративные блёстки, блестящий порошок.",
+              "uk": "декоративні блискітки, блискучий порошок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "glitter",
+          "definitionByLocale": {
+            "ru": "декоративные блёстки, блестящий порошок.",
+            "uk": "декоративні блискітки, блискучий порошок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-06:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Эти блёстки синие».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Эти блёстки синие».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This glitter is blue.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Эти блёстки синие».",
+          "uk": "Скажіть: «Ці блискітки сині»."
+        },
+        "orderedTokens": [
+          "This",
+          "glitter",
+          "is",
+          "blue"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-06:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-06:i08:r1",
+          "text": "This glitter is blue."
+        },
+        {
+          "responseId": "en:lesson-17:session-06:i08:r2",
+          "text": "This glitter are blue."
+        },
+        {
+          "responseId": "en:lesson-17:session-06:i08:r3",
+          "text": "These glitters are blue."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-06:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-06:i08:audio",
+          "transcript": "This glitter is blue."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-06:i08:r1",
+            "targetText": "This glitter is blue.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i08:r2",
+            "targetText": "This glitter are blue.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i08:r3",
+            "targetText": "These glitters are blue.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-06:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This glitter is blue.",
+              "uk": "У записі звучить This glitter is blue."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This glitter is blue.",
+              "uk": "У записі звучить This glitter is blue."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-06:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-06:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-17:session-06:i09:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-17:session-06:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для указанного количества или общего названия.",
+          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+        },
+        "gappedTargetPhrase": "This glitter ___ blue.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-06:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Выберите форму для указанного количества или общего названия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-06:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "Glitter как материал — неисчисляемое слово: is, даже если по-русски «блёстки».",
+              "uk": "Glitter як матеріал — незлічуване слово: is, навіть якщо українською «блискітки»."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "Glitter как материал — неисчисляемое слово: is, даже если по-русски «блёстки».",
+              "uk": "Glitter як матеріал — незлічуване слово: is, навіть якщо українською «блискітки»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-06:word:embroidery",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — embroidery",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-06:word:embroidery:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — embroidery",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-06:word:embroidery:audio",
+          "transcript": "embroidery"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-06:word:embroidery:r1",
+            "targetText": "embroidery",
+            "meaningByLocale": {
+              "ru": "вышивка, искусство вышивания.",
+              "uk": "вишивка, мистецтво вишивання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "embroidery",
+          "definitionByLocale": {
+            "ru": "вышивка, искусство вышивания.",
+            "uk": "вишивка, мистецтво вишивання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-06:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Нам нравится вышивание».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Нам нравится вышивание».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We enjoy embroidery.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Нам нравится вышивание».",
+          "uk": "Скажіть: «Нам подобається вишивання»."
+        },
+        "orderedTokens": [
+          "We",
+          "enjoy",
+          "embroidery"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-06:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-06:i11:r1",
+          "text": "We enjoy embroidery."
+        },
+        {
+          "responseId": "en:lesson-17:session-06:i11:r2",
+          "text": "We enjoy an embroidery."
+        },
+        {
+          "responseId": "en:lesson-17:session-06:i11:r3",
+          "text": "We enjoy embroiderys."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-06:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-06:i11:audio",
+          "transcript": "We enjoy embroidery."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-06:i11:r1",
+            "targetText": "We enjoy embroidery.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i11:r2",
+            "targetText": "We enjoy an embroidery.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i11:r3",
+            "targetText": "We enjoy embroiderys.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-06:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We enjoy embroidery.",
+              "uk": "У записі звучить We enjoy embroidery."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We enjoy embroidery.",
+              "uk": "У записі звучить We enjoy embroidery."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-06:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-06:i12:r1",
+          "text": "embroidery"
+        },
+        {
+          "responseId": "en:lesson-17:session-06:i12:r2",
+          "text": "an embroidery"
+        },
+        {
+          "responseId": "en:lesson-17:session-06:i12:r3",
+          "text": "embroiderys"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для указанного количества или общего названия.",
+          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+        },
+        "gappedTargetPhrase": "We enjoy ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-06:i12:r1",
+            "text": "embroidery"
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i12:r2",
+            "text": "an embroidery"
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i12:r3",
+            "text": "embroiderys"
+          }
+        ],
+        "testedDimension": "Выберите форму для указанного количества или общего названия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-06:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "Embroidery как занятие — неисчисляемое: без an и без множественного -s.",
+              "uk": "Embroidery як заняття — незлічуване: без an та без множинного -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-06:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "Embroidery как занятие — неисчисляемое: без an и без множественного -s.",
+              "uk": "Embroidery як заняття — незлічуване: без an та без множинного -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-06:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-06:i13:p1",
+            "target": "bead",
+            "meaningByLocale": {
+              "ru": "бусина",
+              "uk": "намистина"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-06:i13:p2",
+            "target": "sequin",
+            "meaningByLocale": {
+              "ru": "пайетка, маленький блестящий кружок для украшения ткани",
+              "uk": "паєтка, маленький блискучий кружечок для оздоблення тканини"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-06:i13:p3",
+            "target": "glitter",
+            "meaningByLocale": {
+              "ru": "декоративные блёстки, блестящий порошок",
+              "uk": "декоративні блискітки, блискучий порошок"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-06:i13:p4",
+            "target": "embroidery",
+            "meaningByLocale": {
+              "ru": "вышивка, искусство вышивания",
+              "uk": "вишивка, мистецтво вишивання"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bead",
+          "sequin",
+          "glitter",
+          "embroidery"
+        ],
+        "rightColumn": [
+          "бусина",
+          "пайетка, маленький блестящий кружок для украшения ткани",
+          "декоративные блёстки, блестящий порошок",
+          "вышивка, искусство вышивания"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-06:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу с исчисляемым словом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-06:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу с исчисляемым словом",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-06:i14:audio",
+          "transcript": "This is a bead."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is a bead.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "bead"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-06:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу с общим названием",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-06:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу с общим названием",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-06:i15:audio",
+          "transcript": "This glitter is blue."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This glitter is blue.",
+        "orderedTokens": [
+          "This",
+          "glitter",
+          "is",
+          "blue"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-06:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите фразу с неисчисляемым словом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-06:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите фразу с неисчисляемым словом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-06:i16:audio",
+          "transcript": "We enjoy embroidery."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We enjoy embroidery.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-06:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите фразу о количестве",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-06:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите фразу о количестве",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-06:i17:audio",
+          "transcript": "There are two sequins on the fabric."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There are two sequins on the fabric.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "74079fe9d17553639431cf87fe91219f527967e07c10b2eaf2adc4a07174a97c"
+}

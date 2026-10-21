@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-05:word:wrapper",
+    "correctText": "wrapper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-05:i01",
+    "correctText": "This is a wrapper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-05:i02",
+    "correctText": "This is a wrapper.",
+    "correctResponseId": "en:lesson-17:session-05:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-05:i03",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-17:session-05:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-05:word:cigarette-end",
+    "correctText": "cigarette end",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-05:i04",
+    "correctText": "There are two cigarette ends on the ground.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-05:i05",
+    "correctText": "There are two cigarette ends on the ground.",
+    "correctResponseId": "en:lesson-17:session-05:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-05:i06",
+    "correctText": "cigarette ends",
+    "correctResponseId": "en:lesson-17:session-05:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-05:word:litter",
+    "correctText": "litter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-05:i07",
+    "correctText": "This litter is dangerous.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-05:i08",
+    "correctText": "This litter is dangerous.",
+    "correctResponseId": "en:lesson-17:session-05:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-05:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-17:session-05:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-05:word:clutter",
+    "correctText": "clutter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-05:i10",
+    "correctText": "We are clearing clutter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-05:i11",
+    "correctText": "We are clearing clutter.",
+    "correctResponseId": "en:lesson-17:session-05:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-05:i12",
+    "correctText": "clutter",
+    "correctResponseId": "en:lesson-17:session-05:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-05:i13",
+    "correctText": "en:lesson-17:session-05:i13:p1=wrapper\nen:lesson-17:session-05:i13:p2=cigarette end\nen:lesson-17:session-05:i13:p3=litter\nen:lesson-17:session-05:i13:p4=clutter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-05:i14",
+    "correctText": "This is a wrapper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-05:i15",
+    "correctText": "This litter is dangerous.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-05:i16",
+    "correctText": "We are clearing clutter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-05:i17",
+    "correctText": "There are two cigarette ends on the ground.",
+    "correctResponseId": null
+  }
+]

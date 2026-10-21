@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "count nouns / non-count nouns: a, an, plural forms",
+    "uk": "count nouns / non-count nouns: a, an, plural forms"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Один предмет или человек",
+        "uk": "Один предмет або людина"
+      },
+      "bodyByLocale": {
+        "ru": "appliance — бытовой прибор. Это исчисляемое слово: один — an appliance. A ставим перед согласным звуком, an — перед гласным.",
+        "uk": "appliance — побутовий прилад. Це злічуване слово: один — an appliance. A ставимо перед приголосним звуком, an — перед голосним."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-08:intro1:r1",
+              "text": "This is an appliance."
+            },
+            {
+              "responseId": "en:lesson-17:session-08:intro1:r2",
+              "text": "This is a appliance."
+            },
+            {
+              "responseId": "en:lesson-17:session-08:intro1:r3",
+              "text": "This is appliance."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-08:intro1:r1",
+              "text": "This is an appliance."
+            },
+            {
+              "responseId": "en:lesson-17:session-08:intro1:r2",
+              "text": "This is a appliance."
+            },
+            {
+              "responseId": "en:lesson-17:session-08:intro1:r3",
+              "text": "This is appliance."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Считаем несколько",
+        "uk": "Рахуємо декілька"
+      },
+      "bodyByLocale": {
+        "ru": "estimate — предварительный расчёт стоимости. Один: an estimate. Два: two estimates. После two нужно множественное estimates.",
+        "uk": "estimate — попередній розрахунок вартості. Один: an estimate. Два: two estimates. Після two потрібна множина estimates."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-08:intro2:r1",
+              "text": "There are two estimates on the table."
+            },
+            {
+              "responseId": "en:lesson-17:session-08:intro2:r2",
+              "text": "There are two estimate on the table."
+            },
+            {
+              "responseId": "en:lesson-17:session-08:intro2:r3",
+              "text": "There are a two estimates on the table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-08:intro2:r1",
+              "text": "There are two estimates on the table."
+            },
+            {
+              "responseId": "en:lesson-17:session-08:intro2:r2",
+              "text": "There are two estimate on the table."
+            },
+            {
+              "responseId": "en:lesson-17:session-08:intro2:r3",
+              "text": "There are a two estimates on the table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Общее название без a",
+        "uk": "Загальна назва без a"
+      },
+      "bodyByLocale": {
+        "ru": "packaging — упаковка, упаковочные материалы. Packaging как упаковочные материалы — неисчисляемое слово: is. damage — повреждение, нанесённый вещам вред. Damage в значении повреждения вещей — неисчисляемое: без a и без множественного -s. Отдельные предметы или события можно назвать другими исчисляемыми словами; здесь тренируем общие названия.",
+        "uk": "packaging — пакування, пакувальні матеріали. Packaging як пакувальні матеріали — незлічуване слово: is. damage — пошкодження, завдана речам шкода. Damage у значенні пошкодження речей — незлічуване: без a та без множинного -s. Окремі предмети або події можна назвати іншими злічуваними словами; тут тренуємо загальні назви."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-08:intro3:r1",
+              "text": "This packaging is wet."
+            },
+            {
+              "responseId": "en:lesson-17:session-08:intro3:r2",
+              "text": "This packaging are wet."
+            },
+            {
+              "responseId": "en:lesson-17:session-08:intro3:r3",
+              "text": "These packagings are wet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-08:intro3:r1",
+              "text": "This packaging is wet."
+            },
+            {
+              "responseId": "en:lesson-17:session-08:intro3:r2",
+              "text": "This packaging are wet."
+            },
+            {
+              "responseId": "en:lesson-17:session-08:intro3:r3",
+              "text": "These packagings are wet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ed1936e32e7f55446665636bfcd5fa1e98627e91e5e25ae1c52411a73bb375ca"
+}

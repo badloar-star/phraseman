@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-17:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-17:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-04:intro1:r2": {
+          "ru": "Candidate начинается с согласного звука: a candidate.",
+          "uk": "Candidate починається з приголосного звука: a candidate."
+        },
+        "en:lesson-17:session-04:intro1:r3": {
+          "ru": "Здесь нельзя оставлять исчисляемое существительное в единственном числе без a.",
+          "uk": "Тут не можна залишати злічуваний іменник в однині без a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-04:intro2:r2": {
+          "ru": "У vacancy во множественном числе y меняется на ies: vacancies.",
+          "uk": "У vacancy у множині y змінюється на ies: vacancies."
+        },
+        "en:lesson-17:session-04:intro2:r3": {
+          "ru": "Не ставьте a перед two.",
+          "uk": "Не ставте a перед two."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-04:intro3:r2": {
+          "ru": "Paperwork — неисчисляемое слово: is, не are.",
+          "uk": "Paperwork — незлічуване слово: is, не are."
+        },
+        "en:lesson-17:session-04:intro3:r3": {
+          "ru": "В этом значении у слова нет множественного -s.",
+          "uk": "У цьому значенні слово не має множинного -s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "aa173367ec451316218bd4b79c6efc540de24fc31e578bd5cca5f567f56ea02c"
+}

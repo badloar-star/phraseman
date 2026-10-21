@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "count nouns / non-count nouns: a, an, plural forms",
+    "uk": "count nouns / non-count nouns: a, an, plural forms"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Один предмет или человек",
+        "uk": "Один предмет або людина"
+      },
+      "bodyByLocale": {
+        "ru": "candidate — кандидат, человек, претендующий на место. Это исчисляемое слово: один — a candidate. A ставим перед согласным звуком, an — перед гласным.",
+        "uk": "candidate — кандидат, людина, яка претендує на місце. Це злічуване слово: один — a candidate. A ставимо перед приголосним звуком, an — перед голосним."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-04:intro1:r1",
+              "text": "She is a candidate."
+            },
+            {
+              "responseId": "en:lesson-17:session-04:intro1:r2",
+              "text": "She is an candidate."
+            },
+            {
+              "responseId": "en:lesson-17:session-04:intro1:r3",
+              "text": "She is candidate."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-04:intro1:r1",
+              "text": "She is a candidate."
+            },
+            {
+              "responseId": "en:lesson-17:session-04:intro1:r2",
+              "text": "She is an candidate."
+            },
+            {
+              "responseId": "en:lesson-17:session-04:intro1:r3",
+              "text": "She is candidate."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Считаем несколько",
+        "uk": "Рахуємо декілька"
+      },
+      "bodyByLocale": {
+        "ru": "vacancy — вакансия, свободное рабочее место. Один: a vacancy. Два: two vacancies. У vacancy во множественном числе y меняется на ies: vacancies.",
+        "uk": "vacancy — вакансія, вільне робоче місце. Один: a vacancy. Два: two vacancies. У vacancy у множині y змінюється на ies: vacancies."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-04:intro2:r1",
+              "text": "There are two vacancies in this shop."
+            },
+            {
+              "responseId": "en:lesson-17:session-04:intro2:r2",
+              "text": "There are two vacancy in this shop."
+            },
+            {
+              "responseId": "en:lesson-17:session-04:intro2:r3",
+              "text": "There are a two vacancies in this shop."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-04:intro2:r1",
+              "text": "There are two vacancies in this shop."
+            },
+            {
+              "responseId": "en:lesson-17:session-04:intro2:r2",
+              "text": "There are two vacancy in this shop."
+            },
+            {
+              "responseId": "en:lesson-17:session-04:intro2:r3",
+              "text": "There are a two vacancies in this shop."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Общее название без a",
+        "uk": "Загальна назва без a"
+      },
+      "bodyByLocale": {
+        "ru": "paperwork — работа с документами, оформление бумаг. Paperwork — неисчисляемое слово: is, не are. training — обучение, подготовка к работе или деятельности. Training в значении обучения в целом — без a и без множественного -s. Отдельные предметы или события можно назвать другими исчисляемыми словами; здесь тренируем общие названия.",
+        "uk": "paperwork — робота з документами, оформлення паперів. Paperwork — незлічуване слово: is, не are. training — навчання, підготовка до роботи або діяльності. Training у значенні навчання загалом — без a та без множинного -s. Окремі предмети або події можна назвати іншими злічуваними словами; тут тренуємо загальні назви."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-04:intro3:r1",
+              "text": "This paperwork is important."
+            },
+            {
+              "responseId": "en:lesson-17:session-04:intro3:r2",
+              "text": "This paperwork are important."
+            },
+            {
+              "responseId": "en:lesson-17:session-04:intro3:r3",
+              "text": "These paperworks are important."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-04:intro3:r1",
+              "text": "This paperwork is important."
+            },
+            {
+              "responseId": "en:lesson-17:session-04:intro3:r2",
+              "text": "This paperwork are important."
+            },
+            {
+              "responseId": "en:lesson-17:session-04:intro3:r3",
+              "text": "These paperworks are important."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "087962c0c37ba9b363309e145ee3c388051ff0f5098d0b12404db813380408e0"
+}

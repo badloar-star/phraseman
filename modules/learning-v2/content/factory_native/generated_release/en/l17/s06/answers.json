@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-06:word:bead",
+    "correctText": "bead",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-06:i01",
+    "correctText": "This is a bead.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-06:i02",
+    "correctText": "This is a bead.",
+    "correctResponseId": "en:lesson-17:session-06:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-06:i03",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-17:session-06:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-06:word:sequin",
+    "correctText": "sequin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-06:i04",
+    "correctText": "There are two sequins on the fabric.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-06:i05",
+    "correctText": "There are two sequins on the fabric.",
+    "correctResponseId": "en:lesson-17:session-06:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-06:i06",
+    "correctText": "sequins",
+    "correctResponseId": "en:lesson-17:session-06:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-06:word:glitter",
+    "correctText": "glitter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-06:i07",
+    "correctText": "This glitter is blue.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-06:i08",
+    "correctText": "This glitter is blue.",
+    "correctResponseId": "en:lesson-17:session-06:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-06:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-17:session-06:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-06:word:embroidery",
+    "correctText": "embroidery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-06:i10",
+    "correctText": "We enjoy embroidery.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-06:i11",
+    "correctText": "We enjoy embroidery.",
+    "correctResponseId": "en:lesson-17:session-06:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-06:i12",
+    "correctText": "embroidery",
+    "correctResponseId": "en:lesson-17:session-06:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-06:i13",
+    "correctText": "en:lesson-17:session-06:i13:p1=bead\nen:lesson-17:session-06:i13:p2=sequin\nen:lesson-17:session-06:i13:p3=glitter\nen:lesson-17:session-06:i13:p4=embroidery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-06:i14",
+    "correctText": "This is a bead.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-06:i15",
+    "correctText": "This glitter is blue.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-06:i16",
+    "correctText": "We enjoy embroidery.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-06:i17",
+    "correctText": "There are two sequins on the fabric.",
+    "correctResponseId": null
+  }
+]

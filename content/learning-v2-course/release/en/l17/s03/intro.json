@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "count nouns / non-count nouns: a, an, plural forms",
+    "uk": "count nouns / non-count nouns: a, an, plural forms"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Один предмет или человек",
+        "uk": "Один предмет або людина"
+      },
+      "bodyByLocale": {
+        "ru": "biography — биография, книга о чьей-то жизни. Это исчисляемое слово: один — a biography. A ставим перед согласным звуком, an — перед гласным.",
+        "uk": "biography — біографія, книжка про чиєсь життя. Це злічуване слово: один — a biography. A ставимо перед приголосним звуком, an — перед голосним."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-03:intro1:r1",
+              "text": "This is a biography."
+            },
+            {
+              "responseId": "en:lesson-17:session-03:intro1:r2",
+              "text": "This is an biography."
+            },
+            {
+              "responseId": "en:lesson-17:session-03:intro1:r3",
+              "text": "This is biography."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-03:intro1:r1",
+              "text": "This is a biography."
+            },
+            {
+              "responseId": "en:lesson-17:session-03:intro1:r2",
+              "text": "This is an biography."
+            },
+            {
+              "responseId": "en:lesson-17:session-03:intro1:r3",
+              "text": "This is biography."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Считаем несколько",
+        "uk": "Рахуємо декілька"
+      },
+      "bodyByLocale": {
+        "ru": "autobiography — автобиография, книга автора о собственной жизни. Один: an autobiography. Два: two autobiographies. У autobiography во множественном числе y меняется на ies: autobiographies.",
+        "uk": "autobiography — автобіографія, книжка автора про власне життя. Один: an autobiography. Два: two autobiographies. У autobiography у множині y змінюється на ies: autobiographies."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-03:intro2:r1",
+              "text": "There are two autobiographies on the shelf."
+            },
+            {
+              "responseId": "en:lesson-17:session-03:intro2:r2",
+              "text": "There are two autobiography on the shelf."
+            },
+            {
+              "responseId": "en:lesson-17:session-03:intro2:r3",
+              "text": "There are a two autobiographies on the shelf."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-03:intro2:r1",
+              "text": "There are two autobiographies on the shelf."
+            },
+            {
+              "responseId": "en:lesson-17:session-03:intro2:r2",
+              "text": "There are two autobiography on the shelf."
+            },
+            {
+              "responseId": "en:lesson-17:session-03:intro2:r3",
+              "text": "There are a two autobiographies on the shelf."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Общее название без a",
+        "uk": "Загальна назва без a"
+      },
+      "bodyByLocale": {
+        "ru": "fiction — художественная литература, вымышленные истории. Fiction как вид литературы — неисчисляемое слово: is. non-fiction — нехудожественная литература о реальных фактах. Non-fiction как вид литературы — без a и без множественного -s. Отдельные предметы или события можно назвать другими исчисляемыми словами; здесь тренируем общие названия.",
+        "uk": "fiction — художня література, вигадані історії. Fiction як вид літератури — незлічуване слово: is. non-fiction — нехудожня література про реальні факти. Non-fiction як вид літератури — без a та без множинного -s. Окремі предмети або події можна назвати іншими злічуваними словами; тут тренуємо загальні назви."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-03:intro3:r1",
+              "text": "This fiction is interesting."
+            },
+            {
+              "responseId": "en:lesson-17:session-03:intro3:r2",
+              "text": "This fiction are interesting."
+            },
+            {
+              "responseId": "en:lesson-17:session-03:intro3:r3",
+              "text": "These fictions are interesting."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-03:intro3:r1",
+              "text": "This fiction is interesting."
+            },
+            {
+              "responseId": "en:lesson-17:session-03:intro3:r2",
+              "text": "This fiction are interesting."
+            },
+            {
+              "responseId": "en:lesson-17:session-03:intro3:r3",
+              "text": "These fictions are interesting."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2f9ab174f44080ab7a1c79c472afa32926efed881b138eb820418bd5bb8ea981"
+}

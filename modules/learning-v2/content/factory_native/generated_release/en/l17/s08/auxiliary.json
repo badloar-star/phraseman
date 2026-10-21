@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-17:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-17:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-08:intro1:r2": {
+          "ru": "Appliance начинается с гласного звука: an appliance.",
+          "uk": "Appliance починається з голосного звука: an appliance."
+        },
+        "en:lesson-17:session-08:intro1:r3": {
+          "ru": "Здесь нельзя оставлять исчисляемое существительное в единственном числе без артикля.",
+          "uk": "Тут не можна залишати злічуваний іменник в однині без артикля."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-08:intro2:r2": {
+          "ru": "После two нужно множественное estimates.",
+          "uk": "Після two потрібна множина estimates."
+        },
+        "en:lesson-17:session-08:intro2:r3": {
+          "ru": "Не ставьте a перед two.",
+          "uk": "Не ставте a перед two."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-08:intro3:r2": {
+          "ru": "Packaging как упаковочные материалы — неисчисляемое слово: is.",
+          "uk": "Packaging як пакувальні матеріали — незлічуване слово: is."
+        },
+        "en:lesson-17:session-08:intro3:r3": {
+          "ru": "В этом значении у слова нет множественного -s.",
+          "uk": "У цьому значенні слово не має множинного -s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a176f2b2db7ad22001330c2075443a8169a54824933c7b68fd035cdd3dc56c20"
+}

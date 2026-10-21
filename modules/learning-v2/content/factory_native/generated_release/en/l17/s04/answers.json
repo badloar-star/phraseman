@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-04:word:candidate",
+    "correctText": "candidate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-04:i01",
+    "correctText": "She is a candidate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-04:i02",
+    "correctText": "She is a candidate.",
+    "correctResponseId": "en:lesson-17:session-04:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-04:i03",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-17:session-04:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-04:word:vacancy",
+    "correctText": "vacancy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-04:i04",
+    "correctText": "There are two vacancies in this shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-04:i05",
+    "correctText": "There are two vacancies in this shop.",
+    "correctResponseId": "en:lesson-17:session-04:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-04:i06",
+    "correctText": "vacancies",
+    "correctResponseId": "en:lesson-17:session-04:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-04:word:paperwork",
+    "correctText": "paperwork",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-04:i07",
+    "correctText": "This paperwork is important.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-04:i08",
+    "correctText": "This paperwork is important.",
+    "correctResponseId": "en:lesson-17:session-04:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-04:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-17:session-04:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-04:word:training",
+    "correctText": "training",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-04:i10",
+    "correctText": "We need training.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-04:i11",
+    "correctText": "We need training.",
+    "correctResponseId": "en:lesson-17:session-04:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-04:i12",
+    "correctText": "training",
+    "correctResponseId": "en:lesson-17:session-04:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-04:i13",
+    "correctText": "en:lesson-17:session-04:i13:p1=candidate\nen:lesson-17:session-04:i13:p2=vacancy\nen:lesson-17:session-04:i13:p3=paperwork\nen:lesson-17:session-04:i13:p4=training",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-04:i14",
+    "correctText": "She is a candidate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-04:i15",
+    "correctText": "This paperwork is important.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-04:i16",
+    "correctText": "We need training.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-04:i17",
+    "correctText": "There are two vacancies in this shop.",
+    "correctResponseId": null
+  }
+]

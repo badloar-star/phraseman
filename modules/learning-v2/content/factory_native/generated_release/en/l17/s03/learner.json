@@ -1,0 +1,1111 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-03",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-03:word:biography",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — biography",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-03:word:biography:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — biography",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-03:word:biography:audio",
+          "transcript": "biography"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-03:word:biography:r1",
+            "targetText": "biography",
+            "meaningByLocale": {
+              "ru": "биография, книга о чьей-то жизни.",
+              "uk": "біографія, книжка про чиєсь життя."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "biography",
+          "definitionByLocale": {
+            "ru": "биография, книга о чьей-то жизни.",
+            "uk": "біографія, книжка про чиєсь життя."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-03:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Это биография».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Это биография».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a biography.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Это биография».",
+          "uk": "Скажіть: «Це біографія»."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "biography"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-03:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-03:i02:r1",
+          "text": "This is a biography."
+        },
+        {
+          "responseId": "en:lesson-17:session-03:i02:r2",
+          "text": "This is an biography."
+        },
+        {
+          "responseId": "en:lesson-17:session-03:i02:r3",
+          "text": "This is biography."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-03:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-03:i02:audio",
+          "transcript": "This is a biography."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-03:i02:r1",
+            "targetText": "This is a biography.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i02:r2",
+            "targetText": "This is an biography.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i02:r3",
+            "targetText": "This is biography.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is a biography.",
+              "uk": "У записі звучить This is a biography."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is a biography.",
+              "uk": "У записі звучить This is a biography."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-03:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-03:i03:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-17:session-03:i03:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-17:session-03:i03:r3",
+          "text": "the two"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для указанного количества или общего названия.",
+          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+        },
+        "gappedTargetPhrase": "This is ___ biography.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-03:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i03:r3",
+            "text": "the two"
+          }
+        ],
+        "testedDimension": "Выберите форму для указанного количества или общего названия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-03:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "Biography начинается с согласного звука: a biography.",
+              "uk": "Biography починається з приголосного звука: a biography."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "Biography начинается с согласного звука: a biography.",
+              "uk": "Biography починається з приголосного звука: a biography."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-03:word:autobiography",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — autobiography",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-03:word:autobiography:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — autobiography",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-03:word:autobiography:audio",
+          "transcript": "autobiography"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-03:word:autobiography:r1",
+            "targetText": "autobiography",
+            "meaningByLocale": {
+              "ru": "автобиография, книга автора о собственной жизни.",
+              "uk": "автобіографія, книжка автора про власне життя."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "autobiography",
+          "definitionByLocale": {
+            "ru": "автобиография, книга автора о собственной жизни.",
+            "uk": "автобіографія, книжка автора про власне життя."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-03:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «На полке две автобиографии». У autobiography множественное число — autobiographies.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «На полке две автобиографии». У autobiography множественное число — autobiographies.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There are two autobiographies on the shelf.",
+        "localizedMeaning": {
+          "ru": "Скажите: «На полке две автобиографии». У autobiography множественное число — autobiographies.",
+          "uk": "Скажіть: «На полиці дві автобіографії». У autobiography множина — autobiographies."
+        },
+        "orderedTokens": [
+          "There",
+          "are",
+          "two",
+          "autobiographies",
+          "on",
+          "the",
+          "shelf"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-03:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-03:i05:r1",
+          "text": "There are two autobiographies on the shelf."
+        },
+        {
+          "responseId": "en:lesson-17:session-03:i05:r2",
+          "text": "There are two autobiography on the shelf."
+        },
+        {
+          "responseId": "en:lesson-17:session-03:i05:r3",
+          "text": "There are a two autobiographies on the shelf."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-03:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-03:i05:audio",
+          "transcript": "There are two autobiographies on the shelf."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-03:i05:r1",
+            "targetText": "There are two autobiographies on the shelf.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i05:r2",
+            "targetText": "There are two autobiography on the shelf.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i05:r3",
+            "targetText": "There are a two autobiographies on the shelf.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-03:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There are two autobiographies on the shelf.",
+              "uk": "У записі звучить There are two autobiographies on the shelf."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There are two autobiographies on the shelf.",
+              "uk": "У записі звучить There are two autobiographies on the shelf."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-03:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-03:i06:r1",
+          "text": "autobiographies"
+        },
+        {
+          "responseId": "en:lesson-17:session-03:i06:r2",
+          "text": "autobiography"
+        },
+        {
+          "responseId": "en:lesson-17:session-03:i06:r3",
+          "text": "an autobiography"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для указанного количества или общего названия.",
+          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+        },
+        "gappedTargetPhrase": "There are two ___ on the shelf.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-03:i06:r1",
+            "text": "autobiographies"
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i06:r2",
+            "text": "autobiography"
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i06:r3",
+            "text": "an autobiography"
+          }
+        ],
+        "testedDimension": "Выберите форму для указанного количества или общего названия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-03:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "У autobiography во множественном числе y меняется на ies: autobiographies.",
+              "uk": "У autobiography у множині y змінюється на ies: autobiographies."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "У autobiography во множественном числе y меняется на ies: autobiographies.",
+              "uk": "У autobiography у множині y змінюється на ies: autobiographies."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-03:word:fiction",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fiction",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-03:word:fiction:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fiction",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-03:word:fiction:audio",
+          "transcript": "fiction"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-03:word:fiction:r1",
+            "targetText": "fiction",
+            "meaningByLocale": {
+              "ru": "художественная литература, вымышленные истории.",
+              "uk": "художня література, вигадані історії."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fiction",
+          "definitionByLocale": {
+            "ru": "художественная литература, вымышленные истории.",
+            "uk": "художня література, вигадані історії."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-03:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Эта художественная литература интересная».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Эта художественная литература интересная».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This fiction is interesting.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Эта художественная литература интересная».",
+          "uk": "Скажіть: «Ця художня література цікава»."
+        },
+        "orderedTokens": [
+          "This",
+          "fiction",
+          "is",
+          "interesting"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-03:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-03:i08:r1",
+          "text": "This fiction is interesting."
+        },
+        {
+          "responseId": "en:lesson-17:session-03:i08:r2",
+          "text": "This fiction are interesting."
+        },
+        {
+          "responseId": "en:lesson-17:session-03:i08:r3",
+          "text": "These fictions are interesting."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-03:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-03:i08:audio",
+          "transcript": "This fiction is interesting."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-03:i08:r1",
+            "targetText": "This fiction is interesting.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i08:r2",
+            "targetText": "This fiction are interesting.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i08:r3",
+            "targetText": "These fictions are interesting.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-03:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This fiction is interesting.",
+              "uk": "У записі звучить This fiction is interesting."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This fiction is interesting.",
+              "uk": "У записі звучить This fiction is interesting."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-03:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-03:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-17:session-03:i09:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-17:session-03:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для указанного количества или общего названия.",
+          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+        },
+        "gappedTargetPhrase": "This fiction ___ interesting.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-03:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Выберите форму для указанного количества или общего названия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-03:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "Fiction как вид литературы — неисчисляемое слово: is.",
+              "uk": "Fiction як вид літератури — незлічуване слово: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "Fiction как вид литературы — неисчисляемое слово: is.",
+              "uk": "Fiction як вид літератури — незлічуване слово: is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-03:word:non-fiction",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — non-fiction",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-03:word:non-fiction:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — non-fiction",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-03:word:non-fiction:audio",
+          "transcript": "non-fiction"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-03:word:non-fiction:r1",
+            "targetText": "non-fiction",
+            "meaningByLocale": {
+              "ru": "нехудожественная литература о реальных фактах.",
+              "uk": "нехудожня література про реальні факти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "non-fiction",
+          "definitionByLocale": {
+            "ru": "нехудожественная литература о реальных фактах.",
+            "uk": "нехудожня література про реальні факти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-03:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Нам нужна нехудожественная литература».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Нам нужна нехудожественная литература».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We need non-fiction.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Нам нужна нехудожественная литература».",
+          "uk": "Скажіть: «Нам потрібна нехудожня література»."
+        },
+        "orderedTokens": [
+          "We",
+          "need",
+          "non-fiction"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-03:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-03:i11:r1",
+          "text": "We need non-fiction."
+        },
+        {
+          "responseId": "en:lesson-17:session-03:i11:r2",
+          "text": "We need a non-fiction."
+        },
+        {
+          "responseId": "en:lesson-17:session-03:i11:r3",
+          "text": "We need non-fictions."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-03:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-03:i11:audio",
+          "transcript": "We need non-fiction."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-03:i11:r1",
+            "targetText": "We need non-fiction.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i11:r2",
+            "targetText": "We need a non-fiction.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i11:r3",
+            "targetText": "We need non-fictions.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-03:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need non-fiction.",
+              "uk": "У записі звучить We need non-fiction."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need non-fiction.",
+              "uk": "У записі звучить We need non-fiction."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-03:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-03:i12:r1",
+          "text": "non-fiction"
+        },
+        {
+          "responseId": "en:lesson-17:session-03:i12:r2",
+          "text": "a non-fiction"
+        },
+        {
+          "responseId": "en:lesson-17:session-03:i12:r3",
+          "text": "non-fictions"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для указанного количества или общего названия.",
+          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+        },
+        "gappedTargetPhrase": "We need ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-03:i12:r1",
+            "text": "non-fiction"
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i12:r2",
+            "text": "a non-fiction"
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i12:r3",
+            "text": "non-fictions"
+          }
+        ],
+        "testedDimension": "Выберите форму для указанного количества или общего названия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-03:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "Non-fiction как вид литературы — без a и без множественного -s.",
+              "uk": "Non-fiction як вид літератури — без a та без множинного -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-03:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "Non-fiction как вид литературы — без a и без множественного -s.",
+              "uk": "Non-fiction як вид літератури — без a та без множинного -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-03:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-03:i13:p1",
+            "target": "biography",
+            "meaningByLocale": {
+              "ru": "биография, книга о чьей-то жизни",
+              "uk": "біографія, книжка про чиєсь життя"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-03:i13:p2",
+            "target": "autobiography",
+            "meaningByLocale": {
+              "ru": "автобиография, книга автора о собственной жизни",
+              "uk": "автобіографія, книжка автора про власне життя"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-03:i13:p3",
+            "target": "fiction",
+            "meaningByLocale": {
+              "ru": "художественная литература, вымышленные истории",
+              "uk": "художня література, вигадані історії"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-03:i13:p4",
+            "target": "non-fiction",
+            "meaningByLocale": {
+              "ru": "нехудожественная литература о реальных фактах",
+              "uk": "нехудожня література про реальні факти"
+            }
+          }
+        ],
+        "leftColumn": [
+          "biography",
+          "autobiography",
+          "fiction",
+          "non-fiction"
+        ],
+        "rightColumn": [
+          "биография, книга о чьей-то жизни",
+          "автобиография, книга автора о собственной жизни",
+          "художественная литература, вымышленные истории",
+          "нехудожественная литература о реальных фактах"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-03:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу с исчисляемым словом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-03:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу с исчисляемым словом",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-03:i14:audio",
+          "transcript": "This is a biography."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is a biography.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "biography"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-03:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу с общим названием",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-03:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу с общим названием",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-03:i15:audio",
+          "transcript": "This fiction is interesting."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This fiction is interesting.",
+        "orderedTokens": [
+          "This",
+          "fiction",
+          "is",
+          "interesting"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-03:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите фразу с неисчисляемым словом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-03:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите фразу с неисчисляемым словом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-03:i16:audio",
+          "transcript": "We need non-fiction."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need non-fiction.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-03:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите фразу о количестве",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-03:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите фразу о количестве",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-03:i17:audio",
+          "transcript": "There are two autobiographies on the shelf."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There are two autobiographies on the shelf.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "01e28e4e241723c0dc77dbb7d9ed7badb5540c2908075cd156215d03f3563454"
+}

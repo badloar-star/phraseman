@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-07:word:sapling",
+    "correctText": "sapling",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-07:i01",
+    "correctText": "This is a sapling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-07:i02",
+    "correctText": "This is a sapling.",
+    "correctResponseId": "en:lesson-17:session-07:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-07:i03",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-17:session-07:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-07:word:planter",
+    "correctText": "planter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-07:i04",
+    "correctText": "There are two planters by the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-07:i05",
+    "correctText": "There are two planters by the door.",
+    "correctResponseId": "en:lesson-17:session-07:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-07:i06",
+    "correctText": "planters",
+    "correctResponseId": "en:lesson-17:session-07:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-07:word:gravel",
+    "correctText": "gravel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-07:i07",
+    "correctText": "This gravel is clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-07:i08",
+    "correctText": "This gravel is clean.",
+    "correctResponseId": "en:lesson-17:session-07:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-07:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-17:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-07:word:equipment",
+    "correctText": "equipment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-07:i10",
+    "correctText": "We need equipment.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-07:i11",
+    "correctText": "We need equipment.",
+    "correctResponseId": "en:lesson-17:session-07:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-07:i12",
+    "correctText": "equipment",
+    "correctResponseId": "en:lesson-17:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-07:i13",
+    "correctText": "en:lesson-17:session-07:i13:p1=sapling\nen:lesson-17:session-07:i13:p2=planter\nen:lesson-17:session-07:i13:p3=gravel\nen:lesson-17:session-07:i13:p4=equipment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-07:i14",
+    "correctText": "This is a sapling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-07:i15",
+    "correctText": "This gravel is clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-07:i16",
+    "correctText": "We need equipment.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-07:i17",
+    "correctText": "There are two planters by the door.",
+    "correctResponseId": null
+  }
+]

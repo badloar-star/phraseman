@@ -1,0 +1,1111 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-01",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-01:word:bookend",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bookend",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-01:word:bookend:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bookend",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-01:word:bookend:audio",
+          "transcript": "bookend"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-01:word:bookend:r1",
+            "targetText": "bookend",
+            "meaningByLocale": {
+              "ru": "книжный упор, который удерживает книги вертикально.",
+              "uk": "книжковий упор, який тримає книжки вертикально."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bookend",
+          "definitionByLocale": {
+            "ru": "книжный упор, который удерживает книги вертикально.",
+            "uk": "книжковий упор, який тримає книжки вертикально."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-01:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Это книжный упор».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Это книжный упор».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a bookend.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Это книжный упор».",
+          "uk": "Скажіть: «Це книжковий упор»."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "bookend"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-01:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-01:i02:r1",
+          "text": "This is a bookend."
+        },
+        {
+          "responseId": "en:lesson-17:session-01:i02:r2",
+          "text": "This is an bookend."
+        },
+        {
+          "responseId": "en:lesson-17:session-01:i02:r3",
+          "text": "This is bookend."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-01:i02:audio",
+          "transcript": "This is a bookend."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-01:i02:r1",
+            "targetText": "This is a bookend.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i02:r2",
+            "targetText": "This is an bookend.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i02:r3",
+            "targetText": "This is bookend.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is a bookend.",
+              "uk": "У записі звучить This is a bookend."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is a bookend.",
+              "uk": "У записі звучить This is a bookend."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-01:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-01:i03:r1",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-17:session-01:i03:r2",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-17:session-01:i03:r3",
+          "text": "the two"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для указанного количества или общего названия.",
+          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+        },
+        "gappedTargetPhrase": "This is ___ bookend.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-01:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i03:r3",
+            "text": "the two"
+          }
+        ],
+        "testedDimension": "Выберите форму для указанного количества или общего названия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-01:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "Один предмет: перед согласным звуком нужен a.",
+              "uk": "Один предмет: перед приголосним звуком потрібен a."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "Один предмет: перед согласным звуком нужен a.",
+              "uk": "Один предмет: перед приголосним звуком потрібен a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-01:word:ottoman",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ottoman",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-01:word:ottoman:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ottoman",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-01:word:ottoman:audio",
+          "transcript": "ottoman"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-01:word:ottoman:r1",
+            "targetText": "ottoman",
+            "meaningByLocale": {
+              "ru": "пуф, мягкое сиденье без спинки.",
+              "uk": "пуф, м’яке сидіння без спинки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ottoman",
+          "definitionByLocale": {
+            "ru": "пуф, мягкое сиденье без спинки.",
+            "uk": "пуф, м’яке сидіння без спинки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-01:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «В комнате два пуфа». У ottoman множественное число — ottomans.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «В комнате два пуфа». У ottoman множественное число — ottomans.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There are two ottomans in the room.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В комнате два пуфа». У ottoman множественное число — ottomans.",
+          "uk": "Скажіть: «У кімнаті два пуфи». У ottoman множина — ottomans."
+        },
+        "orderedTokens": [
+          "There",
+          "are",
+          "two",
+          "ottomans",
+          "in",
+          "the",
+          "room"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-01:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-01:i05:r1",
+          "text": "There are two ottomans in the room."
+        },
+        {
+          "responseId": "en:lesson-17:session-01:i05:r2",
+          "text": "There are two ottoman in the room."
+        },
+        {
+          "responseId": "en:lesson-17:session-01:i05:r3",
+          "text": "There are a two ottomans in the room."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-01:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-01:i05:audio",
+          "transcript": "There are two ottomans in the room."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-01:i05:r1",
+            "targetText": "There are two ottomans in the room.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i05:r2",
+            "targetText": "There are two ottoman in the room.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i05:r3",
+            "targetText": "There are a two ottomans in the room.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-01:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There are two ottomans in the room.",
+              "uk": "У записі звучить There are two ottomans in the room."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There are two ottomans in the room.",
+              "uk": "У записі звучить There are two ottomans in the room."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-01:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-01:i06:r1",
+          "text": "ottomans"
+        },
+        {
+          "responseId": "en:lesson-17:session-01:i06:r2",
+          "text": "ottoman"
+        },
+        {
+          "responseId": "en:lesson-17:session-01:i06:r3",
+          "text": "an ottoman"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для указанного количества или общего названия.",
+          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+        },
+        "gappedTargetPhrase": "There are two ___ in the room.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-01:i06:r1",
+            "text": "ottomans"
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i06:r2",
+            "text": "ottoman"
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i06:r3",
+            "text": "an ottoman"
+          }
+        ],
+        "testedDimension": "Выберите форму для указанного количества или общего названия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-01:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "После two нужно множественное число: ottomans.",
+              "uk": "Після two потрібна множина: ottomans."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "После two нужно множественное число: ottomans.",
+              "uk": "Після two потрібна множина: ottomans."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-01:word:crockery",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — crockery",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-01:word:crockery:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — crockery",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-01:word:crockery:audio",
+          "transcript": "crockery"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-01:word:crockery:r1",
+            "targetText": "crockery",
+            "meaningByLocale": {
+              "ru": "посуда: тарелки, чашки и похожие предметы из керамики.",
+              "uk": "посуд: тарілки, чашки та подібні предмети з кераміки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "crockery",
+          "definitionByLocale": {
+            "ru": "посуда: тарелки, чашки и похожие предметы из керамики.",
+            "uk": "посуд: тарілки, чашки та подібні предмети з кераміки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-01:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Эта посуда новая».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Эта посуда новая».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This crockery is new.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Эта посуда новая».",
+          "uk": "Скажіть: «Цей посуд новий»."
+        },
+        "orderedTokens": [
+          "This",
+          "crockery",
+          "is",
+          "new"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-01:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-01:i08:r1",
+          "text": "This crockery is new."
+        },
+        {
+          "responseId": "en:lesson-17:session-01:i08:r2",
+          "text": "This crockery are new."
+        },
+        {
+          "responseId": "en:lesson-17:session-01:i08:r3",
+          "text": "These crockeries are new."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-01:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-01:i08:audio",
+          "transcript": "This crockery is new."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-01:i08:r1",
+            "targetText": "This crockery is new.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i08:r2",
+            "targetText": "This crockery are new.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i08:r3",
+            "targetText": "These crockeries are new.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-01:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This crockery is new.",
+              "uk": "У записі звучить This crockery is new."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This crockery is new.",
+              "uk": "У записі звучить This crockery is new."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-01:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-01:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-17:session-01:i09:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-17:session-01:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для указанного количества или общего названия.",
+          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+        },
+        "gappedTargetPhrase": "This crockery ___ new.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-01:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Выберите форму для указанного количества или общего названия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-01:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "Crockery — неисчисляемое слово; согласуем с is, не are.",
+              "uk": "Crockery — незлічуване слово; узгоджуємо з is, не are."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "Crockery — неисчисляемое слово; согласуем с is, не are.",
+              "uk": "Crockery — незлічуване слово; узгоджуємо з is, не are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-01:word:bedding",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bedding",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-01:word:bedding:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bedding",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-01:word:bedding:audio",
+          "transcript": "bedding"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-01:word:bedding:r1",
+            "targetText": "bedding",
+            "meaningByLocale": {
+              "ru": "постельные принадлежности: простыни, одеяла и подобные вещи.",
+              "uk": "постільні речі: простирадла, ковдри та подібні речі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bedding",
+          "definitionByLocale": {
+            "ru": "постельные принадлежности: простыни, одеяла и подобные вещи.",
+            "uk": "постільні речі: простирадла, ковдри та подібні речі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-01:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: «Нам нужны постельные принадлежности».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: «Нам нужны постельные принадлежности».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We need bedding.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Нам нужны постельные принадлежности».",
+          "uk": "Скажіть: «Нам потрібні постільні речі»."
+        },
+        "orderedTokens": [
+          "We",
+          "need",
+          "bedding"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-01:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-01:i11:r1",
+          "text": "We need bedding."
+        },
+        {
+          "responseId": "en:lesson-17:session-01:i11:r2",
+          "text": "We need a bedding."
+        },
+        {
+          "responseId": "en:lesson-17:session-01:i11:r3",
+          "text": "We need beddings."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-01:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-01:i11:audio",
+          "transcript": "We need bedding."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-01:i11:r1",
+            "targetText": "We need bedding.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i11:r2",
+            "targetText": "We need a bedding.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i11:r3",
+            "targetText": "We need beddings.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-01:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need bedding.",
+              "uk": "У записі звучить We need bedding."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need bedding.",
+              "uk": "У записі звучить We need bedding."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-01:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-01:i12:r1",
+          "text": "bedding"
+        },
+        {
+          "responseId": "en:lesson-17:session-01:i12:r2",
+          "text": "a bedding"
+        },
+        {
+          "responseId": "en:lesson-17:session-01:i12:r3",
+          "text": "beddings"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для указанного количества или общего названия.",
+          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+        },
+        "gappedTargetPhrase": "We need ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-01:i12:r1",
+            "text": "bedding"
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i12:r2",
+            "text": "a bedding"
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i12:r3",
+            "text": "beddings"
+          }
+        ],
+        "testedDimension": "Выберите форму для указанного количества или общего названия.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-01:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "Bedding — неисчисляемое слово: без a и без окончания -s.",
+              "uk": "Bedding — незлічуване слово: без a та без закінчення -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-01:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите форму для указанного количества или общего названия.",
+            "feedbackByLocale": {
+              "ru": "Bedding — неисчисляемое слово: без a и без окончания -s.",
+              "uk": "Bedding — незлічуване слово: без a та без закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-01:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-01:i13:p1",
+            "target": "bookend",
+            "meaningByLocale": {
+              "ru": "книжный упор, который удерживает книги вертикально",
+              "uk": "книжковий упор, який тримає книжки вертикально"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-01:i13:p2",
+            "target": "ottoman",
+            "meaningByLocale": {
+              "ru": "пуф, мягкое сиденье без спинки",
+              "uk": "пуф, м’яке сидіння без спинки"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-01:i13:p3",
+            "target": "crockery",
+            "meaningByLocale": {
+              "ru": "посуда: тарелки, чашки и похожие предметы из керамики",
+              "uk": "посуд: тарілки, чашки та подібні предмети з кераміки"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-01:i13:p4",
+            "target": "bedding",
+            "meaningByLocale": {
+              "ru": "постельные принадлежности: простыни, одеяла и подобные вещи",
+              "uk": "постільні речі: простирадла, ковдри та подібні речі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bookend",
+          "ottoman",
+          "crockery",
+          "bedding"
+        ],
+        "rightColumn": [
+          "книжный упор, который удерживает книги вертикально",
+          "пуф, мягкое сиденье без спинки",
+          "посуда: тарелки, чашки и похожие предметы из керамики",
+          "постельные принадлежности: простыни, одеяла и подобные вещи"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-01:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу об одном предмете",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-01:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу об одном предмете",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-01:i14:audio",
+          "transcript": "This is a bookend."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is a bookend.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "bookend"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-01:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу о посуде",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-01:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу о посуде",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-01:i15:audio",
+          "transcript": "This crockery is new."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This crockery is new.",
+        "orderedTokens": [
+          "This",
+          "crockery",
+          "is",
+          "new"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-01:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что нужны постельные принадлежности",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-01:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что нужны постельные принадлежности",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-01:i16:audio",
+          "transcript": "We need bedding."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need bedding.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-01:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что в комнате два пуфа",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-01:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите, что в комнате два пуфа",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-01:i17:audio",
+          "transcript": "There are two ottomans in the room."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There are two ottomans in the room.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "44450ac16b37d2170f54c0c208fed0e604f740cb2023e99ee846b7903a2a405f"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-17:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "count nouns / non-count nouns: a, an, plural forms",
+    "uk": "count nouns / non-count nouns: a, an, plural forms"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-17:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Один предмет или человек",
+        "uk": "Один предмет або людина"
+      },
+      "bodyByLocale": {
+        "ru": "wrapper — обёртка. Это исчисляемое слово: один — a wrapper. A ставим перед согласным звуком, an — перед гласным.",
+        "uk": "wrapper — обгортка. Це злічуване слово: один — a wrapper. A ставимо перед приголосним звуком, an — перед голосним."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-05:intro1:r1",
+              "text": "This is a wrapper."
+            },
+            {
+              "responseId": "en:lesson-17:session-05:intro1:r2",
+              "text": "This is an wrapper."
+            },
+            {
+              "responseId": "en:lesson-17:session-05:intro1:r3",
+              "text": "This is wrapper."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-05:intro1:r1",
+              "text": "This is a wrapper."
+            },
+            {
+              "responseId": "en:lesson-17:session-05:intro1:r2",
+              "text": "This is an wrapper."
+            },
+            {
+              "responseId": "en:lesson-17:session-05:intro1:r3",
+              "text": "This is wrapper."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-17:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Считаем несколько",
+        "uk": "Рахуємо декілька"
+      },
+      "bodyByLocale": {
+        "ru": "cigarette end — окурок. Один: a cigarette end. Два: two cigarette ends. После two нужно множественное cigarette ends.",
+        "uk": "cigarette end — недопалок. Один: a cigarette end. Два: two cigarette ends. Після two потрібна множина cigarette ends."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-05:intro2:r1",
+              "text": "There are two cigarette ends on the ground."
+            },
+            {
+              "responseId": "en:lesson-17:session-05:intro2:r2",
+              "text": "There are two cigarette end on the ground."
+            },
+            {
+              "responseId": "en:lesson-17:session-05:intro2:r3",
+              "text": "There are a two cigarette ends on the ground."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-05:intro2:r1",
+              "text": "There are two cigarette ends on the ground."
+            },
+            {
+              "responseId": "en:lesson-17:session-05:intro2:r2",
+              "text": "There are two cigarette end on the ground."
+            },
+            {
+              "responseId": "en:lesson-17:session-05:intro2:r3",
+              "text": "There are a two cigarette ends on the ground."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-17:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Общее название без a",
+        "uk": "Загальна назва без a"
+      },
+      "bodyByLocale": {
+        "ru": "litter — мусор, брошенный в общественном месте. Litter в значении мусора — неисчисляемое слово: is. clutter — беспорядочная куча лишних вещей. Clutter как скопление лишних вещей — без a и без множественного -s. Отдельные предметы или события можно назвать другими исчисляемыми словами; здесь тренируем общие названия.",
+        "uk": "litter — сміття, викинуте в громадському місці. Litter у значенні сміття — незлічуване слово: is. clutter — безладне скупчення зайвих речей. Clutter як скупчення зайвих речей — без a та без множинного -s. Окремі предмети або події можна назвати іншими злічуваними словами; тут тренуємо загальні назви."
+      },
+      "question": {
+        "interactionId": "en:lesson-17:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-17:session-05:intro3:r1",
+              "text": "This litter is dangerous."
+            },
+            {
+              "responseId": "en:lesson-17:session-05:intro3:r2",
+              "text": "This litter are dangerous."
+            },
+            {
+              "responseId": "en:lesson-17:session-05:intro3:r3",
+              "text": "These litters are dangerous."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-17:session-05:intro3:r1",
+              "text": "This litter is dangerous."
+            },
+            {
+              "responseId": "en:lesson-17:session-05:intro3:r2",
+              "text": "This litter are dangerous."
+            },
+            {
+              "responseId": "en:lesson-17:session-05:intro3:r3",
+              "text": "These litters are dangerous."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "45d90499e19c44a1c86954dea278bb3ba9a97c5b2699ce55d4549d0926e2ce83"
+}

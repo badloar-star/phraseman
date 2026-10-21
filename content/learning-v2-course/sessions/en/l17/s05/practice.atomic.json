@@ -1,0 +1,2315 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-17:session-05",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-17:session-05:word:wrapper",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — wrapper",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:word:wrapper:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — wrapper",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:word:wrapper:audio",
+            "transcript": "wrapper"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-05:word:wrapper:r1",
+              "targetText": "wrapper",
+              "meaningByLocale": {
+                "ru": "обёртка.",
+                "uk": "обгортка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wrapper",
+            "definitionByLocale": {
+              "ru": "обёртка.",
+              "uk": "обгортка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Это обёртка».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Это обёртка».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a wrapper.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Это обёртка».",
+            "uk": "Скажіть: «Це обгортка»."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "wrapper"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-05:i02:r1",
+            "text": "This is a wrapper."
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i02:r2",
+            "text": "This is an wrapper."
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i02:r3",
+            "text": "This is wrapper."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:i02:audio",
+            "transcript": "This is a wrapper."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-05:i02:r1",
+              "targetText": "This is a wrapper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i02:r2",
+              "targetText": "This is an wrapper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i02:r3",
+              "targetText": "This is wrapper.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-05:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is a wrapper.",
+                "uk": "У записі звучить This is a wrapper."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is a wrapper.",
+                "uk": "У записі звучить This is a wrapper."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для указанного количества или общего названия.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-05:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i03:r3",
+            "text": "the two"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "This is ___ wrapper.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-05:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i03:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i03:r3",
+              "text": "the two"
+            }
+          ],
+          "testedDimension": "Выберите форму для указанного количества или общего названия.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-05:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "Wrapper начинается с согласного звука: a wrapper; буква w не произносится.",
+                "uk": "Wrapper починається з приголосного звука: a wrapper; літера w не вимовляється."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "Wrapper начинается с согласного звука: a wrapper; буква w не произносится.",
+                "uk": "Wrapper починається з приголосного звука: a wrapper; літера w не вимовляється."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:word:cigarette-end",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cigarette end",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:word:cigarette-end:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cigarette end",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:word:cigarette-end:audio",
+            "transcript": "cigarette end"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-05:word:cigarette-end:r1",
+              "targetText": "cigarette end",
+              "meaningByLocale": {
+                "ru": "окурок.",
+                "uk": "недопалок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cigarette end",
+            "definitionByLocale": {
+              "ru": "окурок.",
+              "uk": "недопалок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «На земле два окурка». У cigarette end множественное число — cigarette ends.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «На земле два окурка». У cigarette end множественное число — cigarette ends.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are two cigarette ends on the ground.",
+          "localizedMeaning": {
+            "ru": "Скажите: «На земле два окурка». У cigarette end множественное число — cigarette ends.",
+            "uk": "Скажіть: «На землі два недопалки». У cigarette end множина — cigarette ends."
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "two",
+            "cigarette",
+            "ends",
+            "on",
+            "the",
+            "ground"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-05:i05:r1",
+            "text": "There are two cigarette ends on the ground."
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i05:r2",
+            "text": "There are two cigarette end on the ground."
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i05:r3",
+            "text": "There are a two cigarette ends on the ground."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:i05:audio",
+            "transcript": "There are two cigarette ends on the ground."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-05:i05:r1",
+              "targetText": "There are two cigarette ends on the ground.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i05:r2",
+              "targetText": "There are two cigarette end on the ground.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i05:r3",
+              "targetText": "There are a two cigarette ends on the ground.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-05:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There are two cigarette ends on the ground.",
+                "uk": "У записі звучить There are two cigarette ends on the ground."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There are two cigarette ends on the ground.",
+                "uk": "У записі звучить There are two cigarette ends on the ground."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для указанного количества или общего названия.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-05:i06:r1",
+            "text": "cigarette ends"
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i06:r2",
+            "text": "cigarette end"
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i06:r3",
+            "text": "a cigarette end"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "There are two ___ on the ground.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-05:i06:r1",
+              "text": "cigarette ends"
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i06:r2",
+              "text": "cigarette end"
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i06:r3",
+              "text": "a cigarette end"
+            }
+          ],
+          "testedDimension": "Выберите форму для указанного количества или общего названия.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-05:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "После two нужно множественное cigarette ends.",
+                "uk": "Після two потрібна множина cigarette ends."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "После two нужно множественное cigarette ends.",
+                "uk": "Після two потрібна множина cigarette ends."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:word:litter",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — litter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:word:litter:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — litter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:word:litter:audio",
+            "transcript": "litter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-05:word:litter:r1",
+              "targetText": "litter",
+              "meaningByLocale": {
+                "ru": "мусор, брошенный в общественном месте.",
+                "uk": "сміття, викинуте в громадському місці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "litter",
+            "definitionByLocale": {
+              "ru": "мусор, брошенный в общественном месте.",
+              "uk": "сміття, викинуте в громадському місці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Этот мусор опасен».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Этот мусор опасен».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This litter is dangerous.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Этот мусор опасен».",
+            "uk": "Скажіть: «Це сміття небезпечне»."
+          },
+          "orderedTokens": [
+            "This",
+            "litter",
+            "is",
+            "dangerous"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-05:i08:r1",
+            "text": "This litter is dangerous."
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i08:r2",
+            "text": "This litter are dangerous."
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i08:r3",
+            "text": "These litters are dangerous."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:i08:audio",
+            "transcript": "This litter is dangerous."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-05:i08:r1",
+              "targetText": "This litter is dangerous.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i08:r2",
+              "targetText": "This litter are dangerous.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i08:r3",
+              "targetText": "These litters are dangerous.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-05:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This litter is dangerous.",
+                "uk": "У записі звучить This litter is dangerous."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This litter is dangerous.",
+                "uk": "У записі звучить This litter is dangerous."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для указанного количества или общего названия.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-05:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "This litter ___ dangerous.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-05:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i09:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите форму для указанного количества или общего названия.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-05:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "Litter в значении мусора — неисчисляемое слово: is.",
+                "uk": "Litter у значенні сміття — незлічуване слово: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "Litter в значении мусора — неисчисляемое слово: is.",
+                "uk": "Litter у значенні сміття — незлічуване слово: is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:word:clutter",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — clutter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:word:clutter:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — clutter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:word:clutter:audio",
+            "transcript": "clutter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-05:word:clutter:r1",
+              "targetText": "clutter",
+              "meaningByLocale": {
+                "ru": "беспорядочная куча лишних вещей.",
+                "uk": "безладне скупчення зайвих речей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "clutter",
+            "definitionByLocale": {
+              "ru": "беспорядочная куча лишних вещей.",
+              "uk": "безладне скупчення зайвих речей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Мы убираем лишние вещи».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Мы убираем лишние вещи».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are clearing clutter.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы убираем лишние вещи».",
+            "uk": "Скажіть: «Ми прибираємо зайві речі»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "clearing",
+            "clutter"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-05:i11:r1",
+            "text": "We are clearing clutter."
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i11:r2",
+            "text": "We are clearing a clutter."
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i11:r3",
+            "text": "We are clearing clutters."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:i11:audio",
+            "transcript": "We are clearing clutter."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-05:i11:r1",
+              "targetText": "We are clearing clutter.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i11:r2",
+              "targetText": "We are clearing a clutter.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i11:r3",
+              "targetText": "We are clearing clutters.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-05:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are clearing clutter.",
+                "uk": "У записі звучить We are clearing clutter."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are clearing clutter.",
+                "uk": "У записі звучить We are clearing clutter."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для указанного количества или общего названия.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-05:i12:r1",
+            "text": "clutter"
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i12:r2",
+            "text": "a clutter"
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i12:r3",
+            "text": "clutters"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "We are clearing ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-05:i12:r1",
+              "text": "clutter"
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i12:r2",
+              "text": "a clutter"
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i12:r3",
+              "text": "clutters"
+            }
+          ],
+          "testedDimension": "Выберите форму для указанного количества или общего названия.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-05:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "Clutter как скопление лишних вещей — без a и без множественного -s.",
+                "uk": "Clutter як скупчення зайвих речей — без a та без множинного -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "Clutter как скопление лишних вещей — без a и без множественного -s.",
+                "uk": "Clutter як скупчення зайвих речей — без a та без множинного -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-05:i13:p1",
+              "target": "wrapper",
+              "meaningByLocale": {
+                "ru": "обёртка",
+                "uk": "обгортка"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-05:i13:p2",
+              "target": "cigarette end",
+              "meaningByLocale": {
+                "ru": "окурок",
+                "uk": "недопалок"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-05:i13:p3",
+              "target": "litter",
+              "meaningByLocale": {
+                "ru": "мусор, брошенный в общественном месте",
+                "uk": "сміття, викинуте в громадському місці"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-05:i13:p4",
+              "target": "clutter",
+              "meaningByLocale": {
+                "ru": "беспорядочная куча лишних вещей",
+                "uk": "безладне скупчення зайвих речей"
+              }
+            }
+          ],
+          "leftColumn": [
+            "wrapper",
+            "cigarette end",
+            "litter",
+            "clutter"
+          ],
+          "rightColumn": [
+            "обёртка",
+            "окурок",
+            "мусор, брошенный в общественном месте",
+            "беспорядочная куча лишних вещей"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу с исчисляемым словом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу с исчисляемым словом",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:i14:audio",
+            "transcript": "This is a wrapper."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This is a wrapper.",
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "wrapper"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу с общим названием",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу с общим названием",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:i15:audio",
+            "transcript": "This litter is dangerous."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This litter is dangerous.",
+          "orderedTokens": [
+            "This",
+            "litter",
+            "is",
+            "dangerous"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите фразу с неисчисляемым словом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите фразу с неисчисляемым словом",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:i16:audio",
+            "transcript": "We are clearing clutter."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are clearing clutter.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите фразу о количестве",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите фразу о количестве",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:i17:audio",
+            "transcript": "There are two cigarette ends on the ground."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There are two cigarette ends on the ground.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-17:session-05:word:wrapper",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — wrapper",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:word:wrapper:audio"
+        ],
+        "accessibilityLabel": "Картка слова — wrapper",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:word:wrapper:audio",
+            "transcript": "wrapper"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-05:word:wrapper:r1",
+              "targetText": "wrapper",
+              "meaningByLocale": {
+                "ru": "обёртка.",
+                "uk": "обгортка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wrapper",
+            "definitionByLocale": {
+              "ru": "обёртка.",
+              "uk": "обгортка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Це обгортка».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Це обгортка».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a wrapper.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Это обёртка».",
+            "uk": "Скажіть: «Це обгортка»."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "wrapper"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-05:i02:r1",
+            "text": "This is a wrapper."
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i02:r2",
+            "text": "This is an wrapper."
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i02:r3",
+            "text": "This is wrapper."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:i02:audio",
+            "transcript": "This is a wrapper."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-05:i02:r1",
+              "targetText": "This is a wrapper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i02:r2",
+              "targetText": "This is an wrapper.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i02:r3",
+              "targetText": "This is wrapper.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-05:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is a wrapper.",
+                "uk": "У записі звучить This is a wrapper."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is a wrapper.",
+                "uk": "У записі звучить This is a wrapper."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-05:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i03:r3",
+            "text": "the two"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "This is ___ wrapper.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-05:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i03:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i03:r3",
+              "text": "the two"
+            }
+          ],
+          "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-05:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "Wrapper начинается с согласного звука: a wrapper; буква w не произносится.",
+                "uk": "Wrapper починається з приголосного звука: a wrapper; літера w не вимовляється."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "Wrapper начинается с согласного звука: a wrapper; буква w не произносится.",
+                "uk": "Wrapper починається з приголосного звука: a wrapper; літера w не вимовляється."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:word:cigarette-end",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cigarette end",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:word:cigarette-end:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cigarette end",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:word:cigarette-end:audio",
+            "transcript": "cigarette end"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-05:word:cigarette-end:r1",
+              "targetText": "cigarette end",
+              "meaningByLocale": {
+                "ru": "окурок.",
+                "uk": "недопалок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cigarette end",
+            "definitionByLocale": {
+              "ru": "окурок.",
+              "uk": "недопалок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «На землі два недопалки». У cigarette end множина — cigarette ends.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «На землі два недопалки». У cigarette end множина — cigarette ends.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are two cigarette ends on the ground.",
+          "localizedMeaning": {
+            "ru": "Скажите: «На земле два окурка». У cigarette end множественное число — cigarette ends.",
+            "uk": "Скажіть: «На землі два недопалки». У cigarette end множина — cigarette ends."
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "two",
+            "cigarette",
+            "ends",
+            "on",
+            "the",
+            "ground"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-05:i05:r1",
+            "text": "There are two cigarette ends on the ground."
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i05:r2",
+            "text": "There are two cigarette end on the ground."
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i05:r3",
+            "text": "There are a two cigarette ends on the ground."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:i05:audio",
+            "transcript": "There are two cigarette ends on the ground."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-05:i05:r1",
+              "targetText": "There are two cigarette ends on the ground.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i05:r2",
+              "targetText": "There are two cigarette end on the ground.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i05:r3",
+              "targetText": "There are a two cigarette ends on the ground.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-05:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There are two cigarette ends on the ground.",
+                "uk": "У записі звучить There are two cigarette ends on the ground."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There are two cigarette ends on the ground.",
+                "uk": "У записі звучить There are two cigarette ends on the ground."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-05:i06:r1",
+            "text": "cigarette ends"
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i06:r2",
+            "text": "cigarette end"
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i06:r3",
+            "text": "a cigarette end"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "There are two ___ on the ground.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-05:i06:r1",
+              "text": "cigarette ends"
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i06:r2",
+              "text": "cigarette end"
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i06:r3",
+              "text": "a cigarette end"
+            }
+          ],
+          "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-05:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "После two нужно множественное cigarette ends.",
+                "uk": "Після two потрібна множина cigarette ends."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "После two нужно множественное cigarette ends.",
+                "uk": "Після two потрібна множина cigarette ends."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:word:litter",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — litter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:word:litter:audio"
+        ],
+        "accessibilityLabel": "Картка слова — litter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:word:litter:audio",
+            "transcript": "litter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-05:word:litter:r1",
+              "targetText": "litter",
+              "meaningByLocale": {
+                "ru": "мусор, брошенный в общественном месте.",
+                "uk": "сміття, викинуте в громадському місці."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "litter",
+            "definitionByLocale": {
+              "ru": "мусор, брошенный в общественном месте.",
+              "uk": "сміття, викинуте в громадському місці."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Це сміття небезпечне».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Це сміття небезпечне».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This litter is dangerous.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Этот мусор опасен».",
+            "uk": "Скажіть: «Це сміття небезпечне»."
+          },
+          "orderedTokens": [
+            "This",
+            "litter",
+            "is",
+            "dangerous"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-05:i08:r1",
+            "text": "This litter is dangerous."
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i08:r2",
+            "text": "This litter are dangerous."
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i08:r3",
+            "text": "These litters are dangerous."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:i08:audio",
+            "transcript": "This litter is dangerous."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-05:i08:r1",
+              "targetText": "This litter is dangerous.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i08:r2",
+              "targetText": "This litter are dangerous.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i08:r3",
+              "targetText": "These litters are dangerous.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-05:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This litter is dangerous.",
+                "uk": "У записі звучить This litter is dangerous."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This litter is dangerous.",
+                "uk": "У записі звучить This litter is dangerous."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-05:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "This litter ___ dangerous.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-05:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i09:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-05:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "Litter в значении мусора — неисчисляемое слово: is.",
+                "uk": "Litter у значенні сміття — незлічуване слово: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "Litter в значении мусора — неисчисляемое слово: is.",
+                "uk": "Litter у значенні сміття — незлічуване слово: is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:word:clutter",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — clutter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:word:clutter:audio"
+        ],
+        "accessibilityLabel": "Картка слова — clutter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:word:clutter:audio",
+            "transcript": "clutter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-05:word:clutter:r1",
+              "targetText": "clutter",
+              "meaningByLocale": {
+                "ru": "беспорядочная куча лишних вещей.",
+                "uk": "безладне скупчення зайвих речей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "clutter",
+            "definitionByLocale": {
+              "ru": "беспорядочная куча лишних вещей.",
+              "uk": "безладне скупчення зайвих речей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Ми прибираємо зайві речі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Ми прибираємо зайві речі».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are clearing clutter.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Мы убираем лишние вещи».",
+            "uk": "Скажіть: «Ми прибираємо зайві речі»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "clearing",
+            "clutter"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-05:i11:r1",
+            "text": "We are clearing clutter."
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i11:r2",
+            "text": "We are clearing a clutter."
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i11:r3",
+            "text": "We are clearing clutters."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:i11:audio",
+            "transcript": "We are clearing clutter."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-05:i11:r1",
+              "targetText": "We are clearing clutter.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i11:r2",
+              "targetText": "We are clearing a clutter.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i11:r3",
+              "targetText": "We are clearing clutters.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-05:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are clearing clutter.",
+                "uk": "У записі звучить We are clearing clutter."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are clearing clutter.",
+                "uk": "У записі звучить We are clearing clutter."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-05:i12:r1",
+            "text": "clutter"
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i12:r2",
+            "text": "a clutter"
+          },
+          {
+            "responseId": "en:lesson-17:session-05:i12:r3",
+            "text": "clutters"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "We are clearing ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-05:i12:r1",
+              "text": "clutter"
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i12:r2",
+              "text": "a clutter"
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i12:r3",
+              "text": "clutters"
+            }
+          ],
+          "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-05:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "Clutter как скопление лишних вещей — без a и без множественного -s.",
+                "uk": "Clutter як скупчення зайвих речей — без a та без множинного -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-05:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "Clutter как скопление лишних вещей — без a и без множественного -s.",
+                "uk": "Clutter як скупчення зайвих речей — без a та без множинного -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-05:i13:p1",
+              "target": "wrapper",
+              "meaningByLocale": {
+                "ru": "обёртка",
+                "uk": "обгортка"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-05:i13:p2",
+              "target": "cigarette end",
+              "meaningByLocale": {
+                "ru": "окурок",
+                "uk": "недопалок"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-05:i13:p3",
+              "target": "litter",
+              "meaningByLocale": {
+                "ru": "мусор, брошенный в общественном месте",
+                "uk": "сміття, викинуте в громадському місці"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-05:i13:p4",
+              "target": "clutter",
+              "meaningByLocale": {
+                "ru": "беспорядочная куча лишних вещей",
+                "uk": "безладне скупчення зайвих речей"
+              }
+            }
+          ],
+          "leftColumn": [
+            "wrapper",
+            "cigarette end",
+            "litter",
+            "clutter"
+          ],
+          "rightColumn": [
+            "обгортка",
+            "недопалок",
+            "сміття, викинуте в громадському місці",
+            "безладне скупчення зайвих речей"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу зі злічуваним словом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу зі злічуваним словом",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:i14:audio",
+            "transcript": "This is a wrapper."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This is a wrapper.",
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "wrapper"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу із загальною назвою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу із загальною назвою",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:i15:audio",
+            "transcript": "This litter is dangerous."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This litter is dangerous.",
+          "orderedTokens": [
+            "This",
+            "litter",
+            "is",
+            "dangerous"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть фразу з незлічуваним словом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть фразу з незлічуваним словом",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:i16:audio",
+            "transcript": "We are clearing clutter."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are clearing clutter.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-05:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть фразу про кількість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-05:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть фразу про кількість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-05:i17:audio",
+            "transcript": "There are two cigarette ends on the ground."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There are two cigarette ends on the ground.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-17:session-05:word:wrapper",
+      "correctText": "wrapper",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-05:i01",
+      "correctText": "This is a wrapper.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-05:i02",
+      "correctText": "This is a wrapper.",
+      "correctResponseId": "en:lesson-17:session-05:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-05:i03",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-17:session-05:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-05:word:cigarette-end",
+      "correctText": "cigarette end",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-05:i04",
+      "correctText": "There are two cigarette ends on the ground.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-05:i05",
+      "correctText": "There are two cigarette ends on the ground.",
+      "correctResponseId": "en:lesson-17:session-05:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-05:i06",
+      "correctText": "cigarette ends",
+      "correctResponseId": "en:lesson-17:session-05:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-05:word:litter",
+      "correctText": "litter",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-05:i07",
+      "correctText": "This litter is dangerous.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-05:i08",
+      "correctText": "This litter is dangerous.",
+      "correctResponseId": "en:lesson-17:session-05:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-05:i09",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-17:session-05:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-05:word:clutter",
+      "correctText": "clutter",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-05:i10",
+      "correctText": "We are clearing clutter.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-05:i11",
+      "correctText": "We are clearing clutter.",
+      "correctResponseId": "en:lesson-17:session-05:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-05:i12",
+      "correctText": "clutter",
+      "correctResponseId": "en:lesson-17:session-05:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-05:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-05:i14",
+      "correctText": "This is a wrapper.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-05:i15",
+      "correctText": "This litter is dangerous.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-05:i16",
+      "correctText": "We are clearing clutter.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-05:i17",
+      "correctText": "There are two cigarette ends on the ground.",
+      "correctResponseId": null
+    }
+  ]
+}

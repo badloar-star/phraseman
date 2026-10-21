@@ -1,0 +1,2311 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-17:session-04",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-17:session-04:word:candidate",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — candidate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:word:candidate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — candidate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:word:candidate:audio",
+            "transcript": "candidate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-04:word:candidate:r1",
+              "targetText": "candidate",
+              "meaningByLocale": {
+                "ru": "кандидат, человек, претендующий на место.",
+                "uk": "кандидат, людина, яка претендує на місце."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "candidate",
+            "definitionByLocale": {
+              "ru": "кандидат, человек, претендующий на место.",
+              "uk": "кандидат, людина, яка претендує на місце."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Она кандидат».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Она кандидат».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is a candidate.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она кандидат».",
+            "uk": "Скажіть: «Вона кандидатка»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "a",
+            "candidate"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-04:i02:r1",
+            "text": "She is a candidate."
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i02:r2",
+            "text": "She is an candidate."
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i02:r3",
+            "text": "She is candidate."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:i02:audio",
+            "transcript": "She is a candidate."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-04:i02:r1",
+              "targetText": "She is a candidate.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i02:r2",
+              "targetText": "She is an candidate.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i02:r3",
+              "targetText": "She is candidate.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is a candidate.",
+                "uk": "У записі звучить She is a candidate."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is a candidate.",
+                "uk": "У записі звучить She is a candidate."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для указанного количества или общего названия.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-04:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i03:r3",
+            "text": "the two"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "She is ___ candidate.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-04:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i03:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i03:r3",
+              "text": "the two"
+            }
+          ],
+          "testedDimension": "Выберите форму для указанного количества или общего названия.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-04:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "Candidate начинается с согласного звука: a candidate.",
+                "uk": "Candidate починається з приголосного звука: a candidate."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "Candidate начинается с согласного звука: a candidate.",
+                "uk": "Candidate починається з приголосного звука: a candidate."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:word:vacancy",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — vacancy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:word:vacancy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — vacancy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:word:vacancy:audio",
+            "transcript": "vacancy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-04:word:vacancy:r1",
+              "targetText": "vacancy",
+              "meaningByLocale": {
+                "ru": "вакансия, свободное рабочее место.",
+                "uk": "вакансія, вільне робоче місце."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "vacancy",
+            "definitionByLocale": {
+              "ru": "вакансия, свободное рабочее место.",
+              "uk": "вакансія, вільне робоче місце."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «В этом магазине две вакансии». У vacancy множественное число — vacancies.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «В этом магазине две вакансии». У vacancy множественное число — vacancies.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are two vacancies in this shop.",
+          "localizedMeaning": {
+            "ru": "Скажите: «В этом магазине две вакансии». У vacancy множественное число — vacancies.",
+            "uk": "Скажіть: «У цьому магазині дві вакансії». У vacancy множина — vacancies."
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "two",
+            "vacancies",
+            "in",
+            "this",
+            "shop"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-04:i05:r1",
+            "text": "There are two vacancies in this shop."
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i05:r2",
+            "text": "There are two vacancy in this shop."
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i05:r3",
+            "text": "There are a two vacancies in this shop."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:i05:audio",
+            "transcript": "There are two vacancies in this shop."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-04:i05:r1",
+              "targetText": "There are two vacancies in this shop.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i05:r2",
+              "targetText": "There are two vacancy in this shop.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i05:r3",
+              "targetText": "There are a two vacancies in this shop.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-04:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There are two vacancies in this shop.",
+                "uk": "У записі звучить There are two vacancies in this shop."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There are two vacancies in this shop.",
+                "uk": "У записі звучить There are two vacancies in this shop."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для указанного количества или общего названия.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-04:i06:r1",
+            "text": "vacancies"
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i06:r2",
+            "text": "vacancy"
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i06:r3",
+            "text": "a vacancy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "There are two ___ in this shop.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-04:i06:r1",
+              "text": "vacancies"
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i06:r2",
+              "text": "vacancy"
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i06:r3",
+              "text": "a vacancy"
+            }
+          ],
+          "testedDimension": "Выберите форму для указанного количества или общего названия.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-04:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "У vacancy во множественном числе y меняется на ies: vacancies.",
+                "uk": "У vacancy у множині y змінюється на ies: vacancies."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "У vacancy во множественном числе y меняется на ies: vacancies.",
+                "uk": "У vacancy у множині y змінюється на ies: vacancies."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:word:paperwork",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — paperwork",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:word:paperwork:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — paperwork",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:word:paperwork:audio",
+            "transcript": "paperwork"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-04:word:paperwork:r1",
+              "targetText": "paperwork",
+              "meaningByLocale": {
+                "ru": "работа с документами, оформление бумаг.",
+                "uk": "робота з документами, оформлення паперів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "paperwork",
+            "definitionByLocale": {
+              "ru": "работа с документами, оформление бумаг.",
+              "uk": "робота з документами, оформлення паперів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Это оформление документов важно».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Это оформление документов важно».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This paperwork is important.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Это оформление документов важно».",
+            "uk": "Скажіть: «Це оформлення документів важливе»."
+          },
+          "orderedTokens": [
+            "This",
+            "paperwork",
+            "is",
+            "important"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-04:i08:r1",
+            "text": "This paperwork is important."
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i08:r2",
+            "text": "This paperwork are important."
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i08:r3",
+            "text": "These paperworks are important."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:i08:audio",
+            "transcript": "This paperwork is important."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-04:i08:r1",
+              "targetText": "This paperwork is important.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i08:r2",
+              "targetText": "This paperwork are important.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i08:r3",
+              "targetText": "These paperworks are important.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-04:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This paperwork is important.",
+                "uk": "У записі звучить This paperwork is important."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This paperwork is important.",
+                "uk": "У записі звучить This paperwork is important."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для указанного количества или общего названия.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-04:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "This paperwork ___ important.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-04:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i09:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите форму для указанного количества или общего названия.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "Paperwork — неисчисляемое слово: is, не are.",
+                "uk": "Paperwork — незлічуване слово: is, не are."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "Paperwork — неисчисляемое слово: is, не are.",
+                "uk": "Paperwork — незлічуване слово: is, не are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:word:training",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — training",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:word:training:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — training",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:word:training:audio",
+            "transcript": "training"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-04:word:training:r1",
+              "targetText": "training",
+              "meaningByLocale": {
+                "ru": "обучение, подготовка к работе или деятельности.",
+                "uk": "навчання, підготовка до роботи або діяльності."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "training",
+            "definitionByLocale": {
+              "ru": "обучение, подготовка к работе или деятельности.",
+              "uk": "навчання, підготовка до роботи або діяльності."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Нам нужно обучение».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Нам нужно обучение».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need training.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Нам нужно обучение».",
+            "uk": "Скажіть: «Нам потрібне навчання»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "training"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-04:i11:r1",
+            "text": "We need training."
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i11:r2",
+            "text": "We need a training."
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i11:r3",
+            "text": "We need trainings."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:i11:audio",
+            "transcript": "We need training."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-04:i11:r1",
+              "targetText": "We need training.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i11:r2",
+              "targetText": "We need a training.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i11:r3",
+              "targetText": "We need trainings.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-04:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need training.",
+                "uk": "У записі звучить We need training."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need training.",
+                "uk": "У записі звучить We need training."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для указанного количества или общего названия.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-04:i12:r1",
+            "text": "training"
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i12:r2",
+            "text": "a training"
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i12:r3",
+            "text": "trainings"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "We need ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-04:i12:r1",
+              "text": "training"
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i12:r2",
+              "text": "a training"
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i12:r3",
+              "text": "trainings"
+            }
+          ],
+          "testedDimension": "Выберите форму для указанного количества или общего названия.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-04:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "Training в значении обучения в целом — без a и без множественного -s.",
+                "uk": "Training у значенні навчання загалом — без a та без множинного -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "Training в значении обучения в целом — без a и без множественного -s.",
+                "uk": "Training у значенні навчання загалом — без a та без множинного -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-04:i13:p1",
+              "target": "candidate",
+              "meaningByLocale": {
+                "ru": "кандидат, человек, претендующий на место",
+                "uk": "кандидат, людина, яка претендує на місце"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-04:i13:p2",
+              "target": "vacancy",
+              "meaningByLocale": {
+                "ru": "вакансия, свободное рабочее место",
+                "uk": "вакансія, вільне робоче місце"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-04:i13:p3",
+              "target": "paperwork",
+              "meaningByLocale": {
+                "ru": "работа с документами, оформление бумаг",
+                "uk": "робота з документами, оформлення паперів"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-04:i13:p4",
+              "target": "training",
+              "meaningByLocale": {
+                "ru": "обучение, подготовка к работе или деятельности",
+                "uk": "навчання, підготовка до роботи або діяльності"
+              }
+            }
+          ],
+          "leftColumn": [
+            "candidate",
+            "vacancy",
+            "paperwork",
+            "training"
+          ],
+          "rightColumn": [
+            "кандидат, человек, претендующий на место",
+            "вакансия, свободное рабочее место",
+            "работа с документами, оформление бумаг",
+            "обучение, подготовка к работе или деятельности"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу с исчисляемым словом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу с исчисляемым словом",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:i14:audio",
+            "transcript": "She is a candidate."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She is a candidate.",
+          "orderedTokens": [
+            "She",
+            "is",
+            "a",
+            "candidate"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу с общим названием",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу с общим названием",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:i15:audio",
+            "transcript": "This paperwork is important."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This paperwork is important.",
+          "orderedTokens": [
+            "This",
+            "paperwork",
+            "is",
+            "important"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите фразу с неисчисляемым словом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите фразу с неисчисляемым словом",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:i16:audio",
+            "transcript": "We need training."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need training.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите фразу о количестве",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите фразу о количестве",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:i17:audio",
+            "transcript": "There are two vacancies in this shop."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There are two vacancies in this shop.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-17:session-04:word:candidate",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — candidate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:word:candidate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — candidate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:word:candidate:audio",
+            "transcript": "candidate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-04:word:candidate:r1",
+              "targetText": "candidate",
+              "meaningByLocale": {
+                "ru": "кандидат, человек, претендующий на место.",
+                "uk": "кандидат, людина, яка претендує на місце."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "candidate",
+            "definitionByLocale": {
+              "ru": "кандидат, человек, претендующий на место.",
+              "uk": "кандидат, людина, яка претендує на місце."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Вона кандидатка».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Вона кандидатка».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is a candidate.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Она кандидат».",
+            "uk": "Скажіть: «Вона кандидатка»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "a",
+            "candidate"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-04:i02:r1",
+            "text": "She is a candidate."
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i02:r2",
+            "text": "She is an candidate."
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i02:r3",
+            "text": "She is candidate."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:i02:audio",
+            "transcript": "She is a candidate."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-04:i02:r1",
+              "targetText": "She is a candidate.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i02:r2",
+              "targetText": "She is an candidate.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i02:r3",
+              "targetText": "She is candidate.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-04:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is a candidate.",
+                "uk": "У записі звучить She is a candidate."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is a candidate.",
+                "uk": "У записі звучить She is a candidate."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-04:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i03:r3",
+            "text": "the two"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "She is ___ candidate.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-04:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i03:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i03:r3",
+              "text": "the two"
+            }
+          ],
+          "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-04:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "Candidate начинается с согласного звука: a candidate.",
+                "uk": "Candidate починається з приголосного звука: a candidate."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "Candidate начинается с согласного звука: a candidate.",
+                "uk": "Candidate починається з приголосного звука: a candidate."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:word:vacancy",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — vacancy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:word:vacancy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — vacancy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:word:vacancy:audio",
+            "transcript": "vacancy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-04:word:vacancy:r1",
+              "targetText": "vacancy",
+              "meaningByLocale": {
+                "ru": "вакансия, свободное рабочее место.",
+                "uk": "вакансія, вільне робоче місце."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "vacancy",
+            "definitionByLocale": {
+              "ru": "вакансия, свободное рабочее место.",
+              "uk": "вакансія, вільне робоче місце."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «У цьому магазині дві вакансії». У vacancy множина — vacancies.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «У цьому магазині дві вакансії». У vacancy множина — vacancies.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are two vacancies in this shop.",
+          "localizedMeaning": {
+            "ru": "Скажите: «В этом магазине две вакансии». У vacancy множественное число — vacancies.",
+            "uk": "Скажіть: «У цьому магазині дві вакансії». У vacancy множина — vacancies."
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "two",
+            "vacancies",
+            "in",
+            "this",
+            "shop"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-04:i05:r1",
+            "text": "There are two vacancies in this shop."
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i05:r2",
+            "text": "There are two vacancy in this shop."
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i05:r3",
+            "text": "There are a two vacancies in this shop."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:i05:audio",
+            "transcript": "There are two vacancies in this shop."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-04:i05:r1",
+              "targetText": "There are two vacancies in this shop.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i05:r2",
+              "targetText": "There are two vacancy in this shop.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i05:r3",
+              "targetText": "There are a two vacancies in this shop.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-04:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There are two vacancies in this shop.",
+                "uk": "У записі звучить There are two vacancies in this shop."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There are two vacancies in this shop.",
+                "uk": "У записі звучить There are two vacancies in this shop."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-04:i06:r1",
+            "text": "vacancies"
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i06:r2",
+            "text": "vacancy"
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i06:r3",
+            "text": "a vacancy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "There are two ___ in this shop.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-04:i06:r1",
+              "text": "vacancies"
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i06:r2",
+              "text": "vacancy"
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i06:r3",
+              "text": "a vacancy"
+            }
+          ],
+          "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-04:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "У vacancy во множественном числе y меняется на ies: vacancies.",
+                "uk": "У vacancy у множині y змінюється на ies: vacancies."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "У vacancy во множественном числе y меняется на ies: vacancies.",
+                "uk": "У vacancy у множині y змінюється на ies: vacancies."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:word:paperwork",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — paperwork",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:word:paperwork:audio"
+        ],
+        "accessibilityLabel": "Картка слова — paperwork",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:word:paperwork:audio",
+            "transcript": "paperwork"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-04:word:paperwork:r1",
+              "targetText": "paperwork",
+              "meaningByLocale": {
+                "ru": "работа с документами, оформление бумаг.",
+                "uk": "робота з документами, оформлення паперів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "paperwork",
+            "definitionByLocale": {
+              "ru": "работа с документами, оформление бумаг.",
+              "uk": "робота з документами, оформлення паперів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Це оформлення документів важливе».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Це оформлення документів важливе».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This paperwork is important.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Это оформление документов важно».",
+            "uk": "Скажіть: «Це оформлення документів важливе»."
+          },
+          "orderedTokens": [
+            "This",
+            "paperwork",
+            "is",
+            "important"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-04:i08:r1",
+            "text": "This paperwork is important."
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i08:r2",
+            "text": "This paperwork are important."
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i08:r3",
+            "text": "These paperworks are important."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:i08:audio",
+            "transcript": "This paperwork is important."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-04:i08:r1",
+              "targetText": "This paperwork is important.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i08:r2",
+              "targetText": "This paperwork are important.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i08:r3",
+              "targetText": "These paperworks are important.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-04:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This paperwork is important.",
+                "uk": "У записі звучить This paperwork is important."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This paperwork is important.",
+                "uk": "У записі звучить This paperwork is important."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-04:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "This paperwork ___ important.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-04:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i09:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-04:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "Paperwork — неисчисляемое слово: is, не are.",
+                "uk": "Paperwork — незлічуване слово: is, не are."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "Paperwork — неисчисляемое слово: is, не are.",
+                "uk": "Paperwork — незлічуване слово: is, не are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:word:training",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — training",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:word:training:audio"
+        ],
+        "accessibilityLabel": "Картка слова — training",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:word:training:audio",
+            "transcript": "training"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-04:word:training:r1",
+              "targetText": "training",
+              "meaningByLocale": {
+                "ru": "обучение, подготовка к работе или деятельности.",
+                "uk": "навчання, підготовка до роботи або діяльності."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "training",
+            "definitionByLocale": {
+              "ru": "обучение, подготовка к работе или деятельности.",
+              "uk": "навчання, підготовка до роботи або діяльності."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Нам потрібне навчання».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Нам потрібне навчання».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need training.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Нам нужно обучение».",
+            "uk": "Скажіть: «Нам потрібне навчання»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "training"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-04:i11:r1",
+            "text": "We need training."
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i11:r2",
+            "text": "We need a training."
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i11:r3",
+            "text": "We need trainings."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:i11:audio",
+            "transcript": "We need training."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-04:i11:r1",
+              "targetText": "We need training.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i11:r2",
+              "targetText": "We need a training.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i11:r3",
+              "targetText": "We need trainings.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-04:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need training.",
+                "uk": "У записі звучить We need training."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need training.",
+                "uk": "У записі звучить We need training."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-04:i12:r1",
+            "text": "training"
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i12:r2",
+            "text": "a training"
+          },
+          {
+            "responseId": "en:lesson-17:session-04:i12:r3",
+            "text": "trainings"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "We need ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-04:i12:r1",
+              "text": "training"
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i12:r2",
+              "text": "a training"
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i12:r3",
+              "text": "trainings"
+            }
+          ],
+          "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-04:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "Training в значении обучения в целом — без a и без множественного -s.",
+                "uk": "Training у значенні навчання загалом — без a та без множинного -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-04:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "Training в значении обучения в целом — без a и без множественного -s.",
+                "uk": "Training у значенні навчання загалом — без a та без множинного -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-04:i13:p1",
+              "target": "candidate",
+              "meaningByLocale": {
+                "ru": "кандидат, человек, претендующий на место",
+                "uk": "кандидат, людина, яка претендує на місце"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-04:i13:p2",
+              "target": "vacancy",
+              "meaningByLocale": {
+                "ru": "вакансия, свободное рабочее место",
+                "uk": "вакансія, вільне робоче місце"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-04:i13:p3",
+              "target": "paperwork",
+              "meaningByLocale": {
+                "ru": "работа с документами, оформление бумаг",
+                "uk": "робота з документами, оформлення паперів"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-04:i13:p4",
+              "target": "training",
+              "meaningByLocale": {
+                "ru": "обучение, подготовка к работе или деятельности",
+                "uk": "навчання, підготовка до роботи або діяльності"
+              }
+            }
+          ],
+          "leftColumn": [
+            "candidate",
+            "vacancy",
+            "paperwork",
+            "training"
+          ],
+          "rightColumn": [
+            "кандидат, людина, яка претендує на місце",
+            "вакансія, вільне робоче місце",
+            "робота з документами, оформлення паперів",
+            "навчання, підготовка до роботи або діяльності"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу зі злічуваним словом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу зі злічуваним словом",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:i14:audio",
+            "transcript": "She is a candidate."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She is a candidate.",
+          "orderedTokens": [
+            "She",
+            "is",
+            "a",
+            "candidate"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу із загальною назвою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу із загальною назвою",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:i15:audio",
+            "transcript": "This paperwork is important."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This paperwork is important.",
+          "orderedTokens": [
+            "This",
+            "paperwork",
+            "is",
+            "important"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть фразу з незлічуваним словом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть фразу з незлічуваним словом",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:i16:audio",
+            "transcript": "We need training."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need training.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-04:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть фразу про кількість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-04:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть фразу про кількість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-04:i17:audio",
+            "transcript": "There are two vacancies in this shop."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There are two vacancies in this shop.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-17:session-04:word:candidate",
+      "correctText": "candidate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-04:i01",
+      "correctText": "She is a candidate.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-04:i02",
+      "correctText": "She is a candidate.",
+      "correctResponseId": "en:lesson-17:session-04:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-04:i03",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-17:session-04:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-04:word:vacancy",
+      "correctText": "vacancy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-04:i04",
+      "correctText": "There are two vacancies in this shop.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-04:i05",
+      "correctText": "There are two vacancies in this shop.",
+      "correctResponseId": "en:lesson-17:session-04:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-04:i06",
+      "correctText": "vacancies",
+      "correctResponseId": "en:lesson-17:session-04:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-04:word:paperwork",
+      "correctText": "paperwork",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-04:i07",
+      "correctText": "This paperwork is important.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-04:i08",
+      "correctText": "This paperwork is important.",
+      "correctResponseId": "en:lesson-17:session-04:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-04:i09",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-17:session-04:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-04:word:training",
+      "correctText": "training",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-04:i10",
+      "correctText": "We need training.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-04:i11",
+      "correctText": "We need training.",
+      "correctResponseId": "en:lesson-17:session-04:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-04:i12",
+      "correctText": "training",
+      "correctResponseId": "en:lesson-17:session-04:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-04:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-04:i14",
+      "correctText": "She is a candidate.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-04:i15",
+      "correctText": "This paperwork is important.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-04:i16",
+      "correctText": "We need training.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-04:i17",
+      "correctText": "There are two vacancies in this shop.",
+      "correctResponseId": null
+    }
+  ]
+}

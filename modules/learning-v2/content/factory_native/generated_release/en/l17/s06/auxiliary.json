@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-17:session-06",
+  "entries": [
+    {
+      "interactionId": "en:lesson-17:session-06:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-06:intro1:r2": {
+          "ru": "Bead начинается с согласного звука: a bead.",
+          "uk": "Bead починається з приголосного звука: a bead."
+        },
+        "en:lesson-17:session-06:intro1:r3": {
+          "ru": "Здесь нельзя оставлять исчисляемое существительное в единственном числе без артикля.",
+          "uk": "Тут не можна залишати злічуваний іменник в однині без артикля."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-06:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-06:intro2:r2": {
+          "ru": "После two нужно множественное sequins.",
+          "uk": "Після two потрібна множина sequins."
+        },
+        "en:lesson-17:session-06:intro2:r3": {
+          "ru": "Не ставьте a перед two.",
+          "uk": "Не ставте a перед two."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-06:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-06:intro3:r2": {
+          "ru": "Glitter как материал — неисчисляемое слово: is, даже если по-русски «блёстки».",
+          "uk": "Glitter як матеріал — незлічуване слово: is, навіть якщо українською «блискітки»."
+        },
+        "en:lesson-17:session-06:intro3:r3": {
+          "ru": "В этом значении у слова нет множественного -s.",
+          "uk": "У цьому значенні слово не має множинного -s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "79ab710b0b023d2e6ab75828972cc94cc5b68ddc24e33b740f21889ed17d8708"
+}

@@ -1,0 +1,1112 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-17:session-08",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-17:session-08:word:appliance",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — appliance",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-08:word:appliance:audio"
+      ],
+      "accessibilityLabel": "Картка слова — appliance",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-08:word:appliance:audio",
+          "transcript": "appliance"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-08:word:appliance:r1",
+            "targetText": "appliance",
+            "meaningByLocale": {
+              "ru": "бытовой прибор.",
+              "uk": "побутовий прилад."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "appliance",
+          "definitionByLocale": {
+            "ru": "бытовой прибор.",
+            "uk": "побутовий прилад."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-08:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Це побутовий прилад».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Це побутовий прилад».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is an appliance.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Это бытовой прибор».",
+          "uk": "Скажіть: «Це побутовий прилад»."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "an",
+          "appliance"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-08:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-08:i02:r1",
+          "text": "This is an appliance."
+        },
+        {
+          "responseId": "en:lesson-17:session-08:i02:r2",
+          "text": "This is a appliance."
+        },
+        {
+          "responseId": "en:lesson-17:session-08:i02:r3",
+          "text": "This is appliance."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-08:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-08:i02:audio",
+          "transcript": "This is an appliance."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-08:i02:r1",
+            "targetText": "This is an appliance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i02:r2",
+            "targetText": "This is a appliance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i02:r3",
+            "targetText": "This is appliance.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-08:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is an appliance.",
+              "uk": "У записі звучить This is an appliance."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is an appliance.",
+              "uk": "У записі звучить This is an appliance."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-08:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-08:i03:r1",
+          "text": "an"
+        },
+        {
+          "responseId": "en:lesson-17:session-08:i03:r2",
+          "text": "a"
+        },
+        {
+          "responseId": "en:lesson-17:session-08:i03:r3",
+          "text": "the two"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для указанного количества или общего названия.",
+          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+        },
+        "gappedTargetPhrase": "This is ___ appliance.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-08:i03:r1",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i03:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i03:r3",
+            "text": "the two"
+          }
+        ],
+        "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-08:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+            "feedbackByLocale": {
+              "ru": "Appliance начинается с гласного звука: an appliance.",
+              "uk": "Appliance починається з голосного звука: an appliance."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+            "feedbackByLocale": {
+              "ru": "Appliance начинается с гласного звука: an appliance.",
+              "uk": "Appliance починається з голосного звука: an appliance."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-08:word:estimate",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — estimate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-08:word:estimate:audio"
+      ],
+      "accessibilityLabel": "Картка слова — estimate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-08:word:estimate:audio",
+          "transcript": "estimate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-08:word:estimate:r1",
+            "targetText": "estimate",
+            "meaningByLocale": {
+              "ru": "предварительный расчёт стоимости.",
+              "uk": "попередній розрахунок вартості."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "estimate",
+          "definitionByLocale": {
+            "ru": "предварительный расчёт стоимости.",
+            "uk": "попередній розрахунок вартості."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-08:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «На столі два попередні розрахунки вартості». У estimate множина — estimates.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «На столі два попередні розрахунки вартості». У estimate множина — estimates.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There are two estimates on the table.",
+        "localizedMeaning": {
+          "ru": "Скажите: «На столе два предварительных расчёта стоимости». У estimate множественное число — estimates.",
+          "uk": "Скажіть: «На столі два попередні розрахунки вартості». У estimate множина — estimates."
+        },
+        "orderedTokens": [
+          "There",
+          "are",
+          "two",
+          "estimates",
+          "on",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-08:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-08:i05:r1",
+          "text": "There are two estimates on the table."
+        },
+        {
+          "responseId": "en:lesson-17:session-08:i05:r2",
+          "text": "There are two estimate on the table."
+        },
+        {
+          "responseId": "en:lesson-17:session-08:i05:r3",
+          "text": "There are a two estimates on the table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-08:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-08:i05:audio",
+          "transcript": "There are two estimates on the table."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-08:i05:r1",
+            "targetText": "There are two estimates on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i05:r2",
+            "targetText": "There are two estimate on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i05:r3",
+            "targetText": "There are a two estimates on the table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-08:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There are two estimates on the table.",
+              "uk": "У записі звучить There are two estimates on the table."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There are two estimates on the table.",
+              "uk": "У записі звучить There are two estimates on the table."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-08:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-08:i06:r1",
+          "text": "estimates"
+        },
+        {
+          "responseId": "en:lesson-17:session-08:i06:r2",
+          "text": "estimate"
+        },
+        {
+          "responseId": "en:lesson-17:session-08:i06:r3",
+          "text": "an estimate"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для указанного количества или общего названия.",
+          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+        },
+        "gappedTargetPhrase": "There are two ___ on the table.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-08:i06:r1",
+            "text": "estimates"
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i06:r2",
+            "text": "estimate"
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i06:r3",
+            "text": "an estimate"
+          }
+        ],
+        "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-08:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+            "feedbackByLocale": {
+              "ru": "После two нужно множественное estimates.",
+              "uk": "Після two потрібна множина estimates."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+            "feedbackByLocale": {
+              "ru": "После two нужно множественное estimates.",
+              "uk": "Після two потрібна множина estimates."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-08:word:packaging",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — packaging",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-08:word:packaging:audio"
+      ],
+      "accessibilityLabel": "Картка слова — packaging",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-08:word:packaging:audio",
+          "transcript": "packaging"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-08:word:packaging:r1",
+            "targetText": "packaging",
+            "meaningByLocale": {
+              "ru": "упаковка, упаковочные материалы.",
+              "uk": "пакування, пакувальні матеріали."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "packaging",
+          "definitionByLocale": {
+            "ru": "упаковка, упаковочные материалы.",
+            "uk": "пакування, пакувальні матеріали."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-08:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Це пакування мокре».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Це пакування мокре».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This packaging is wet.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Эта упаковка мокрая».",
+          "uk": "Скажіть: «Це пакування мокре»."
+        },
+        "orderedTokens": [
+          "This",
+          "packaging",
+          "is",
+          "wet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-08:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-08:i08:r1",
+          "text": "This packaging is wet."
+        },
+        {
+          "responseId": "en:lesson-17:session-08:i08:r2",
+          "text": "This packaging are wet."
+        },
+        {
+          "responseId": "en:lesson-17:session-08:i08:r3",
+          "text": "These packagings are wet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-08:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-08:i08:audio",
+          "transcript": "This packaging is wet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-08:i08:r1",
+            "targetText": "This packaging is wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i08:r2",
+            "targetText": "This packaging are wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i08:r3",
+            "targetText": "These packagings are wet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-08:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This packaging is wet.",
+              "uk": "У записі звучить This packaging is wet."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This packaging is wet.",
+              "uk": "У записі звучить This packaging is wet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-08:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-08:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-17:session-08:i09:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-17:session-08:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для указанного количества или общего названия.",
+          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+        },
+        "gappedTargetPhrase": "This packaging ___ wet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-08:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-08:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+            "feedbackByLocale": {
+              "ru": "Packaging как упаковочные материалы — неисчисляемое слово: is.",
+              "uk": "Packaging як пакувальні матеріали — незлічуване слово: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+            "feedbackByLocale": {
+              "ru": "Packaging как упаковочные материалы — неисчисляемое слово: is.",
+              "uk": "Packaging як пакувальні матеріали — незлічуване слово: is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-08:word:damage",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — damage",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-08:word:damage:audio"
+      ],
+      "accessibilityLabel": "Картка слова — damage",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-08:word:damage:audio",
+          "transcript": "damage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-08:word:damage:r1",
+            "targetText": "damage",
+            "meaningByLocale": {
+              "ru": "повреждение, нанесённый вещам вред.",
+              "uk": "пошкодження, завдана речам шкода."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "damage",
+          "definitionByLocale": {
+            "ru": "повреждение, нанесённый вещам вред.",
+            "uk": "пошкодження, завдана речам шкода."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-08:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «Ми бачимо пошкодження».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «Ми бачимо пошкодження».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We can see damage.",
+        "localizedMeaning": {
+          "ru": "Скажите: «Мы видим повреждения».",
+          "uk": "Скажіть: «Ми бачимо пошкодження»."
+        },
+        "orderedTokens": [
+          "We",
+          "can",
+          "see",
+          "damage"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-08:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-08:i11:r1",
+          "text": "We can see damage."
+        },
+        {
+          "responseId": "en:lesson-17:session-08:i11:r2",
+          "text": "We can see a damage."
+        },
+        {
+          "responseId": "en:lesson-17:session-08:i11:r3",
+          "text": "We can see damages."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-08:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-08:i11:audio",
+          "transcript": "We can see damage."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-17:session-08:i11:r1",
+            "targetText": "We can see damage.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i11:r2",
+            "targetText": "We can see a damage.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i11:r3",
+            "targetText": "We can see damages.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-08:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can see damage.",
+              "uk": "У записі звучить We can see damage."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can see damage.",
+              "uk": "У записі звучить We can see damage."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-08:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-17:session-08:i12:r1",
+          "text": "damage"
+        },
+        {
+          "responseId": "en:lesson-17:session-08:i12:r2",
+          "text": "a damage"
+        },
+        {
+          "responseId": "en:lesson-17:session-08:i12:r3",
+          "text": "damages"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для указанного количества или общего названия.",
+          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+        },
+        "gappedTargetPhrase": "We can see ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-17:session-08:i12:r1",
+            "text": "damage"
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i12:r2",
+            "text": "a damage"
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i12:r3",
+            "text": "damages"
+          }
+        ],
+        "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-17:session-08:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+            "feedbackByLocale": {
+              "ru": "Damage в значении повреждения вещей — неисчисляемое: без a и без множественного -s.",
+              "uk": "Damage у значенні пошкодження речей — незлічуване: без a та без множинного -s."
+            }
+          },
+          {
+            "responseId": "en:lesson-17:session-08:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+            "feedbackByLocale": {
+              "ru": "Damage в значении повреждения вещей — неисчисляемое: без a и без множественного -s.",
+              "uk": "Damage у значенні пошкодження речей — незлічуване: без a та без множинного -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-08:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-17:session-08:i13:p1",
+            "target": "appliance",
+            "meaningByLocale": {
+              "ru": "бытовой прибор",
+              "uk": "побутовий прилад"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-08:i13:p2",
+            "target": "estimate",
+            "meaningByLocale": {
+              "ru": "предварительный расчёт стоимости",
+              "uk": "попередній розрахунок вартості"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-08:i13:p3",
+            "target": "packaging",
+            "meaningByLocale": {
+              "ru": "упаковка, упаковочные материалы",
+              "uk": "пакування, пакувальні матеріали"
+            }
+          },
+          {
+            "pairId": "en:lesson-17:session-08:i13:p4",
+            "target": "damage",
+            "meaningByLocale": {
+              "ru": "повреждение, нанесённый вещам вред",
+              "uk": "пошкодження, завдана речам шкода"
+            }
+          }
+        ],
+        "leftColumn": [
+          "appliance",
+          "estimate",
+          "packaging",
+          "damage"
+        ],
+        "rightColumn": [
+          "побутовий прилад",
+          "попередній розрахунок вартості",
+          "пакування, пакувальні матеріали",
+          "пошкодження, завдана речам шкода"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-08:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу зі злічуваним словом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-08:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу зі злічуваним словом",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-08:i14:audio",
+          "transcript": "This is an appliance."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This is an appliance.",
+        "orderedTokens": [
+          "This",
+          "is",
+          "an",
+          "appliance"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-08:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу із загальною назвою",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-08:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу із загальною назвою",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-08:i15:audio",
+          "transcript": "This packaging is wet."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This packaging is wet.",
+        "orderedTokens": [
+          "This",
+          "packaging",
+          "is",
+          "wet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-08:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть фразу з незлічуваним словом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-08:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть фразу з незлічуваним словом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-08:i16:audio",
+          "transcript": "We can see damage."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We can see damage.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-08:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть фразу про кількість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-17:session-08:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть фразу про кількість",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-17:session-08:i17:audio",
+          "transcript": "There are two estimates on the table."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There are two estimates on the table.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4d42c27f2614f141195c57331c760de726206a4d8cec46db84d727a168cfb041"
+}

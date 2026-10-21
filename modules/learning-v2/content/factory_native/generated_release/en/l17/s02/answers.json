@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-02:word:shallot",
+    "correctText": "shallot",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-02:i01",
+    "correctText": "This is a shallot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-02:i02",
+    "correctText": "This is a shallot.",
+    "correctResponseId": "en:lesson-17:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-02:i03",
+    "correctText": "a",
+    "correctResponseId": "en:lesson-17:session-02:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-02:word:peppercorn",
+    "correctText": "peppercorn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-02:i04",
+    "correctText": "There are two peppercorns in the bowl.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-02:i05",
+    "correctText": "There are two peppercorns in the bowl.",
+    "correctResponseId": "en:lesson-17:session-02:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-02:i06",
+    "correctText": "peppercorns",
+    "correctResponseId": "en:lesson-17:session-02:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-02:word:bulgur",
+    "correctText": "bulgur",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-02:i07",
+    "correctText": "This bulgur is dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-02:i08",
+    "correctText": "This bulgur is dry.",
+    "correctResponseId": "en:lesson-17:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-02:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-17:session-02:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-02:word:barley",
+    "correctText": "barley",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-02:i10",
+    "correctText": "We need barley.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-02:i11",
+    "correctText": "We need barley.",
+    "correctResponseId": "en:lesson-17:session-02:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-02:i12",
+    "correctText": "barley",
+    "correctResponseId": "en:lesson-17:session-02:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-02:i13",
+    "correctText": "en:lesson-17:session-02:i13:p1=shallot\nen:lesson-17:session-02:i13:p2=peppercorn\nen:lesson-17:session-02:i13:p3=bulgur\nen:lesson-17:session-02:i13:p4=barley",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-02:i14",
+    "correctText": "This is a shallot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-02:i15",
+    "correctText": "This bulgur is dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-02:i16",
+    "correctText": "We need barley.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-02:i17",
+    "correctText": "There are two peppercorns in the bowl.",
+    "correctResponseId": null
+  }
+]

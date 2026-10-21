@@ -1,0 +1,2311 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-17:session-07",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-17:session-07:word:sapling",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sapling",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:word:sapling:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sapling",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:word:sapling:audio",
+            "transcript": "sapling"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-07:word:sapling:r1",
+              "targetText": "sapling",
+              "meaningByLocale": {
+                "ru": "молодое деревце, саженец дерева.",
+                "uk": "молоде деревце, саджанець дерева."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sapling",
+            "definitionByLocale": {
+              "ru": "молодое деревце, саженец дерева.",
+              "uk": "молоде деревце, саджанець дерева."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Это саженец дерева».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Это саженец дерева».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a sapling.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Это саженец дерева».",
+            "uk": "Скажіть: «Це саджанець дерева»."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "sapling"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-07:i02:r1",
+            "text": "This is a sapling."
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i02:r2",
+            "text": "This is an sapling."
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i02:r3",
+            "text": "This is sapling."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:i02:audio",
+            "transcript": "This is a sapling."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-07:i02:r1",
+              "targetText": "This is a sapling.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i02:r2",
+              "targetText": "This is an sapling.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i02:r3",
+              "targetText": "This is sapling.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-07:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is a sapling.",
+                "uk": "У записі звучить This is a sapling."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is a sapling.",
+                "uk": "У записі звучить This is a sapling."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для указанного количества или общего названия.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-07:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i03:r3",
+            "text": "the two"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "This is ___ sapling.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-07:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i03:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i03:r3",
+              "text": "the two"
+            }
+          ],
+          "testedDimension": "Выберите форму для указанного количества или общего названия.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-07:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "Sapling начинается с согласного звука: a sapling.",
+                "uk": "Sapling починається з приголосного звука: a sapling."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "Sapling начинается с согласного звука: a sapling.",
+                "uk": "Sapling починається з приголосного звука: a sapling."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:word:planter",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — planter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:word:planter:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — planter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:word:planter:audio",
+            "transcript": "planter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-07:word:planter:r1",
+              "targetText": "planter",
+              "meaningByLocale": {
+                "ru": "контейнер или ящик для выращивания растений.",
+                "uk": "контейнер або ящик для вирощування рослин."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "planter",
+            "definitionByLocale": {
+              "ru": "контейнер или ящик для выращивания растений.",
+              "uk": "контейнер або ящик для вирощування рослин."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «У двери два контейнера для растений». У planter множественное число — planters.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «У двери два контейнера для растений». У planter множественное число — planters.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are two planters by the door.",
+          "localizedMeaning": {
+            "ru": "Скажите: «У двери два контейнера для растений». У planter множественное число — planters.",
+            "uk": "Скажіть: «Біля дверей два контейнери для рослин». У planter множина — planters."
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "two",
+            "planters",
+            "by",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-07:i05:r1",
+            "text": "There are two planters by the door."
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i05:r2",
+            "text": "There are two planter by the door."
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i05:r3",
+            "text": "There are a two planters by the door."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:i05:audio",
+            "transcript": "There are two planters by the door."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-07:i05:r1",
+              "targetText": "There are two planters by the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i05:r2",
+              "targetText": "There are two planter by the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i05:r3",
+              "targetText": "There are a two planters by the door.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-07:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There are two planters by the door.",
+                "uk": "У записі звучить There are two planters by the door."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There are two planters by the door.",
+                "uk": "У записі звучить There are two planters by the door."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для указанного количества или общего названия.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-07:i06:r1",
+            "text": "planters"
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i06:r2",
+            "text": "planter"
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i06:r3",
+            "text": "a planter"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "There are two ___ by the door.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-07:i06:r1",
+              "text": "planters"
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i06:r2",
+              "text": "planter"
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i06:r3",
+              "text": "a planter"
+            }
+          ],
+          "testedDimension": "Выберите форму для указанного количества или общего названия.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-07:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "После two нужно множественное planters.",
+                "uk": "Після two потрібна множина planters."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "После two нужно множественное planters.",
+                "uk": "Після two потрібна множина planters."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:word:gravel",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — gravel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:word:gravel:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — gravel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:word:gravel:audio",
+            "transcript": "gravel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-07:word:gravel:r1",
+              "targetText": "gravel",
+              "meaningByLocale": {
+                "ru": "гравий, мелкие камни для покрытия дорожек.",
+                "uk": "гравій, дрібне каміння для покриття доріжок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gravel",
+            "definitionByLocale": {
+              "ru": "гравий, мелкие камни для покрытия дорожек.",
+              "uk": "гравій, дрібне каміння для покриття доріжок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Этот гравий чистый».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Этот гравий чистый».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This gravel is clean.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Этот гравий чистый».",
+            "uk": "Скажіть: «Цей гравій чистий»."
+          },
+          "orderedTokens": [
+            "This",
+            "gravel",
+            "is",
+            "clean"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-07:i08:r1",
+            "text": "This gravel is clean."
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i08:r2",
+            "text": "This gravel are clean."
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i08:r3",
+            "text": "These gravels are clean."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:i08:audio",
+            "transcript": "This gravel is clean."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-07:i08:r1",
+              "targetText": "This gravel is clean.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i08:r2",
+              "targetText": "This gravel are clean.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i08:r3",
+              "targetText": "These gravels are clean.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-07:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This gravel is clean.",
+                "uk": "У записі звучить This gravel is clean."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This gravel is clean.",
+                "uk": "У записі звучить This gravel is clean."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для указанного количества или общего названия.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-07:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "This gravel ___ clean.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-07:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i09:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Выберите форму для указанного количества или общего названия.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-07:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "Gravel как материал — неисчисляемое слово: is.",
+                "uk": "Gravel як матеріал — незлічуване слово: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "Gravel как материал — неисчисляемое слово: is.",
+                "uk": "Gravel як матеріал — незлічуване слово: is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:word:equipment",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — equipment",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:word:equipment:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — equipment",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:word:equipment:audio",
+            "transcript": "equipment"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-07:word:equipment:r1",
+              "targetText": "equipment",
+              "meaningByLocale": {
+                "ru": "оборудование, нужные для дела приспособления.",
+                "uk": "обладнання, потрібне для справи приладдя."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "equipment",
+            "definitionByLocale": {
+              "ru": "оборудование, нужные для дела приспособления.",
+              "uk": "обладнання, потрібне для справи приладдя."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «Нам нужно оборудование».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «Нам нужно оборудование».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need equipment.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Нам нужно оборудование».",
+            "uk": "Скажіть: «Нам потрібне обладнання»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "equipment"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-07:i11:r1",
+            "text": "We need equipment."
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i11:r2",
+            "text": "We need an equipment."
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i11:r3",
+            "text": "We need equipments."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:i11:audio",
+            "transcript": "We need equipment."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-07:i11:r1",
+              "targetText": "We need equipment.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i11:r2",
+              "targetText": "We need an equipment.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i11:r3",
+              "targetText": "We need equipments.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-07:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need equipment.",
+                "uk": "У записі звучить We need equipment."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need equipment.",
+                "uk": "У записі звучить We need equipment."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для указанного количества или общего названия.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-07:i12:r1",
+            "text": "equipment"
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i12:r2",
+            "text": "an equipment"
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i12:r3",
+            "text": "equipments"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "We need ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-07:i12:r1",
+              "text": "equipment"
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i12:r2",
+              "text": "an equipment"
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i12:r3",
+              "text": "equipments"
+            }
+          ],
+          "testedDimension": "Выберите форму для указанного количества или общего названия.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-07:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "Equipment — неисчисляемое слово: без an и без множественного -s.",
+                "uk": "Equipment — незлічуване слово: без an та без множинного -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для указанного количества или общего названия.",
+              "feedbackByLocale": {
+                "ru": "Equipment — неисчисляемое слово: без an и без множественного -s.",
+                "uk": "Equipment — незлічуване слово: без an та без множинного -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-07:i13:p1",
+              "target": "sapling",
+              "meaningByLocale": {
+                "ru": "молодое деревце, саженец дерева",
+                "uk": "молоде деревце, саджанець дерева"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-07:i13:p2",
+              "target": "planter",
+              "meaningByLocale": {
+                "ru": "контейнер или ящик для выращивания растений",
+                "uk": "контейнер або ящик для вирощування рослин"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-07:i13:p3",
+              "target": "gravel",
+              "meaningByLocale": {
+                "ru": "гравий, мелкие камни для покрытия дорожек",
+                "uk": "гравій, дрібне каміння для покриття доріжок"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-07:i13:p4",
+              "target": "equipment",
+              "meaningByLocale": {
+                "ru": "оборудование, нужные для дела приспособления",
+                "uk": "обладнання, потрібне для справи приладдя"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sapling",
+            "planter",
+            "gravel",
+            "equipment"
+          ],
+          "rightColumn": [
+            "молодое деревце, саженец дерева",
+            "контейнер или ящик для выращивания растений",
+            "гравий, мелкие камни для покрытия дорожек",
+            "оборудование, нужные для дела приспособления"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу с исчисляемым словом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу с исчисляемым словом",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:i14:audio",
+            "transcript": "This is a sapling."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This is a sapling.",
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "sapling"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу с общим названием",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу с общим названием",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:i15:audio",
+            "transcript": "This gravel is clean."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This gravel is clean.",
+          "orderedTokens": [
+            "This",
+            "gravel",
+            "is",
+            "clean"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите фразу с неисчисляемым словом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите фразу с неисчисляемым словом",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:i16:audio",
+            "transcript": "We need equipment."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need equipment.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите фразу о количестве",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите фразу о количестве",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:i17:audio",
+            "transcript": "There are two planters by the door."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There are two planters by the door.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-17:session-07:word:sapling",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sapling",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:word:sapling:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sapling",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:word:sapling:audio",
+            "transcript": "sapling"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-07:word:sapling:r1",
+              "targetText": "sapling",
+              "meaningByLocale": {
+                "ru": "молодое деревце, саженец дерева.",
+                "uk": "молоде деревце, саджанець дерева."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sapling",
+            "definitionByLocale": {
+              "ru": "молодое деревце, саженец дерева.",
+              "uk": "молоде деревце, саджанець дерева."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Це саджанець дерева».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Це саджанець дерева».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is a sapling.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Это саженец дерева».",
+            "uk": "Скажіть: «Це саджанець дерева»."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "sapling"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-07:i02:r1",
+            "text": "This is a sapling."
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i02:r2",
+            "text": "This is an sapling."
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i02:r3",
+            "text": "This is sapling."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:i02:audio",
+            "transcript": "This is a sapling."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-07:i02:r1",
+              "targetText": "This is a sapling.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i02:r2",
+              "targetText": "This is an sapling.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i02:r3",
+              "targetText": "This is sapling.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-07:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is a sapling.",
+                "uk": "У записі звучить This is a sapling."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is a sapling.",
+                "uk": "У записі звучить This is a sapling."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-07:i03:r1",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i03:r2",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i03:r3",
+            "text": "the two"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "This is ___ sapling.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-07:i03:r1",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i03:r2",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i03:r3",
+              "text": "the two"
+            }
+          ],
+          "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-07:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "Sapling начинается с согласного звука: a sapling.",
+                "uk": "Sapling починається з приголосного звука: a sapling."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "Sapling начинается с согласного звука: a sapling.",
+                "uk": "Sapling починається з приголосного звука: a sapling."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:word:planter",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — planter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:word:planter:audio"
+        ],
+        "accessibilityLabel": "Картка слова — planter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:word:planter:audio",
+            "transcript": "planter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-07:word:planter:r1",
+              "targetText": "planter",
+              "meaningByLocale": {
+                "ru": "контейнер или ящик для выращивания растений.",
+                "uk": "контейнер або ящик для вирощування рослин."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "planter",
+            "definitionByLocale": {
+              "ru": "контейнер или ящик для выращивания растений.",
+              "uk": "контейнер або ящик для вирощування рослин."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Біля дверей два контейнери для рослин». У planter множина — planters.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Біля дверей два контейнери для рослин». У planter множина — planters.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There are two planters by the door.",
+          "localizedMeaning": {
+            "ru": "Скажите: «У двери два контейнера для растений». У planter множественное число — planters.",
+            "uk": "Скажіть: «Біля дверей два контейнери для рослин». У planter множина — planters."
+          },
+          "orderedTokens": [
+            "There",
+            "are",
+            "two",
+            "planters",
+            "by",
+            "the",
+            "door"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-07:i05:r1",
+            "text": "There are two planters by the door."
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i05:r2",
+            "text": "There are two planter by the door."
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i05:r3",
+            "text": "There are a two planters by the door."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:i05:audio",
+            "transcript": "There are two planters by the door."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-07:i05:r1",
+              "targetText": "There are two planters by the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i05:r2",
+              "targetText": "There are two planter by the door.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i05:r3",
+              "targetText": "There are a two planters by the door.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-07:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There are two planters by the door.",
+                "uk": "У записі звучить There are two planters by the door."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There are two planters by the door.",
+                "uk": "У записі звучить There are two planters by the door."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-07:i06:r1",
+            "text": "planters"
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i06:r2",
+            "text": "planter"
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i06:r3",
+            "text": "a planter"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "There are two ___ by the door.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-07:i06:r1",
+              "text": "planters"
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i06:r2",
+              "text": "planter"
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i06:r3",
+              "text": "a planter"
+            }
+          ],
+          "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-07:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "После two нужно множественное planters.",
+                "uk": "Після two потрібна множина planters."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "После two нужно множественное planters.",
+                "uk": "Після two потрібна множина planters."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:word:gravel",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — gravel",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:word:gravel:audio"
+        ],
+        "accessibilityLabel": "Картка слова — gravel",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:word:gravel:audio",
+            "transcript": "gravel"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-07:word:gravel:r1",
+              "targetText": "gravel",
+              "meaningByLocale": {
+                "ru": "гравий, мелкие камни для покрытия дорожек.",
+                "uk": "гравій, дрібне каміння для покриття доріжок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gravel",
+            "definitionByLocale": {
+              "ru": "гравий, мелкие камни для покрытия дорожек.",
+              "uk": "гравій, дрібне каміння для покриття доріжок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Цей гравій чистий».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Цей гравій чистий».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This gravel is clean.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Этот гравий чистый».",
+            "uk": "Скажіть: «Цей гравій чистий»."
+          },
+          "orderedTokens": [
+            "This",
+            "gravel",
+            "is",
+            "clean"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-07:i08:r1",
+            "text": "This gravel is clean."
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i08:r2",
+            "text": "This gravel are clean."
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i08:r3",
+            "text": "These gravels are clean."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:i08:audio",
+            "transcript": "This gravel is clean."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-07:i08:r1",
+              "targetText": "This gravel is clean.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i08:r2",
+              "targetText": "This gravel are clean.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i08:r3",
+              "targetText": "These gravels are clean.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-07:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This gravel is clean.",
+                "uk": "У записі звучить This gravel is clean."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This gravel is clean.",
+                "uk": "У записі звучить This gravel is clean."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-07:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "This gravel ___ clean.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-07:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i09:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-07:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "Gravel как материал — неисчисляемое слово: is.",
+                "uk": "Gravel як матеріал — незлічуване слово: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "Gravel как материал — неисчисляемое слово: is.",
+                "uk": "Gravel як матеріал — незлічуване слово: is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:word:equipment",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — equipment",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:word:equipment:audio"
+        ],
+        "accessibilityLabel": "Картка слова — equipment",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:word:equipment:audio",
+            "transcript": "equipment"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-07:word:equipment:r1",
+              "targetText": "equipment",
+              "meaningByLocale": {
+                "ru": "оборудование, нужные для дела приспособления.",
+                "uk": "обладнання, потрібне для справи приладдя."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "equipment",
+            "definitionByLocale": {
+              "ru": "оборудование, нужные для дела приспособления.",
+              "uk": "обладнання, потрібне для справи приладдя."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «Нам потрібне обладнання».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «Нам потрібне обладнання».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We need equipment.",
+          "localizedMeaning": {
+            "ru": "Скажите: «Нам нужно оборудование».",
+            "uk": "Скажіть: «Нам потрібне обладнання»."
+          },
+          "orderedTokens": [
+            "We",
+            "need",
+            "equipment"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-07:i11:r1",
+            "text": "We need equipment."
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i11:r2",
+            "text": "We need an equipment."
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i11:r3",
+            "text": "We need equipments."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:i11:audio",
+            "transcript": "We need equipment."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-17:session-07:i11:r1",
+              "targetText": "We need equipment.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i11:r2",
+              "targetText": "We need an equipment.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i11:r3",
+              "targetText": "We need equipments.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-07:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need equipment.",
+                "uk": "У записі звучить We need equipment."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We need equipment.",
+                "uk": "У записі звучить We need equipment."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-17:session-07:i12:r1",
+            "text": "equipment"
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i12:r2",
+            "text": "an equipment"
+          },
+          {
+            "responseId": "en:lesson-17:session-07:i12:r3",
+            "text": "equipments"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указанного количества или общего названия.",
+            "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          },
+          "gappedTargetPhrase": "We need ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-17:session-07:i12:r1",
+              "text": "equipment"
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i12:r2",
+              "text": "an equipment"
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i12:r3",
+              "text": "equipments"
+            }
+          ],
+          "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-17:session-07:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "Equipment — неисчисляемое слово: без an и без множественного -s.",
+                "uk": "Equipment — незлічуване слово: без an та без множинного -s."
+              }
+            },
+            {
+              "responseId": "en:lesson-17:session-07:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
+              "feedbackByLocale": {
+                "ru": "Equipment — неисчисляемое слово: без an и без множественного -s.",
+                "uk": "Equipment — незлічуване слово: без an та без множинного -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-17:session-07:i13:p1",
+              "target": "sapling",
+              "meaningByLocale": {
+                "ru": "молодое деревце, саженец дерева",
+                "uk": "молоде деревце, саджанець дерева"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-07:i13:p2",
+              "target": "planter",
+              "meaningByLocale": {
+                "ru": "контейнер или ящик для выращивания растений",
+                "uk": "контейнер або ящик для вирощування рослин"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-07:i13:p3",
+              "target": "gravel",
+              "meaningByLocale": {
+                "ru": "гравий, мелкие камни для покрытия дорожек",
+                "uk": "гравій, дрібне каміння для покриття доріжок"
+              }
+            },
+            {
+              "pairId": "en:lesson-17:session-07:i13:p4",
+              "target": "equipment",
+              "meaningByLocale": {
+                "ru": "оборудование, нужные для дела приспособления",
+                "uk": "обладнання, потрібне для справи приладдя"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sapling",
+            "planter",
+            "gravel",
+            "equipment"
+          ],
+          "rightColumn": [
+            "молоде деревце, саджанець дерева",
+            "контейнер або ящик для вирощування рослин",
+            "гравій, дрібне каміння для покриття доріжок",
+            "обладнання, потрібне для справи приладдя"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу зі злічуваним словом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу зі злічуваним словом",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:i14:audio",
+            "transcript": "This is a sapling."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This is a sapling.",
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "sapling"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу із загальною назвою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу із загальною назвою",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:i15:audio",
+            "transcript": "This gravel is clean."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This gravel is clean.",
+          "orderedTokens": [
+            "This",
+            "gravel",
+            "is",
+            "clean"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть фразу з незлічуваним словом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть фразу з незлічуваним словом",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:i16:audio",
+            "transcript": "We need equipment."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need equipment.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-17:session-07:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть фразу про кількість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-17:session-07:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть фразу про кількість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-17:session-07:i17:audio",
+            "transcript": "There are two planters by the door."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There are two planters by the door.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-17:session-07:word:sapling",
+      "correctText": "sapling",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-07:i01",
+      "correctText": "This is a sapling.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-07:i02",
+      "correctText": "This is a sapling.",
+      "correctResponseId": "en:lesson-17:session-07:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-07:i03",
+      "correctText": "a",
+      "correctResponseId": "en:lesson-17:session-07:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-07:word:planter",
+      "correctText": "planter",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-07:i04",
+      "correctText": "There are two planters by the door.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-07:i05",
+      "correctText": "There are two planters by the door.",
+      "correctResponseId": "en:lesson-17:session-07:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-07:i06",
+      "correctText": "planters",
+      "correctResponseId": "en:lesson-17:session-07:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-07:word:gravel",
+      "correctText": "gravel",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-07:i07",
+      "correctText": "This gravel is clean.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-07:i08",
+      "correctText": "This gravel is clean.",
+      "correctResponseId": "en:lesson-17:session-07:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-07:i09",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-17:session-07:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-07:word:equipment",
+      "correctText": "equipment",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-07:i10",
+      "correctText": "We need equipment.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-07:i11",
+      "correctText": "We need equipment.",
+      "correctResponseId": "en:lesson-17:session-07:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-07:i12",
+      "correctText": "equipment",
+      "correctResponseId": "en:lesson-17:session-07:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-17:session-07:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-07:i14",
+      "correctText": "This is a sapling.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-07:i15",
+      "correctText": "This gravel is clean.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-07:i16",
+      "correctText": "We need equipment.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-17:session-07:i17",
+      "correctText": "There are two planters by the door.",
+      "correctResponseId": null
+    }
+  ]
+}

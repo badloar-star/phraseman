@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-17:session-08:word:appliance",
+    "correctText": "appliance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-08:i01",
+    "correctText": "This is an appliance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-08:i02",
+    "correctText": "This is an appliance.",
+    "correctResponseId": "en:lesson-17:session-08:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-08:i03",
+    "correctText": "an",
+    "correctResponseId": "en:lesson-17:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-08:word:estimate",
+    "correctText": "estimate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-08:i04",
+    "correctText": "There are two estimates on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-08:i05",
+    "correctText": "There are two estimates on the table.",
+    "correctResponseId": "en:lesson-17:session-08:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-08:i06",
+    "correctText": "estimates",
+    "correctResponseId": "en:lesson-17:session-08:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-08:word:packaging",
+    "correctText": "packaging",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-08:i07",
+    "correctText": "This packaging is wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-08:i08",
+    "correctText": "This packaging is wet.",
+    "correctResponseId": "en:lesson-17:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-08:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-17:session-08:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-08:word:damage",
+    "correctText": "damage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-08:i10",
+    "correctText": "We can see damage.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-08:i11",
+    "correctText": "We can see damage.",
+    "correctResponseId": "en:lesson-17:session-08:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-08:i12",
+    "correctText": "damage",
+    "correctResponseId": "en:lesson-17:session-08:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-17:session-08:i13",
+    "correctText": "en:lesson-17:session-08:i13:p1=appliance\nen:lesson-17:session-08:i13:p2=estimate\nen:lesson-17:session-08:i13:p3=packaging\nen:lesson-17:session-08:i13:p4=damage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-08:i14",
+    "correctText": "This is an appliance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-08:i15",
+    "correctText": "This packaging is wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-08:i16",
+    "correctText": "We can see damage.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-17:session-08:i17",
+    "correctText": "There are two estimates on the table.",
+    "correctResponseId": null
+  }
+]

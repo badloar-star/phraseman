@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-17:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-17:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-03:intro1:r2": {
+          "ru": "Biography начинается с согласного звука: a biography.",
+          "uk": "Biography починається з приголосного звука: a biography."
+        },
+        "en:lesson-17:session-03:intro1:r3": {
+          "ru": "Здесь нельзя оставлять исчисляемое существительное в единственном числе без a.",
+          "uk": "Тут не можна залишати злічуваний іменник в однині без a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-03:intro2:r2": {
+          "ru": "У autobiography во множественном числе y меняется на ies: autobiographies.",
+          "uk": "У autobiography у множині y змінюється на ies: autobiographies."
+        },
+        "en:lesson-17:session-03:intro2:r3": {
+          "ru": "Не ставьте a перед two.",
+          "uk": "Не ставте a перед two."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-17:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-17:session-03:intro3:r2": {
+          "ru": "Fiction как вид литературы — неисчисляемое слово: is.",
+          "uk": "Fiction як вид літератури — незлічуване слово: is."
+        },
+        "en:lesson-17:session-03:intro3:r3": {
+          "ru": "В этом значении у слова нет множественного -s.",
+          "uk": "У цьому значенні слово не має множинного -s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e6db89f5ebdc17fbdd030d0b12d496d10ed1b89c8f6537b5a9664ea165d4c512"
+}

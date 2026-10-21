@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 42 — Практический семинар
+# Английский · Урок 10 · Занятие 42 — На перерыве
 
-**Ситуация.** Обсудить регулярные занятия и учебные материалы, с которыми вы работаете сейчас.
+**Ситуация.** Описать, как открываете завёрнутую еду, пьёте чай и почему роняете вещи.
 
-**Что вы освоите:** We attend a workshop every month; I am completing the worksheet; I understand the tutorial
-**Новые слова:** workshop, worksheet, tutorial, workbook
+**Что вы освоите:** I am unwrapping my sandwich; I am sipping my tea; I sometimes drop things
+**Новые слова:** unwrap, bite, sip, drop
 
 ## Интро 1
 
-### Учимся на практике
+### Снимаю обёртку
 
-Workshop здесь — «практический семинар»: занятие, на котором участники пробуют что-то делать сами. Ваша команда посещает его ежемесячно: We attend a workshop every month — «Мы посещаем практический семинар каждый месяц». Для регулярного действия используем Present Simple.
+На перерыве вы достаёте бутерброд и снимаете бумагу. Unwrap — «разворачивать, снимать обёртку»: I am unwrapping my sandwich — «Я разворачиваю свой бутерброд». Это действие сейчас: am + unwrapping. В форме unwrapping удваивается p.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We attend a workshop every month.**
-- ❌ We attends a workshop every month. — *С we нужна attend без s.*
-- ❌ We attending a workshop every month. — *Для привычки здесь нужна attend.*
+- ✅ **I am unwrapping my sandwich.**
+- ❌ I unwrapping my sandwich. — *Перед unwrapping нужна am.*
+- ❌ I am unwrap my sandwich. — *После am нужна unwrapping.*
 
 ---
 
 ## Интро 2
 
-### Работаем с листом заданий
+### Яблоко и чай
 
-Worksheet — «лист с заданиями». Вы сейчас заполняете ответы на таком листе: I am completing the worksheet — «Я выполняю задания на листе». Это действие сейчас: am + completing. У complete перед ing убираем конечную e.
+Вы откусываете яблоко. Bite — «кусать, откусывать»: I am biting an apple — «Я откусываю яблоко». В biting конечная e исчезает. Затем пьёте горячий чай маленькими глотками. Sip — «пить маленькими глотками»: I am sipping my tea — «Я пью чай маленькими глотками». В sipping удваивается p. Обе фразы описывают действие сейчас.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I am completing the worksheet.**
-- ❌ I completing the worksheet. — *Перед completing нужен am.*
-- ❌ I am completeing the worksheet. — *Правильно completing, без e.*
+- ✅ **I am sipping my tea.**
+- ❌ I sipping my tea. — *Перед sipping нужна am.*
+- ❌ I am sip my tea. — *После am нужна sipping.*
 
 ---
 
 ## Интро 3
 
-### Понятная инструкция
+### Когда тороплюсь
 
-Tutorial здесь — «пошаговое руководство»: учебный материал, который объясняет, как выполнить задачу. Вы поняли объяснение: I understand the tutorial — «Я понимаю пошаговое руководство». Understand выражает понимание, поэтому здесь используем Present Simple.
+После перерыва вы спешите и не удерживаете ключи: они падают. Drop — «ронять». Вы объясняете коллеге свою привычку: I sometimes drop things — «Я иногда роняю вещи». Sometimes — про повторяющиеся случаи, поэтому drop без am. В этой фразе sometimes стоит перед drop.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I understand the tutorial.**
-- ❌ I understands the tutorial. — *С I нужна understand без s.*
-- ❌ I am understand the tutorial. — *Здесь нужна understand без am.*
+- ✅ **I sometimes drop things.**
+- ❌ I sometimes drops things. — *После I нужна drop без s.*
+- ❌ I sometimes dropping things. — *Для привычки здесь нужна drop.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — workshop**
-<!-- interaction_id: en:lesson-10:session-42:word:workshop; family: word_card -->
-> **workshop** — «практический семинар». We attend a workshop every month. — «Мы посещаем практический семинар каждый месяц». Здесь занятие с практическими упражнениями, а не мастерская.
+**1 · Карточка слова — unwrap**
+<!-- interaction_id: en:lesson-10:session-42:word:unwrap; family: word_card -->
+> **unwrap** — «разворачивать, снимать обёртку». unwrap a sandwich — «развернуть бутерброд».
 
-**2 · Команда учится на практических занятиях ежемесячно. Скажите: «Мы посещаем практический семинар каждый месяц». Поставьте every month в конце**
+**2 · Расскажите о привычке: «Я обычно разворачиваю свой бутерброд за столом». Поставьте usually после I**
 <!-- interaction_id: en:lesson-10:session-42:i01; family: phrase_builder -->
-Плитки: `month` `every` `workshop` `a` `attend` `We` → **We attend a workshop every month.**
+Плитки: `table` `the` `at` `sandwich` `my` `unwrap` `usually` `I` → **I usually unwrap my sandwich at the table.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-42:i02; family: listen_choose -->
-🔊 *The workshop is on Friday.* → **The workshop is on Friday.** · The workshop is on Monday. · The conference is on Friday.
-- The workshop is on Monday. — *В записи звучит The workshop is on Friday.*
-- The conference is on Friday. — *В записи звучит The workshop is on Friday.*
+🔊 *She is unwrapping a sandwich.* → **She is unwrapping a sandwich.** · She is unwrapping a present. · He is unwrapping a sandwich.
+- She is unwrapping a present. — *В записи звучит She is unwrapping a sandwich.*
+- He is unwrapping a sandwich. — *В записи звучит She is unwrapping a sandwich.*
 
-**4 · Вы участвуете регулярно. Выберите форму attend**
+**4 · Обёртка в ваших руках сейчас. Выберите форму unwrap**
 <!-- interaction_id: en:lesson-10:session-42:i03; family: context_gap_grammar -->
-We ___ a workshop every month. → **attend** · attends · attending
-- attends — *С we нужна attend без s.*
-- attending — *Для регулярного действия нужна attend.*
+I am ___ my sandwich. → **unwrapping** · unwrap · unwraps
+- unwrap — *После am нужна unwrapping.*
+- unwraps — *После am нужна unwrapping, не unwraps.*
 
-**5 · Карточка слова — worksheet**
-<!-- interaction_id: en:lesson-10:session-42:word:worksheet; family: word_card -->
-> **worksheet** — «лист с заданиями». I am completing the worksheet. — «Я выполняю задания на листе». Здесь отдельный учебный лист, на котором нужно записать ответы.
+**5 · Карточка слова — bite**
+<!-- interaction_id: en:lesson-10:session-42:word:bite; family: word_card -->
+> **bite** — «кусать, откусывать». bite an apple — «откусить яблоко».
 
-**6 · Вы сейчас записываете ответы на выданном листе. Скажите: «Я выполняю задания на листе»**
+**6 · Друг спрашивает о собаке рядом. Успокойте его: «Она не кусается»**
 <!-- interaction_id: en:lesson-10:session-42:i04; family: phrase_builder -->
-Плитки: `worksheet` `the` `completing` `am` `I` → **I am completing the worksheet.**
+Плитки: `bite` `not` `does` `It` → **It does not bite.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-42:i05; family: listen_choose -->
-🔊 *The worksheet has six questions.* → **The worksheet has six questions.** · The worksheet has seven questions. · The report has six questions.
-- The worksheet has seven questions. — *В записи звучит The worksheet has six questions.*
-- The report has six questions. — *В записи звучит The worksheet has six questions.*
+🔊 *He is biting an apple.* → **He is biting an apple.** · He is eating an egg. · She is biting an apple.
+- He is eating an egg. — *В записи звучит He is biting an apple.*
+- She is biting an apple. — *В записи звучит He is biting an apple.*
 
-**8 · Выберите правильное написание формы complete**
+**8 · Вы откусываете яблоко сейчас. Выберите форму bite**
 <!-- interaction_id: en:lesson-10:session-42:i06; family: context_gap_grammar -->
-I am ___ the worksheet. → **completing** · completeing · complete
-- completeing — *Перед ing убираем e: completing.*
-- complete — *После am для действия сейчас нужна completing.*
+I am ___ an apple. → **biting** · bite · bites
+- bite — *После am нужна biting.*
+- bites — *После am нужна biting, не bites.*
 
-**9 · Карточка слова — tutorial**
-<!-- interaction_id: en:lesson-10:session-42:word:tutorial; family: word_card -->
-> **tutorial** — «пошаговое руководство». I understand the tutorial. — «Я понимаю пошаговое руководство». Здесь учебный материал с последовательным объяснением действий.
+**9 · Карточка слова — sip**
+<!-- interaction_id: en:lesson-10:session-42:word:sip; family: word_card -->
+> **sip** — «пить маленькими глотками». I sip my tea. — «Я пью чай маленькими глотками».
 
-**10 · Коллега спрашивает, понятен ли вам учебный материал с объяснением шагов. Скажите: «Я понимаю пошаговое руководство»**
+**10 · Расскажите, как вы обычно пьёте чай: «Я пью свой чай маленькими глотками»**
 <!-- interaction_id: en:lesson-10:session-42:i07; family: phrase_builder -->
-Плитки: `tutorial` `the` `understand` `I` → **I understand the tutorial.**
+Плитки: `tea` `my` `sip` `I` → **I sip my tea.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-42:i08; family: listen_choose -->
-🔊 *The tutorial is on the website.* → **The tutorial is on the website.** · The tutorial is in the email. · The worksheet is on the website.
-- The tutorial is in the email. — *В записи звучит The tutorial is on the website.*
-- The worksheet is on the website. — *В записи звучит The tutorial is on the website.*
+🔊 *She is sipping her coffee.* → **She is sipping her coffee.** · She is sipping her tea. · He is sipping his coffee.
+- She is sipping her tea. — *В записи звучит She is sipping her coffee.*
+- He is sipping his coffee. — *В записи звучит She is sipping her coffee.*
 
-**12 · Выберите форму understand с I**
+**12 · Чашка у ваших губ сейчас. Выберите форму sip**
 <!-- interaction_id: en:lesson-10:session-42:i09; family: context_gap_grammar -->
-I ___ the tutorial. → **understand** · understands · am understand
-- understands — *С I нужна understand без s.*
-- am understand — *Здесь нужна understand без am.*
+I am ___ my tea. → **sipping** · sip · sips
+- sip — *После am нужна sipping.*
+- sips — *После am нужна sipping, не sips.*
 
-**13 · Карточка слова — workbook**
-<!-- interaction_id: en:lesson-10:session-42:word:workbook; family: word_card -->
-> **workbook** — «рабочая тетрадь». My workbook is open. — «Моя рабочая тетрадь открыта». Учебная тетрадь с упражнениями, не отдельный лист worksheet.
+**13 · Карточка слова — drop**
+<!-- interaction_id: en:lesson-10:session-42:word:drop; family: word_card -->
+> **drop** — «ронять». I sometimes drop things. — «Я иногда роняю вещи».
 
-**14 · Вы раскрыли тетрадь с упражнениями и готовы работать. Скажите: «Моя рабочая тетрадь открыта»**
+**14 · Вы часто спешите. Признайтесь: «Я иногда роняю вещи». Поставьте sometimes перед drop**
 <!-- interaction_id: en:lesson-10:session-42:i10; family: phrase_builder -->
-Плитки: `open` `is` `workbook` `My` → **My workbook is open.**
+Плитки: `things` `drop` `sometimes` `I` → **I sometimes drop things.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-42:i11; family: listen_choose -->
-🔊 *The workbook is beside the laptop.* → **The workbook is beside the laptop.** · The workbook is under the laptop. · The notebook is beside the laptop.
-- The workbook is under the laptop. — *В записи звучит The workbook is beside the laptop.*
-- The notebook is beside the laptop. — *В записи звучит The workbook is beside the laptop.*
+🔊 *He often drops his keys.* → **He often drops his keys.** · He often drops his phone. · She often drops her keys.
+- He often drops his phone. — *В записи звучит He often drops his keys.*
+- She often drops her keys. — *В записи звучит He often drops his keys.*
 
-**16 · Речь об одной тетради. Выберите связку**
+**16 · Выберите форму drop после I для повторяющихся случаев**
 <!-- interaction_id: en:lesson-10:session-42:i12; family: context_gap_grammar -->
-My workbook ___ open. → **is** · are · am
-- are — *Одна тетрадь: is.*
-- am — *Am используется с I; здесь нужна is.*
+I sometimes ___ things. → **drop** · drops · dropping
+- drops — *После I нужна drop без s.*
+- dropping — *О повторяющихся случаях говорим drop.*
 
-**17 · Соедините слова со значениями**
+**17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-10:session-42:i13; family: speed_match -->
-workshop — практический семинар · worksheet — лист с заданиями · tutorial — пошаговое руководство · workbook — рабочая тетрадь
+unwrap — снимать обёртку · bite — кусать · sip — пить маленькими глотками · drop — ронять
 
-**18 · Послушайте и соберите фразу**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-42:i14; family: listen_build_dictation -->
-🔊 *I am completing the worksheet.* Плитки: `worksheet` `the` `completing` `am` `I` → **I am completing the worksheet.**
+🔊 *I am sipping my tea.* Плитки: `tea` `my` `sipping` `am` `I` → **I am sipping my tea.**
 
-**19 · Коллега спрашивает, как часто команда проходит практическое обучение. Скажите: «Мы посещаем практический семинар каждый месяц»**
-<!-- interaction_id: en:lesson-10:session-42:i15; family: scripted_repeat_compare -->
-🎙 **We attend a workshop every month.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-42:i15; family: listen_build_dictation -->
+🔊 *It does not bite.* Плитки: `bite` `not` `does` `It` → **It does not bite.**
 
-**20 · Коллега уточняет, понятно ли пошаговое объяснение. Скажите: «Я понимаю пошаговое руководство»**
-<!-- interaction_id: en:lesson-10:session-42:i16; family: phrase_builder -->
-Плитки: `tutorial` `the` `understand` `I` → **I understand the tutorial.**
+**20 · Друг спрашивает, что вы делаете с бумажным свёртком. Скажите: «Я разворачиваю свой бутерброд»**
+<!-- interaction_id: en:lesson-10:session-42:i16; family: scripted_repeat_compare -->
+🎙 **I am unwrapping my sandwich.**
 
-**21 · Вы записываете ответы на листе, который выдал преподаватель. Коллега спрашивает, чем вы сейчас заняты. Скажите: «Я выполняю задания на листе»**
-<!-- interaction_id: en:lesson-10:session-42:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I am completing the worksheet.**
+**21 · Вы подняли упавшие ключи. Объясните коллеге: «Я иногда роняю вещи»**
+<!-- interaction_id: en:lesson-10:session-42:i17; family: scripted_repeat_compare -->
+🎙 **I sometimes drop things.**
 

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-41",
   "learningOutcomeByLocale": {
-    "ru": "We attend this conference every year; The keynote is starting; The panellist is answering a question",
-    "uk": "We attend this conference every year; The keynote is starting; The panellist is answering a question"
+    "ru": "Perhaps he is on the bus; He is probably at home; It is quite cold",
+    "uk": "Perhaps he is on the bus; He is probably at home; It is quite cold"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-41:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Приезжаем каждый год",
-        "uk": "Приїздимо щороку"
+        "ru": "Может быть, в автобусе",
+        "uk": "Можливо, в автобусі"
       },
       "bodyByLocale": {
-        "ru": "Conference — «конференция»: встреча для выступлений и обсуждения общей темы. Вы с коллегой участвуете ежегодно: We attend this conference every year — «Мы посещаем эту конференцию каждый год». Every year показывает повторение: используем Present Simple.",
-        "uk": "Conference — «конференція»: зустріч для виступів і обговорення спільної теми. Ви з колегою берете участь щороку: We attend this conference every year — «Ми відвідуємо цю конференцію щороку». Every year показує повторення: використовуємо Present Simple."
+        "ru": "Друг опаздывает к месту встречи. Вы не знаете, где он, и лишь предлагаете вариант: Perhaps he is on the bus — «Может быть, он в автобусе». Perhaps — «может быть». Это предположение, а не факт. В этой фразе perhaps стоит в начале.",
+        "uk": "Друг запізнюється до місця зустрічі. Ви не знаєте, де він, і лише пропонуєте варіант: Perhaps he is on the bus — «Можливо, він в автобусі». Perhaps — «можливо». Це припущення, а не факт. У цьому реченні perhaps стоїть на початку."
       },
       "question": {
         "interactionId": "en:lesson-10:session-41:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-41:intro1:r1",
-              "text": "We attend this conference every year."
+              "text": "Perhaps he is on the bus."
             },
             {
               "responseId": "en:lesson-10:session-41:intro1:r2",
-              "text": "We attends this conference every year."
+              "text": "Perhaps he on the bus."
             },
             {
               "responseId": "en:lesson-10:session-41:intro1:r3",
-              "text": "We attending this conference every year."
+              "text": "Perhaps he are on the bus."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-41:intro1:r1",
-              "text": "We attend this conference every year."
+              "text": "Perhaps he is on the bus."
             },
             {
               "responseId": "en:lesson-10:session-41:intro1:r2",
-              "text": "We attends this conference every year."
+              "text": "Perhaps he on the bus."
             },
             {
               "responseId": "en:lesson-10:session-41:intro1:r3",
-              "text": "We attending this conference every year."
+              "text": "Perhaps he are on the bus."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-41:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Начинается главный доклад",
-        "uk": "Починається головна доповідь"
+        "ru": "Скорее всего, дома",
+        "uk": "Найімовірніше, удома"
       },
       "bodyByLocale": {
-        "ru": "Keynote — «главный доклад»: выступление, которое задаёт основную тему конференции. Докладчик выходит, зал затихает: The keynote is starting — «Главный доклад начинается». Это действие сейчас: is + starting.",
-        "uk": "Keynote — «головна доповідь»: виступ, який задає основну тему конференції. Доповідач виходить, зал затихає: The keynote is starting — «Головна доповідь починається». Це дія зараз: is + starting."
+        "ru": "Друг ещё не отвечает, а обычно в это время завтракает дома. Вы считаете этот вариант наиболее вероятным: He is probably at home — «Он, скорее всего, дома». Probably — «скорее всего». В этой фразе probably ставим после is. Это более уверенное предположение, но всё ещё не известный факт.",
+        "uk": "Друг ще не відповідає, а зазвичай у цей час снідає вдома. Ви вважаєте цей варіант найімовірнішим: He is probably at home — «Він, найімовірніше, удома». Probably — «найімовірніше». У цьому реченні probably ставимо після is. Це впевненіше припущення, але ще не відомий факт."
       },
       "question": {
         "interactionId": "en:lesson-10:session-41:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-41:intro2:r1",
-              "text": "The keynote is starting."
+              "text": "He is probably at home."
             },
             {
               "responseId": "en:lesson-10:session-41:intro2:r2",
-              "text": "The keynote starting."
+              "text": "He probably at home."
             },
             {
               "responseId": "en:lesson-10:session-41:intro2:r3",
-              "text": "The keynote are starting."
+              "text": "He are probably at home."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-41:intro2:r1",
-              "text": "The keynote is starting."
+              "text": "He is probably at home."
             },
             {
               "responseId": "en:lesson-10:session-41:intro2:r2",
-              "text": "The keynote starting."
+              "text": "He probably at home."
             },
             {
               "responseId": "en:lesson-10:session-41:intro2:r3",
-              "text": "The keynote are starting."
+              "text": "He are probably at home."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-41:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ответ на вопрос",
-        "uk": "Відповідь на запитання"
+        "ru": "Холодно у входа",
+        "uk": "Холодно біля входу"
       },
       "bodyByLocale": {
-        "ru": "Panellist — «участник панельной дискуссии»: приглашённый человек, который обсуждает тему вместе с другими участниками перед аудиторией. Сейчас он отвечает: The panellist is answering a question — «Участник панельной дискуссии отвечает на вопрос». Используем is + answering. Panellist — британское написание; американское — panelist.",
-        "uk": "Panellist — «учасник панельної дискусії»: запрошена людина, яка обговорює тему разом з іншими учасниками перед аудиторією. Зараз він відповідає: The panellist is answering a question — «Учасник панельної дискусії відповідає на запитання». Використовуємо is + answering. Panellist — британське написання; американське — panelist."
+        "ru": "Вы ждёте на улице и застёгиваете куртку: It is quite cold — «Довольно холодно». Quite — «довольно» перед cold. Теперь вы рассказываете короткую историю в настоящем времени: вы ждёте друга, и вдруг начинается дождь. Suddenly — «вдруг»: Suddenly, it starts raining — «Вдруг начинается дождь». Это короткое описание неожиданного события в настоящем времени. После it нужна starts.",
+        "uk": "Ви чекаєте надворі й застібаєте куртку: It is quite cold — «Досить холодно». Quite — «досить» перед cold. Тепер ви розповідаєте коротку історію в теперішньому часі: ви чекаєте на друга, і раптом починається дощ. Suddenly — «раптом»: Suddenly, it starts raining — «Раптом починається дощ». Це короткий опис несподіваної події в теперішньому часі. Після it потрібна starts."
       },
       "question": {
         "interactionId": "en:lesson-10:session-41:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-41:intro3:r1",
-              "text": "The panellist is answering a question."
+              "text": "It is quite cold."
             },
             {
               "responseId": "en:lesson-10:session-41:intro3:r2",
-              "text": "The panellist answering a question."
+              "text": "It quite cold."
             },
             {
               "responseId": "en:lesson-10:session-41:intro3:r3",
-              "text": "The panellist is answer a question."
+              "text": "It are quite cold."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-41:intro3:r1",
-              "text": "The panellist is answering a question."
+              "text": "It is quite cold."
             },
             {
               "responseId": "en:lesson-10:session-41:intro3:r2",
-              "text": "The panellist answering a question."
+              "text": "It quite cold."
             },
             {
               "responseId": "en:lesson-10:session-41:intro3:r3",
-              "text": "The panellist is answer a question."
+              "text": "It are quite cold."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f1f5b58dcb641d01d17b3ea2ced16159e6efc9b9c47bdba9a666c0aeb56668c0"
+  "introFingerprint": "36aa595162d57fe0dd7c968dd0a672ccc8c43e0675ca243ae25328b470a4f853"
 }

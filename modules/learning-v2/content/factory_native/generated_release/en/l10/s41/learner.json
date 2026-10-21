@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-41:word:conference",
+      "interactionId": "en:lesson-10:session-41:word:perhaps",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — conference",
+      "prompt": "Карточка слова — perhaps",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-41:word:conference:audio"
+        "en:lesson-10:session-41:word:perhaps:audio"
       ],
-      "accessibilityLabel": "Карточка слова — conference",
+      "accessibilityLabel": "Карточка слова — perhaps",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-41:word:conference:audio",
-          "transcript": "conference"
+          "audioTargetId": "en:lesson-10:session-41:word:perhaps:audio",
+          "transcript": "perhaps"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-41:word:conference:r1",
-            "targetText": "conference",
+            "responseId": "en:lesson-10:session-41:word:perhaps:r1",
+            "targetText": "perhaps",
             "meaningByLocale": {
-              "ru": "«конференция». We attend this conference every year. — «Мы посещаем эту конференцию каждый год». Встреча для выступлений и обсуждения общей темы.",
-              "uk": "«конференція». We attend this conference every year. — «Ми відвідуємо цю конференцію щороку». Зустріч для виступів і обговорення спільної теми."
+              "ru": "«может быть». Perhaps he is on the bus. — «Может быть, он в автобусе».",
+              "uk": "«можливо». Perhaps he is on the bus. — «Можливо, він в автобусі»."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "conference",
+          "word": "perhaps",
           "definitionByLocale": {
-            "ru": "«конференция». We attend this conference every year. — «Мы посещаем эту конференцию каждый год». Встреча для выступлений и обсуждения общей темы.",
-            "uk": "«конференція». We attend this conference every year. — «Ми відвідуємо цю конференцію щороку». Зустріч для виступів і обговорення спільної теми."
+            "ru": "«может быть». Perhaps he is on the bus. — «Может быть, он в автобусе».",
+            "uk": "«можливо». Perhaps he is on the bus. — «Можливо, він в автобусі»."
           }
         }
       },
@@ -52,25 +52,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы с коллегой участвуете ежегодно. Скажите: «Мы посещаем эту конференцию каждый год». Поставьте every year в конце",
+      "prompt": "Вы не знаете, где друг. Предположите: «Может быть, он в автобусе». Начните с Perhaps",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы с коллегой участвуете ежегодно. Скажите: «Мы посещаем эту конференцию каждый год». Поставьте every year в конце",
+      "accessibilityLabel": "Вы не знаете, где друг. Предположите: «Может быть, он в автобусе». Начните с Perhaps",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We attend this conference every year.",
+        "targetPhrase": "Perhaps he is on the bus.",
         "localizedMeaning": {
-          "ru": "Вы с коллегой участвуете ежегодно. Скажите: «Мы посещаем эту конференцию каждый год». Поставьте every year в конце",
-          "uk": "Ви з колегою берете участь щороку. Скажіть: «Ми відвідуємо цю конференцію щороку». Поставте every year у кінці"
+          "ru": "Вы не знаете, где друг. Предположите: «Может быть, он в автобусе». Начните с Perhaps",
+          "uk": "Ви не знаєте, де друг. Припустіть: «Можливо, він в автобусі». Почніть з Perhaps"
         },
         "orderedTokens": [
-          "We",
-          "attend",
-          "this",
-          "conference",
-          "every",
-          "year"
+          "Perhaps",
+          "he",
+          "is",
+          "on",
+          "the",
+          "bus"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -91,15 +91,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-41:i02:r1",
-          "text": "The conference is in London."
+          "text": "Perhaps she is at work."
         },
         {
           "responseId": "en:lesson-10:session-41:i02:r2",
-          "text": "The conference is in Dublin."
+          "text": "Perhaps she is at home."
         },
         {
           "responseId": "en:lesson-10:session-41:i02:r3",
-          "text": "The ceremony is in London."
+          "text": "Perhaps he is at work."
         }
       ],
       "mediaIds": [],
@@ -111,23 +111,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-41:i02:audio",
-          "transcript": "The conference is in London."
+          "transcript": "Perhaps she is at work."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-41:i02:r1",
-            "targetText": "The conference is in London.",
+            "targetText": "Perhaps she is at work.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-41:i02:r2",
-            "targetText": "The conference is in Dublin.",
+            "targetText": "Perhaps she is at home.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-41:i02:r3",
-            "targetText": "The ceremony is in London.",
+            "targetText": "Perhaps he is at work.",
             "meaningByLocale": null
           }
         ],
@@ -138,8 +138,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The conference is in London.",
-              "uk": "У записі звучить The conference is in London."
+              "ru": "В записи звучит Perhaps she is at work.",
+              "uk": "У записі звучить Perhaps she is at work."
             }
           },
           {
@@ -147,8 +147,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The conference is in London.",
-              "uk": "У записі звучить The conference is in London."
+              "ru": "В записи звучит Perhaps she is at work.",
+              "uk": "У записі звучить Perhaps she is at work."
             }
           }
         ],
@@ -163,63 +163,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Это ежегодное участие. Выберите форму attend",
+      "prompt": "Выберите связку после he",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-41:i03:r1",
-          "text": "attend"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-10:session-41:i03:r2",
-          "text": "attends"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-10:session-41:i03:r3",
-          "text": "attending"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Это ежегодное участие. Выберите форму attend",
+      "accessibilityLabel": "Выберите связку после he",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Это ежегодное участие. Выберите форму attend",
-          "uk": "Це щорічна участь. Виберіть форму attend"
+          "ru": "Выберите связку после he",
+          "uk": "Виберіть зв’язку після he"
         },
-        "gappedTargetPhrase": "We ___ this conference every year.",
+        "gappedTargetPhrase": "Perhaps he ___ on the bus.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-41:i03:r1",
-            "text": "attend"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-41:i03:r2",
-            "text": "attends"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-41:i03:r3",
-            "text": "attending"
+            "text": "am"
           }
         ],
-        "testedDimension": "Это ежегодное участие. Выберите форму attend",
+        "testedDimension": "Выберите связку после he",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-41:i03:r2",
             "correct": false,
-            "testedDimension": "Это ежегодное участие. Выберите форму attend",
+            "testedDimension": "Выберите связку после he",
             "feedbackByLocale": {
-              "ru": "С we нужна attend без s.",
-              "uk": "З we потрібна attend без s."
+              "ru": "С he нужна is.",
+              "uk": "З he потрібна is."
             }
           },
           {
             "responseId": "en:lesson-10:session-41:i03:r3",
             "correct": false,
-            "testedDimension": "Это ежегодное участие. Выберите форму attend",
+            "testedDimension": "Выберите связку после he",
             "feedbackByLocale": {
-              "ru": "Для регулярного действия нужна attend.",
-              "uk": "Для регулярної дії потрібна attend."
+              "ru": "Am используется с I.",
+              "uk": "Am уживається з I."
             }
           }
         ]
@@ -227,32 +227,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-41:word:keynote",
+      "interactionId": "en:lesson-10:session-41:word:probably",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — keynote",
+      "prompt": "Карточка слова — probably",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-41:word:keynote:audio"
+        "en:lesson-10:session-41:word:probably:audio"
       ],
-      "accessibilityLabel": "Карточка слова — keynote",
+      "accessibilityLabel": "Карточка слова — probably",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-41:word:keynote:audio",
-          "transcript": "keynote"
+          "audioTargetId": "en:lesson-10:session-41:word:probably:audio",
+          "transcript": "probably"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-41:word:keynote:r1",
-            "targetText": "keynote",
+            "responseId": "en:lesson-10:session-41:word:probably:r1",
+            "targetText": "probably",
             "meaningByLocale": {
-              "ru": "«главный доклад». The keynote is starting. — «Главный доклад начинается». Выступление, задающее основную тему конференции.",
-              "uk": "«головна доповідь». The keynote is starting. — «Головна доповідь починається». Виступ, який задає основну тему конференції."
+              "ru": "«скорее всего». He is probably at home. — «Он, скорее всего, дома».",
+              "uk": "«найімовірніше». He is probably at home. — «Він, найімовірніше, удома»."
             }
           }
         ],
@@ -260,10 +260,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "keynote",
+          "word": "probably",
           "definitionByLocale": {
-            "ru": "«главный доклад». The keynote is starting. — «Главный доклад начинается». Выступление, задающее основную тему конференции.",
-            "uk": "«головна доповідь». The keynote is starting. — «Головна доповідь починається». Виступ, який задає основну тему конференції."
+            "ru": "«скорее всего». He is probably at home. — «Он, скорее всего, дома».",
+            "uk": "«найімовірніше». He is probably at home. — «Він, найімовірніше, удома»."
           }
         }
       },
@@ -275,23 +275,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Главный докладчик выходит к микрофону. Скажите: «Главный доклад начинается»",
+      "prompt": "По привычному распорядку друга вы предполагаете: «Он, скорее всего, дома». Поставьте probably после is",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Главный докладчик выходит к микрофону. Скажите: «Главный доклад начинается»",
+      "accessibilityLabel": "По привычному распорядку друга вы предполагаете: «Он, скорее всего, дома». Поставьте probably после is",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The keynote is starting.",
+        "targetPhrase": "He is probably at home.",
         "localizedMeaning": {
-          "ru": "Главный докладчик выходит к микрофону. Скажите: «Главный доклад начинается»",
-          "uk": "Головний доповідач виходить до мікрофона. Скажіть: «Головна доповідь починається»"
+          "ru": "По привычному распорядку друга вы предполагаете: «Он, скорее всего, дома». Поставьте probably после is",
+          "uk": "З огляду на звичний розпорядок друга ви припускаєте: «Він, найімовірніше, удома». Поставте probably після is"
         },
         "orderedTokens": [
-          "The",
-          "keynote",
+          "He",
           "is",
-          "starting"
+          "probably",
+          "at",
+          "home"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -312,15 +313,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-41:i05:r1",
-          "text": "The keynote is in the main hall."
+          "text": "They are probably at work."
         },
         {
           "responseId": "en:lesson-10:session-41:i05:r2",
-          "text": "The keynote is in the small hall."
+          "text": "They are probably at home."
         },
         {
           "responseId": "en:lesson-10:session-41:i05:r3",
-          "text": "The meeting is in the main hall."
+          "text": "We are probably at work."
         }
       ],
       "mediaIds": [],
@@ -332,23 +333,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-41:i05:audio",
-          "transcript": "The keynote is in the main hall."
+          "transcript": "They are probably at work."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-41:i05:r1",
-            "targetText": "The keynote is in the main hall.",
+            "targetText": "They are probably at work.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-41:i05:r2",
-            "targetText": "The keynote is in the small hall.",
+            "targetText": "They are probably at home.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-41:i05:r3",
-            "targetText": "The meeting is in the main hall.",
+            "targetText": "We are probably at work.",
             "meaningByLocale": null
           }
         ],
@@ -359,8 +360,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The keynote is in the main hall.",
-              "uk": "У записі звучить The keynote is in the main hall."
+              "ru": "В записи звучит They are probably at work.",
+              "uk": "У записі звучить They are probably at work."
             }
           },
           {
@@ -368,8 +369,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The keynote is in the main hall.",
-              "uk": "У записі звучить The keynote is in the main hall."
+              "ru": "В записи звучит They are probably at work.",
+              "uk": "У записі звучить They are probably at work."
             }
           }
         ],
@@ -384,7 +385,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Один доклад начинается сейчас. Выберите связку",
+      "prompt": "Выберите связку после he",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-41:i06:r1",
@@ -401,14 +402,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Один доклад начинается сейчас. Выберите связку",
+      "accessibilityLabel": "Выберите связку после he",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Один доклад начинается сейчас. Выберите связку",
-          "uk": "Одна доповідь починається зараз. Виберіть зв’язку"
+          "ru": "Выберите связку после he",
+          "uk": "Виберіть зв’язку після he"
         },
-        "gappedTargetPhrase": "The keynote ___ starting.",
+        "gappedTargetPhrase": "He ___ probably at home.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-41:i06:r1",
@@ -423,24 +424,24 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Один доклад начинается сейчас. Выберите связку",
+        "testedDimension": "Выберите связку после he",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-41:i06:r2",
             "correct": false,
-            "testedDimension": "Один доклад начинается сейчас. Выберите связку",
+            "testedDimension": "Выберите связку после he",
             "feedbackByLocale": {
-              "ru": "Один доклад: is.",
-              "uk": "Одна доповідь: is."
+              "ru": "С he нужна is.",
+              "uk": "З he потрібна is."
             }
           },
           {
             "responseId": "en:lesson-10:session-41:i06:r3",
             "correct": false,
-            "testedDimension": "Один доклад начинается сейчас. Выберите связку",
+            "testedDimension": "Выберите связку после he",
             "feedbackByLocale": {
-              "ru": "Am используется с I; здесь нужна is.",
-              "uk": "Am уживається з I; тут потрібна is."
+              "ru": "Am используется с I.",
+              "uk": "Am уживається з I."
             }
           }
         ]
@@ -448,32 +449,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-41:word:panellist",
+      "interactionId": "en:lesson-10:session-41:word:quite",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — panellist",
+      "prompt": "Карточка слова — quite",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-41:word:panellist:audio"
+        "en:lesson-10:session-41:word:quite:audio"
       ],
-      "accessibilityLabel": "Карточка слова — panellist",
+      "accessibilityLabel": "Карточка слова — quite",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-41:word:panellist:audio",
-          "transcript": "panellist"
+          "audioTargetId": "en:lesson-10:session-41:word:quite:audio",
+          "transcript": "quite"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-41:word:panellist:r1",
-            "targetText": "panellist",
+            "responseId": "en:lesson-10:session-41:word:quite:r1",
+            "targetText": "quite",
             "meaningByLocale": {
-              "ru": "«участник панельной дискуссии». The panellist is answering a question. — «Участник панельной дискуссии отвечает на вопрос». Британское написание; американское — panelist.",
-              "uk": "«учасник панельної дискусії». The panellist is answering a question. — «Учасник панельної дискусії відповідає на запитання». Британське написання; американське — panelist."
+              "ru": "«довольно». It is quite cold. — «Довольно холодно».",
+              "uk": "«досить». It is quite cold. — «Досить холодно»."
             }
           }
         ],
@@ -481,10 +482,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "panellist",
+          "word": "quite",
           "definitionByLocale": {
-            "ru": "«участник панельной дискуссии». The panellist is answering a question. — «Участник панельной дискуссии отвечает на вопрос». Британское написание; американское — panelist.",
-            "uk": "«учасник панельної дискусії». The panellist is answering a question. — «Учасник панельної дискусії відповідає на запитання». Британське написання; американське — panelist."
+            "ru": "«довольно». It is quite cold. — «Довольно холодно».",
+            "uk": "«досить». It is quite cold. — «Досить холодно»."
           }
         }
       },
@@ -496,25 +497,23 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Участник обсуждения сейчас отвечает на вопрос из зала. Скажите: «Участник панельной дискуссии отвечает на вопрос»",
+      "prompt": "Вы застёгиваете куртку. Скажите: «Довольно холодно»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Участник обсуждения сейчас отвечает на вопрос из зала. Скажите: «Участник панельной дискуссии отвечает на вопрос»",
+      "accessibilityLabel": "Вы застёгиваете куртку. Скажите: «Довольно холодно»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The panellist is answering a question.",
+        "targetPhrase": "It is quite cold.",
         "localizedMeaning": {
-          "ru": "Участник обсуждения сейчас отвечает на вопрос из зала. Скажите: «Участник панельной дискуссии отвечает на вопрос»",
-          "uk": "Учасник обговорення зараз відповідає на запитання із залу. Скажіть: «Учасник панельної дискусії відповідає на запитання»"
+          "ru": "Вы застёгиваете куртку. Скажите: «Довольно холодно»",
+          "uk": "Ви застібаєте куртку. Скажіть: «Досить холодно»"
         },
         "orderedTokens": [
-          "The",
-          "panellist",
+          "It",
           "is",
-          "answering",
-          "a",
-          "question"
+          "quite",
+          "cold"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -535,15 +534,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-41:i08:r1",
-          "text": "The panellist is sitting beside the speaker."
+          "text": "It is quite warm."
         },
         {
           "responseId": "en:lesson-10:session-41:i08:r2",
-          "text": "The panellist is standing beside the speaker."
+          "text": "It is quite cold."
         },
         {
           "responseId": "en:lesson-10:session-41:i08:r3",
-          "text": "The panellist is sitting behind the speaker."
+          "text": "It is quite windy."
         }
       ],
       "mediaIds": [],
@@ -555,23 +554,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-41:i08:audio",
-          "transcript": "The panellist is sitting beside the speaker."
+          "transcript": "It is quite warm."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-41:i08:r1",
-            "targetText": "The panellist is sitting beside the speaker.",
+            "targetText": "It is quite warm.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-41:i08:r2",
-            "targetText": "The panellist is standing beside the speaker.",
+            "targetText": "It is quite cold.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-41:i08:r3",
-            "targetText": "The panellist is sitting behind the speaker.",
+            "targetText": "It is quite windy.",
             "meaningByLocale": null
           }
         ],
@@ -582,8 +581,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The panellist is sitting beside the speaker.",
-              "uk": "У записі звучить The panellist is sitting beside the speaker."
+              "ru": "В записи звучит It is quite warm.",
+              "uk": "У записі звучить It is quite warm."
             }
           },
           {
@@ -591,8 +590,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The panellist is sitting beside the speaker.",
-              "uk": "У записі звучить The panellist is sitting beside the speaker."
+              "ru": "В записи звучит It is quite warm.",
+              "uk": "У записі звучить It is quite warm."
             }
           }
         ],
@@ -607,63 +606,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму для действия сейчас",
+      "prompt": "Выберите связку в описании погоды",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-41:i09:r1",
-          "text": "answering"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-10:session-41:i09:r2",
-          "text": "answer"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-10:session-41:i09:r3",
-          "text": "answers"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму для действия сейчас",
+      "accessibilityLabel": "Выберите связку в описании погоды",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму для действия сейчас",
-          "uk": "Виберіть форму для дії зараз"
+          "ru": "Выберите связку в описании погоды",
+          "uk": "Виберіть зв’язку в описі погоди"
         },
-        "gappedTargetPhrase": "The panellist is ___ a question.",
+        "gappedTargetPhrase": "It ___ quite cold.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-41:i09:r1",
-            "text": "answering"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-41:i09:r2",
-            "text": "answer"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-41:i09:r3",
-            "text": "answers"
+            "text": "am"
           }
         ],
-        "testedDimension": "Выберите форму для действия сейчас",
+        "testedDimension": "Выберите связку в описании погоды",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-41:i09:r2",
             "correct": false,
-            "testedDimension": "Выберите форму для действия сейчас",
+            "testedDimension": "Выберите связку в описании погоды",
             "feedbackByLocale": {
-              "ru": "После is нужна answering.",
-              "uk": "Після is потрібна answering."
+              "ru": "С it нужна is.",
+              "uk": "З it потрібна is."
             }
           },
           {
             "responseId": "en:lesson-10:session-41:i09:r3",
             "correct": false,
-            "testedDimension": "Выберите форму для действия сейчас",
+            "testedDimension": "Выберите связку в описании погоды",
             "feedbackByLocale": {
-              "ru": "Для действия сейчас нужна answering.",
-              "uk": "Для дії зараз потрібна answering."
+              "ru": "Am используется с I.",
+              "uk": "Am уживається з I."
             }
           }
         ]
@@ -671,32 +670,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-41:word:plenary",
+      "interactionId": "en:lesson-10:session-41:word:suddenly",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — plenary",
+      "prompt": "Карточка слова — suddenly",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-41:word:plenary:audio"
+        "en:lesson-10:session-41:word:suddenly:audio"
       ],
-      "accessibilityLabel": "Карточка слова — plenary",
+      "accessibilityLabel": "Карточка слова — suddenly",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-41:word:plenary:audio",
-          "transcript": "plenary"
+          "audioTargetId": "en:lesson-10:session-41:word:suddenly:audio",
+          "transcript": "suddenly"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-41:word:plenary:r1",
-            "targetText": "plenary",
+            "responseId": "en:lesson-10:session-41:word:suddenly:r1",
+            "targetText": "suddenly",
             "meaningByLocale": {
-              "ru": "«общее заседание». The plenary is after lunch. — «Общее заседание после обеда». Здесь заседание для всех участников конференции, а не для отдельных групп.",
-              "uk": "«загальне засідання». The plenary is after lunch. — «Загальне засідання після обіду». Тут засідання для всіх учасників конференції, а не для окремих груп."
+              "ru": "«вдруг». Suddenly, it starts raining. — «Вдруг начинается дождь».",
+              "uk": "«раптом». Suddenly, it starts raining. — «Раптом починається дощ»."
             }
           }
         ],
@@ -704,10 +703,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "plenary",
+          "word": "suddenly",
           "definitionByLocale": {
-            "ru": "«общее заседание». The plenary is after lunch. — «Общее заседание после обеда». Здесь заседание для всех участников конференции, а не для отдельных групп.",
-            "uk": "«загальне засідання». The plenary is after lunch. — «Загальне засідання після обіду». Тут засідання для всіх учасників конференції, а не для окремих груп."
+            "ru": "«вдруг». Suddenly, it starts raining. — «Вдруг начинается дождь».",
+            "uk": "«раптом». Suddenly, it starts raining. — «Раптом починається дощ»."
           }
         }
       },
@@ -719,24 +718,23 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Коллега спрашивает, когда соберутся все участники. Скажите: «Общее заседание после обеда»",
+      "prompt": "Вы рассказываете короткую историю в настоящем времени: «Вдруг начинается дождь». Начните с Suddenly",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Коллега спрашивает, когда соберутся все участники. Скажите: «Общее заседание после обеда»",
+      "accessibilityLabel": "Вы рассказываете короткую историю в настоящем времени: «Вдруг начинается дождь». Начните с Suddenly",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The plenary is after lunch.",
+        "targetPhrase": "Suddenly, it starts raining.",
         "localizedMeaning": {
-          "ru": "Коллега спрашивает, когда соберутся все участники. Скажите: «Общее заседание после обеда»",
-          "uk": "Колега запитує, коли зберуться всі учасники. Скажіть: «Загальне засідання після обіду»"
+          "ru": "Вы рассказываете короткую историю в настоящем времени: «Вдруг начинается дождь». Начните с Suddenly",
+          "uk": "Ви розповідаєте коротку історію в теперішньому часі: «Раптом починається дощ». Почніть із Suddenly"
         },
         "orderedTokens": [
-          "The",
-          "plenary",
-          "is",
-          "after",
-          "lunch"
+          "Suddenly,",
+          "it",
+          "starts",
+          "raining"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -757,15 +755,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-41:i11:r1",
-          "text": "Everyone is attending the plenary."
+          "text": "Suddenly, the phone rings."
         },
         {
           "responseId": "en:lesson-10:session-41:i11:r2",
-          "text": "Everyone is leaving the plenary."
+          "text": "Suddenly, the door opens."
         },
         {
           "responseId": "en:lesson-10:session-41:i11:r3",
-          "text": "Everyone is attending the keynote."
+          "text": "Suddenly, the bell rings."
         }
       ],
       "mediaIds": [],
@@ -777,23 +775,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-41:i11:audio",
-          "transcript": "Everyone is attending the plenary."
+          "transcript": "Suddenly, the phone rings."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-41:i11:r1",
-            "targetText": "Everyone is attending the plenary.",
+            "targetText": "Suddenly, the phone rings.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-41:i11:r2",
-            "targetText": "Everyone is leaving the plenary.",
+            "targetText": "Suddenly, the door opens.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-41:i11:r3",
-            "targetText": "Everyone is attending the keynote.",
+            "targetText": "Suddenly, the bell rings.",
             "meaningByLocale": null
           }
         ],
@@ -804,8 +802,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит Everyone is attending the plenary.",
-              "uk": "У записі звучить Everyone is attending the plenary."
+              "ru": "В записи звучит Suddenly, the phone rings.",
+              "uk": "У записі звучить Suddenly, the phone rings."
             }
           },
           {
@@ -813,8 +811,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит Everyone is attending the plenary.",
-              "uk": "У записі звучить Everyone is attending the plenary."
+              "ru": "В записи звучит Suddenly, the phone rings.",
+              "uk": "У записі звучить Suddenly, the phone rings."
             }
           }
         ],
@@ -829,63 +827,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Общее заседание начнётся, когда обед закончится. Выберите after",
+      "prompt": "Выберите форму start после it",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-41:i12:r1",
-          "text": "after"
+          "text": "starts"
         },
         {
           "responseId": "en:lesson-10:session-41:i12:r2",
-          "text": "before"
+          "text": "start"
         },
         {
           "responseId": "en:lesson-10:session-41:i12:r3",
-          "text": "during"
+          "text": "starting"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Общее заседание начнётся, когда обед закончится. Выберите after",
+      "accessibilityLabel": "Выберите форму start после it",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Общее заседание начнётся, когда обед закончится. Выберите after",
-          "uk": "Загальне засідання почнеться, коли обід закінчиться. Виберіть after"
+          "ru": "Выберите форму start после it",
+          "uk": "Виберіть форму start після it"
         },
-        "gappedTargetPhrase": "The plenary is ___ lunch.",
+        "gappedTargetPhrase": "Suddenly, it ___ raining.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-41:i12:r1",
-            "text": "after"
+            "text": "starts"
           },
           {
             "responseId": "en:lesson-10:session-41:i12:r2",
-            "text": "before"
+            "text": "start"
           },
           {
             "responseId": "en:lesson-10:session-41:i12:r3",
-            "text": "during"
+            "text": "starting"
           }
         ],
-        "testedDimension": "Общее заседание начнётся, когда обед закончится. Выберите after",
+        "testedDimension": "Выберите форму start после it",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-41:i12:r2",
             "correct": false,
-            "testedDimension": "Общее заседание начнётся, когда обед закончится. Выберите after",
+            "testedDimension": "Выберите форму start после it",
             "feedbackByLocale": {
-              "ru": "Before означает до; здесь после — after.",
-              "uk": "Before означає до; тут після — after."
+              "ru": "После it нужна starts с s.",
+              "uk": "Після it потрібна starts із s."
             }
           },
           {
             "responseId": "en:lesson-10:session-41:i12:r3",
             "correct": false,
-            "testedDimension": "Общее заседание начнётся, когда обед закончится. Выберите after",
+            "testedDimension": "Выберите форму start после it",
             "feedbackByLocale": {
-              "ru": "During означает во время; здесь нужно after.",
-              "uk": "During означає під час; тут потрібне after."
+              "ru": "Здесь нужна личная форма starts.",
+              "uk": "Тут потрібна особова форма starts."
             }
           }
         ]
@@ -898,58 +896,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините слова со значениями",
+      "prompt": "Соедините слова с переводом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините слова со значениями",
+      "accessibilityLabel": "Соедините слова с переводом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-41:i13:p1",
-            "target": "conference",
+            "target": "perhaps",
             "meaningByLocale": {
-              "ru": "конференция",
-              "uk": "конференція"
+              "ru": "может быть",
+              "uk": "можливо"
             }
           },
           {
             "pairId": "en:lesson-10:session-41:i13:p2",
-            "target": "keynote",
+            "target": "probably",
             "meaningByLocale": {
-              "ru": "главный доклад",
-              "uk": "головна доповідь"
+              "ru": "скорее всего",
+              "uk": "найімовірніше"
             }
           },
           {
             "pairId": "en:lesson-10:session-41:i13:p3",
-            "target": "panellist",
+            "target": "quite",
             "meaningByLocale": {
-              "ru": "участник панельной дискуссии",
-              "uk": "учасник панельної дискусії"
+              "ru": "довольно",
+              "uk": "досить"
             }
           },
           {
             "pairId": "en:lesson-10:session-41:i13:p4",
-            "target": "plenary",
+            "target": "suddenly",
             "meaningByLocale": {
-              "ru": "общее заседание",
-              "uk": "загальне засідання"
+              "ru": "вдруг",
+              "uk": "раптом"
             }
           }
         ],
         "leftColumn": [
-          "conference",
-          "keynote",
-          "panellist",
-          "plenary"
+          "perhaps",
+          "probably",
+          "quite",
+          "suddenly"
         ],
         "rightColumn": [
-          "конференция",
-          "главный доклад",
-          "участник панельной дискуссии",
-          "общее заседание"
+          "может быть",
+          "скорее всего",
+          "довольно",
+          "вдруг"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -971,26 +969,27 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите фразу",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-41:i14:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите фразу",
+      "accessibilityLabel": "Соберите услышанную фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-41:i14:audio",
-          "transcript": "The keynote is starting."
+          "transcript": "He is probably at home."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "The keynote is starting.",
+        "hiddenTargetPhrase": "He is probably at home.",
         "orderedTokens": [
-          "The",
-          "keynote",
+          "He",
           "is",
-          "starting"
+          "probably",
+          "at",
+          "home"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1004,24 +1003,60 @@
     {
       "interactionId": "en:lesson-10:session-41:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Коллега спрашивает, регулярно ли вы участвуете. Скажите: «Мы посещаем эту конференцию каждый год»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-41:i15:audio"
       ],
-      "accessibilityLabel": "Коллега спрашивает, регулярно ли вы участвуете. Скажите: «Мы посещаем эту конференцию каждый год»",
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-41:i15:audio",
+          "transcript": "It is quite cold."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is quite cold.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "quite",
+          "cold"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-41:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы предполагаете, что друг ещё едет: «Может быть, он в автобусе»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-41:i16:audio"
+      ],
+      "accessibilityLabel": "Вы предполагаете, что друг ещё едет: «Может быть, он в автобусе»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-41:i15:audio",
-          "transcript": "We attend this conference every year."
+          "audioTargetId": "en:lesson-10:session-41:i16:audio",
+          "transcript": "Perhaps he is on the bus."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We attend this conference every year.",
+        "targetPhrase": "Perhaps he is on the bus.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1035,71 +1070,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-41:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Коллега уточняет время встречи всех участников. Скажите: «Общее заседание после обеда»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Коллега уточняет время встречи всех участников. Скажите: «Общее заседание после обеда»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "The plenary is after lunch.",
-        "localizedMeaning": {
-          "ru": "Коллега уточняет время встречи всех участников. Скажите: «Общее заседание после обеда»",
-          "uk": "Колега уточнює час зустрічі всіх учасників. Скажіть: «Загальне засідання після обіду»"
-        },
-        "orderedTokens": [
-          "The",
-          "plenary",
-          "is",
-          "after",
-          "lunch"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-41:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Коллега вернулся в зал и спрашивает, что происходит. Один из участников дискуссии отвечает на вопрос из зала. Скажите: «Участник панельной дискуссии отвечает на вопрос»",
+      "prompt": "Подруга спрашивает, тепло ли на улице. Вы застёгиваете куртку. Скажите: «Довольно холодно»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-41:i17:audio"
       ],
-      "accessibilityLabel": "Коллега вернулся в зал и спрашивает, что происходит. Один из участников дискуссии отвечает на вопрос из зала. Скажите: «Участник панельной дискуссии отвечает на вопрос»",
+      "accessibilityLabel": "Подруга спрашивает, тепло ли на улице. Вы застёгиваете куртку. Скажите: «Довольно холодно»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-41:i17:audio",
-          "transcript": "The panellist is answering a question."
+          "transcript": "It is quite cold."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "The panellist is answering a question.",
+        "targetPhrase": "It is quite cold.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1116,5 +1109,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "34fd5d7ab305fbbae876814397e61013ac9e0514c632343f4207e057b2e2e22d"
+  "learnerFingerprint": "1c9ebda699cdf6379f4750992921f99e17948e37c4d552191cd59e8d53c9e255"
 }

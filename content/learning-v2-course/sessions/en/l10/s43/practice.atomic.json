@@ -4,32 +4,32 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-10:session-43:word:circular",
+        "interactionId": "en:lesson-10:session-43:word:mild",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — circular",
+        "prompt": "Карточка слова — mild",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-43:word:circular:audio"
+          "en:lesson-10:session-43:word:mild:audio"
         ],
-        "accessibilityLabel": "Карточка слова — circular",
+        "accessibilityLabel": "Карточка слова — mild",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-43:word:circular:audio",
-            "transcript": "circular"
+            "audioTargetId": "en:lesson-10:session-43:word:mild:audio",
+            "transcript": "mild"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-43:word:circular:r1",
-              "targetText": "circular",
+              "responseId": "en:lesson-10:session-43:word:mild:r1",
+              "targetText": "mild",
               "meaningByLocale": {
-                "ru": "«циркулярное письмо». I am reading the circular. — «Я читаю циркулярное письмо». Одинаковое письменное сообщение группе людей. Здесь существительное, не прилагательное «круглый».",
-                "uk": "«циркулярний лист». I am reading the circular. — «Я читаю циркулярний лист». Однакове письмове повідомлення групі людей. Тут іменник, не прикметник «круглий»."
+                "ru": "«мягкий, неострый» о вкусе. This sauce is mild. — «Этот соус неострый».",
+                "uk": "«м’який, негострий» про смак. This sauce is mild. — «Цей соус негострий»."
               }
             }
           ],
@@ -37,10 +37,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "circular",
+            "word": "mild",
             "definitionByLocale": {
-              "ru": "«циркулярное письмо». I am reading the circular. — «Я читаю циркулярное письмо». Одинаковое письменное сообщение группе людей. Здесь существительное, не прилагательное «круглый».",
-              "uk": "«циркулярний лист». I am reading the circular. — «Я читаю циркулярний лист». Однакове письмове повідомлення групі людей. Тут іменник, не прикметник «круглий»."
+              "ru": "«мягкий, неострый» о вкусе. This sauce is mild. — «Этот соус неострый».",
+              "uk": "«м’який, негострий» про смак. This sauce is mild. — «Цей соус негострий»."
             }
           }
         },
@@ -52,24 +52,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Всем сотрудникам прислали одно письмо. Вы сейчас читаете его. Скажите: «Я читаю циркулярное письмо»",
+        "prompt": "Соус не жжёт рот. Скажите: «Этот соус неострый»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Всем сотрудникам прислали одно письмо. Вы сейчас читаете его. Скажите: «Я читаю циркулярное письмо»",
+        "accessibilityLabel": "Соус не жжёт рот. Скажите: «Этот соус неострый»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am reading the circular.",
+          "targetPhrase": "This sauce is mild.",
           "localizedMeaning": {
-            "ru": "Всем сотрудникам прислали одно письмо. Вы сейчас читаете его. Скажите: «Я читаю циркулярное письмо»",
-            "uk": "Усім працівникам надіслали один лист. Ви зараз читаєте його. Скажіть: «Я читаю циркулярний лист»"
+            "ru": "Соус не жжёт рот. Скажите: «Этот соус неострый»",
+            "uk": "Соус не пече в роті. Скажіть: «Цей соус негострий»"
           },
           "orderedTokens": [
-            "I",
-            "am",
-            "reading",
-            "the",
-            "circular"
+            "This",
+            "sauce",
+            "is",
+            "mild"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -90,15 +89,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-43:i02:r1",
-            "text": "The circular is on the desk."
+            "text": "This cheese is mild."
           },
           {
             "responseId": "en:lesson-10:session-43:i02:r2",
-            "text": "The circular is on the website."
+            "text": "This sauce is mild."
           },
           {
             "responseId": "en:lesson-10:session-43:i02:r3",
-            "text": "The report is on the desk."
+            "text": "This cheese is salty."
           }
         ],
         "mediaIds": [],
@@ -110,23 +109,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-43:i02:audio",
-            "transcript": "The circular is on the desk."
+            "transcript": "This cheese is mild."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-43:i02:r1",
-              "targetText": "The circular is on the desk.",
+              "targetText": "This cheese is mild.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-43:i02:r2",
-              "targetText": "The circular is on the website.",
+              "targetText": "This sauce is mild.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-43:i02:r3",
-              "targetText": "The report is on the desk.",
+              "targetText": "This cheese is salty.",
               "meaningByLocale": null
             }
           ],
@@ -137,8 +136,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The circular is on the desk.",
-                "uk": "У записі звучить The circular is on the desk."
+                "ru": "В записи звучит This cheese is mild.",
+                "uk": "У записі звучить This cheese is mild."
               }
             },
             {
@@ -146,8 +145,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The circular is on the desk.",
-                "uk": "У записі звучить The circular is on the desk."
+                "ru": "В записи звучит This cheese is mild.",
+                "uk": "У записі звучить This cheese is mild."
               }
             }
           ],
@@ -162,63 +161,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Команда собирается каждое утро. Выберите форму have",
+        "prompt": "Выберите связку: один соус",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-43:i03:r1",
-            "text": "have"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-43:i03:r2",
-            "text": "has"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-43:i03:r3",
-            "text": "having"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Команда собирается каждое утро. Выберите форму have",
+        "accessibilityLabel": "Выберите связку: один соус",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Команда собирается каждое утро. Выберите форму have",
-            "uk": "Команда збирається щоранку. Виберіть форму have"
+            "ru": "Выберите связку: один соус",
+            "uk": "Виберіть зв’язку: один соус"
           },
-          "gappedTargetPhrase": "We ___ a briefing every morning.",
+          "gappedTargetPhrase": "This sauce ___ mild.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-43:i03:r1",
-              "text": "have"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-43:i03:r2",
-              "text": "has"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-43:i03:r3",
-              "text": "having"
+              "text": "am"
             }
           ],
-          "testedDimension": "Команда собирается каждое утро. Выберите форму have",
+          "testedDimension": "Выберите связку: один соус",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-43:i03:r2",
               "correct": false,
-              "testedDimension": "Команда собирается каждое утро. Выберите форму have",
+              "testedDimension": "Выберите связку: один соус",
               "feedbackByLocale": {
-                "ru": "С we нужна have.",
-                "uk": "З we потрібна have."
+                "ru": "Один соус: is.",
+                "uk": "Один соус: is."
               }
             },
             {
               "responseId": "en:lesson-10:session-43:i03:r3",
               "correct": false,
-              "testedDimension": "Команда собирается каждое утро. Выберите форму have",
+              "testedDimension": "Выберите связку: один соус",
               "feedbackByLocale": {
-                "ru": "Для регулярной ситуации здесь нужна have.",
-                "uk": "Для регулярної ситуації тут потрібна have."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -226,32 +225,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-43:word:directive",
+        "interactionId": "en:lesson-10:session-43:word:creamy",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — directive",
+        "prompt": "Карточка слова — creamy",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-43:word:directive:audio"
+          "en:lesson-10:session-43:word:creamy:audio"
         ],
-        "accessibilityLabel": "Карточка слова — directive",
+        "accessibilityLabel": "Карточка слова — creamy",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-43:word:directive:audio",
-            "transcript": "directive"
+            "audioTargetId": "en:lesson-10:session-43:word:creamy:audio",
+            "transcript": "creamy"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-43:word:directive:r1",
-              "targetText": "directive",
+              "responseId": "en:lesson-10:session-43:word:creamy:r1",
+              "targetText": "creamy",
               "meaningByLocale": {
-                "ru": "«официальное указание». I understand the directive. — «Я понимаю официальное указание». Распоряжение от руководства о том, что нужно сделать.",
-                "uk": "«офіційна вказівка». I understand the directive. — «Я розумію офіційну вказівку». Розпорядження від керівництва про те, що потрібно зробити."
+                "ru": "«сливочный, нежный по консистенции». The soup is creamy. — «Суп сливочный».",
+                "uk": "«вершковий, ніжний за консистенцією». The soup is creamy. — «Суп вершковий»."
               }
             }
           ],
@@ -259,10 +258,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "directive",
+            "word": "creamy",
             "definitionByLocale": {
-              "ru": "«официальное указание». I understand the directive. — «Я понимаю официальное указание». Распоряжение от руководства о том, что нужно сделать.",
-              "uk": "«офіційна вказівка». I understand the directive. — «Я розумію офіційну вказівку». Розпорядження від керівництва про те, що потрібно зробити."
+              "ru": "«сливочный, нежный по консистенции». The soup is creamy. — «Суп сливочный».",
+              "uk": "«вершковий, ніжний за консистенцією». The soup is creamy. — «Суп вершковий»."
             }
           }
         },
@@ -274,23 +273,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Руководитель уточнил распоряжение. Подтвердите: «Я понимаю официальное указание»",
+        "prompt": "Вы пробуете суп со сливками. Скажите: «Суп сливочный»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Руководитель уточнил распоряжение. Подтвердите: «Я понимаю официальное указание»",
+        "accessibilityLabel": "Вы пробуете суп со сливками. Скажите: «Суп сливочный»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I understand the directive.",
+          "targetPhrase": "The soup is creamy.",
           "localizedMeaning": {
-            "ru": "Руководитель уточнил распоряжение. Подтвердите: «Я понимаю официальное указание»",
-            "uk": "Керівник уточнив розпорядження. Підтвердьте: «Я розумію офіційну вказівку»"
+            "ru": "Вы пробуете суп со сливками. Скажите: «Суп сливочный»",
+            "uk": "Ви куштуєте суп із вершками. Скажіть: «Суп вершковий»"
           },
           "orderedTokens": [
-            "I",
-            "understand",
-            "the",
-            "directive"
+            "The",
+            "soup",
+            "is",
+            "creamy"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -311,15 +310,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-43:i05:r1",
-            "text": "The directive is clear."
+            "text": "The sauce is creamy."
           },
           {
             "responseId": "en:lesson-10:session-43:i05:r2",
-            "text": "The directive is new."
+            "text": "The soup is creamy."
           },
           {
             "responseId": "en:lesson-10:session-43:i05:r3",
-            "text": "The message is clear."
+            "text": "The sauce is spicy."
           }
         ],
         "mediaIds": [],
@@ -331,23 +330,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-43:i05:audio",
-            "transcript": "The directive is clear."
+            "transcript": "The sauce is creamy."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-43:i05:r1",
-              "targetText": "The directive is clear.",
+              "targetText": "The sauce is creamy.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-43:i05:r2",
-              "targetText": "The directive is new.",
+              "targetText": "The soup is creamy.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-43:i05:r3",
-              "targetText": "The message is clear.",
+              "targetText": "The sauce is spicy.",
               "meaningByLocale": null
             }
           ],
@@ -358,8 +357,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The directive is clear.",
-                "uk": "У записі звучить The directive is clear."
+                "ru": "В записи звучит The sauce is creamy.",
+                "uk": "У записі звучить The sauce is creamy."
               }
             },
             {
@@ -367,8 +366,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The directive is clear.",
-                "uk": "У записі звучить The directive is clear."
+                "ru": "В записи звучит The sauce is creamy.",
+                "uk": "У записі звучить The sauce is creamy."
               }
             }
           ],
@@ -383,63 +382,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите форму understand с I",
+        "prompt": "Выберите связку в описании супа",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-43:i06:r1",
-            "text": "understand"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-43:i06:r2",
-            "text": "understands"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-43:i06:r3",
-            "text": "am understand"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите форму understand с I",
+        "accessibilityLabel": "Выберите связку в описании супа",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму understand с I",
-            "uk": "Виберіть форму understand з I"
+            "ru": "Выберите связку в описании супа",
+            "uk": "Виберіть зв’язку в описі супу"
           },
-          "gappedTargetPhrase": "I ___ the directive.",
+          "gappedTargetPhrase": "The soup ___ creamy.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-43:i06:r1",
-              "text": "understand"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-43:i06:r2",
-              "text": "understands"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-43:i06:r3",
-              "text": "am understand"
+              "text": "am"
             }
           ],
-          "testedDimension": "Выберите форму understand с I",
+          "testedDimension": "Выберите связку в описании супа",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-43:i06:r2",
               "correct": false,
-              "testedDimension": "Выберите форму understand с I",
+              "testedDimension": "Выберите связку в описании супа",
               "feedbackByLocale": {
-                "ru": "С I нужна understand без s.",
-                "uk": "З I потрібна understand без s."
+                "ru": "С soup нужна is.",
+                "uk": "Із soup потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-43:i06:r3",
               "correct": false,
-              "testedDimension": "Выберите форму understand с I",
+              "testedDimension": "Выберите связку в описании супа",
               "feedbackByLocale": {
-                "ru": "Здесь нужна understand без am.",
-                "uk": "Тут потрібна understand без am."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -447,32 +446,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-43:word:recap",
+        "interactionId": "en:lesson-10:session-43:word:thin",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — recap",
+        "prompt": "Карточка слова — thin",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-43:word:recap:audio"
+          "en:lesson-10:session-43:word:thin:audio"
         ],
-        "accessibilityLabel": "Карточка слова — recap",
+        "accessibilityLabel": "Карточка слова — thin",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-43:word:recap:audio",
-            "transcript": "recap"
+            "audioTargetId": "en:lesson-10:session-43:word:thin:audio",
+            "transcript": "thin"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-43:word:recap:r1",
-              "targetText": "recap",
+              "responseId": "en:lesson-10:session-43:word:thin:r1",
+              "targetText": "thin",
               "meaningByLocale": {
-                "ru": "«краткое повторение основных пунктов». The recap is helpful. — «Краткое повторение основных пунктов полезно». Здесь снова кратко излагают то, что уже обсудили.",
-                "uk": "«коротке повторення основних пунктів». The recap is helpful. — «Коротке повторення основних пунктів корисне». Тут знову коротко викладають те, що вже обговорили."
+                "ru": "«тонкий». a thin slice — «тонкий ломтик».",
+                "uk": "«тонкий». a thin slice — «тонка скибка»."
               }
             }
           ],
@@ -480,10 +479,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "recap",
+            "word": "thin",
             "definitionByLocale": {
-              "ru": "«краткое повторение основных пунктов». The recap is helpful. — «Краткое повторение основных пунктов полезно». Здесь снова кратко излагают то, что уже обсудили.",
-              "uk": "«коротке повторення основних пунктів». The recap is helpful. — «Коротке повторення основних пунктів корисне». Тут знову коротко викладають те, що вже обговорили."
+              "ru": "«тонкий». a thin slice — «тонкий ломтик».",
+              "uk": "«тонкий». a thin slice — «тонка скибка»."
             }
           }
         },
@@ -495,23 +494,25 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Коллега повторил главные пункты вчерашнего обсуждения. Скажите: «Краткое повторение основных пунктов полезно»",
+        "prompt": "Вы сейчас режете хлеб. Скажите: «Я отрезаю тонкий ломтик»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Коллега повторил главные пункты вчерашнего обсуждения. Скажите: «Краткое повторение основных пунктов полезно»",
+        "accessibilityLabel": "Вы сейчас режете хлеб. Скажите: «Я отрезаю тонкий ломтик»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The recap is helpful.",
+          "targetPhrase": "I am cutting a thin slice.",
           "localizedMeaning": {
-            "ru": "Коллега повторил главные пункты вчерашнего обсуждения. Скажите: «Краткое повторение основных пунктов полезно»",
-            "uk": "Колега повторив головні пункти вчорашнього обговорення. Скажіть: «Коротке повторення основних пунктів корисне»"
+            "ru": "Вы сейчас режете хлеб. Скажите: «Я отрезаю тонкий ломтик»",
+            "uk": "Ви зараз ріжете хліб. Скажіть: «Я відрізаю тонку скибку»"
           },
           "orderedTokens": [
-            "The",
-            "recap",
-            "is",
-            "helpful"
+            "I",
+            "am",
+            "cutting",
+            "a",
+            "thin",
+            "slice"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -532,15 +533,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-43:i08:r1",
-            "text": "The recap is at the end."
+            "text": "She is cutting a thin slice."
           },
           {
             "responseId": "en:lesson-10:session-43:i08:r2",
-            "text": "The recap is at the beginning."
+            "text": "He is cutting a thin slice."
           },
           {
             "responseId": "en:lesson-10:session-43:i08:r3",
-            "text": "The question is at the end."
+            "text": "She is eating a thin slice."
           }
         ],
         "mediaIds": [],
@@ -552,23 +553,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-43:i08:audio",
-            "transcript": "The recap is at the end."
+            "transcript": "She is cutting a thin slice."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-43:i08:r1",
-              "targetText": "The recap is at the end.",
+              "targetText": "She is cutting a thin slice.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-43:i08:r2",
-              "targetText": "The recap is at the beginning.",
+              "targetText": "He is cutting a thin slice.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-43:i08:r3",
-              "targetText": "The question is at the end.",
+              "targetText": "She is eating a thin slice.",
               "meaningByLocale": null
             }
           ],
@@ -579,8 +580,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The recap is at the end.",
-                "uk": "У записі звучить The recap is at the end."
+                "ru": "В записи звучит She is cutting a thin slice.",
+                "uk": "У записі звучить She is cutting a thin slice."
               }
             },
             {
@@ -588,8 +589,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The recap is at the end.",
-                "uk": "У записі звучить The recap is at the end."
+                "ru": "В записи звучит She is cutting a thin slice.",
+                "uk": "У записі звучить She is cutting a thin slice."
               }
             }
           ],
@@ -604,63 +605,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Речь об одном кратком повторении. Выберите связку",
+        "prompt": "Нож у вас в руке сейчас. Выберите форму cut",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-43:i09:r1",
-            "text": "is"
+            "text": "cutting"
           },
           {
             "responseId": "en:lesson-10:session-43:i09:r2",
-            "text": "are"
+            "text": "cut"
           },
           {
             "responseId": "en:lesson-10:session-43:i09:r3",
-            "text": "am"
+            "text": "cuts"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Речь об одном кратком повторении. Выберите связку",
+        "accessibilityLabel": "Нож у вас в руке сейчас. Выберите форму cut",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Речь об одном кратком повторении. Выберите связку",
-            "uk": "Ідеться про одне коротке повторення. Виберіть зв’язку"
+            "ru": "Нож у вас в руке сейчас. Выберите форму cut",
+            "uk": "Ніж у вас у руці зараз. Виберіть форму cut"
           },
-          "gappedTargetPhrase": "The recap ___ helpful.",
+          "gappedTargetPhrase": "I am ___ a thin slice.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-43:i09:r1",
-              "text": "is"
+              "text": "cutting"
             },
             {
               "responseId": "en:lesson-10:session-43:i09:r2",
-              "text": "are"
+              "text": "cut"
             },
             {
               "responseId": "en:lesson-10:session-43:i09:r3",
-              "text": "am"
+              "text": "cuts"
             }
           ],
-          "testedDimension": "Речь об одном кратком повторении. Выберите связку",
+          "testedDimension": "Нож у вас в руке сейчас. Выберите форму cut",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-43:i09:r2",
               "correct": false,
-              "testedDimension": "Речь об одном кратком повторении. Выберите связку",
+              "testedDimension": "Нож у вас в руке сейчас. Выберите форму cut",
               "feedbackByLocale": {
-                "ru": "С recap в единственном числе нужна is.",
-                "uk": "З recap в однині потрібна is."
+                "ru": "После am нужна cutting.",
+                "uk": "Після am потрібна cutting."
               }
             },
             {
               "responseId": "en:lesson-10:session-43:i09:r3",
               "correct": false,
-              "testedDimension": "Речь об одном кратком повторении. Выберите связку",
+              "testedDimension": "Нож у вас в руке сейчас. Выберите форму cut",
               "feedbackByLocale": {
-                "ru": "Am используется с I; здесь нужна is.",
-                "uk": "Am уживається з I; тут потрібна is."
+                "ru": "После am нужна cutting, не cuts.",
+                "uk": "Після am потрібна cutting, не cuts."
               }
             }
           ]
@@ -668,32 +669,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-43:word:rundown",
+        "interactionId": "en:lesson-10:session-43:word:hard",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — rundown",
+        "prompt": "Карточка слова — hard",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-43:word:rundown:audio"
+          "en:lesson-10:session-43:word:hard:audio"
         ],
-        "accessibilityLabel": "Карточка слова — rundown",
+        "accessibilityLabel": "Карточка слова — hard",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-43:word:rundown:audio",
-            "transcript": "rundown"
+            "audioTargetId": "en:lesson-10:session-43:word:hard:audio",
+            "transcript": "hard"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-43:word:rundown:r1",
-              "targetText": "rundown",
+              "responseId": "en:lesson-10:session-43:word:hard:r1",
+              "targetText": "hard",
               "meaningByLocale": {
-                "ru": "«краткий обзор основных сведений». She is giving us a rundown. — «Она даёт нам краткий обзор». Например, обзор задач на день; сведения не обязательно повторяются.",
-                "uk": "«короткий огляд основних відомостей». She is giving us a rundown. — «Вона дає нам короткий огляд». Наприклад, огляд завдань на день; відомості не обов’язково повторюються."
+                "ru": "«твёрдый». This cheese is hard. — «Этот сыр твёрдый».",
+                "uk": "«твердий». This cheese is hard. — «Цей сир твердий»."
               }
             }
           ],
@@ -701,10 +702,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "rundown",
+            "word": "hard",
             "definitionByLocale": {
-              "ru": "«краткий обзор основных сведений». She is giving us a rundown. — «Она даёт нам краткий обзор». Например, обзор задач на день; сведения не обязательно повторяются.",
-              "uk": "«короткий огляд основних відомостей». She is giving us a rundown. — «Вона дає нам короткий огляд». Наприклад, огляд завдань на день; відомості не обов’язково повторюються."
+              "ru": "«твёрдый». This cheese is hard. — «Этот сыр твёрдый».",
+              "uk": "«твердий». This cheese is hard. — «Цей сир твердий»."
             }
           }
         },
@@ -716,25 +717,23 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Руководительница сейчас знакомит команду с задачами дня. Скажите: «Она даёт нам краткий обзор»",
+        "prompt": "Сыр твёрдый, его трудно разрезать. Скажите: «Этот сыр твёрдый»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Руководительница сейчас знакомит команду с задачами дня. Скажите: «Она даёт нам краткий обзор»",
+        "accessibilityLabel": "Сыр твёрдый, его трудно разрезать. Скажите: «Этот сыр твёрдый»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She is giving us a rundown.",
+          "targetPhrase": "This cheese is hard.",
           "localizedMeaning": {
-            "ru": "Руководительница сейчас знакомит команду с задачами дня. Скажите: «Она даёт нам краткий обзор»",
-            "uk": "Керівниця зараз знайомить команду із завданнями дня. Скажіть: «Вона дає нам короткий огляд»"
+            "ru": "Сыр твёрдый, его трудно разрезать. Скажите: «Этот сыр твёрдый»",
+            "uk": "Сир твердий, його важко розрізати. Скажіть: «Цей сир твердий»"
           },
           "orderedTokens": [
-            "She",
+            "This",
+            "cheese",
             "is",
-            "giving",
-            "us",
-            "a",
-            "rundown"
+            "hard"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -755,15 +754,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-43:i11:r1",
-            "text": "The rundown is in the email."
+            "text": "The bread is hard."
           },
           {
             "responseId": "en:lesson-10:session-43:i11:r2",
-            "text": "The rundown is in the report."
+            "text": "The cheese is hard."
           },
           {
             "responseId": "en:lesson-10:session-43:i11:r3",
-            "text": "The photo is in the email."
+            "text": "The bread is soft."
           }
         ],
         "mediaIds": [],
@@ -775,23 +774,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-43:i11:audio",
-            "transcript": "The rundown is in the email."
+            "transcript": "The bread is hard."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-43:i11:r1",
-              "targetText": "The rundown is in the email.",
+              "targetText": "The bread is hard.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-43:i11:r2",
-              "targetText": "The rundown is in the report.",
+              "targetText": "The cheese is hard.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-43:i11:r3",
-              "targetText": "The photo is in the email.",
+              "targetText": "The bread is soft.",
               "meaningByLocale": null
             }
           ],
@@ -802,8 +801,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The rundown is in the email.",
-                "uk": "У записі звучить The rundown is in the email."
+                "ru": "В записи звучит The bread is hard.",
+                "uk": "У записі звучить The bread is hard."
               }
             },
             {
@@ -811,8 +810,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The rundown is in the email.",
-                "uk": "У записі звучить The rundown is in the email."
+                "ru": "В записи звучит The bread is hard.",
+                "uk": "У записі звучить The bread is hard."
               }
             }
           ],
@@ -827,63 +826,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите правильное написание формы give",
+        "prompt": "Выберите связку для свойства сыра",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-43:i12:r1",
-            "text": "giving"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-43:i12:r2",
-            "text": "giveing"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-43:i12:r3",
-            "text": "give"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите правильное написание формы give",
+        "accessibilityLabel": "Выберите связку для свойства сыра",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите правильное написание формы give",
-            "uk": "Виберіть правильне написання форми give"
+            "ru": "Выберите связку для свойства сыра",
+            "uk": "Виберіть зв’язку для властивості сиру"
           },
-          "gappedTargetPhrase": "She is ___ us a rundown.",
+          "gappedTargetPhrase": "This cheese ___ hard.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-43:i12:r1",
-              "text": "giving"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-43:i12:r2",
-              "text": "giveing"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-43:i12:r3",
-              "text": "give"
+              "text": "am"
             }
           ],
-          "testedDimension": "Выберите правильное написание формы give",
+          "testedDimension": "Выберите связку для свойства сыра",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-43:i12:r2",
               "correct": false,
-              "testedDimension": "Выберите правильное написание формы give",
+              "testedDimension": "Выберите связку для свойства сыра",
               "feedbackByLocale": {
-                "ru": "Перед ing убираем e: giving.",
-                "uk": "Перед ing прибираємо e: giving."
+                "ru": "С cheese нужна is.",
+                "uk": "Із cheese потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-43:i12:r3",
               "correct": false,
-              "testedDimension": "Выберите правильное написание формы give",
+              "testedDimension": "Выберите связку для свойства сыра",
               "feedbackByLocale": {
-                "ru": "После is для текущего действия нужна giving.",
-                "uk": "Після is для поточної дії потрібна giving."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -896,58 +895,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините слова со значениями",
+        "prompt": "Соедините слова с переводом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините слова со значениями",
+        "accessibilityLabel": "Соедините слова с переводом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-43:i13:p1",
-              "target": "circular",
+              "target": "mild",
               "meaningByLocale": {
-                "ru": "циркулярное письмо",
-                "uk": "циркулярний лист"
+                "ru": "неострый",
+                "uk": "негострий"
               }
             },
             {
               "pairId": "en:lesson-10:session-43:i13:p2",
-              "target": "directive",
+              "target": "creamy",
               "meaningByLocale": {
-                "ru": "официальное указание",
-                "uk": "офіційна вказівка"
+                "ru": "сливочный",
+                "uk": "вершковий"
               }
             },
             {
               "pairId": "en:lesson-10:session-43:i13:p3",
-              "target": "recap",
+              "target": "thin",
               "meaningByLocale": {
-                "ru": "краткое повторение основных пунктов",
-                "uk": "коротке повторення основних пунктів"
+                "ru": "тонкий",
+                "uk": "тонкий"
               }
             },
             {
               "pairId": "en:lesson-10:session-43:i13:p4",
-              "target": "rundown",
+              "target": "hard",
               "meaningByLocale": {
-                "ru": "краткий обзор основных сведений",
-                "uk": "короткий огляд основних відомостей"
+                "ru": "твёрдый",
+                "uk": "твердий"
               }
             }
           ],
           "leftColumn": [
-            "circular",
-            "directive",
-            "recap",
-            "rundown"
+            "mild",
+            "creamy",
+            "thin",
+            "hard"
           ],
           "rightColumn": [
-            "циркулярное письмо",
-            "официальное указание",
-            "краткое повторение основных пунктов",
-            "краткий обзор основных сведений"
+            "неострый",
+            "сливочный",
+            "тонкий",
+            "твёрдый"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -969,28 +968,26 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послушайте и соберите фразу",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-43:i14:audio"
         ],
-        "accessibilityLabel": "Послушайте и соберите фразу",
+        "accessibilityLabel": "Соберите услышанную фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-43:i14:audio",
-            "transcript": "She is giving us a rundown."
+            "transcript": "This sauce is mild."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "She is giving us a rundown.",
+          "hiddenTargetPhrase": "This sauce is mild.",
           "orderedTokens": [
-            "She",
+            "This",
+            "sauce",
             "is",
-            "giving",
-            "us",
-            "a",
-            "rundown"
+            "mild"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1004,24 +1001,62 @@
       {
         "interactionId": "en:lesson-10:session-43:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Коллега спрашивает, когда команда получает инструкции на день. Скажите: «У нас инструктаж каждое утро»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-43:i15:audio"
         ],
-        "accessibilityLabel": "Коллега спрашивает, когда команда получает инструкции на день. Скажите: «У нас инструктаж каждое утро»",
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-43:i15:audio",
+            "transcript": "I am cutting a thin slice."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am cutting a thin slice.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "cutting",
+            "a",
+            "thin",
+            "slice"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-43:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг не любит острое. Успокойте его: «Этот соус неострый»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-43:i16:audio"
+        ],
+        "accessibilityLabel": "Друг не любит острое. Успокойте его: «Этот соус неострый»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-43:i15:audio",
-            "transcript": "We have a briefing every morning."
+            "audioTargetId": "en:lesson-10:session-43:i16:audio",
+            "transcript": "This sauce is mild."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We have a briefing every morning.",
+          "targetPhrase": "This sauce is mild.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1035,70 +1070,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-43:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Руководитель спрашивает, понятно ли распоряжение. Скажите: «Я понимаю официальное указание»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Руководитель спрашивает, понятно ли распоряжение. Скажите: «Я понимаю официальное указание»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I understand the directive.",
-          "localizedMeaning": {
-            "ru": "Руководитель спрашивает, понятно ли распоряжение. Скажите: «Я понимаю официальное указание»",
-            "uk": "Керівник запитує, чи зрозуміле розпорядження. Скажіть: «Я розумію офіційну вказівку»"
-          },
-          "orderedTokens": [
-            "I",
-            "understand",
-            "the",
-            "directive"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-43:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Коллега присоединился к встрече и спрашивает, о чём говорит руководительница. Она сейчас перечисляет основные задачи дня. Скажите: «Она даёт нам краткий обзор»",
+        "prompt": "Друг спрашивает, что вы делаете с хлебом. Скажите: «Я отрезаю тонкий ломтик»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-43:i17:audio"
         ],
-        "accessibilityLabel": "Коллега присоединился к встрече и спрашивает, о чём говорит руководительница. Она сейчас перечисляет основные задачи дня. Скажите: «Она даёт нам краткий обзор»",
+        "accessibilityLabel": "Друг спрашивает, что вы делаете с хлебом. Скажите: «Я отрезаю тонкий ломтик»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-43:i17:audio",
-            "transcript": "She is giving us a rundown."
+            "transcript": "I am cutting a thin slice."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "She is giving us a rundown.",
+          "targetPhrase": "I am cutting a thin slice.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -1111,32 +1105,32 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-10:session-43:word:circular",
+        "interactionId": "en:lesson-10:session-43:word:mild",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — circular",
+        "prompt": "Картка слова — mild",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-43:word:circular:audio"
+          "en:lesson-10:session-43:word:mild:audio"
         ],
-        "accessibilityLabel": "Картка слова — circular",
+        "accessibilityLabel": "Картка слова — mild",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-43:word:circular:audio",
-            "transcript": "circular"
+            "audioTargetId": "en:lesson-10:session-43:word:mild:audio",
+            "transcript": "mild"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-43:word:circular:r1",
-              "targetText": "circular",
+              "responseId": "en:lesson-10:session-43:word:mild:r1",
+              "targetText": "mild",
               "meaningByLocale": {
-                "ru": "«циркулярное письмо». I am reading the circular. — «Я читаю циркулярное письмо». Одинаковое письменное сообщение группе людей. Здесь существительное, не прилагательное «круглый».",
-                "uk": "«циркулярний лист». I am reading the circular. — «Я читаю циркулярний лист». Однакове письмове повідомлення групі людей. Тут іменник, не прикметник «круглий»."
+                "ru": "«мягкий, неострый» о вкусе. This sauce is mild. — «Этот соус неострый».",
+                "uk": "«м’який, негострий» про смак. This sauce is mild. — «Цей соус негострий»."
               }
             }
           ],
@@ -1144,10 +1138,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "circular",
+            "word": "mild",
             "definitionByLocale": {
-              "ru": "«циркулярное письмо». I am reading the circular. — «Я читаю циркулярное письмо». Одинаковое письменное сообщение группе людей. Здесь существительное, не прилагательное «круглый».",
-              "uk": "«циркулярний лист». I am reading the circular. — «Я читаю циркулярний лист». Однакове письмове повідомлення групі людей. Тут іменник, не прикметник «круглий»."
+              "ru": "«мягкий, неострый» о вкусе. This sauce is mild. — «Этот соус неострый».",
+              "uk": "«м’який, негострий» про смак. This sauce is mild. — «Цей соус негострий»."
             }
           }
         },
@@ -1159,24 +1153,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Усім працівникам надіслали один лист. Ви зараз читаєте його. Скажіть: «Я читаю циркулярний лист»",
+        "prompt": "Соус не пече в роті. Скажіть: «Цей соус негострий»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Усім працівникам надіслали один лист. Ви зараз читаєте його. Скажіть: «Я читаю циркулярний лист»",
+        "accessibilityLabel": "Соус не пече в роті. Скажіть: «Цей соус негострий»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am reading the circular.",
+          "targetPhrase": "This sauce is mild.",
           "localizedMeaning": {
-            "ru": "Всем сотрудникам прислали одно письмо. Вы сейчас читаете его. Скажите: «Я читаю циркулярное письмо»",
-            "uk": "Усім працівникам надіслали один лист. Ви зараз читаєте його. Скажіть: «Я читаю циркулярний лист»"
+            "ru": "Соус не жжёт рот. Скажите: «Этот соус неострый»",
+            "uk": "Соус не пече в роті. Скажіть: «Цей соус негострий»"
           },
           "orderedTokens": [
-            "I",
-            "am",
-            "reading",
-            "the",
-            "circular"
+            "This",
+            "sauce",
+            "is",
+            "mild"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1197,15 +1190,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-43:i02:r1",
-            "text": "The circular is on the desk."
+            "text": "This cheese is mild."
           },
           {
             "responseId": "en:lesson-10:session-43:i02:r2",
-            "text": "The circular is on the website."
+            "text": "This sauce is mild."
           },
           {
             "responseId": "en:lesson-10:session-43:i02:r3",
-            "text": "The report is on the desk."
+            "text": "This cheese is salty."
           }
         ],
         "mediaIds": [],
@@ -1217,23 +1210,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-43:i02:audio",
-            "transcript": "The circular is on the desk."
+            "transcript": "This cheese is mild."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-43:i02:r1",
-              "targetText": "The circular is on the desk.",
+              "targetText": "This cheese is mild.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-43:i02:r2",
-              "targetText": "The circular is on the website.",
+              "targetText": "This sauce is mild.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-43:i02:r3",
-              "targetText": "The report is on the desk.",
+              "targetText": "This cheese is salty.",
               "meaningByLocale": null
             }
           ],
@@ -1244,8 +1237,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The circular is on the desk.",
-                "uk": "У записі звучить The circular is on the desk."
+                "ru": "В записи звучит This cheese is mild.",
+                "uk": "У записі звучить This cheese is mild."
               }
             },
             {
@@ -1253,8 +1246,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The circular is on the desk.",
-                "uk": "У записі звучить The circular is on the desk."
+                "ru": "В записи звучит This cheese is mild.",
+                "uk": "У записі звучить This cheese is mild."
               }
             }
           ],
@@ -1269,63 +1262,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Команда збирається щоранку. Виберіть форму have",
+        "prompt": "Виберіть зв’язку: один соус",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-43:i03:r1",
-            "text": "have"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-43:i03:r2",
-            "text": "has"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-43:i03:r3",
-            "text": "having"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Команда збирається щоранку. Виберіть форму have",
+        "accessibilityLabel": "Виберіть зв’язку: один соус",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Команда собирается каждое утро. Выберите форму have",
-            "uk": "Команда збирається щоранку. Виберіть форму have"
+            "ru": "Выберите связку: один соус",
+            "uk": "Виберіть зв’язку: один соус"
           },
-          "gappedTargetPhrase": "We ___ a briefing every morning.",
+          "gappedTargetPhrase": "This sauce ___ mild.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-43:i03:r1",
-              "text": "have"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-43:i03:r2",
-              "text": "has"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-43:i03:r3",
-              "text": "having"
+              "text": "am"
             }
           ],
-          "testedDimension": "Команда збирається щоранку. Виберіть форму have",
+          "testedDimension": "Виберіть зв’язку: один соус",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-43:i03:r2",
               "correct": false,
-              "testedDimension": "Команда збирається щоранку. Виберіть форму have",
+              "testedDimension": "Виберіть зв’язку: один соус",
               "feedbackByLocale": {
-                "ru": "С we нужна have.",
-                "uk": "З we потрібна have."
+                "ru": "Один соус: is.",
+                "uk": "Один соус: is."
               }
             },
             {
               "responseId": "en:lesson-10:session-43:i03:r3",
               "correct": false,
-              "testedDimension": "Команда збирається щоранку. Виберіть форму have",
+              "testedDimension": "Виберіть зв’язку: один соус",
               "feedbackByLocale": {
-                "ru": "Для регулярной ситуации здесь нужна have.",
-                "uk": "Для регулярної ситуації тут потрібна have."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -1333,32 +1326,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-43:word:directive",
+        "interactionId": "en:lesson-10:session-43:word:creamy",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — directive",
+        "prompt": "Картка слова — creamy",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-43:word:directive:audio"
+          "en:lesson-10:session-43:word:creamy:audio"
         ],
-        "accessibilityLabel": "Картка слова — directive",
+        "accessibilityLabel": "Картка слова — creamy",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-43:word:directive:audio",
-            "transcript": "directive"
+            "audioTargetId": "en:lesson-10:session-43:word:creamy:audio",
+            "transcript": "creamy"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-43:word:directive:r1",
-              "targetText": "directive",
+              "responseId": "en:lesson-10:session-43:word:creamy:r1",
+              "targetText": "creamy",
               "meaningByLocale": {
-                "ru": "«официальное указание». I understand the directive. — «Я понимаю официальное указание». Распоряжение от руководства о том, что нужно сделать.",
-                "uk": "«офіційна вказівка». I understand the directive. — «Я розумію офіційну вказівку». Розпорядження від керівництва про те, що потрібно зробити."
+                "ru": "«сливочный, нежный по консистенции». The soup is creamy. — «Суп сливочный».",
+                "uk": "«вершковий, ніжний за консистенцією». The soup is creamy. — «Суп вершковий»."
               }
             }
           ],
@@ -1366,10 +1359,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "directive",
+            "word": "creamy",
             "definitionByLocale": {
-              "ru": "«официальное указание». I understand the directive. — «Я понимаю официальное указание». Распоряжение от руководства о том, что нужно сделать.",
-              "uk": "«офіційна вказівка». I understand the directive. — «Я розумію офіційну вказівку». Розпорядження від керівництва про те, що потрібно зробити."
+              "ru": "«сливочный, нежный по консистенции». The soup is creamy. — «Суп сливочный».",
+              "uk": "«вершковий, ніжний за консистенцією». The soup is creamy. — «Суп вершковий»."
             }
           }
         },
@@ -1381,23 +1374,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Керівник уточнив розпорядження. Підтвердьте: «Я розумію офіційну вказівку»",
+        "prompt": "Ви куштуєте суп із вершками. Скажіть: «Суп вершковий»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Керівник уточнив розпорядження. Підтвердьте: «Я розумію офіційну вказівку»",
+        "accessibilityLabel": "Ви куштуєте суп із вершками. Скажіть: «Суп вершковий»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I understand the directive.",
+          "targetPhrase": "The soup is creamy.",
           "localizedMeaning": {
-            "ru": "Руководитель уточнил распоряжение. Подтвердите: «Я понимаю официальное указание»",
-            "uk": "Керівник уточнив розпорядження. Підтвердьте: «Я розумію офіційну вказівку»"
+            "ru": "Вы пробуете суп со сливками. Скажите: «Суп сливочный»",
+            "uk": "Ви куштуєте суп із вершками. Скажіть: «Суп вершковий»"
           },
           "orderedTokens": [
-            "I",
-            "understand",
-            "the",
-            "directive"
+            "The",
+            "soup",
+            "is",
+            "creamy"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1418,15 +1411,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-43:i05:r1",
-            "text": "The directive is clear."
+            "text": "The sauce is creamy."
           },
           {
             "responseId": "en:lesson-10:session-43:i05:r2",
-            "text": "The directive is new."
+            "text": "The soup is creamy."
           },
           {
             "responseId": "en:lesson-10:session-43:i05:r3",
-            "text": "The message is clear."
+            "text": "The sauce is spicy."
           }
         ],
         "mediaIds": [],
@@ -1438,23 +1431,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-43:i05:audio",
-            "transcript": "The directive is clear."
+            "transcript": "The sauce is creamy."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-43:i05:r1",
-              "targetText": "The directive is clear.",
+              "targetText": "The sauce is creamy.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-43:i05:r2",
-              "targetText": "The directive is new.",
+              "targetText": "The soup is creamy.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-43:i05:r3",
-              "targetText": "The message is clear.",
+              "targetText": "The sauce is spicy.",
               "meaningByLocale": null
             }
           ],
@@ -1465,8 +1458,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The directive is clear.",
-                "uk": "У записі звучить The directive is clear."
+                "ru": "В записи звучит The sauce is creamy.",
+                "uk": "У записі звучить The sauce is creamy."
               }
             },
             {
@@ -1474,8 +1467,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The directive is clear.",
-                "uk": "У записі звучить The directive is clear."
+                "ru": "В записи звучит The sauce is creamy.",
+                "uk": "У записі звучить The sauce is creamy."
               }
             }
           ],
@@ -1490,63 +1483,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть форму understand з I",
+        "prompt": "Виберіть зв’язку в описі супу",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-43:i06:r1",
-            "text": "understand"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-43:i06:r2",
-            "text": "understands"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-43:i06:r3",
-            "text": "am understand"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть форму understand з I",
+        "accessibilityLabel": "Виберіть зв’язку в описі супу",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму understand с I",
-            "uk": "Виберіть форму understand з I"
+            "ru": "Выберите связку в описании супа",
+            "uk": "Виберіть зв’язку в описі супу"
           },
-          "gappedTargetPhrase": "I ___ the directive.",
+          "gappedTargetPhrase": "The soup ___ creamy.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-43:i06:r1",
-              "text": "understand"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-43:i06:r2",
-              "text": "understands"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-43:i06:r3",
-              "text": "am understand"
+              "text": "am"
             }
           ],
-          "testedDimension": "Виберіть форму understand з I",
+          "testedDimension": "Виберіть зв’язку в описі супу",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-43:i06:r2",
               "correct": false,
-              "testedDimension": "Виберіть форму understand з I",
+              "testedDimension": "Виберіть зв’язку в описі супу",
               "feedbackByLocale": {
-                "ru": "С I нужна understand без s.",
-                "uk": "З I потрібна understand без s."
+                "ru": "С soup нужна is.",
+                "uk": "Із soup потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-43:i06:r3",
               "correct": false,
-              "testedDimension": "Виберіть форму understand з I",
+              "testedDimension": "Виберіть зв’язку в описі супу",
               "feedbackByLocale": {
-                "ru": "Здесь нужна understand без am.",
-                "uk": "Тут потрібна understand без am."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -1554,32 +1547,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-43:word:recap",
+        "interactionId": "en:lesson-10:session-43:word:thin",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — recap",
+        "prompt": "Картка слова — thin",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-43:word:recap:audio"
+          "en:lesson-10:session-43:word:thin:audio"
         ],
-        "accessibilityLabel": "Картка слова — recap",
+        "accessibilityLabel": "Картка слова — thin",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-43:word:recap:audio",
-            "transcript": "recap"
+            "audioTargetId": "en:lesson-10:session-43:word:thin:audio",
+            "transcript": "thin"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-43:word:recap:r1",
-              "targetText": "recap",
+              "responseId": "en:lesson-10:session-43:word:thin:r1",
+              "targetText": "thin",
               "meaningByLocale": {
-                "ru": "«краткое повторение основных пунктов». The recap is helpful. — «Краткое повторение основных пунктов полезно». Здесь снова кратко излагают то, что уже обсудили.",
-                "uk": "«коротке повторення основних пунктів». The recap is helpful. — «Коротке повторення основних пунктів корисне». Тут знову коротко викладають те, що вже обговорили."
+                "ru": "«тонкий». a thin slice — «тонкий ломтик».",
+                "uk": "«тонкий». a thin slice — «тонка скибка»."
               }
             }
           ],
@@ -1587,10 +1580,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "recap",
+            "word": "thin",
             "definitionByLocale": {
-              "ru": "«краткое повторение основных пунктов». The recap is helpful. — «Краткое повторение основных пунктов полезно». Здесь снова кратко излагают то, что уже обсудили.",
-              "uk": "«коротке повторення основних пунктів». The recap is helpful. — «Коротке повторення основних пунктів корисне». Тут знову коротко викладають те, що вже обговорили."
+              "ru": "«тонкий». a thin slice — «тонкий ломтик».",
+              "uk": "«тонкий». a thin slice — «тонка скибка»."
             }
           }
         },
@@ -1602,23 +1595,25 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Колега повторив головні пункти вчорашнього обговорення. Скажіть: «Коротке повторення основних пунктів корисне»",
+        "prompt": "Ви зараз ріжете хліб. Скажіть: «Я відрізаю тонку скибку»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Колега повторив головні пункти вчорашнього обговорення. Скажіть: «Коротке повторення основних пунктів корисне»",
+        "accessibilityLabel": "Ви зараз ріжете хліб. Скажіть: «Я відрізаю тонку скибку»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "The recap is helpful.",
+          "targetPhrase": "I am cutting a thin slice.",
           "localizedMeaning": {
-            "ru": "Коллега повторил главные пункты вчерашнего обсуждения. Скажите: «Краткое повторение основных пунктов полезно»",
-            "uk": "Колега повторив головні пункти вчорашнього обговорення. Скажіть: «Коротке повторення основних пунктів корисне»"
+            "ru": "Вы сейчас режете хлеб. Скажите: «Я отрезаю тонкий ломтик»",
+            "uk": "Ви зараз ріжете хліб. Скажіть: «Я відрізаю тонку скибку»"
           },
           "orderedTokens": [
-            "The",
-            "recap",
-            "is",
-            "helpful"
+            "I",
+            "am",
+            "cutting",
+            "a",
+            "thin",
+            "slice"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1639,15 +1634,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-43:i08:r1",
-            "text": "The recap is at the end."
+            "text": "She is cutting a thin slice."
           },
           {
             "responseId": "en:lesson-10:session-43:i08:r2",
-            "text": "The recap is at the beginning."
+            "text": "He is cutting a thin slice."
           },
           {
             "responseId": "en:lesson-10:session-43:i08:r3",
-            "text": "The question is at the end."
+            "text": "She is eating a thin slice."
           }
         ],
         "mediaIds": [],
@@ -1659,23 +1654,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-43:i08:audio",
-            "transcript": "The recap is at the end."
+            "transcript": "She is cutting a thin slice."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-43:i08:r1",
-              "targetText": "The recap is at the end.",
+              "targetText": "She is cutting a thin slice.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-43:i08:r2",
-              "targetText": "The recap is at the beginning.",
+              "targetText": "He is cutting a thin slice.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-43:i08:r3",
-              "targetText": "The question is at the end.",
+              "targetText": "She is eating a thin slice.",
               "meaningByLocale": null
             }
           ],
@@ -1686,8 +1681,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The recap is at the end.",
-                "uk": "У записі звучить The recap is at the end."
+                "ru": "В записи звучит She is cutting a thin slice.",
+                "uk": "У записі звучить She is cutting a thin slice."
               }
             },
             {
@@ -1695,8 +1690,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The recap is at the end.",
-                "uk": "У записі звучить The recap is at the end."
+                "ru": "В записи звучит She is cutting a thin slice.",
+                "uk": "У записі звучить She is cutting a thin slice."
               }
             }
           ],
@@ -1711,63 +1706,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ідеться про одне коротке повторення. Виберіть зв’язку",
+        "prompt": "Ніж у вас у руці зараз. Виберіть форму cut",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-43:i09:r1",
-            "text": "is"
+            "text": "cutting"
           },
           {
             "responseId": "en:lesson-10:session-43:i09:r2",
-            "text": "are"
+            "text": "cut"
           },
           {
             "responseId": "en:lesson-10:session-43:i09:r3",
-            "text": "am"
+            "text": "cuts"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ідеться про одне коротке повторення. Виберіть зв’язку",
+        "accessibilityLabel": "Ніж у вас у руці зараз. Виберіть форму cut",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Речь об одном кратком повторении. Выберите связку",
-            "uk": "Ідеться про одне коротке повторення. Виберіть зв’язку"
+            "ru": "Нож у вас в руке сейчас. Выберите форму cut",
+            "uk": "Ніж у вас у руці зараз. Виберіть форму cut"
           },
-          "gappedTargetPhrase": "The recap ___ helpful.",
+          "gappedTargetPhrase": "I am ___ a thin slice.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-43:i09:r1",
-              "text": "is"
+              "text": "cutting"
             },
             {
               "responseId": "en:lesson-10:session-43:i09:r2",
-              "text": "are"
+              "text": "cut"
             },
             {
               "responseId": "en:lesson-10:session-43:i09:r3",
-              "text": "am"
+              "text": "cuts"
             }
           ],
-          "testedDimension": "Ідеться про одне коротке повторення. Виберіть зв’язку",
+          "testedDimension": "Ніж у вас у руці зараз. Виберіть форму cut",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-43:i09:r2",
               "correct": false,
-              "testedDimension": "Ідеться про одне коротке повторення. Виберіть зв’язку",
+              "testedDimension": "Ніж у вас у руці зараз. Виберіть форму cut",
               "feedbackByLocale": {
-                "ru": "С recap в единственном числе нужна is.",
-                "uk": "З recap в однині потрібна is."
+                "ru": "После am нужна cutting.",
+                "uk": "Після am потрібна cutting."
               }
             },
             {
               "responseId": "en:lesson-10:session-43:i09:r3",
               "correct": false,
-              "testedDimension": "Ідеться про одне коротке повторення. Виберіть зв’язку",
+              "testedDimension": "Ніж у вас у руці зараз. Виберіть форму cut",
               "feedbackByLocale": {
-                "ru": "Am используется с I; здесь нужна is.",
-                "uk": "Am уживається з I; тут потрібна is."
+                "ru": "После am нужна cutting, не cuts.",
+                "uk": "Після am потрібна cutting, не cuts."
               }
             }
           ]
@@ -1775,32 +1770,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-43:word:rundown",
+        "interactionId": "en:lesson-10:session-43:word:hard",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — rundown",
+        "prompt": "Картка слова — hard",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-43:word:rundown:audio"
+          "en:lesson-10:session-43:word:hard:audio"
         ],
-        "accessibilityLabel": "Картка слова — rundown",
+        "accessibilityLabel": "Картка слова — hard",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-43:word:rundown:audio",
-            "transcript": "rundown"
+            "audioTargetId": "en:lesson-10:session-43:word:hard:audio",
+            "transcript": "hard"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-43:word:rundown:r1",
-              "targetText": "rundown",
+              "responseId": "en:lesson-10:session-43:word:hard:r1",
+              "targetText": "hard",
               "meaningByLocale": {
-                "ru": "«краткий обзор основных сведений». She is giving us a rundown. — «Она даёт нам краткий обзор». Например, обзор задач на день; сведения не обязательно повторяются.",
-                "uk": "«короткий огляд основних відомостей». She is giving us a rundown. — «Вона дає нам короткий огляд». Наприклад, огляд завдань на день; відомості не обов’язково повторюються."
+                "ru": "«твёрдый». This cheese is hard. — «Этот сыр твёрдый».",
+                "uk": "«твердий». This cheese is hard. — «Цей сир твердий»."
               }
             }
           ],
@@ -1808,10 +1803,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "rundown",
+            "word": "hard",
             "definitionByLocale": {
-              "ru": "«краткий обзор основных сведений». She is giving us a rundown. — «Она даёт нам краткий обзор». Например, обзор задач на день; сведения не обязательно повторяются.",
-              "uk": "«короткий огляд основних відомостей». She is giving us a rundown. — «Вона дає нам короткий огляд». Наприклад, огляд завдань на день; відомості не обов’язково повторюються."
+              "ru": "«твёрдый». This cheese is hard. — «Этот сыр твёрдый».",
+              "uk": "«твердий». This cheese is hard. — «Цей сир твердий»."
             }
           }
         },
@@ -1823,25 +1818,23 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Керівниця зараз знайомить команду із завданнями дня. Скажіть: «Вона дає нам короткий огляд»",
+        "prompt": "Сир твердий, його важко розрізати. Скажіть: «Цей сир твердий»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Керівниця зараз знайомить команду із завданнями дня. Скажіть: «Вона дає нам короткий огляд»",
+        "accessibilityLabel": "Сир твердий, його важко розрізати. Скажіть: «Цей сир твердий»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "She is giving us a rundown.",
+          "targetPhrase": "This cheese is hard.",
           "localizedMeaning": {
-            "ru": "Руководительница сейчас знакомит команду с задачами дня. Скажите: «Она даёт нам краткий обзор»",
-            "uk": "Керівниця зараз знайомить команду із завданнями дня. Скажіть: «Вона дає нам короткий огляд»"
+            "ru": "Сыр твёрдый, его трудно разрезать. Скажите: «Этот сыр твёрдый»",
+            "uk": "Сир твердий, його важко розрізати. Скажіть: «Цей сир твердий»"
           },
           "orderedTokens": [
-            "She",
+            "This",
+            "cheese",
             "is",
-            "giving",
-            "us",
-            "a",
-            "rundown"
+            "hard"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1862,15 +1855,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-43:i11:r1",
-            "text": "The rundown is in the email."
+            "text": "The bread is hard."
           },
           {
             "responseId": "en:lesson-10:session-43:i11:r2",
-            "text": "The rundown is in the report."
+            "text": "The cheese is hard."
           },
           {
             "responseId": "en:lesson-10:session-43:i11:r3",
-            "text": "The photo is in the email."
+            "text": "The bread is soft."
           }
         ],
         "mediaIds": [],
@@ -1882,23 +1875,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-43:i11:audio",
-            "transcript": "The rundown is in the email."
+            "transcript": "The bread is hard."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-43:i11:r1",
-              "targetText": "The rundown is in the email.",
+              "targetText": "The bread is hard.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-43:i11:r2",
-              "targetText": "The rundown is in the report.",
+              "targetText": "The cheese is hard.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-43:i11:r3",
-              "targetText": "The photo is in the email.",
+              "targetText": "The bread is soft.",
               "meaningByLocale": null
             }
           ],
@@ -1909,8 +1902,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The rundown is in the email.",
-                "uk": "У записі звучить The rundown is in the email."
+                "ru": "В записи звучит The bread is hard.",
+                "uk": "У записі звучить The bread is hard."
               }
             },
             {
@@ -1918,8 +1911,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The rundown is in the email.",
-                "uk": "У записі звучить The rundown is in the email."
+                "ru": "В записи звучит The bread is hard.",
+                "uk": "У записі звучить The bread is hard."
               }
             }
           ],
@@ -1934,63 +1927,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть правильне написання форми give",
+        "prompt": "Виберіть зв’язку для властивості сиру",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-43:i12:r1",
-            "text": "giving"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-43:i12:r2",
-            "text": "giveing"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-43:i12:r3",
-            "text": "give"
+            "text": "am"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть правильне написання форми give",
+        "accessibilityLabel": "Виберіть зв’язку для властивості сиру",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите правильное написание формы give",
-            "uk": "Виберіть правильне написання форми give"
+            "ru": "Выберите связку для свойства сыра",
+            "uk": "Виберіть зв’язку для властивості сиру"
           },
-          "gappedTargetPhrase": "She is ___ us a rundown.",
+          "gappedTargetPhrase": "This cheese ___ hard.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-43:i12:r1",
-              "text": "giving"
+              "text": "is"
             },
             {
               "responseId": "en:lesson-10:session-43:i12:r2",
-              "text": "giveing"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-10:session-43:i12:r3",
-              "text": "give"
+              "text": "am"
             }
           ],
-          "testedDimension": "Виберіть правильне написання форми give",
+          "testedDimension": "Виберіть зв’язку для властивості сиру",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-43:i12:r2",
               "correct": false,
-              "testedDimension": "Виберіть правильне написання форми give",
+              "testedDimension": "Виберіть зв’язку для властивості сиру",
               "feedbackByLocale": {
-                "ru": "Перед ing убираем e: giving.",
-                "uk": "Перед ing прибираємо e: giving."
+                "ru": "С cheese нужна is.",
+                "uk": "Із cheese потрібна is."
               }
             },
             {
               "responseId": "en:lesson-10:session-43:i12:r3",
               "correct": false,
-              "testedDimension": "Виберіть правильне написання форми give",
+              "testedDimension": "Виберіть зв’язку для властивості сиру",
               "feedbackByLocale": {
-                "ru": "После is для текущего действия нужна giving.",
-                "uk": "Після is для поточної дії потрібна giving."
+                "ru": "Am используется с I.",
+                "uk": "Am уживається з I."
               }
             }
           ]
@@ -2003,58 +1996,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "З’єднайте слова зі значеннями",
+        "prompt": "Поєднайте слова з перекладом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "accessibilityLabel": "Поєднайте слова з перекладом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-43:i13:p1",
-              "target": "circular",
+              "target": "mild",
               "meaningByLocale": {
-                "ru": "циркулярное письмо",
-                "uk": "циркулярний лист"
+                "ru": "неострый",
+                "uk": "негострий"
               }
             },
             {
               "pairId": "en:lesson-10:session-43:i13:p2",
-              "target": "directive",
+              "target": "creamy",
               "meaningByLocale": {
-                "ru": "официальное указание",
-                "uk": "офіційна вказівка"
+                "ru": "сливочный",
+                "uk": "вершковий"
               }
             },
             {
               "pairId": "en:lesson-10:session-43:i13:p3",
-              "target": "recap",
+              "target": "thin",
               "meaningByLocale": {
-                "ru": "краткое повторение основных пунктов",
-                "uk": "коротке повторення основних пунктів"
+                "ru": "тонкий",
+                "uk": "тонкий"
               }
             },
             {
               "pairId": "en:lesson-10:session-43:i13:p4",
-              "target": "rundown",
+              "target": "hard",
               "meaningByLocale": {
-                "ru": "краткий обзор основных сведений",
-                "uk": "короткий огляд основних відомостей"
+                "ru": "твёрдый",
+                "uk": "твердий"
               }
             }
           ],
           "leftColumn": [
-            "circular",
-            "directive",
-            "recap",
-            "rundown"
+            "mild",
+            "creamy",
+            "thin",
+            "hard"
           ],
           "rightColumn": [
-            "циркулярний лист",
-            "офіційна вказівка",
-            "коротке повторення основних пунктів",
-            "короткий огляд основних відомостей"
+            "негострий",
+            "вершковий",
+            "тонкий",
+            "твердий"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -2076,28 +2069,26 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послухайте й складіть фразу",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-43:i14:audio"
         ],
-        "accessibilityLabel": "Послухайте й складіть фразу",
+        "accessibilityLabel": "Складіть почуту фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-43:i14:audio",
-            "transcript": "She is giving us a rundown."
+            "transcript": "This sauce is mild."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "She is giving us a rundown.",
+          "hiddenTargetPhrase": "This sauce is mild.",
           "orderedTokens": [
-            "She",
+            "This",
+            "sauce",
             "is",
-            "giving",
-            "us",
-            "a",
-            "rundown"
+            "mild"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2111,24 +2102,62 @@
       {
         "interactionId": "en:lesson-10:session-43:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Колега запитує, коли команда отримує інструкції на день. Скажіть: «У нас інструктаж щоранку»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-43:i15:audio"
         ],
-        "accessibilityLabel": "Колега запитує, коли команда отримує інструкції на день. Скажіть: «У нас інструктаж щоранку»",
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-43:i15:audio",
+            "transcript": "I am cutting a thin slice."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am cutting a thin slice.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "cutting",
+            "a",
+            "thin",
+            "slice"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-43:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг не любить гострого. Заспокойте його: «Цей соус негострий»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-43:i16:audio"
+        ],
+        "accessibilityLabel": "Друг не любить гострого. Заспокойте його: «Цей соус негострий»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-43:i15:audio",
-            "transcript": "We have a briefing every morning."
+            "audioTargetId": "en:lesson-10:session-43:i16:audio",
+            "transcript": "This sauce is mild."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We have a briefing every morning.",
+          "targetPhrase": "This sauce is mild.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2142,70 +2171,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-43:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Керівник запитує, чи зрозуміле розпорядження. Скажіть: «Я розумію офіційну вказівку»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Керівник запитує, чи зрозуміле розпорядження. Скажіть: «Я розумію офіційну вказівку»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I understand the directive.",
-          "localizedMeaning": {
-            "ru": "Руководитель спрашивает, понятно ли распоряжение. Скажите: «Я понимаю официальное указание»",
-            "uk": "Керівник запитує, чи зрозуміле розпорядження. Скажіть: «Я розумію офіційну вказівку»"
-          },
-          "orderedTokens": [
-            "I",
-            "understand",
-            "the",
-            "directive"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-43:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Колега приєднався до зустрічі й запитує, про що говорить керівниця. Вона зараз перелічує основні завдання дня. Скажіть: «Вона дає нам короткий огляд»",
+        "prompt": "Друг запитує, що ви робите з хлібом. Скажіть: «Я відрізаю тонку скибку»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-43:i17:audio"
         ],
-        "accessibilityLabel": "Колега приєднався до зустрічі й запитує, про що говорить керівниця. Вона зараз перелічує основні завдання дня. Скажіть: «Вона дає нам короткий огляд»",
+        "accessibilityLabel": "Друг запитує, що ви робите з хлібом. Скажіть: «Я відрізаю тонку скибку»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-43:i17:audio",
-            "transcript": "She is giving us a rundown."
+            "transcript": "I am cutting a thin slice."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "She is giving us a rundown.",
+          "targetPhrase": "I am cutting a thin slice.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -2219,83 +2207,83 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-10:session-43:word:circular",
-      "correctText": "circular",
+      "interactionId": "en:lesson-10:session-43:word:mild",
+      "correctText": "mild",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-43:i01",
-      "correctText": "I am reading the circular.",
+      "correctText": "This sauce is mild.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-43:i02",
-      "correctText": "The circular is on the desk.",
+      "correctText": "This cheese is mild.",
       "correctResponseId": "en:lesson-10:session-43:i02:r1"
     },
     {
       "interactionId": "en:lesson-10:session-43:i03",
-      "correctText": "have",
+      "correctText": "is",
       "correctResponseId": "en:lesson-10:session-43:i03:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-43:word:directive",
-      "correctText": "directive",
+      "interactionId": "en:lesson-10:session-43:word:creamy",
+      "correctText": "creamy",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-43:i04",
-      "correctText": "I understand the directive.",
+      "correctText": "The soup is creamy.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-43:i05",
-      "correctText": "The directive is clear.",
+      "correctText": "The sauce is creamy.",
       "correctResponseId": "en:lesson-10:session-43:i05:r1"
     },
     {
       "interactionId": "en:lesson-10:session-43:i06",
-      "correctText": "understand",
+      "correctText": "is",
       "correctResponseId": "en:lesson-10:session-43:i06:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-43:word:recap",
-      "correctText": "recap",
+      "interactionId": "en:lesson-10:session-43:word:thin",
+      "correctText": "thin",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-43:i07",
-      "correctText": "The recap is helpful.",
+      "correctText": "I am cutting a thin slice.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-43:i08",
-      "correctText": "The recap is at the end.",
+      "correctText": "She is cutting a thin slice.",
       "correctResponseId": "en:lesson-10:session-43:i08:r1"
     },
     {
       "interactionId": "en:lesson-10:session-43:i09",
-      "correctText": "is",
+      "correctText": "cutting",
       "correctResponseId": "en:lesson-10:session-43:i09:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-43:word:rundown",
-      "correctText": "rundown",
+      "interactionId": "en:lesson-10:session-43:word:hard",
+      "correctText": "hard",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-43:i10",
-      "correctText": "She is giving us a rundown.",
+      "correctText": "This cheese is hard.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-43:i11",
-      "correctText": "The rundown is in the email.",
+      "correctText": "The bread is hard.",
       "correctResponseId": "en:lesson-10:session-43:i11:r1"
     },
     {
       "interactionId": "en:lesson-10:session-43:i12",
-      "correctText": "giving",
+      "correctText": "is",
       "correctResponseId": "en:lesson-10:session-43:i12:r1"
     },
     {
@@ -2305,22 +2293,22 @@
     },
     {
       "interactionId": "en:lesson-10:session-43:i14",
-      "correctText": "She is giving us a rundown.",
+      "correctText": "This sauce is mild.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-43:i15",
-      "correctText": "We have a briefing every morning.",
+      "correctText": "I am cutting a thin slice.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-43:i16",
-      "correctText": "I understand the directive.",
+      "correctText": "This sauce is mild.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-43:i17",
-      "correctText": "She is giving us a rundown.",
+      "correctText": "I am cutting a thin slice.",
       "correctResponseId": null
     }
   ]

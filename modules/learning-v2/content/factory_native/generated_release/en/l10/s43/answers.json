@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-43:word:circular",
-    "correctText": "circular",
+    "interactionId": "en:lesson-10:session-43:word:mild",
+    "correctText": "mild",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-43:i01",
-    "correctText": "I am reading the circular.",
+    "correctText": "This sauce is mild.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-43:i02",
-    "correctText": "The circular is on the desk.",
+    "correctText": "This cheese is mild.",
     "correctResponseId": "en:lesson-10:session-43:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-43:i03",
-    "correctText": "have",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-43:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-43:word:directive",
-    "correctText": "directive",
+    "interactionId": "en:lesson-10:session-43:word:creamy",
+    "correctText": "creamy",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-43:i04",
-    "correctText": "I understand the directive.",
+    "correctText": "The soup is creamy.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-43:i05",
-    "correctText": "The directive is clear.",
+    "correctText": "The sauce is creamy.",
     "correctResponseId": "en:lesson-10:session-43:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-43:i06",
-    "correctText": "understand",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-43:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-43:word:recap",
-    "correctText": "recap",
+    "interactionId": "en:lesson-10:session-43:word:thin",
+    "correctText": "thin",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-43:i07",
-    "correctText": "The recap is helpful.",
+    "correctText": "I am cutting a thin slice.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-43:i08",
-    "correctText": "The recap is at the end.",
+    "correctText": "She is cutting a thin slice.",
     "correctResponseId": "en:lesson-10:session-43:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-43:i09",
-    "correctText": "is",
+    "correctText": "cutting",
     "correctResponseId": "en:lesson-10:session-43:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-43:word:rundown",
-    "correctText": "rundown",
+    "interactionId": "en:lesson-10:session-43:word:hard",
+    "correctText": "hard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-43:i10",
-    "correctText": "She is giving us a rundown.",
+    "correctText": "This cheese is hard.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-43:i11",
-    "correctText": "The rundown is in the email.",
+    "correctText": "The bread is hard.",
     "correctResponseId": "en:lesson-10:session-43:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-43:i12",
-    "correctText": "giving",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-43:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-43:i13",
-    "correctText": "en:lesson-10:session-43:i13:p1=circular\nen:lesson-10:session-43:i13:p2=directive\nen:lesson-10:session-43:i13:p3=recap\nen:lesson-10:session-43:i13:p4=rundown",
+    "correctText": "en:lesson-10:session-43:i13:p1=mild\nen:lesson-10:session-43:i13:p2=creamy\nen:lesson-10:session-43:i13:p3=thin\nen:lesson-10:session-43:i13:p4=hard",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-43:i14",
-    "correctText": "She is giving us a rundown.",
+    "correctText": "This sauce is mild.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-43:i15",
-    "correctText": "We have a briefing every morning.",
+    "correctText": "I am cutting a thin slice.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-43:i16",
-    "correctText": "I understand the directive.",
+    "correctText": "This sauce is mild.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-43:i17",
-    "correctText": "She is giving us a rundown.",
+    "correctText": "I am cutting a thin slice.",
     "correctResponseId": null
   }
 ]

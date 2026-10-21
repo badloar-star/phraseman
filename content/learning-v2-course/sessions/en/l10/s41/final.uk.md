@@ -1,151 +1,151 @@
-# Англійська · Урок 10 · Заняття 41 — На конференції
+# Англійська · Урок 10 · Заняття 41 — Чекаємо на друга
 
-**Ситуація.** Обговорити щорічну конференцію та поточні виступи.
+**Ситуація.** Припустити, де друг, який затримується, й описати погоду біля місця зустрічі.
 
-**Що ви опануєте:** We attend this conference every year; The keynote is starting; The panellist is answering a question
-**Нові слова:** conference, keynote, panellist, plenary
+**Що ви опануєте:** Perhaps he is on the bus; He is probably at home; It is quite cold
+**Нові слова:** perhaps, probably, quite, suddenly
 
 ## Інтро 1
 
-### Приїздимо щороку
+### Можливо, в автобусі
 
-Conference — «конференція»: зустріч для виступів і обговорення спільної теми. Ви з колегою берете участь щороку: We attend this conference every year — «Ми відвідуємо цю конференцію щороку». Every year показує повторення: використовуємо Present Simple.
+Друг запізнюється до місця зустрічі. Ви не знаєте, де він, і лише пропонуєте варіант: Perhaps he is on the bus — «Можливо, він в автобусі». Perhaps — «можливо». Це припущення, а не факт. У цьому реченні perhaps стоїть на початку.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **We attend this conference every year.**
-- ❌ We attends this conference every year. — *З we потрібна attend без s.*
-- ❌ We attending this conference every year. — *Для звички тут потрібна attend.*
+- ✅ **Perhaps he is on the bus.**
+- ❌ Perhaps he on the bus. — *Після he потрібна зв’язка is.*
+- ❌ Perhaps he are on the bus. — *З he потрібна is, не are.*
 
 ---
 
 ## Інтро 2
 
-### Починається головна доповідь
+### Найімовірніше, удома
 
-Keynote — «головна доповідь»: виступ, який задає основну тему конференції. Доповідач виходить, зал затихає: The keynote is starting — «Головна доповідь починається». Це дія зараз: is + starting.
+Друг ще не відповідає, а зазвичай у цей час снідає вдома. Ви вважаєте цей варіант найімовірнішим: He is probably at home — «Він, найімовірніше, удома». Probably — «найімовірніше». У цьому реченні probably ставимо після is. Це впевненіше припущення, але ще не відомий факт.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **The keynote is starting.**
-- ❌ The keynote starting. — *Перед starting потрібне is.*
-- ❌ The keynote are starting. — *Одна доповідь: is.*
+- ✅ **He is probably at home.**
+- ❌ He probably at home. — *Перед probably тут потрібна is.*
+- ❌ He are probably at home. — *З he потрібна is.*
 
 ---
 
 ## Інтро 3
 
-### Відповідь на запитання
+### Холодно біля входу
 
-Panellist — «учасник панельної дискусії»: запрошена людина, яка обговорює тему разом з іншими учасниками перед аудиторією. Зараз він відповідає: The panellist is answering a question — «Учасник панельної дискусії відповідає на запитання». Використовуємо is + answering. Panellist — британське написання; американське — panelist.
+Ви чекаєте надворі й застібаєте куртку: It is quite cold — «Досить холодно». Quite — «досить» перед cold. Тепер ви розповідаєте коротку історію в теперішньому часі: ви чекаєте на друга, і раптом починається дощ. Suddenly — «раптом»: Suddenly, it starts raining — «Раптом починається дощ». Це короткий опис несподіваної події в теперішньому часі. Після it потрібна starts.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **The panellist is answering a question.**
-- ❌ The panellist answering a question. — *Перед answering потрібне is.*
-- ❌ The panellist is answer a question. — *Після is тут потрібна answering.*
+- ✅ **It is quite cold.**
+- ❌ It quite cold. — *Перед quite cold потрібна is.*
+- ❌ It are quite cold. — *З it потрібна is.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — conference**
-<!-- interaction_id: en:lesson-10:session-41:word:conference; family: word_card -->
-> **conference** — «конференція». We attend this conference every year. — «Ми відвідуємо цю конференцію щороку». Зустріч для виступів і обговорення спільної теми.
+**1 · Картка слова — perhaps**
+<!-- interaction_id: en:lesson-10:session-41:word:perhaps; family: word_card -->
+> **perhaps** — «можливо». Perhaps he is on the bus. — «Можливо, він в автобусі».
 
-**2 · Ви з колегою берете участь щороку. Скажіть: «Ми відвідуємо цю конференцію щороку». Поставте every year у кінці**
+**2 · Ви не знаєте, де друг. Припустіть: «Можливо, він в автобусі». Почніть з Perhaps**
 <!-- interaction_id: en:lesson-10:session-41:i01; family: phrase_builder -->
-Плитки: `year` `every` `conference` `this` `attend` `We` → **We attend this conference every year.**
+Плитки: `bus` `the` `on` `is` `he` `Perhaps` → **Perhaps he is on the bus.**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-41:i02; family: listen_choose -->
-🔊 *The conference is in London.* → **The conference is in London.** · The conference is in Dublin. · The ceremony is in London.
-- The conference is in Dublin. — *У записі звучить The conference is in London.*
-- The ceremony is in London. — *У записі звучить The conference is in London.*
+🔊 *Perhaps she is at work.* → **Perhaps she is at work.** · Perhaps she is at home. · Perhaps he is at work.
+- Perhaps she is at home. — *У записі звучить Perhaps she is at work.*
+- Perhaps he is at work. — *У записі звучить Perhaps she is at work.*
 
-**4 · Це щорічна участь. Виберіть форму attend**
+**4 · Виберіть зв’язку після he**
 <!-- interaction_id: en:lesson-10:session-41:i03; family: context_gap_grammar -->
-We ___ this conference every year. → **attend** · attends · attending
-- attends — *З we потрібна attend без s.*
-- attending — *Для регулярної дії потрібна attend.*
+Perhaps he ___ on the bus. → **is** · are · am
+- are — *З he потрібна is.*
+- am — *Am уживається з I.*
 
-**5 · Картка слова — keynote**
-<!-- interaction_id: en:lesson-10:session-41:word:keynote; family: word_card -->
-> **keynote** — «головна доповідь». The keynote is starting. — «Головна доповідь починається». Виступ, який задає основну тему конференції.
+**5 · Картка слова — probably**
+<!-- interaction_id: en:lesson-10:session-41:word:probably; family: word_card -->
+> **probably** — «найімовірніше». He is probably at home. — «Він, найімовірніше, удома».
 
-**6 · Головний доповідач виходить до мікрофона. Скажіть: «Головна доповідь починається»**
+**6 · З огляду на звичний розпорядок друга ви припускаєте: «Він, найімовірніше, удома». Поставте probably після is**
 <!-- interaction_id: en:lesson-10:session-41:i04; family: phrase_builder -->
-Плитки: `starting` `is` `keynote` `The` → **The keynote is starting.**
+Плитки: `home` `at` `probably` `is` `He` → **He is probably at home.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-41:i05; family: listen_choose -->
-🔊 *The keynote is in the main hall.* → **The keynote is in the main hall.** · The keynote is in the small hall. · The meeting is in the main hall.
-- The keynote is in the small hall. — *У записі звучить The keynote is in the main hall.*
-- The meeting is in the main hall. — *У записі звучить The keynote is in the main hall.*
+🔊 *They are probably at work.* → **They are probably at work.** · They are probably at home. · We are probably at work.
+- They are probably at home. — *У записі звучить They are probably at work.*
+- We are probably at work. — *У записі звучить They are probably at work.*
 
-**8 · Одна доповідь починається зараз. Виберіть зв’язку**
+**8 · Виберіть зв’язку після he**
 <!-- interaction_id: en:lesson-10:session-41:i06; family: context_gap_grammar -->
-The keynote ___ starting. → **is** · are · am
-- are — *Одна доповідь: is.*
-- am — *Am уживається з I; тут потрібна is.*
+He ___ probably at home. → **is** · are · am
+- are — *З he потрібна is.*
+- am — *Am уживається з I.*
 
-**9 · Картка слова — panellist**
-<!-- interaction_id: en:lesson-10:session-41:word:panellist; family: word_card -->
-> **panellist** — «учасник панельної дискусії». The panellist is answering a question. — «Учасник панельної дискусії відповідає на запитання». Британське написання; американське — panelist.
+**9 · Картка слова — quite**
+<!-- interaction_id: en:lesson-10:session-41:word:quite; family: word_card -->
+> **quite** — «досить». It is quite cold. — «Досить холодно».
 
-**10 · Учасник обговорення зараз відповідає на запитання із залу. Скажіть: «Учасник панельної дискусії відповідає на запитання»**
+**10 · Ви застібаєте куртку. Скажіть: «Досить холодно»**
 <!-- interaction_id: en:lesson-10:session-41:i07; family: phrase_builder -->
-Плитки: `question` `a` `answering` `is` `panellist` `The` → **The panellist is answering a question.**
+Плитки: `cold` `quite` `is` `It` → **It is quite cold.**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-41:i08; family: listen_choose -->
-🔊 *The panellist is sitting beside the speaker.* → **The panellist is sitting beside the speaker.** · The panellist is standing beside the speaker. · The panellist is sitting behind the speaker.
-- The panellist is standing beside the speaker. — *У записі звучить The panellist is sitting beside the speaker.*
-- The panellist is sitting behind the speaker. — *У записі звучить The panellist is sitting beside the speaker.*
+🔊 *It is quite warm.* → **It is quite warm.** · It is quite cold. · It is quite windy.
+- It is quite cold. — *У записі звучить It is quite warm.*
+- It is quite windy. — *У записі звучить It is quite warm.*
 
-**12 · Виберіть форму для дії зараз**
+**12 · Виберіть зв’язку в описі погоди**
 <!-- interaction_id: en:lesson-10:session-41:i09; family: context_gap_grammar -->
-The panellist is ___ a question. → **answering** · answer · answers
-- answer — *Після is потрібна answering.*
-- answers — *Для дії зараз потрібна answering.*
+It ___ quite cold. → **is** · are · am
+- are — *З it потрібна is.*
+- am — *Am уживається з I.*
 
-**13 · Картка слова — plenary**
-<!-- interaction_id: en:lesson-10:session-41:word:plenary; family: word_card -->
-> **plenary** — «загальне засідання». The plenary is after lunch. — «Загальне засідання після обіду». Тут засідання для всіх учасників конференції, а не для окремих груп.
+**13 · Картка слова — suddenly**
+<!-- interaction_id: en:lesson-10:session-41:word:suddenly; family: word_card -->
+> **suddenly** — «раптом». Suddenly, it starts raining. — «Раптом починається дощ».
 
-**14 · Колега запитує, коли зберуться всі учасники. Скажіть: «Загальне засідання після обіду»**
+**14 · Ви розповідаєте коротку історію в теперішньому часі: «Раптом починається дощ». Почніть із Suddenly**
 <!-- interaction_id: en:lesson-10:session-41:i10; family: phrase_builder -->
-Плитки: `lunch` `after` `is` `plenary` `The` → **The plenary is after lunch.**
+Плитки: `raining` `starts` `it` `Suddenly,` → **Suddenly, it starts raining.**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-41:i11; family: listen_choose -->
-🔊 *Everyone is attending the plenary.* → **Everyone is attending the plenary.** · Everyone is leaving the plenary. · Everyone is attending the keynote.
-- Everyone is leaving the plenary. — *У записі звучить Everyone is attending the plenary.*
-- Everyone is attending the keynote. — *У записі звучить Everyone is attending the plenary.*
+🔊 *Suddenly, the phone rings.* → **Suddenly, the phone rings.** · Suddenly, the door opens. · Suddenly, the bell rings.
+- Suddenly, the door opens. — *У записі звучить Suddenly, the phone rings.*
+- Suddenly, the bell rings. — *У записі звучить Suddenly, the phone rings.*
 
-**16 · Загальне засідання почнеться, коли обід закінчиться. Виберіть after**
+**16 · Виберіть форму start після it**
 <!-- interaction_id: en:lesson-10:session-41:i12; family: context_gap_grammar -->
-The plenary is ___ lunch. → **after** · before · during
-- before — *Before означає до; тут після — after.*
-- during — *During означає під час; тут потрібне after.*
+Suddenly, it ___ raining. → **starts** · start · starting
+- start — *Після it потрібна starts із s.*
+- starting — *Тут потрібна особова форма starts.*
 
-**17 · З’єднайте слова зі значеннями**
+**17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-10:session-41:i13; family: speed_match -->
-conference — конференція · keynote — головна доповідь · panellist — учасник панельної дискусії · plenary — загальне засідання
+perhaps — можливо · probably — найімовірніше · quite — досить · suddenly — раптом
 
-**18 · Послухайте й складіть фразу**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-41:i14; family: listen_build_dictation -->
-🔊 *The keynote is starting.* Плитки: `starting` `is` `keynote` `The` → **The keynote is starting.**
+🔊 *He is probably at home.* Плитки: `home` `at` `probably` `is` `He` → **He is probably at home.**
 
-**19 · Колега запитує, чи регулярно ви берете участь. Скажіть: «Ми відвідуємо цю конференцію щороку»**
-<!-- interaction_id: en:lesson-10:session-41:i15; family: scripted_repeat_compare -->
-🎙 **We attend this conference every year.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-41:i15; family: listen_build_dictation -->
+🔊 *It is quite cold.* Плитки: `cold` `quite` `is` `It` → **It is quite cold.**
 
-**20 · Колега уточнює час зустрічі всіх учасників. Скажіть: «Загальне засідання після обіду»**
-<!-- interaction_id: en:lesson-10:session-41:i16; family: phrase_builder -->
-Плитки: `lunch` `after` `is` `plenary` `The` → **The plenary is after lunch.**
+**20 · Ви припускаєте, що друг іще їде: «Можливо, він в автобусі»**
+<!-- interaction_id: en:lesson-10:session-41:i16; family: scripted_repeat_compare -->
+🎙 **Perhaps he is on the bus.**
 
-**21 · Колега повернувся до залу й запитує, що відбувається. Один з учасників дискусії відповідає на запитання із залу. Скажіть: «Учасник панельної дискусії відповідає на запитання»**
-<!-- interaction_id: en:lesson-10:session-41:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The panellist is answering a question.**
+**21 · Подруга запитує, чи тепло надворі. Ви застібаєте куртку. Скажіть: «Досить холодно»**
+<!-- interaction_id: en:lesson-10:session-41:i17; family: scripted_repeat_compare -->
+🎙 **It is quite cold.**
 

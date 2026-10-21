@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-43:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-43:intro1:r2": {
-          "ru": "С we нужна have.",
-          "uk": "З we потрібна have."
+          "ru": "Перед mild нужна is.",
+          "uk": "Перед mild потрібна is."
         },
         "en:lesson-10:session-43:intro1:r3": {
-          "ru": "Для регулярной ситуации нужна have.",
-          "uk": "Для регулярної ситуації потрібна have."
+          "ru": "Один соус: is.",
+          "uk": "Один соус: is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-43:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-43:intro2:r2": {
-          "ru": "Перед reading нужен am.",
-          "uk": "Перед reading потрібне am."
+          "ru": "Перед creamy нужна is.",
+          "uk": "Перед creamy потрібна is."
         },
         "en:lesson-10:session-43:intro2:r3": {
-          "ru": "С I нужна am.",
-          "uk": "З I потрібна am."
+          "ru": "Один суп: is.",
+          "uk": "Один суп: is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-43:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-43:intro3:r2": {
-          "ru": "Правильно giving, без e.",
-          "uk": "Правильно giving, без e."
+          "ru": "Перед cutting нужна am.",
+          "uk": "Перед cutting потрібна am."
         },
         "en:lesson-10:session-43:intro3:r3": {
-          "ru": "Перед giving нужен is.",
-          "uk": "Перед giving потрібне is."
+          "ru": "После am нужна cutting.",
+          "uk": "Після am потрібна cutting."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "5620b25640b412e9d681efeef66bb41f4f767b584750bf98f182e6ae62d7d170"
+  "auxiliaryFingerprint": "c213cebfccfb1d42f2be3cc5ef0759a4f7d939a04a6857a81a6f2551d7b390a6"
 }

@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 43 — Утренний инструктаж
+# Английский · Урок 10 · Занятие 43 — Какой вкус и какая еда
 
-**Ситуация.** Обсудить ежедневный инструктаж, письменные сообщения и объяснения руководителя.
+**Ситуация.** Выбрать неострый соус и описать суп, ломтик хлеба и твёрдый сыр.
 
-**Что вы освоите:** We have a briefing every morning; I am reading the circular; She is giving us a rundown
-**Новые слова:** circular, directive, recap, rundown
+**Что вы освоите:** This sauce is mild; The soup is creamy; I am cutting a thin slice
+**Новые слова:** mild, creamy, thin, hard
 
 ## Интро 1
 
-### Каждое утро
+### Соус без сильной остроты
 
-Повторим briefing — «инструктаж». Команда собирается каждое утро: We have a briefing every morning — «У нас инструктаж каждое утро». Every morning показывает повторение: используем Present Simple.
+Вы не любите очень острое. Официант предлагает соус с мягким вкусом: This sauce is mild — «Этот соус неострый». Mild — «мягкий, неострый» о вкусе. Это свойство соуса: is + mild. Здесь mild не означает температуру еды.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We have a briefing every morning.**
-- ❌ We has a briefing every morning. — *С we нужна have.*
-- ❌ We having a briefing every morning. — *Для регулярной ситуации нужна have.*
+- ✅ **This sauce is mild.**
+- ❌ This sauce mild. — *Перед mild нужна is.*
+- ❌ This sauce are mild. — *Один соус: is.*
 
 ---
 
 ## Интро 2
 
-### Читаем сообщение
+### Суп со сливками
 
-Circular здесь — «циркулярное письмо», одинаковое письменное сообщение, разосланное группе людей. Его прислали всем сотрудникам, и вы сейчас читаете: I am reading the circular — «Я читаю циркулярное письмо». Действие идёт сейчас: am + reading.
+Вы пробуете суп со сливками. Creamy — «сливочный, нежный по консистенции»: The soup is creamy — «Суп сливочный». Слово описывает вкус или консистенцию; creamy не сообщает само по себе, сколько сливок добавлено. Для свойства супа нужна is, без being.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I am reading the circular.**
-- ❌ I reading the circular. — *Перед reading нужен am.*
-- ❌ I is reading the circular. — *С I нужна am.*
+- ✅ **The soup is creamy.**
+- ❌ The soup creamy. — *Перед creamy нужна is.*
+- ❌ The soup are creamy. — *Один суп: is.*
 
 ---
 
 ## Интро 3
 
-### Кратко о главном
+### Хлеб и сыр
 
-Rundown — «краткий обзор основных сведений». Руководительница сейчас рассказывает команде о задачах дня: She is giving us a rundown — «Она даёт нам краткий обзор». Для текущего объяснения используем is + giving. У give перед ing убираем e.
+К супу вы нарезаете хлеб. Thin — «тонкий»: I am cutting a thin slice — «Я отрезаю тонкий ломтик». Действие идёт сейчас: am cutting. Вы берёте сыр, который трудно разрезать. Hard — «твёрдый»: This cheese is hard — «Этот сыр твёрдый». Is hard описывает свойство, а не действие.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **She is giving us a rundown.**
-- ❌ She is giveing us a rundown. — *Правильно giving, без e.*
-- ❌ She giving us a rundown. — *Перед giving нужен is.*
+- ✅ **I am cutting a thin slice.**
+- ❌ I cutting a thin slice. — *Перед cutting нужна am.*
+- ❌ I am cut a thin slice. — *После am нужна cutting.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — circular**
-<!-- interaction_id: en:lesson-10:session-43:word:circular; family: word_card -->
-> **circular** — «циркулярное письмо». I am reading the circular. — «Я читаю циркулярное письмо». Одинаковое письменное сообщение группе людей. Здесь существительное, не прилагательное «круглый».
+**1 · Карточка слова — mild**
+<!-- interaction_id: en:lesson-10:session-43:word:mild; family: word_card -->
+> **mild** — «мягкий, неострый» о вкусе. This sauce is mild. — «Этот соус неострый».
 
-**2 · Всем сотрудникам прислали одно письмо. Вы сейчас читаете его. Скажите: «Я читаю циркулярное письмо»**
+**2 · Соус не жжёт рот. Скажите: «Этот соус неострый»**
 <!-- interaction_id: en:lesson-10:session-43:i01; family: phrase_builder -->
-Плитки: `circular` `the` `reading` `am` `I` → **I am reading the circular.**
+Плитки: `mild` `is` `sauce` `This` → **This sauce is mild.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-43:i02; family: listen_choose -->
-🔊 *The circular is on the desk.* → **The circular is on the desk.** · The circular is on the website. · The report is on the desk.
-- The circular is on the website. — *В записи звучит The circular is on the desk.*
-- The report is on the desk. — *В записи звучит The circular is on the desk.*
+🔊 *This cheese is mild.* → **This cheese is mild.** · This sauce is mild. · This cheese is salty.
+- This sauce is mild. — *В записи звучит This cheese is mild.*
+- This cheese is salty. — *В записи звучит This cheese is mild.*
 
-**4 · Команда собирается каждое утро. Выберите форму have**
+**4 · Выберите связку: один соус**
 <!-- interaction_id: en:lesson-10:session-43:i03; family: context_gap_grammar -->
-We ___ a briefing every morning. → **have** · has · having
-- has — *С we нужна have.*
-- having — *Для регулярной ситуации здесь нужна have.*
+This sauce ___ mild. → **is** · are · am
+- are — *Один соус: is.*
+- am — *Am используется с I.*
 
-**5 · Карточка слова — directive**
-<!-- interaction_id: en:lesson-10:session-43:word:directive; family: word_card -->
-> **directive** — «официальное указание». I understand the directive. — «Я понимаю официальное указание». Распоряжение от руководства о том, что нужно сделать.
+**5 · Карточка слова — creamy**
+<!-- interaction_id: en:lesson-10:session-43:word:creamy; family: word_card -->
+> **creamy** — «сливочный, нежный по консистенции». The soup is creamy. — «Суп сливочный».
 
-**6 · Руководитель уточнил распоряжение. Подтвердите: «Я понимаю официальное указание»**
+**6 · Вы пробуете суп со сливками. Скажите: «Суп сливочный»**
 <!-- interaction_id: en:lesson-10:session-43:i04; family: phrase_builder -->
-Плитки: `directive` `the` `understand` `I` → **I understand the directive.**
+Плитки: `creamy` `is` `soup` `The` → **The soup is creamy.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-43:i05; family: listen_choose -->
-🔊 *The directive is clear.* → **The directive is clear.** · The directive is new. · The message is clear.
-- The directive is new. — *В записи звучит The directive is clear.*
-- The message is clear. — *В записи звучит The directive is clear.*
+🔊 *The sauce is creamy.* → **The sauce is creamy.** · The soup is creamy. · The sauce is spicy.
+- The soup is creamy. — *В записи звучит The sauce is creamy.*
+- The sauce is spicy. — *В записи звучит The sauce is creamy.*
 
-**8 · Выберите форму understand с I**
+**8 · Выберите связку в описании супа**
 <!-- interaction_id: en:lesson-10:session-43:i06; family: context_gap_grammar -->
-I ___ the directive. → **understand** · understands · am understand
-- understands — *С I нужна understand без s.*
-- am understand — *Здесь нужна understand без am.*
+The soup ___ creamy. → **is** · are · am
+- are — *С soup нужна is.*
+- am — *Am используется с I.*
 
-**9 · Карточка слова — recap**
-<!-- interaction_id: en:lesson-10:session-43:word:recap; family: word_card -->
-> **recap** — «краткое повторение основных пунктов». The recap is helpful. — «Краткое повторение основных пунктов полезно». Здесь снова кратко излагают то, что уже обсудили.
+**9 · Карточка слова — thin**
+<!-- interaction_id: en:lesson-10:session-43:word:thin; family: word_card -->
+> **thin** — «тонкий». a thin slice — «тонкий ломтик».
 
-**10 · Коллега повторил главные пункты вчерашнего обсуждения. Скажите: «Краткое повторение основных пунктов полезно»**
+**10 · Вы сейчас режете хлеб. Скажите: «Я отрезаю тонкий ломтик»**
 <!-- interaction_id: en:lesson-10:session-43:i07; family: phrase_builder -->
-Плитки: `helpful` `is` `recap` `The` → **The recap is helpful.**
+Плитки: `slice` `thin` `a` `cutting` `am` `I` → **I am cutting a thin slice.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-43:i08; family: listen_choose -->
-🔊 *The recap is at the end.* → **The recap is at the end.** · The recap is at the beginning. · The question is at the end.
-- The recap is at the beginning. — *В записи звучит The recap is at the end.*
-- The question is at the end. — *В записи звучит The recap is at the end.*
+🔊 *She is cutting a thin slice.* → **She is cutting a thin slice.** · He is cutting a thin slice. · She is eating a thin slice.
+- He is cutting a thin slice. — *В записи звучит She is cutting a thin slice.*
+- She is eating a thin slice. — *В записи звучит She is cutting a thin slice.*
 
-**12 · Речь об одном кратком повторении. Выберите связку**
+**12 · Нож у вас в руке сейчас. Выберите форму cut**
 <!-- interaction_id: en:lesson-10:session-43:i09; family: context_gap_grammar -->
-The recap ___ helpful. → **is** · are · am
-- are — *С recap в единственном числе нужна is.*
-- am — *Am используется с I; здесь нужна is.*
+I am ___ a thin slice. → **cutting** · cut · cuts
+- cut — *После am нужна cutting.*
+- cuts — *После am нужна cutting, не cuts.*
 
-**13 · Карточка слова — rundown**
-<!-- interaction_id: en:lesson-10:session-43:word:rundown; family: word_card -->
-> **rundown** — «краткий обзор основных сведений». She is giving us a rundown. — «Она даёт нам краткий обзор». Например, обзор задач на день; сведения не обязательно повторяются.
+**13 · Карточка слова — hard**
+<!-- interaction_id: en:lesson-10:session-43:word:hard; family: word_card -->
+> **hard** — «твёрдый». This cheese is hard. — «Этот сыр твёрдый».
 
-**14 · Руководительница сейчас знакомит команду с задачами дня. Скажите: «Она даёт нам краткий обзор»**
+**14 · Сыр твёрдый, его трудно разрезать. Скажите: «Этот сыр твёрдый»**
 <!-- interaction_id: en:lesson-10:session-43:i10; family: phrase_builder -->
-Плитки: `rundown` `a` `us` `giving` `is` `She` → **She is giving us a rundown.**
+Плитки: `hard` `is` `cheese` `This` → **This cheese is hard.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-43:i11; family: listen_choose -->
-🔊 *The rundown is in the email.* → **The rundown is in the email.** · The rundown is in the report. · The photo is in the email.
-- The rundown is in the report. — *В записи звучит The rundown is in the email.*
-- The photo is in the email. — *В записи звучит The rundown is in the email.*
+🔊 *The bread is hard.* → **The bread is hard.** · The cheese is hard. · The bread is soft.
+- The cheese is hard. — *В записи звучит The bread is hard.*
+- The bread is soft. — *В записи звучит The bread is hard.*
 
-**16 · Выберите правильное написание формы give**
+**16 · Выберите связку для свойства сыра**
 <!-- interaction_id: en:lesson-10:session-43:i12; family: context_gap_grammar -->
-She is ___ us a rundown. → **giving** · giveing · give
-- giveing — *Перед ing убираем e: giving.*
-- give — *После is для текущего действия нужна giving.*
+This cheese ___ hard. → **is** · are · am
+- are — *С cheese нужна is.*
+- am — *Am используется с I.*
 
-**17 · Соедините слова со значениями**
+**17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-10:session-43:i13; family: speed_match -->
-circular — циркулярное письмо · directive — официальное указание · recap — краткое повторение основных пунктов · rundown — краткий обзор основных сведений
+mild — неострый · creamy — сливочный · thin — тонкий · hard — твёрдый
 
-**18 · Послушайте и соберите фразу**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-43:i14; family: listen_build_dictation -->
-🔊 *She is giving us a rundown.* Плитки: `rundown` `a` `us` `giving` `is` `She` → **She is giving us a rundown.**
+🔊 *This sauce is mild.* Плитки: `mild` `is` `sauce` `This` → **This sauce is mild.**
 
-**19 · Коллега спрашивает, когда команда получает инструкции на день. Скажите: «У нас инструктаж каждое утро»**
-<!-- interaction_id: en:lesson-10:session-43:i15; family: scripted_repeat_compare -->
-🎙 **We have a briefing every morning.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-43:i15; family: listen_build_dictation -->
+🔊 *I am cutting a thin slice.* Плитки: `slice` `thin` `a` `cutting` `am` `I` → **I am cutting a thin slice.**
 
-**20 · Руководитель спрашивает, понятно ли распоряжение. Скажите: «Я понимаю официальное указание»**
-<!-- interaction_id: en:lesson-10:session-43:i16; family: phrase_builder -->
-Плитки: `directive` `the` `understand` `I` → **I understand the directive.**
+**20 · Друг не любит острое. Успокойте его: «Этот соус неострый»**
+<!-- interaction_id: en:lesson-10:session-43:i16; family: scripted_repeat_compare -->
+🎙 **This sauce is mild.**
 
-**21 · Коллега присоединился к встрече и спрашивает, о чём говорит руководительница. Она сейчас перечисляет основные задачи дня. Скажите: «Она даёт нам краткий обзор»**
-<!-- interaction_id: en:lesson-10:session-43:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She is giving us a rundown.**
+**21 · Друг спрашивает, что вы делаете с хлебом. Скажите: «Я отрезаю тонкий ломтик»**
+<!-- interaction_id: en:lesson-10:session-43:i17; family: scripted_repeat_compare -->
+🎙 **I am cutting a thin slice.**
 

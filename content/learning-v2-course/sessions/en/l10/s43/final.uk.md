@@ -1,151 +1,151 @@
-# Англійська · Урок 10 · Заняття 43 — Ранковий інструктаж
+# Англійська · Урок 10 · Заняття 43 — Який смак і яка їжа
 
-**Ситуація.** Обговорити щоденний інструктаж, письмові повідомлення та пояснення керівника.
+**Ситуація.** Вибрати негострий соус і описати суп, скибку хліба й твердий сир.
 
-**Що ви опануєте:** We have a briefing every morning; I am reading the circular; She is giving us a rundown
-**Нові слова:** circular, directive, recap, rundown
+**Що ви опануєте:** This sauce is mild; The soup is creamy; I am cutting a thin slice
+**Нові слова:** mild, creamy, thin, hard
 
 ## Інтро 1
 
-### Щоранку
+### Соус без сильної гостроти
 
-Повторімо briefing — «інструктаж». Команда збирається щоранку: We have a briefing every morning — «У нас інструктаж щоранку». Every morning показує повторення: використовуємо Present Simple.
+Ви не любите дуже гостре. Офіціант пропонує соус із м’яким смаком: This sauce is mild — «Цей соус негострий». Mild — «м’який, негострий» про смак. Це властивість соусу: is + mild. Тут mild не означає температуру їжі.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **We have a briefing every morning.**
-- ❌ We has a briefing every morning. — *З we потрібна have.*
-- ❌ We having a briefing every morning. — *Для регулярної ситуації потрібна have.*
+- ✅ **This sauce is mild.**
+- ❌ This sauce mild. — *Перед mild потрібна is.*
+- ❌ This sauce are mild. — *Один соус: is.*
 
 ---
 
 ## Інтро 2
 
-### Читаємо повідомлення
+### Суп із вершками
 
-Circular тут — «циркулярний лист», однакове письмове повідомлення, розіслане групі людей. Його надіслали всім працівникам, і ви зараз читаєте: I am reading the circular — «Я читаю циркулярний лист». Дія триває зараз: am + reading.
+Ви куштуєте суп із вершками. Creamy — «вершковий, ніжний за консистенцією»: The soup is creamy — «Суп вершковий». Слово описує смак або консистенцію; creamy саме по собі не повідомляє, скільки вершків додано. Для властивості супу потрібна is, без being.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I am reading the circular.**
-- ❌ I reading the circular. — *Перед reading потрібне am.*
-- ❌ I is reading the circular. — *З I потрібна am.*
+- ✅ **The soup is creamy.**
+- ❌ The soup creamy. — *Перед creamy потрібна is.*
+- ❌ The soup are creamy. — *Один суп: is.*
 
 ---
 
 ## Інтро 3
 
-### Коротко про головне
+### Хліб і сир
 
-Rundown — «короткий огляд основних відомостей». Керівниця зараз розповідає команді про завдання дня: She is giving us a rundown — «Вона дає нам короткий огляд». Для поточного пояснення використовуємо is + giving. У give перед ing прибираємо e.
+До супу ви нарізаєте хліб. Thin — «тонкий»: I am cutting a thin slice — «Я відрізаю тонку скибку». Дія триває зараз: am cutting. Ви берете сир, який важко розрізати. Hard — «твердий»: This cheese is hard — «Цей сир твердий». Is hard описує властивість, а не дію.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **She is giving us a rundown.**
-- ❌ She is giveing us a rundown. — *Правильно giving, без e.*
-- ❌ She giving us a rundown. — *Перед giving потрібне is.*
+- ✅ **I am cutting a thin slice.**
+- ❌ I cutting a thin slice. — *Перед cutting потрібна am.*
+- ❌ I am cut a thin slice. — *Після am потрібна cutting.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — circular**
-<!-- interaction_id: en:lesson-10:session-43:word:circular; family: word_card -->
-> **circular** — «циркулярний лист». I am reading the circular. — «Я читаю циркулярний лист». Однакове письмове повідомлення групі людей. Тут іменник, не прикметник «круглий».
+**1 · Картка слова — mild**
+<!-- interaction_id: en:lesson-10:session-43:word:mild; family: word_card -->
+> **mild** — «м’який, негострий» про смак. This sauce is mild. — «Цей соус негострий».
 
-**2 · Усім працівникам надіслали один лист. Ви зараз читаєте його. Скажіть: «Я читаю циркулярний лист»**
+**2 · Соус не пече в роті. Скажіть: «Цей соус негострий»**
 <!-- interaction_id: en:lesson-10:session-43:i01; family: phrase_builder -->
-Плитки: `circular` `the` `reading` `am` `I` → **I am reading the circular.**
+Плитки: `mild` `is` `sauce` `This` → **This sauce is mild.**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-43:i02; family: listen_choose -->
-🔊 *The circular is on the desk.* → **The circular is on the desk.** · The circular is on the website. · The report is on the desk.
-- The circular is on the website. — *У записі звучить The circular is on the desk.*
-- The report is on the desk. — *У записі звучить The circular is on the desk.*
+🔊 *This cheese is mild.* → **This cheese is mild.** · This sauce is mild. · This cheese is salty.
+- This sauce is mild. — *У записі звучить This cheese is mild.*
+- This cheese is salty. — *У записі звучить This cheese is mild.*
 
-**4 · Команда збирається щоранку. Виберіть форму have**
+**4 · Виберіть зв’язку: один соус**
 <!-- interaction_id: en:lesson-10:session-43:i03; family: context_gap_grammar -->
-We ___ a briefing every morning. → **have** · has · having
-- has — *З we потрібна have.*
-- having — *Для регулярної ситуації тут потрібна have.*
+This sauce ___ mild. → **is** · are · am
+- are — *Один соус: is.*
+- am — *Am уживається з I.*
 
-**5 · Картка слова — directive**
-<!-- interaction_id: en:lesson-10:session-43:word:directive; family: word_card -->
-> **directive** — «офіційна вказівка». I understand the directive. — «Я розумію офіційну вказівку». Розпорядження від керівництва про те, що потрібно зробити.
+**5 · Картка слова — creamy**
+<!-- interaction_id: en:lesson-10:session-43:word:creamy; family: word_card -->
+> **creamy** — «вершковий, ніжний за консистенцією». The soup is creamy. — «Суп вершковий».
 
-**6 · Керівник уточнив розпорядження. Підтвердьте: «Я розумію офіційну вказівку»**
+**6 · Ви куштуєте суп із вершками. Скажіть: «Суп вершковий»**
 <!-- interaction_id: en:lesson-10:session-43:i04; family: phrase_builder -->
-Плитки: `directive` `the` `understand` `I` → **I understand the directive.**
+Плитки: `creamy` `is` `soup` `The` → **The soup is creamy.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-43:i05; family: listen_choose -->
-🔊 *The directive is clear.* → **The directive is clear.** · The directive is new. · The message is clear.
-- The directive is new. — *У записі звучить The directive is clear.*
-- The message is clear. — *У записі звучить The directive is clear.*
+🔊 *The sauce is creamy.* → **The sauce is creamy.** · The soup is creamy. · The sauce is spicy.
+- The soup is creamy. — *У записі звучить The sauce is creamy.*
+- The sauce is spicy. — *У записі звучить The sauce is creamy.*
 
-**8 · Виберіть форму understand з I**
+**8 · Виберіть зв’язку в описі супу**
 <!-- interaction_id: en:lesson-10:session-43:i06; family: context_gap_grammar -->
-I ___ the directive. → **understand** · understands · am understand
-- understands — *З I потрібна understand без s.*
-- am understand — *Тут потрібна understand без am.*
+The soup ___ creamy. → **is** · are · am
+- are — *Із soup потрібна is.*
+- am — *Am уживається з I.*
 
-**9 · Картка слова — recap**
-<!-- interaction_id: en:lesson-10:session-43:word:recap; family: word_card -->
-> **recap** — «коротке повторення основних пунктів». The recap is helpful. — «Коротке повторення основних пунктів корисне». Тут знову коротко викладають те, що вже обговорили.
+**9 · Картка слова — thin**
+<!-- interaction_id: en:lesson-10:session-43:word:thin; family: word_card -->
+> **thin** — «тонкий». a thin slice — «тонка скибка».
 
-**10 · Колега повторив головні пункти вчорашнього обговорення. Скажіть: «Коротке повторення основних пунктів корисне»**
+**10 · Ви зараз ріжете хліб. Скажіть: «Я відрізаю тонку скибку»**
 <!-- interaction_id: en:lesson-10:session-43:i07; family: phrase_builder -->
-Плитки: `helpful` `is` `recap` `The` → **The recap is helpful.**
+Плитки: `slice` `thin` `a` `cutting` `am` `I` → **I am cutting a thin slice.**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-43:i08; family: listen_choose -->
-🔊 *The recap is at the end.* → **The recap is at the end.** · The recap is at the beginning. · The question is at the end.
-- The recap is at the beginning. — *У записі звучить The recap is at the end.*
-- The question is at the end. — *У записі звучить The recap is at the end.*
+🔊 *She is cutting a thin slice.* → **She is cutting a thin slice.** · He is cutting a thin slice. · She is eating a thin slice.
+- He is cutting a thin slice. — *У записі звучить She is cutting a thin slice.*
+- She is eating a thin slice. — *У записі звучить She is cutting a thin slice.*
 
-**12 · Ідеться про одне коротке повторення. Виберіть зв’язку**
+**12 · Ніж у вас у руці зараз. Виберіть форму cut**
 <!-- interaction_id: en:lesson-10:session-43:i09; family: context_gap_grammar -->
-The recap ___ helpful. → **is** · are · am
-- are — *З recap в однині потрібна is.*
-- am — *Am уживається з I; тут потрібна is.*
+I am ___ a thin slice. → **cutting** · cut · cuts
+- cut — *Після am потрібна cutting.*
+- cuts — *Після am потрібна cutting, не cuts.*
 
-**13 · Картка слова — rundown**
-<!-- interaction_id: en:lesson-10:session-43:word:rundown; family: word_card -->
-> **rundown** — «короткий огляд основних відомостей». She is giving us a rundown. — «Вона дає нам короткий огляд». Наприклад, огляд завдань на день; відомості не обов’язково повторюються.
+**13 · Картка слова — hard**
+<!-- interaction_id: en:lesson-10:session-43:word:hard; family: word_card -->
+> **hard** — «твердий». This cheese is hard. — «Цей сир твердий».
 
-**14 · Керівниця зараз знайомить команду із завданнями дня. Скажіть: «Вона дає нам короткий огляд»**
+**14 · Сир твердий, його важко розрізати. Скажіть: «Цей сир твердий»**
 <!-- interaction_id: en:lesson-10:session-43:i10; family: phrase_builder -->
-Плитки: `rundown` `a` `us` `giving` `is` `She` → **She is giving us a rundown.**
+Плитки: `hard` `is` `cheese` `This` → **This cheese is hard.**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-43:i11; family: listen_choose -->
-🔊 *The rundown is in the email.* → **The rundown is in the email.** · The rundown is in the report. · The photo is in the email.
-- The rundown is in the report. — *У записі звучить The rundown is in the email.*
-- The photo is in the email. — *У записі звучить The rundown is in the email.*
+🔊 *The bread is hard.* → **The bread is hard.** · The cheese is hard. · The bread is soft.
+- The cheese is hard. — *У записі звучить The bread is hard.*
+- The bread is soft. — *У записі звучить The bread is hard.*
 
-**16 · Виберіть правильне написання форми give**
+**16 · Виберіть зв’язку для властивості сиру**
 <!-- interaction_id: en:lesson-10:session-43:i12; family: context_gap_grammar -->
-She is ___ us a rundown. → **giving** · giveing · give
-- giveing — *Перед ing прибираємо e: giving.*
-- give — *Після is для поточної дії потрібна giving.*
+This cheese ___ hard. → **is** · are · am
+- are — *Із cheese потрібна is.*
+- am — *Am уживається з I.*
 
-**17 · З’єднайте слова зі значеннями**
+**17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-10:session-43:i13; family: speed_match -->
-circular — циркулярний лист · directive — офіційна вказівка · recap — коротке повторення основних пунктів · rundown — короткий огляд основних відомостей
+mild — негострий · creamy — вершковий · thin — тонкий · hard — твердий
 
-**18 · Послухайте й складіть фразу**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-43:i14; family: listen_build_dictation -->
-🔊 *She is giving us a rundown.* Плитки: `rundown` `a` `us` `giving` `is` `She` → **She is giving us a rundown.**
+🔊 *This sauce is mild.* Плитки: `mild` `is` `sauce` `This` → **This sauce is mild.**
 
-**19 · Колега запитує, коли команда отримує інструкції на день. Скажіть: «У нас інструктаж щоранку»**
-<!-- interaction_id: en:lesson-10:session-43:i15; family: scripted_repeat_compare -->
-🎙 **We have a briefing every morning.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-43:i15; family: listen_build_dictation -->
+🔊 *I am cutting a thin slice.* Плитки: `slice` `thin` `a` `cutting` `am` `I` → **I am cutting a thin slice.**
 
-**20 · Керівник запитує, чи зрозуміле розпорядження. Скажіть: «Я розумію офіційну вказівку»**
-<!-- interaction_id: en:lesson-10:session-43:i16; family: phrase_builder -->
-Плитки: `directive` `the` `understand` `I` → **I understand the directive.**
+**20 · Друг не любить гострого. Заспокойте його: «Цей соус негострий»**
+<!-- interaction_id: en:lesson-10:session-43:i16; family: scripted_repeat_compare -->
+🎙 **This sauce is mild.**
 
-**21 · Колега приєднався до зустрічі й запитує, про що говорить керівниця. Вона зараз перелічує основні завдання дня. Скажіть: «Вона дає нам короткий огляд»**
-<!-- interaction_id: en:lesson-10:session-43:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She is giving us a rundown.**
+**21 · Друг запитує, що ви робите з хлібом. Скажіть: «Я відрізаю тонку скибку»**
+<!-- interaction_id: en:lesson-10:session-43:i17; family: scripted_repeat_compare -->
+🎙 **I am cutting a thin slice.**
 

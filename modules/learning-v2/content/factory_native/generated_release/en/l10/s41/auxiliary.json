@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-41:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-41:intro1:r2": {
-          "ru": "С we нужна attend без s.",
-          "uk": "З we потрібна attend без s."
+          "ru": "После he нужна связка is.",
+          "uk": "Після he потрібна зв’язка is."
         },
         "en:lesson-10:session-41:intro1:r3": {
-          "ru": "Для привычки здесь нужна attend.",
-          "uk": "Для звички тут потрібна attend."
+          "ru": "С he нужна is, не are.",
+          "uk": "З he потрібна is, не are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-41:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-41:intro2:r2": {
-          "ru": "Перед starting нужен is.",
-          "uk": "Перед starting потрібне is."
+          "ru": "Перед probably здесь нужна is.",
+          "uk": "Перед probably тут потрібна is."
         },
         "en:lesson-10:session-41:intro2:r3": {
-          "ru": "Один доклад: is.",
-          "uk": "Одна доповідь: is."
+          "ru": "С he нужна is.",
+          "uk": "З he потрібна is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-41:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-41:intro3:r2": {
-          "ru": "Перед answering нужен is.",
-          "uk": "Перед answering потрібне is."
+          "ru": "Перед quite cold нужна is.",
+          "uk": "Перед quite cold потрібна is."
         },
         "en:lesson-10:session-41:intro3:r3": {
-          "ru": "После is здесь нужна answering.",
-          "uk": "Після is тут потрібна answering."
+          "ru": "С it нужна is.",
+          "uk": "З it потрібна is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "5cdce483dea6225f11c502ee93c66fba2080571772328d084c9a3a4e14083030"
+  "auxiliaryFingerprint": "d84bdbe1e406d3c925056302955c9a413ae386c5c0509c5873ed3655de5d068d"
 }

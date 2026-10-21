@@ -4,32 +4,32 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-10:session-42:word:workshop",
+        "interactionId": "en:lesson-10:session-42:word:unwrap",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — workshop",
+        "prompt": "Карточка слова — unwrap",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-42:word:workshop:audio"
+          "en:lesson-10:session-42:word:unwrap:audio"
         ],
-        "accessibilityLabel": "Карточка слова — workshop",
+        "accessibilityLabel": "Карточка слова — unwrap",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-42:word:workshop:audio",
-            "transcript": "workshop"
+            "audioTargetId": "en:lesson-10:session-42:word:unwrap:audio",
+            "transcript": "unwrap"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-42:word:workshop:r1",
-              "targetText": "workshop",
+              "responseId": "en:lesson-10:session-42:word:unwrap:r1",
+              "targetText": "unwrap",
               "meaningByLocale": {
-                "ru": "«практический семинар». We attend a workshop every month. — «Мы посещаем практический семинар каждый месяц». Здесь занятие с практическими упражнениями, а не мастерская.",
-                "uk": "«практичний семінар». We attend a workshop every month. — «Ми відвідуємо практичний семінар щомісяця». Тут заняття з практичними вправами, а не майстерня."
+                "ru": "«разворачивать, снимать обёртку». unwrap a sandwich — «развернуть бутерброд».",
+                "uk": "«розгортати, знімати обгортку». unwrap a sandwich — «розгорнути бутерброд»."
               }
             }
           ],
@@ -37,10 +37,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "workshop",
+            "word": "unwrap",
             "definitionByLocale": {
-              "ru": "«практический семинар». We attend a workshop every month. — «Мы посещаем практический семинар каждый месяц». Здесь занятие с практическими упражнениями, а не мастерская.",
-              "uk": "«практичний семінар». We attend a workshop every month. — «Ми відвідуємо практичний семінар щомісяця». Тут заняття з практичними вправами, а не майстерня."
+              "ru": "«разворачивать, снимать обёртку». unwrap a sandwich — «развернуть бутерброд».",
+              "uk": "«розгортати, знімати обгортку». unwrap a sandwich — «розгорнути бутерброд»."
             }
           }
         },
@@ -52,25 +52,27 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Команда учится на практических занятиях ежемесячно. Скажите: «Мы посещаем практический семинар каждый месяц». Поставьте every month в конце",
+        "prompt": "Расскажите о привычке: «Я обычно разворачиваю свой бутерброд за столом». Поставьте usually после I",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Команда учится на практических занятиях ежемесячно. Скажите: «Мы посещаем практический семинар каждый месяц». Поставьте every month в конце",
+        "accessibilityLabel": "Расскажите о привычке: «Я обычно разворачиваю свой бутерброд за столом». Поставьте usually после I",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We attend a workshop every month.",
+          "targetPhrase": "I usually unwrap my sandwich at the table.",
           "localizedMeaning": {
-            "ru": "Команда учится на практических занятиях ежемесячно. Скажите: «Мы посещаем практический семинар каждый месяц». Поставьте every month в конце",
-            "uk": "Команда навчається на практичних заняттях щомісяця. Скажіть: «Ми відвідуємо практичний семінар щомісяця». Поставте every month у кінці"
+            "ru": "Расскажите о привычке: «Я обычно разворачиваю свой бутерброд за столом». Поставьте usually после I",
+            "uk": "Розкажіть про звичку: «Я зазвичай розгортаю свій бутерброд за столом». Поставте usually після I"
           },
           "orderedTokens": [
-            "We",
-            "attend",
-            "a",
-            "workshop",
-            "every",
-            "month"
+            "I",
+            "usually",
+            "unwrap",
+            "my",
+            "sandwich",
+            "at",
+            "the",
+            "table"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -91,15 +93,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-42:i02:r1",
-            "text": "The workshop is on Friday."
+            "text": "She is unwrapping a sandwich."
           },
           {
             "responseId": "en:lesson-10:session-42:i02:r2",
-            "text": "The workshop is on Monday."
+            "text": "She is unwrapping a present."
           },
           {
             "responseId": "en:lesson-10:session-42:i02:r3",
-            "text": "The conference is on Friday."
+            "text": "He is unwrapping a sandwich."
           }
         ],
         "mediaIds": [],
@@ -111,23 +113,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-42:i02:audio",
-            "transcript": "The workshop is on Friday."
+            "transcript": "She is unwrapping a sandwich."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-42:i02:r1",
-              "targetText": "The workshop is on Friday.",
+              "targetText": "She is unwrapping a sandwich.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-42:i02:r2",
-              "targetText": "The workshop is on Monday.",
+              "targetText": "She is unwrapping a present.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-42:i02:r3",
-              "targetText": "The conference is on Friday.",
+              "targetText": "He is unwrapping a sandwich.",
               "meaningByLocale": null
             }
           ],
@@ -138,8 +140,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The workshop is on Friday.",
-                "uk": "У записі звучить The workshop is on Friday."
+                "ru": "В записи звучит She is unwrapping a sandwich.",
+                "uk": "У записі звучить She is unwrapping a sandwich."
               }
             },
             {
@@ -147,8 +149,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The workshop is on Friday.",
-                "uk": "У записі звучить The workshop is on Friday."
+                "ru": "В записи звучит She is unwrapping a sandwich.",
+                "uk": "У записі звучить She is unwrapping a sandwich."
               }
             }
           ],
@@ -163,63 +165,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы участвуете регулярно. Выберите форму attend",
+        "prompt": "Обёртка в ваших руках сейчас. Выберите форму unwrap",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-42:i03:r1",
-            "text": "attend"
+            "text": "unwrapping"
           },
           {
             "responseId": "en:lesson-10:session-42:i03:r2",
-            "text": "attends"
+            "text": "unwrap"
           },
           {
             "responseId": "en:lesson-10:session-42:i03:r3",
-            "text": "attending"
+            "text": "unwraps"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы участвуете регулярно. Выберите форму attend",
+        "accessibilityLabel": "Обёртка в ваших руках сейчас. Выберите форму unwrap",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы участвуете регулярно. Выберите форму attend",
-            "uk": "Ви берете участь регулярно. Виберіть форму attend"
+            "ru": "Обёртка в ваших руках сейчас. Выберите форму unwrap",
+            "uk": "Обгортка у ваших руках зараз. Виберіть форму unwrap"
           },
-          "gappedTargetPhrase": "We ___ a workshop every month.",
+          "gappedTargetPhrase": "I am ___ my sandwich.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-42:i03:r1",
-              "text": "attend"
+              "text": "unwrapping"
             },
             {
               "responseId": "en:lesson-10:session-42:i03:r2",
-              "text": "attends"
+              "text": "unwrap"
             },
             {
               "responseId": "en:lesson-10:session-42:i03:r3",
-              "text": "attending"
+              "text": "unwraps"
             }
           ],
-          "testedDimension": "Вы участвуете регулярно. Выберите форму attend",
+          "testedDimension": "Обёртка в ваших руках сейчас. Выберите форму unwrap",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-42:i03:r2",
               "correct": false,
-              "testedDimension": "Вы участвуете регулярно. Выберите форму attend",
+              "testedDimension": "Обёртка в ваших руках сейчас. Выберите форму unwrap",
               "feedbackByLocale": {
-                "ru": "С we нужна attend без s.",
-                "uk": "З we потрібна attend без s."
+                "ru": "После am нужна unwrapping.",
+                "uk": "Після am потрібна unwrapping."
               }
             },
             {
               "responseId": "en:lesson-10:session-42:i03:r3",
               "correct": false,
-              "testedDimension": "Вы участвуете регулярно. Выберите форму attend",
+              "testedDimension": "Обёртка в ваших руках сейчас. Выберите форму unwrap",
               "feedbackByLocale": {
-                "ru": "Для регулярного действия нужна attend.",
-                "uk": "Для регулярної дії потрібна attend."
+                "ru": "После am нужна unwrapping, не unwraps.",
+                "uk": "Після am потрібна unwrapping, не unwraps."
               }
             }
           ]
@@ -227,32 +229,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-42:word:worksheet",
+        "interactionId": "en:lesson-10:session-42:word:bite",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — worksheet",
+        "prompt": "Карточка слова — bite",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-42:word:worksheet:audio"
+          "en:lesson-10:session-42:word:bite:audio"
         ],
-        "accessibilityLabel": "Карточка слова — worksheet",
+        "accessibilityLabel": "Карточка слова — bite",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-42:word:worksheet:audio",
-            "transcript": "worksheet"
+            "audioTargetId": "en:lesson-10:session-42:word:bite:audio",
+            "transcript": "bite"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-42:word:worksheet:r1",
-              "targetText": "worksheet",
+              "responseId": "en:lesson-10:session-42:word:bite:r1",
+              "targetText": "bite",
               "meaningByLocale": {
-                "ru": "«лист с заданиями». I am completing the worksheet. — «Я выполняю задания на листе». Здесь отдельный учебный лист, на котором нужно записать ответы.",
-                "uk": "«аркуш із завданнями». I am completing the worksheet. — «Я виконую завдання на аркуші». Тут окремий навчальний аркуш, на якому потрібно записати відповіді."
+                "ru": "«кусать, откусывать». bite an apple — «откусить яблоко».",
+                "uk": "«кусати, відкушувати». bite an apple — «відкусити яблуко»."
               }
             }
           ],
@@ -260,10 +262,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "worksheet",
+            "word": "bite",
             "definitionByLocale": {
-              "ru": "«лист с заданиями». I am completing the worksheet. — «Я выполняю задания на листе». Здесь отдельный учебный лист, на котором нужно записать ответы.",
-              "uk": "«аркуш із завданнями». I am completing the worksheet. — «Я виконую завдання на аркуші». Тут окремий навчальний аркуш, на якому потрібно записати відповіді."
+              "ru": "«кусать, откусывать». bite an apple — «откусить яблоко».",
+              "uk": "«кусати, відкушувати». bite an apple — «відкусити яблуко»."
             }
           }
         },
@@ -275,24 +277,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Вы сейчас записываете ответы на выданном листе. Скажите: «Я выполняю задания на листе»",
+        "prompt": "Друг спрашивает о собаке рядом. Успокойте его: «Она не кусается»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы сейчас записываете ответы на выданном листе. Скажите: «Я выполняю задания на листе»",
+        "accessibilityLabel": "Друг спрашивает о собаке рядом. Успокойте его: «Она не кусается»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am completing the worksheet.",
+          "targetPhrase": "It does not bite.",
           "localizedMeaning": {
-            "ru": "Вы сейчас записываете ответы на выданном листе. Скажите: «Я выполняю задания на листе»",
-            "uk": "Ви зараз записуєте відповіді на виданому аркуші. Скажіть: «Я виконую завдання на аркуші»"
+            "ru": "Друг спрашивает о собаке рядом. Успокойте его: «Она не кусается»",
+            "uk": "Друг запитує про собаку поруч. Заспокойте його: «Вона не кусається»"
           },
           "orderedTokens": [
-            "I",
-            "am",
-            "completing",
-            "the",
-            "worksheet"
+            "It",
+            "does",
+            "not",
+            "bite"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -313,15 +314,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-42:i05:r1",
-            "text": "The worksheet has six questions."
+            "text": "He is biting an apple."
           },
           {
             "responseId": "en:lesson-10:session-42:i05:r2",
-            "text": "The worksheet has seven questions."
+            "text": "He is eating an egg."
           },
           {
             "responseId": "en:lesson-10:session-42:i05:r3",
-            "text": "The report has six questions."
+            "text": "She is biting an apple."
           }
         ],
         "mediaIds": [],
@@ -333,23 +334,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-42:i05:audio",
-            "transcript": "The worksheet has six questions."
+            "transcript": "He is biting an apple."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-42:i05:r1",
-              "targetText": "The worksheet has six questions.",
+              "targetText": "He is biting an apple.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-42:i05:r2",
-              "targetText": "The worksheet has seven questions.",
+              "targetText": "He is eating an egg.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-42:i05:r3",
-              "targetText": "The report has six questions.",
+              "targetText": "She is biting an apple.",
               "meaningByLocale": null
             }
           ],
@@ -360,8 +361,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The worksheet has six questions.",
-                "uk": "У записі звучить The worksheet has six questions."
+                "ru": "В записи звучит He is biting an apple.",
+                "uk": "У записі звучить He is biting an apple."
               }
             },
             {
@@ -369,8 +370,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The worksheet has six questions.",
-                "uk": "У записі звучить The worksheet has six questions."
+                "ru": "В записи звучит He is biting an apple.",
+                "uk": "У записі звучить He is biting an apple."
               }
             }
           ],
@@ -385,63 +386,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите правильное написание формы complete",
+        "prompt": "Вы откусываете яблоко сейчас. Выберите форму bite",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-42:i06:r1",
-            "text": "completing"
+            "text": "biting"
           },
           {
             "responseId": "en:lesson-10:session-42:i06:r2",
-            "text": "completeing"
+            "text": "bite"
           },
           {
             "responseId": "en:lesson-10:session-42:i06:r3",
-            "text": "complete"
+            "text": "bites"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите правильное написание формы complete",
+        "accessibilityLabel": "Вы откусываете яблоко сейчас. Выберите форму bite",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите правильное написание формы complete",
-            "uk": "Виберіть правильне написання форми complete"
+            "ru": "Вы откусываете яблоко сейчас. Выберите форму bite",
+            "uk": "Ви відкушуєте яблуко зараз. Виберіть форму bite"
           },
-          "gappedTargetPhrase": "I am ___ the worksheet.",
+          "gappedTargetPhrase": "I am ___ an apple.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-42:i06:r1",
-              "text": "completing"
+              "text": "biting"
             },
             {
               "responseId": "en:lesson-10:session-42:i06:r2",
-              "text": "completeing"
+              "text": "bite"
             },
             {
               "responseId": "en:lesson-10:session-42:i06:r3",
-              "text": "complete"
+              "text": "bites"
             }
           ],
-          "testedDimension": "Выберите правильное написание формы complete",
+          "testedDimension": "Вы откусываете яблоко сейчас. Выберите форму bite",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-42:i06:r2",
               "correct": false,
-              "testedDimension": "Выберите правильное написание формы complete",
+              "testedDimension": "Вы откусываете яблоко сейчас. Выберите форму bite",
               "feedbackByLocale": {
-                "ru": "Перед ing убираем e: completing.",
-                "uk": "Перед ing прибираємо e: completing."
+                "ru": "После am нужна biting.",
+                "uk": "Після am потрібна biting."
               }
             },
             {
               "responseId": "en:lesson-10:session-42:i06:r3",
               "correct": false,
-              "testedDimension": "Выберите правильное написание формы complete",
+              "testedDimension": "Вы откусываете яблоко сейчас. Выберите форму bite",
               "feedbackByLocale": {
-                "ru": "После am для действия сейчас нужна completing.",
-                "uk": "Після am для дії зараз потрібна completing."
+                "ru": "После am нужна biting, не bites.",
+                "uk": "Після am потрібна biting, не bites."
               }
             }
           ]
@@ -449,32 +450,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-42:word:tutorial",
+        "interactionId": "en:lesson-10:session-42:word:sip",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — tutorial",
+        "prompt": "Карточка слова — sip",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-42:word:tutorial:audio"
+          "en:lesson-10:session-42:word:sip:audio"
         ],
-        "accessibilityLabel": "Карточка слова — tutorial",
+        "accessibilityLabel": "Карточка слова — sip",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-42:word:tutorial:audio",
-            "transcript": "tutorial"
+            "audioTargetId": "en:lesson-10:session-42:word:sip:audio",
+            "transcript": "sip"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-42:word:tutorial:r1",
-              "targetText": "tutorial",
+              "responseId": "en:lesson-10:session-42:word:sip:r1",
+              "targetText": "sip",
               "meaningByLocale": {
-                "ru": "«пошаговое руководство». I understand the tutorial. — «Я понимаю пошаговое руководство». Здесь учебный материал с последовательным объяснением действий.",
-                "uk": "«покроковий посібник». I understand the tutorial. — «Я розумію покроковий посібник». Тут навчальний матеріал із послідовним поясненням дій."
+                "ru": "«пить маленькими глотками». I sip my tea. — «Я пью чай маленькими глотками».",
+                "uk": "«пити маленькими ковтками». I sip my tea. — «Я п’ю чай маленькими ковтками»."
               }
             }
           ],
@@ -482,10 +483,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "tutorial",
+            "word": "sip",
             "definitionByLocale": {
-              "ru": "«пошаговое руководство». I understand the tutorial. — «Я понимаю пошаговое руководство». Здесь учебный материал с последовательным объяснением действий.",
-              "uk": "«покроковий посібник». I understand the tutorial. — «Я розумію покроковий посібник». Тут навчальний матеріал із послідовним поясненням дій."
+              "ru": "«пить маленькими глотками». I sip my tea. — «Я пью чай маленькими глотками».",
+              "uk": "«пити маленькими ковтками». I sip my tea. — «Я п’ю чай маленькими ковтками»."
             }
           }
         },
@@ -497,23 +498,23 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Коллега спрашивает, понятен ли вам учебный материал с объяснением шагов. Скажите: «Я понимаю пошаговое руководство»",
+        "prompt": "Расскажите, как вы обычно пьёте чай: «Я пью свой чай маленькими глотками»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Коллега спрашивает, понятен ли вам учебный материал с объяснением шагов. Скажите: «Я понимаю пошаговое руководство»",
+        "accessibilityLabel": "Расскажите, как вы обычно пьёте чай: «Я пью свой чай маленькими глотками»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I understand the tutorial.",
+          "targetPhrase": "I sip my tea.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает, понятен ли вам учебный материал с объяснением шагов. Скажите: «Я понимаю пошаговое руководство»",
-            "uk": "Колега запитує, чи зрозумілий вам навчальний матеріал із поясненням кроків. Скажіть: «Я розумію покроковий посібник»"
+            "ru": "Расскажите, как вы обычно пьёте чай: «Я пью свой чай маленькими глотками»",
+            "uk": "Розкажіть, як ви зазвичай п’єте чай: «Я п’ю свій чай маленькими ковтками»"
           },
           "orderedTokens": [
             "I",
-            "understand",
-            "the",
-            "tutorial"
+            "sip",
+            "my",
+            "tea"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -534,15 +535,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-42:i08:r1",
-            "text": "The tutorial is on the website."
+            "text": "She is sipping her coffee."
           },
           {
             "responseId": "en:lesson-10:session-42:i08:r2",
-            "text": "The tutorial is in the email."
+            "text": "She is sipping her tea."
           },
           {
             "responseId": "en:lesson-10:session-42:i08:r3",
-            "text": "The worksheet is on the website."
+            "text": "He is sipping his coffee."
           }
         ],
         "mediaIds": [],
@@ -554,23 +555,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-42:i08:audio",
-            "transcript": "The tutorial is on the website."
+            "transcript": "She is sipping her coffee."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-42:i08:r1",
-              "targetText": "The tutorial is on the website.",
+              "targetText": "She is sipping her coffee.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-42:i08:r2",
-              "targetText": "The tutorial is in the email.",
+              "targetText": "She is sipping her tea.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-42:i08:r3",
-              "targetText": "The worksheet is on the website.",
+              "targetText": "He is sipping his coffee.",
               "meaningByLocale": null
             }
           ],
@@ -581,8 +582,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The tutorial is on the website.",
-                "uk": "У записі звучить The tutorial is on the website."
+                "ru": "В записи звучит She is sipping her coffee.",
+                "uk": "У записі звучить She is sipping her coffee."
               }
             },
             {
@@ -590,8 +591,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The tutorial is on the website.",
-                "uk": "У записі звучить The tutorial is on the website."
+                "ru": "В записи звучит She is sipping her coffee.",
+                "uk": "У записі звучить She is sipping her coffee."
               }
             }
           ],
@@ -606,63 +607,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите форму understand с I",
+        "prompt": "Чашка у ваших губ сейчас. Выберите форму sip",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-42:i09:r1",
-            "text": "understand"
+            "text": "sipping"
           },
           {
             "responseId": "en:lesson-10:session-42:i09:r2",
-            "text": "understands"
+            "text": "sip"
           },
           {
             "responseId": "en:lesson-10:session-42:i09:r3",
-            "text": "am understand"
+            "text": "sips"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите форму understand с I",
+        "accessibilityLabel": "Чашка у ваших губ сейчас. Выберите форму sip",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму understand с I",
-            "uk": "Виберіть форму understand з I"
+            "ru": "Чашка у ваших губ сейчас. Выберите форму sip",
+            "uk": "Чашка біля ваших губ зараз. Виберіть форму sip"
           },
-          "gappedTargetPhrase": "I ___ the tutorial.",
+          "gappedTargetPhrase": "I am ___ my tea.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-42:i09:r1",
-              "text": "understand"
+              "text": "sipping"
             },
             {
               "responseId": "en:lesson-10:session-42:i09:r2",
-              "text": "understands"
+              "text": "sip"
             },
             {
               "responseId": "en:lesson-10:session-42:i09:r3",
-              "text": "am understand"
+              "text": "sips"
             }
           ],
-          "testedDimension": "Выберите форму understand с I",
+          "testedDimension": "Чашка у ваших губ сейчас. Выберите форму sip",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-42:i09:r2",
               "correct": false,
-              "testedDimension": "Выберите форму understand с I",
+              "testedDimension": "Чашка у ваших губ сейчас. Выберите форму sip",
               "feedbackByLocale": {
-                "ru": "С I нужна understand без s.",
-                "uk": "З I потрібна understand без s."
+                "ru": "После am нужна sipping.",
+                "uk": "Після am потрібна sipping."
               }
             },
             {
               "responseId": "en:lesson-10:session-42:i09:r3",
               "correct": false,
-              "testedDimension": "Выберите форму understand с I",
+              "testedDimension": "Чашка у ваших губ сейчас. Выберите форму sip",
               "feedbackByLocale": {
-                "ru": "Здесь нужна understand без am.",
-                "uk": "Тут потрібна understand без am."
+                "ru": "После am нужна sipping, не sips.",
+                "uk": "Після am потрібна sipping, не sips."
               }
             }
           ]
@@ -670,32 +671,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-42:word:workbook",
+        "interactionId": "en:lesson-10:session-42:word:drop",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — workbook",
+        "prompt": "Карточка слова — drop",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-42:word:workbook:audio"
+          "en:lesson-10:session-42:word:drop:audio"
         ],
-        "accessibilityLabel": "Карточка слова — workbook",
+        "accessibilityLabel": "Карточка слова — drop",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-42:word:workbook:audio",
-            "transcript": "workbook"
+            "audioTargetId": "en:lesson-10:session-42:word:drop:audio",
+            "transcript": "drop"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-42:word:workbook:r1",
-              "targetText": "workbook",
+              "responseId": "en:lesson-10:session-42:word:drop:r1",
+              "targetText": "drop",
               "meaningByLocale": {
-                "ru": "«рабочая тетрадь». My workbook is open. — «Моя рабочая тетрадь открыта». Учебная тетрадь с упражнениями, не отдельный лист worksheet.",
-                "uk": "«робочий зошит». My workbook is open. — «Мій робочий зошит відкритий». Навчальний зошит із вправами, не окремий аркуш worksheet."
+                "ru": "«ронять». I sometimes drop things. — «Я иногда роняю вещи».",
+                "uk": "«впускати, роняти». I sometimes drop things. — «Я іноді впускаю речі»."
               }
             }
           ],
@@ -703,10 +704,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "workbook",
+            "word": "drop",
             "definitionByLocale": {
-              "ru": "«рабочая тетрадь». My workbook is open. — «Моя рабочая тетрадь открыта». Учебная тетрадь с упражнениями, не отдельный лист worksheet.",
-              "uk": "«робочий зошит». My workbook is open. — «Мій робочий зошит відкритий». Навчальний зошит із вправами, не окремий аркуш worksheet."
+              "ru": "«ронять». I sometimes drop things. — «Я иногда роняю вещи».",
+              "uk": "«впускати, роняти». I sometimes drop things. — «Я іноді впускаю речі»."
             }
           }
         },
@@ -718,23 +719,23 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Вы раскрыли тетрадь с упражнениями и готовы работать. Скажите: «Моя рабочая тетрадь открыта»",
+        "prompt": "Вы часто спешите. Признайтесь: «Я иногда роняю вещи». Поставьте sometimes перед drop",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы раскрыли тетрадь с упражнениями и готовы работать. Скажите: «Моя рабочая тетрадь открыта»",
+        "accessibilityLabel": "Вы часто спешите. Признайтесь: «Я иногда роняю вещи». Поставьте sometimes перед drop",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "My workbook is open.",
+          "targetPhrase": "I sometimes drop things.",
           "localizedMeaning": {
-            "ru": "Вы раскрыли тетрадь с упражнениями и готовы работать. Скажите: «Моя рабочая тетрадь открыта»",
-            "uk": "Ви розгорнули зошит із вправами й готові працювати. Скажіть: «Мій робочий зошит відкритий»"
+            "ru": "Вы часто спешите. Признайтесь: «Я иногда роняю вещи». Поставьте sometimes перед drop",
+            "uk": "Ви часто поспішаєте. Зізнайтеся: «Я іноді впускаю речі». Поставте sometimes перед drop"
           },
           "orderedTokens": [
-            "My",
-            "workbook",
-            "is",
-            "open"
+            "I",
+            "sometimes",
+            "drop",
+            "things"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -755,15 +756,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-42:i11:r1",
-            "text": "The workbook is beside the laptop."
+            "text": "He often drops his keys."
           },
           {
             "responseId": "en:lesson-10:session-42:i11:r2",
-            "text": "The workbook is under the laptop."
+            "text": "He often drops his phone."
           },
           {
             "responseId": "en:lesson-10:session-42:i11:r3",
-            "text": "The notebook is beside the laptop."
+            "text": "She often drops her keys."
           }
         ],
         "mediaIds": [],
@@ -775,23 +776,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-42:i11:audio",
-            "transcript": "The workbook is beside the laptop."
+            "transcript": "He often drops his keys."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-42:i11:r1",
-              "targetText": "The workbook is beside the laptop.",
+              "targetText": "He often drops his keys.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-42:i11:r2",
-              "targetText": "The workbook is under the laptop.",
+              "targetText": "He often drops his phone.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-42:i11:r3",
-              "targetText": "The notebook is beside the laptop.",
+              "targetText": "She often drops her keys.",
               "meaningByLocale": null
             }
           ],
@@ -802,8 +803,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The workbook is beside the laptop.",
-                "uk": "У записі звучить The workbook is beside the laptop."
+                "ru": "В записи звучит He often drops his keys.",
+                "uk": "У записі звучить He often drops his keys."
               }
             },
             {
@@ -811,8 +812,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит The workbook is beside the laptop.",
-                "uk": "У записі звучить The workbook is beside the laptop."
+                "ru": "В записи звучит He often drops his keys.",
+                "uk": "У записі звучить He often drops his keys."
               }
             }
           ],
@@ -827,63 +828,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Речь об одной тетради. Выберите связку",
+        "prompt": "Выберите форму drop после I для повторяющихся случаев",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-42:i12:r1",
-            "text": "is"
+            "text": "drop"
           },
           {
             "responseId": "en:lesson-10:session-42:i12:r2",
-            "text": "are"
+            "text": "drops"
           },
           {
             "responseId": "en:lesson-10:session-42:i12:r3",
-            "text": "am"
+            "text": "dropping"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Речь об одной тетради. Выберите связку",
+        "accessibilityLabel": "Выберите форму drop после I для повторяющихся случаев",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Речь об одной тетради. Выберите связку",
-            "uk": "Ідеться про один зошит. Виберіть зв’язку"
+            "ru": "Выберите форму drop после I для повторяющихся случаев",
+            "uk": "Виберіть форму drop після I для повторюваних випадків"
           },
-          "gappedTargetPhrase": "My workbook ___ open.",
+          "gappedTargetPhrase": "I sometimes ___ things.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-42:i12:r1",
-              "text": "is"
+              "text": "drop"
             },
             {
               "responseId": "en:lesson-10:session-42:i12:r2",
-              "text": "are"
+              "text": "drops"
             },
             {
               "responseId": "en:lesson-10:session-42:i12:r3",
-              "text": "am"
+              "text": "dropping"
             }
           ],
-          "testedDimension": "Речь об одной тетради. Выберите связку",
+          "testedDimension": "Выберите форму drop после I для повторяющихся случаев",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-42:i12:r2",
               "correct": false,
-              "testedDimension": "Речь об одной тетради. Выберите связку",
+              "testedDimension": "Выберите форму drop после I для повторяющихся случаев",
               "feedbackByLocale": {
-                "ru": "Одна тетрадь: is.",
-                "uk": "Один зошит: is."
+                "ru": "После I нужна drop без s.",
+                "uk": "Після I потрібна drop без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-42:i12:r3",
               "correct": false,
-              "testedDimension": "Речь об одной тетради. Выберите связку",
+              "testedDimension": "Выберите форму drop после I для повторяющихся случаев",
               "feedbackByLocale": {
-                "ru": "Am используется с I; здесь нужна is.",
-                "uk": "Am уживається з I; тут потрібна is."
+                "ru": "О повторяющихся случаях говорим drop.",
+                "uk": "Про повторювані випадки говоримо drop."
               }
             }
           ]
@@ -896,58 +897,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "Соедините слова со значениями",
+        "prompt": "Соедините слова с переводом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините слова со значениями",
+        "accessibilityLabel": "Соедините слова с переводом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-42:i13:p1",
-              "target": "workshop",
+              "target": "unwrap",
               "meaningByLocale": {
-                "ru": "практический семинар",
-                "uk": "практичний семінар"
+                "ru": "снимать обёртку",
+                "uk": "знімати обгортку"
               }
             },
             {
               "pairId": "en:lesson-10:session-42:i13:p2",
-              "target": "worksheet",
+              "target": "bite",
               "meaningByLocale": {
-                "ru": "лист с заданиями",
-                "uk": "аркуш із завданнями"
+                "ru": "кусать",
+                "uk": "кусати"
               }
             },
             {
               "pairId": "en:lesson-10:session-42:i13:p3",
-              "target": "tutorial",
+              "target": "sip",
               "meaningByLocale": {
-                "ru": "пошаговое руководство",
-                "uk": "покроковий посібник"
+                "ru": "пить маленькими глотками",
+                "uk": "пити маленькими ковтками"
               }
             },
             {
               "pairId": "en:lesson-10:session-42:i13:p4",
-              "target": "workbook",
+              "target": "drop",
               "meaningByLocale": {
-                "ru": "рабочая тетрадь",
-                "uk": "робочий зошит"
+                "ru": "ронять",
+                "uk": "впускати"
               }
             }
           ],
           "leftColumn": [
-            "workshop",
-            "worksheet",
-            "tutorial",
-            "workbook"
+            "unwrap",
+            "bite",
+            "sip",
+            "drop"
           ],
           "rightColumn": [
-            "практический семинар",
-            "лист с заданиями",
-            "пошаговое руководство",
-            "рабочая тетрадь"
+            "снимать обёртку",
+            "кусать",
+            "пить маленькими глотками",
+            "ронять"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -969,27 +970,27 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послушайте и соберите фразу",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-42:i14:audio"
         ],
-        "accessibilityLabel": "Послушайте и соберите фразу",
+        "accessibilityLabel": "Соберите услышанную фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-42:i14:audio",
-            "transcript": "I am completing the worksheet."
+            "transcript": "I am sipping my tea."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I am completing the worksheet.",
+          "hiddenTargetPhrase": "I am sipping my tea.",
           "orderedTokens": [
             "I",
             "am",
-            "completing",
-            "the",
-            "worksheet"
+            "sipping",
+            "my",
+            "tea"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1003,24 +1004,60 @@
       {
         "interactionId": "en:lesson-10:session-42:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Коллега спрашивает, как часто команда проходит практическое обучение. Скажите: «Мы посещаем практический семинар каждый месяц»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-42:i15:audio"
         ],
-        "accessibilityLabel": "Коллега спрашивает, как часто команда проходит практическое обучение. Скажите: «Мы посещаем практический семинар каждый месяц»",
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-42:i15:audio",
+            "transcript": "It does not bite."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It does not bite.",
+          "orderedTokens": [
+            "It",
+            "does",
+            "not",
+            "bite"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-42:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает, что вы делаете с бумажным свёртком. Скажите: «Я разворачиваю свой бутерброд»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-42:i16:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает, что вы делаете с бумажным свёртком. Скажите: «Я разворачиваю свой бутерброд»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-42:i15:audio",
-            "transcript": "We attend a workshop every month."
+            "audioTargetId": "en:lesson-10:session-42:i16:audio",
+            "transcript": "I am unwrapping my sandwich."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We attend a workshop every month.",
+          "targetPhrase": "I am unwrapping my sandwich.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1034,70 +1071,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-42:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Коллега уточняет, понятно ли пошаговое объяснение. Скажите: «Я понимаю пошаговое руководство»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Коллега уточняет, понятно ли пошаговое объяснение. Скажите: «Я понимаю пошаговое руководство»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I understand the tutorial.",
-          "localizedMeaning": {
-            "ru": "Коллега уточняет, понятно ли пошаговое объяснение. Скажите: «Я понимаю пошаговое руководство»",
-            "uk": "Колега уточнює, чи зрозуміле покрокове пояснення. Скажіть: «Я розумію покроковий посібник»"
-          },
-          "orderedTokens": [
-            "I",
-            "understand",
-            "the",
-            "tutorial"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-42:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Вы записываете ответы на листе, который выдал преподаватель. Коллега спрашивает, чем вы сейчас заняты. Скажите: «Я выполняю задания на листе»",
+        "prompt": "Вы подняли упавшие ключи. Объясните коллеге: «Я иногда роняю вещи»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-42:i17:audio"
         ],
-        "accessibilityLabel": "Вы записываете ответы на листе, который выдал преподаватель. Коллега спрашивает, чем вы сейчас заняты. Скажите: «Я выполняю задания на листе»",
+        "accessibilityLabel": "Вы подняли упавшие ключи. Объясните коллеге: «Я иногда роняю вещи»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-42:i17:audio",
-            "transcript": "I am completing the worksheet."
+            "transcript": "I sometimes drop things."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I am completing the worksheet.",
+          "targetPhrase": "I sometimes drop things.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -1110,32 +1106,32 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-10:session-42:word:workshop",
+        "interactionId": "en:lesson-10:session-42:word:unwrap",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — workshop",
+        "prompt": "Картка слова — unwrap",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-42:word:workshop:audio"
+          "en:lesson-10:session-42:word:unwrap:audio"
         ],
-        "accessibilityLabel": "Картка слова — workshop",
+        "accessibilityLabel": "Картка слова — unwrap",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-42:word:workshop:audio",
-            "transcript": "workshop"
+            "audioTargetId": "en:lesson-10:session-42:word:unwrap:audio",
+            "transcript": "unwrap"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-42:word:workshop:r1",
-              "targetText": "workshop",
+              "responseId": "en:lesson-10:session-42:word:unwrap:r1",
+              "targetText": "unwrap",
               "meaningByLocale": {
-                "ru": "«практический семинар». We attend a workshop every month. — «Мы посещаем практический семинар каждый месяц». Здесь занятие с практическими упражнениями, а не мастерская.",
-                "uk": "«практичний семінар». We attend a workshop every month. — «Ми відвідуємо практичний семінар щомісяця». Тут заняття з практичними вправами, а не майстерня."
+                "ru": "«разворачивать, снимать обёртку». unwrap a sandwich — «развернуть бутерброд».",
+                "uk": "«розгортати, знімати обгортку». unwrap a sandwich — «розгорнути бутерброд»."
               }
             }
           ],
@@ -1143,10 +1139,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "workshop",
+            "word": "unwrap",
             "definitionByLocale": {
-              "ru": "«практический семинар». We attend a workshop every month. — «Мы посещаем практический семинар каждый месяц». Здесь занятие с практическими упражнениями, а не мастерская.",
-              "uk": "«практичний семінар». We attend a workshop every month. — «Ми відвідуємо практичний семінар щомісяця». Тут заняття з практичними вправами, а не майстерня."
+              "ru": "«разворачивать, снимать обёртку». unwrap a sandwich — «развернуть бутерброд».",
+              "uk": "«розгортати, знімати обгортку». unwrap a sandwich — «розгорнути бутерброд»."
             }
           }
         },
@@ -1158,25 +1154,27 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Команда навчається на практичних заняттях щомісяця. Скажіть: «Ми відвідуємо практичний семінар щомісяця». Поставте every month у кінці",
+        "prompt": "Розкажіть про звичку: «Я зазвичай розгортаю свій бутерброд за столом». Поставте usually після I",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Команда навчається на практичних заняттях щомісяця. Скажіть: «Ми відвідуємо практичний семінар щомісяця». Поставте every month у кінці",
+        "accessibilityLabel": "Розкажіть про звичку: «Я зазвичай розгортаю свій бутерброд за столом». Поставте usually після I",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "We attend a workshop every month.",
+          "targetPhrase": "I usually unwrap my sandwich at the table.",
           "localizedMeaning": {
-            "ru": "Команда учится на практических занятиях ежемесячно. Скажите: «Мы посещаем практический семинар каждый месяц». Поставьте every month в конце",
-            "uk": "Команда навчається на практичних заняттях щомісяця. Скажіть: «Ми відвідуємо практичний семінар щомісяця». Поставте every month у кінці"
+            "ru": "Расскажите о привычке: «Я обычно разворачиваю свой бутерброд за столом». Поставьте usually после I",
+            "uk": "Розкажіть про звичку: «Я зазвичай розгортаю свій бутерброд за столом». Поставте usually після I"
           },
           "orderedTokens": [
-            "We",
-            "attend",
-            "a",
-            "workshop",
-            "every",
-            "month"
+            "I",
+            "usually",
+            "unwrap",
+            "my",
+            "sandwich",
+            "at",
+            "the",
+            "table"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1197,15 +1195,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-42:i02:r1",
-            "text": "The workshop is on Friday."
+            "text": "She is unwrapping a sandwich."
           },
           {
             "responseId": "en:lesson-10:session-42:i02:r2",
-            "text": "The workshop is on Monday."
+            "text": "She is unwrapping a present."
           },
           {
             "responseId": "en:lesson-10:session-42:i02:r3",
-            "text": "The conference is on Friday."
+            "text": "He is unwrapping a sandwich."
           }
         ],
         "mediaIds": [],
@@ -1217,23 +1215,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-42:i02:audio",
-            "transcript": "The workshop is on Friday."
+            "transcript": "She is unwrapping a sandwich."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-42:i02:r1",
-              "targetText": "The workshop is on Friday.",
+              "targetText": "She is unwrapping a sandwich.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-42:i02:r2",
-              "targetText": "The workshop is on Monday.",
+              "targetText": "She is unwrapping a present.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-42:i02:r3",
-              "targetText": "The conference is on Friday.",
+              "targetText": "He is unwrapping a sandwich.",
               "meaningByLocale": null
             }
           ],
@@ -1244,8 +1242,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The workshop is on Friday.",
-                "uk": "У записі звучить The workshop is on Friday."
+                "ru": "В записи звучит She is unwrapping a sandwich.",
+                "uk": "У записі звучить She is unwrapping a sandwich."
               }
             },
             {
@@ -1253,8 +1251,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The workshop is on Friday.",
-                "uk": "У записі звучить The workshop is on Friday."
+                "ru": "В записи звучит She is unwrapping a sandwich.",
+                "uk": "У записі звучить She is unwrapping a sandwich."
               }
             }
           ],
@@ -1269,63 +1267,63 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви берете участь регулярно. Виберіть форму attend",
+        "prompt": "Обгортка у ваших руках зараз. Виберіть форму unwrap",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-42:i03:r1",
-            "text": "attend"
+            "text": "unwrapping"
           },
           {
             "responseId": "en:lesson-10:session-42:i03:r2",
-            "text": "attends"
+            "text": "unwrap"
           },
           {
             "responseId": "en:lesson-10:session-42:i03:r3",
-            "text": "attending"
+            "text": "unwraps"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви берете участь регулярно. Виберіть форму attend",
+        "accessibilityLabel": "Обгортка у ваших руках зараз. Виберіть форму unwrap",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы участвуете регулярно. Выберите форму attend",
-            "uk": "Ви берете участь регулярно. Виберіть форму attend"
+            "ru": "Обёртка в ваших руках сейчас. Выберите форму unwrap",
+            "uk": "Обгортка у ваших руках зараз. Виберіть форму unwrap"
           },
-          "gappedTargetPhrase": "We ___ a workshop every month.",
+          "gappedTargetPhrase": "I am ___ my sandwich.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-42:i03:r1",
-              "text": "attend"
+              "text": "unwrapping"
             },
             {
               "responseId": "en:lesson-10:session-42:i03:r2",
-              "text": "attends"
+              "text": "unwrap"
             },
             {
               "responseId": "en:lesson-10:session-42:i03:r3",
-              "text": "attending"
+              "text": "unwraps"
             }
           ],
-          "testedDimension": "Ви берете участь регулярно. Виберіть форму attend",
+          "testedDimension": "Обгортка у ваших руках зараз. Виберіть форму unwrap",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-42:i03:r2",
               "correct": false,
-              "testedDimension": "Ви берете участь регулярно. Виберіть форму attend",
+              "testedDimension": "Обгортка у ваших руках зараз. Виберіть форму unwrap",
               "feedbackByLocale": {
-                "ru": "С we нужна attend без s.",
-                "uk": "З we потрібна attend без s."
+                "ru": "После am нужна unwrapping.",
+                "uk": "Після am потрібна unwrapping."
               }
             },
             {
               "responseId": "en:lesson-10:session-42:i03:r3",
               "correct": false,
-              "testedDimension": "Ви берете участь регулярно. Виберіть форму attend",
+              "testedDimension": "Обгортка у ваших руках зараз. Виберіть форму unwrap",
               "feedbackByLocale": {
-                "ru": "Для регулярного действия нужна attend.",
-                "uk": "Для регулярної дії потрібна attend."
+                "ru": "После am нужна unwrapping, не unwraps.",
+                "uk": "Після am потрібна unwrapping, не unwraps."
               }
             }
           ]
@@ -1333,32 +1331,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-42:word:worksheet",
+        "interactionId": "en:lesson-10:session-42:word:bite",
         "ordinal": 8,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — worksheet",
+        "prompt": "Картка слова — bite",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-42:word:worksheet:audio"
+          "en:lesson-10:session-42:word:bite:audio"
         ],
-        "accessibilityLabel": "Картка слова — worksheet",
+        "accessibilityLabel": "Картка слова — bite",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-42:word:worksheet:audio",
-            "transcript": "worksheet"
+            "audioTargetId": "en:lesson-10:session-42:word:bite:audio",
+            "transcript": "bite"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-42:word:worksheet:r1",
-              "targetText": "worksheet",
+              "responseId": "en:lesson-10:session-42:word:bite:r1",
+              "targetText": "bite",
               "meaningByLocale": {
-                "ru": "«лист с заданиями». I am completing the worksheet. — «Я выполняю задания на листе». Здесь отдельный учебный лист, на котором нужно записать ответы.",
-                "uk": "«аркуш із завданнями». I am completing the worksheet. — «Я виконую завдання на аркуші». Тут окремий навчальний аркуш, на якому потрібно записати відповіді."
+                "ru": "«кусать, откусывать». bite an apple — «откусить яблоко».",
+                "uk": "«кусати, відкушувати». bite an apple — «відкусити яблуко»."
               }
             }
           ],
@@ -1366,10 +1364,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "worksheet",
+            "word": "bite",
             "definitionByLocale": {
-              "ru": "«лист с заданиями». I am completing the worksheet. — «Я выполняю задания на листе». Здесь отдельный учебный лист, на котором нужно записать ответы.",
-              "uk": "«аркуш із завданнями». I am completing the worksheet. — «Я виконую завдання на аркуші». Тут окремий навчальний аркуш, на якому потрібно записати відповіді."
+              "ru": "«кусать, откусывать». bite an apple — «откусить яблоко».",
+              "uk": "«кусати, відкушувати». bite an apple — «відкусити яблуко»."
             }
           }
         },
@@ -1381,24 +1379,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Ви зараз записуєте відповіді на виданому аркуші. Скажіть: «Я виконую завдання на аркуші»",
+        "prompt": "Друг запитує про собаку поруч. Заспокойте його: «Вона не кусається»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви зараз записуєте відповіді на виданому аркуші. Скажіть: «Я виконую завдання на аркуші»",
+        "accessibilityLabel": "Друг запитує про собаку поруч. Заспокойте його: «Вона не кусається»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am completing the worksheet.",
+          "targetPhrase": "It does not bite.",
           "localizedMeaning": {
-            "ru": "Вы сейчас записываете ответы на выданном листе. Скажите: «Я выполняю задания на листе»",
-            "uk": "Ви зараз записуєте відповіді на виданому аркуші. Скажіть: «Я виконую завдання на аркуші»"
+            "ru": "Друг спрашивает о собаке рядом. Успокойте его: «Она не кусается»",
+            "uk": "Друг запитує про собаку поруч. Заспокойте його: «Вона не кусається»"
           },
           "orderedTokens": [
-            "I",
-            "am",
-            "completing",
-            "the",
-            "worksheet"
+            "It",
+            "does",
+            "not",
+            "bite"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1419,15 +1416,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-42:i05:r1",
-            "text": "The worksheet has six questions."
+            "text": "He is biting an apple."
           },
           {
             "responseId": "en:lesson-10:session-42:i05:r2",
-            "text": "The worksheet has seven questions."
+            "text": "He is eating an egg."
           },
           {
             "responseId": "en:lesson-10:session-42:i05:r3",
-            "text": "The report has six questions."
+            "text": "She is biting an apple."
           }
         ],
         "mediaIds": [],
@@ -1439,23 +1436,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-42:i05:audio",
-            "transcript": "The worksheet has six questions."
+            "transcript": "He is biting an apple."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-42:i05:r1",
-              "targetText": "The worksheet has six questions.",
+              "targetText": "He is biting an apple.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-42:i05:r2",
-              "targetText": "The worksheet has seven questions.",
+              "targetText": "He is eating an egg.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-42:i05:r3",
-              "targetText": "The report has six questions.",
+              "targetText": "She is biting an apple.",
               "meaningByLocale": null
             }
           ],
@@ -1466,8 +1463,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The worksheet has six questions.",
-                "uk": "У записі звучить The worksheet has six questions."
+                "ru": "В записи звучит He is biting an apple.",
+                "uk": "У записі звучить He is biting an apple."
               }
             },
             {
@@ -1475,8 +1472,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The worksheet has six questions.",
-                "uk": "У записі звучить The worksheet has six questions."
+                "ru": "В записи звучит He is biting an apple.",
+                "uk": "У записі звучить He is biting an apple."
               }
             }
           ],
@@ -1491,63 +1488,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть правильне написання форми complete",
+        "prompt": "Ви відкушуєте яблуко зараз. Виберіть форму bite",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-42:i06:r1",
-            "text": "completing"
+            "text": "biting"
           },
           {
             "responseId": "en:lesson-10:session-42:i06:r2",
-            "text": "completeing"
+            "text": "bite"
           },
           {
             "responseId": "en:lesson-10:session-42:i06:r3",
-            "text": "complete"
+            "text": "bites"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть правильне написання форми complete",
+        "accessibilityLabel": "Ви відкушуєте яблуко зараз. Виберіть форму bite",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите правильное написание формы complete",
-            "uk": "Виберіть правильне написання форми complete"
+            "ru": "Вы откусываете яблоко сейчас. Выберите форму bite",
+            "uk": "Ви відкушуєте яблуко зараз. Виберіть форму bite"
           },
-          "gappedTargetPhrase": "I am ___ the worksheet.",
+          "gappedTargetPhrase": "I am ___ an apple.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-42:i06:r1",
-              "text": "completing"
+              "text": "biting"
             },
             {
               "responseId": "en:lesson-10:session-42:i06:r2",
-              "text": "completeing"
+              "text": "bite"
             },
             {
               "responseId": "en:lesson-10:session-42:i06:r3",
-              "text": "complete"
+              "text": "bites"
             }
           ],
-          "testedDimension": "Виберіть правильне написання форми complete",
+          "testedDimension": "Ви відкушуєте яблуко зараз. Виберіть форму bite",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-42:i06:r2",
               "correct": false,
-              "testedDimension": "Виберіть правильне написання форми complete",
+              "testedDimension": "Ви відкушуєте яблуко зараз. Виберіть форму bite",
               "feedbackByLocale": {
-                "ru": "Перед ing убираем e: completing.",
-                "uk": "Перед ing прибираємо e: completing."
+                "ru": "После am нужна biting.",
+                "uk": "Після am потрібна biting."
               }
             },
             {
               "responseId": "en:lesson-10:session-42:i06:r3",
               "correct": false,
-              "testedDimension": "Виберіть правильне написання форми complete",
+              "testedDimension": "Ви відкушуєте яблуко зараз. Виберіть форму bite",
               "feedbackByLocale": {
-                "ru": "После am для действия сейчас нужна completing.",
-                "uk": "Після am для дії зараз потрібна completing."
+                "ru": "После am нужна biting, не bites.",
+                "uk": "Після am потрібна biting, не bites."
               }
             }
           ]
@@ -1555,32 +1552,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-42:word:tutorial",
+        "interactionId": "en:lesson-10:session-42:word:sip",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — tutorial",
+        "prompt": "Картка слова — sip",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-42:word:tutorial:audio"
+          "en:lesson-10:session-42:word:sip:audio"
         ],
-        "accessibilityLabel": "Картка слова — tutorial",
+        "accessibilityLabel": "Картка слова — sip",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-42:word:tutorial:audio",
-            "transcript": "tutorial"
+            "audioTargetId": "en:lesson-10:session-42:word:sip:audio",
+            "transcript": "sip"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-42:word:tutorial:r1",
-              "targetText": "tutorial",
+              "responseId": "en:lesson-10:session-42:word:sip:r1",
+              "targetText": "sip",
               "meaningByLocale": {
-                "ru": "«пошаговое руководство». I understand the tutorial. — «Я понимаю пошаговое руководство». Здесь учебный материал с последовательным объяснением действий.",
-                "uk": "«покроковий посібник». I understand the tutorial. — «Я розумію покроковий посібник». Тут навчальний матеріал із послідовним поясненням дій."
+                "ru": "«пить маленькими глотками». I sip my tea. — «Я пью чай маленькими глотками».",
+                "uk": "«пити маленькими ковтками». I sip my tea. — «Я п’ю чай маленькими ковтками»."
               }
             }
           ],
@@ -1588,10 +1585,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "tutorial",
+            "word": "sip",
             "definitionByLocale": {
-              "ru": "«пошаговое руководство». I understand the tutorial. — «Я понимаю пошаговое руководство». Здесь учебный материал с последовательным объяснением действий.",
-              "uk": "«покроковий посібник». I understand the tutorial. — «Я розумію покроковий посібник». Тут навчальний матеріал із послідовним поясненням дій."
+              "ru": "«пить маленькими глотками». I sip my tea. — «Я пью чай маленькими глотками».",
+              "uk": "«пити маленькими ковтками». I sip my tea. — «Я п’ю чай маленькими ковтками»."
             }
           }
         },
@@ -1603,23 +1600,23 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Колега запитує, чи зрозумілий вам навчальний матеріал із поясненням кроків. Скажіть: «Я розумію покроковий посібник»",
+        "prompt": "Розкажіть, як ви зазвичай п’єте чай: «Я п’ю свій чай маленькими ковтками»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Колега запитує, чи зрозумілий вам навчальний матеріал із поясненням кроків. Скажіть: «Я розумію покроковий посібник»",
+        "accessibilityLabel": "Розкажіть, як ви зазвичай п’єте чай: «Я п’ю свій чай маленькими ковтками»",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I understand the tutorial.",
+          "targetPhrase": "I sip my tea.",
           "localizedMeaning": {
-            "ru": "Коллега спрашивает, понятен ли вам учебный материал с объяснением шагов. Скажите: «Я понимаю пошаговое руководство»",
-            "uk": "Колега запитує, чи зрозумілий вам навчальний матеріал із поясненням кроків. Скажіть: «Я розумію покроковий посібник»"
+            "ru": "Расскажите, как вы обычно пьёте чай: «Я пью свой чай маленькими глотками»",
+            "uk": "Розкажіть, як ви зазвичай п’єте чай: «Я п’ю свій чай маленькими ковтками»"
           },
           "orderedTokens": [
             "I",
-            "understand",
-            "the",
-            "tutorial"
+            "sip",
+            "my",
+            "tea"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1640,15 +1637,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-42:i08:r1",
-            "text": "The tutorial is on the website."
+            "text": "She is sipping her coffee."
           },
           {
             "responseId": "en:lesson-10:session-42:i08:r2",
-            "text": "The tutorial is in the email."
+            "text": "She is sipping her tea."
           },
           {
             "responseId": "en:lesson-10:session-42:i08:r3",
-            "text": "The worksheet is on the website."
+            "text": "He is sipping his coffee."
           }
         ],
         "mediaIds": [],
@@ -1660,23 +1657,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-42:i08:audio",
-            "transcript": "The tutorial is on the website."
+            "transcript": "She is sipping her coffee."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-42:i08:r1",
-              "targetText": "The tutorial is on the website.",
+              "targetText": "She is sipping her coffee.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-42:i08:r2",
-              "targetText": "The tutorial is in the email.",
+              "targetText": "She is sipping her tea.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-42:i08:r3",
-              "targetText": "The worksheet is on the website.",
+              "targetText": "He is sipping his coffee.",
               "meaningByLocale": null
             }
           ],
@@ -1687,8 +1684,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The tutorial is on the website.",
-                "uk": "У записі звучить The tutorial is on the website."
+                "ru": "В записи звучит She is sipping her coffee.",
+                "uk": "У записі звучить She is sipping her coffee."
               }
             },
             {
@@ -1696,8 +1693,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The tutorial is on the website.",
-                "uk": "У записі звучить The tutorial is on the website."
+                "ru": "В записи звучит She is sipping her coffee.",
+                "uk": "У записі звучить She is sipping her coffee."
               }
             }
           ],
@@ -1712,63 +1709,63 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть форму understand з I",
+        "prompt": "Чашка біля ваших губ зараз. Виберіть форму sip",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-42:i09:r1",
-            "text": "understand"
+            "text": "sipping"
           },
           {
             "responseId": "en:lesson-10:session-42:i09:r2",
-            "text": "understands"
+            "text": "sip"
           },
           {
             "responseId": "en:lesson-10:session-42:i09:r3",
-            "text": "am understand"
+            "text": "sips"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть форму understand з I",
+        "accessibilityLabel": "Чашка біля ваших губ зараз. Виберіть форму sip",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму understand с I",
-            "uk": "Виберіть форму understand з I"
+            "ru": "Чашка у ваших губ сейчас. Выберите форму sip",
+            "uk": "Чашка біля ваших губ зараз. Виберіть форму sip"
           },
-          "gappedTargetPhrase": "I ___ the tutorial.",
+          "gappedTargetPhrase": "I am ___ my tea.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-42:i09:r1",
-              "text": "understand"
+              "text": "sipping"
             },
             {
               "responseId": "en:lesson-10:session-42:i09:r2",
-              "text": "understands"
+              "text": "sip"
             },
             {
               "responseId": "en:lesson-10:session-42:i09:r3",
-              "text": "am understand"
+              "text": "sips"
             }
           ],
-          "testedDimension": "Виберіть форму understand з I",
+          "testedDimension": "Чашка біля ваших губ зараз. Виберіть форму sip",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-42:i09:r2",
               "correct": false,
-              "testedDimension": "Виберіть форму understand з I",
+              "testedDimension": "Чашка біля ваших губ зараз. Виберіть форму sip",
               "feedbackByLocale": {
-                "ru": "С I нужна understand без s.",
-                "uk": "З I потрібна understand без s."
+                "ru": "После am нужна sipping.",
+                "uk": "Після am потрібна sipping."
               }
             },
             {
               "responseId": "en:lesson-10:session-42:i09:r3",
               "correct": false,
-              "testedDimension": "Виберіть форму understand з I",
+              "testedDimension": "Чашка біля ваших губ зараз. Виберіть форму sip",
               "feedbackByLocale": {
-                "ru": "Здесь нужна understand без am.",
-                "uk": "Тут потрібна understand без am."
+                "ru": "После am нужна sipping, не sips.",
+                "uk": "Після am потрібна sipping, не sips."
               }
             }
           ]
@@ -1776,32 +1773,32 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-42:word:workbook",
+        "interactionId": "en:lesson-10:session-42:word:drop",
         "ordinal": 16,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — workbook",
+        "prompt": "Картка слова — drop",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-10:session-42:word:workbook:audio"
+          "en:lesson-10:session-42:word:drop:audio"
         ],
-        "accessibilityLabel": "Картка слова — workbook",
+        "accessibilityLabel": "Картка слова — drop",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-42:word:workbook:audio",
-            "transcript": "workbook"
+            "audioTargetId": "en:lesson-10:session-42:word:drop:audio",
+            "transcript": "drop"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-10:session-42:word:workbook:r1",
-              "targetText": "workbook",
+              "responseId": "en:lesson-10:session-42:word:drop:r1",
+              "targetText": "drop",
               "meaningByLocale": {
-                "ru": "«рабочая тетрадь». My workbook is open. — «Моя рабочая тетрадь открыта». Учебная тетрадь с упражнениями, не отдельный лист worksheet.",
-                "uk": "«робочий зошит». My workbook is open. — «Мій робочий зошит відкритий». Навчальний зошит із вправами, не окремий аркуш worksheet."
+                "ru": "«ронять». I sometimes drop things. — «Я иногда роняю вещи».",
+                "uk": "«впускати, роняти». I sometimes drop things. — «Я іноді впускаю речі»."
               }
             }
           ],
@@ -1809,10 +1806,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "workbook",
+            "word": "drop",
             "definitionByLocale": {
-              "ru": "«рабочая тетрадь». My workbook is open. — «Моя рабочая тетрадь открыта». Учебная тетрадь с упражнениями, не отдельный лист worksheet.",
-              "uk": "«робочий зошит». My workbook is open. — «Мій робочий зошит відкритий». Навчальний зошит із вправами, не окремий аркуш worksheet."
+              "ru": "«ронять». I sometimes drop things. — «Я иногда роняю вещи».",
+              "uk": "«впускати, роняти». I sometimes drop things. — «Я іноді впускаю речі»."
             }
           }
         },
@@ -1824,23 +1821,23 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Ви розгорнули зошит із вправами й готові працювати. Скажіть: «Мій робочий зошит відкритий»",
+        "prompt": "Ви часто поспішаєте. Зізнайтеся: «Я іноді впускаю речі». Поставте sometimes перед drop",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви розгорнули зошит із вправами й готові працювати. Скажіть: «Мій робочий зошит відкритий»",
+        "accessibilityLabel": "Ви часто поспішаєте. Зізнайтеся: «Я іноді впускаю речі». Поставте sometimes перед drop",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "My workbook is open.",
+          "targetPhrase": "I sometimes drop things.",
           "localizedMeaning": {
-            "ru": "Вы раскрыли тетрадь с упражнениями и готовы работать. Скажите: «Моя рабочая тетрадь открыта»",
-            "uk": "Ви розгорнули зошит із вправами й готові працювати. Скажіть: «Мій робочий зошит відкритий»"
+            "ru": "Вы часто спешите. Признайтесь: «Я иногда роняю вещи». Поставьте sometimes перед drop",
+            "uk": "Ви часто поспішаєте. Зізнайтеся: «Я іноді впускаю речі». Поставте sometimes перед drop"
           },
           "orderedTokens": [
-            "My",
-            "workbook",
-            "is",
-            "open"
+            "I",
+            "sometimes",
+            "drop",
+            "things"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1861,15 +1858,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-42:i11:r1",
-            "text": "The workbook is beside the laptop."
+            "text": "He often drops his keys."
           },
           {
             "responseId": "en:lesson-10:session-42:i11:r2",
-            "text": "The workbook is under the laptop."
+            "text": "He often drops his phone."
           },
           {
             "responseId": "en:lesson-10:session-42:i11:r3",
-            "text": "The notebook is beside the laptop."
+            "text": "She often drops her keys."
           }
         ],
         "mediaIds": [],
@@ -1881,23 +1878,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-42:i11:audio",
-            "transcript": "The workbook is beside the laptop."
+            "transcript": "He often drops his keys."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-10:session-42:i11:r1",
-              "targetText": "The workbook is beside the laptop.",
+              "targetText": "He often drops his keys.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-42:i11:r2",
-              "targetText": "The workbook is under the laptop.",
+              "targetText": "He often drops his phone.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-10:session-42:i11:r3",
-              "targetText": "The notebook is beside the laptop.",
+              "targetText": "She often drops her keys.",
               "meaningByLocale": null
             }
           ],
@@ -1908,8 +1905,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The workbook is beside the laptop.",
-                "uk": "У записі звучить The workbook is beside the laptop."
+                "ru": "В записи звучит He often drops his keys.",
+                "uk": "У записі звучить He often drops his keys."
               }
             },
             {
@@ -1917,8 +1914,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит The workbook is beside the laptop.",
-                "uk": "У записі звучить The workbook is beside the laptop."
+                "ru": "В записи звучит He often drops his keys.",
+                "uk": "У записі звучить He often drops his keys."
               }
             }
           ],
@@ -1933,63 +1930,63 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ідеться про один зошит. Виберіть зв’язку",
+        "prompt": "Виберіть форму drop після I для повторюваних випадків",
         "responseOptions": [
           {
             "responseId": "en:lesson-10:session-42:i12:r1",
-            "text": "is"
+            "text": "drop"
           },
           {
             "responseId": "en:lesson-10:session-42:i12:r2",
-            "text": "are"
+            "text": "drops"
           },
           {
             "responseId": "en:lesson-10:session-42:i12:r3",
-            "text": "am"
+            "text": "dropping"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ідеться про один зошит. Виберіть зв’язку",
+        "accessibilityLabel": "Виберіть форму drop після I для повторюваних випадків",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Речь об одной тетради. Выберите связку",
-            "uk": "Ідеться про один зошит. Виберіть зв’язку"
+            "ru": "Выберите форму drop после I для повторяющихся случаев",
+            "uk": "Виберіть форму drop після I для повторюваних випадків"
           },
-          "gappedTargetPhrase": "My workbook ___ open.",
+          "gappedTargetPhrase": "I sometimes ___ things.",
           "gapOptions": [
             {
               "responseId": "en:lesson-10:session-42:i12:r1",
-              "text": "is"
+              "text": "drop"
             },
             {
               "responseId": "en:lesson-10:session-42:i12:r2",
-              "text": "are"
+              "text": "drops"
             },
             {
               "responseId": "en:lesson-10:session-42:i12:r3",
-              "text": "am"
+              "text": "dropping"
             }
           ],
-          "testedDimension": "Ідеться про один зошит. Виберіть зв’язку",
+          "testedDimension": "Виберіть форму drop після I для повторюваних випадків",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-10:session-42:i12:r2",
               "correct": false,
-              "testedDimension": "Ідеться про один зошит. Виберіть зв’язку",
+              "testedDimension": "Виберіть форму drop після I для повторюваних випадків",
               "feedbackByLocale": {
-                "ru": "Одна тетрадь: is.",
-                "uk": "Один зошит: is."
+                "ru": "После I нужна drop без s.",
+                "uk": "Після I потрібна drop без s."
               }
             },
             {
               "responseId": "en:lesson-10:session-42:i12:r3",
               "correct": false,
-              "testedDimension": "Ідеться про один зошит. Виберіть зв’язку",
+              "testedDimension": "Виберіть форму drop після I для повторюваних випадків",
               "feedbackByLocale": {
-                "ru": "Am используется с I; здесь нужна is.",
-                "uk": "Am уживається з I; тут потрібна is."
+                "ru": "О повторяющихся случаях говорим drop.",
+                "uk": "Про повторювані випадки говоримо drop."
               }
             }
           ]
@@ -2002,58 +1999,58 @@
         "purpose": "retrieval_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
-        "prompt": "З’єднайте слова зі значеннями",
+        "prompt": "Поєднайте слова з перекладом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "accessibilityLabel": "Поєднайте слова з перекладом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
               "pairId": "en:lesson-10:session-42:i13:p1",
-              "target": "workshop",
+              "target": "unwrap",
               "meaningByLocale": {
-                "ru": "практический семинар",
-                "uk": "практичний семінар"
+                "ru": "снимать обёртку",
+                "uk": "знімати обгортку"
               }
             },
             {
               "pairId": "en:lesson-10:session-42:i13:p2",
-              "target": "worksheet",
+              "target": "bite",
               "meaningByLocale": {
-                "ru": "лист с заданиями",
-                "uk": "аркуш із завданнями"
+                "ru": "кусать",
+                "uk": "кусати"
               }
             },
             {
               "pairId": "en:lesson-10:session-42:i13:p3",
-              "target": "tutorial",
+              "target": "sip",
               "meaningByLocale": {
-                "ru": "пошаговое руководство",
-                "uk": "покроковий посібник"
+                "ru": "пить маленькими глотками",
+                "uk": "пити маленькими ковтками"
               }
             },
             {
               "pairId": "en:lesson-10:session-42:i13:p4",
-              "target": "workbook",
+              "target": "drop",
               "meaningByLocale": {
-                "ru": "рабочая тетрадь",
-                "uk": "робочий зошит"
+                "ru": "ронять",
+                "uk": "впускати"
               }
             }
           ],
           "leftColumn": [
-            "workshop",
-            "worksheet",
-            "tutorial",
-            "workbook"
+            "unwrap",
+            "bite",
+            "sip",
+            "drop"
           ],
           "rightColumn": [
-            "практичний семінар",
-            "аркуш із завданнями",
-            "покроковий посібник",
-            "робочий зошит"
+            "знімати обгортку",
+            "кусати",
+            "пити маленькими ковтками",
+            "впускати"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -2075,27 +2072,27 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послухайте й складіть фразу",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-42:i14:audio"
         ],
-        "accessibilityLabel": "Послухайте й складіть фразу",
+        "accessibilityLabel": "Складіть почуту фразу",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-42:i14:audio",
-            "transcript": "I am completing the worksheet."
+            "transcript": "I am sipping my tea."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I am completing the worksheet.",
+          "hiddenTargetPhrase": "I am sipping my tea.",
           "orderedTokens": [
             "I",
             "am",
-            "completing",
-            "the",
-            "worksheet"
+            "sipping",
+            "my",
+            "tea"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -2109,24 +2106,60 @@
       {
         "interactionId": "en:lesson-10:session-42:i15",
         "ordinal": 22,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Колега запитує, як часто команда проходить практичне навчання. Скажіть: «Ми відвідуємо практичний семінар щомісяця»",
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-42:i15:audio"
         ],
-        "accessibilityLabel": "Колега запитує, як часто команда проходить практичне навчання. Скажіть: «Ми відвідуємо практичний семінар щомісяця»",
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-10:session-42:i15:audio",
+            "transcript": "It does not bite."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It does not bite.",
+          "orderedTokens": [
+            "It",
+            "does",
+            "not",
+            "bite"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-10:session-42:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг запитує, що ви робите з паперовим згортком. Скажіть: «Я розгортаю свій бутерброд»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-10:session-42:i16:audio"
+        ],
+        "accessibilityLabel": "Друг запитує, що ви робите з паперовим згортком. Скажіть: «Я розгортаю свій бутерброд»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-10:session-42:i15:audio",
-            "transcript": "We attend a workshop every month."
+            "audioTargetId": "en:lesson-10:session-42:i16:audio",
+            "transcript": "I am unwrapping my sandwich."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "We attend a workshop every month.",
+          "targetPhrase": "I am unwrapping my sandwich.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2140,70 +2173,29 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-10:session-42:i16",
-        "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Колега уточнює, чи зрозуміле покрокове пояснення. Скажіть: «Я розумію покроковий посібник»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Колега уточнює, чи зрозуміле покрокове пояснення. Скажіть: «Я розумію покроковий посібник»",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "I understand the tutorial.",
-          "localizedMeaning": {
-            "ru": "Коллега уточняет, понятно ли пошаговое объяснение. Скажите: «Я понимаю пошаговое руководство»",
-            "uk": "Колега уточнює, чи зрозуміле покрокове пояснення. Скажіть: «Я розумію покроковий посібник»"
-          },
-          "orderedTokens": [
-            "I",
-            "understand",
-            "the",
-            "tutorial"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
         "interactionId": "en:lesson-10:session-42:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Ви записуєте відповіді на аркуші, який видав викладач. Колега запитує, чим ви зараз зайняті. Скажіть: «Я виконую завдання на аркуші»",
+        "prompt": "Ви підняли ключі, що впали. Поясніть колезі: «Я іноді впускаю речі»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-10:session-42:i17:audio"
         ],
-        "accessibilityLabel": "Ви записуєте відповіді на аркуші, який видав викладач. Колега запитує, чим ви зараз зайняті. Скажіть: «Я виконую завдання на аркуші»",
+        "accessibilityLabel": "Ви підняли ключі, що впали. Поясніть колезі: «Я іноді впускаю речі»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-10:session-42:i17:audio",
-            "transcript": "I am completing the worksheet."
+            "transcript": "I sometimes drop things."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I am completing the worksheet.",
+          "targetPhrase": "I sometimes drop things.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -2217,83 +2209,83 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-10:session-42:word:workshop",
-      "correctText": "workshop",
+      "interactionId": "en:lesson-10:session-42:word:unwrap",
+      "correctText": "unwrap",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-42:i01",
-      "correctText": "We attend a workshop every month.",
+      "correctText": "I usually unwrap my sandwich at the table.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-42:i02",
-      "correctText": "The workshop is on Friday.",
+      "correctText": "She is unwrapping a sandwich.",
       "correctResponseId": "en:lesson-10:session-42:i02:r1"
     },
     {
       "interactionId": "en:lesson-10:session-42:i03",
-      "correctText": "attend",
+      "correctText": "unwrapping",
       "correctResponseId": "en:lesson-10:session-42:i03:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-42:word:worksheet",
-      "correctText": "worksheet",
+      "interactionId": "en:lesson-10:session-42:word:bite",
+      "correctText": "bite",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-42:i04",
-      "correctText": "I am completing the worksheet.",
+      "correctText": "It does not bite.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-42:i05",
-      "correctText": "The worksheet has six questions.",
+      "correctText": "He is biting an apple.",
       "correctResponseId": "en:lesson-10:session-42:i05:r1"
     },
     {
       "interactionId": "en:lesson-10:session-42:i06",
-      "correctText": "completing",
+      "correctText": "biting",
       "correctResponseId": "en:lesson-10:session-42:i06:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-42:word:tutorial",
-      "correctText": "tutorial",
+      "interactionId": "en:lesson-10:session-42:word:sip",
+      "correctText": "sip",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-42:i07",
-      "correctText": "I understand the tutorial.",
+      "correctText": "I sip my tea.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-42:i08",
-      "correctText": "The tutorial is on the website.",
+      "correctText": "She is sipping her coffee.",
       "correctResponseId": "en:lesson-10:session-42:i08:r1"
     },
     {
       "interactionId": "en:lesson-10:session-42:i09",
-      "correctText": "understand",
+      "correctText": "sipping",
       "correctResponseId": "en:lesson-10:session-42:i09:r1"
     },
     {
-      "interactionId": "en:lesson-10:session-42:word:workbook",
-      "correctText": "workbook",
+      "interactionId": "en:lesson-10:session-42:word:drop",
+      "correctText": "drop",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-42:i10",
-      "correctText": "My workbook is open.",
+      "correctText": "I sometimes drop things.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-42:i11",
-      "correctText": "The workbook is beside the laptop.",
+      "correctText": "He often drops his keys.",
       "correctResponseId": "en:lesson-10:session-42:i11:r1"
     },
     {
       "interactionId": "en:lesson-10:session-42:i12",
-      "correctText": "is",
+      "correctText": "drop",
       "correctResponseId": "en:lesson-10:session-42:i12:r1"
     },
     {
@@ -2303,22 +2295,22 @@
     },
     {
       "interactionId": "en:lesson-10:session-42:i14",
-      "correctText": "I am completing the worksheet.",
+      "correctText": "I am sipping my tea.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-42:i15",
-      "correctText": "We attend a workshop every month.",
+      "correctText": "It does not bite.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-42:i16",
-      "correctText": "I understand the tutorial.",
+      "correctText": "I am unwrapping my sandwich.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-10:session-42:i17",
-      "correctText": "I am completing the worksheet.",
+      "correctText": "I sometimes drop things.",
       "correctResponseId": null
     }
   ]

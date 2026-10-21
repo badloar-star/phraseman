@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-43",
   "learningOutcomeByLocale": {
-    "ru": "We have a briefing every morning; I am reading the circular; She is giving us a rundown",
-    "uk": "We have a briefing every morning; I am reading the circular; She is giving us a rundown"
+    "ru": "This sauce is mild; The soup is creamy; I am cutting a thin slice",
+    "uk": "This sauce is mild; The soup is creamy; I am cutting a thin slice"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-43:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Каждое утро",
-        "uk": "Щоранку"
+        "ru": "Соус без сильной остроты",
+        "uk": "Соус без сильної гостроти"
       },
       "bodyByLocale": {
-        "ru": "Повторим briefing — «инструктаж». Команда собирается каждое утро: We have a briefing every morning — «У нас инструктаж каждое утро». Every morning показывает повторение: используем Present Simple.",
-        "uk": "Повторімо briefing — «інструктаж». Команда збирається щоранку: We have a briefing every morning — «У нас інструктаж щоранку». Every morning показує повторення: використовуємо Present Simple."
+        "ru": "Вы не любите очень острое. Официант предлагает соус с мягким вкусом: This sauce is mild — «Этот соус неострый». Mild — «мягкий, неострый» о вкусе. Это свойство соуса: is + mild. Здесь mild не означает температуру еды.",
+        "uk": "Ви не любите дуже гостре. Офіціант пропонує соус із м’яким смаком: This sauce is mild — «Цей соус негострий». Mild — «м’який, негострий» про смак. Це властивість соусу: is + mild. Тут mild не означає температуру їжі."
       },
       "question": {
         "interactionId": "en:lesson-10:session-43:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-43:intro1:r1",
-              "text": "We have a briefing every morning."
+              "text": "This sauce is mild."
             },
             {
               "responseId": "en:lesson-10:session-43:intro1:r2",
-              "text": "We has a briefing every morning."
+              "text": "This sauce mild."
             },
             {
               "responseId": "en:lesson-10:session-43:intro1:r3",
-              "text": "We having a briefing every morning."
+              "text": "This sauce are mild."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-43:intro1:r1",
-              "text": "We have a briefing every morning."
+              "text": "This sauce is mild."
             },
             {
               "responseId": "en:lesson-10:session-43:intro1:r2",
-              "text": "We has a briefing every morning."
+              "text": "This sauce mild."
             },
             {
               "responseId": "en:lesson-10:session-43:intro1:r3",
-              "text": "We having a briefing every morning."
+              "text": "This sauce are mild."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-43:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Читаем сообщение",
-        "uk": "Читаємо повідомлення"
+        "ru": "Суп со сливками",
+        "uk": "Суп із вершками"
       },
       "bodyByLocale": {
-        "ru": "Circular здесь — «циркулярное письмо», одинаковое письменное сообщение, разосланное группе людей. Его прислали всем сотрудникам, и вы сейчас читаете: I am reading the circular — «Я читаю циркулярное письмо». Действие идёт сейчас: am + reading.",
-        "uk": "Circular тут — «циркулярний лист», однакове письмове повідомлення, розіслане групі людей. Його надіслали всім працівникам, і ви зараз читаєте: I am reading the circular — «Я читаю циркулярний лист». Дія триває зараз: am + reading."
+        "ru": "Вы пробуете суп со сливками. Creamy — «сливочный, нежный по консистенции»: The soup is creamy — «Суп сливочный». Слово описывает вкус или консистенцию; creamy не сообщает само по себе, сколько сливок добавлено. Для свойства супа нужна is, без being.",
+        "uk": "Ви куштуєте суп із вершками. Creamy — «вершковий, ніжний за консистенцією»: The soup is creamy — «Суп вершковий». Слово описує смак або консистенцію; creamy саме по собі не повідомляє, скільки вершків додано. Для властивості супу потрібна is, без being."
       },
       "question": {
         "interactionId": "en:lesson-10:session-43:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-43:intro2:r1",
-              "text": "I am reading the circular."
+              "text": "The soup is creamy."
             },
             {
               "responseId": "en:lesson-10:session-43:intro2:r2",
-              "text": "I reading the circular."
+              "text": "The soup creamy."
             },
             {
               "responseId": "en:lesson-10:session-43:intro2:r3",
-              "text": "I is reading the circular."
+              "text": "The soup are creamy."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-43:intro2:r1",
-              "text": "I am reading the circular."
+              "text": "The soup is creamy."
             },
             {
               "responseId": "en:lesson-10:session-43:intro2:r2",
-              "text": "I reading the circular."
+              "text": "The soup creamy."
             },
             {
               "responseId": "en:lesson-10:session-43:intro2:r3",
-              "text": "I is reading the circular."
+              "text": "The soup are creamy."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-43:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Кратко о главном",
-        "uk": "Коротко про головне"
+        "ru": "Хлеб и сыр",
+        "uk": "Хліб і сир"
       },
       "bodyByLocale": {
-        "ru": "Rundown — «краткий обзор основных сведений». Руководительница сейчас рассказывает команде о задачах дня: She is giving us a rundown — «Она даёт нам краткий обзор». Для текущего объяснения используем is + giving. У give перед ing убираем e.",
-        "uk": "Rundown — «короткий огляд основних відомостей». Керівниця зараз розповідає команді про завдання дня: She is giving us a rundown — «Вона дає нам короткий огляд». Для поточного пояснення використовуємо is + giving. У give перед ing прибираємо e."
+        "ru": "К супу вы нарезаете хлеб. Thin — «тонкий»: I am cutting a thin slice — «Я отрезаю тонкий ломтик». Действие идёт сейчас: am cutting. Вы берёте сыр, который трудно разрезать. Hard — «твёрдый»: This cheese is hard — «Этот сыр твёрдый». Is hard описывает свойство, а не действие.",
+        "uk": "До супу ви нарізаєте хліб. Thin — «тонкий»: I am cutting a thin slice — «Я відрізаю тонку скибку». Дія триває зараз: am cutting. Ви берете сир, який важко розрізати. Hard — «твердий»: This cheese is hard — «Цей сир твердий». Is hard описує властивість, а не дію."
       },
       "question": {
         "interactionId": "en:lesson-10:session-43:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-43:intro3:r1",
-              "text": "She is giving us a rundown."
+              "text": "I am cutting a thin slice."
             },
             {
               "responseId": "en:lesson-10:session-43:intro3:r2",
-              "text": "She is giveing us a rundown."
+              "text": "I cutting a thin slice."
             },
             {
               "responseId": "en:lesson-10:session-43:intro3:r3",
-              "text": "She giving us a rundown."
+              "text": "I am cut a thin slice."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-43:intro3:r1",
-              "text": "She is giving us a rundown."
+              "text": "I am cutting a thin slice."
             },
             {
               "responseId": "en:lesson-10:session-43:intro3:r2",
-              "text": "She is giveing us a rundown."
+              "text": "I cutting a thin slice."
             },
             {
               "responseId": "en:lesson-10:session-43:intro3:r3",
-              "text": "She giving us a rundown."
+              "text": "I am cut a thin slice."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bf9ce399079530e50214cafee4d92204b066c1e1dc8a2266ba451461ede1cbf4"
+  "introFingerprint": "3fee5d7547c2ac11e9060829c4539941c3b9c2f90a3390e9f43f715a78ad9b23"
 }

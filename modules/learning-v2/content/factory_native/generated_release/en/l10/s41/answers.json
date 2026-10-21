@@ -1,37 +1,37 @@
 [
   {
-    "interactionId": "en:lesson-10:session-41:word:conference",
-    "correctText": "conference",
+    "interactionId": "en:lesson-10:session-41:word:perhaps",
+    "correctText": "perhaps",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-41:i01",
-    "correctText": "We attend this conference every year.",
+    "correctText": "Perhaps he is on the bus.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-41:i02",
-    "correctText": "The conference is in London.",
+    "correctText": "Perhaps she is at work.",
     "correctResponseId": "en:lesson-10:session-41:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-41:i03",
-    "correctText": "attend",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-41:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-41:word:keynote",
-    "correctText": "keynote",
+    "interactionId": "en:lesson-10:session-41:word:probably",
+    "correctText": "probably",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-41:i04",
-    "correctText": "The keynote is starting.",
+    "correctText": "He is probably at home.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-41:i05",
-    "correctText": "The keynote is in the main hall.",
+    "correctText": "They are probably at work.",
     "correctResponseId": "en:lesson-10:session-41:i05:r1"
   },
   {
@@ -40,68 +40,68 @@
     "correctResponseId": "en:lesson-10:session-41:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-41:word:panellist",
-    "correctText": "panellist",
+    "interactionId": "en:lesson-10:session-41:word:quite",
+    "correctText": "quite",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-41:i07",
-    "correctText": "The panellist is answering a question.",
+    "correctText": "It is quite cold.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-41:i08",
-    "correctText": "The panellist is sitting beside the speaker.",
+    "correctText": "It is quite warm.",
     "correctResponseId": "en:lesson-10:session-41:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-41:i09",
-    "correctText": "answering",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-41:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-41:word:plenary",
-    "correctText": "plenary",
+    "interactionId": "en:lesson-10:session-41:word:suddenly",
+    "correctText": "suddenly",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-41:i10",
-    "correctText": "The plenary is after lunch.",
+    "correctText": "Suddenly, it starts raining.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-41:i11",
-    "correctText": "Everyone is attending the plenary.",
+    "correctText": "Suddenly, the phone rings.",
     "correctResponseId": "en:lesson-10:session-41:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-41:i12",
-    "correctText": "after",
+    "correctText": "starts",
     "correctResponseId": "en:lesson-10:session-41:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-41:i13",
-    "correctText": "en:lesson-10:session-41:i13:p1=conference\nen:lesson-10:session-41:i13:p2=keynote\nen:lesson-10:session-41:i13:p3=panellist\nen:lesson-10:session-41:i13:p4=plenary",
+    "correctText": "en:lesson-10:session-41:i13:p1=perhaps\nen:lesson-10:session-41:i13:p2=probably\nen:lesson-10:session-41:i13:p3=quite\nen:lesson-10:session-41:i13:p4=suddenly",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-41:i14",
-    "correctText": "The keynote is starting.",
+    "correctText": "He is probably at home.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-41:i15",
-    "correctText": "We attend this conference every year.",
+    "correctText": "It is quite cold.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-41:i16",
-    "correctText": "The plenary is after lunch.",
+    "correctText": "Perhaps he is on the bus.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-41:i17",
-    "correctText": "The panellist is answering a question.",
+    "correctText": "It is quite cold.",
     "correctResponseId": null
   }
 ]

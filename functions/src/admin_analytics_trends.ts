@@ -1,6 +1,7 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { hasClaimedPermission } from './admin/permissions';
+import { readThroughAnalyticsCache } from './admin_analytics_cache';
 import {
   DAY_MS,
   TREND_FRESHNESS_STALE_AFTER_MS,
@@ -847,5 +848,12 @@ export const adminGetAnalyticsTrends = onCall({
   if (!hasClaimedPermission(request.auth?.token, 'money.read')) {
     throw new HttpsError('permission-denied', 'money.read permission required');
   }
-  return executeAdminAnalyticsTrends(request.data, Date.now());
+  // зачем (№45): поверх кэша в памяти (10 мин, теряется с инстансом) — документ на 6 ч, см. admin_analytics_cache.ts.
+  const nowMs = Date.now();
+  return readThroughAnalyticsCache({
+    kind: 'trends',
+    data: request.data,
+    nowMs,
+    compute: () => executeAdminAnalyticsTrends(request.data, nowMs),
+  });
 });

@@ -16,6 +16,7 @@ import {
   type RevenueCatEventRow,
   type ShardTransactionRow,
 } from './admin_analytics_core';
+import { readThroughAnalyticsCache, wantsAnalyticsRefresh } from './admin_analytics_cache';
 
 const REGION = 'us-central1';
 const USER_CAP = 10_000;
@@ -165,6 +166,12 @@ export const adminGetAnalyticsSnapshot = onCall(
     if (!role || !hasPermission(role, 'money.read')) throw new HttpsError('permission-denied', 'Role cannot read analytics');
 
     const { rangeDays } = parseAnalyticsRequest(request.data);
+    // зачем (№45): ответ кэшируется на 6 ч в одном документе — см. admin_analytics_cache.ts.
+    return readThroughAnalyticsCache({
+      kind: 'snapshot',
+      data: { rangeDays, refresh: wantsAnalyticsRefresh(request.data) },
+      nowMs: Date.now(),
+      compute: async () => {
     const generatedAtMs = Date.now();
     const toMs = generatedAtMs;
     const fromMs = toMs - rangeDays * 24 * 60 * 60 * 1000;
@@ -222,5 +229,7 @@ export const adminGetAnalyticsSnapshot = onCall(
         funnelDevEventsExcluded: funnelSignals.excludedDevEvents,
       },
     };
+      },
+    });
   },
 );

@@ -6,46 +6,46 @@
 <title>Plus заметно</title>
 <link rel="stylesheet" href="kit.css">
 <link rel="stylesheet" href="extension.css">
-<style>/* зачем: стекло «Авроры» — только у телефона «Наборы», как в приложении */
+<style>/* стекло «Авроры» — только у «Наборов» и визитки, как в приложении */
 /* Карточки 2.0 — «стекло и градиент» для ВСЕХ экранов, состояний и окон раздела.
    зачем (владелец 04.10): «в таком же стиле все остальные состояния, экраны, карточки — все модали раздела»; «карточки одного цвета темы, градиент внутри»; «наборы из видео
    равнозначны другим разделам». Слой поверх cards-v2.html: те же экраны и тексты, другой вид — аврора на фоне, стеклянные поверхности с блеском, градиент цвета темы
    внутри карточек, акцентная главная кнопка. Тема меняется чипами вверху (все телефоны сразу). */
 
-.ph.com { background: var(--bg) !important; --g1: #38E0AA; --g2: #7C5CFF; --acc: #7EF0C8; --on: #04261D; --t: var(--g1); }
-.ph.com::before { content: ""; position: absolute; inset: -18%; z-index: 0; pointer-events: none; opacity: .62;
+.ph:is(.com,.vis) { background: var(--bg) !important; --g1: #38E0AA; --g2: #7C5CFF; --acc: #7EF0C8; --on: #04261D; --t: var(--g1); }
+.ph:is(.com,.vis)::before { content: ""; position: absolute; inset: -18%; z-index: 0; pointer-events: none; opacity: .62;
   background: radial-gradient(38% 26% at 18% 16%, var(--g1), transparent 70%), radial-gradient(40% 28% at 88% 44%, var(--g2), transparent 70%), radial-gradient(48% 28% at 32% 96%, var(--g1), transparent 72%);
   animation: gdrift 18s ease-in-out infinite alternate; }
 @keyframes gdrift { to { transform: translate3d(3%, -2%, 0) scale(1.06); } }
 
 /* стеклянные поверхности: градиент темы внутри, блик по кромке, размытие под ними */
-.ph.com .card, .ph.com .note, .ph.com .qc, .ph.com .field, .ph.com .seg3, .ph.com .toast, .ph.com .week, .ph.com .acts .card {
+.ph:is(.com,.vis) .card, .ph:is(.com,.vis) .note, .ph:is(.com,.vis) .qc, .ph:is(.com,.vis) .field, .ph:is(.com,.vis) .seg3, .ph:is(.com,.vis) .toast, .ph:is(.com,.vis) .week, .ph:is(.com,.vis) .acts .card {
   background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 18%, rgba(24,24,30,.62)) 0%, rgba(14,14,18,.58) 60%, color-mix(in srgb, var(--g2) 14%, rgba(14,14,18,.58)) 100%) !important;
   border-color: rgba(255,255,255,.07) !important; }
-.ph.com .card.c2 { background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 24%, rgba(24,24,30,.6)) 0%, rgba(14,14,18,.56) 58%, color-mix(in srgb, var(--g2) 20%, rgba(14,14,18,.56)) 100%) !important; }
-.ph.com .qc { background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 46%, rgba(10,10,14,.9)) 0%, rgba(8,8,12,.86) 56%, color-mix(in srgb, var(--g2) 40%, rgba(8,8,12,.86)) 100%) !important; }
-.ph.com .srch, .ph.com .chipbtn, .ph.com .rb, .ph.com .pill, .ph.com .cntp, .ph.com .lvl { background: rgba(255,255,255,.07) !important; border-color: rgba(255,255,255,.1) !important; }
-.ph.com .rb.fill { background: rgba(255,255,255,.14) !important; }
-.ph.com .tile { background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 62%, #1a1a20), color-mix(in srgb, var(--g2) 30%, #0b0b0f)) !important; }
-.ph.com .tile.t61, .ph.com .empty .tile { background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 55%, #1a1a20), color-mix(in srgb, var(--g2) 35%, #0b0b0f)) !important; color: #fff !important; }
+.ph:is(.com,.vis) .card.c2 { background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 24%, rgba(24,24,30,.6)) 0%, rgba(14,14,18,.56) 58%, color-mix(in srgb, var(--g2) 20%, rgba(14,14,18,.56)) 100%) !important; }
+.ph:is(.com,.vis) .qc { background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 46%, rgba(10,10,14,.9)) 0%, rgba(8,8,12,.86) 56%, color-mix(in srgb, var(--g2) 40%, rgba(8,8,12,.86)) 100%) !important; }
+.ph:is(.com,.vis) .srch, .ph:is(.com,.vis) .chipbtn, .ph:is(.com,.vis) .rb, .ph:is(.com,.vis) .pill, .ph:is(.com,.vis) .cntp, .ph:is(.com,.vis) .lvl { background: rgba(255,255,255,.07) !important; border-color: rgba(255,255,255,.1) !important; }
+.ph:is(.com,.vis) .rb.fill { background: rgba(255,255,255,.14) !important; }
+.ph:is(.com,.vis) .tile { background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 62%, #1a1a20), color-mix(in srgb, var(--g2) 30%, #0b0b0f)) !important; }
+.ph:is(.com,.vis) .tile.t61, .ph:is(.com,.vis) .empty .tile { background: linear-gradient(145deg, color-mix(in srgb, var(--g1) 55%, #1a1a20), color-mix(in srgb, var(--g2) 35%, #0b0b0f)) !important; color: #fff !important; }
 
 /* главная кнопка — цвет акцента темы, как в градиентных темах */
-.ph.com .cta:not(.gh):not(.dis):not(.red) { background: linear-gradient(180deg, color-mix(in srgb, var(--acc) 100%, #fff 22%), var(--acc)) !important; color: var(--on) !important;
+.ph:is(.com,.vis) .cta:not(.gh):not(.dis):not(.red) { background: linear-gradient(180deg, color-mix(in srgb, var(--acc) 100%, #fff 22%), var(--acc)) !important; color: var(--on) !important;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.7), 0 14px 30px -12px color-mix(in srgb, var(--acc) 70%, transparent) !important; }
-.ph.com .cta.gh { background: rgba(255,255,255,.06) !important; border-color: color-mix(in srgb, var(--acc) 45%, rgba(255,255,255,.2)) !important; color: #fff !important; }
-.ph.com .chipbtn.on, .ph.com .seg3 span.on { background: var(--acc) !important; color: var(--on) !important; border-color: transparent !important; }
-.ph.com .trk i { background: var(--acc) !important; }
-.ph.com .ov { color: color-mix(in srgb, var(--acc) 78%, #fff); }
+.ph:is(.com,.vis) .cta.gh { background: rgba(255,255,255,.06) !important; border-color: color-mix(in srgb, var(--acc) 45%, rgba(255,255,255,.2)) !important; color: #fff !important; }
+.ph:is(.com,.vis) .chipbtn.on, .ph:is(.com,.vis) .seg3 span.on { background: var(--acc) !important; color: var(--on) !important; border-color: transparent !important; }
+.ph:is(.com,.vis) .trk i { background: var(--acc) !important; }
+.ph:is(.com,.vis) .ov { color: color-mix(in srgb, var(--acc) 78%, #fff); }
 
 /* окна и шторки */
-.ph.com .sheet { background: linear-gradient(160deg, color-mix(in srgb, var(--g1) 16%, rgba(26,26,32,.9)), rgba(16,16,20,.9) 55%, color-mix(in srgb, var(--g2) 14%, rgba(16,16,20,.9))) !important;
+.ph:is(.com,.vis) .sheet { background: linear-gradient(160deg, color-mix(in srgb, var(--g1) 16%, rgba(26,26,32,.9)), rgba(16,16,20,.9) 55%, color-mix(in srgb, var(--g2) 14%, rgba(16,16,20,.9))) !important;
   -webkit-backdrop-filter: blur(26px) saturate(150%); backdrop-filter: blur(26px) saturate(150%); border-color: rgba(255,255,255,.1) !important; }
-.ph.com .dim { background: rgba(2,2,4,.62) !important; }
-.ph.com .toast { background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 24%, rgba(30,30,36,.85)), rgba(18,18,22,.85)) !important; }
-.ph.com .bot { background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.9) 34%) !important; }
-.ph.com .opt { background: rgba(255,255,255,.05) !important; }
-.ph.com .opt.ok { background: rgba(111,208,140,.14) !important; }
-.ph.com .opt.no { background: rgba(242,118,107,.14) !important; }
+.ph:is(.com,.vis) .dim { background: rgba(2,2,4,.62) !important; }
+.ph:is(.com,.vis) .toast { background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 24%, rgba(30,30,36,.85)), rgba(18,18,22,.85)) !important; }
+.ph:is(.com,.vis) .bot { background: linear-gradient(rgba(12,12,13,0), rgba(12,12,13,.9) 34%) !important; }
+.ph:is(.com,.vis) .opt { background: rgba(255,255,255,.05) !important; }
+.ph:is(.com,.vis) .opt.ok { background: rgba(111,208,140,.14) !important; }
+.ph:is(.com,.vis) .opt.no { background: rgba(242,118,107,.14) !important; }
 
 /* ---------- общий стеклянный язык (хаб и «Из видео») ---------- */
 .gl { position: relative; border-radius: 26px; background: linear-gradient(150deg, color-mix(in srgb, var(--g1) 18%, rgba(24,24,30,.62)) 0%, rgba(14,14,18,.58) 60%, color-mix(in srgb, var(--g2) 14%, rgba(14,14,18,.58)) 100%);
@@ -153,9 +153,74 @@
   .p3 .ft3 { display: flex; align-items: center; gap: 10px; margin-top: 10px; } .p3 .ft3 .au { margin: 0; flex: 1; min-width: 0; }
 </style>
 <style>
-/* зачем (владелец 21.10, реестр №6): как заметно показать Plus самому и другим. Экраны — настоящие эталоны 2.0:
-   «Настройки» (profile.html), «Пик» (spire-leagues.html + spire-tower-render.js), «Наборы» (community-redesign.html, тема «Аврора»).
-   Признак Plus других людей уже приходит в публичной проекции (isPremium) — нужна только отрисовка. Без жёлтого. */
+/* зачем (код app/(tabs)/community.tsx, packs-simple.html .tabs3): внутри вкладки «Сообщество» нет своего заголовка и стрелки «назад» —
+   сверху строка текстовых вкладок с полосой под активной, справа кнопки раздела; владелец 12.10: образец приводим к коду */
+.tabs3 { display: flex; gap: 22px; margin-top: 6px; } .tabs3 span { font-size: 16px; line-height: 22px; font-weight: 600; color: var(--sec); padding-bottom: 8px; border-bottom: 3px solid transparent; } .tabs3 span.on { color: var(--text); border-bottom-color: var(--text); }
+.lg3 { display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 14px; border-radius: 20px; background: var(--control); font-size: 15px; font-weight: 700; }
+.tag3 { display: inline-flex; height: 22px; padding: 0 8px; border-radius: 7px; background: var(--text); color: var(--bg); font-size: 12px; font-weight: 700; align-items: center; margin-left: 8px; vertical-align: 2px; }
+.pmeta { display: flex; gap: 16px; margin-top: 6px; color: var(--sec); font-size: 15px; } .pmeta span { display: inline-flex; align-items: center; gap: 5px; }
+.dock3 { position: absolute; left: 50%; transform: translateX(-50%); bottom: 96px; z-index: 20; display: flex; align-items: center; gap: 6px; padding: 6px; border-radius: 30px; background: rgba(24,26,31,.96); }
+.dock3 .b { height: 44px; padding: 0 22px; border-radius: 22px; display: flex; align-items: center; font-size: 15px; font-weight: 600; color: var(--sec); } .dock3 .b.on { background: var(--text); color: var(--bg); }
+.dock3 .plus { width: 48px; height: 48px; border-radius: 50%; background: var(--text); color: var(--bg); display: flex; align-items: center; justify-content: center; }
+.trow { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+</style>
+<style>
+  /* зачем (приказ владельца 11.10: «экраны релиза без макета рисуешь ты»; группа 2 — «Визитка игрока», реестр overlays-players-001…007):
+     визитка — отдельный арт-экран (components/PlayerProfileModal.tsx + components/profile-card/*), он НЕ зависит от темы приложения: у обычной визитки своя палитра
+     (фон #151518, кант 1px 10%, монета ранга, имя 33/800, плашка ранга) — поэтому 7 состояний нарисованы один раз, а не парами «тёмная/светлая». Темы зависят только шторки
+     (Про визитка) и окно «Удалить друга?» — они показаны в обеих. Тексты — из кода (profile_card_copy.ts, usePlayerProfileSocial.ts); монеты — ассеты приложения coin_rank_XX.
+     Размеры текста 16 и 13 (имя 33/38 — по коду). Обводки только 1px полупрозрачные. */
+  .scr > .in { min-height: 100%; padding: 0; }
+  .ph.vis { --v-sheet: rgba(24,24,29,.985); --v-surf: #1D1D22; --v-tx: #fff; --v-sc: #A6A6A8; --v-mu: #75757A; --v-edge: rgba(255,255,255,.13); --v-ink: var(--on); --v-dim: rgba(0,0,0,.58); color: #fff; }
+  /* зачем (раздел 6, 14.10): текст на акцентной кнопке в светлой теме — var(--on), как liquidGlassButtonInk в коде (белый только при ≥ 4,5:1), а не вписанный белый (был 3,27:1) */
+  .ph.vis.lite { --v-sheet: #FBFBFD; --v-surf: #ECECF1; --v-tx: #0C0C10; --v-sc: #55555D; --v-mu: #86868E; --v-edge: rgba(0,0,0,.11); --v-dim: rgba(20,20,30,.4); background: #E3E3EA !important; }
+  .ph.vis.lite::before { opacity: .22; } .ph.vis.lite .sb { color: #111; } .ph.vis.lite .sb svg { filter: invert(1); } .ph.vis.lite .hi { background: #111; }
+  .vund { position: absolute; inset: 0; padding: 70px 20px 0; opacity: .5; } .vund .t1 { font-size: 28px; font-weight: 700; } .vund .r { height: 66px; border-radius: 18px; background: var(--v-surf); margin-top: 12px; }
+  .vdim { position: absolute; inset: 0; z-index: 20; background: var(--v-dim); }
+  /* ---- сама визитка (PlayerProfileModal: left/right 10, r38, высота 640) ---- */
+  .vcard { position: absolute; left: 10px; right: 10px; bottom: 18px; height: 640px; z-index: 30; border-radius: 38px; overflow: hidden; background: #151518; display: flex; flex-direction: column; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+  .vcard::after { content: ""; position: absolute; inset: 0; border-radius: 38px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.10); pointer-events: none; z-index: 14; }
+  .vstage { position: relative; flex: 1; min-height: 0; overflow: hidden; }
+  /* фон обычной визитки (NormalLayers): мягкое свечение и два тонких кольца вокруг монеты */
+  .vglow { position: absolute; left: 50%; top: 36%; width: 418px; height: 418px; margin: -209px 0 0 -209px; border-radius: 50%; background: radial-gradient(closest-side, rgba(200,194,180,.26), rgba(200,194,180,0) 62%); }
+  .vring { position: absolute; left: 50%; top: 36%; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(255,255,255,.10); } .vring.a { width: 282px; height: 282px; margin: -141px 0 0 -141px; } .vring.b { width: 211px; height: 211px; margin: -105px 0 0 -105px; }
+  .vcoin { position: absolute; left: 50%; top: 36%; width: 165px; height: 165px; margin: -82px 0 0 -82px; }
+  .vcoin img { width: 100%; height: 100%; display: block; border-radius: 50%; }
+  .vtop { position: absolute; top: 16px; left: 16px; right: 16px; z-index: 12; display: flex; justify-content: flex-end; align-items: center; gap: 8px; min-height: 44px; }
+  .vic { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.34); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); color: #fff; }
+  .vbody { position: absolute; left: 0; right: 0; bottom: 14px; padding: 0 22px; display: flex; flex-direction: column; align-items: center; z-index: 6; }
+  .vname { align-self: stretch; text-align: center; font-size: 33px; line-height: 38px; font-weight: 800; letter-spacing: -.7px; color: #fff; }
+  .vrank { margin-top: 10px; min-height: 36px; display: flex; align-items: center; justify-content: center; }
+  .vchip { height: 36px; border-radius: 18px; padding: 0 14px 0 7px; display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.13); font-size: 16px; font-weight: 700; color: #fff; }
+  .vchip img { width: 24px; height: 24px; border-radius: 50%; display: block; } .vchip .nc { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,.18); display: block; }
+  .vlock { margin-top: 12px; min-height: 40px; padding: 0 14px; border-radius: 20px; display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); font-size: 13px; font-weight: 700; color: rgba(255,255,255,.72); }
+  /* ---- нижняя полоса кнопок ---- */
+  .vfoot { display: flex; gap: 10px; align-items: stretch; padding: 12px 16px 16px; z-index: 8; background: #151518; }
+  .vbtn { flex: 1; min-width: 0; min-height: 56px; padding: 8px 14px; border-radius: 28px; display: flex; align-items: center; justify-content: center; gap: 9px; overflow: hidden; background: #fff; color: #111; font-size: 16px; font-weight: 800; }
+  .vbtn.alt { background: rgba(255,255,255,.13); color: #fff; } .vbtn.off { background: rgba(255,255,255,.09); color: rgba(255,255,255,.55); } .vbtn.sq { flex: none; width: 80px; }
+  .v2l { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-width: 0; } .v2l .a { font-size: 16px; line-height: 22px; font-weight: 700; } .v2l .b { display: flex; align-items: center; gap: 4px; font-size: 13px; line-height: 17px; font-weight: 700; opacity: .75; } .v2l .b img { width: 15px; height: 15px; border-radius: 50%; }
+  .vtoast { position: absolute; left: 20px; right: 20px; top: 56px; z-index: 50; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 19px; background: rgba(30,30,34,.97); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12), 0 14px 34px rgba(0,0,0,.4); font-size: 16px; line-height: 22px; font-weight: 600; color: #fff; }
+  .vspin { width: 20px; height: 20px; border-radius: 50%; border: 3px solid rgba(255,255,255,.25); border-top-color: rgba(255,255,255,.8); animation: vsp 900ms linear infinite; flex: none; } @keyframes vsp { to { transform: rotate(360deg); } }
+  /* ---- шторка «Про визитка» (ProfileCardProSheet) и окно «Удалить друга?» ---- */
+  .vsh { position: absolute; left: 0; right: 0; bottom: 0; z-index: 40; border-radius: 34px 34px 0 0; padding: 12px 18px 30px; background: var(--v-sheet); box-shadow: inset 0 0 0 1px var(--v-edge), 0 -20px 30px rgba(0,0,0,.4); }
+  .vsh .hd { width: 42px; height: 5px; border-radius: 5px; background: var(--v-edge); margin: 0 auto; } .vsh .ti { margin-top: 12px; font-size: 24px; line-height: 30px; font-weight: 800; color: var(--v-tx); }
+  .vhero { position: relative; height: 250px; margin-top: 14px; border-radius: 28px; overflow: hidden; background: #0A0907; box-shadow: inset 0 0 0 1.5px rgba(233,200,130,.62); }
+  .vhero .g { position: absolute; left: 50%; top: 44%; width: 300px; height: 300px; margin: -150px 0 0 -150px; border-radius: 50%; background: radial-gradient(closest-side, rgba(233,200,130,.28), rgba(233,200,130,0) 65%); }
+  .vhero .c { position: absolute; left: 50%; top: 44%; width: 118px; height: 118px; margin: -59px 0 0 -59px; } .vhero .c img { width: 100%; height: 100%; border-radius: 50%; display: block; }
+  .vhero .bd { position: absolute; left: 14px; top: 14px; height: 30px; padding: 0 12px; border-radius: 12px; display: flex; align-items: center; background: linear-gradient(145deg, #FFF1C9, #D9B56C 55%, #F6DC9C); color: #2A1F0C; font-size: 13px; font-weight: 900; letter-spacing: 3px; }
+  .vhero .nm { position: absolute; left: 0; right: 0; bottom: 14px; text-align: center; color: #fff; font-size: 16px; font-weight: 700; }
+  .vsw { display: flex; gap: 10px; margin-top: 14px; justify-content: space-between; } .vsw i { flex: 1; max-width: 60px; aspect-ratio: 1; border-radius: 18px; padding: 2px; display: block; } .vsw i b { display: block; width: 100%; height: 100%; border-radius: 16px; } .vsw i.on { box-shadow: inset 0 0 0 2px var(--acc); }
+  .vcap { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 12px; font-size: 13px; color: var(--v-sc); } .vcap b { color: var(--v-tx); font-weight: 700; font-variant-numeric: tabular-nums; display: inline-flex; align-items: center; gap: 5px; } .vcap img { width: 18px; height: 18px; border-radius: 50%; }
+  .vbuy { margin-top: 14px; min-height: 56px; border-radius: 28px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--acc); color: var(--v-ink); font-size: 16px; font-weight: 800; } .vbuy.off { background: var(--v-surf); color: var(--v-mu); } .vbuy img { width: 20px; height: 20px; border-radius: 50%; }
+  .vcf { position: absolute; left: 24px; right: 24px; top: 50%; transform: translateY(-50%); z-index: 40; border-radius: 25px; padding: 20px; background: var(--v-sheet); box-shadow: inset 0 0 0 1px var(--v-edge), 0 24px 60px rgba(0,0,0,.45); }
+  .vcf .tt { font-size: 23px; line-height: 29px; font-weight: 800; text-align: center; color: var(--v-tx); } .vcf .bd { font-size: 16px; line-height: 22px; text-align: center; margin-top: 9px; color: var(--v-sc); }
+  .vcf .ac { display: flex; gap: 9px; margin-top: 18px; } .vcf .bt { flex: 1; min-height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; background: var(--acc); color: var(--v-ink); } .vcf .bt.gh { background: var(--v-surf); color: var(--v-tx); }
+/* зачем (раздел 6, 14.10: вторичная не сливается с листом): заливка вторичной кнопки — как buttonFill кода (deriveLiquidGlassButtonRoles, графит: тёмная #45474B, светлая #C0C0C3), подпись — текст темы */
+  .vcf .bt.gh { background: #45474B; } .ph.vis.lite .vcf .bt.gh { background: #C0C0C3; }
+  .vnote { max-width: 430px; text-align: center; font-size: 13px; color: var(--sec); margin-top: -4px; }
+</style>
+<style>
+/* зачем (владелец 21.10, реестр №6): Plus на всех местах, где виден человек; варианты и темы переключаются сверху. Без жёлтого. */
 @font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
 .lg-title { font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -.5px; }
 .lg-sub { font-size: 16px; line-height: 20px; color: var(--sec); margin-top: 6px; }
@@ -168,81 +233,178 @@
 .dockb::before { content: ""; position: absolute; left: -20px; right: -20px; bottom: -40px; height: 150px; background: linear-gradient(180deg, rgba(12,13,16,0), rgba(12,13,16,.96) 32%, #0C0D10); z-index: -1; pointer-events: none; }
 .dockb .cta { display: flex; align-items: center; justify-content: center; gap: 10px; height: 56px; border-radius: 28px; background: #F2F1F6; color: #0B0C0E; font-size: 17px; font-weight: 700; box-shadow: 0 10px 28px rgba(0,0,0,.45); }
 .ph.pik { --bg: #0C0D10; --bg-top: #181A1F; }
-.ph.com { --g1: #38E0AA; --g2: #7C5CFF; --acc: #7EF0C8; --on: #04261D; }
-.rec { display: inline-block; margin-left: 10px; padding: 3px 10px; border-radius: 9px; background: rgba(110,200,140,.16); color: #5FD08E; font-size: 13px; font-weight: 700; vertical-align: middle; }
-.verdict { margin: 34px 0 10px; padding: 18px 20px; border-radius: 18px; background: rgba(255,255,255,.06); max-width: 860px; font-size: 15px; line-height: 23px; color: #A6A6AE; }
-.verdict b { color: #F2F2F4; }
-/* аватар Plus */
+.ph.com, .ph.vis { --g1: #38E0AA; --g2: #7C5CFF; --acc: #7EF0C8; --on: #04261D; }
+.ph { --pinb: #0C0D10; }
+/* ── светлая тема 2.0 «Сумерки» поверх kit ── */
+.ph.lt { --bg: #ECEEF9; --text: #17181E; --sec: #595A63; --muted: #7E7F8A; --card: #FFFFFF; --card-2: #FFFFFF; --tile: #E4E5F3; --control: #E4E5F3; --line: rgba(23,24,30,.08); --line-2: rgba(23,24,30,.12); --pinb: #FFFFFF; color: #17181E; background: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%) !important; box-shadow: 0 0 0 9px #D9DAE6, 0 30px 60px -30px rgba(51,51,87,.45); }
+.ph.lt .sb { color: #111; background: linear-gradient(#EEF0FA 62%, rgba(238,240,250,0)); } .ph.lt .sb svg { filter: invert(1); } .ph.lt .sb .bat { border-color: rgba(0,0,0,.85); } .ph.lt .sb .bat::after { background: #111; } .ph.lt .hi { background: #111; }
+.ph.lt .card { background: #FFFFFF !important; box-shadow: 0 8px 22px -14px rgba(51,51,87,.40) !important; color: #17181E; }
+.ph.lt .card .title, .ph.lt .screen-title, .ph.lt .section-title, .ph.lt .lg-title { color: #17181E; }
+.ph.lt .sub, .ph.lt .value, .ph.lt .screen-sub, .ph.lt .eyebrow, .ph.lt .lg-sub, .ph.lt .ch { color: #595A63; }
+.ph.lt .tile { background: #E4E5F3 !important; color: #17181E; }
+.ph.lt .rb, .ph.lt .chipbtn, .ph.lt .cntp, .ph.lt .lg3, .ph.lt .seg { background: #FFFFFF !important; color: #17181E; }
+.ph.lt .cta { background: #1D1D2F !important; background-image: none !important; color: #FFFFFF !important; }
+.ph.lt .cta.gh { background: #E4E5F3 !important; color: #17181E !important; }
+.ph.lt .tabs3 span { color: #595A63; } .ph.lt .tabs3 span.on { color: #17181E; }
+.ph.lt.pik .dockb::before { background: linear-gradient(180deg, rgba(236,238,249,0), rgba(236,238,249,.96) 32%, #ECEEF9); }
+.ph.lt.pik .dockb .cta { background: #1D1D2F !important; color: #fff !important; }
+.ph.lt.com::before { opacity: .25; }
+.ph.lt.com .glass { background: rgba(255,255,255,.88) !important; box-shadow: 0 8px 22px -14px rgba(51,51,87,.40) !important; }
+.ph.lt.com .pl .tt, .ph.lt.com .t1 .tb.on, .ph.lt.com .lt .ti { color: #17181E; }
+.ph.lt.com .au { color: #595A63; } .ph.lt.com .p1 .ct { background: #E4E5F3 !important; } .ph.lt.com .p1 .ct b { color: #17181E; } .ph.lt.com .p1 .ct span { color: #595A63; }
+.ph.lt.com .lg, .ph.lt.com .ib { background: #FFFFFF !important; color: #17181E; box-shadow: none; }
+/* ── Plus ── */
 .pav { position: relative; display: inline-flex; flex: none; border-radius: 50%; vertical-align: middle; }
 .pav img { display: block; border-radius: 50%; }
 .pv-ring { padding: 2.5px; background: conic-gradient(from 200deg, #8E7CFF, #6FA8FF, #7FE0D8, #C69BFF, #8E7CFF); }
-.pv-ring img { box-shadow: 0 0 0 2px #0C0D10; }
-.pv-pin { position: absolute; right: -3px; bottom: -3px; border-radius: 50%; background: linear-gradient(135deg, #8E7CFF, #6FA8FF); color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 2px #0C0D10; }
-.pv-pin i, .ptag i, .pdia, .pcard i { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; }
-.pv-double { padding: 2px; background: #9B8CFF; } .pv-double img { box-shadow: 0 0 0 2px #0C0D10; }
+.pv-ring img, .pv-double img { box-shadow: 0 0 0 2px var(--pinb); }
+.pv-double { padding: 2px; background: #9B8CFF; }
 .pv-dash img { outline: 2px dashed #9B8CFF; outline-offset: 2px; }
-.ptag { display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px; border-radius: 11px; background: rgba(142,124,255,.20); color: #C9C0FF; font-size: 13px; font-weight: 800; vertical-align: middle; margin-left: 8px; }
-.ptag.s { height: 20px; padding: 0 7px; font-size: 12px; margin-left: 4px; }
+.pv-pin { position: absolute; right: -3px; bottom: -3px; border-radius: 50%; background: linear-gradient(135deg, #8E7CFF, #6FA8FF); color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 2px var(--pinb); }
+.pv-pin i, .ptag i, .pdia, .pcard i { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; }
+.ptag { display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px; border-radius: 11px; background: rgba(142,124,255,.20); color: #C9C0FF; font-size: 13px; font-weight: 800; vertical-align: middle; margin-left: 8px; letter-spacing: 0; }
+.ptag.s { height: 20px; padding: 0 7px; font-size: 12px; margin-left: 6px; }
 .ptag i { font-size: 11px; }
-.pdia { color: #C9C0FF; font-size: 13px; margin-left: 6px; vertical-align: 0; }
+.pdia { color: #C9C0FF; font-size: 14px; margin-left: 6px; }
+.ph.lt .ptag { background: rgba(110,92,240,.12); color: #5442D8; } .ph.lt .pdia { color: #5442D8; }
 .pcard { margin-top: 24px; padding: 14px 16px; border-radius: 22px; background: linear-gradient(135deg, rgba(142,124,255,.34), rgba(111,168,255,.18) 55%, rgba(127,224,216,.12)), #1C1C1F; display: flex; align-items: center; gap: 14px; }
-.pcard .k { font-size: 13px; font-weight: 800; letter-spacing: 1.5px; color: #C9C0FF; }
+.ph.lt .pcard { background: linear-gradient(135deg, rgba(142,124,255,.26), rgba(111,168,255,.14) 55%, rgba(127,224,216,.10)), #FFFFFF; }
+.pcard .k { font-size: 13px; font-weight: 800; letter-spacing: 1.5px; color: #C9C0FF; } .ph.lt .pcard .k { color: #5442D8; }
 .pcard .v { font-size: 17px; line-height: 22px; font-weight: 700; margin-top: 3px; }
 .frames { display: flex; gap: 10px; margin-top: 10px; }
 .frames .o { flex: 1; border-radius: 18px; background: var(--card, #161618); padding: 12px 6px 10px; display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--sec); }
-.frames .o.on { color: #fff; box-shadow: inset 0 0 0 1.5px #9B8CFF; }
-/* аватары на башне Пика — рендер даёт img, отмечаем Plus по рангу монеты (9 — Ирина, 11 — Марк, 5 — вы) */
-.pk-B img[src$="coin_rank_09.webp"], .pk-B img[src$="coin_rank_11.webp"], .pk-B img[src$="coin_rank_05.webp"] { box-shadow: 0 0 0 2px #0C0D10, 0 0 0 5px #9B8CFF; }
-.pk-D img[src$="coin_rank_09.webp"] { box-shadow: 0 0 0 2px #0C0D10, 0 0 0 5px #9B8CFF; }
-.pk-D img[src$="coin_rank_11.webp"] { outline: 2px dashed #9B8CFF; outline-offset: 2px; }
-.pk-D img[src$="coin_rank_05.webp"] { box-shadow: 0 0 0 2px #0C0D10, 0 0 0 5px #7FE0D8; }
+.ph.lt .frames .o { background: #FFFFFF; }
+.frames .o.on { color: var(--text, #fff); box-shadow: inset 0 0 0 1.5px #9B8CFF; }
+/* башня Пика — рендер даёт img, отмечаем по рангу монеты */
+.pk-ring img[src$="coin_rank_09.webp"], .pk-ring img[src$="coin_rank_11.webp"], .pk-ring img[src$="coin_rank_05.webp"] { box-shadow: 0 0 0 2px #0C0D10, 0 0 0 5px #9B8CFF; }
+.pk-frame img[src$="coin_rank_09.webp"] { box-shadow: 0 0 0 2px #0C0D10, 0 0 0 5px #9B8CFF; }
+.pk-frame img[src$="coin_rank_11.webp"] { outline: 2px dashed #9B8CFF; outline-offset: 2px; }
+.pk-frame img[src$="coin_rank_05.webp"] { box-shadow: 0 0 0 2px #0C0D10, 0 0 0 5px #7FE0D8; }
+/* визитка: кольцо и значок у большой монеты */
+.vis.vr-ring .vcoin { padding: 6px; border-radius: 50%; background: conic-gradient(from 200deg, #8E7CFF, #6FA8FF, #7FE0D8, #C69BFF, #8E7CFF); box-sizing: content-box; margin: -88px 0 0 -88px; }
+.vis.vr-ring .vcoin img, .vis.vr-double .vcoin img { box-shadow: 0 0 0 5px #151518; }
+.vis.vr-double .vcoin { padding: 5px; border-radius: 50%; background: #9B8CFF; box-sizing: content-box; margin: -87px 0 0 -87px; }
+.vis.vr-pin .vcoin::after { content: '\f2a1'; font-family: IoniconsApp; position: absolute; right: 4px; bottom: 4px; width: 46px; height: 46px; border-radius: 50%; background: linear-gradient(135deg, #8E7CFF, #6FA8FF); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 0 0 4px #151518; }
+/* панель переключателей */
+.ctl { position: sticky; top: 0; z-index: 60; background: rgba(8,8,10,.92); backdrop-filter: blur(14px); padding: 14px 0 16px; margin-top: 16px; }
+.ctl .r { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 8px; }
+.ctl .lab { font-size: 13px; color: #8E8E96; font-weight: 700; margin-right: 6px; min-width: 64px; }
+.chp { height: 38px; padding: 0 14px; border-radius: 19px; background: #1C1C1F; color: #C9C9CF; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; cursor: pointer; user-select: none; }
+.chp.on { background: #F2F1F6; color: #0B0C0E; }
+.vdesc { font-size: 15px; line-height: 23px; color: #A6A6AE; margin: 18px 0 0; max-width: 900px; }
+.vdesc b { color: #F2F2F4; }
 </style>
 </head>
 <body>
 <div class="page">
-  <h1 class="page-h1">Plus заметно — 4 варианта</h1>
-  <p class="page-lead">Реестр владельца №6: человек с Plus сам видит, что у него Plus, а другие замечают это в профиле, на аватаре, на Пике и в сообществе. Экраны — настоящие эталоны 2.0: «Настройки», «Пик» с башней и жителями этажей, «Наборы сообщества». Plus у вас (Алекс), Ирины и Марка. Цвет Plus — свой фиолетово-голубой, одинаковый во всех темах, без жёлтого.</p>
+  <h1 class="page-h1">Plus заметно — все варианты на всех местах</h1>
+  <p class="page-lead">Реестр владельца №6: «Макеты всего, я выберу». Переключайте вариант и тему — семь мест, где виден человек, перерисуются: настройки и шапка, аккаунт, Пик (жители на башне), «Все участники», друзья, наборы сообщества, визитка игрока. Plus у вас (Алекс), Ирины и Марка. Экраны — настоящие эталоны 2.0.</p>
+  <div class="ctl">
+    <div class="r" id="cv"><span class="lab">Вариант</span></div>
+    <div class="r" id="ct"><span class="lab">Тема</span></div>
+  </div>
+  <p class="vdesc" id="vd"></p>
   <div id="root"></div>
-  <div class="verdict"><b>Рекомендация: B.</b> Кольцо работает там, где имени нет — аватар в шапке, жители на башне Пика, автор набора — и не спорит с выделением «я». Данные уже есть: isPremium приходит в публичном профиле, друзьях, группах лиги и жителях Пика (functions/src/public_profile_projection.ts, friends_profiles.ts, league_groups.ts, spire_residents.ts) — сервер не трогаем. Если нужен повод купить — следующим шагом D поверх B: «Сияние» станет рамкой по умолчанию.</div>
 </div>
 <script src="kit.js"></script>
 <script src="spire-tower-render.js"></script>
 <script>
 (() => {
-const { icon, phone, block, coinImg, col } = K;
+const KK = K;
+const DIA = '&#xf2a1;';
+const PLUS = new Set([5, 9, 11]);
+const FRAME = { 5: 'ring', 9: 'double', 11: 'dash' };
+const CUR = { v: 'B', lt: false };
+const VARS = [
+  ['A', 'A · Метка у имени', '<b>A · Метка «◆ Plus» у имени.</b> Везде, где есть имя. Где имени нет — шапка, башня Пика — Plus не видно.'],
+  ['B', 'B · Кольцо аватара', '<b>B · Кольцо аватара + значок ◆.</b> Везде, где есть аватар — в шапке, на башне Пика, в списках, у автора набора, на визитке. В своём профиле и на визитке ещё слово «Plus».'],
+  ['C', 'C · Карточка + ◆', '<b>C · Карточка Plus и ◆ у имени.</b> В настройках сверху — цветная карточка «PLUS · с 12 августа»; у имени — маленький ◆. Аватар без изменений.'],
+  ['D', 'D · Рамка на выбор', '<b>D · Рамка аватара на выбор:</b> «Сияние», «Двойная», «Пунктир». У вас «Сияние», у Ирины «Двойная», у Марка «Пунктир». Без значка.'],
+  ['AB', 'A + B', '<b>A + B · кольцо и метка «Plus» везде.</b> Самый громкий вариант: и аватар, и имя.'],
+  ['BD', 'B + D', '<b>B + D · рамка на выбор + значок ◆.</b> Рамки из D, значок из B; «Сияние» — рамка по умолчанию.'],
+];
+const has = (k) => CUR.v.includes(k) || (k === 'B' && CUR.v === 'BD');
+const ringV = () => CUR.v === 'B' || CUR.v === 'AB';
+const frameV = () => CUR.v === 'D' || CUR.v === 'BD';
+const pinV = () => CUR.v === 'B' || CUR.v === 'AB' || CUR.v === 'BD';
+/* аватар-монета с признаком Plus текущего варианта */
+const AVR = (rank, size, frameOverride) => {
+  const img = KK.coinImg(rank, size);
+  if (!PLUS.has(rank)) return img;
+  const fr = frameV() ? (frameOverride || FRAME[rank]) : ringV() ? 'ring' : null;
+  if (!fr) return img;
+  const p = Math.max(14, Math.round(size * 0.4));
+  const pin = pinV() && size >= 26 ? `<span class="pv-pin" style="width:${p}px;height:${p}px"><i style="font-size:${Math.round(p * 0.58)}px">${DIA}</i></span>` : '';
+  return `<span class="pav pv-${fr}">${img}${pin}</span>`;
+};
+const TAG = (big) => {
+  if (CUR.v === 'A' || CUR.v === 'AB') return `<span class="ptag${big ? '' : ' s'}"><i>${DIA}</i>Plus</span>`;
+  if (CUR.v === 'C') return `<span class="pdia">${DIA}</span>`;
+  if (big) return `<span class="ptag"><i>${DIA}</i>Plus</span>`;
+  return '';
+};
+const tagNames = (h, big) => h.replace(/(?<!class="value")>(Ирина|Марк|Алекс)((?: · вы)?)</g, (m, n, me) => `>${n}${me}${TAG(big)}<`);
+const lt = (h, extra = '') => h.replace('class="ph', `class="ph${CUR.lt ? ' lt' : ''}${extra ? ' ' + extra : ''}`).replace('class="ph ', 'class="ph ');
+
+/* ── профиль ── */
+const PRF = (() => {
+  const { icon, phone, block, sheet } = KK;
+  const coinImg = (r, s) => AVR(r, s);
 const chevron=`<span class="ch">${icon('fwd','s18')}</span>`;
 const back=(title,close=false)=>`<div class="topbar"><button class="rb${close?'':' bare'} t" type="button" aria-label="${close?'Закрыть':'Назад'}">${icon(close?'close':'back','s21')}</button></div><div class="screen-title" style="margin-top:10px">${title}</div>`;
 const row=(ic,title,sub='',value='',opts={})=>`<div class="card list-row t"><div class="tile">${ic.startsWith('<')?ic:icon(ic,'s20')}</div><div class="copy"><div class="title">${title}</div>${sub?`<div class="sub">${sub}</div>`:''}</div>${opts.toggle?`<button type="button" class="switch${opts.on?' on':''}" aria-label="${title}" aria-pressed="${opts.on?'true':'false'}"></button>`:value?`<div class="value">${value}</div>${chevron}`:chevron}</div>`;
 const group=(title,rows)=>`<div class="eyebrow" style="margin:24px 4px 10px">${title}</div><div class="list">${rows.join('')}</div>`;
 const groupMain=(title,rows)=>group(title,rows).replace('class="eyebrow" style="','class="eyebrow" style="font-size:13px;line-height:16px;letter-spacing:3px;');
-const DIA = '&#xf2a1;';
-/* аватар варианта: ранг монеты, размер, Plus ли, рамка (D), свой ли */
-const AV = (v, rank, size, plus, frame = 'ring', me = false) => {
-  const img = coinImg(rank, size);
-  if (!plus || v === 'A' || v === 'C') return img;
-  if (v === 'B') { const p = Math.max(14, Math.round(size * 0.4)); return `<span class="pav pv-ring">${img}${size >= 26 ? `<span class="pv-pin" style="width:${p}px;height:${p}px"><i style="font-size:${Math.round(p * 0.58)}px">${DIA}</i></span>` : ''}</span>`; }
-  return `<span class="pav pv-${frame}">${img}</span>`;
-};
-const NM = (v, plus, big) => !plus ? '' : v === 'A' ? `<span class="ptag${big ? '' : ' s'}"><i>${DIA}</i>Plus</span>` : v === 'C' ? `<span class="pdia">${DIA}</span>` : (v === 'B' || v === 'D') && big ? `<span class="ptag"><i>${DIA}</i>Plus</span>` : '';
-const PLUSCARD = `<div class="pcard"><div class="grow"><div class="k"><i style="font-size:12px;margin-right:5px">${DIA}</i>PLUS</div><div class="v">Всё открыто · с 12 августа</div></div><span class="ch">${icon('fwd','s18')}</span></div>`;
-function settings(v){return phone(`<div class="flex" style="align-items:flex-start;margin-top:12px"><div class="grow"><div class="screen-title" style="font-size:40px;line-height:46px;letter-spacing:-.6px">Настройки</div><div class="screen-sub">Профиль и приложение</div></div>${AV(v,5,48,true,"ring",true)}</div>
-  ${v==='C'?PLUSCARD:''}<div class="card list-row" style="margin-top:${v==='C'?12:24}px">${AV(v,5,48,true,"ring",true)}<div class="copy"><div class="title" style="font-size:19px;line-height:24px">Алекс${NM(v,true,true)}</div><div class="sub">Лектор · аккаунт привязан</div></div>${chevron}</div>
+function settings(){return phone(`<div class="flex" style="align-items:flex-start;margin-top:12px"><div class="grow"><div class="screen-title" style="font-size:40px;line-height:46px;letter-spacing:-.6px">Настройки</div><div class="screen-sub">Профиль и приложение</div></div>${coinImg(5,48)}</div>
+  <div class="card list-row" style="margin-top:24px">${coinImg(5,48)}<div class="copy"><div class="title" style="font-size:19px;line-height:24px">Алекс</div><div class="sub">Лектор · аккаунт привязан</div></div>${chevron}</div>
   ${groupMain('Профиль',[row('user','Аккаунт','Данные, вход и удаление','Google'),row('flag','Язык интерфейса','','Русский'),`<div class="card list-row t"><img src="assets/language_en.webp" alt="" style="width:40px;height:40px;border-radius:11px;object-fit:cover"><div class="copy"><div class="title">Язык изучения</div><div class="sub">Прогресс хранится отдельно</div></div><div class="value">English</div>${chevron}</div>`])}
   ${groupMain('Обучение',[row('edit','Настройки обучения','Проверка, ввод и озвучка'),row('chat','Уведомления','Напоминания и итоги')])}
-  ${groupMain('Внешний вид и помощь',[row('layers','Темы','Только тёмные варианты'),row('flag','Приватность и данные'),row('chat','Написать в поддержку')])}`,{time:'13:10'}).replace('class="ph"','class="ph prof"');}
-const FRAMES = (v) => v !== 'D' ? '' : `<div class="eyebrow" style="margin:24px 4px 10px;font-size:13px;line-height:16px;letter-spacing:3px">Рамка аватара · Plus</div><div class="frames"><div class="o on">${AV('D',5,44,true,'ring')}Сияние</div><div class="o">${AV('D',5,44,true,'double')}Двойная</div><div class="o">${AV('D',5,44,true,'dash')}Пунктир</div></div>`;
-const settingsV = (v) => { const h = settings(v); return v === 'D' ? h.replace('<div class="eyebrow"', FRAMES(v) + '<div class="eyebrow"') : h; };
+  ${groupMain('Внешний вид и помощь',[row('layers','Темы','Только тёмные варианты'),row('flag','Приватность и данные'),row('chat','Написать в поддержку')])}`,{time:'13:10'});}
+function account(){return phone(`${back('Аккаунт')}<div class="center" style="margin-top:26px">${coinImg(5,102)}<div class="section-title" style="margin-top:10px">Алекс</div><button class="chipbtn t" type="button" style="margin-top:10px">Изменить имя</button></div>
+  ${group('Данные',[row('user','Имя','Показывается друзьям','Алекс'),`<div class="card list-row"><div class="tile">${icon('chat','s20')}</div><div class="copy"><div class="title">Email</div><div class="sub">alex@example.com</div></div><button class="chipbtn t" type="button" aria-label="Скопировать email">Скопировать</button></div>`,row('check','Способ входа','','Google'),row('trend','С нами с','','12.08.2025')])}
+  ${group('Аккаунт',[row('arrowR','Выйти и войти под другим аккаунтом'),`<button class="card list-row t" type="button" style="width:100%;color:#FF9A98;text-align:left"><div class="tile">${icon('trash','s20')}</div><div class="copy"><div class="title">Удалить аккаунт</div><div class="sub">Требует отдельного подтверждения</div></div>${chevron}</button>`])}`,{time:'13:11'});}
 
-/* «Пик» — как phoneSpire эталона: башня Оникса, я на 7-м этаже; жители на 6–8 этажах (Ирина 9, Марк 11 — Plus; остальные нет) */
-const R = SpireTowerRender;
-const pik = (v) => {
+  return { settings, account };
+})();
+const PLUSCARD = `<div class="pcard"><div class="grow"><div class="k"><i style="font-size:12px;margin-right:5px">${DIA}</i>PLUS</div><div class="v">Всё открыто · с 12 августа</div></div><span class="ch">${KK.icon('fwd','s18')}</span></div>`;
+const FRAMES = () => `<div class="eyebrow" style="margin:24px 4px 10px;font-size:13px;line-height:16px;letter-spacing:3px">Рамка аватара · Plus</div><div class="frames"><div class="o on">${AVR(5,44,'ring')}Сияние</div><div class="o">${AVR(5,44,'double')}Двойная</div><div class="o">${AVR(5,44,'dash')}Пунктир</div></div>`;
+const sSettings = () => {
+  let h = tagNames(PRF.settings(), true);
+  if (CUR.v === 'C') h = h.replace('<div class="card list-row" style="margin-top:24px">', PLUSCARD + '<div class="card list-row" style="margin-top:12px">');
+  if (frameV()) h = h.replace(/<div class="eyebrow"/, FRAMES() + '<div class="eyebrow"');
+  return lt(h, 'prof');
+};
+const sAccount = () => lt(tagNames(PRF.account(), true), 'prof');
+
+/* ── Пик ── */
+const sPik = () => {
+  const R = SpireTowerRender; const { icon, phone } = KK;
   const head = `<div class="hd"><div class="grow"><div class="lg-title">Пик</div><div class="lg-sub">Оникс · до конца недели 2 д 14 ч</div></div></div>`;
-  const tv = `<div style="margin-top:14px">${R.windowHtml({ tier: 6, myFloor: 7, selected: 7, width: 390, height: 520, myRank: 5, coin: K.coin, rivals: { 8: [9, 6], 7: [3], 6: [11, 7] } })}</div>`;
+  const tv = `<div style="margin-top:14px">${R.windowHtml({ tier: 6, myFloor: 7, selected: 7, width: 390, height: 520, myRank: 5, coin: KK.coin, rivals: { 8: [9, 6], 7: [3], 6: [11, 7] } })}</div>`;
   const dock = `<div class="dockb"><div class="cta">Играть<span class="ar">${icon('arrowR', 's20')}</span></div></div>`;
-  return phone(head + tv + '<div style="height:110px"></div>', { fixed: dock }).replace('class="ph"', `class="ph pik pk-${v}"`);
+  return lt(phone(head + tv + '<div style="height:110px"></div>', { fixed: dock }), 'pik ' + (ringV() ? 'pk-ring' : frameV() ? 'pk-frame' : ''));
 };
 
-/* «Наборы» — плашка 1 эталона community-redesign, автор с аватаром варианта */
+/* ── «Все участники» и «Друзья» ── */
+const CMM = (() => {
+  const { icon, phone, sheet } = KK;
+  const coinImg = (r, s) => AVR(r, s);
+const chevron = `<span class="ch">${icon('fwd', 's18')}</span>`;
+const head = (title, sub, action = '') => `<div class="topbar"><button class="rb bare t" type="button" aria-label="Назад">${icon('back', 's22')}</button>${action}</div><div class="screen-title" style="margin-top:10px">${title}</div>${sub ? `<div class="screen-sub">${sub}</div>` : ''}`;
+const segments = (active) => `<div class="seg" aria-label="Статический пример переключателя разделов">${['Пик','Друзья','Наборы'].map((v,i)=>`<span class="seg-btn${i===active?' on':''}">${v}</span>`).join('')}</div>`;
+const tabsRow = (active, right = '') => `<div class="trow"><div class="tabs3">${['Пик','Друзья','Наборы'].map((v,i)=>`<span${i===active?' class="on"':''}>${v}</span>`).join('')}</div><div class="flex" style="gap:8px">${right}</div></div>`;
+const person = (rank, name, stat, place, me = false) => `<div class="card list-row${me ? ' me' : ''}">${coinImg(rank,44)}<div class="copy"><div class="title">${name}${me ? ' · вы' : ''}</div><div class="sub">${stat}</div></div>${place?`<div class="value"><b style="color:var(--text)">${place}</b><br>место</div>`:''}</div>`;
+function leaderboard(){return phone(`${head('Все участники','Гранит · 30 человек · место по монетам недели')}<div class="status-card card" style="margin-top:18px">${icon('wifiOff','s20')}<div><strong>Последнее обновление 12:40</strong>Чужие места обновляются при входе не чаще раза в 6 часов. Ваши ступени остаются локально.</div></div><div class="list" style="margin-top:14px">${person(11,'Марк','612 монет','1')}${person(7,'Аня','538 монет','2')}${person(4,'Ольга','470 монет','3')}${person(5,'Алекс','340 монет','7',true)}${person(3,'Майя','330 монет','8')}</div>`,{time:'12:44'});}
+const request = (rank,name)=>`<div class="card" style="padding:14px"><div class="flex">${coinImg(rank,44)}<div class="grow"><div class="title">${name}</div><div class="sub" style="color:var(--sec);margin-top:2px">Хочет добавить тебя в друзья</div></div></div><div class="flex" style="margin-top:12px"><button class="cta sm t" type="button" style="flex:1">Принять</button><button class="cta sm gh t" type="button" style="flex:1">Отклонить</button></div></div>`;
+function friends(){return phone(`${tabsRow(1)}<div class="trow" style="margin-top:12px"><div class="flex" style="gap:10px"><div class="section-title">Активные заявки</div><span class="cntp">2</span></div><span class="lg3">${icon('plus','s18')}Добавить друга</span></div><div class="list" style="margin-top:12px">${request(9,'Ирина')}${request(6,'Денис')}</div><div class="section-title" style="margin-top:24px">Твои друзья</div><div class="list" style="margin-top:12px">${person(8,'Лидия','12 дней практики','')}${person(3,'Олег','Занимался сегодня','')}</div>`,{time:'12:46'});}
+  return { leaderboard, friends };
+})();
+const sBoard = () => lt(tagNames(CMM.leaderboard(), false));
+const sFriends = () => lt(tagNames(CMM.friends(), false));
+
+/* ── наборы ── */
+const COM = (() => {
+  const { icon, phone } = KK;
 const A = 'assets/';
 const lang = `<span class="lg t"><img src="${A}language_en.webp" alt="">EN${icon('down', 's16')}</span>`;
 const ib = (n, x = '') => `<span class="ib t${x}">${icon(n, 's20')}</span>`;
@@ -262,7 +424,7 @@ const EN = (p) => `<span>${icon('heart', 's16')}${p.l}</span><span>${icon('peopl
 const tp = (p) => (p.top ? '<span class="tp">Топ</span>' : '');
 const hl = (t, q) => (q ? t.replace(new RegExp(q, 'i'), (m) => `<span class="hl">${m}</span>`) : t);
 const top = `<div class="t1"><span class="tb t">Пик</span><span class="tb t">Друзья</span><span class="tb on t">Наборы</span><span class="grow"></span>${ib('search')}${lang}</div>`;
-const backC = (r = '') => `<div class="topbar"><span class="ib bare t">${icon('back', 's22')}</span><div class="flex">${r}</div></div>`;
+const back = (r = '') => `<div class="topbar"><span class="ib bare t">${icon('back', 's22')}</span><div class="flex">${r}</div></div>`;
 const searchBar = (q) => `<div class="flex" style="margin-top:4px;gap:8px"><span class="ib bare t">${icon('back', 's22')}</span><div class="sf">${icon('search', 's20')}<span class="q">${q}</span><span class="ib bare t">${icon('close', 's18')}</span></div></div>`;
 const sgm = (on, st = '') => `<div class="sg" style="${st}"><span class="t${on === 0 ? ' on' : ''}">Новые</span><span class="t${on === 1 ? ' on' : ''}">Топ</span></div>`;
 const wrows = (n = 6) => [['Lay', 'класть'], ['Claim', 'утверждать'], ['Convince', 'убеждать'], ['Insist', 'настаивать'], ['Admit', 'признавать'], ['Refuse', 'отказываться']].slice(0, n).map(([e, r]) => `<div class="wr t"><span class="ib bare">${icon('vol', 's20')}</span><div class="w">${e}<i>${r}</i></div></div>`).join('');
@@ -270,20 +432,57 @@ const wrows = (n = 6) => [['Lay', 'класть'], ['Claim', 'утверждат
 // ---------- три плашки ----------
 const meta = (p) => `<div class="au"><span>${coin(p.k)}${p.a}</span><div class="mt">${EN(p)}</div></div>`;
 const plate1 = (p, o = {}) => `<div class="pl p1 glass t${o.up ? ' up' : ''}${o.dm ? ' dm' : ''}"><div class="ct"><b>${p.n}</b><span>карточек</span></div><div class="bx"><div class="tt">${hl(p.t, o.q)}${tp(p)}</div>${meta(p)}</div>${o.noadd ? '' : `<span class="rd t${o.added ? ' on' : ''}">${icon(o.added ? 'check' : 'plus', 's22')}</span>`}</div>`;
-const PLUS_AUTH = { 'Ирина': 'double', 'Марк': 'dash' };
-PK.forEach((p) => { if (p.a === 'Ирина') p.k = 9; if (p.a === 'Марк') p.k = 11; });
-const metaV = (v, p) => `<div class="au"><span>${PLUS_AUTH[p.a] ? AV(v, p.k, 18, true, v === 'D' ? PLUS_AUTH[p.a] : 'ring') : coin(p.k)}${p.a}${NM(v, !!PLUS_AUTH[p.a], false)}</span><div class="mt">${EN(p)}</div></div>`;
-const plateV = (v, p, o = {}) => plate1(p, o).replace(meta(p), metaV(v, p));
-const sets = (v) => phone(`${top}<div class="lt" style="margin-top:6px"><div class="ti" style="font-size:34px;line-height:40px">Наборы сообщества</div></div>${sgm(0, 'margin-top:14px')}${[4, 6, 2, 3, 5].map((i) => plateV(v, PK[i], { added: i === 4 })).join('')}<div style="height:40px"></div>`).replace('class="ph"', 'class="ph com"');
+  PK.forEach((p) => { if (p.a === 'Ирина') p.k = 9; if (p.a === 'Марк') p.k = 11; if (p.a === 'Лидия') p.k = 8; });
+  const metaV = (p) => `<div class="au"><span>${PLUS.has(p.k) ? AVR(p.k, 18) : coin(p.k)}${p.a}</span><div class="mt">${EN(p)}</div></div>`;
+  const plate = (p, o = {}) => plate1(p, o).replace(meta(p), metaV(p));
+  const screen = () => phone(`${top}<div class="lt" style="margin-top:6px"><div class="ti" style="font-size:34px;line-height:40px">Наборы сообщества</div></div>${sgm(0, 'margin-top:14px')}${[4, 6, 2, 3, 5].map((i) => plate(PK[i], { added: i === 4 })).join('')}<div style="height:40px"></div>`);
+  return { screen };
+})();
+const sSets = () => lt(tagNames(COM.screen(), false), 'com');
 
-const V = [
-  ['A', 'A · Метка «Plus» у имени', 'Маленькая пилюля «◆ Plus» сразу после имени — в профиле и у автора набора. Читается словом. Минус: где имени нет — аватар в шапке, жители на башне Пика — Plus не видно.'],
-  ['B', 'B · Сияющее кольцо аватара + значок<span class="rec">рекомендую</span>', 'У аватара Plus — переливающееся кольцо и круглый значок ◆ в углу (на мелких аватарах — только кольцо). Аватар есть везде — в шапке, на башне Пика, у автора набора, — поэтому Plus виден даже без имени. В профиле к кольцу добавляется слово «Plus».'],
-  ['C', 'C · Карточка Plus и ◆ у имени', 'В «Настройках» сверху — цветная карточка «PLUS · Всё открыто · с 12 августа», у имени — ◆. Самому видно отлично, другим — только маленький ◆ у имени; на башне Пика ничего.'],
-  ['D', 'D · Рамка аватара на выбор', 'Plus открывает выбор рамки: «Сияние», «Двойная», «Пунктир». Другие видят выбранную рамку везде, где аватар (Ирина — «Двойная», Марк — «Пунктир»). Самый личный и «дорогой» вариант, повод купить; больше работы — рамки, выбор в настройках, поле в профиле.'],
-];
-document.getElementById('root').innerHTML = V.map(([v, t, lead]) => block('v' + v, t, lead, [col('Настройки', settingsV(v)), col('Пик · жители этажей', pik(v)), col('Наборы сообщества', sets(v))])).join('');
-K.init();
+/* ── визитка игрока (Ирина, Plus) ── */
+const VIS = (() => {
+  const { icon, phone } = KK;
+const coin = (r) => `assets/coin_rank_${String(r).padStart(2, '0')}.webp`;
+const T = ['Стажёр', 'Кадет', 'Скаут', 'Агент', 'Спикер', 'Лектор', 'Эксперт', 'Профи', 'Мастер', 'Эрудит', 'Дипломат', 'Консул', 'Стратег', 'Магистр', 'Лидер', 'Элита', 'Кумир', 'Икона', 'Легенда', 'Титан'];
+const share = '<svg class="i s20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4M8 8l4-4 4 4"/><path d="M5 12v7h14v-7"/></svg>';
+const lockI = '<svg class="i s16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/></svg>';
+const arrowUp = '<svg class="i s20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V5M6 11l6-6 6 6"/></svg>';
+const star = '<svg class="i s20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.2l2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.5l6-.8z"/></svg>';
+const heart = (on) => `<svg class="i s20" viewBox="0 0 24 24" style="color:${on ? '#FF5C7A' : '#fff'}"><path d="M12 20s-7-4.4-9-8.6C1.6 8.3 3.6 5 7 5c2 0 3.2 1.1 5 3 1.8-1.9 3-3 5-3 3.4 0 5.4 3.3 4 6.4C19 15.6 12 20 12 20z" ${on ? 'fill="currentColor" stroke="none"' : 'fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"'}/></svg>`;
+const und = '<div class="vund"><div class="t1">Друзья</div><div class="r"></div><div class="r"></div><div class="r"></div><div class="r"></div></div><div class="vdim"></div>';
+const chip = (r) => (r === null ? '<span class="vchip"><span class="nc"></span>—</span>' : `<span class="vchip"><img src="${coin(r)}" alt="">${T[r]} · ранг ${r}</span>`);
+// o: name, rank, menu(показывать «⋯»), self, foot(html), lock, toast
+const card = (o) => `<div class="vcard"><div class="vstage"><div class="vglow"></div><div class="vring a"></div><div class="vring b"></div>
+  <div class="vcoin">${o.rank === null ? '<div style="width:100%;height:100%;border-radius:50%;background:rgba(255,255,255,.12)"></div>' : `<img src="${coin(o.rank)}" alt="">`}</div>
+  <div class="vtop">${o.self ? `<span class="vic t">${share}</span>` : o.menu ? `<span class="vic t">${icon('dotsH', 's20')}</span>` : ''}<span class="vic t">${icon('close', 's20')}</span></div>
+  <div class="vbody"><div class="vname">${o.name}</div><div class="vrank">${chip(o.rank)}</div>${o.lock ? `<span class="vlock t">${lockI}Свой текст — в Про визитке</span>` : ''}</div></div>
+  <div class="vfoot">${o.foot}</div></div>${o.toast ? `<div class="vtoast"><span class="vspin" style="display:${o.toast.spin ? 'block' : 'none'}"></span>${o.toast.text}</div>` : ''}`;
+const add = (cls, label, ico) => `<span class="vbtn ${cls} t">${icon(ico, 's20')}${label}</span>`;
+const like = (n, on, cls = 'alt sq') => `<span class="vbtn ${cls} t">${heart(on)}${n}</span>`;
+  return { card, add, like, und };
+})();
+const sVisit = () => {
+  let h = KK.phone(VIS.und + VIS.card({ name: 'Ирина', rank: 9, menu: true, foot: VIS.add('', 'Добавить в друзья', 'plus') + VIS.like(12, false) }), {});
+  h = tagNames(h, true);
+  const cls = ['vis', CUR.lt ? 'lite' : '', ringV() ? 'vr-ring' : frameV() ? 'vr-double' : '', pinV() ? 'vr-pin' : ''].filter(Boolean).join(' ');
+  return h.replace('class="ph"', `class="ph ${cls}"`);
+};
+
+const SCREENS = [['Настройки и шапка', sSettings], ['Аккаунт', sAccount], ['Пик · жители этажей', sPik], ['Все участники', sBoard], ['Друзья', sFriends], ['Наборы сообщества', sSets], ['Визитка игрока', sVisit]];
+const render = () => {
+  document.getElementById('root').innerHTML = `<section class="block"><div class="phones">${SCREENS.map(([t, f]) => KK.col(t, f())).join('')}</div></section>`;
+  document.getElementById('vd').innerHTML = VARS.find((x) => x[0] === CUR.v)[2];
+  document.querySelectorAll('#cv .chp').forEach((c) => c.classList.toggle('on', c.dataset.v === CUR.v));
+  document.querySelectorAll('#ct .chp').forEach((c) => c.classList.toggle('on', (c.dataset.t === 'lt') === CUR.lt));
+};
+document.getElementById('cv').insertAdjacentHTML('beforeend', VARS.map(([k, t]) => `<span class="chp" data-v="${k}">${t}</span>`).join(''));
+document.getElementById('ct').insertAdjacentHTML('beforeend', '<span class="chp" data-t="dk">Тёмная</span><span class="chp" data-t="lt">Светлая</span>');
+document.getElementById('cv').addEventListener('click', (e) => { const c = e.target.closest('.chp'); if (c) { CUR.v = c.dataset.v; render(); } });
+document.getElementById('ct').addEventListener('click', (e) => { const c = e.target.closest('.chp'); if (c) { CUR.lt = c.dataset.t === 'lt'; render(); } });
+const q = new URLSearchParams(location.search); if (q.get('v')) CUR.v = q.get('v'); if (q.get('t') === 'lt') CUR.lt = true;
+render();
+KK.init();
 })();
 </script>
 </body>

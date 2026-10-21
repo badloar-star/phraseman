@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-42",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-42:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-42:intro1:r2": {
+          "ru": "Для прошлого нужна watched.",
+          "uk": "Для минулого потрібна watched."
+        },
+        "en:lesson-12:session-42:intro1:r3": {
+          "ru": "Watches — не прошлое и не форма с we.",
+          "uk": "Watches — не минуле й не форма з we."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-42:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-42:intro2:r2": {
+          "ru": "Здесь мелкий дождь снаружи, а нужна одна капля.",
+          "uk": "Тут дрібний дощ надворі, а потрібна одна крапля."
+        },
+        "en:lesson-12:session-42:intro2:r3": {
+          "ru": "Для прошлого нужна noticed.",
+          "uk": "Для минулого потрібна noticed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-42:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-42:intro3:r2": {
+          "ru": "Это описание солнечного света, не впечатление.",
+          "uk": "Це опис сонячного світла, не враження."
+        },
+        "en:lesson-12:session-42:intro3:r3": {
+          "ru": "Для прошлого нужна enjoyed.",
+          "uk": "Для минулого потрібна enjoyed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e1f60b40c23ac75c1ec47c6085e7d76241ccbc5fa70a56e98dc4e0759b8bf269"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-48:word:luggage-tag",
+    "correctText": "luggage tag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-48:i01",
+    "correctText": "I checked the luggage tag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-48:i02",
+    "correctText": "She checked the luggage tag.",
+    "correctResponseId": "en:lesson-12:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-48:i03",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-48:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-48:word:shoulder-strap",
+    "correctText": "shoulder strap",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-48:i04",
+    "correctText": "I checked the shoulder strap.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-48:i05",
+    "correctText": "We checked the shoulder strap.",
+    "correctResponseId": "en:lesson-12:session-48:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-48:i06",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-48:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-48:word:side-pocket",
+    "correctText": "side pocket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-48:i07",
+    "correctText": "I cleaned the side pocket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-48:i08",
+    "correctText": "He cleaned the side pocket.",
+    "correctResponseId": "en:lesson-12:session-48:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-48:i09",
+    "correctText": "cleaned",
+    "correctResponseId": "en:lesson-12:session-48:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-48:word:inside-pocket",
+    "correctText": "inside pocket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-48:i10",
+    "correctText": "I cleaned the inside pocket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-48:i11",
+    "correctText": "They cleaned the inside pocket.",
+    "correctResponseId": "en:lesson-12:session-48:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-48:i12",
+    "correctText": "cleaned",
+    "correctResponseId": "en:lesson-12:session-48:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-48:i13",
+    "correctText": "en:lesson-12:session-48:i13:p1=luggage tag\nen:lesson-12:session-48:i13:p2=shoulder strap\nen:lesson-12:session-48:i13:p3=side pocket\nen:lesson-12:session-48:i13:p4=inside pocket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-48:i14",
+    "correctText": "We packed the suitcase.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-48:i15",
+    "correctText": "She checked her train ticket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-48:i16",
+    "correctText": "The inside pocket was empty yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-48:i17",
+    "correctText": "I checked the luggage tag before the trip.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-41",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-41:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-41:intro1:r2": {
+          "ru": "Для прошлого нужна closed.",
+          "uk": "Для минулого потрібна closed."
+        },
+        "en:lesson-12:session-41:intro1:r3": {
+          "ru": "Closes — не прошлое и не форма с I.",
+          "uk": "Closes — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-41:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-41:intro2:r2": {
+          "ru": "Это проверка зеркала, не мытьё капота.",
+          "uk": "Це перевірка дзеркала, не миття капота."
+        },
+        "en:lesson-12:session-41:intro2:r3": {
+          "ru": "Для прошлого нужна washed.",
+          "uk": "Для минулого потрібна washed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-41:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-41:intro3:r2": {
+          "ru": "Это состояние дверцы, не действие.",
+          "uk": "Це стан дверцят, не дія."
+        },
+        "en:lesson-12:session-41:intro3:r3": {
+          "ru": "Для прошлого нужна closed.",
+          "uk": "Для минулого потрібна closed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "31381ebfb29adee18253d49d2c5f3d39e0dc8080efff0f3b37bd28071e2bab0d"
+}

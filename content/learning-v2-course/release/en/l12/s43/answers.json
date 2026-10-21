@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-43:word:chickpeas",
+    "correctText": "chickpeas",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-43:i01",
+    "correctText": "I cooked the chickpeas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-43:i02",
+    "correctText": "She cooked the chickpeas.",
+    "correctResponseId": "en:lesson-12:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-43:i03",
+    "correctText": "cooked",
+    "correctResponseId": "en:lesson-12:session-43:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-43:word:kidney-beans",
+    "correctText": "kidney beans",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-43:i04",
+    "correctText": "We cooked the kidney beans.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-43:i05",
+    "correctText": "I cooked the kidney beans.",
+    "correctResponseId": "en:lesson-12:session-43:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-43:i06",
+    "correctText": "cooked",
+    "correctResponseId": "en:lesson-12:session-43:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-43:word:sweetcorn",
+    "correctText": "sweetcorn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-43:i07",
+    "correctText": "I used sweetcorn in the salad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-43:i08",
+    "correctText": "He used sweetcorn in the salad.",
+    "correctResponseId": "en:lesson-12:session-43:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-43:i09",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-43:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-43:word:couscous",
+    "correctText": "couscous",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-43:i10",
+    "correctText": "I wanted couscous for lunch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-43:i11",
+    "correctText": "They wanted couscous for lunch.",
+    "correctResponseId": "en:lesson-12:session-43:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-43:i12",
+    "correctText": "wanted",
+    "correctResponseId": "en:lesson-12:session-43:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-43:i13",
+    "correctText": "en:lesson-12:session-43:i13:p1=chickpeas\nen:lesson-12:session-43:i13:p2=kidney beans\nen:lesson-12:session-43:i13:p3=sweetcorn\nen:lesson-12:session-43:i13:p4=couscous",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-43:i14",
+    "correctText": "She washed the mixing bowl.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-43:i15",
+    "correctText": "We used the salad bowl.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-43:i16",
+    "correctText": "The sweetcorn was in the fridge yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-43:i17",
+    "correctText": "I cooked the chickpeas for the salad.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-44:word:shoe-shop",
+    "correctText": "shoe shop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-44:i01",
+    "correctText": "I visited a shoe shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-44:i02",
+    "correctText": "She visited a shoe shop.",
+    "correctResponseId": "en:lesson-12:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-44:i03",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-12:session-44:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-44:word:clothes-shop",
+    "correctText": "clothes shop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-44:i04",
+    "correctText": "We visited a clothes shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-44:i05",
+    "correctText": "I visited a clothes shop.",
+    "correctResponseId": "en:lesson-12:session-44:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-44:i06",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-12:session-44:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-44:word:charity-shop",
+    "correctText": "charity shop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-44:i07",
+    "correctText": "I visited a charity shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-44:i08",
+    "correctText": "He visited a charity shop.",
+    "correctResponseId": "en:lesson-12:session-44:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-44:i09",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-12:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-44:word:shoe-size",
+    "correctText": "shoe size",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-44:i10",
+    "correctText": "I checked my shoe size.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-44:i11",
+    "correctText": "They checked their shoe size.",
+    "correctResponseId": "en:lesson-12:session-44:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-44:i12",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-44:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-44:i13",
+    "correctText": "en:lesson-12:session-44:i13:p1=shoe shop\nen:lesson-12:session-44:i13:p2=clothes shop\nen:lesson-12:session-44:i13:p3=charity shop\nen:lesson-12:session-44:i13:p4=shoe size",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-44:i14",
+    "correctText": "She checked the price tag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-44:i15",
+    "correctText": "We used the changing room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-44:i16",
+    "correctText": "The shoe shop was closed yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-44:i17",
+    "correctText": "I visited a clothes shop near the station.",
+    "correctResponseId": null
+  }
+]

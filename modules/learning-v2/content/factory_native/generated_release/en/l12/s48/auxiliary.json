@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-48",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-48:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-48:intro1:r2": {
+          "ru": "Для прошлого нужна checked.",
+          "uk": "Для минулого потрібна checked."
+        },
+        "en:lesson-12:session-48:intro1:r3": {
+          "ru": "Checks — не прошлое и не форма с I.",
+          "uk": "Checks — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-48:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-48:intro2:r2": {
+          "ru": "Это описание длины, не проверка.",
+          "uk": "Це опис довжини, не перевірка."
+        },
+        "en:lesson-12:session-48:intro2:r3": {
+          "ru": "Для прошлого нужна checked.",
+          "uk": "Для минулого потрібна checked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-48:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-48:intro3:r2": {
+          "ru": "Это боковой карман, а нужен внутренний.",
+          "uk": "Це бічна кишеня, а потрібна внутрішня."
+        },
+        "en:lesson-12:session-48:intro3:r3": {
+          "ru": "Для прошлого нужна cleaned.",
+          "uk": "Для минулого потрібна cleaned."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3852b3edfce4281d401550ee7e3818259e2e34cf8c9cbdaeeea65615408d4feb"
+}

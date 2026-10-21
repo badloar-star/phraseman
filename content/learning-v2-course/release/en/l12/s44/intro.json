@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "visited /ɪd/, checked /t/; was/were",
+    "uk": "visited /ɪd/, checked /t/; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Обувной магазин",
+        "uk": "Взуттєвий магазин"
+      },
+      "bodyByLocale": {
+        "ru": "Shoe shop — «обувной магазин». We visited a shoe shop — мы побывали в обувном магазине. В visited окончание /ɪd/. Выберите прошлое посещение.",
+        "uk": "Shoe shop — «взуттєвий магазин». We visited a shoe shop — ми побували у взуттєвому магазині. У visited закінчення /ɪd/. Виберіть минуле відвідування."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-44:intro1:r1",
+              "text": "We visited a shoe shop."
+            },
+            {
+              "responseId": "en:lesson-12:session-44:intro1:r2",
+              "text": "We visit a shoe shop yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-44:intro1:r3",
+              "text": "We visits a shoe shop yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-44:intro1:r1",
+              "text": "We visited a shoe shop."
+            },
+            {
+              "responseId": "en:lesson-12:session-44:intro1:r2",
+              "text": "We visit a shoe shop yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-44:intro1:r3",
+              "text": "We visits a shoe shop yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одежда и благотворительный магазин",
+        "uk": "Одяг і благодійний магазин"
+      },
+      "bodyByLocale": {
+        "ru": "Clothes shop — «магазин одежды», charity shop — «благотворительный магазин», где продают пожертвованные вещи для поддержки благотворительности. I visited a charity shop — я побывал в благотворительном магазине. Выберите этот магазин.",
+        "uk": "Clothes shop — «магазин одягу», charity shop — «благодійний магазин», де продають пожертвувані речі для підтримки благодійності. I visited a charity shop — я побував у благодійному магазині. Виберіть цей магазин."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-44:intro2:r1",
+              "text": "I visited a charity shop."
+            },
+            {
+              "responseId": "en:lesson-12:session-44:intro2:r2",
+              "text": "I visited a clothes shop."
+            },
+            {
+              "responseId": "en:lesson-12:session-44:intro2:r3",
+              "text": "I visit a charity shop yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-44:intro2:r1",
+              "text": "I visited a charity shop."
+            },
+            {
+              "responseId": "en:lesson-12:session-44:intro2:r2",
+              "text": "I visited a clothes shop."
+            },
+            {
+              "responseId": "en:lesson-12:session-44:intro2:r3",
+              "text": "I visit a charity shop yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Размер обуви",
+        "uk": "Розмір взуття"
+      },
+      "bodyByLocale": {
+        "ru": "Shoe size — «размер обуви». She checked her shoe size — она проверила свой размер обуви. В checked окончание /t/. Выберите действие в прошлом.",
+        "uk": "Shoe size — «розмір взуття». She checked her shoe size — вона перевірила свій розмір взуття. У checked закінчення /t/. Виберіть дію в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-44:intro3:r1",
+              "text": "She checked her shoe size."
+            },
+            {
+              "responseId": "en:lesson-12:session-44:intro3:r2",
+              "text": "She checks her shoe size yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-44:intro3:r3",
+              "text": "She check her shoe size yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-44:intro3:r1",
+              "text": "She checked her shoe size."
+            },
+            {
+              "responseId": "en:lesson-12:session-44:intro3:r2",
+              "text": "She checks her shoe size yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-44:intro3:r3",
+              "text": "She check her shoe size yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "22d60ad32251a053641ebf90c2a111648431360d22a3dbd5f9b339008889c5fc"
+}

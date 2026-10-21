@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "watched, cleaned; was/were",
+    "uk": "watched, cleaned; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Морская свинка",
+        "uk": "Морська свинка"
+      },
+      "bodyByLocale": {
+        "ru": "Guinea pig — «морская свинка». We watched the guinea pig — мы наблюдали за морской свинкой. Watch → watched, окончание /t/. Выберите прошлое наблюдение.",
+        "uk": "Guinea pig — «морська свинка». We watched the guinea pig — ми спостерігали за морською свинкою. Watch → watched, закінчення /t/. Виберіть минуле спостереження."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-46:intro1:r1",
+              "text": "We watched the guinea pig."
+            },
+            {
+              "responseId": "en:lesson-12:session-46:intro1:r2",
+              "text": "We watch the guinea pig yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-46:intro1:r3",
+              "text": "We watches the guinea pig yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-46:intro1:r1",
+              "text": "We watched the guinea pig."
+            },
+            {
+              "responseId": "en:lesson-12:session-46:intro1:r2",
+              "text": "We watch the guinea pig yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-46:intro1:r3",
+              "text": "We watches the guinea pig yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Попугайчик",
+        "uk": "Папужка"
+      },
+      "bodyByLocale": {
+        "ru": "Budgie — «волнистый попугайчик». I watched the budgie — я наблюдал за попугайчиком. Выберите действие, не описание птицы.",
+        "uk": "Budgie — «хвилястий папужка». I watched the budgie — я спостерігав за папужкою. Виберіть дію, не опис пташки."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-46:intro2:r1",
+              "text": "I watched the budgie."
+            },
+            {
+              "responseId": "en:lesson-12:session-46:intro2:r2",
+              "text": "The budgie was blue."
+            },
+            {
+              "responseId": "en:lesson-12:session-46:intro2:r3",
+              "text": "I watch the budgie yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-46:intro2:r1",
+              "text": "I watched the budgie."
+            },
+            {
+              "responseId": "en:lesson-12:session-46:intro2:r2",
+              "text": "The budgie was blue."
+            },
+            {
+              "responseId": "en:lesson-12:session-46:intro2:r3",
+              "text": "I watch the budgie yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Клетка и аквариум",
+        "uk": "Клітка й акваріум"
+      },
+      "bodyByLocale": {
+        "ru": "Rabbit hutch — «клетка-домик для кролика», fish tank — «аквариум». She cleaned the fish tank — она почистила аквариум. В cleaned окончание /d/. Выберите сообщение об аквариуме.",
+        "uk": "Rabbit hutch — «клітка-будиночок для кролика», fish tank — «акваріум». She cleaned the fish tank — вона почистила акваріум. У cleaned закінчення /d/. Виберіть повідомлення про акваріум."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-46:intro3:r1",
+              "text": "She cleaned the fish tank."
+            },
+            {
+              "responseId": "en:lesson-12:session-46:intro3:r2",
+              "text": "She cleaned the rabbit hutch."
+            },
+            {
+              "responseId": "en:lesson-12:session-46:intro3:r3",
+              "text": "She clean the fish tank yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-46:intro3:r1",
+              "text": "She cleaned the fish tank."
+            },
+            {
+              "responseId": "en:lesson-12:session-46:intro3:r2",
+              "text": "She cleaned the rabbit hutch."
+            },
+            {
+              "responseId": "en:lesson-12:session-46:intro3:r3",
+              "text": "She clean the fish tank yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8fa8af1cf3b657456c5cfa578d6c45a36419d98185ea1d9c0e328f43252bbc84"
+}

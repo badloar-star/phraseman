@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-42:word:thunderstorm",
+    "correctText": "thunderstorm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-42:i01",
+    "correctText": "I watched the thunderstorm from the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-42:i02",
+    "correctText": "She watched the thunderstorm.",
+    "correctResponseId": "en:lesson-12:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-42:i03",
+    "correctText": "watched",
+    "correctResponseId": "en:lesson-12:session-42:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-42:word:raindrop",
+    "correctText": "raindrop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-42:i04",
+    "correctText": "I noticed a raindrop on the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-42:i05",
+    "correctText": "We noticed a raindrop on the window.",
+    "correctResponseId": "en:lesson-12:session-42:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-42:i06",
+    "correctText": "noticed",
+    "correctResponseId": "en:lesson-12:session-42:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-42:word:drizzle",
+    "correctText": "drizzle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-42:i07",
+    "correctText": "I noticed the drizzle outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-42:i08",
+    "correctText": "She noticed the drizzle.",
+    "correctResponseId": "en:lesson-12:session-42:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-42:i09",
+    "correctText": "noticed",
+    "correctResponseId": "en:lesson-12:session-42:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-42:word:sunshine",
+    "correctText": "sunshine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-42:i10",
+    "correctText": "I enjoyed the sunshine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-42:i11",
+    "correctText": "They enjoyed the sunshine.",
+    "correctResponseId": "en:lesson-12:session-42:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-42:i12",
+    "correctText": "enjoyed",
+    "correctResponseId": "en:lesson-12:session-42:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-42:i13",
+    "correctText": "en:lesson-12:session-42:i13:p1=thunderstorm\nen:lesson-12:session-42:i13:p2=raindrop\nen:lesson-12:session-42:i13:p3=drizzle\nen:lesson-12:session-42:i13:p4=sunshine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-42:i14",
+    "correctText": "She closed the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-42:i15",
+    "correctText": "We visited the park after lunch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-42:i16",
+    "correctText": "The thunderstorm was last night.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-42:i17",
+    "correctText": "I enjoyed the sunshine in the garden.",
+    "correctResponseId": null
+  }
+]

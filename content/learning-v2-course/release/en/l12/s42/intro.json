@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "watched, noticed, enjoyed; was/were",
+    "uk": "watched, noticed, enjoyed; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Гроза",
+        "uk": "Гроза"
+      },
+      "bodyByLocale": {
+        "ru": "Thunderstorm — «гроза». We watched the thunderstorm from the window — мы наблюдали за грозой из окна. Watch → watched, окончание /t/. Выберите прошлое наблюдение.",
+        "uk": "Thunderstorm — «гроза». We watched the thunderstorm from the window — ми спостерігали за грозою з вікна. Watch → watched, закінчення /t/. Виберіть минуле спостереження."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-42:intro1:r1",
+              "text": "We watched the thunderstorm from the window."
+            },
+            {
+              "responseId": "en:lesson-12:session-42:intro1:r2",
+              "text": "We watch the thunderstorm yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-42:intro1:r3",
+              "text": "We watches the thunderstorm yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-42:intro1:r1",
+              "text": "We watched the thunderstorm from the window."
+            },
+            {
+              "responseId": "en:lesson-12:session-42:intro1:r2",
+              "text": "We watch the thunderstorm yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-42:intro1:r3",
+              "text": "We watches the thunderstorm yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Капля и морось",
+        "uk": "Крапля й мряка"
+      },
+      "bodyByLocale": {
+        "ru": "Raindrop — «капля дождя», drizzle — «мелкий моросящий дождь». I noticed a raindrop on the window — я заметил каплю дождя на окне. Выберите сообщение об одной капле.",
+        "uk": "Raindrop — «крапля дощу», drizzle — «дрібний дощ, мряка». I noticed a raindrop on the window — я помітив краплю дощу на вікні. Виберіть повідомлення про одну краплю."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-42:intro2:r1",
+              "text": "I noticed a raindrop on the window."
+            },
+            {
+              "responseId": "en:lesson-12:session-42:intro2:r2",
+              "text": "I noticed the drizzle outside."
+            },
+            {
+              "responseId": "en:lesson-12:session-42:intro2:r3",
+              "text": "I notice a raindrop yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-42:intro2:r1",
+              "text": "I noticed a raindrop on the window."
+            },
+            {
+              "responseId": "en:lesson-12:session-42:intro2:r2",
+              "text": "I noticed the drizzle outside."
+            },
+            {
+              "responseId": "en:lesson-12:session-42:intro2:r3",
+              "text": "I notice a raindrop yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Солнечный свет",
+        "uk": "Сонячне світло"
+      },
+      "bodyByLocale": {
+        "ru": "Sunshine — «солнечный свет». We enjoyed the sunshine — мы наслаждались солнечным светом. В enjoyed окончание /d/. Выберите приятное впечатление, не описание погоды.",
+        "uk": "Sunshine — «сонячне світло». We enjoyed the sunshine — ми насолоджувалися сонячним світлом. У enjoyed закінчення /d/. Виберіть приємне враження, не опис погоди."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-42:intro3:r1",
+              "text": "We enjoyed the sunshine."
+            },
+            {
+              "responseId": "en:lesson-12:session-42:intro3:r2",
+              "text": "The sunshine was warm."
+            },
+            {
+              "responseId": "en:lesson-12:session-42:intro3:r3",
+              "text": "We enjoy the sunshine yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-42:intro3:r1",
+              "text": "We enjoyed the sunshine."
+            },
+            {
+              "responseId": "en:lesson-12:session-42:intro3:r2",
+              "text": "The sunshine was warm."
+            },
+            {
+              "responseId": "en:lesson-12:session-42:intro3:r3",
+              "text": "We enjoy the sunshine yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ffbb1ae1aae3da7d4f2fbbf52063fdcb57cad873df7f19598718c33506bb0420"
+}

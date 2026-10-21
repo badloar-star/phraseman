@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-44",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-44:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-44:intro1:r2": {
+          "ru": "Для прошлого нужна visited.",
+          "uk": "Для минулого потрібна visited."
+        },
+        "en:lesson-12:session-44:intro1:r3": {
+          "ru": "Visits — не прошлое и не форма с we.",
+          "uk": "Visits — не минуле й не форма з we."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-44:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-44:intro2:r2": {
+          "ru": "Здесь не сказано, что магазин благотворительный.",
+          "uk": "Тут не сказано, що магазин благодійний."
+        },
+        "en:lesson-12:session-44:intro2:r3": {
+          "ru": "Для прошлого нужна visited.",
+          "uk": "Для минулого потрібна visited."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-44:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-44:intro3:r2": {
+          "ru": "Checks — настоящее; нужна checked.",
+          "uk": "Checks — теперішній час; потрібна checked."
+        },
+        "en:lesson-12:session-44:intro3:r3": {
+          "ru": "Для прошлого нужна checked.",
+          "uk": "Для минулого потрібна checked."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e9b1f25aa7efa927a71a33e8587597bbd234435964748c4eb16be4dec3ec9718"
+}

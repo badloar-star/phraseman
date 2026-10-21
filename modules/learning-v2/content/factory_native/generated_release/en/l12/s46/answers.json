@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-46:word:guinea-pig",
+    "correctText": "guinea pig",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-46:i01",
+    "correctText": "I watched the guinea pig.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-46:i02",
+    "correctText": "She watched the guinea pig.",
+    "correctResponseId": "en:lesson-12:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-46:i03",
+    "correctText": "watched",
+    "correctResponseId": "en:lesson-12:session-46:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-46:word:budgie",
+    "correctText": "budgie",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-46:i04",
+    "correctText": "We watched the budgie.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-46:i05",
+    "correctText": "I watched the budgie.",
+    "correctResponseId": "en:lesson-12:session-46:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-46:i06",
+    "correctText": "watched",
+    "correctResponseId": "en:lesson-12:session-46:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-46:word:rabbit-hutch",
+    "correctText": "rabbit hutch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-46:i07",
+    "correctText": "I cleaned the rabbit hutch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-46:i08",
+    "correctText": "He cleaned the rabbit hutch.",
+    "correctResponseId": "en:lesson-12:session-46:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-46:i09",
+    "correctText": "cleaned",
+    "correctResponseId": "en:lesson-12:session-46:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-46:word:fish-tank",
+    "correctText": "fish tank",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-46:i10",
+    "correctText": "I cleaned the fish tank.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-46:i11",
+    "correctText": "They cleaned the fish tank.",
+    "correctResponseId": "en:lesson-12:session-46:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-46:i12",
+    "correctText": "cleaned",
+    "correctResponseId": "en:lesson-12:session-46:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-46:i13",
+    "correctText": "en:lesson-12:session-46:i13:p1=guinea pig\nen:lesson-12:session-46:i13:p2=budgie\nen:lesson-12:session-46:i13:p3=rabbit hutch\nen:lesson-12:session-46:i13:p4=fish tank",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-46:i14",
+    "correctText": "We visited the pet shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-46:i15",
+    "correctText": "She checked the pet carrier.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-46:i16",
+    "correctText": "The guinea pig was in the garden yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-46:i17",
+    "correctText": "I watched the budgie after lunch.",
+    "correctResponseId": null
+  }
+]

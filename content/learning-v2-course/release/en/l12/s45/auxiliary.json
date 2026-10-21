@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-45",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-45:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-45:intro1:r2": {
+          "ru": "Для прошлого нужна checked.",
+          "uk": "Для минулого потрібна checked."
+        },
+        "en:lesson-12:session-45:intro1:r3": {
+          "ru": "Checks — не прошлое и не форма с I.",
+          "uk": "Checks — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-45:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-45:intro2:r2": {
+          "ru": "Это проверка номера платформы, не поездка.",
+          "uk": "Це перевірка номера платформи, не поїздка."
+        },
+        "en:lesson-12:session-45:intro2:r3": {
+          "ru": "Для прошлого нужна travelled.",
+          "uk": "Для минулого потрібна travelled."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-45:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-45:intro3:r2": {
+          "ru": "Для прошлого нужна used.",
+          "uk": "Для минулого потрібна used."
+        },
+        "en:lesson-12:session-45:intro3:r3": {
+          "ru": "Uses — настоящее; нужна used.",
+          "uk": "Uses — теперішній час; потрібна used."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dc7034d24e4148b43046699c5cb6ae816eedcdd34396eaec4834fe7c64d98172"
+}

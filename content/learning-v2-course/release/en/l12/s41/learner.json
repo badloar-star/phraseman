@@ -1,0 +1,1114 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-41",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-41:word:car-boot",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — car boot",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-41:word:car-boot:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — car boot",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-41:word:car-boot:audio",
+          "transcript": "car boot"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-41:word:car-boot:r1",
+            "targetText": "car boot",
+            "meaningByLocale": {
+              "ru": "багажник автомобиля.",
+              "uk": "багажник автомобіля."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "car boot",
+          "definitionByLocale": {
+            "ru": "багажник автомобиля.",
+            "uk": "багажник автомобіля."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-41:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я закрыл багажник машины",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я закрыл багажник машины",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I closed the car boot.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я закрыл багажник машины",
+          "uk": "Скажіть: Я закрив багажник машини"
+        },
+        "orderedTokens": [
+          "I",
+          "closed",
+          "the",
+          "car",
+          "boot"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-41:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-41:i02:r1",
+          "text": "She closed the car boot."
+        },
+        {
+          "responseId": "en:lesson-12:session-41:i02:r2",
+          "text": "She closes the car boot."
+        },
+        {
+          "responseId": "en:lesson-12:session-41:i02:r3",
+          "text": "We closed the car boot."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-41:i02:audio",
+          "transcript": "She closed the car boot."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-41:i02:r1",
+            "targetText": "She closed the car boot.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i02:r2",
+            "targetText": "She closes the car boot.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i02:r3",
+            "targetText": "We closed the car boot.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She closed the car boot.",
+              "uk": "У записі звучить She closed the car boot."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She closed the car boot.",
+              "uk": "У записі звучить She closed the car boot."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-41:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-41:i03:r1",
+          "text": "closed"
+        },
+        {
+          "responseId": "en:lesson-12:session-41:i03:r2",
+          "text": "close"
+        },
+        {
+          "responseId": "en:lesson-12:session-41:i03:r3",
+          "text": "closes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ the car boot yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-41:i03:r1",
+            "text": "closed"
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i03:r2",
+            "text": "close"
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i03:r3",
+            "text": "closes"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-41:i03:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма closed.",
+              "uk": "Для минулого потрібна форма closed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i03:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна closed.",
+              "uk": "Це не форма минулого. Потрібна closed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-41:word:car-bonnet",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — car bonnet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-41:word:car-bonnet:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — car bonnet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-41:word:car-bonnet:audio",
+          "transcript": "car bonnet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-41:word:car-bonnet:r1",
+            "targetText": "car bonnet",
+            "meaningByLocale": {
+              "ru": "капот автомобиля.",
+              "uk": "капот автомобіля."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "car bonnet",
+          "definitionByLocale": {
+            "ru": "капот автомобиля.",
+            "uk": "капот автомобіля."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-41:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Мы помыли капот машины",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Мы помыли капот машины",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We washed the car bonnet.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы помыли капот машины",
+          "uk": "Скажіть: Ми помили капот машини"
+        },
+        "orderedTokens": [
+          "We",
+          "washed",
+          "the",
+          "car",
+          "bonnet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-41:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-41:i05:r1",
+          "text": "I washed the car bonnet."
+        },
+        {
+          "responseId": "en:lesson-12:session-41:i05:r2",
+          "text": "I wash the car bonnet."
+        },
+        {
+          "responseId": "en:lesson-12:session-41:i05:r3",
+          "text": "She washed the car bonnet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-41:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-41:i05:audio",
+          "transcript": "I washed the car bonnet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-41:i05:r1",
+            "targetText": "I washed the car bonnet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i05:r2",
+            "targetText": "I wash the car bonnet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i05:r3",
+            "targetText": "She washed the car bonnet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-41:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I washed the car bonnet.",
+              "uk": "У записі звучить I washed the car bonnet."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I washed the car bonnet.",
+              "uk": "У записі звучить I washed the car bonnet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-41:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-41:i06:r1",
+          "text": "washed"
+        },
+        {
+          "responseId": "en:lesson-12:session-41:i06:r2",
+          "text": "wash"
+        },
+        {
+          "responseId": "en:lesson-12:session-41:i06:r3",
+          "text": "washes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ the car bonnet yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-41:i06:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i06:r2",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i06:r3",
+            "text": "washes"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-41:i06:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма washed.",
+              "uk": "Для минулого потрібна форма washed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i06:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна washed.",
+              "uk": "Це не форма минулого. Потрібна washed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-41:word:wing-mirror",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — wing mirror",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-41:word:wing-mirror:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wing mirror",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-41:word:wing-mirror:audio",
+          "transcript": "wing mirror"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-41:word:wing-mirror:r1",
+            "targetText": "wing mirror",
+            "meaningByLocale": {
+              "ru": "боковое зеркало автомобиля.",
+              "uk": "бічне дзеркало автомобіля."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wing mirror",
+          "definitionByLocale": {
+            "ru": "боковое зеркало автомобиля.",
+            "uk": "бічне дзеркало автомобіля."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-41:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я проверил боковое зеркало машины",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я проверил боковое зеркало машины",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I checked the wing mirror.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я проверил боковое зеркало машины",
+          "uk": "Скажіть: Я перевірив бічне дзеркало машини"
+        },
+        "orderedTokens": [
+          "I",
+          "checked",
+          "the",
+          "wing",
+          "mirror"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-41:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-41:i08:r1",
+          "text": "He checked the wing mirror."
+        },
+        {
+          "responseId": "en:lesson-12:session-41:i08:r2",
+          "text": "He checks the wing mirror."
+        },
+        {
+          "responseId": "en:lesson-12:session-41:i08:r3",
+          "text": "We checked the wing mirror."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-41:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-41:i08:audio",
+          "transcript": "He checked the wing mirror."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-41:i08:r1",
+            "targetText": "He checked the wing mirror.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i08:r2",
+            "targetText": "He checks the wing mirror.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i08:r3",
+            "targetText": "We checked the wing mirror.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-41:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He checked the wing mirror.",
+              "uk": "У записі звучить He checked the wing mirror."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He checked the wing mirror.",
+              "uk": "У записі звучить He checked the wing mirror."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-41:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-41:i09:r1",
+          "text": "checked"
+        },
+        {
+          "responseId": "en:lesson-12:session-41:i09:r2",
+          "text": "check"
+        },
+        {
+          "responseId": "en:lesson-12:session-41:i09:r3",
+          "text": "checks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ the wing mirror yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-41:i09:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i09:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i09:r3",
+            "text": "checks"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-41:i09:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма checked.",
+              "uk": "Для минулого потрібна форма checked."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i09:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна checked.",
+              "uk": "Це не форма минулого. Потрібна checked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-41:word:car-door",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — car door",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-41:word:car-door:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — car door",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-41:word:car-door:audio",
+          "transcript": "car door"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-41:word:car-door:r1",
+            "targetText": "car door",
+            "meaningByLocale": {
+              "ru": "дверца автомобиля.",
+              "uk": "дверцята автомобіля."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "car door",
+          "definitionByLocale": {
+            "ru": "дверца автомобиля.",
+            "uk": "дверцята автомобіля."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-41:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я закрыл дверцу машины",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я закрыл дверцу машины",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I closed the car door.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я закрыл дверцу машины",
+          "uk": "Скажіть: Я зачинив дверцята машини"
+        },
+        "orderedTokens": [
+          "I",
+          "closed",
+          "the",
+          "car",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-41:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-41:i11:r1",
+          "text": "They closed the car door."
+        },
+        {
+          "responseId": "en:lesson-12:session-41:i11:r2",
+          "text": "They close the car door."
+        },
+        {
+          "responseId": "en:lesson-12:session-41:i11:r3",
+          "text": "She closed the car door."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-41:i11:audio",
+          "transcript": "They closed the car door."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-41:i11:r1",
+            "targetText": "They closed the car door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i11:r2",
+            "targetText": "They close the car door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i11:r3",
+            "targetText": "She closed the car door.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-41:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They closed the car door.",
+              "uk": "У записі звучить They closed the car door."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They closed the car door.",
+              "uk": "У записі звучить They closed the car door."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-41:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-41:i12:r1",
+          "text": "closed"
+        },
+        {
+          "responseId": "en:lesson-12:session-41:i12:r2",
+          "text": "close"
+        },
+        {
+          "responseId": "en:lesson-12:session-41:i12:r3",
+          "text": "closes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "We ___ the car door yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-41:i12:r1",
+            "text": "closed"
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i12:r2",
+            "text": "close"
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i12:r3",
+            "text": "closes"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-41:i12:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма closed.",
+              "uk": "Для минулого потрібна форма closed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-41:i12:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна closed.",
+              "uk": "Це не форма минулого. Потрібна closed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-41:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-41:i13:p1",
+            "target": "car boot",
+            "meaningByLocale": {
+              "ru": "багажник автомобиля",
+              "uk": "багажник автомобіля"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-41:i13:p2",
+            "target": "car bonnet",
+            "meaningByLocale": {
+              "ru": "капот автомобиля",
+              "uk": "капот автомобіля"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-41:i13:p3",
+            "target": "wing mirror",
+            "meaningByLocale": {
+              "ru": "боковое зеркало автомобиля",
+              "uk": "бічне дзеркало автомобіля"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-41:i13:p4",
+            "target": "car door",
+            "meaningByLocale": {
+              "ru": "дверца автомобиля",
+              "uk": "дверцята автомобіля"
+            }
+          }
+        ],
+        "leftColumn": [
+          "car boot",
+          "car bonnet",
+          "wing mirror",
+          "car door"
+        ],
+        "rightColumn": [
+          "багажник автомобиля",
+          "капот автомобиля",
+          "боковое зеркало автомобиля",
+          "дверца автомобиля"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-41:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-41:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-41:i14:audio",
+          "transcript": "She washed the windscreen."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She washed the windscreen.",
+        "orderedTokens": [
+          "She",
+          "washed",
+          "the",
+          "windscreen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-41:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-41:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-41:i15:audio",
+          "transcript": "We checked the car keys."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We checked the car keys.",
+        "orderedTokens": [
+          "We",
+          "checked",
+          "the",
+          "car",
+          "keys"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-41:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера капот машины был грязным",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-41:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера капот машины был грязным",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-41:i16:audio",
+          "transcript": "The car bonnet was dirty yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The car bonnet was dirty yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-41:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: я проверил боковое зеркало перед поездкой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-41:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: я проверил боковое зеркало перед поездкой",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-41:i17:audio",
+          "transcript": "I checked the wing mirror before the trip."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I checked the wing mirror before the trip.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "65f76723fb5accdff49822f56f613dff2030616db85968d8b681fa8290716888"
+}

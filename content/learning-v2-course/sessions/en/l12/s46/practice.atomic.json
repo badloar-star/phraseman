@@ -1,0 +1,2317 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-12:session-46",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-12:session-46:word:guinea-pig",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — guinea pig",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:word:guinea-pig:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — guinea pig",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:word:guinea-pig:audio",
+            "transcript": "guinea pig"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-46:word:guinea-pig:r1",
+              "targetText": "guinea pig",
+              "meaningByLocale": {
+                "ru": "морская свинка.",
+                "uk": "морська свинка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "guinea pig",
+            "definitionByLocale": {
+              "ru": "морская свинка.",
+              "uk": "морська свинка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я наблюдал за морской свинкой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я наблюдал за морской свинкой",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I watched the guinea pig.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я наблюдал за морской свинкой",
+            "uk": "Скажіть: Я спостерігав за морською свинкою"
+          },
+          "orderedTokens": [
+            "I",
+            "watched",
+            "the",
+            "guinea",
+            "pig"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-46:i02:r1",
+            "text": "She watched the guinea pig."
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i02:r2",
+            "text": "She watches the guinea pig."
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i02:r3",
+            "text": "We watched the guinea pig."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:i02:audio",
+            "transcript": "She watched the guinea pig."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-46:i02:r1",
+              "targetText": "She watched the guinea pig.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i02:r2",
+              "targetText": "She watches the guinea pig.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i02:r3",
+              "targetText": "We watched the guinea pig.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-46:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She watched the guinea pig.",
+                "uk": "У записі звучить She watched the guinea pig."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She watched the guinea pig.",
+                "uk": "У записі звучить She watched the guinea pig."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-46:i03:r1",
+            "text": "watched"
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i03:r2",
+            "text": "watch"
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i03:r3",
+            "text": "watches"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ the guinea pig yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-46:i03:r1",
+              "text": "watched"
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i03:r2",
+              "text": "watch"
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i03:r3",
+              "text": "watches"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-46:i03:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма watched.",
+                "uk": "Для минулого потрібна форма watched."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i03:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна watched.",
+                "uk": "Це не форма минулого. Потрібна watched."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:word:budgie",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — budgie",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:word:budgie:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — budgie",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:word:budgie:audio",
+            "transcript": "budgie"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-46:word:budgie:r1",
+              "targetText": "budgie",
+              "meaningByLocale": {
+                "ru": "волнистый попугайчик.",
+                "uk": "хвилястий папужка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "budgie",
+            "definitionByLocale": {
+              "ru": "волнистый попугайчик.",
+              "uk": "хвилястий папужка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Мы наблюдали за попугайчиком",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Мы наблюдали за попугайчиком",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We watched the budgie.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы наблюдали за попугайчиком",
+            "uk": "Скажіть: Ми спостерігали за папужкою"
+          },
+          "orderedTokens": [
+            "We",
+            "watched",
+            "the",
+            "budgie"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-46:i05:r1",
+            "text": "I watched the budgie."
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i05:r2",
+            "text": "I watch the budgie."
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i05:r3",
+            "text": "She watched the budgie."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:i05:audio",
+            "transcript": "I watched the budgie."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-46:i05:r1",
+              "targetText": "I watched the budgie.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i05:r2",
+              "targetText": "I watch the budgie.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i05:r3",
+              "targetText": "She watched the budgie.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-46:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I watched the budgie.",
+                "uk": "У записі звучить I watched the budgie."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I watched the budgie.",
+                "uk": "У записі звучить I watched the budgie."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-46:i06:r1",
+            "text": "watched"
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i06:r2",
+            "text": "watch"
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i06:r3",
+            "text": "watches"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "They ___ the budgie yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-46:i06:r1",
+              "text": "watched"
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i06:r2",
+              "text": "watch"
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i06:r3",
+              "text": "watches"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-46:i06:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма watched.",
+                "uk": "Для минулого потрібна форма watched."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i06:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна watched.",
+                "uk": "Це не форма минулого. Потрібна watched."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:word:rabbit-hutch",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rabbit hutch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:word:rabbit-hutch:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rabbit hutch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:word:rabbit-hutch:audio",
+            "transcript": "rabbit hutch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-46:word:rabbit-hutch:r1",
+              "targetText": "rabbit hutch",
+              "meaningByLocale": {
+                "ru": "клетка-домик для кролика.",
+                "uk": "клітка-будиночок для кролика."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rabbit hutch",
+            "definitionByLocale": {
+              "ru": "клетка-домик для кролика.",
+              "uk": "клітка-будиночок для кролика."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я почистил клетку-домик кролика",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я почистил клетку-домик кролика",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I cleaned the rabbit hutch.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я почистил клетку-домик кролика",
+            "uk": "Скажіть: Я почистив клітку-будиночок кролика"
+          },
+          "orderedTokens": [
+            "I",
+            "cleaned",
+            "the",
+            "rabbit",
+            "hutch"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-46:i08:r1",
+            "text": "He cleaned the rabbit hutch."
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i08:r2",
+            "text": "He cleans the rabbit hutch."
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i08:r3",
+            "text": "We cleaned the rabbit hutch."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:i08:audio",
+            "transcript": "He cleaned the rabbit hutch."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-46:i08:r1",
+              "targetText": "He cleaned the rabbit hutch.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i08:r2",
+              "targetText": "He cleans the rabbit hutch.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i08:r3",
+              "targetText": "We cleaned the rabbit hutch.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-46:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He cleaned the rabbit hutch.",
+                "uk": "У записі звучить He cleaned the rabbit hutch."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He cleaned the rabbit hutch.",
+                "uk": "У записі звучить He cleaned the rabbit hutch."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-46:i09:r1",
+            "text": "cleaned"
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i09:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i09:r3",
+            "text": "cleans"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "She ___ the rabbit hutch yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-46:i09:r1",
+              "text": "cleaned"
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i09:r2",
+              "text": "clean"
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i09:r3",
+              "text": "cleans"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-46:i09:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма cleaned.",
+                "uk": "Для минулого потрібна форма cleaned."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i09:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна cleaned.",
+                "uk": "Це не форма минулого. Потрібна cleaned."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:word:fish-tank",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fish tank",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:word:fish-tank:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fish tank",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:word:fish-tank:audio",
+            "transcript": "fish tank"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-46:word:fish-tank:r1",
+              "targetText": "fish tank",
+              "meaningByLocale": {
+                "ru": "аквариум.",
+                "uk": "акваріум."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fish tank",
+            "definitionByLocale": {
+              "ru": "аквариум.",
+              "uk": "акваріум."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я почистил аквариум",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я почистил аквариум",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I cleaned the fish tank.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я почистил аквариум",
+            "uk": "Скажіть: Я почистив акваріум"
+          },
+          "orderedTokens": [
+            "I",
+            "cleaned",
+            "the",
+            "fish",
+            "tank"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-46:i11:r1",
+            "text": "They cleaned the fish tank."
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i11:r2",
+            "text": "They clean the fish tank."
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i11:r3",
+            "text": "She cleaned the fish tank."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:i11:audio",
+            "transcript": "They cleaned the fish tank."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-46:i11:r1",
+              "targetText": "They cleaned the fish tank.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i11:r2",
+              "targetText": "They clean the fish tank.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i11:r3",
+              "targetText": "She cleaned the fish tank.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-46:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They cleaned the fish tank.",
+                "uk": "У записі звучить They cleaned the fish tank."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They cleaned the fish tank.",
+                "uk": "У записі звучить They cleaned the fish tank."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-46:i12:r1",
+            "text": "cleaned"
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i12:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i12:r3",
+            "text": "cleans"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "We ___ the fish tank yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-46:i12:r1",
+              "text": "cleaned"
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i12:r2",
+              "text": "clean"
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i12:r3",
+              "text": "cleans"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-46:i12:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма cleaned.",
+                "uk": "Для минулого потрібна форма cleaned."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i12:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна cleaned.",
+                "uk": "Це не форма минулого. Потрібна cleaned."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-46:i13:p1",
+              "target": "guinea pig",
+              "meaningByLocale": {
+                "ru": "морская свинка",
+                "uk": "морська свинка"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-46:i13:p2",
+              "target": "budgie",
+              "meaningByLocale": {
+                "ru": "волнистый попугайчик",
+                "uk": "хвилястий папужка"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-46:i13:p3",
+              "target": "rabbit hutch",
+              "meaningByLocale": {
+                "ru": "клетка-домик для кролика",
+                "uk": "клітка-будиночок для кролика"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-46:i13:p4",
+              "target": "fish tank",
+              "meaningByLocale": {
+                "ru": "аквариум",
+                "uk": "акваріум"
+              }
+            }
+          ],
+          "leftColumn": [
+            "guinea pig",
+            "budgie",
+            "rabbit hutch",
+            "fish tank"
+          ],
+          "rightColumn": [
+            "морская свинка",
+            "волнистый попугайчик",
+            "клетка-домик для кролика",
+            "аквариум"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:i14:audio",
+            "transcript": "We visited the pet shop."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We visited the pet shop.",
+          "orderedTokens": [
+            "We",
+            "visited",
+            "the",
+            "pet",
+            "shop"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:i15:audio",
+            "transcript": "She checked the pet carrier."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She checked the pet carrier.",
+          "orderedTokens": [
+            "She",
+            "checked",
+            "the",
+            "pet",
+            "carrier"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: вчера морская свинка была в саду",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: вчера морская свинка была в саду",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:i16:audio",
+            "transcript": "The guinea pig was in the garden yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The guinea pig was in the garden yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: я наблюдал за попугайчиком после обеда",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: я наблюдал за попугайчиком после обеда",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:i17:audio",
+            "transcript": "I watched the budgie after lunch."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I watched the budgie after lunch.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-12:session-46:word:guinea-pig",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — guinea pig",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:word:guinea-pig:audio"
+        ],
+        "accessibilityLabel": "Картка слова — guinea pig",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:word:guinea-pig:audio",
+            "transcript": "guinea pig"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-46:word:guinea-pig:r1",
+              "targetText": "guinea pig",
+              "meaningByLocale": {
+                "ru": "морская свинка.",
+                "uk": "морська свинка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "guinea pig",
+            "definitionByLocale": {
+              "ru": "морская свинка.",
+              "uk": "морська свинка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я спостерігав за морською свинкою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я спостерігав за морською свинкою",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I watched the guinea pig.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я наблюдал за морской свинкой",
+            "uk": "Скажіть: Я спостерігав за морською свинкою"
+          },
+          "orderedTokens": [
+            "I",
+            "watched",
+            "the",
+            "guinea",
+            "pig"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-46:i02:r1",
+            "text": "She watched the guinea pig."
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i02:r2",
+            "text": "She watches the guinea pig."
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i02:r3",
+            "text": "We watched the guinea pig."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:i02:audio",
+            "transcript": "She watched the guinea pig."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-46:i02:r1",
+              "targetText": "She watched the guinea pig.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i02:r2",
+              "targetText": "She watches the guinea pig.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i02:r3",
+              "targetText": "We watched the guinea pig.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-46:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She watched the guinea pig.",
+                "uk": "У записі звучить She watched the guinea pig."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She watched the guinea pig.",
+                "uk": "У записі звучить She watched the guinea pig."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-46:i03:r1",
+            "text": "watched"
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i03:r2",
+            "text": "watch"
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i03:r3",
+            "text": "watches"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "He ___ the guinea pig yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-46:i03:r1",
+              "text": "watched"
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i03:r2",
+              "text": "watch"
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i03:r3",
+              "text": "watches"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-46:i03:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма watched.",
+                "uk": "Для минулого потрібна форма watched."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i03:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна watched.",
+                "uk": "Це не форма минулого. Потрібна watched."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:word:budgie",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — budgie",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:word:budgie:audio"
+        ],
+        "accessibilityLabel": "Картка слова — budgie",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:word:budgie:audio",
+            "transcript": "budgie"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-46:word:budgie:r1",
+              "targetText": "budgie",
+              "meaningByLocale": {
+                "ru": "волнистый попугайчик.",
+                "uk": "хвилястий папужка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "budgie",
+            "definitionByLocale": {
+              "ru": "волнистый попугайчик.",
+              "uk": "хвилястий папужка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ми спостерігали за папужкою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ми спостерігали за папужкою",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We watched the budgie.",
+          "localizedMeaning": {
+            "ru": "Скажите: Мы наблюдали за попугайчиком",
+            "uk": "Скажіть: Ми спостерігали за папужкою"
+          },
+          "orderedTokens": [
+            "We",
+            "watched",
+            "the",
+            "budgie"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-46:i05:r1",
+            "text": "I watched the budgie."
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i05:r2",
+            "text": "I watch the budgie."
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i05:r3",
+            "text": "She watched the budgie."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:i05:audio",
+            "transcript": "I watched the budgie."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-46:i05:r1",
+              "targetText": "I watched the budgie.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i05:r2",
+              "targetText": "I watch the budgie.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i05:r3",
+              "targetText": "She watched the budgie.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-46:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I watched the budgie.",
+                "uk": "У записі звучить I watched the budgie."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I watched the budgie.",
+                "uk": "У записі звучить I watched the budgie."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-46:i06:r1",
+            "text": "watched"
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i06:r2",
+            "text": "watch"
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i06:r3",
+            "text": "watches"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "They ___ the budgie yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-46:i06:r1",
+              "text": "watched"
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i06:r2",
+              "text": "watch"
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i06:r3",
+              "text": "watches"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-46:i06:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма watched.",
+                "uk": "Для минулого потрібна форма watched."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i06:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна watched.",
+                "uk": "Це не форма минулого. Потрібна watched."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:word:rabbit-hutch",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rabbit hutch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:word:rabbit-hutch:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rabbit hutch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:word:rabbit-hutch:audio",
+            "transcript": "rabbit hutch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-46:word:rabbit-hutch:r1",
+              "targetText": "rabbit hutch",
+              "meaningByLocale": {
+                "ru": "клетка-домик для кролика.",
+                "uk": "клітка-будиночок для кролика."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rabbit hutch",
+            "definitionByLocale": {
+              "ru": "клетка-домик для кролика.",
+              "uk": "клітка-будиночок для кролика."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я почистив клітку-будиночок кролика",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я почистив клітку-будиночок кролика",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I cleaned the rabbit hutch.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я почистил клетку-домик кролика",
+            "uk": "Скажіть: Я почистив клітку-будиночок кролика"
+          },
+          "orderedTokens": [
+            "I",
+            "cleaned",
+            "the",
+            "rabbit",
+            "hutch"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-46:i08:r1",
+            "text": "He cleaned the rabbit hutch."
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i08:r2",
+            "text": "He cleans the rabbit hutch."
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i08:r3",
+            "text": "We cleaned the rabbit hutch."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:i08:audio",
+            "transcript": "He cleaned the rabbit hutch."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-46:i08:r1",
+              "targetText": "He cleaned the rabbit hutch.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i08:r2",
+              "targetText": "He cleans the rabbit hutch.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i08:r3",
+              "targetText": "We cleaned the rabbit hutch.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-46:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He cleaned the rabbit hutch.",
+                "uk": "У записі звучить He cleaned the rabbit hutch."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He cleaned the rabbit hutch.",
+                "uk": "У записі звучить He cleaned the rabbit hutch."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-46:i09:r1",
+            "text": "cleaned"
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i09:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i09:r3",
+            "text": "cleans"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "She ___ the rabbit hutch yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-46:i09:r1",
+              "text": "cleaned"
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i09:r2",
+              "text": "clean"
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i09:r3",
+              "text": "cleans"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-46:i09:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма cleaned.",
+                "uk": "Для минулого потрібна форма cleaned."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i09:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна cleaned.",
+                "uk": "Це не форма минулого. Потрібна cleaned."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:word:fish-tank",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fish tank",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:word:fish-tank:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fish tank",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:word:fish-tank:audio",
+            "transcript": "fish tank"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-46:word:fish-tank:r1",
+              "targetText": "fish tank",
+              "meaningByLocale": {
+                "ru": "аквариум.",
+                "uk": "акваріум."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fish tank",
+            "definitionByLocale": {
+              "ru": "аквариум.",
+              "uk": "акваріум."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я почистив акваріум",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я почистив акваріум",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I cleaned the fish tank.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я почистил аквариум",
+            "uk": "Скажіть: Я почистив акваріум"
+          },
+          "orderedTokens": [
+            "I",
+            "cleaned",
+            "the",
+            "fish",
+            "tank"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-46:i11:r1",
+            "text": "They cleaned the fish tank."
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i11:r2",
+            "text": "They clean the fish tank."
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i11:r3",
+            "text": "She cleaned the fish tank."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:i11:audio",
+            "transcript": "They cleaned the fish tank."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-46:i11:r1",
+              "targetText": "They cleaned the fish tank.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i11:r2",
+              "targetText": "They clean the fish tank.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i11:r3",
+              "targetText": "She cleaned the fish tank.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-46:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They cleaned the fish tank.",
+                "uk": "У записі звучить They cleaned the fish tank."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They cleaned the fish tank.",
+                "uk": "У записі звучить They cleaned the fish tank."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-46:i12:r1",
+            "text": "cleaned"
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i12:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-12:session-46:i12:r3",
+            "text": "cleans"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "We ___ the fish tank yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-46:i12:r1",
+              "text": "cleaned"
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i12:r2",
+              "text": "clean"
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i12:r3",
+              "text": "cleans"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-46:i12:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма cleaned.",
+                "uk": "Для минулого потрібна форма cleaned."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-46:i12:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна cleaned.",
+                "uk": "Це не форма минулого. Потрібна cleaned."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-46:i13:p1",
+              "target": "guinea pig",
+              "meaningByLocale": {
+                "ru": "морская свинка",
+                "uk": "морська свинка"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-46:i13:p2",
+              "target": "budgie",
+              "meaningByLocale": {
+                "ru": "волнистый попугайчик",
+                "uk": "хвилястий папужка"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-46:i13:p3",
+              "target": "rabbit hutch",
+              "meaningByLocale": {
+                "ru": "клетка-домик для кролика",
+                "uk": "клітка-будиночок для кролика"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-46:i13:p4",
+              "target": "fish tank",
+              "meaningByLocale": {
+                "ru": "аквариум",
+                "uk": "акваріум"
+              }
+            }
+          ],
+          "leftColumn": [
+            "guinea pig",
+            "budgie",
+            "rabbit hutch",
+            "fish tank"
+          ],
+          "rightColumn": [
+            "морська свинка",
+            "хвилястий папужка",
+            "клітка-будиночок для кролика",
+            "акваріум"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:i14:audio",
+            "transcript": "We visited the pet shop."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We visited the pet shop.",
+          "orderedTokens": [
+            "We",
+            "visited",
+            "the",
+            "pet",
+            "shop"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:i15:audio",
+            "transcript": "She checked the pet carrier."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She checked the pet carrier.",
+          "orderedTokens": [
+            "She",
+            "checked",
+            "the",
+            "pet",
+            "carrier"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: учора морська свинка була в саду",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: учора морська свинка була в саду",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:i16:audio",
+            "transcript": "The guinea pig was in the garden yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The guinea pig was in the garden yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-46:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: я спостерігав за папужкою після обіду",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-46:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: я спостерігав за папужкою після обіду",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-46:i17:audio",
+            "transcript": "I watched the budgie after lunch."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I watched the budgie after lunch.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-12:session-46:word:guinea-pig",
+      "correctText": "guinea pig",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-46:i01",
+      "correctText": "I watched the guinea pig.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-46:i02",
+      "correctText": "She watched the guinea pig.",
+      "correctResponseId": "en:lesson-12:session-46:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-46:i03",
+      "correctText": "watched",
+      "correctResponseId": "en:lesson-12:session-46:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-46:word:budgie",
+      "correctText": "budgie",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-46:i04",
+      "correctText": "We watched the budgie.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-46:i05",
+      "correctText": "I watched the budgie.",
+      "correctResponseId": "en:lesson-12:session-46:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-46:i06",
+      "correctText": "watched",
+      "correctResponseId": "en:lesson-12:session-46:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-46:word:rabbit-hutch",
+      "correctText": "rabbit hutch",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-46:i07",
+      "correctText": "I cleaned the rabbit hutch.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-46:i08",
+      "correctText": "He cleaned the rabbit hutch.",
+      "correctResponseId": "en:lesson-12:session-46:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-46:i09",
+      "correctText": "cleaned",
+      "correctResponseId": "en:lesson-12:session-46:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-46:word:fish-tank",
+      "correctText": "fish tank",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-46:i10",
+      "correctText": "I cleaned the fish tank.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-46:i11",
+      "correctText": "They cleaned the fish tank.",
+      "correctResponseId": "en:lesson-12:session-46:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-46:i12",
+      "correctText": "cleaned",
+      "correctResponseId": "en:lesson-12:session-46:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-46:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-46:i14",
+      "correctText": "We visited the pet shop.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-46:i15",
+      "correctText": "She checked the pet carrier.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-46:i16",
+      "correctText": "The guinea pig was in the garden yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-46:i17",
+      "correctText": "I watched the budgie after lunch.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-41:word:car-boot",
+    "correctText": "car boot",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-41:i01",
+    "correctText": "I closed the car boot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-41:i02",
+    "correctText": "She closed the car boot.",
+    "correctResponseId": "en:lesson-12:session-41:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-41:i03",
+    "correctText": "closed",
+    "correctResponseId": "en:lesson-12:session-41:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-41:word:car-bonnet",
+    "correctText": "car bonnet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-41:i04",
+    "correctText": "We washed the car bonnet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-41:i05",
+    "correctText": "I washed the car bonnet.",
+    "correctResponseId": "en:lesson-12:session-41:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-41:i06",
+    "correctText": "washed",
+    "correctResponseId": "en:lesson-12:session-41:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-41:word:wing-mirror",
+    "correctText": "wing mirror",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-41:i07",
+    "correctText": "I checked the wing mirror.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-41:i08",
+    "correctText": "He checked the wing mirror.",
+    "correctResponseId": "en:lesson-12:session-41:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-41:i09",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-41:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-41:word:car-door",
+    "correctText": "car door",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-41:i10",
+    "correctText": "I closed the car door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-41:i11",
+    "correctText": "They closed the car door.",
+    "correctResponseId": "en:lesson-12:session-41:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-41:i12",
+    "correctText": "closed",
+    "correctResponseId": "en:lesson-12:session-41:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-41:i13",
+    "correctText": "en:lesson-12:session-41:i13:p1=car boot\nen:lesson-12:session-41:i13:p2=car bonnet\nen:lesson-12:session-41:i13:p3=wing mirror\nen:lesson-12:session-41:i13:p4=car door",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-41:i14",
+    "correctText": "She washed the windscreen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-41:i15",
+    "correctText": "We checked the car keys.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-41:i16",
+    "correctText": "The car bonnet was dirty yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-41:i17",
+    "correctText": "I checked the wing mirror before the trip.",
+    "correctResponseId": null
+  }
+]

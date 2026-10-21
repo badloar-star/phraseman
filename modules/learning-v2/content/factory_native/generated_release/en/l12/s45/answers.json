@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-45:word:train-ticket",
+    "correctText": "train ticket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-45:i01",
+    "correctText": "I checked my train ticket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-45:i02",
+    "correctText": "She checked her train ticket.",
+    "correctResponseId": "en:lesson-12:session-45:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-45:i03",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-45:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-45:word:platform-number",
+    "correctText": "platform number",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-45:i04",
+    "correctText": "I checked the platform number.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-45:i05",
+    "correctText": "We checked the platform number.",
+    "correctResponseId": "en:lesson-12:session-45:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-45:i06",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-45:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-45:word:rush-hour",
+    "correctText": "rush hour",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-45:i07",
+    "correctText": "We travelled during rush hour.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-45:i08",
+    "correctText": "He travelled during rush hour.",
+    "correctResponseId": "en:lesson-12:session-45:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-45:i09",
+    "correctText": "travelled",
+    "correctResponseId": "en:lesson-12:session-45:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-45:word:railcard",
+    "correctText": "railcard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-45:i10",
+    "correctText": "I used my railcard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-45:i11",
+    "correctText": "They used their railcard.",
+    "correctResponseId": "en:lesson-12:session-45:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-45:i12",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-45:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-45:i13",
+    "correctText": "en:lesson-12:session-45:i13:p1=train ticket\nen:lesson-12:session-45:i13:p2=platform number\nen:lesson-12:session-45:i13:p3=rush hour\nen:lesson-12:session-45:i13:p4=railcard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-45:i14",
+    "correctText": "She checked the departure board.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-45:i15",
+    "correctText": "We waited near the ticket office.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-45:i16",
+    "correctText": "My train ticket was in my bag yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-45:i17",
+    "correctText": "I checked the platform number before lunch.",
+    "correctResponseId": null
+  }
+]

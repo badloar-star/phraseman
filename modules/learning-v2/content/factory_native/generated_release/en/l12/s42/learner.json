@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-42",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-42:word:thunderstorm",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — thunderstorm",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-42:word:thunderstorm:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — thunderstorm",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-42:word:thunderstorm:audio",
+          "transcript": "thunderstorm"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-42:word:thunderstorm:r1",
+            "targetText": "thunderstorm",
+            "meaningByLocale": {
+              "ru": "гроза.",
+              "uk": "гроза."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "thunderstorm",
+          "definitionByLocale": {
+            "ru": "гроза.",
+            "uk": "гроза."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-42:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я наблюдал за грозой из окна",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я наблюдал за грозой из окна",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I watched the thunderstorm from the window.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я наблюдал за грозой из окна",
+          "uk": "Скажіть: Я спостерігав за грозою з вікна"
+        },
+        "orderedTokens": [
+          "I",
+          "watched",
+          "the",
+          "thunderstorm",
+          "from",
+          "the",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-42:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-42:i02:r1",
+          "text": "She watched the thunderstorm."
+        },
+        {
+          "responseId": "en:lesson-12:session-42:i02:r2",
+          "text": "She watches the thunderstorm."
+        },
+        {
+          "responseId": "en:lesson-12:session-42:i02:r3",
+          "text": "We watched the thunderstorm."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-42:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-42:i02:audio",
+          "transcript": "She watched the thunderstorm."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-42:i02:r1",
+            "targetText": "She watched the thunderstorm.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i02:r2",
+            "targetText": "She watches the thunderstorm.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i02:r3",
+            "targetText": "We watched the thunderstorm.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-42:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She watched the thunderstorm.",
+              "uk": "У записі звучить She watched the thunderstorm."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She watched the thunderstorm.",
+              "uk": "У записі звучить She watched the thunderstorm."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-42:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-42:i03:r1",
+          "text": "watched"
+        },
+        {
+          "responseId": "en:lesson-12:session-42:i03:r2",
+          "text": "watch"
+        },
+        {
+          "responseId": "en:lesson-12:session-42:i03:r3",
+          "text": "watches"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ the thunderstorm yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-42:i03:r1",
+            "text": "watched"
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i03:r2",
+            "text": "watch"
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i03:r3",
+            "text": "watches"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-42:i03:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма watched.",
+              "uk": "Для минулого потрібна форма watched."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i03:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна watched.",
+              "uk": "Це не форма минулого. Потрібна watched."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-42:word:raindrop",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — raindrop",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-42:word:raindrop:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — raindrop",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-42:word:raindrop:audio",
+          "transcript": "raindrop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-42:word:raindrop:r1",
+            "targetText": "raindrop",
+            "meaningByLocale": {
+              "ru": "капля дождя.",
+              "uk": "крапля дощу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "raindrop",
+          "definitionByLocale": {
+            "ru": "капля дождя.",
+            "uk": "крапля дощу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-42:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я заметил каплю дождя на окне",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я заметил каплю дождя на окне",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I noticed a raindrop on the window.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я заметил каплю дождя на окне",
+          "uk": "Скажіть: Я помітив краплю дощу на вікні"
+        },
+        "orderedTokens": [
+          "I",
+          "noticed",
+          "a",
+          "raindrop",
+          "on",
+          "the",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-42:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-42:i05:r1",
+          "text": "We noticed a raindrop on the window."
+        },
+        {
+          "responseId": "en:lesson-12:session-42:i05:r2",
+          "text": "We notice a raindrop on the window."
+        },
+        {
+          "responseId": "en:lesson-12:session-42:i05:r3",
+          "text": "She noticed a raindrop on the window."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-42:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-42:i05:audio",
+          "transcript": "We noticed a raindrop on the window."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-42:i05:r1",
+            "targetText": "We noticed a raindrop on the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i05:r2",
+            "targetText": "We notice a raindrop on the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i05:r3",
+            "targetText": "She noticed a raindrop on the window.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-42:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We noticed a raindrop on the window.",
+              "uk": "У записі звучить We noticed a raindrop on the window."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We noticed a raindrop on the window.",
+              "uk": "У записі звучить We noticed a raindrop on the window."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-42:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-42:i06:r1",
+          "text": "noticed"
+        },
+        {
+          "responseId": "en:lesson-12:session-42:i06:r2",
+          "text": "notice"
+        },
+        {
+          "responseId": "en:lesson-12:session-42:i06:r3",
+          "text": "notices"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ a raindrop on the window yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-42:i06:r1",
+            "text": "noticed"
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i06:r2",
+            "text": "notice"
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i06:r3",
+            "text": "notices"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-42:i06:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма noticed.",
+              "uk": "Для минулого потрібна форма noticed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i06:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна noticed.",
+              "uk": "Це не форма минулого. Потрібна noticed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-42:word:drizzle",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — drizzle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-42:word:drizzle:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — drizzle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-42:word:drizzle:audio",
+          "transcript": "drizzle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-42:word:drizzle:r1",
+            "targetText": "drizzle",
+            "meaningByLocale": {
+              "ru": "мелкий моросящий дождь.",
+              "uk": "дрібний дощ, мряка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "drizzle",
+          "definitionByLocale": {
+            "ru": "мелкий моросящий дождь.",
+            "uk": "дрібний дощ, мряка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-42:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я заметил мелкий дождь снаружи",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я заметил мелкий дождь снаружи",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I noticed the drizzle outside.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я заметил мелкий дождь снаружи",
+          "uk": "Скажіть: Я помітив дрібний дощ надворі"
+        },
+        "orderedTokens": [
+          "I",
+          "noticed",
+          "the",
+          "drizzle",
+          "outside"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-42:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-42:i08:r1",
+          "text": "She noticed the drizzle."
+        },
+        {
+          "responseId": "en:lesson-12:session-42:i08:r2",
+          "text": "She notices the drizzle."
+        },
+        {
+          "responseId": "en:lesson-12:session-42:i08:r3",
+          "text": "We noticed the drizzle."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-42:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-42:i08:audio",
+          "transcript": "She noticed the drizzle."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-42:i08:r1",
+            "targetText": "She noticed the drizzle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i08:r2",
+            "targetText": "She notices the drizzle.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i08:r3",
+            "targetText": "We noticed the drizzle.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-42:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She noticed the drizzle.",
+              "uk": "У записі звучить She noticed the drizzle."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She noticed the drizzle.",
+              "uk": "У записі звучить She noticed the drizzle."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-42:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-42:i09:r1",
+          "text": "noticed"
+        },
+        {
+          "responseId": "en:lesson-12:session-42:i09:r2",
+          "text": "notice"
+        },
+        {
+          "responseId": "en:lesson-12:session-42:i09:r3",
+          "text": "notices"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ the drizzle yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-42:i09:r1",
+            "text": "noticed"
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i09:r2",
+            "text": "notice"
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i09:r3",
+            "text": "notices"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-42:i09:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма noticed.",
+              "uk": "Для минулого потрібна форма noticed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i09:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна noticed.",
+              "uk": "Це не форма минулого. Потрібна noticed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-42:word:sunshine",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sunshine",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-42:word:sunshine:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sunshine",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-42:word:sunshine:audio",
+          "transcript": "sunshine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-42:word:sunshine:r1",
+            "targetText": "sunshine",
+            "meaningByLocale": {
+              "ru": "солнечный свет.",
+              "uk": "сонячне світло."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sunshine",
+          "definitionByLocale": {
+            "ru": "солнечный свет.",
+            "uk": "сонячне світло."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-42:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я наслаждался солнечным светом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я наслаждался солнечным светом",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I enjoyed the sunshine.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я наслаждался солнечным светом",
+          "uk": "Скажіть: Я насолоджувався сонячним світлом"
+        },
+        "orderedTokens": [
+          "I",
+          "enjoyed",
+          "the",
+          "sunshine"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-42:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-42:i11:r1",
+          "text": "They enjoyed the sunshine."
+        },
+        {
+          "responseId": "en:lesson-12:session-42:i11:r2",
+          "text": "They enjoy the sunshine."
+        },
+        {
+          "responseId": "en:lesson-12:session-42:i11:r3",
+          "text": "She enjoyed the sunshine."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-42:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-42:i11:audio",
+          "transcript": "They enjoyed the sunshine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-42:i11:r1",
+            "targetText": "They enjoyed the sunshine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i11:r2",
+            "targetText": "They enjoy the sunshine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i11:r3",
+            "targetText": "She enjoyed the sunshine.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-42:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They enjoyed the sunshine.",
+              "uk": "У записі звучить They enjoyed the sunshine."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They enjoyed the sunshine.",
+              "uk": "У записі звучить They enjoyed the sunshine."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-42:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-42:i12:r1",
+          "text": "enjoyed"
+        },
+        {
+          "responseId": "en:lesson-12:session-42:i12:r2",
+          "text": "enjoy"
+        },
+        {
+          "responseId": "en:lesson-12:session-42:i12:r3",
+          "text": "enjoys"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "We ___ the sunshine yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-42:i12:r1",
+            "text": "enjoyed"
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i12:r2",
+            "text": "enjoy"
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i12:r3",
+            "text": "enjoys"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-42:i12:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма enjoyed.",
+              "uk": "Для минулого потрібна форма enjoyed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-42:i12:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна enjoyed.",
+              "uk": "Це не форма минулого. Потрібна enjoyed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-42:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-42:i13:p1",
+            "target": "thunderstorm",
+            "meaningByLocale": {
+              "ru": "гроза",
+              "uk": "гроза"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-42:i13:p2",
+            "target": "raindrop",
+            "meaningByLocale": {
+              "ru": "капля дождя",
+              "uk": "крапля дощу"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-42:i13:p3",
+            "target": "drizzle",
+            "meaningByLocale": {
+              "ru": "мелкий моросящий дождь",
+              "uk": "дрібний дощ, мряка"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-42:i13:p4",
+            "target": "sunshine",
+            "meaningByLocale": {
+              "ru": "солнечный свет",
+              "uk": "сонячне світло"
+            }
+          }
+        ],
+        "leftColumn": [
+          "thunderstorm",
+          "raindrop",
+          "drizzle",
+          "sunshine"
+        ],
+        "rightColumn": [
+          "гроза",
+          "капля дождя",
+          "мелкий моросящий дождь",
+          "солнечный свет"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-42:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-42:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-42:i14:audio",
+          "transcript": "She closed the window."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She closed the window.",
+        "orderedTokens": [
+          "She",
+          "closed",
+          "the",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-42:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-42:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-42:i15:audio",
+          "transcript": "We visited the park after lunch."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We visited the park after lunch.",
+        "orderedTokens": [
+          "We",
+          "visited",
+          "the",
+          "park",
+          "after",
+          "lunch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-42:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: гроза была прошлой ночью",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-42:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: гроза была прошлой ночью",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-42:i16:audio",
+          "transcript": "The thunderstorm was last night."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The thunderstorm was last night.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-42:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: я наслаждался солнцем в саду",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-42:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: я наслаждался солнцем в саду",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-42:i17:audio",
+          "transcript": "I enjoyed the sunshine in the garden."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I enjoyed the sunshine in the garden.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5f202465562e9586e114980976ea6313d211efce294a4725c99524bd7f55c15b"
+}

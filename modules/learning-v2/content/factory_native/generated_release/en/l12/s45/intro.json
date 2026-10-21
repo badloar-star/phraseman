@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "checked, travelled, used; was/were",
+    "uk": "checked, travelled, used; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Билет",
+        "uk": "Квиток"
+      },
+      "bodyByLocale": {
+        "ru": "Train ticket — «билет на поезд». I checked my train ticket — я проверил билет на поезд. В checked окончание /t/. Выберите прошлое действие.",
+        "uk": "Train ticket — «квиток на потяг». I checked my train ticket — я перевірив квиток на потяг. У checked закінчення /t/. Виберіть минулу дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-45:intro1:r1",
+              "text": "I checked my train ticket."
+            },
+            {
+              "responseId": "en:lesson-12:session-45:intro1:r2",
+              "text": "I check my train ticket yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-45:intro1:r3",
+              "text": "I checks my train ticket yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-45:intro1:r1",
+              "text": "I checked my train ticket."
+            },
+            {
+              "responseId": "en:lesson-12:session-45:intro1:r2",
+              "text": "I check my train ticket yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-45:intro1:r3",
+              "text": "I checks my train ticket yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Платформа и час пик",
+        "uk": "Платформа й година пік"
+      },
+      "bodyByLocale": {
+        "ru": "Platform number — «номер платформы», rush hour — «час пик». We travelled during rush hour — мы ехали в час пик. Travel → travelled: британское написание с двумя l, окончание /d/. Выберите поездку в час пик.",
+        "uk": "Platform number — «номер платформи», rush hour — «година пік». We travelled during rush hour — ми їхали в годину пік. Travel → travelled: британське написання з двома l, закінчення /d/. Виберіть поїздку в годину пік."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-45:intro2:r1",
+              "text": "We travelled during rush hour."
+            },
+            {
+              "responseId": "en:lesson-12:session-45:intro2:r2",
+              "text": "We checked the platform number."
+            },
+            {
+              "responseId": "en:lesson-12:session-45:intro2:r3",
+              "text": "We travel during rush hour yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-45:intro2:r1",
+              "text": "We travelled during rush hour."
+            },
+            {
+              "responseId": "en:lesson-12:session-45:intro2:r2",
+              "text": "We checked the platform number."
+            },
+            {
+              "responseId": "en:lesson-12:session-45:intro2:r3",
+              "text": "We travel during rush hour yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Карта для скидки",
+        "uk": "Картка для знижки"
+      },
+      "bodyByLocale": {
+        "ru": "Railcard — «карта для скидки на железнодорожные билеты», британское слово. Это карта, а не сам билет. She used her railcard — она воспользовалась своей картой. Выберите действие в прошлом.",
+        "uk": "Railcard — «картка для знижки на залізничні квитки», британське слово. Це картка, а не сам квиток. She used her railcard — вона скористалася своєю карткою. Виберіть дію в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-45:intro3:r1",
+              "text": "She used her railcard."
+            },
+            {
+              "responseId": "en:lesson-12:session-45:intro3:r2",
+              "text": "She use her railcard yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-45:intro3:r3",
+              "text": "She uses her railcard yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-45:intro3:r1",
+              "text": "She used her railcard."
+            },
+            {
+              "responseId": "en:lesson-12:session-45:intro3:r2",
+              "text": "She use her railcard yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-45:intro3:r3",
+              "text": "She uses her railcard yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b142f98b13750960f846b89f819011f0dc2df826ad91c5ce5b96e19897f50876"
+}

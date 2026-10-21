@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-43",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-43:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-43:intro1:r2": {
+          "ru": "Для прошлого нужна cooked.",
+          "uk": "Для минулого потрібна cooked."
+        },
+        "en:lesson-12:session-43:intro1:r3": {
+          "ru": "Cooks — не прошлое и не форма с we.",
+          "uk": "Cooks — не минуле й не форма з we."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-43:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-43:intro2:r2": {
+          "ru": "Это приготовление фасоли, не кукуруза в салате.",
+          "uk": "Це приготування квасолі, не кукурудза в салаті."
+        },
+        "en:lesson-12:session-43:intro2:r3": {
+          "ru": "Для прошлого нужна used.",
+          "uk": "Для минулого потрібна used."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-43:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-43:intro3:r2": {
+          "ru": "Wants — настоящее; нужна wanted.",
+          "uk": "Wants — теперішній час; потрібна wanted."
+        },
+        "en:lesson-12:session-43:intro3:r3": {
+          "ru": "Для прошлого нужна wanted.",
+          "uk": "Для минулого потрібна wanted."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "53a085294fc3f5c13e3b36cf71cbd9a0b7fc443c8bc53747d79f793ec2f552ec"
+}

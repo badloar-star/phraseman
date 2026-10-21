@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-43",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-43:word:chickpeas",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — chickpeas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-43:word:chickpeas:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — chickpeas",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-43:word:chickpeas:audio",
+          "transcript": "chickpeas"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-43:word:chickpeas:r1",
+            "targetText": "chickpeas",
+            "meaningByLocale": {
+              "ru": "нут.",
+              "uk": "нут."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chickpeas",
+          "definitionByLocale": {
+            "ru": "нут.",
+            "uk": "нут."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-43:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я приготовил нут",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я приготовил нут",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I cooked the chickpeas.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я приготовил нут",
+          "uk": "Скажіть: Я приготував нут"
+        },
+        "orderedTokens": [
+          "I",
+          "cooked",
+          "the",
+          "chickpeas"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-43:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-43:i02:r1",
+          "text": "She cooked the chickpeas."
+        },
+        {
+          "responseId": "en:lesson-12:session-43:i02:r2",
+          "text": "She cooks the chickpeas."
+        },
+        {
+          "responseId": "en:lesson-12:session-43:i02:r3",
+          "text": "We cooked the chickpeas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-43:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-43:i02:audio",
+          "transcript": "She cooked the chickpeas."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-43:i02:r1",
+            "targetText": "She cooked the chickpeas.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i02:r2",
+            "targetText": "She cooks the chickpeas.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i02:r3",
+            "targetText": "We cooked the chickpeas.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She cooked the chickpeas.",
+              "uk": "У записі звучить She cooked the chickpeas."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She cooked the chickpeas.",
+              "uk": "У записі звучить She cooked the chickpeas."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-43:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-43:i03:r1",
+          "text": "cooked"
+        },
+        {
+          "responseId": "en:lesson-12:session-43:i03:r2",
+          "text": "cook"
+        },
+        {
+          "responseId": "en:lesson-12:session-43:i03:r3",
+          "text": "cooks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ the chickpeas yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-43:i03:r1",
+            "text": "cooked"
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i03:r2",
+            "text": "cook"
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i03:r3",
+            "text": "cooks"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-43:i03:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма cooked.",
+              "uk": "Для минулого потрібна форма cooked."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i03:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна cooked.",
+              "uk": "Це не форма минулого. Потрібна cooked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-43:word:kidney-beans",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — kidney beans",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-43:word:kidney-beans:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — kidney beans",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-43:word:kidney-beans:audio",
+          "transcript": "kidney beans"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-43:word:kidney-beans:r1",
+            "targetText": "kidney beans",
+            "meaningByLocale": {
+              "ru": "крупная красная фасоль.",
+              "uk": "велика червона квасоля."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "kidney beans",
+          "definitionByLocale": {
+            "ru": "крупная красная фасоль.",
+            "uk": "велика червона квасоля."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-43:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Мы приготовили красную фасоль",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Мы приготовили красную фасоль",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We cooked the kidney beans.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы приготовили красную фасоль",
+          "uk": "Скажіть: Ми приготували червону квасолю"
+        },
+        "orderedTokens": [
+          "We",
+          "cooked",
+          "the",
+          "kidney",
+          "beans"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-43:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-43:i05:r1",
+          "text": "I cooked the kidney beans."
+        },
+        {
+          "responseId": "en:lesson-12:session-43:i05:r2",
+          "text": "I cook the kidney beans."
+        },
+        {
+          "responseId": "en:lesson-12:session-43:i05:r3",
+          "text": "She cooked the kidney beans."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-43:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-43:i05:audio",
+          "transcript": "I cooked the kidney beans."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-43:i05:r1",
+            "targetText": "I cooked the kidney beans.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i05:r2",
+            "targetText": "I cook the kidney beans.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i05:r3",
+            "targetText": "She cooked the kidney beans.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-43:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I cooked the kidney beans.",
+              "uk": "У записі звучить I cooked the kidney beans."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I cooked the kidney beans.",
+              "uk": "У записі звучить I cooked the kidney beans."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-43:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-43:i06:r1",
+          "text": "cooked"
+        },
+        {
+          "responseId": "en:lesson-12:session-43:i06:r2",
+          "text": "cook"
+        },
+        {
+          "responseId": "en:lesson-12:session-43:i06:r3",
+          "text": "cooks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ the kidney beans yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-43:i06:r1",
+            "text": "cooked"
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i06:r2",
+            "text": "cook"
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i06:r3",
+            "text": "cooks"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-43:i06:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма cooked.",
+              "uk": "Для минулого потрібна форма cooked."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i06:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна cooked.",
+              "uk": "Це не форма минулого. Потрібна cooked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-43:word:sweetcorn",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sweetcorn",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-43:word:sweetcorn:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sweetcorn",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-43:word:sweetcorn:audio",
+          "transcript": "sweetcorn"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-43:word:sweetcorn:r1",
+            "targetText": "sweetcorn",
+            "meaningByLocale": {
+              "ru": "сахарная кукуруза.",
+              "uk": "цукрова кукурудза."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sweetcorn",
+          "definitionByLocale": {
+            "ru": "сахарная кукуруза.",
+            "uk": "цукрова кукурудза."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-43:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я использовал кукурузу в салате",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я использовал кукурузу в салате",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I used sweetcorn in the salad.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я использовал кукурузу в салате",
+          "uk": "Скажіть: Я використав кукурудзу в салаті"
+        },
+        "orderedTokens": [
+          "I",
+          "used",
+          "sweetcorn",
+          "in",
+          "the",
+          "salad"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-43:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-43:i08:r1",
+          "text": "He used sweetcorn in the salad."
+        },
+        {
+          "responseId": "en:lesson-12:session-43:i08:r2",
+          "text": "He uses sweetcorn in the salad."
+        },
+        {
+          "responseId": "en:lesson-12:session-43:i08:r3",
+          "text": "We used sweetcorn in the salad."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-43:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-43:i08:audio",
+          "transcript": "He used sweetcorn in the salad."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-43:i08:r1",
+            "targetText": "He used sweetcorn in the salad.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i08:r2",
+            "targetText": "He uses sweetcorn in the salad.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i08:r3",
+            "targetText": "We used sweetcorn in the salad.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-43:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He used sweetcorn in the salad.",
+              "uk": "У записі звучить He used sweetcorn in the salad."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He used sweetcorn in the salad.",
+              "uk": "У записі звучить He used sweetcorn in the salad."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-43:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-43:i09:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-12:session-43:i09:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-12:session-43:i09:r3",
+          "text": "uses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ sweetcorn in the salad yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-43:i09:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i09:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i09:r3",
+            "text": "uses"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-43:i09:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма used.",
+              "uk": "Для минулого потрібна форма used."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i09:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна used.",
+              "uk": "Це не форма минулого. Потрібна used."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-43:word:couscous",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — couscous",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-43:word:couscous:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — couscous",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-43:word:couscous:audio",
+          "transcript": "couscous"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-43:word:couscous:r1",
+            "targetText": "couscous",
+            "meaningByLocale": {
+              "ru": "кускус, мелкая пшеничная крупа.",
+              "uk": "кускус, дрібна пшенична крупа."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "couscous",
+          "definitionByLocale": {
+            "ru": "кускус, мелкая пшеничная крупа.",
+            "uk": "кускус, дрібна пшенична крупа."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-43:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я хотел кускус на обед",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я хотел кускус на обед",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wanted couscous for lunch.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я хотел кускус на обед",
+          "uk": "Скажіть: Я хотів кускус на обід"
+        },
+        "orderedTokens": [
+          "I",
+          "wanted",
+          "couscous",
+          "for",
+          "lunch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-43:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-43:i11:r1",
+          "text": "They wanted couscous for lunch."
+        },
+        {
+          "responseId": "en:lesson-12:session-43:i11:r2",
+          "text": "They want couscous for lunch."
+        },
+        {
+          "responseId": "en:lesson-12:session-43:i11:r3",
+          "text": "She wanted couscous for lunch."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-43:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-43:i11:audio",
+          "transcript": "They wanted couscous for lunch."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-43:i11:r1",
+            "targetText": "They wanted couscous for lunch.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i11:r2",
+            "targetText": "They want couscous for lunch.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i11:r3",
+            "targetText": "She wanted couscous for lunch.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-43:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They wanted couscous for lunch.",
+              "uk": "У записі звучить They wanted couscous for lunch."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They wanted couscous for lunch.",
+              "uk": "У записі звучить They wanted couscous for lunch."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-43:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-43:i12:r1",
+          "text": "wanted"
+        },
+        {
+          "responseId": "en:lesson-12:session-43:i12:r2",
+          "text": "want"
+        },
+        {
+          "responseId": "en:lesson-12:session-43:i12:r3",
+          "text": "wants"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "We ___ couscous for lunch yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-43:i12:r1",
+            "text": "wanted"
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i12:r2",
+            "text": "want"
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i12:r3",
+            "text": "wants"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-43:i12:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма wanted.",
+              "uk": "Для минулого потрібна форма wanted."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-43:i12:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна wanted.",
+              "uk": "Це не форма минулого. Потрібна wanted."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-43:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-43:i13:p1",
+            "target": "chickpeas",
+            "meaningByLocale": {
+              "ru": "нут",
+              "uk": "нут"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-43:i13:p2",
+            "target": "kidney beans",
+            "meaningByLocale": {
+              "ru": "крупная красная фасоль",
+              "uk": "велика червона квасоля"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-43:i13:p3",
+            "target": "sweetcorn",
+            "meaningByLocale": {
+              "ru": "сахарная кукуруза",
+              "uk": "цукрова кукурудза"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-43:i13:p4",
+            "target": "couscous",
+            "meaningByLocale": {
+              "ru": "кускус, мелкая пшеничная крупа",
+              "uk": "кускус, дрібна пшенична крупа"
+            }
+          }
+        ],
+        "leftColumn": [
+          "chickpeas",
+          "kidney beans",
+          "sweetcorn",
+          "couscous"
+        ],
+        "rightColumn": [
+          "нут",
+          "крупная красная фасоль",
+          "сахарная кукуруза",
+          "кускус, мелкая пшеничная крупа"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-43:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-43:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-43:i14:audio",
+          "transcript": "She washed the mixing bowl."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She washed the mixing bowl.",
+        "orderedTokens": [
+          "She",
+          "washed",
+          "the",
+          "mixing",
+          "bowl"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-43:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-43:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-43:i15:audio",
+          "transcript": "We used the salad bowl."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We used the salad bowl.",
+        "orderedTokens": [
+          "We",
+          "used",
+          "the",
+          "salad",
+          "bowl"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-43:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера кукуруза была в холодильнике",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-43:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера кукуруза была в холодильнике",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-43:i16:audio",
+          "transcript": "The sweetcorn was in the fridge yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The sweetcorn was in the fridge yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-43:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: я приготовил нут для салата",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-43:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: я приготовил нут для салата",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-43:i17:audio",
+          "transcript": "I cooked the chickpeas for the salad."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I cooked the chickpeas for the salad.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6c6446acf42ff84a29652b94758fd5af1d0e290c2ac5e80148b6e513e5d747c9"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-46",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-46:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-46:intro1:r2": {
+          "ru": "Для прошлого нужна watched.",
+          "uk": "Для минулого потрібна watched."
+        },
+        "en:lesson-12:session-46:intro1:r3": {
+          "ru": "Watches — не прошлое и не форма с we.",
+          "uk": "Watches — не минуле й не форма з we."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-46:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-46:intro2:r2": {
+          "ru": "Это цвет птицы, не действие.",
+          "uk": "Це колір пташки, не дія."
+        },
+        "en:lesson-12:session-46:intro2:r3": {
+          "ru": "Для прошлого нужна watched.",
+          "uk": "Для минулого потрібна watched."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-46:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-46:intro3:r2": {
+          "ru": "Это клетка кролика, а нужен аквариум.",
+          "uk": "Це клітка кролика, а потрібен акваріум."
+        },
+        "en:lesson-12:session-46:intro3:r3": {
+          "ru": "Для прошлого нужна cleaned.",
+          "uk": "Для минулого потрібна cleaned."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0abcb759e6e22cdb32d3b629d8e88d9ff6b2e797b6585026dab475ad7b028753"
+}

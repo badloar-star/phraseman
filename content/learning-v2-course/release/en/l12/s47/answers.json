@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-47:word:warning",
+    "correctText": "warning",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-47:i01",
+    "correctText": "I noticed a warning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-47:i02",
+    "correctText": "She noticed a warning.",
+    "correctResponseId": "en:lesson-12:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-47:i03",
+    "correctText": "noticed",
+    "correctResponseId": "en:lesson-12:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-47:word:keep-dry",
+    "correctText": "keep dry",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-47:i04",
+    "correctText": "Keep dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-47:i05",
+    "correctText": "Keep dry.",
+    "correctResponseId": "en:lesson-12:session-47:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-47:i06",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-47:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-47:word:handle-with-care",
+    "correctText": "handle with care",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-47:i07",
+    "correctText": "Handle with care.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-47:i08",
+    "correctText": "Handle with care.",
+    "correctResponseId": "en:lesson-12:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-47:i09",
+    "correctText": "packed",
+    "correctResponseId": "en:lesson-12:session-47:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-47:word:this-way-up",
+    "correctText": "this way up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-47:i10",
+    "correctText": "This way up.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-47:i11",
+    "correctText": "This way up.",
+    "correctResponseId": "en:lesson-12:session-47:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-47:i12",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-47:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-47:i13",
+    "correctText": "en:lesson-12:session-47:i13:p1=warning\nen:lesson-12:session-47:i13:p2=keep dry\nen:lesson-12:session-47:i13:p3=handle with care\nen:lesson-12:session-47:i13:p4=this way up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-47:i14",
+    "correctText": "We packed the parcel yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-47:i15",
+    "correctText": "She checked the address.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-47:i16",
+    "correctText": "The box was on the table yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-47:i17",
+    "correctText": "I noticed a warning on the box.",
+    "correctResponseId": null
+  }
+]

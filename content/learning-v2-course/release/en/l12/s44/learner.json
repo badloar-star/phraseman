@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-44",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-44:word:shoe-shop",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shoe shop",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-44:word:shoe-shop:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shoe shop",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-44:word:shoe-shop:audio",
+          "transcript": "shoe shop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-44:word:shoe-shop:r1",
+            "targetText": "shoe shop",
+            "meaningByLocale": {
+              "ru": "обувной магазин.",
+              "uk": "взуттєвий магазин."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shoe shop",
+          "definitionByLocale": {
+            "ru": "обувной магазин.",
+            "uk": "взуттєвий магазин."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-44:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я побывал в обувном магазине",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я побывал в обувном магазине",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I visited a shoe shop.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я побывал в обувном магазине",
+          "uk": "Скажіть: Я побував у взуттєвому магазині"
+        },
+        "orderedTokens": [
+          "I",
+          "visited",
+          "a",
+          "shoe",
+          "shop"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-44:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-44:i02:r1",
+          "text": "She visited a shoe shop."
+        },
+        {
+          "responseId": "en:lesson-12:session-44:i02:r2",
+          "text": "She visits a shoe shop."
+        },
+        {
+          "responseId": "en:lesson-12:session-44:i02:r3",
+          "text": "We visited a shoe shop."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-44:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-44:i02:audio",
+          "transcript": "She visited a shoe shop."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-44:i02:r1",
+            "targetText": "She visited a shoe shop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i02:r2",
+            "targetText": "She visits a shoe shop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i02:r3",
+            "targetText": "We visited a shoe shop.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-44:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She visited a shoe shop.",
+              "uk": "У записі звучить She visited a shoe shop."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She visited a shoe shop.",
+              "uk": "У записі звучить She visited a shoe shop."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-44:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-44:i03:r1",
+          "text": "visited"
+        },
+        {
+          "responseId": "en:lesson-12:session-44:i03:r2",
+          "text": "visit"
+        },
+        {
+          "responseId": "en:lesson-12:session-44:i03:r3",
+          "text": "visits"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "He ___ a shoe shop yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-44:i03:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i03:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i03:r3",
+            "text": "visits"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-44:i03:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма visited.",
+              "uk": "Для минулого потрібна форма visited."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i03:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна visited.",
+              "uk": "Це не форма минулого. Потрібна visited."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-44:word:clothes-shop",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — clothes shop",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-44:word:clothes-shop:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — clothes shop",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-44:word:clothes-shop:audio",
+          "transcript": "clothes shop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-44:word:clothes-shop:r1",
+            "targetText": "clothes shop",
+            "meaningByLocale": {
+              "ru": "магазин одежды.",
+              "uk": "магазин одягу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "clothes shop",
+          "definitionByLocale": {
+            "ru": "магазин одежды.",
+            "uk": "магазин одягу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-44:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Мы побывали в магазине одежды",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Мы побывали в магазине одежды",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We visited a clothes shop.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы побывали в магазине одежды",
+          "uk": "Скажіть: Ми побували в магазині одягу"
+        },
+        "orderedTokens": [
+          "We",
+          "visited",
+          "a",
+          "clothes",
+          "shop"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-44:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-44:i05:r1",
+          "text": "I visited a clothes shop."
+        },
+        {
+          "responseId": "en:lesson-12:session-44:i05:r2",
+          "text": "I visit a clothes shop."
+        },
+        {
+          "responseId": "en:lesson-12:session-44:i05:r3",
+          "text": "She visited a clothes shop."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-44:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-44:i05:audio",
+          "transcript": "I visited a clothes shop."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-44:i05:r1",
+            "targetText": "I visited a clothes shop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i05:r2",
+            "targetText": "I visit a clothes shop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i05:r3",
+            "targetText": "She visited a clothes shop.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-44:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I visited a clothes shop.",
+              "uk": "У записі звучить I visited a clothes shop."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I visited a clothes shop.",
+              "uk": "У записі звучить I visited a clothes shop."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-44:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-44:i06:r1",
+          "text": "visited"
+        },
+        {
+          "responseId": "en:lesson-12:session-44:i06:r2",
+          "text": "visit"
+        },
+        {
+          "responseId": "en:lesson-12:session-44:i06:r3",
+          "text": "visits"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "They ___ a clothes shop yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-44:i06:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i06:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i06:r3",
+            "text": "visits"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-44:i06:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма visited.",
+              "uk": "Для минулого потрібна форма visited."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i06:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна visited.",
+              "uk": "Це не форма минулого. Потрібна visited."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-44:word:charity-shop",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — charity shop",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-44:word:charity-shop:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — charity shop",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-44:word:charity-shop:audio",
+          "transcript": "charity shop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-44:word:charity-shop:r1",
+            "targetText": "charity shop",
+            "meaningByLocale": {
+              "ru": "благотворительный магазин.",
+              "uk": "благодійний магазин."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "charity shop",
+          "definitionByLocale": {
+            "ru": "благотворительный магазин.",
+            "uk": "благодійний магазин."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-44:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я побывал в благотворительном магазине",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я побывал в благотворительном магазине",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I visited a charity shop.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я побывал в благотворительном магазине",
+          "uk": "Скажіть: Я побував у благодійному магазині"
+        },
+        "orderedTokens": [
+          "I",
+          "visited",
+          "a",
+          "charity",
+          "shop"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-44:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-44:i08:r1",
+          "text": "He visited a charity shop."
+        },
+        {
+          "responseId": "en:lesson-12:session-44:i08:r2",
+          "text": "He visits a charity shop."
+        },
+        {
+          "responseId": "en:lesson-12:session-44:i08:r3",
+          "text": "We visited a charity shop."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-44:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-44:i08:audio",
+          "transcript": "He visited a charity shop."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-44:i08:r1",
+            "targetText": "He visited a charity shop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i08:r2",
+            "targetText": "He visits a charity shop.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i08:r3",
+            "targetText": "We visited a charity shop.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-44:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He visited a charity shop.",
+              "uk": "У записі звучить He visited a charity shop."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He visited a charity shop.",
+              "uk": "У записі звучить He visited a charity shop."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-44:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-44:i09:r1",
+          "text": "visited"
+        },
+        {
+          "responseId": "en:lesson-12:session-44:i09:r2",
+          "text": "visit"
+        },
+        {
+          "responseId": "en:lesson-12:session-44:i09:r3",
+          "text": "visits"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "She ___ a charity shop yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-44:i09:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i09:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i09:r3",
+            "text": "visits"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-44:i09:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма visited.",
+              "uk": "Для минулого потрібна форма visited."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i09:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна visited.",
+              "uk": "Це не форма минулого. Потрібна visited."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-44:word:shoe-size",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shoe size",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-44:word:shoe-size:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shoe size",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-44:word:shoe-size:audio",
+          "transcript": "shoe size"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-44:word:shoe-size:r1",
+            "targetText": "shoe size",
+            "meaningByLocale": {
+              "ru": "размер обуви.",
+              "uk": "розмір взуття."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shoe size",
+          "definitionByLocale": {
+            "ru": "размер обуви.",
+            "uk": "розмір взуття."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-44:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я проверил свой размер обуви",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я проверил свой размер обуви",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I checked my shoe size.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я проверил свой размер обуви",
+          "uk": "Скажіть: Я перевірив свій розмір взуття"
+        },
+        "orderedTokens": [
+          "I",
+          "checked",
+          "my",
+          "shoe",
+          "size"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-44:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-44:i11:r1",
+          "text": "They checked their shoe size."
+        },
+        {
+          "responseId": "en:lesson-12:session-44:i11:r2",
+          "text": "They check their shoe size."
+        },
+        {
+          "responseId": "en:lesson-12:session-44:i11:r3",
+          "text": "She checked her shoe size."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-44:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-44:i11:audio",
+          "transcript": "They checked their shoe size."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-44:i11:r1",
+            "targetText": "They checked their shoe size.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i11:r2",
+            "targetText": "They check their shoe size.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i11:r3",
+            "targetText": "She checked her shoe size.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-44:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They checked their shoe size.",
+              "uk": "У записі звучить They checked their shoe size."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They checked their shoe size.",
+              "uk": "У записі звучить They checked their shoe size."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-44:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь о прошлом. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-44:i12:r1",
+          "text": "checked"
+        },
+        {
+          "responseId": "en:lesson-12:session-44:i12:r2",
+          "text": "check"
+        },
+        {
+          "responseId": "en:lesson-12:session-44:i12:r3",
+          "text": "checks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь о прошлом. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "We ___ our shoe size yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-44:i12:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i12:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i12:r3",
+            "text": "checks"
+          }
+        ],
+        "testedDimension": "Речь о прошлом. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-44:i12:r2",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма checked.",
+              "uk": "Для минулого потрібна форма checked."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-44:i12:r3",
+            "correct": false,
+            "testedDimension": "Речь о прошлом. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна checked.",
+              "uk": "Це не форма минулого. Потрібна checked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-44:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-44:i13:p1",
+            "target": "shoe shop",
+            "meaningByLocale": {
+              "ru": "обувной магазин",
+              "uk": "взуттєвий магазин"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-44:i13:p2",
+            "target": "clothes shop",
+            "meaningByLocale": {
+              "ru": "магазин одежды",
+              "uk": "магазин одягу"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-44:i13:p3",
+            "target": "charity shop",
+            "meaningByLocale": {
+              "ru": "благотворительный магазин",
+              "uk": "благодійний магазин"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-44:i13:p4",
+            "target": "shoe size",
+            "meaningByLocale": {
+              "ru": "размер обуви",
+              "uk": "розмір взуття"
+            }
+          }
+        ],
+        "leftColumn": [
+          "shoe shop",
+          "clothes shop",
+          "charity shop",
+          "shoe size"
+        ],
+        "rightColumn": [
+          "обувной магазин",
+          "магазин одежды",
+          "благотворительный магазин",
+          "размер обуви"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-44:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-44:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-44:i14:audio",
+          "transcript": "She checked the price tag."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She checked the price tag.",
+        "orderedTokens": [
+          "She",
+          "checked",
+          "the",
+          "price",
+          "tag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-44:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-44:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-44:i15:audio",
+          "transcript": "We used the changing room."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We used the changing room.",
+        "orderedTokens": [
+          "We",
+          "used",
+          "the",
+          "changing",
+          "room"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-44:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера обувной магазин был закрыт",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-44:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера обувной магазин был закрыт",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-44:i16:audio",
+          "transcript": "The shoe shop was closed yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The shoe shop was closed yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-44:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: я побывал в магазине одежды возле станции",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-44:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: я побывал в магазине одежды возле станции",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-44:i17:audio",
+          "transcript": "I visited a clothes shop near the station."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I visited a clothes shop near the station.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ea1b1422fcb43ea0dd3a4ffdd0ac800e946e35f1d21997d43dbe6388c1d97ebb"
+}

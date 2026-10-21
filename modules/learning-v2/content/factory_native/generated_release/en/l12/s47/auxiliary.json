@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-47",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-47:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-47:intro1:r2": {
+          "ru": "Для прошлого нужна noticed.",
+          "uk": "Для минулого потрібна noticed."
+        },
+        "en:lesson-12:session-47:intro1:r3": {
+          "ru": "Notices — не прошлое и не форма с I.",
+          "uk": "Notices — не минуле й не форма з I."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-47:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-47:intro2:r2": {
+          "ru": "Здесь осторожное обращение, а нужна защита от влаги.",
+          "uk": "Тут обережне поводження, а потрібен захист від вологи."
+        },
+        "en:lesson-12:session-47:intro2:r3": {
+          "ru": "Warm — тепло, а dry — сухо.",
+          "uk": "Warm — тепло, а dry — сухо."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-47:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-47:intro3:r2": {
+          "ru": "Это про влагу, не про верх коробки.",
+          "uk": "Це про вологу, не про верх коробки."
+        },
+        "en:lesson-12:session-47:intro3:r3": {
+          "ru": "Это про осторожность, не про верх коробки.",
+          "uk": "Це про обережність, не про верх коробки."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "88403a786b4033051aefd654a5392892eb20ec457686a2361ba7d28c229dd4d9"
+}

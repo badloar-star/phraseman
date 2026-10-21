@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-13:word:ward",
+      "interactionId": "en:lesson-10:session-13:word:sore-throat",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — ward",
+      "prompt": "Карточка слова — sore throat",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-13:word:ward:audio"
+        "en:lesson-10:session-13:word:sore-throat:audio"
       ],
-      "accessibilityLabel": "Карточка слова — ward",
+      "accessibilityLabel": "Карточка слова — sore throat",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-13:word:ward:audio",
-          "transcript": "ward"
+          "audioTargetId": "en:lesson-10:session-13:word:sore-throat:audio",
+          "transcript": "sore throat"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-13:word:ward:r1",
-            "targetText": "ward",
+            "responseId": "en:lesson-10:session-13:word:sore-throat:r1",
+            "targetText": "sore throat",
             "meaningByLocale": {
-              "ru": "«больничное отделение». The ward is quiet. — «В отделении тихо». Здесь отделение, где находятся пациенты больницы.",
-              "uk": "«лікарняне відділення». The ward is quiet. — «У відділенні тихо». Тут відділення, де перебувають пацієнти лікарні."
+              "ru": "«боль в горле». I have a sore throat. — «У меня болит горло».",
+              "uk": "«біль у горлі». I have a sore throat. — «У мене болить горло»."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "ward",
+          "word": "sore throat",
           "definitionByLocale": {
-            "ru": "«больничное отделение». The ward is quiet. — «В отделении тихо». Здесь отделение, где находятся пациенты больницы.",
-            "uk": "«лікарняне відділення». The ward is quiet. — «У відділенні тихо». Тут відділення, де перебувають пацієнти лікарні."
+            "ru": "«боль в горле». I have a sore throat. — «У меня болит горло».",
+            "uk": "«біль у горлі». I have a sore throat. — «У мене болить горло»."
           }
         }
       },
@@ -52,23 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Коллега спрашивает, шумно ли в отделении. Скажите: «В отделении тихо»",
+      "prompt": "Скажите другу, что у вас болит горло",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Коллега спрашивает, шумно ли в отделении. Скажите: «В отделении тихо»",
+      "accessibilityLabel": "Скажите другу, что у вас болит горло",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The ward is quiet.",
+        "targetPhrase": "I have a sore throat.",
         "localizedMeaning": {
-          "ru": "Коллега спрашивает, шумно ли в отделении. Скажите: «В отделении тихо»",
-          "uk": "Колега запитує, чи шумно у відділенні. Скажіть: «У відділенні тихо»"
+          "ru": "Скажите другу, что у вас болит горло",
+          "uk": "Скажіть другу, що у вас болить горло"
         },
         "orderedTokens": [
-          "The",
-          "ward",
-          "is",
-          "quiet"
+          "I",
+          "have",
+          "a",
+          "sore",
+          "throat"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -89,15 +90,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-13:i02:r1",
-          "text": "She usually works downstairs."
+          "text": "She has a sore throat."
         },
         {
           "responseId": "en:lesson-10:session-13:i02:r2",
-          "text": "He usually works downstairs."
+          "text": "He has a sore throat."
         },
         {
           "responseId": "en:lesson-10:session-13:i02:r3",
-          "text": "She usually works upstairs."
+          "text": "I have a sore throat."
         }
       ],
       "mediaIds": [],
@@ -109,23 +110,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-13:i02:audio",
-          "transcript": "She usually works downstairs."
+          "transcript": "She has a sore throat."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-13:i02:r1",
-            "targetText": "She usually works downstairs.",
+            "targetText": "She has a sore throat.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-13:i02:r2",
-            "targetText": "He usually works downstairs.",
+            "targetText": "He has a sore throat.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-13:i02:r3",
-            "targetText": "She usually works upstairs.",
+            "targetText": "I have a sore throat.",
             "meaningByLocale": null
           }
         ],
@@ -136,8 +137,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит She usually works downstairs.",
-              "uk": "У записі звучить She usually works downstairs."
+              "ru": "В записи звучит She has a sore throat.",
+              "uk": "У записі звучить She has a sore throat."
             }
           },
           {
@@ -145,8 +146,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит She usually works downstairs.",
-              "uk": "У записі звучить She usually works downstairs."
+              "ru": "В записи звучит She has a sore throat.",
+              "uk": "У записі звучить She has a sore throat."
             }
           }
         ],
@@ -161,63 +162,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму work для обычной работы с she",
+      "prompt": "Выберите форму have с I",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-13:i03:r1",
-          "text": "works"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-10:session-13:i03:r2",
-          "text": "work"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-10:session-13:i03:r3",
-          "text": "working"
+          "text": "having"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму work для обычной работы с she",
+      "accessibilityLabel": "Выберите форму have с I",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму work для обычной работы с she",
-          "uk": "Виберіть форму work для звичайної роботи з she"
+          "ru": "Выберите форму have с I",
+          "uk": "Виберіть форму have з I"
         },
-        "gappedTargetPhrase": "She usually ___ downstairs.",
+        "gappedTargetPhrase": "I ___ a sore throat.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-13:i03:r1",
-            "text": "works"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-10:session-13:i03:r2",
-            "text": "work"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-10:session-13:i03:r3",
-            "text": "working"
+            "text": "having"
           }
         ],
-        "testedDimension": "Выберите форму work для обычной работы с she",
+        "testedDimension": "Выберите форму have с I",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-13:i03:r2",
             "correct": false,
-            "testedDimension": "Выберите форму work для обычной работы с she",
+            "testedDimension": "Выберите форму have с I",
             "feedbackByLocale": {
-              "ru": "С she нужна works.",
-              "uk": "З she потрібна works."
+              "ru": "С I нужна have.",
+              "uk": "З I потрібна have."
             }
           },
           {
             "responseId": "en:lesson-10:session-13:i03:r3",
             "correct": false,
-            "testedDimension": "Выберите форму work для обычной работы с she",
+            "testedDimension": "Выберите форму have с I",
             "feedbackByLocale": {
-              "ru": "Для обычной работы здесь нужна works.",
-              "uk": "Для звичайної роботи тут потрібна works."
+              "ru": "Для этого описания нужна have.",
+              "uk": "Для цього опису потрібна have."
             }
           }
         ]
@@ -225,32 +226,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-13:word:bedside",
+      "interactionId": "en:lesson-10:session-13:word:earache",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — bedside",
+      "prompt": "Карточка слова — earache",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-13:word:bedside:audio"
+        "en:lesson-10:session-13:word:earache:audio"
       ],
-      "accessibilityLabel": "Карточка слова — bedside",
+      "accessibilityLabel": "Карточка слова — earache",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-13:word:bedside:audio",
-          "transcript": "bedside"
+          "audioTargetId": "en:lesson-10:session-13:word:earache:audio",
+          "transcript": "earache"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-13:word:bedside:r1",
-            "targetText": "bedside",
+            "responseId": "en:lesson-10:session-13:word:earache:r1",
+            "targetText": "earache",
             "meaningByLocale": {
-              "ru": "«место у постели». She is at the bedside. — «Она у постели». At the bedside указывает на место рядом с кроватью человека.",
-              "uk": "«місце біля ліжка». She is at the bedside. — «Вона біля ліжка». At the bedside вказує на місце поруч із ліжком людини."
+              "ru": "«боль в ухе». She has earache. — «У неё болит ухо».",
+              "uk": "«біль у вусі». She has earache. — «У неї болить вухо»."
             }
           }
         ],
@@ -258,10 +259,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "bedside",
+          "word": "earache",
           "definitionByLocale": {
-            "ru": "«место у постели». She is at the bedside. — «Она у постели». At the bedside указывает на место рядом с кроватью человека.",
-            "uk": "«місце біля ліжка». She is at the bedside. — «Вона біля ліжка». At the bedside вказує на місце поруч із ліжком людини."
+            "ru": "«боль в ухе». She has earache. — «У неё болит ухо».",
+            "uk": "«біль у вусі». She has earache. — «У неї болить вухо»."
           }
         }
       },
@@ -273,24 +274,22 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Посетитель ищет медсестру. Скажите: «Она у постели»",
+      "prompt": "Скажите, что у подруги болит ухо",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Посетитель ищет медсестру. Скажите: «Она у постели»",
+      "accessibilityLabel": "Скажите, что у подруги болит ухо",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She is at the bedside.",
+        "targetPhrase": "She has earache.",
         "localizedMeaning": {
-          "ru": "Посетитель ищет медсестру. Скажите: «Она у постели»",
-          "uk": "Відвідувач шукає медсестру. Скажіть: «Вона біля ліжка»"
+          "ru": "Скажите, что у подруги болит ухо",
+          "uk": "Скажіть, що в подруги болить вухо"
         },
         "orderedTokens": [
           "She",
-          "is",
-          "at",
-          "the",
-          "bedside"
+          "has",
+          "earache"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -311,15 +310,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-13:i05:r1",
-          "text": "He is sitting at the bedside."
+          "text": "I have earache."
         },
         {
           "responseId": "en:lesson-10:session-13:i05:r2",
-          "text": "She is sitting at the bedside."
+          "text": "She has earache."
         },
         {
           "responseId": "en:lesson-10:session-13:i05:r3",
-          "text": "He is standing at the bedside."
+          "text": "I have a sore throat."
         }
       ],
       "mediaIds": [],
@@ -331,23 +330,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-13:i05:audio",
-          "transcript": "He is sitting at the bedside."
+          "transcript": "I have earache."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-13:i05:r1",
-            "targetText": "He is sitting at the bedside.",
+            "targetText": "I have earache.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-13:i05:r2",
-            "targetText": "She is sitting at the bedside.",
+            "targetText": "She has earache.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-13:i05:r3",
-            "targetText": "He is standing at the bedside.",
+            "targetText": "I have a sore throat.",
             "meaningByLocale": null
           }
         ],
@@ -358,8 +357,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит He is sitting at the bedside.",
-              "uk": "У записі звучить He is sitting at the bedside."
+              "ru": "В записи звучит I have earache.",
+              "uk": "У записі звучить I have earache."
             }
           },
           {
@@ -367,8 +366,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит He is sitting at the bedside.",
-              "uk": "У записі звучить He is sitting at the bedside."
+              "ru": "В записи звучит I have earache.",
+              "uk": "У записі звучить I have earache."
             }
           }
         ],
@@ -383,63 +382,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму sit после is",
+      "prompt": "Выберите форму have с she",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-13:i06:r1",
-          "text": "sitting"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-10:session-13:i06:r2",
-          "text": "siting"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-10:session-13:i06:r3",
-          "text": "sit"
+          "text": "having"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму sit после is",
+      "accessibilityLabel": "Выберите форму have с she",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму sit после is",
-          "uk": "Виберіть форму sit після is"
+          "ru": "Выберите форму have с she",
+          "uk": "Виберіть форму have з she"
         },
-        "gappedTargetPhrase": "He is ___ at the bedside.",
+        "gappedTargetPhrase": "She ___ earache.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-13:i06:r1",
-            "text": "sitting"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-10:session-13:i06:r2",
-            "text": "siting"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-10:session-13:i06:r3",
-            "text": "sit"
+            "text": "having"
           }
         ],
-        "testedDimension": "Выберите форму sit после is",
+        "testedDimension": "Выберите форму have с she",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-13:i06:r2",
             "correct": false,
-            "testedDimension": "Выберите форму sit после is",
+            "testedDimension": "Выберите форму have с she",
             "feedbackByLocale": {
-              "ru": "В sit удваивается t: sitting.",
-              "uk": "У sit подвоюється t: sitting."
+              "ru": "С she нужна has.",
+              "uk": "З she потрібна has."
             }
           },
           {
             "responseId": "en:lesson-10:session-13:i06:r3",
             "correct": false,
-            "testedDimension": "Выберите форму sit после is",
+            "testedDimension": "Выберите форму have с she",
             "feedbackByLocale": {
-              "ru": "После is нужна sitting.",
-              "uk": "Після is потрібна sitting."
+              "ru": "Для этого описания нужна has.",
+              "uk": "Для цього опису потрібна has."
             }
           }
         ]
@@ -447,32 +446,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-13:word:call-button",
+      "interactionId": "en:lesson-10:session-13:word:toothache",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — call button",
+      "prompt": "Карточка слова — toothache",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-13:word:call-button:audio"
+        "en:lesson-10:session-13:word:toothache:audio"
       ],
-      "accessibilityLabel": "Карточка слова — call button",
+      "accessibilityLabel": "Карточка слова — toothache",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-13:word:call-button:audio",
-          "transcript": "call button"
+          "audioTargetId": "en:lesson-10:session-13:word:toothache:audio",
+          "transcript": "toothache"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-13:word:call-button:r1",
-            "targetText": "call button",
+            "responseId": "en:lesson-10:session-13:word:toothache:r1",
+            "targetText": "toothache",
             "meaningByLocale": {
-              "ru": "«кнопка вызова». The call button is near the bed. — «Кнопка вызова возле кровати». Здесь кнопка для вызова персонала.",
-              "uk": "«кнопка виклику». The call button is near the bed. — «Кнопка виклику біля ліжка». Тут кнопка для виклику персоналу."
+              "ru": "«зубная боль». I have toothache. — «У меня болит зуб».",
+              "uk": "«зубний біль». I have toothache. — «У мене болить зуб»."
             }
           }
         ],
@@ -480,10 +479,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "call button",
+          "word": "toothache",
           "definitionByLocale": {
-            "ru": "«кнопка вызова». The call button is near the bed. — «Кнопка вызова возле кровати». Здесь кнопка для вызова персонала.",
-            "uk": "«кнопка виклику». The call button is near the bed. — «Кнопка виклику біля ліжка». Тут кнопка для виклику персоналу."
+            "ru": "«зубная боль». I have toothache. — «У меня болит зуб».",
+            "uk": "«зубний біль». I have toothache. — «У мене болить зуб»."
           }
         }
       },
@@ -495,26 +494,22 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Посетитель спрашивает, где кнопка вызова персонала. Скажите: «Кнопка вызова возле кровати»",
+      "prompt": "Скажите собеседнику, что у вас болит зуб",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Посетитель спрашивает, где кнопка вызова персонала. Скажите: «Кнопка вызова возле кровати»",
+      "accessibilityLabel": "Скажите собеседнику, что у вас болит зуб",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The call button is near the bed.",
+        "targetPhrase": "I have toothache.",
         "localizedMeaning": {
-          "ru": "Посетитель спрашивает, где кнопка вызова персонала. Скажите: «Кнопка вызова возле кровати»",
-          "uk": "Відвідувач запитує, де кнопка виклику персоналу. Скажіть: «Кнопка виклику біля ліжка»"
+          "ru": "Скажите собеседнику, что у вас болит зуб",
+          "uk": "Скажіть співрозмовнику, що у вас болить зуб"
         },
         "orderedTokens": [
-          "The",
-          "call",
-          "button",
-          "is",
-          "near",
-          "the",
-          "bed"
+          "I",
+          "have",
+          "toothache"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -535,15 +530,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-13:i08:r1",
-          "text": "The call button is red."
+          "text": "He has toothache."
         },
         {
           "responseId": "en:lesson-10:session-13:i08:r2",
-          "text": "The call button is blue."
+          "text": "She has toothache."
         },
         {
           "responseId": "en:lesson-10:session-13:i08:r3",
-          "text": "The blanket is red."
+          "text": "He has earache."
         }
       ],
       "mediaIds": [],
@@ -555,23 +550,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-13:i08:audio",
-          "transcript": "The call button is red."
+          "transcript": "He has toothache."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-13:i08:r1",
-            "targetText": "The call button is red.",
+            "targetText": "He has toothache.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-13:i08:r2",
-            "targetText": "The call button is blue.",
+            "targetText": "She has toothache.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-13:i08:r3",
-            "targetText": "The blanket is red.",
+            "targetText": "He has earache.",
             "meaningByLocale": null
           }
         ],
@@ -582,8 +577,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The call button is red.",
-              "uk": "У записі звучить The call button is red."
+              "ru": "В записи звучит He has toothache.",
+              "uk": "У записі звучить He has toothache."
             }
           },
           {
@@ -591,8 +586,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The call button is red.",
-              "uk": "У записі звучить The call button is red."
+              "ru": "В записи звучит He has toothache.",
+              "uk": "У записі звучить He has toothache."
             }
           }
         ],
@@ -607,63 +602,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку для одной кнопки вызова",
+      "prompt": "Выберите форму have с he",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-13:i09:r1",
-          "text": "is"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-10:session-13:i09:r2",
-          "text": "are"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-10:session-13:i09:r3",
-          "text": "am"
+          "text": "having"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку для одной кнопки вызова",
+      "accessibilityLabel": "Выберите форму have с he",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку для одной кнопки вызова",
-          "uk": "Виберіть зв’язку для однієї кнопки виклику"
+          "ru": "Выберите форму have с he",
+          "uk": "Виберіть форму have з he"
         },
-        "gappedTargetPhrase": "The call button ___ near the bed.",
+        "gappedTargetPhrase": "He ___ toothache.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-13:i09:r1",
-            "text": "is"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-10:session-13:i09:r2",
-            "text": "are"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-10:session-13:i09:r3",
-            "text": "am"
+            "text": "having"
           }
         ],
-        "testedDimension": "Выберите связку для одной кнопки вызова",
+        "testedDimension": "Выберите форму have с he",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-13:i09:r2",
             "correct": false,
-            "testedDimension": "Выберите связку для одной кнопки вызова",
+            "testedDimension": "Выберите форму have с he",
             "feedbackByLocale": {
-              "ru": "Одна кнопка: is.",
-              "uk": "Одна кнопка: is."
+              "ru": "С he нужна has.",
+              "uk": "З he потрібна has."
             }
           },
           {
             "responseId": "en:lesson-10:session-13:i09:r3",
             "correct": false,
-            "testedDimension": "Выберите связку для одной кнопки вызова",
+            "testedDimension": "Выберите форму have с he",
             "feedbackByLocale": {
-              "ru": "Am употребляется с I.",
-              "uk": "Am уживається з I."
+              "ru": "Для этого описания нужна has.",
+              "uk": "Для цього опису потрібна has."
             }
           }
         ]
@@ -671,32 +666,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-13:word:bedpan",
+      "interactionId": "en:lesson-10:session-13:word:backache",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — bedpan",
+      "prompt": "Карточка слова — backache",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-13:word:bedpan:audio"
+        "en:lesson-10:session-13:word:backache:audio"
       ],
-      "accessibilityLabel": "Карточка слова — bedpan",
+      "accessibilityLabel": "Карточка слова — backache",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-13:word:bedpan:audio",
-          "transcript": "bedpan"
+          "audioTargetId": "en:lesson-10:session-13:word:backache:audio",
+          "transcript": "backache"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-13:word:bedpan:r1",
-            "targetText": "bedpan",
+            "responseId": "en:lesson-10:session-13:word:backache:r1",
+            "targetText": "backache",
             "meaningByLocale": {
-              "ru": "«подкладное судно». The bedpan is clean. — «Подкладное судно чистое». Ёмкость для туалета в постели.",
-              "uk": "«підкладне судно». The bedpan is clean. — «Підкладне судно чисте». Ємність для туалету в ліжку."
+              "ru": "«боль в спине». He has backache. — «У него болит спина».",
+              "uk": "«біль у спині». He has backache. — «У нього болить спина»."
             }
           }
         ],
@@ -704,10 +699,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "bedpan",
+          "word": "backache",
           "definitionByLocale": {
-            "ru": "«подкладное судно». The bedpan is clean. — «Подкладное судно чистое». Ёмкость для туалета в постели.",
-            "uk": "«підкладне судно». The bedpan is clean. — «Підкладне судно чисте». Ємність для туалету в ліжку."
+            "ru": "«боль в спине». He has backache. — «У него болит спина».",
+            "uk": "«біль у спині». He has backache. — «У нього болить спина»."
           }
         }
       },
@@ -719,23 +714,22 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Коллега спрашивает, чистое ли подкладное судно. Скажите: «Подкладное судно чистое»",
+      "prompt": "Скажите, что у брата болит спина",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Коллега спрашивает, чистое ли подкладное судно. Скажите: «Подкладное судно чистое»",
+      "accessibilityLabel": "Скажите, что у брата болит спина",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The bedpan is clean.",
+        "targetPhrase": "He has backache.",
         "localizedMeaning": {
-          "ru": "Коллега спрашивает, чистое ли подкладное судно. Скажите: «Подкладное судно чистое»",
-          "uk": "Колега запитує, чи чисте підкладне судно. Скажіть: «Підкладне судно чисте»"
+          "ru": "Скажите, что у брата болит спина",
+          "uk": "Скажіть, що в брата болить спина"
         },
         "orderedTokens": [
-          "The",
-          "bedpan",
-          "is",
-          "clean"
+          "He",
+          "has",
+          "backache"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -756,15 +750,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-13:i11:r1",
-          "text": "The bedpan is on the shelf."
+          "text": "I have backache."
         },
         {
           "responseId": "en:lesson-10:session-13:i11:r2",
-          "text": "The bedpan is under the shelf."
+          "text": "He has backache."
         },
         {
           "responseId": "en:lesson-10:session-13:i11:r3",
-          "text": "The towel is on the shelf."
+          "text": "I have toothache."
         }
       ],
       "mediaIds": [],
@@ -776,23 +770,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-13:i11:audio",
-          "transcript": "The bedpan is on the shelf."
+          "transcript": "I have backache."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-13:i11:r1",
-            "targetText": "The bedpan is on the shelf.",
+            "targetText": "I have backache.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-13:i11:r2",
-            "targetText": "The bedpan is under the shelf.",
+            "targetText": "He has backache.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-13:i11:r3",
-            "targetText": "The towel is on the shelf.",
+            "targetText": "I have toothache.",
             "meaningByLocale": null
           }
         ],
@@ -803,8 +797,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The bedpan is on the shelf.",
-              "uk": "У записі звучить The bedpan is on the shelf."
+              "ru": "В записи звучит I have backache.",
+              "uk": "У записі звучить I have backache."
             }
           },
           {
@@ -812,8 +806,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The bedpan is on the shelf.",
-              "uk": "У записі звучить The bedpan is on the shelf."
+              "ru": "В записи звучит I have backache.",
+              "uk": "У записі звучить I have backache."
             }
           }
         ],
@@ -828,63 +822,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку перед working с she для временной работы",
+      "prompt": "Выберите форму have с I",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-13:i12:r1",
-          "text": "is"
+          "text": "have"
         },
         {
           "responseId": "en:lesson-10:session-13:i12:r2",
-          "text": "are"
+          "text": "has"
         },
         {
           "responseId": "en:lesson-10:session-13:i12:r3",
-          "text": "am"
+          "text": "having"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку перед working с she для временной работы",
+      "accessibilityLabel": "Выберите форму have с I",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку перед working с she для временной работы",
-          "uk": "Виберіть зв’язку перед working з she для тимчасової роботи"
+          "ru": "Выберите форму have с I",
+          "uk": "Виберіть форму have з I"
         },
-        "gappedTargetPhrase": "She ___ working here this week.",
+        "gappedTargetPhrase": "I ___ backache.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-13:i12:r1",
-            "text": "is"
+            "text": "have"
           },
           {
             "responseId": "en:lesson-10:session-13:i12:r2",
-            "text": "are"
+            "text": "has"
           },
           {
             "responseId": "en:lesson-10:session-13:i12:r3",
-            "text": "am"
+            "text": "having"
           }
         ],
-        "testedDimension": "Выберите связку перед working с she для временной работы",
+        "testedDimension": "Выберите форму have с I",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-13:i12:r2",
             "correct": false,
-            "testedDimension": "Выберите связку перед working с she для временной работы",
+            "testedDimension": "Выберите форму have с I",
             "feedbackByLocale": {
-              "ru": "С she нужна is.",
-              "uk": "З she потрібна is."
+              "ru": "С I нужна have.",
+              "uk": "З I потрібна have."
             }
           },
           {
             "responseId": "en:lesson-10:session-13:i12:r3",
             "correct": false,
-            "testedDimension": "Выберите связку перед working с she для временной работы",
+            "testedDimension": "Выберите форму have с I",
             "feedbackByLocale": {
-              "ru": "Am употребляется с I.",
-              "uk": "Am уживається з I."
+              "ru": "Для этого описания нужна have.",
+              "uk": "Для цього опису потрібна have."
             }
           }
         ]
@@ -897,58 +891,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините новые слова со значениями",
+      "prompt": "Соедините выражения с переводом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините новые слова со значениями",
+      "accessibilityLabel": "Соедините выражения с переводом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-13:i13:p1",
-            "target": "ward",
+            "target": "sore throat",
             "meaningByLocale": {
-              "ru": "больничное отделение",
-              "uk": "лікарняне відділення"
+              "ru": "боль в горле",
+              "uk": "біль у горлі"
             }
           },
           {
             "pairId": "en:lesson-10:session-13:i13:p2",
-            "target": "bedside",
+            "target": "earache",
             "meaningByLocale": {
-              "ru": "место у постели",
-              "uk": "місце біля ліжка"
+              "ru": "боль в ухе",
+              "uk": "біль у вусі"
             }
           },
           {
             "pairId": "en:lesson-10:session-13:i13:p3",
-            "target": "call button",
+            "target": "toothache",
             "meaningByLocale": {
-              "ru": "кнопка вызова",
-              "uk": "кнопка виклику"
+              "ru": "зубная боль",
+              "uk": "зубний біль"
             }
           },
           {
             "pairId": "en:lesson-10:session-13:i13:p4",
-            "target": "bedpan",
+            "target": "backache",
             "meaningByLocale": {
-              "ru": "подкладное судно",
-              "uk": "підкладне судно"
+              "ru": "боль в спине",
+              "uk": "біль у спині"
             }
           }
         ],
         "leftColumn": [
-          "ward",
-          "bedside",
-          "call button",
-          "bedpan"
+          "sore throat",
+          "earache",
+          "toothache",
+          "backache"
         ],
         "rightColumn": [
-          "больничное отделение",
-          "место у постели",
-          "кнопка вызова",
-          "подкладное судно"
+          "боль в горле",
+          "боль в ухе",
+          "зубная боль",
+          "боль в спине"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -970,28 +964,25 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос; this week поставьте в конце",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-13:i14:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос; this week поставьте в конце",
+      "accessibilityLabel": "Соберите услышанную фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-13:i14:audio",
-          "transcript": "Is she working here this week?"
+          "transcript": "I have toothache."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Is she working here this week?",
+        "hiddenTargetPhrase": "I have toothache.",
         "orderedTokens": [
-          "Is",
-          "she",
-          "working",
-          "here",
-          "this",
-          "week"
+          "I",
+          "have",
+          "toothache"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1005,24 +996,59 @@
     {
       "interactionId": "en:lesson-10:session-13:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Посетитель спрашивает, где медсестра обычно работает. Скажите: «Обычно она работает внизу»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-13:i15:audio"
       ],
-      "accessibilityLabel": "Посетитель спрашивает, где медсестра обычно работает. Скажите: «Обычно она работает внизу»",
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-13:i15:audio",
+          "transcript": "He has backache."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He has backache.",
+        "orderedTokens": [
+          "He",
+          "has",
+          "backache"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-13:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает о самочувствии. Скажите, что у вас болит горло",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-13:i16:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает о самочувствии. Скажите, что у вас болит горло",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-13:i15:audio",
-          "transcript": "She usually works downstairs."
+          "audioTargetId": "en:lesson-10:session-13:i16:audio",
+          "transcript": "I have a sore throat."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She usually works downstairs.",
+        "targetPhrase": "I have a sore throat.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1036,74 +1062,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-13:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Медсестра временно помогает вашему отделению. Скажите: «На этой неделе она работает в этом отделении». Поставьте this week в конце",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Медсестра временно помогает вашему отделению. Скажите: «На этой неделе она работает в этом отделении». Поставьте this week в конце",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "She is working on this ward this week.",
-        "localizedMeaning": {
-          "ru": "Медсестра временно помогает вашему отделению. Скажите: «На этой неделе она работает в этом отделении». Поставьте this week в конце",
-          "uk": "Медсестра тимчасово допомагає вашому відділенню. Скажіть: «Цього тижня вона працює в цьому відділенні». Поставте this week наприкінці"
-        },
-        "orderedTokens": [
-          "She",
-          "is",
-          "working",
-          "on",
-          "this",
-          "ward",
-          "this",
-          "week"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-13:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Медсестра обычно работает внизу. Она помогает вашему отделению только одну неделю. Коллега спрашивает, где она работает в этот период. Объясните: «На этой неделе она работает в этом отделении»",
+      "prompt": "Скажите: «У моего брата болит спина»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-13:i17:audio"
       ],
-      "accessibilityLabel": "Медсестра обычно работает внизу. Она помогает вашему отделению только одну неделю. Коллега спрашивает, где она работает в этот период. Объясните: «На этой неделе она работает в этом отделении»",
+      "accessibilityLabel": "Скажите: «У моего брата болит спина»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-13:i17:audio",
-          "transcript": "She is working on this ward this week."
+          "transcript": "My brother has backache."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She is working on this ward this week.",
+        "targetPhrase": "My brother has backache.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1120,5 +1101,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "aea9c043e5e633786a271c52c7400ed52694f972b5f8e4b62e248910b279d0be"
+  "learnerFingerprint": "3fc6dfd4edd13d31e845afa548f20b27dbc72a7ad9de3985292baa79fbdc9f2f"
 }

@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-14:word:cockpit",
-    "correctText": "cockpit",
+    "interactionId": "en:lesson-10:session-14:word:window-seat",
+    "correctText": "window seat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-14:i01",
-    "correctText": "She is in the cockpit.",
+    "correctText": "I would like a window seat.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-14:i02",
-    "correctText": "She usually works at a large airport.",
+    "correctText": "She would like a window seat.",
     "correctResponseId": "en:lesson-10:session-14:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-14:i03",
-    "correctText": "works",
+    "correctText": "like",
     "correctResponseId": "en:lesson-10:session-14:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-14:word:runway",
-    "correctText": "runway",
+    "interactionId": "en:lesson-10:session-14:word:aisle-seat",
+    "correctText": "aisle seat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-14:i04",
-    "correctText": "The runway is long.",
+    "correctText": "I prefer an aisle seat.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-14:i05",
-    "correctText": "The runway is wet.",
+    "correctText": "We prefer an aisle seat.",
     "correctResponseId": "en:lesson-10:session-14:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-14:i06",
-    "correctText": "is",
+    "correctText": "an",
     "correctResponseId": "en:lesson-10:session-14:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-14:word:hangar",
-    "correctText": "hangar",
+    "interactionId": "en:lesson-10:session-14:word:boarding-gate",
+    "correctText": "boarding gate",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-14:i07",
-    "correctText": "The plane is in the hangar.",
+    "correctText": "Where is the boarding gate?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-14:i08",
-    "correctText": "The hangar is near the runway.",
+    "correctText": "Where is the boarding gate?",
     "correctResponseId": "en:lesson-10:session-14:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-14:i09",
-    "correctText": "sitting",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-14:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-14:word:fuselage",
-    "correctText": "fuselage",
+    "interactionId": "en:lesson-10:session-14:word:baggage-claim",
+    "correctText": "baggage claim",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-14:i10",
-    "correctText": "The fuselage is white.",
+    "correctText": "I am waiting at baggage claim.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-14:i11",
-    "correctText": "The fuselage is blue.",
+    "correctText": "We are waiting at baggage claim.",
     "correctResponseId": "en:lesson-10:session-14:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-14:i12",
-    "correctText": "is",
+    "correctText": "waiting",
     "correctResponseId": "en:lesson-10:session-14:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-14:i13",
-    "correctText": "en:lesson-10:session-14:i13:p1=cockpit\nen:lesson-10:session-14:i13:p2=runway\nen:lesson-10:session-14:i13:p3=hangar\nen:lesson-10:session-14:i13:p4=fuselage",
+    "correctText": "en:lesson-10:session-14:i13:p1=window seat\nen:lesson-10:session-14:i13:p2=aisle seat\nen:lesson-10:session-14:i13:p3=boarding gate\nen:lesson-10:session-14:i13:p4=baggage claim",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-14:i14",
-    "correctText": "Is she working here this month?",
+    "correctText": "I prefer an aisle seat.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-14:i15",
-    "correctText": "She usually works at a large airport.",
+    "correctText": "I am waiting at baggage claim.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-14:i16",
-    "correctText": "She is working here this month.",
+    "correctText": "I would like a window seat.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-14:i17",
-    "correctText": "She is working here this month.",
+    "correctText": "Where is the boarding gate?",
     "correctResponseId": null
   }
 ]

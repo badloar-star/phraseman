@@ -1,152 +1,151 @@
-# Английский · Урок 10 · Занятие 14 — Пилот временно работает в другом аэропорту
+# Английский · Урок 10 · Занятие 14 — В аэропорту
 
-**Ситуация.** Рассказать, где пилот работает обычно и где временно работает в этом месяце.
+**Ситуация.** Попросить удобное место и найти нужную часть аэропорта.
 
-**Что вы освоите:** She usually works at a large airport; She is working here this month
-**Новые слова:** cockpit, runway, hangar, fuselage
-**Повторение:** pilot (7.12), propeller (9.26)
+**Что вы освоите:** I would like a window seat; I prefer an aisle seat; Where is the boarding gate?; I am waiting at baggage claim
+**Новые слова:** window seat, aisle seat, boarding gate, baggage claim
 
 ## Интро 1
 
-### Обычное место работы
+### У окна или у прохода
 
-Ваша знакомая — пилот. Обычно её рабочие рейсы начинаются в большом аэропорту. She usually works at a large airport — «Обычно она работает в большом аэропорту». Present Simple описывает обычную ситуацию, а не её местоположение в эту секунду. Usually стоит перед works.
+При регистрации вас спрашивают, где вы хотите сидеть. Window seat — «место у окна»: I would like a window seat — «Я бы хотел место у окна». Aisle seat — «место у прохода»: I prefer an aisle seat — «Я предпочитаю место у прохода». Перед aisle seat нужен an: первое слово начинается с гласного звука, s в aisle не произносится.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **She usually works at a large airport.**
-- ❌ She usually work at a large airport. — *С she нужна works.*
-- ❌ She usually working at a large airport. — *Для обычной работы здесь нужна works.*
+- ✅ **I would like a window seat.**
+- ❌ I would likes a window seat. — *После would нужна like без s.*
+- ❌ I would liking a window seat. — *После would нужна like.*
 
 ---
 
 ## Интро 2
 
-### Временное место работы
+### Найти выход на посадку
 
-В этом месяце пилот временно работает в небольшом аэропорту вашего города. She is working here this month — «В этом месяце она работает здесь». Is working показывает временную ситуацию. Фраза подходит и тогда, когда у неё выходной: мы говорим о месяце, а не только о действии сейчас.
+Вы прошли контроль и ищете место, где пассажиров приглашают в самолёт. Boarding gate — «выход на посадку»: Where is the boarding gate? — «Где выход на посадку?» Вы спрашиваете о месте: Where is. Здесь не нужен does, потому что сказуемое — is.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **She is working here this month.**
-- ❌ She working here this month. — *Перед working нужна is.*
-- ❌ She is works here this month. — *После is нужна working.*
+- ✅ **Where is the boarding gate?**
+- ❌ Where are the boarding gate? — *Один выход: is.*
+- ❌ Where does the boarding gate? — *Вопрос о месте строим с is.*
 
 ---
 
 ## Интро 3
 
-### В кабине пилотов
+### Получить чемодан
 
-Cockpit — «кабина пилотов». Коллега ищет вашу знакомую перед рабочей встречей. She is in the cockpit — «Она в кабине пилотов». Здесь is сообщает о месте; это не Present Continuous. Чтобы описать действие, нужен глагол с ing, например She is working.
+После прилёта вы ждёте чемодан у багажной ленты. Baggage claim — «зона выдачи багажа»: I am waiting at baggage claim — «Я жду в зоне выдачи багажа». Вы ждёте сейчас: am waiting. Другу, который вас встречает, так будет проще понять, где вы.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **She is in the cockpit.**
-- ❌ She in the cockpit. — *Нужна связка is.*
-- ❌ She are in the cockpit. — *С she нужна is.*
+- ✅ **I am waiting at baggage claim.**
+- ❌ I waiting at baggage claim. — *Перед waiting нужна am.*
+- ❌ I am wait at baggage claim. — *После am нужна waiting.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — cockpit**
-<!-- interaction_id: en:lesson-10:session-14:word:cockpit; family: word_card -->
-> **cockpit** — «кабина пилотов». She is in the cockpit. — «Она в кабине пилотов». Здесь часть самолёта, из которой им управляют.
+**1 · Карточка слова — window seat**
+<!-- interaction_id: en:lesson-10:session-14:word:window-seat; family: word_card -->
+> **window seat** — «место у окна». I would like a window seat. — «Я бы хотел место у окна».
 
-**2 · Коллега ищет вашу знакомую-пилота. Скажите: «Она в кабине пилотов»**
+**2 · Вежливо попросите место у окна**
 <!-- interaction_id: en:lesson-10:session-14:i01; family: phrase_builder -->
-Плитки: `cockpit` `the` `in` `is` `She` → **She is in the cockpit.**
+Плитки: `seat` `window` `a` `like` `would` `I` → **I would like a window seat.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-14:i02; family: listen_choose -->
-🔊 *She usually works at a large airport.* → **She usually works at a large airport.** · He usually works at a large airport. · She usually works at a small airport.
-- He usually works at a large airport. — *В записи звучит She usually works at a large airport.*
-- She usually works at a small airport. — *В записи звучит She usually works at a large airport.*
+🔊 *She would like a window seat.* → **She would like a window seat.** · He would like a window seat. · She has a window seat.
+- He would like a window seat. — *В записи звучит She would like a window seat.*
+- She has a window seat. — *В записи звучит She would like a window seat.*
 
-**4 · Выберите форму work для обычной работы с she**
+**4 · Выберите форму like после would**
 <!-- interaction_id: en:lesson-10:session-14:i03; family: context_gap_grammar -->
-She usually ___ at a large airport. → **works** · work · working
-- work — *С she нужна works.*
-- working — *Для обычной работы здесь нужна works.*
+I would ___ a window seat. → **like** · likes · liking
+- likes — *После would нужна like без s.*
+- liking — *После would нужна like.*
 
-**5 · Карточка слова — runway**
-<!-- interaction_id: en:lesson-10:session-14:word:runway; family: word_card -->
-> **runway** — «взлётно-посадочная полоса». The runway is long. — «Взлётно-посадочная полоса длинная». Полоса для взлёта и посадки самолётов.
+**5 · Карточка слова — aisle seat**
+<!-- interaction_id: en:lesson-10:session-14:word:aisle-seat; family: word_card -->
+> **aisle seat** — «место у прохода». I prefer an aisle seat. — «Я предпочитаю место у прохода».
 
-**6 · Друг рассматривает аэропорт на фотографии и спрашивает о длине полосы. Скажите: «Взлётно-посадочная полоса длинная»**
+**6 · Скажите, что предпочитаете место у прохода**
 <!-- interaction_id: en:lesson-10:session-14:i04; family: phrase_builder -->
-Плитки: `long` `is` `runway` `The` → **The runway is long.**
+Плитки: `seat` `aisle` `an` `prefer` `I` → **I prefer an aisle seat.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-14:i05; family: listen_choose -->
-🔊 *The runway is wet.* → **The runway is wet.** · The runway is dry. · The road is wet.
-- The runway is dry. — *В записи звучит The runway is wet.*
-- The road is wet. — *В записи звучит The runway is wet.*
+🔊 *We prefer an aisle seat.* → **We prefer an aisle seat.** · I prefer an aisle seat. · We prefer a window seat.
+- I prefer an aisle seat. — *В записи звучит We prefer an aisle seat.*
+- We prefer a window seat. — *В записи звучит We prefer an aisle seat.*
 
-**8 · Выберите связку для одной полосы**
+**8 · Выберите артикль перед aisle seat**
 <!-- interaction_id: en:lesson-10:session-14:i06; family: context_gap_grammar -->
-The runway ___ long. → **is** · are · am
-- are — *Одна полоса: is.*
-- am — *Am употребляется с I.*
+I would like ___ aisle seat. → **an** · a · some
+- a — *Aisle начинается с гласного звука: an.*
+- some — *Одно место: an aisle seat.*
 
-**9 · Карточка слова — hangar**
-<!-- interaction_id: en:lesson-10:session-14:word:hangar; family: word_card -->
-> **hangar** — «ангар». The plane is in the hangar. — «Самолёт в ангаре». Здесь большое здание для размещения самолётов.
+**9 · Карточка слова — boarding gate**
+<!-- interaction_id: en:lesson-10:session-14:word:boarding-gate; family: word_card -->
+> **boarding gate** — «выход на посадку». Where is the boarding gate? — «Где выход на посадку?»
 
-**10 · Коллега спрашивает, где самолёт. Скажите: «Самолёт в ангаре»**
+**10 · Спросите сотрудника, где выход на посадку**
 <!-- interaction_id: en:lesson-10:session-14:i07; family: phrase_builder -->
-Плитки: `hangar` `the` `in` `is` `plane` `The` → **The plane is in the hangar.**
+Плитки: `gate` `boarding` `the` `is` `Where` → **Where is the boarding gate?**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-14:i08; family: listen_choose -->
-🔊 *The hangar is near the runway.* → **The hangar is near the runway.** · The hangar is near the road. · The hotel is near the runway.
-- The hangar is near the road. — *В записи звучит The hangar is near the runway.*
-- The hotel is near the runway. — *В записи звучит The hangar is near the runway.*
+🔊 *Where is the boarding gate?* → **Where is the boarding gate?** · Where are the boarding gates? · This is the boarding gate.
+- Where are the boarding gates? — *В записи звучит Where is the boarding gate?*
+- This is the boarding gate. — *В записи звучит Where is the boarding gate?*
 
-**12 · Выберите форму sit после is**
+**12 · Вы спрашиваете об одном выходе. Выберите связку**
 <!-- interaction_id: en:lesson-10:session-14:i09; family: context_gap_grammar -->
-She is ___ in the cockpit. → **sitting** · siting · sit
-- siting — *Sit удваивает t: sitting.*
-- sit — *После is нужна sitting.*
+Where ___ the boarding gate? → **is** · are · am
+- are — *Один выход: is.*
+- am — *Am употребляем с I, здесь is.*
 
-**13 · Карточка слова — fuselage**
-<!-- interaction_id: en:lesson-10:session-14:word:fuselage; family: word_card -->
-> **fuselage** — «фюзеляж». The fuselage is white. — «Фюзеляж белый». Основной корпус самолёта, без крыльев.
+**13 · Карточка слова — baggage claim**
+<!-- interaction_id: en:lesson-10:session-14:word:baggage-claim; family: word_card -->
+> **baggage claim** — «зона выдачи багажа». I am waiting at baggage claim. — «Я жду в зоне выдачи багажа».
 
-**14 · Друг спрашивает о цвете корпуса самолёта на фотографии. Скажите: «Фюзеляж белый»**
+**14 · Вы ждёте чемодан. Скажите другу, что ждёте в зоне выдачи багажа**
 <!-- interaction_id: en:lesson-10:session-14:i10; family: phrase_builder -->
-Плитки: `white` `is` `fuselage` `The` → **The fuselage is white.**
+Плитки: `claim` `baggage` `at` `waiting` `am` `I` → **I am waiting at baggage claim.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-14:i11; family: listen_choose -->
-🔊 *The fuselage is blue.* → **The fuselage is blue.** · The fuselage is red. · The wing is blue.
-- The fuselage is red. — *В записи звучит The fuselage is blue.*
-- The wing is blue. — *В записи звучит The fuselage is blue.*
+🔊 *We are waiting at baggage claim.* → **We are waiting at baggage claim.** · I am waiting at baggage claim. · They are waiting at baggage claim.
+- I am waiting at baggage claim. — *В записи звучит We are waiting at baggage claim.*
+- They are waiting at baggage claim. — *В записи звучит We are waiting at baggage claim.*
 
-**16 · Выберите связку перед working с she для временной работы**
+**16 · Выберите форму wait после am**
 <!-- interaction_id: en:lesson-10:session-14:i12; family: context_gap_grammar -->
-She ___ working here this month. → **is** · are · am
-- are — *С she нужна is.*
-- am — *Am употребляется с I.*
+I am ___ at baggage claim. → **waiting** · wait · waits
+- wait — *После am нужна waiting.*
+- waits — *После am нужна waiting, не waits.*
 
-**17 · Соедините новые слова со значениями**
+**17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-10:session-14:i13; family: speed_match -->
-cockpit — кабина пилотов · runway — взлётно-посадочная полоса · hangar — ангар · fuselage — фюзеляж
+window seat — место у окна · aisle seat — место у прохода · boarding gate — выход на посадку · baggage claim — зона выдачи багажа
 
-**18 · Послушайте и соберите вопрос; this month поставьте в конце**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-14:i14; family: listen_build_dictation -->
-🔊 *Is she working here this month?* Плитки: `month` `this` `here` `working` `she` `Is` → **Is she working here this month?**
+🔊 *I prefer an aisle seat.* Плитки: `seat` `aisle` `an` `prefer` `I` → **I prefer an aisle seat.**
 
-**19 · Друг спрашивает, в каком аэропорту ваша знакомая обычно работает. Скажите: «Обычно она работает в большом аэропорту»**
-<!-- interaction_id: en:lesson-10:session-14:i15; family: scripted_repeat_compare -->
-🎙 **She usually works at a large airport.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-14:i15; family: listen_build_dictation -->
+🔊 *I am waiting at baggage claim.* Плитки: `claim` `baggage` `at` `waiting` `am` `I` → **I am waiting at baggage claim.**
 
-**20 · Пилот временно работает в вашем городе. Скажите: «В этом месяце она работает здесь». Поставьте this month в конце**
-<!-- interaction_id: en:lesson-10:session-14:i16; family: phrase_builder -->
-Плитки: `month` `this` `here` `working` `is` `She` → **She is working here this month.**
+**20 · При регистрации попросите место у окна**
+<!-- interaction_id: en:lesson-10:session-14:i16; family: scripted_repeat_compare -->
+🎙 **I would like a window seat.**
 
-**21 · Ваша знакомая обычно работает в большом аэропорту другого города. Она временно приехала работать в ваш аэропорт на месяц. Коллега спрашивает, почему она здесь. Объясните: «В этом месяце она работает здесь»**
-<!-- interaction_id: en:lesson-10:session-14:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She is working here this month.**
+**21 · Спросите, где выход на посадку**
+<!-- interaction_id: en:lesson-10:session-14:i17; family: scripted_repeat_compare -->
+🎙 **Where is the boarding gate?**
 

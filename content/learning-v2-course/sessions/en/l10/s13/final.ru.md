@@ -1,152 +1,151 @@
-# Английский · Урок 10 · Занятие 13 — Медсестра временно помогает другому отделению
+# Английский · Урок 10 · Занятие 13 — Сказать, что болит
 
-**Ситуация.** Объяснить, где медсестра работает обычно и где временно помогает на этой неделе.
+**Ситуация.** Простыми словами описать самочувствие собеседнику.
 
-**Что вы освоите:** She usually works downstairs; She is working on this ward this week
-**Новые слова:** ward, bedside, call button, bedpan
-**Повторение:** nurse (4.09)
+**Что вы освоите:** I have a sore throat; She has earache; I have toothache; He has backache
+**Новые слова:** sore throat, earache, toothache, backache
 
 ## Интро 1
 
-### Обычное место работы
+### Болит горло
 
-Ваша знакомая — медсестра. Обычно она работает на нижнем этаже больницы. She usually works downstairs — «Обычно она работает внизу». Present Simple описывает обычное место работы. Usually стоит перед works; с she у глагола есть окончание s.
+Друг спрашивает, почему вы сегодня мало говорите. Sore throat — «боль в горле»: I have a sore throat — «У меня болит горло». Здесь have описывает самочувствие, а не действие в процессе. Поэтому говорим I have, без am, хотя горло болит сейчас. Выражение учим с a: have a sore throat.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **She usually works downstairs.**
-- ❌ She usually work downstairs. — *С she нужна works.*
-- ❌ She usually working downstairs. — *Для обычной работы здесь нужна works.*
+- ✅ **I have a sore throat.**
+- ❌ I am have a sore throat. — *Нужна have без am.*
+- ❌ I has a sore throat. — *С I нужна have.*
 
 ---
 
 ## Интро 2
 
-### Другое отделение на неделю
+### Болит ухо или зуб
 
-Ward — «больничное отделение». Здесь речь об отделении с пациентами, которые остаются в больнице. На этой неделе медсестра временно помогает вашему отделению. She is working on this ward this week — «На этой неделе она работает в этом отделении». В британском английском о работе в отделении говорят work on a ward. Is working описывает временное место работы, даже если у неё сейчас перерыв.
+Подруга говорит, что у неё болит ухо. Earache — «боль в ухе»: She has earache — «У неё болит ухо». А toothache — «зубная боль»: I have toothache — «У меня болит зуб». С she нужна has, с I — have. Здесь учим британские варианты без артикля: have earache, have toothache.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **She is working on this ward this week.**
-- ❌ She working on this ward this week. — *Перед working нужна is.*
-- ❌ She is works on this ward this week. — *После is нужна working.*
+- ✅ **She has earache.**
+- ❌ She have earache. — *С she нужна has.*
+- ❌ She is have earache. — *Нужна has без is.*
 
 ---
 
 ## Интро 3
 
-### Где она сейчас
+### Болит спина
 
-Bedside — «место у постели». Посетитель ищет медсестру. She is at the bedside — «Она у постели». Здесь is сообщает, где она находится. Это не Present Continuous: после is нет глагола с ing. Сравните: She is working — «Она работает».
+Друг спрашивает, как чувствует себя ваш брат. Backache — «боль в спине»: He has backache — «У него болит спина». Здесь тоже британский вариант без артикля. Для описания самочувствия нужна has; не добавляем is. Это фразы для сообщения о боли, а не названия лечения.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **She is at the bedside.**
-- ❌ She at the bedside. — *Нужна связка is.*
-- ❌ She are at the bedside. — *С she нужна is, не are.*
+- ✅ **He has backache.**
+- ❌ He have backache. — *С he нужна has.*
+- ❌ He is has backache. — *Перед has не нужна is.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — ward**
-<!-- interaction_id: en:lesson-10:session-13:word:ward; family: word_card -->
-> **ward** — «больничное отделение». The ward is quiet. — «В отделении тихо». Здесь отделение, где находятся пациенты больницы.
+**1 · Карточка слова — sore throat**
+<!-- interaction_id: en:lesson-10:session-13:word:sore-throat; family: word_card -->
+> **sore throat** — «боль в горле». I have a sore throat. — «У меня болит горло».
 
-**2 · Коллега спрашивает, шумно ли в отделении. Скажите: «В отделении тихо»**
+**2 · Скажите другу, что у вас болит горло**
 <!-- interaction_id: en:lesson-10:session-13:i01; family: phrase_builder -->
-Плитки: `quiet` `is` `ward` `The` → **The ward is quiet.**
+Плитки: `throat` `sore` `a` `have` `I` → **I have a sore throat.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-13:i02; family: listen_choose -->
-🔊 *She usually works downstairs.* → **She usually works downstairs.** · He usually works downstairs. · She usually works upstairs.
-- He usually works downstairs. — *В записи звучит She usually works downstairs.*
-- She usually works upstairs. — *В записи звучит She usually works downstairs.*
+🔊 *She has a sore throat.* → **She has a sore throat.** · He has a sore throat. · I have a sore throat.
+- He has a sore throat. — *В записи звучит She has a sore throat.*
+- I have a sore throat. — *В записи звучит She has a sore throat.*
 
-**4 · Выберите форму work для обычной работы с she**
+**4 · Выберите форму have с I**
 <!-- interaction_id: en:lesson-10:session-13:i03; family: context_gap_grammar -->
-She usually ___ downstairs. → **works** · work · working
-- work — *С she нужна works.*
-- working — *Для обычной работы здесь нужна works.*
+I ___ a sore throat. → **have** · has · having
+- has — *С I нужна have.*
+- having — *Для этого описания нужна have.*
 
-**5 · Карточка слова — bedside**
-<!-- interaction_id: en:lesson-10:session-13:word:bedside; family: word_card -->
-> **bedside** — «место у постели». She is at the bedside. — «Она у постели». At the bedside указывает на место рядом с кроватью человека.
+**5 · Карточка слова — earache**
+<!-- interaction_id: en:lesson-10:session-13:word:earache; family: word_card -->
+> **earache** — «боль в ухе». She has earache. — «У неё болит ухо».
 
-**6 · Посетитель ищет медсестру. Скажите: «Она у постели»**
+**6 · Скажите, что у подруги болит ухо**
 <!-- interaction_id: en:lesson-10:session-13:i04; family: phrase_builder -->
-Плитки: `bedside` `the` `at` `is` `She` → **She is at the bedside.**
+Плитки: `earache` `has` `She` → **She has earache.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-13:i05; family: listen_choose -->
-🔊 *He is sitting at the bedside.* → **He is sitting at the bedside.** · She is sitting at the bedside. · He is standing at the bedside.
-- She is sitting at the bedside. — *В записи звучит He is sitting at the bedside.*
-- He is standing at the bedside. — *В записи звучит He is sitting at the bedside.*
+🔊 *I have earache.* → **I have earache.** · She has earache. · I have a sore throat.
+- She has earache. — *В записи звучит I have earache.*
+- I have a sore throat. — *В записи звучит I have earache.*
 
-**8 · Выберите форму sit после is**
+**8 · Выберите форму have с she**
 <!-- interaction_id: en:lesson-10:session-13:i06; family: context_gap_grammar -->
-He is ___ at the bedside. → **sitting** · siting · sit
-- siting — *В sit удваивается t: sitting.*
-- sit — *После is нужна sitting.*
+She ___ earache. → **has** · have · having
+- have — *С she нужна has.*
+- having — *Для этого описания нужна has.*
 
-**9 · Карточка слова — call button**
-<!-- interaction_id: en:lesson-10:session-13:word:call-button; family: word_card -->
-> **call button** — «кнопка вызова». The call button is near the bed. — «Кнопка вызова возле кровати». Здесь кнопка для вызова персонала.
+**9 · Карточка слова — toothache**
+<!-- interaction_id: en:lesson-10:session-13:word:toothache; family: word_card -->
+> **toothache** — «зубная боль». I have toothache. — «У меня болит зуб».
 
-**10 · Посетитель спрашивает, где кнопка вызова персонала. Скажите: «Кнопка вызова возле кровати»**
+**10 · Скажите собеседнику, что у вас болит зуб**
 <!-- interaction_id: en:lesson-10:session-13:i07; family: phrase_builder -->
-Плитки: `bed` `the` `near` `is` `button` `call` `The` → **The call button is near the bed.**
+Плитки: `toothache` `have` `I` → **I have toothache.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-13:i08; family: listen_choose -->
-🔊 *The call button is red.* → **The call button is red.** · The call button is blue. · The blanket is red.
-- The call button is blue. — *В записи звучит The call button is red.*
-- The blanket is red. — *В записи звучит The call button is red.*
+🔊 *He has toothache.* → **He has toothache.** · She has toothache. · He has earache.
+- She has toothache. — *В записи звучит He has toothache.*
+- He has earache. — *В записи звучит He has toothache.*
 
-**12 · Выберите связку для одной кнопки вызова**
+**12 · Выберите форму have с he**
 <!-- interaction_id: en:lesson-10:session-13:i09; family: context_gap_grammar -->
-The call button ___ near the bed. → **is** · are · am
-- are — *Одна кнопка: is.*
-- am — *Am употребляется с I.*
+He ___ toothache. → **has** · have · having
+- have — *С he нужна has.*
+- having — *Для этого описания нужна has.*
 
-**13 · Карточка слова — bedpan**
-<!-- interaction_id: en:lesson-10:session-13:word:bedpan; family: word_card -->
-> **bedpan** — «подкладное судно». The bedpan is clean. — «Подкладное судно чистое». Ёмкость для туалета в постели.
+**13 · Карточка слова — backache**
+<!-- interaction_id: en:lesson-10:session-13:word:backache; family: word_card -->
+> **backache** — «боль в спине». He has backache. — «У него болит спина».
 
-**14 · Коллега спрашивает, чистое ли подкладное судно. Скажите: «Подкладное судно чистое»**
+**14 · Скажите, что у брата болит спина**
 <!-- interaction_id: en:lesson-10:session-13:i10; family: phrase_builder -->
-Плитки: `clean` `is` `bedpan` `The` → **The bedpan is clean.**
+Плитки: `backache` `has` `He` → **He has backache.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-13:i11; family: listen_choose -->
-🔊 *The bedpan is on the shelf.* → **The bedpan is on the shelf.** · The bedpan is under the shelf. · The towel is on the shelf.
-- The bedpan is under the shelf. — *В записи звучит The bedpan is on the shelf.*
-- The towel is on the shelf. — *В записи звучит The bedpan is on the shelf.*
+🔊 *I have backache.* → **I have backache.** · He has backache. · I have toothache.
+- He has backache. — *В записи звучит I have backache.*
+- I have toothache. — *В записи звучит I have backache.*
 
-**16 · Выберите связку перед working с she для временной работы**
+**16 · Выберите форму have с I**
 <!-- interaction_id: en:lesson-10:session-13:i12; family: context_gap_grammar -->
-She ___ working here this week. → **is** · are · am
-- are — *С she нужна is.*
-- am — *Am употребляется с I.*
+I ___ backache. → **have** · has · having
+- has — *С I нужна have.*
+- having — *Для этого описания нужна have.*
 
-**17 · Соедините новые слова со значениями**
+**17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-10:session-13:i13; family: speed_match -->
-ward — больничное отделение · bedside — место у постели · call button — кнопка вызова · bedpan — подкладное судно
+sore throat — боль в горле · earache — боль в ухе · toothache — зубная боль · backache — боль в спине
 
-**18 · Послушайте и соберите вопрос; this week поставьте в конце**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-13:i14; family: listen_build_dictation -->
-🔊 *Is she working here this week?* Плитки: `week` `this` `here` `working` `she` `Is` → **Is she working here this week?**
+🔊 *I have toothache.* Плитки: `toothache` `have` `I` → **I have toothache.**
 
-**19 · Посетитель спрашивает, где медсестра обычно работает. Скажите: «Обычно она работает внизу»**
-<!-- interaction_id: en:lesson-10:session-13:i15; family: scripted_repeat_compare -->
-🎙 **She usually works downstairs.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-13:i15; family: listen_build_dictation -->
+🔊 *He has backache.* Плитки: `backache` `has` `He` → **He has backache.**
 
-**20 · Медсестра временно помогает вашему отделению. Скажите: «На этой неделе она работает в этом отделении». Поставьте this week в конце**
-<!-- interaction_id: en:lesson-10:session-13:i16; family: phrase_builder -->
-Плитки: `week` `this` `ward` `this` `on` `working` `is` `She` → **She is working on this ward this week.**
+**20 · Друг спрашивает о самочувствии. Скажите, что у вас болит горло**
+<!-- interaction_id: en:lesson-10:session-13:i16; family: scripted_repeat_compare -->
+🎙 **I have a sore throat.**
 
-**21 · Медсестра обычно работает внизу. Она помогает вашему отделению только одну неделю. Коллега спрашивает, где она работает в этот период. Объясните: «На этой неделе она работает в этом отделении»**
-<!-- interaction_id: en:lesson-10:session-13:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **She is working on this ward this week.**
+**21 · Скажите: «У моего брата болит спина»**
+<!-- interaction_id: en:lesson-10:session-13:i17; family: scripted_repeat_compare -->
+🎙 **My brother has backache.**
 

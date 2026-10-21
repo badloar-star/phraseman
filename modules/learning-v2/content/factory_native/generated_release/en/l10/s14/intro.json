@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-14",
   "learningOutcomeByLocale": {
-    "ru": "She usually works at a large airport; She is working here this month",
-    "uk": "She usually works at a large airport; She is working here this month"
+    "ru": "I would like a window seat; I prefer an aisle seat; Where is the boarding gate?; I am waiting at baggage claim",
+    "uk": "I would like a window seat; I prefer an aisle seat; Where is the boarding gate?; I am waiting at baggage claim"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-14:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Обычное место работы",
-        "uk": "Звичайне місце роботи"
+        "ru": "У окна или у прохода",
+        "uk": "Біля вікна або біля проходу"
       },
       "bodyByLocale": {
-        "ru": "Ваша знакомая — пилот. Обычно её рабочие рейсы начинаются в большом аэропорту. She usually works at a large airport — «Обычно она работает в большом аэропорту». Present Simple описывает обычную ситуацию, а не её местоположение в эту секунду. Usually стоит перед works.",
-        "uk": "Ваша знайома — пілот. Зазвичай її робочі рейси починаються у великому аеропорту. She usually works at a large airport — «Зазвичай вона працює у великому аеропорту». Present Simple описує звичайну ситуацію, а не її місцеперебування цієї секунди. Usually стоїть перед works."
+        "ru": "При регистрации вас спрашивают, где вы хотите сидеть. Window seat — «место у окна»: I would like a window seat — «Я бы хотел место у окна». Aisle seat — «место у прохода»: I prefer an aisle seat — «Я предпочитаю место у прохода». Перед aisle seat нужен an: первое слово начинается с гласного звука, s в aisle не произносится.",
+        "uk": "Під час реєстрації вас запитують, де ви хочете сидіти. Window seat — «місце біля вікна»: I would like a window seat — «Я хотів би місце біля вікна». Aisle seat — «місце біля проходу»: I prefer an aisle seat — «Я віддаю перевагу місцю біля проходу». Перед aisle seat потрібне an: перше слово починається з голосного звука, s в aisle не вимовляється."
       },
       "question": {
         "interactionId": "en:lesson-10:session-14:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-14:intro1:r1",
-              "text": "She usually works at a large airport."
+              "text": "I would like a window seat."
             },
             {
               "responseId": "en:lesson-10:session-14:intro1:r2",
-              "text": "She usually work at a large airport."
+              "text": "I would likes a window seat."
             },
             {
               "responseId": "en:lesson-10:session-14:intro1:r3",
-              "text": "She usually working at a large airport."
+              "text": "I would liking a window seat."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-14:intro1:r1",
-              "text": "She usually works at a large airport."
+              "text": "I would like a window seat."
             },
             {
               "responseId": "en:lesson-10:session-14:intro1:r2",
-              "text": "She usually work at a large airport."
+              "text": "I would likes a window seat."
             },
             {
               "responseId": "en:lesson-10:session-14:intro1:r3",
-              "text": "She usually working at a large airport."
+              "text": "I would liking a window seat."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-14:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Временное место работы",
-        "uk": "Тимчасове місце роботи"
+        "ru": "Найти выход на посадку",
+        "uk": "Знайти вихід на посадку"
       },
       "bodyByLocale": {
-        "ru": "В этом месяце пилот временно работает в небольшом аэропорту вашего города. She is working here this month — «В этом месяце она работает здесь». Is working показывает временную ситуацию. Фраза подходит и тогда, когда у неё выходной: мы говорим о месяце, а не только о действии сейчас.",
-        "uk": "Цього місяця пілот тимчасово працює в невеликому аеропорту вашого міста. She is working here this month — «Цього місяця вона працює тут». Is working показує тимчасову ситуацію. Фраза підходить і тоді, коли в неї вихідний: ми говоримо про місяць, а не лише про дію зараз."
+        "ru": "Вы прошли контроль и ищете место, где пассажиров приглашают в самолёт. Boarding gate — «выход на посадку»: Where is the boarding gate? — «Где выход на посадку?» Вы спрашиваете о месте: Where is. Здесь не нужен does, потому что сказуемое — is.",
+        "uk": "Ви пройшли контроль і шукаєте місце, де пасажирів запрошують у літак. Boarding gate — «вихід на посадку»: Where is the boarding gate? — «Де вихід на посадку?» Ви запитуєте про місце: Where is. Тут не потрібне does, бо присудок — is."
       },
       "question": {
         "interactionId": "en:lesson-10:session-14:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-14:intro2:r1",
-              "text": "She is working here this month."
+              "text": "Where is the boarding gate?"
             },
             {
               "responseId": "en:lesson-10:session-14:intro2:r2",
-              "text": "She working here this month."
+              "text": "Where are the boarding gate?"
             },
             {
               "responseId": "en:lesson-10:session-14:intro2:r3",
-              "text": "She is works here this month."
+              "text": "Where does the boarding gate?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-14:intro2:r1",
-              "text": "She is working here this month."
+              "text": "Where is the boarding gate?"
             },
             {
               "responseId": "en:lesson-10:session-14:intro2:r2",
-              "text": "She working here this month."
+              "text": "Where are the boarding gate?"
             },
             {
               "responseId": "en:lesson-10:session-14:intro2:r3",
-              "text": "She is works here this month."
+              "text": "Where does the boarding gate?"
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-14:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "В кабине пилотов",
-        "uk": "У кабіні пілотів"
+        "ru": "Получить чемодан",
+        "uk": "Отримати валізу"
       },
       "bodyByLocale": {
-        "ru": "Cockpit — «кабина пилотов». Коллега ищет вашу знакомую перед рабочей встречей. She is in the cockpit — «Она в кабине пилотов». Здесь is сообщает о месте; это не Present Continuous. Чтобы описать действие, нужен глагол с ing, например She is working.",
-        "uk": "Cockpit — «кабіна пілотів». Колега шукає вашу знайому перед робочою зустріччю. She is in the cockpit — «Вона в кабіні пілотів». Тут is повідомляє про місце; це не Present Continuous. Щоб описати дію, потрібне дієслово з ing, наприклад She is working."
+        "ru": "После прилёта вы ждёте чемодан у багажной ленты. Baggage claim — «зона выдачи багажа»: I am waiting at baggage claim — «Я жду в зоне выдачи багажа». Вы ждёте сейчас: am waiting. Другу, который вас встречает, так будет проще понять, где вы.",
+        "uk": "Після прильоту ви чекаєте на валізу біля багажної стрічки. Baggage claim — «зона видачі багажу»: I am waiting at baggage claim — «Я чекаю в зоні видачі багажу». Ви чекаєте зараз: am waiting. Другу, який вас зустрічає, так буде простіше зрозуміти, де ви."
       },
       "question": {
         "interactionId": "en:lesson-10:session-14:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-14:intro3:r1",
-              "text": "She is in the cockpit."
+              "text": "I am waiting at baggage claim."
             },
             {
               "responseId": "en:lesson-10:session-14:intro3:r2",
-              "text": "She in the cockpit."
+              "text": "I waiting at baggage claim."
             },
             {
               "responseId": "en:lesson-10:session-14:intro3:r3",
-              "text": "She are in the cockpit."
+              "text": "I am wait at baggage claim."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-14:intro3:r1",
-              "text": "She is in the cockpit."
+              "text": "I am waiting at baggage claim."
             },
             {
               "responseId": "en:lesson-10:session-14:intro3:r2",
-              "text": "She in the cockpit."
+              "text": "I waiting at baggage claim."
             },
             {
               "responseId": "en:lesson-10:session-14:intro3:r3",
-              "text": "She are in the cockpit."
+              "text": "I am wait at baggage claim."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "433c715087e426c7b6efc52f73a71858cd415d5cadb8caa0fd6f60f787771571"
+  "introFingerprint": "3c13f1fef0544e772c17d9aed1c2bcb1ebc75c329f7a35942bad4ebb922a8eec"
 }

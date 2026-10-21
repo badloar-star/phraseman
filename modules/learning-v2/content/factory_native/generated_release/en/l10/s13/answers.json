@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-13:word:ward",
-    "correctText": "ward",
+    "interactionId": "en:lesson-10:session-13:word:sore-throat",
+    "correctText": "sore throat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-13:i01",
-    "correctText": "The ward is quiet.",
+    "correctText": "I have a sore throat.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-13:i02",
-    "correctText": "She usually works downstairs.",
+    "correctText": "She has a sore throat.",
     "correctResponseId": "en:lesson-10:session-13:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-13:i03",
-    "correctText": "works",
+    "correctText": "have",
     "correctResponseId": "en:lesson-10:session-13:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-13:word:bedside",
-    "correctText": "bedside",
+    "interactionId": "en:lesson-10:session-13:word:earache",
+    "correctText": "earache",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-13:i04",
-    "correctText": "She is at the bedside.",
+    "correctText": "She has earache.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-13:i05",
-    "correctText": "He is sitting at the bedside.",
+    "correctText": "I have earache.",
     "correctResponseId": "en:lesson-10:session-13:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-13:i06",
-    "correctText": "sitting",
+    "correctText": "has",
     "correctResponseId": "en:lesson-10:session-13:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-13:word:call-button",
-    "correctText": "call button",
+    "interactionId": "en:lesson-10:session-13:word:toothache",
+    "correctText": "toothache",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-13:i07",
-    "correctText": "The call button is near the bed.",
+    "correctText": "I have toothache.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-13:i08",
-    "correctText": "The call button is red.",
+    "correctText": "He has toothache.",
     "correctResponseId": "en:lesson-10:session-13:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-13:i09",
-    "correctText": "is",
+    "correctText": "has",
     "correctResponseId": "en:lesson-10:session-13:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-13:word:bedpan",
-    "correctText": "bedpan",
+    "interactionId": "en:lesson-10:session-13:word:backache",
+    "correctText": "backache",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-13:i10",
-    "correctText": "The bedpan is clean.",
+    "correctText": "He has backache.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-13:i11",
-    "correctText": "The bedpan is on the shelf.",
+    "correctText": "I have backache.",
     "correctResponseId": "en:lesson-10:session-13:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-13:i12",
-    "correctText": "is",
+    "correctText": "have",
     "correctResponseId": "en:lesson-10:session-13:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-13:i13",
-    "correctText": "en:lesson-10:session-13:i13:p1=ward\nen:lesson-10:session-13:i13:p2=bedside\nen:lesson-10:session-13:i13:p3=call button\nen:lesson-10:session-13:i13:p4=bedpan",
+    "correctText": "en:lesson-10:session-13:i13:p1=sore throat\nen:lesson-10:session-13:i13:p2=earache\nen:lesson-10:session-13:i13:p3=toothache\nen:lesson-10:session-13:i13:p4=backache",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-13:i14",
-    "correctText": "Is she working here this week?",
+    "correctText": "I have toothache.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-13:i15",
-    "correctText": "She usually works downstairs.",
+    "correctText": "He has backache.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-13:i16",
-    "correctText": "She is working on this ward this week.",
+    "correctText": "I have a sore throat.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-13:i17",
-    "correctText": "She is working on this ward this week.",
+    "correctText": "My brother has backache.",
     "correctResponseId": null
   }
 ]

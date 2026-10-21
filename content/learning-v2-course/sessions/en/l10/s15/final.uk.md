@@ -1,151 +1,151 @@
-# Англійська · Урок 10 · Заняття 15 — Службовець тимчасово допомагає іншому офісу
+# Англійська · Урок 10 · Заняття 15 — Заповнити анкету
 
-**Ситуація.** Пояснити звичайне місце роботи службовця й тимчасову роботу в іншому офісі.
+**Ситуація.** Уточнити дані співрозмовника й повідомити свої.
 
-**Що ви опануєте:** He usually works in the main office; He is working here this week
-**Нові слова:** clerk, ledger, rubber stamp, filing cabinet
+**Що ви опануєте:** What is your first name?; My surname is Brown; What is your date of birth?; I am writing my postcode
+**Нові слова:** first name, surname, date of birth, postcode
 
 ## Інтро 1
 
-### Робота з документами
+### Ім’я та прізвище
 
-Clerk — «службовець»: тут працівник офісу, який веде документи й записи. He usually works in the main office — «Зазвичай він працює в головному офісі». Present Simple описує звичайне місце роботи. Usually стоїть перед works; з he дієслово має закінчення s.
+Ви допомагаєте гостю заповнити анкету. First name — «ім’я», на відміну від прізвища: What is your first name? — «Як вас звати?» Surname — «прізвище»: My surname is Brown — «Моє прізвище Браун». У запитанні is стоїть перед your first name, а у відповіді — після my surname.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **He usually works in the main office.**
-- ❌ He usually work in the main office. — *З he потрібна works.*
-- ❌ He usually working in the main office. — *Для звичайної роботи тут потрібна works.*
+- ✅ **What is your first name?**
+- ❌ What are your first name? — *Одне ім’я: is.*
+- ❌ What your first name? — *Після What потрібна is.*
 
 ---
 
 ## Інтро 2
 
-### Допомога на цей тиждень
+### Дата народження
 
-Цього тижня службовець тимчасово допомагає вашому офісу. Потім він повернеться до головного офісу. He is working here this week — «Цього тижня він працює тут». Is working описує тимчасову роботу. Фраза стосується всього тижня, а не лише моменту, коли він сидить за столом.
+В анкеті потрібно вказати день, місяць і рік народження. Date of birth — «дата народження»: What is your date of birth? — «Яка ваша дата народження?» Це один пункт анкети, тому is. Слова date of birth учимо як цілісний вислів.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **He is working here this week.**
-- ❌ He working here this week. — *Перед working потрібна is.*
-- ❌ He is works here this week. — *Після is потрібна working.*
+- ✅ **What is your date of birth?**
+- ❌ What are your date of birth? — *Одна дата: is.*
+- ❌ What your date of birth? — *Після What потрібна is.*
 
 ---
 
 ## Інтро 3
 
-### Перевірка записів зараз
+### Індекс в адресі
 
-Ledger — «облікова книга»: тут книга з фінансовими записами. Колега бачить, що службовець звіряє записи. He is checking the ledger — «Він перевіряє облікову книгу». Тут is checking описує дію просто зараз. Тимчасове місце роботи й дія в цей момент — два значення Present Continuous, які розрізняються за контекстом.
+Тепер ви заповнюєте свою адресу. Postcode — «поштовий індекс»: I am writing my postcode — «Я записую свій поштовий індекс». Це дія зараз: am writing. У write прибираємо останню e перед ing. Якщо друг запитує індекс, запитання буде What is your postcode?
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **He is checking the ledger.**
-- ❌ He is check the ledger. — *Після is потрібна checking.*
-- ❌ He checking the ledger. — *Перед checking потрібна is.*
+- ✅ **I am writing my postcode.**
+- ❌ I writing my postcode. — *Перед writing потрібна am.*
+- ❌ I am write my postcode. — *Після am потрібна writing.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — clerk**
-<!-- interaction_id: en:lesson-10:session-15:word:clerk; family: word_card -->
-> **clerk** — «службовець». He is a clerk. — «Він службовець». Тут офісний працівник, який веде документи й записи.
+**1 · Картка слова — first name**
+<!-- interaction_id: en:lesson-10:session-15:word:first-name; family: word_card -->
+> **first name** — «ім’я». What is your first name? — «Як вас звати?»
 
-**2 · Колега запитує про посаду вашого знайомого. Скажіть: «Він службовець»**
+**2 · Для поля First name запитайте, як звати гостя**
 <!-- interaction_id: en:lesson-10:session-15:i01; family: phrase_builder -->
-Плитки: `clerk` `a` `is` `He` → **He is a clerk.**
+Плитки: `name` `first` `your` `is` `What` → **What is your first name?**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-15:i02; family: listen_choose -->
-🔊 *He usually works in the main office.* → **He usually works in the main office.** · She usually works in the main office. · He usually works in the small office.
-- She usually works in the main office. — *У записі звучить He usually works in the main office.*
-- He usually works in the small office. — *У записі звучить He usually works in the main office.*
+🔊 *What is her first name?* → **What is her first name?** · What is his first name? · What is your first name?
+- What is his first name? — *У записі звучить What is her first name?*
+- What is your first name? — *У записі звучить What is her first name?*
 
-**4 · Виберіть форму work для звичайної роботи з he**
+**4 · Виберіть зв’язку для одного імені**
 <!-- interaction_id: en:lesson-10:session-15:i03; family: context_gap_grammar -->
-He usually ___ in the main office. → **works** · work · working
-- work — *З he потрібна works.*
-- working — *Для звичайної роботи тут потрібна works.*
+What ___ your first name? → **is** · are · am
+- are — *Одне ім’я: is.*
+- am — *Тут потрібна is.*
 
-**5 · Картка слова — ledger**
-<!-- interaction_id: en:lesson-10:session-15:word:ledger; family: word_card -->
-> **ledger** — «облікова книга». He is checking the ledger. — «Він перевіряє облікову книгу». Тут книга фінансових записів.
+**5 · Картка слова — surname**
+<!-- interaction_id: en:lesson-10:session-15:word:surname; family: word_card -->
+> **surname** — «прізвище». My surname is Brown. — «Моє прізвище Браун».
 
-**6 · Колега запитує, що службовець перевіряє зараз. Скажіть: «Він перевіряє облікову книгу»**
+**6 · Уявіть, що ваше прізвище Браун. Скажіть це**
 <!-- interaction_id: en:lesson-10:session-15:i04; family: phrase_builder -->
-Плитки: `ledger` `the` `checking` `is` `He` → **He is checking the ledger.**
+Плитки: `Brown` `is` `surname` `My` → **My surname is Brown.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-15:i05; family: listen_choose -->
-🔊 *The ledger is on the desk.* → **The ledger is on the desk.** · The ledger is under the desk. · The letter is on the desk.
-- The ledger is under the desk. — *У записі звучить The ledger is on the desk.*
-- The letter is on the desk. — *У записі звучить The ledger is on the desk.*
+🔊 *Her surname is Brown.* → **Her surname is Brown.** · His surname is Brown. · My surname is Brown.
+- His surname is Brown. — *У записі звучить Her surname is Brown.*
+- My surname is Brown. — *У записі звучить Her surname is Brown.*
 
-**8 · Виберіть форму check після is**
+**8 · Виберіть зв’язку для одного прізвища**
 <!-- interaction_id: en:lesson-10:session-15:i06; family: context_gap_grammar -->
-He is ___ the ledger. → **checking** · check · checks
-- check — *Після is потрібна checking.*
-- checks — *Checks — Present Simple; тут потрібна checking.*
+My surname ___ Brown. → **is** · are · am
+- are — *Одне прізвище: is.*
+- am — *My surname — не I: потрібна is.*
 
-**9 · Картка слова — rubber stamp**
-<!-- interaction_id: en:lesson-10:session-15:word:rubber-stamp; family: word_card -->
-> **rubber stamp** — «гумовий штамп». The rubber stamp is on the desk. — «Гумовий штамп на столі». Тут предмет, яким ставлять відбиток на документі.
+**9 · Картка слова — date of birth**
+<!-- interaction_id: en:lesson-10:session-15:word:date-of-birth; family: word_card -->
+> **date of birth** — «дата народження». What is your date of birth? — «Яка ваша дата народження?»
 
-**10 · Колега шукає штамп для документів. Скажіть: «Гумовий штамп на столі»**
+**10 · Для анкети запитайте дату народження співрозмовника**
 <!-- interaction_id: en:lesson-10:session-15:i07; family: phrase_builder -->
-Плитки: `desk` `the` `on` `is` `stamp` `rubber` `The` → **The rubber stamp is on the desk.**
+Плитки: `birth` `of` `date` `your` `is` `What` → **What is your date of birth?**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-15:i08; family: listen_choose -->
-🔊 *I am using the rubber stamp.* → **I am using the rubber stamp.** · He is using the rubber stamp. · I am using the printer.
-- He is using the rubber stamp. — *У записі звучить I am using the rubber stamp.*
-- I am using the printer. — *У записі звучить I am using the rubber stamp.*
+🔊 *What is his date of birth?* → **What is his date of birth?** · What is her date of birth? · What is your date of birth?
+- What is her date of birth? — *У записі звучить What is his date of birth?*
+- What is your date of birth? — *У записі звучить What is his date of birth?*
 
-**12 · Виберіть форму use після am**
+**12 · Виберіть слово всередині вислову «дата народження»**
 <!-- interaction_id: en:lesson-10:session-15:i09; family: context_gap_grammar -->
-I am ___ the rubber stamp. → **using** · useing · use
-- useing — *Use втрачає кінцеву e: using.*
-- use — *Після am потрібна using.*
+What is your date ___ birth? → **of** · at · with
+- at — *Вислів: date of birth.*
+- with — *У цьому вислові потрібне of.*
 
-**13 · Картка слова — filing cabinet**
-<!-- interaction_id: en:lesson-10:session-15:word:filing-cabinet; family: word_card -->
-> **filing cabinet** — «шафа для документів». The filing cabinet is locked. — «Шафа для документів замкнена». Тут шафа із шухлядами для зберігання документів.
+**13 · Картка слова — postcode**
+<!-- interaction_id: en:lesson-10:session-15:word:postcode; family: word_card -->
+> **postcode** — «поштовий індекс». I am writing my postcode. — «Я записую свій поштовий індекс».
 
-**14 · Колега запитує, чому не вдається відкрити шафу. Скажіть: «Шафа для документів замкнена»**
+**14 · Ви зараз вписуєте свій поштовий індекс. Скажіть, що робите**
 <!-- interaction_id: en:lesson-10:session-15:i10; family: phrase_builder -->
-Плитки: `locked` `is` `cabinet` `filing` `The` → **The filing cabinet is locked.**
+Плитки: `postcode` `my` `writing` `am` `I` → **I am writing my postcode.**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-15:i11; family: listen_choose -->
-🔊 *The filing cabinet is grey.* → **The filing cabinet is grey.** · The filing cabinet is white. · The desk is grey.
-- The filing cabinet is white. — *У записі звучить The filing cabinet is grey.*
-- The desk is grey. — *У записі звучить The filing cabinet is grey.*
+🔊 *She is writing her postcode.* → **She is writing her postcode.** · He is writing his postcode. · She is checking her postcode.
+- He is writing his postcode. — *У записі звучить She is writing her postcode.*
+- She is checking her postcode. — *У записі звучить She is writing her postcode.*
 
-**16 · Виберіть зв’язку перед working з he для тимчасової роботи**
+**16 · Виберіть форму write після am**
 <!-- interaction_id: en:lesson-10:session-15:i12; family: context_gap_grammar -->
-He ___ working here this week. → **is** · are · am
-- are — *З he потрібна is.*
-- am — *Am уживається з I.*
+I am ___ my postcode. → **writing** · write · writes
+- write — *Після am потрібна writing.*
+- writes — *Після am потрібна writing, не writes.*
 
-**17 · З’єднайте нові слова зі значеннями**
+**17 · Поєднайте поля анкети з перекладом**
 <!-- interaction_id: en:lesson-10:session-15:i13; family: speed_match -->
-clerk — службовець · ledger — облікова книга · rubber stamp — гумовий штамп · filing cabinet — шафа для документів
+first name — ім’я · surname — прізвище · date of birth — дата народження · postcode — поштовий індекс
 
-**18 · Послухайте й складіть запитання; this week поставте наприкінці**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-15:i14; family: listen_build_dictation -->
-🔊 *Is he working here this week?* Плитки: `week` `this` `here` `working` `he` `Is` → **Is he working here this week?**
+🔊 *What is your date of birth?* Плитки: `birth` `of` `date` `your` `is` `What` → **What is your date of birth?**
 
-**19 · Знайома запитує, де ваш колега зазвичай працює. Скажіть: «Зазвичай він працює в головному офісі»**
-<!-- interaction_id: en:lesson-10:session-15:i15; family: scripted_repeat_compare -->
-🎙 **He usually works in the main office.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-15:i15; family: listen_build_dictation -->
+🔊 *I am writing my postcode.* Плитки: `postcode` `my` `writing` `am` `I` → **I am writing my postcode.**
 
-**20 · Службовець тимчасово допомагає вашому офісу. Скажіть: «Цього тижня він працює тут». Поставте this week наприкінці**
-<!-- interaction_id: en:lesson-10:session-15:i16; family: phrase_builder -->
-Плитки: `week` `this` `here` `working` `is` `He` → **He is working here this week.**
+**20 · Для анкети запитайте ім’я гостя**
+<!-- interaction_id: en:lesson-10:session-15:i16; family: scripted_repeat_compare -->
+🎙 **What is your first name?**
 
-**21 · Службовець зазвичай працює в головному офісі. Він приїхав допомогти вашому офісу лише на тиждень. Відвідувач запитує, чому він тут. Поясніть: «Цього тижня він працює тут»**
-<!-- interaction_id: en:lesson-10:session-15:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **He is working here this week.**
+**21 · Запитайте поштовий індекс співрозмовника**
+<!-- interaction_id: en:lesson-10:session-15:i17; family: scripted_repeat_compare -->
+🎙 **What is your postcode?**
 

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-15:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-15:intro1:r2": {
-          "ru": "С he нужна works.",
-          "uk": "З he потрібна works."
+          "ru": "Одно имя: is.",
+          "uk": "Одне ім’я: is."
         },
         "en:lesson-10:session-15:intro1:r3": {
-          "ru": "Для обычной работы здесь нужна works.",
-          "uk": "Для звичайної роботи тут потрібна works."
+          "ru": "После What нужна is.",
+          "uk": "Після What потрібна is."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-15:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-15:intro2:r2": {
-          "ru": "Перед working нужна is.",
-          "uk": "Перед working потрібна is."
+          "ru": "Одна дата: is.",
+          "uk": "Одна дата: is."
         },
         "en:lesson-10:session-15:intro2:r3": {
-          "ru": "После is нужна working.",
-          "uk": "Після is потрібна working."
+          "ru": "После What нужна is.",
+          "uk": "Після What потрібна is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-15:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-15:intro3:r2": {
-          "ru": "После is нужна checking.",
-          "uk": "Після is потрібна checking."
+          "ru": "Перед writing нужна am.",
+          "uk": "Перед writing потрібна am."
         },
         "en:lesson-10:session-15:intro3:r3": {
-          "ru": "Перед checking нужна is.",
-          "uk": "Перед checking потрібна is."
+          "ru": "После am нужна writing.",
+          "uk": "Після am потрібна writing."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "50216daab6ad3b27a3da145eb27363457d76ecb387bbdd8014a1a4860900b246"
+  "auxiliaryFingerprint": "e211137ac4eec605c5e2781ce39b1a22de5853e9403ba4939bc51326a2c9722f"
 }

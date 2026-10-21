@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-13:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-13:intro1:r2": {
-          "ru": "С she нужна works.",
-          "uk": "З she потрібна works."
+          "ru": "Нужна have без am.",
+          "uk": "Потрібна have без am."
         },
         "en:lesson-10:session-13:intro1:r3": {
-          "ru": "Для обычной работы здесь нужна works.",
-          "uk": "Для звичайної роботи тут потрібна works."
+          "ru": "С I нужна have.",
+          "uk": "З I потрібна have."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-13:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-13:intro2:r2": {
-          "ru": "Перед working нужна is.",
-          "uk": "Перед working потрібна is."
+          "ru": "С she нужна has.",
+          "uk": "З she потрібна has."
         },
         "en:lesson-10:session-13:intro2:r3": {
-          "ru": "После is нужна working.",
-          "uk": "Після is потрібна working."
+          "ru": "Нужна has без is.",
+          "uk": "Потрібна has без is."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-13:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-13:intro3:r2": {
-          "ru": "Нужна связка is.",
-          "uk": "Потрібна зв’язка is."
+          "ru": "С he нужна has.",
+          "uk": "З he потрібна has."
         },
         "en:lesson-10:session-13:intro3:r3": {
-          "ru": "С she нужна is, не are.",
-          "uk": "З she потрібна is, не are."
+          "ru": "Перед has не нужна is.",
+          "uk": "Перед has не потрібна is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "97f7e5627ee394fc7445c4a9f1e46452e96f46e4cb7e773ee1b44086ad6389ac"
+  "auxiliaryFingerprint": "ecb1c724c0e434ba7517ac4c7bb6ee55c69a86c239610982fc32dbf46d41a1d9"
 }

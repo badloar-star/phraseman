@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-14:word:cockpit",
+      "interactionId": "en:lesson-10:session-14:word:window-seat",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — cockpit",
+      "prompt": "Карточка слова — window seat",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-14:word:cockpit:audio"
+        "en:lesson-10:session-14:word:window-seat:audio"
       ],
-      "accessibilityLabel": "Карточка слова — cockpit",
+      "accessibilityLabel": "Карточка слова — window seat",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-14:word:cockpit:audio",
-          "transcript": "cockpit"
+          "audioTargetId": "en:lesson-10:session-14:word:window-seat:audio",
+          "transcript": "window seat"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-14:word:cockpit:r1",
-            "targetText": "cockpit",
+            "responseId": "en:lesson-10:session-14:word:window-seat:r1",
+            "targetText": "window seat",
             "meaningByLocale": {
-              "ru": "«кабина пилотов». She is in the cockpit. — «Она в кабине пилотов». Здесь часть самолёта, из которой им управляют.",
-              "uk": "«кабіна пілотів». She is in the cockpit. — «Вона в кабіні пілотів». Тут частина літака, з якої ним керують."
+              "ru": "«место у окна». I would like a window seat. — «Я бы хотел место у окна».",
+              "uk": "«місце біля вікна». I would like a window seat. — «Я хотів би місце біля вікна»."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "cockpit",
+          "word": "window seat",
           "definitionByLocale": {
-            "ru": "«кабина пилотов». She is in the cockpit. — «Она в кабине пилотов». Здесь часть самолёта, из которой им управляют.",
-            "uk": "«кабіна пілотів». She is in the cockpit. — «Вона в кабіні пілотів». Тут частина літака, з якої ним керують."
+            "ru": "«место у окна». I would like a window seat. — «Я бы хотел место у окна».",
+            "uk": "«місце біля вікна». I would like a window seat. — «Я хотів би місце біля вікна»."
           }
         }
       },
@@ -52,24 +52,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Коллега ищет вашу знакомую-пилота. Скажите: «Она в кабине пилотов»",
+      "prompt": "Вежливо попросите место у окна",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Коллега ищет вашу знакомую-пилота. Скажите: «Она в кабине пилотов»",
+      "accessibilityLabel": "Вежливо попросите место у окна",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She is in the cockpit.",
+        "targetPhrase": "I would like a window seat.",
         "localizedMeaning": {
-          "ru": "Коллега ищет вашу знакомую-пилота. Скажите: «Она в кабине пилотов»",
-          "uk": "Колега шукає вашу знайому-пілота. Скажіть: «Вона в кабіні пілотів»"
+          "ru": "Вежливо попросите место у окна",
+          "uk": "Ввічливо попросіть місце біля вікна"
         },
         "orderedTokens": [
-          "She",
-          "is",
-          "in",
-          "the",
-          "cockpit"
+          "I",
+          "would",
+          "like",
+          "a",
+          "window",
+          "seat"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -90,15 +91,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-14:i02:r1",
-          "text": "She usually works at a large airport."
+          "text": "She would like a window seat."
         },
         {
           "responseId": "en:lesson-10:session-14:i02:r2",
-          "text": "He usually works at a large airport."
+          "text": "He would like a window seat."
         },
         {
           "responseId": "en:lesson-10:session-14:i02:r3",
-          "text": "She usually works at a small airport."
+          "text": "She has a window seat."
         }
       ],
       "mediaIds": [],
@@ -110,23 +111,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-14:i02:audio",
-          "transcript": "She usually works at a large airport."
+          "transcript": "She would like a window seat."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-14:i02:r1",
-            "targetText": "She usually works at a large airport.",
+            "targetText": "She would like a window seat.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-14:i02:r2",
-            "targetText": "He usually works at a large airport.",
+            "targetText": "He would like a window seat.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-14:i02:r3",
-            "targetText": "She usually works at a small airport.",
+            "targetText": "She has a window seat.",
             "meaningByLocale": null
           }
         ],
@@ -137,8 +138,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит She usually works at a large airport.",
-              "uk": "У записі звучить She usually works at a large airport."
+              "ru": "В записи звучит She would like a window seat.",
+              "uk": "У записі звучить She would like a window seat."
             }
           },
           {
@@ -146,8 +147,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит She usually works at a large airport.",
-              "uk": "У записі звучить She usually works at a large airport."
+              "ru": "В записи звучит She would like a window seat.",
+              "uk": "У записі звучить She would like a window seat."
             }
           }
         ],
@@ -162,63 +163,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму work для обычной работы с she",
+      "prompt": "Выберите форму like после would",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-14:i03:r1",
-          "text": "works"
+          "text": "like"
         },
         {
           "responseId": "en:lesson-10:session-14:i03:r2",
-          "text": "work"
+          "text": "likes"
         },
         {
           "responseId": "en:lesson-10:session-14:i03:r3",
-          "text": "working"
+          "text": "liking"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму work для обычной работы с she",
+      "accessibilityLabel": "Выберите форму like после would",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму work для обычной работы с she",
-          "uk": "Виберіть форму work для звичайної роботи з she"
+          "ru": "Выберите форму like после would",
+          "uk": "Виберіть форму like після would"
         },
-        "gappedTargetPhrase": "She usually ___ at a large airport.",
+        "gappedTargetPhrase": "I would ___ a window seat.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-14:i03:r1",
-            "text": "works"
+            "text": "like"
           },
           {
             "responseId": "en:lesson-10:session-14:i03:r2",
-            "text": "work"
+            "text": "likes"
           },
           {
             "responseId": "en:lesson-10:session-14:i03:r3",
-            "text": "working"
+            "text": "liking"
           }
         ],
-        "testedDimension": "Выберите форму work для обычной работы с she",
+        "testedDimension": "Выберите форму like после would",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-14:i03:r2",
             "correct": false,
-            "testedDimension": "Выберите форму work для обычной работы с she",
+            "testedDimension": "Выберите форму like после would",
             "feedbackByLocale": {
-              "ru": "С she нужна works.",
-              "uk": "З she потрібна works."
+              "ru": "После would нужна like без s.",
+              "uk": "Після would потрібна like без s."
             }
           },
           {
             "responseId": "en:lesson-10:session-14:i03:r3",
             "correct": false,
-            "testedDimension": "Выберите форму work для обычной работы с she",
+            "testedDimension": "Выберите форму like после would",
             "feedbackByLocale": {
-              "ru": "Для обычной работы здесь нужна works.",
-              "uk": "Для звичайної роботи тут потрібна works."
+              "ru": "После would нужна like.",
+              "uk": "Після would потрібна like."
             }
           }
         ]
@@ -226,32 +227,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-14:word:runway",
+      "interactionId": "en:lesson-10:session-14:word:aisle-seat",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — runway",
+      "prompt": "Карточка слова — aisle seat",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-14:word:runway:audio"
+        "en:lesson-10:session-14:word:aisle-seat:audio"
       ],
-      "accessibilityLabel": "Карточка слова — runway",
+      "accessibilityLabel": "Карточка слова — aisle seat",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-14:word:runway:audio",
-          "transcript": "runway"
+          "audioTargetId": "en:lesson-10:session-14:word:aisle-seat:audio",
+          "transcript": "aisle seat"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-14:word:runway:r1",
-            "targetText": "runway",
+            "responseId": "en:lesson-10:session-14:word:aisle-seat:r1",
+            "targetText": "aisle seat",
             "meaningByLocale": {
-              "ru": "«взлётно-посадочная полоса». The runway is long. — «Взлётно-посадочная полоса длинная». Полоса для взлёта и посадки самолётов.",
-              "uk": "«злітно-посадкова смуга». The runway is long. — «Злітно-посадкова смуга довга». Смуга для зльоту й посадки літаків."
+              "ru": "«место у прохода». I prefer an aisle seat. — «Я предпочитаю место у прохода».",
+              "uk": "«місце біля проходу». I prefer an aisle seat. — «Я віддаю перевагу місцю біля проходу»."
             }
           }
         ],
@@ -259,10 +260,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "runway",
+          "word": "aisle seat",
           "definitionByLocale": {
-            "ru": "«взлётно-посадочная полоса». The runway is long. — «Взлётно-посадочная полоса длинная». Полоса для взлёта и посадки самолётов.",
-            "uk": "«злітно-посадкова смуга». The runway is long. — «Злітно-посадкова смуга довга». Смуга для зльоту й посадки літаків."
+            "ru": "«место у прохода». I prefer an aisle seat. — «Я предпочитаю место у прохода».",
+            "uk": "«місце біля проходу». I prefer an aisle seat. — «Я віддаю перевагу місцю біля проходу»."
           }
         }
       },
@@ -274,23 +275,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг рассматривает аэропорт на фотографии и спрашивает о длине полосы. Скажите: «Взлётно-посадочная полоса длинная»",
+      "prompt": "Скажите, что предпочитаете место у прохода",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг рассматривает аэропорт на фотографии и спрашивает о длине полосы. Скажите: «Взлётно-посадочная полоса длинная»",
+      "accessibilityLabel": "Скажите, что предпочитаете место у прохода",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The runway is long.",
+        "targetPhrase": "I prefer an aisle seat.",
         "localizedMeaning": {
-          "ru": "Друг рассматривает аэропорт на фотографии и спрашивает о длине полосы. Скажите: «Взлётно-посадочная полоса длинная»",
-          "uk": "Друг розглядає аеропорт на фотографії й запитує про довжину смуги. Скажіть: «Злітно-посадкова смуга довга»"
+          "ru": "Скажите, что предпочитаете место у прохода",
+          "uk": "Скажіть, що віддаєте перевагу місцю біля проходу"
         },
         "orderedTokens": [
-          "The",
-          "runway",
-          "is",
-          "long"
+          "I",
+          "prefer",
+          "an",
+          "aisle",
+          "seat"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -311,15 +313,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-14:i05:r1",
-          "text": "The runway is wet."
+          "text": "We prefer an aisle seat."
         },
         {
           "responseId": "en:lesson-10:session-14:i05:r2",
-          "text": "The runway is dry."
+          "text": "I prefer an aisle seat."
         },
         {
           "responseId": "en:lesson-10:session-14:i05:r3",
-          "text": "The road is wet."
+          "text": "We prefer a window seat."
         }
       ],
       "mediaIds": [],
@@ -331,23 +333,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-14:i05:audio",
-          "transcript": "The runway is wet."
+          "transcript": "We prefer an aisle seat."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-14:i05:r1",
-            "targetText": "The runway is wet.",
+            "targetText": "We prefer an aisle seat.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-14:i05:r2",
-            "targetText": "The runway is dry.",
+            "targetText": "I prefer an aisle seat.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-14:i05:r3",
-            "targetText": "The road is wet.",
+            "targetText": "We prefer a window seat.",
             "meaningByLocale": null
           }
         ],
@@ -358,8 +360,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The runway is wet.",
-              "uk": "У записі звучить The runway is wet."
+              "ru": "В записи звучит We prefer an aisle seat.",
+              "uk": "У записі звучить We prefer an aisle seat."
             }
           },
           {
@@ -367,8 +369,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The runway is wet.",
-              "uk": "У записі звучить The runway is wet."
+              "ru": "В записи звучит We prefer an aisle seat.",
+              "uk": "У записі звучить We prefer an aisle seat."
             }
           }
         ],
@@ -383,63 +385,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку для одной полосы",
+      "prompt": "Выберите артикль перед aisle seat",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-14:i06:r1",
-          "text": "is"
+          "text": "an"
         },
         {
           "responseId": "en:lesson-10:session-14:i06:r2",
-          "text": "are"
+          "text": "a"
         },
         {
           "responseId": "en:lesson-10:session-14:i06:r3",
-          "text": "am"
+          "text": "some"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку для одной полосы",
+      "accessibilityLabel": "Выберите артикль перед aisle seat",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку для одной полосы",
-          "uk": "Виберіть зв’язку для однієї смуги"
+          "ru": "Выберите артикль перед aisle seat",
+          "uk": "Виберіть артикль перед aisle seat"
         },
-        "gappedTargetPhrase": "The runway ___ long.",
+        "gappedTargetPhrase": "I would like ___ aisle seat.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-14:i06:r1",
-            "text": "is"
+            "text": "an"
           },
           {
             "responseId": "en:lesson-10:session-14:i06:r2",
-            "text": "are"
+            "text": "a"
           },
           {
             "responseId": "en:lesson-10:session-14:i06:r3",
-            "text": "am"
+            "text": "some"
           }
         ],
-        "testedDimension": "Выберите связку для одной полосы",
+        "testedDimension": "Выберите артикль перед aisle seat",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-14:i06:r2",
             "correct": false,
-            "testedDimension": "Выберите связку для одной полосы",
+            "testedDimension": "Выберите артикль перед aisle seat",
             "feedbackByLocale": {
-              "ru": "Одна полоса: is.",
-              "uk": "Одна смуга: is."
+              "ru": "Aisle начинается с гласного звука: an.",
+              "uk": "Aisle починається з голосного звука: an."
             }
           },
           {
             "responseId": "en:lesson-10:session-14:i06:r3",
             "correct": false,
-            "testedDimension": "Выберите связку для одной полосы",
+            "testedDimension": "Выберите артикль перед aisle seat",
             "feedbackByLocale": {
-              "ru": "Am употребляется с I.",
-              "uk": "Am уживається з I."
+              "ru": "Одно место: an aisle seat.",
+              "uk": "Одне місце: an aisle seat."
             }
           }
         ]
@@ -447,32 +449,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-14:word:hangar",
+      "interactionId": "en:lesson-10:session-14:word:boarding-gate",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — hangar",
+      "prompt": "Карточка слова — boarding gate",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-14:word:hangar:audio"
+        "en:lesson-10:session-14:word:boarding-gate:audio"
       ],
-      "accessibilityLabel": "Карточка слова — hangar",
+      "accessibilityLabel": "Карточка слова — boarding gate",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-14:word:hangar:audio",
-          "transcript": "hangar"
+          "audioTargetId": "en:lesson-10:session-14:word:boarding-gate:audio",
+          "transcript": "boarding gate"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-14:word:hangar:r1",
-            "targetText": "hangar",
+            "responseId": "en:lesson-10:session-14:word:boarding-gate:r1",
+            "targetText": "boarding gate",
             "meaningByLocale": {
-              "ru": "«ангар». The plane is in the hangar. — «Самолёт в ангаре». Здесь большое здание для размещения самолётов.",
-              "uk": "«ангар». The plane is in the hangar. — «Літак в ангарі». Тут велика будівля для розміщення літаків."
+              "ru": "«выход на посадку». Where is the boarding gate? — «Где выход на посадку?»",
+              "uk": "«вихід на посадку». Where is the boarding gate? — «Де вихід на посадку?»"
             }
           }
         ],
@@ -480,10 +482,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "hangar",
+          "word": "boarding gate",
           "definitionByLocale": {
-            "ru": "«ангар». The plane is in the hangar. — «Самолёт в ангаре». Здесь большое здание для размещения самолётов.",
-            "uk": "«ангар». The plane is in the hangar. — «Літак в ангарі». Тут велика будівля для розміщення літаків."
+            "ru": "«выход на посадку». Where is the boarding gate? — «Где выход на посадку?»",
+            "uk": "«вихід на посадку». Where is the boarding gate? — «Де вихід на посадку?»"
           }
         }
       },
@@ -495,25 +497,24 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Коллега спрашивает, где самолёт. Скажите: «Самолёт в ангаре»",
+      "prompt": "Спросите сотрудника, где выход на посадку",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Коллега спрашивает, где самолёт. Скажите: «Самолёт в ангаре»",
+      "accessibilityLabel": "Спросите сотрудника, где выход на посадку",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The plane is in the hangar.",
+        "targetPhrase": "Where is the boarding gate?",
         "localizedMeaning": {
-          "ru": "Коллега спрашивает, где самолёт. Скажите: «Самолёт в ангаре»",
-          "uk": "Колега запитує, де літак. Скажіть: «Літак в ангарі»"
+          "ru": "Спросите сотрудника, где выход на посадку",
+          "uk": "Запитайте працівника, де вихід на посадку"
         },
         "orderedTokens": [
-          "The",
-          "plane",
+          "Where",
           "is",
-          "in",
           "the",
-          "hangar"
+          "boarding",
+          "gate"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -534,15 +535,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-14:i08:r1",
-          "text": "The hangar is near the runway."
+          "text": "Where is the boarding gate?"
         },
         {
           "responseId": "en:lesson-10:session-14:i08:r2",
-          "text": "The hangar is near the road."
+          "text": "Where are the boarding gates?"
         },
         {
           "responseId": "en:lesson-10:session-14:i08:r3",
-          "text": "The hotel is near the runway."
+          "text": "This is the boarding gate."
         }
       ],
       "mediaIds": [],
@@ -554,23 +555,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-14:i08:audio",
-          "transcript": "The hangar is near the runway."
+          "transcript": "Where is the boarding gate?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-14:i08:r1",
-            "targetText": "The hangar is near the runway.",
+            "targetText": "Where is the boarding gate?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-14:i08:r2",
-            "targetText": "The hangar is near the road.",
+            "targetText": "Where are the boarding gates?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-14:i08:r3",
-            "targetText": "The hotel is near the runway.",
+            "targetText": "This is the boarding gate.",
             "meaningByLocale": null
           }
         ],
@@ -581,8 +582,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The hangar is near the runway.",
-              "uk": "У записі звучить The hangar is near the runway."
+              "ru": "В записи звучит Where is the boarding gate?",
+              "uk": "У записі звучить Where is the boarding gate?"
             }
           },
           {
@@ -590,8 +591,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The hangar is near the runway.",
-              "uk": "У записі звучить The hangar is near the runway."
+              "ru": "В записи звучит Where is the boarding gate?",
+              "uk": "У записі звучить Where is the boarding gate?"
             }
           }
         ],
@@ -606,63 +607,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму sit после is",
+      "prompt": "Вы спрашиваете об одном выходе. Выберите связку",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-14:i09:r1",
-          "text": "sitting"
+          "text": "is"
         },
         {
           "responseId": "en:lesson-10:session-14:i09:r2",
-          "text": "siting"
+          "text": "are"
         },
         {
           "responseId": "en:lesson-10:session-14:i09:r3",
-          "text": "sit"
+          "text": "am"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму sit после is",
+      "accessibilityLabel": "Вы спрашиваете об одном выходе. Выберите связку",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму sit после is",
-          "uk": "Виберіть форму sit після is"
+          "ru": "Вы спрашиваете об одном выходе. Выберите связку",
+          "uk": "Ви запитуєте про один вихід. Виберіть зв’язку"
         },
-        "gappedTargetPhrase": "She is ___ in the cockpit.",
+        "gappedTargetPhrase": "Where ___ the boarding gate?",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-14:i09:r1",
-            "text": "sitting"
+            "text": "is"
           },
           {
             "responseId": "en:lesson-10:session-14:i09:r2",
-            "text": "siting"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-10:session-14:i09:r3",
-            "text": "sit"
+            "text": "am"
           }
         ],
-        "testedDimension": "Выберите форму sit после is",
+        "testedDimension": "Вы спрашиваете об одном выходе. Выберите связку",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-14:i09:r2",
             "correct": false,
-            "testedDimension": "Выберите форму sit после is",
+            "testedDimension": "Вы спрашиваете об одном выходе. Выберите связку",
             "feedbackByLocale": {
-              "ru": "Sit удваивает t: sitting.",
-              "uk": "Sit подвоює t: sitting."
+              "ru": "Один выход: is.",
+              "uk": "Один вихід: is."
             }
           },
           {
             "responseId": "en:lesson-10:session-14:i09:r3",
             "correct": false,
-            "testedDimension": "Выберите форму sit после is",
+            "testedDimension": "Вы спрашиваете об одном выходе. Выберите связку",
             "feedbackByLocale": {
-              "ru": "После is нужна sitting.",
-              "uk": "Після is потрібна sitting."
+              "ru": "Am употребляем с I, здесь is.",
+              "uk": "Am вживаємо з I, тут is."
             }
           }
         ]
@@ -670,32 +671,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-14:word:fuselage",
+      "interactionId": "en:lesson-10:session-14:word:baggage-claim",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — fuselage",
+      "prompt": "Карточка слова — baggage claim",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-14:word:fuselage:audio"
+        "en:lesson-10:session-14:word:baggage-claim:audio"
       ],
-      "accessibilityLabel": "Карточка слова — fuselage",
+      "accessibilityLabel": "Карточка слова — baggage claim",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-14:word:fuselage:audio",
-          "transcript": "fuselage"
+          "audioTargetId": "en:lesson-10:session-14:word:baggage-claim:audio",
+          "transcript": "baggage claim"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-14:word:fuselage:r1",
-            "targetText": "fuselage",
+            "responseId": "en:lesson-10:session-14:word:baggage-claim:r1",
+            "targetText": "baggage claim",
             "meaningByLocale": {
-              "ru": "«фюзеляж». The fuselage is white. — «Фюзеляж белый». Основной корпус самолёта, без крыльев.",
-              "uk": "«фюзеляж». The fuselage is white. — «Фюзеляж білий». Основний корпус літака, без крил."
+              "ru": "«зона выдачи багажа». I am waiting at baggage claim. — «Я жду в зоне выдачи багажа».",
+              "uk": "«зона видачі багажу». I am waiting at baggage claim. — «Я чекаю в зоні видачі багажу»."
             }
           }
         ],
@@ -703,10 +704,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "fuselage",
+          "word": "baggage claim",
           "definitionByLocale": {
-            "ru": "«фюзеляж». The fuselage is white. — «Фюзеляж белый». Основной корпус самолёта, без крыльев.",
-            "uk": "«фюзеляж». The fuselage is white. — «Фюзеляж білий». Основний корпус літака, без крил."
+            "ru": "«зона выдачи багажа». I am waiting at baggage claim. — «Я жду в зоне выдачи багажа».",
+            "uk": "«зона видачі багажу». I am waiting at baggage claim. — «Я чекаю в зоні видачі багажу»."
           }
         }
       },
@@ -718,23 +719,25 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг спрашивает о цвете корпуса самолёта на фотографии. Скажите: «Фюзеляж белый»",
+      "prompt": "Вы ждёте чемодан. Скажите другу, что ждёте в зоне выдачи багажа",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг спрашивает о цвете корпуса самолёта на фотографии. Скажите: «Фюзеляж белый»",
+      "accessibilityLabel": "Вы ждёте чемодан. Скажите другу, что ждёте в зоне выдачи багажа",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The fuselage is white.",
+        "targetPhrase": "I am waiting at baggage claim.",
         "localizedMeaning": {
-          "ru": "Друг спрашивает о цвете корпуса самолёта на фотографии. Скажите: «Фюзеляж белый»",
-          "uk": "Друг запитує про колір корпусу літака на фотографії. Скажіть: «Фюзеляж білий»"
+          "ru": "Вы ждёте чемодан. Скажите другу, что ждёте в зоне выдачи багажа",
+          "uk": "Ви чекаєте на валізу. Скажіть другу, що чекаєте в зоні видачі багажу"
         },
         "orderedTokens": [
-          "The",
-          "fuselage",
-          "is",
-          "white"
+          "I",
+          "am",
+          "waiting",
+          "at",
+          "baggage",
+          "claim"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -755,15 +758,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-14:i11:r1",
-          "text": "The fuselage is blue."
+          "text": "We are waiting at baggage claim."
         },
         {
           "responseId": "en:lesson-10:session-14:i11:r2",
-          "text": "The fuselage is red."
+          "text": "I am waiting at baggage claim."
         },
         {
           "responseId": "en:lesson-10:session-14:i11:r3",
-          "text": "The wing is blue."
+          "text": "They are waiting at baggage claim."
         }
       ],
       "mediaIds": [],
@@ -775,23 +778,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-14:i11:audio",
-          "transcript": "The fuselage is blue."
+          "transcript": "We are waiting at baggage claim."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-14:i11:r1",
-            "targetText": "The fuselage is blue.",
+            "targetText": "We are waiting at baggage claim.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-14:i11:r2",
-            "targetText": "The fuselage is red.",
+            "targetText": "I am waiting at baggage claim.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-14:i11:r3",
-            "targetText": "The wing is blue.",
+            "targetText": "They are waiting at baggage claim.",
             "meaningByLocale": null
           }
         ],
@@ -802,8 +805,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The fuselage is blue.",
-              "uk": "У записі звучить The fuselage is blue."
+              "ru": "В записи звучит We are waiting at baggage claim.",
+              "uk": "У записі звучить We are waiting at baggage claim."
             }
           },
           {
@@ -811,8 +814,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит The fuselage is blue.",
-              "uk": "У записі звучить The fuselage is blue."
+              "ru": "В записи звучит We are waiting at baggage claim.",
+              "uk": "У записі звучить We are waiting at baggage claim."
             }
           }
         ],
@@ -827,63 +830,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку перед working с she для временной работы",
+      "prompt": "Выберите форму wait после am",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-14:i12:r1",
-          "text": "is"
+          "text": "waiting"
         },
         {
           "responseId": "en:lesson-10:session-14:i12:r2",
-          "text": "are"
+          "text": "wait"
         },
         {
           "responseId": "en:lesson-10:session-14:i12:r3",
-          "text": "am"
+          "text": "waits"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку перед working с she для временной работы",
+      "accessibilityLabel": "Выберите форму wait после am",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку перед working с she для временной работы",
-          "uk": "Виберіть зв’язку перед working з she для тимчасової роботи"
+          "ru": "Выберите форму wait после am",
+          "uk": "Виберіть форму wait після am"
         },
-        "gappedTargetPhrase": "She ___ working here this month.",
+        "gappedTargetPhrase": "I am ___ at baggage claim.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-14:i12:r1",
-            "text": "is"
+            "text": "waiting"
           },
           {
             "responseId": "en:lesson-10:session-14:i12:r2",
-            "text": "are"
+            "text": "wait"
           },
           {
             "responseId": "en:lesson-10:session-14:i12:r3",
-            "text": "am"
+            "text": "waits"
           }
         ],
-        "testedDimension": "Выберите связку перед working с she для временной работы",
+        "testedDimension": "Выберите форму wait после am",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-14:i12:r2",
             "correct": false,
-            "testedDimension": "Выберите связку перед working с she для временной работы",
+            "testedDimension": "Выберите форму wait после am",
             "feedbackByLocale": {
-              "ru": "С she нужна is.",
-              "uk": "З she потрібна is."
+              "ru": "После am нужна waiting.",
+              "uk": "Після am потрібна waiting."
             }
           },
           {
             "responseId": "en:lesson-10:session-14:i12:r3",
             "correct": false,
-            "testedDimension": "Выберите связку перед working с she для временной работы",
+            "testedDimension": "Выберите форму wait после am",
             "feedbackByLocale": {
-              "ru": "Am употребляется с I.",
-              "uk": "Am уживається з I."
+              "ru": "После am нужна waiting, не waits.",
+              "uk": "Після am потрібна waiting, не waits."
             }
           }
         ]
@@ -896,58 +899,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините новые слова со значениями",
+      "prompt": "Соедините выражения с переводом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соедините новые слова со значениями",
+      "accessibilityLabel": "Соедините выражения с переводом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-14:i13:p1",
-            "target": "cockpit",
+            "target": "window seat",
             "meaningByLocale": {
-              "ru": "кабина пилотов",
-              "uk": "кабіна пілотів"
+              "ru": "место у окна",
+              "uk": "місце біля вікна"
             }
           },
           {
             "pairId": "en:lesson-10:session-14:i13:p2",
-            "target": "runway",
+            "target": "aisle seat",
             "meaningByLocale": {
-              "ru": "взлётно-посадочная полоса",
-              "uk": "злітно-посадкова смуга"
+              "ru": "место у прохода",
+              "uk": "місце біля проходу"
             }
           },
           {
             "pairId": "en:lesson-10:session-14:i13:p3",
-            "target": "hangar",
+            "target": "boarding gate",
             "meaningByLocale": {
-              "ru": "ангар",
-              "uk": "ангар"
+              "ru": "выход на посадку",
+              "uk": "вихід на посадку"
             }
           },
           {
             "pairId": "en:lesson-10:session-14:i13:p4",
-            "target": "fuselage",
+            "target": "baggage claim",
             "meaningByLocale": {
-              "ru": "фюзеляж",
-              "uk": "фюзеляж"
+              "ru": "зона выдачи багажа",
+              "uk": "зона видачі багажу"
             }
           }
         ],
         "leftColumn": [
-          "cockpit",
-          "runway",
-          "hangar",
-          "fuselage"
+          "window seat",
+          "aisle seat",
+          "boarding gate",
+          "baggage claim"
         ],
         "rightColumn": [
-          "кабина пилотов",
-          "взлётно-посадочная полоса",
-          "ангар",
-          "фюзеляж"
+          "место у окна",
+          "место у прохода",
+          "выход на посадку",
+          "зона выдачи багажа"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -969,28 +972,27 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите вопрос; this month поставьте в конце",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-14:i14:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите вопрос; this month поставьте в конце",
+      "accessibilityLabel": "Соберите услышанную фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-14:i14:audio",
-          "transcript": "Is she working here this month?"
+          "transcript": "I prefer an aisle seat."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Is she working here this month?",
+        "hiddenTargetPhrase": "I prefer an aisle seat.",
         "orderedTokens": [
-          "Is",
-          "she",
-          "working",
-          "here",
-          "this",
-          "month"
+          "I",
+          "prefer",
+          "an",
+          "aisle",
+          "seat"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1004,24 +1006,62 @@
     {
       "interactionId": "en:lesson-10:session-14:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Друг спрашивает, в каком аэропорту ваша знакомая обычно работает. Скажите: «Обычно она работает в большом аэропорту»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-14:i15:audio"
       ],
-      "accessibilityLabel": "Друг спрашивает, в каком аэропорту ваша знакомая обычно работает. Скажите: «Обычно она работает в большом аэропорту»",
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-14:i15:audio",
+          "transcript": "I am waiting at baggage claim."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am waiting at baggage claim.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "waiting",
+          "at",
+          "baggage",
+          "claim"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-14:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "При регистрации попросите место у окна",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-14:i16:audio"
+      ],
+      "accessibilityLabel": "При регистрации попросите место у окна",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-14:i15:audio",
-          "transcript": "She usually works at a large airport."
+          "audioTargetId": "en:lesson-10:session-14:i16:audio",
+          "transcript": "I would like a window seat."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She usually works at a large airport.",
+        "targetPhrase": "I would like a window seat.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1035,72 +1075,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-14:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Пилот временно работает в вашем городе. Скажите: «В этом месяце она работает здесь». Поставьте this month в конце",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Пилот временно работает в вашем городе. Скажите: «В этом месяце она работает здесь». Поставьте this month в конце",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "She is working here this month.",
-        "localizedMeaning": {
-          "ru": "Пилот временно работает в вашем городе. Скажите: «В этом месяце она работает здесь». Поставьте this month в конце",
-          "uk": "Пілот тимчасово працює у вашому місті. Скажіть: «Цього місяця вона працює тут». Поставте this month наприкінці"
-        },
-        "orderedTokens": [
-          "She",
-          "is",
-          "working",
-          "here",
-          "this",
-          "month"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-14:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ваша знакомая обычно работает в большом аэропорту другого города. Она временно приехала работать в ваш аэропорт на месяц. Коллега спрашивает, почему она здесь. Объясните: «В этом месяце она работает здесь»",
+      "prompt": "Спросите, где выход на посадку",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-14:i17:audio"
       ],
-      "accessibilityLabel": "Ваша знакомая обычно работает в большом аэропорту другого города. Она временно приехала работать в ваш аэропорт на месяц. Коллега спрашивает, почему она здесь. Объясните: «В этом месяце она работает здесь»",
+      "accessibilityLabel": "Спросите, где выход на посадку",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-14:i17:audio",
-          "transcript": "She is working here this month."
+          "transcript": "Where is the boarding gate?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She is working here this month.",
+        "targetPhrase": "Where is the boarding gate?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1117,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "912c4d8028c577e6ac7276bfc31d3c474b1af2b003048bee9a938e03e119991b"
+  "learnerFingerprint": "3bdb4718b254b072e08014d15b117904f073fe37811804f81b98e906e1a24792"
 }

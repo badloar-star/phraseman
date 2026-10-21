@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-52",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-52:word:benefit",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — benefit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-52:word:benefit:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — benefit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-52:word:benefit:audio",
+          "transcript": "benefit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-52:word:benefit:r1",
+            "targetText": "benefit",
+            "meaningByLocale": {
+              "ru": "польза, полезный результат.",
+              "uk": "користь, корисний результат."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "benefit",
+          "definitionByLocale": {
+            "ru": "польза, полезный результат.",
+            "uk": "користь, корисний результат."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-52:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с сильным впечатлением: «Эта польза так важна».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с сильным впечатлением: «Эта польза так важна».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This benefit is so important.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Эта польза так важна».",
+          "uk": "Скажіть із сильним враженням: «Ця користь така важлива»."
+        },
+        "orderedTokens": [
+          "This",
+          "benefit",
+          "is",
+          "so",
+          "important"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-52:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-52:i02:r1",
+          "text": "This benefit is so important."
+        },
+        {
+          "responseId": "en:lesson-18:session-52:i02:r2",
+          "text": "This benefit is such important."
+        },
+        {
+          "responseId": "en:lesson-18:session-52:i02:r3",
+          "text": "This benefit is much important."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-52:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-52:i02:audio",
+          "transcript": "This benefit is so important."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-52:i02:r1",
+            "targetText": "This benefit is so important.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i02:r2",
+            "targetText": "This benefit is such important.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i02:r3",
+            "targetText": "This benefit is much important.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-52:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This benefit is so important.",
+              "uk": "У записі звучить This benefit is so important."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This benefit is so important.",
+              "uk": "У записі звучить This benefit is so important."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-52:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните качество с so или such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-52:i03:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-52:i03:r2",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-52:i03:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "This benefit is ___ important.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-52:i03:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i03:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i03:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Подчеркните качество с so или such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-52:i03:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска прилагательное без существительного: so.",
+              "uk": "Після пропуску прикметник без іменника: so."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i03:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-52:word:advantage",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — advantage",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-52:word:advantage:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — advantage",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-52:word:advantage:audio",
+          "transcript": "advantage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-52:word:advantage:r1",
+            "targetText": "advantage",
+            "meaningByLocale": {
+              "ru": "преимущество.",
+              "uk": "перевага."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "advantage",
+          "definitionByLocale": {
+            "ru": "преимущество.",
+            "uk": "перевага."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-52:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с сильным впечатлением: «Это такое большое преимущество».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с сильным впечатлением: «Это такое большое преимущество».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is such a big advantage.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Это такое большое преимущество».",
+          "uk": "Скажіть із сильним враженням: «Це така велика перевага»."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "such",
+          "a",
+          "big",
+          "advantage"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-52:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-52:i05:r1",
+          "text": "This is such a big advantage."
+        },
+        {
+          "responseId": "en:lesson-18:session-52:i05:r2",
+          "text": "This is so a big advantage."
+        },
+        {
+          "responseId": "en:lesson-18:session-52:i05:r3",
+          "text": "This is much a big advantage."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-52:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-52:i05:audio",
+          "transcript": "This is such a big advantage."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-52:i05:r1",
+            "targetText": "This is such a big advantage.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i05:r2",
+            "targetText": "This is so a big advantage.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i05:r3",
+            "targetText": "This is much a big advantage.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-52:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is such a big advantage.",
+              "uk": "У записі звучить This is such a big advantage."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is such a big advantage.",
+              "uk": "У записі звучить This is such a big advantage."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-52:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните качество с so или such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-52:i06:r1",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-52:i06:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-52:i06:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "This is ___ a big advantage.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-52:i06:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i06:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i06:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Подчеркните качество с so или such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-52:i06:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.",
+              "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i06:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-52:word:disadvantage",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — disadvantage",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-52:word:disadvantage:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — disadvantage",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-52:word:disadvantage:audio",
+          "transcript": "disadvantage"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-52:word:disadvantage:r1",
+            "targetText": "disadvantage",
+            "meaningByLocale": {
+              "ru": "недостаток, невыгодная сторона.",
+              "uk": "недолік, невигідний бік."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "disadvantage",
+          "definitionByLocale": {
+            "ru": "недостаток, невыгодная сторона.",
+            "uk": "недолік, невигідний бік."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-52:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с сильным впечатлением: «Этот недостаток такой серьёзный».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с сильным впечатлением: «Этот недостаток такой серьёзный».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This disadvantage is so serious.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Этот недостаток такой серьёзный».",
+          "uk": "Скажіть із сильним враженням: «Цей недолік такий серйозний»."
+        },
+        "orderedTokens": [
+          "This",
+          "disadvantage",
+          "is",
+          "so",
+          "serious"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-52:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-52:i08:r1",
+          "text": "This disadvantage is so serious."
+        },
+        {
+          "responseId": "en:lesson-18:session-52:i08:r2",
+          "text": "This disadvantage is such serious."
+        },
+        {
+          "responseId": "en:lesson-18:session-52:i08:r3",
+          "text": "This disadvantage is much serious."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-52:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-52:i08:audio",
+          "transcript": "This disadvantage is so serious."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-52:i08:r1",
+            "targetText": "This disadvantage is so serious.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i08:r2",
+            "targetText": "This disadvantage is such serious.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i08:r3",
+            "targetText": "This disadvantage is much serious.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-52:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This disadvantage is so serious.",
+              "uk": "У записі звучить This disadvantage is so serious."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This disadvantage is so serious.",
+              "uk": "У записі звучить This disadvantage is so serious."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-52:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните качество с so или such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-52:i09:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-52:i09:r2",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-52:i09:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "This disadvantage is ___ serious.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-52:i09:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i09:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i09:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Подчеркните качество с so или such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-52:i09:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска прилагательное без существительного: so.",
+              "uk": "Після пропуску прикметник без іменника: so."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i09:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-52:word:difference",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — difference",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-52:word:difference:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — difference",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-52:word:difference:audio",
+          "transcript": "difference"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-52:word:difference:r1",
+            "targetText": "difference",
+            "meaningByLocale": {
+              "ru": "разница, отличие.",
+              "uk": "різниця, відмінність."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "difference",
+          "definitionByLocale": {
+            "ru": "разница, отличие.",
+            "uk": "різниця, відмінність."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-52:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с сильным впечатлением: «Разница такая большая».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с сильным впечатлением: «Разница такая большая».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is such a big difference.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Разница такая большая».",
+          "uk": "Скажіть із сильним враженням: «Різниця така велика»."
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "such",
+          "a",
+          "big",
+          "difference"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-52:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-52:i11:r1",
+          "text": "There is such a big difference."
+        },
+        {
+          "responseId": "en:lesson-18:session-52:i11:r2",
+          "text": "There is so a big difference."
+        },
+        {
+          "responseId": "en:lesson-18:session-52:i11:r3",
+          "text": "There is much a big difference."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-52:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-52:i11:audio",
+          "transcript": "There is such a big difference."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-52:i11:r1",
+            "targetText": "There is such a big difference.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i11:r2",
+            "targetText": "There is so a big difference.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i11:r3",
+            "targetText": "There is much a big difference.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-52:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is such a big difference.",
+              "uk": "У записі звучить There is such a big difference."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is such a big difference.",
+              "uk": "У записі звучить There is such a big difference."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-52:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните качество с so или such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-52:i12:r1",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-52:i12:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-52:i12:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "There is ___ a big difference.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-52:i12:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i12:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i12:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Подчеркните качество с so или such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-52:i12:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.",
+              "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-52:i12:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-52:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-52:i13:p1",
+            "target": "benefit",
+            "meaningByLocale": {
+              "ru": "польза, полезный результат",
+              "uk": "користь, корисний результат"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-52:i13:p2",
+            "target": "advantage",
+            "meaningByLocale": {
+              "ru": "преимущество",
+              "uk": "перевага"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-52:i13:p3",
+            "target": "disadvantage",
+            "meaningByLocale": {
+              "ru": "недостаток, невыгодная сторона",
+              "uk": "недолік, невигідний бік"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-52:i13:p4",
+            "target": "difference",
+            "meaningByLocale": {
+              "ru": "разница, отличие",
+              "uk": "різниця, відмінність"
+            }
+          }
+        ],
+        "leftColumn": [
+          "benefit",
+          "advantage",
+          "disadvantage",
+          "difference"
+        ],
+        "rightColumn": [
+          "польза, полезный результат",
+          "преимущество",
+          "недостаток, невыгодная сторона",
+          "разница, отличие"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-52:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное намерение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-52:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное намерение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-52:i14:audio",
+          "transcript": "We are going to discuss the difference."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to discuss the difference.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "discuss",
+          "the",
+          "difference"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-52:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанный согласованный план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-52:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанный согласованный план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-52:i15:audio",
+          "transcript": "We are meeting at the library tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting at the library tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "at",
+          "the",
+          "library",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-52:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: сравните два варианта",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-52:i16:audio"
+      ],
+      "accessibilityLabel": "Повторение: сравните два варианта",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-52:i16:audio",
+          "transcript": "This room is larger than ours."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This room is larger than ours.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-52:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: назовите количество",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-52:i17:audio"
+      ],
+      "accessibilityLabel": "Повторение: назовите количество",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-52:i17:audio",
+          "transcript": "We need two bottles of water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two bottles of water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3c2ee673952f05efcb06aaa4323396540e56939d30e508d23fefe268ad0a5a31"
+}

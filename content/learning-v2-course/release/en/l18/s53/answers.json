@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-53:word:ability",
+    "correctText": "ability",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-53:i01",
+    "correctText": "Your ability is so useful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-53:i02",
+    "correctText": "Your ability is so useful.",
+    "correctResponseId": "en:lesson-18:session-53:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-53:i03",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-53:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-53:word:memory",
+    "correctText": "memory",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-53:i04",
+    "correctText": "You have such a good memory.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-53:i05",
+    "correctText": "You have such a good memory.",
+    "correctResponseId": "en:lesson-18:session-53:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-53:i06",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-53:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-53:word:concentration",
+    "correctText": "concentration",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-53:i07",
+    "correctText": "Concentration is so important.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-53:i08",
+    "correctText": "Concentration is so important.",
+    "correctResponseId": "en:lesson-18:session-53:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-53:i09",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-53:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-53:word:imagination",
+    "correctText": "imagination",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-53:i10",
+    "correctText": "You have such a great imagination.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-53:i11",
+    "correctText": "You have such a great imagination.",
+    "correctResponseId": "en:lesson-18:session-53:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-53:i12",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-53:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-53:i13",
+    "correctText": "en:lesson-18:session-53:i13:p1=ability\nen:lesson-18:session-53:i13:p2=memory\nen:lesson-18:session-53:i13:p3=concentration\nen:lesson-18:session-53:i13:p4=imagination",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-53:i14",
+    "correctText": "We are going to practise together.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-53:i15",
+    "correctText": "We are meeting our teacher tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-53:i16",
+    "correctText": "This task is easier than the last one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-53:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

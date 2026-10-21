@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-51:word:opportunity",
+    "correctText": "opportunity",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-51:i01",
+    "correctText": "This is such a good opportunity.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-51:i02",
+    "correctText": "This is such a good opportunity.",
+    "correctResponseId": "en:lesson-18:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-51:i03",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-51:word:attention",
+    "correctText": "attention",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-51:i04",
+    "correctText": "This needs such careful attention.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-51:i05",
+    "correctText": "This needs such careful attention.",
+    "correctResponseId": "en:lesson-18:session-51:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-51:i06",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-51:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-51:word:interest",
+    "correctText": "interest",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-51:i07",
+    "correctText": "Your interest is so welcome.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-51:i08",
+    "correctText": "Your interest is so welcome.",
+    "correctResponseId": "en:lesson-18:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-51:i09",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-51:word:opinion",
+    "correctText": "opinion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-51:i10",
+    "correctText": "Your opinion is so useful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-51:i11",
+    "correctText": "Your opinion is so useful.",
+    "correctResponseId": "en:lesson-18:session-51:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-51:i12",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-51:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-51:i13",
+    "correctText": "en:lesson-18:session-51:i13:p1=opportunity\nen:lesson-18:session-51:i13:p2=attention\nen:lesson-18:session-51:i13:p3=interest\nen:lesson-18:session-51:i13:p4=opinion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-51:i14",
+    "correctText": "We are going to discuss this opportunity.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-51:i15",
+    "correctText": "We are meeting our teacher tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-51:i16",
+    "correctText": "This room is quieter than that one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-51:i17",
+    "correctText": "We need two bags of rice.",
+    "correctResponseId": null
+  }
+]

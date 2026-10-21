@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-50:word:respect",
+    "correctText": "respect",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-50:i01",
+    "correctText": "Mutual respect is so important.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-50:i02",
+    "correctText": "Mutual respect is so important.",
+    "correctResponseId": "en:lesson-18:session-50:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-50:i03",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-50:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-50:word:freedom",
+    "correctText": "freedom",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-50:i04",
+    "correctText": "Freedom is so important.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-50:i05",
+    "correctText": "Freedom is so important.",
+    "correctResponseId": "en:lesson-18:session-50:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-50:i06",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-50:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-50:word:independence",
+    "correctText": "independence",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-50:i07",
+    "correctText": "Independence is such a great feeling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-50:i08",
+    "correctText": "Independence is such a great feeling.",
+    "correctResponseId": "en:lesson-18:session-50:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-50:i09",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-50:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-50:word:responsibility",
+    "correctText": "responsibility",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-50:i10",
+    "correctText": "This is such a big responsibility.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-50:i11",
+    "correctText": "This is such a big responsibility.",
+    "correctResponseId": "en:lesson-18:session-50:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-50:i12",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-50:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-50:i13",
+    "correctText": "en:lesson-18:session-50:i13:p1=respect\nen:lesson-18:session-50:i13:p2=freedom\nen:lesson-18:session-50:i13:p3=independence\nen:lesson-18:session-50:i13:p4=responsibility",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-50:i14",
+    "correctText": "We are going to discuss this responsibility.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-50:i15",
+    "correctText": "We are meeting our family tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-50:i16",
+    "correctText": "This task is harder than the last one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-50:i17",
+    "correctText": "We need two cartons of juice.",
+    "correctResponseId": null
+  }
+]

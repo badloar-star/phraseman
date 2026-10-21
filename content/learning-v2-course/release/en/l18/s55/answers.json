@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-55:word:stress",
+    "correctText": "stress",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-55:i01",
+    "correctText": "This causes such great stress.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-55:i02",
+    "correctText": "This causes such great stress.",
+    "correctResponseId": "en:lesson-18:session-55:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-55:i03",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-55:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-55:word:pressure",
+    "correctText": "pressure",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-55:i04",
+    "correctText": "The pressure is so high.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-55:i05",
+    "correctText": "The pressure is so high.",
+    "correctResponseId": "en:lesson-18:session-55:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-55:i06",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-55:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-55:word:tension",
+    "correctText": "tension",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-55:i07",
+    "correctText": "The tension is so strong.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-55:i08",
+    "correctText": "The tension is so strong.",
+    "correctResponseId": "en:lesson-18:session-55:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-55:i09",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-55:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-55:word:comfort",
+    "correctText": "comfort",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-55:i10",
+    "correctText": "Comfort is so important.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-55:i11",
+    "correctText": "Comfort is so important.",
+    "correctResponseId": "en:lesson-18:session-55:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-55:i12",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-55:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-55:i13",
+    "correctText": "en:lesson-18:session-55:i13:p1=stress\nen:lesson-18:session-55:i13:p2=pressure\nen:lesson-18:session-55:i13:p3=tension\nen:lesson-18:session-55:i13:p4=comfort",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-55:i14",
+    "correctText": "We are going to take a break.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-55:i15",
+    "correctText": "We are meeting at the cafe tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-55:i16",
+    "correctText": "This chair is softer than that one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-55:i17",
+    "correctText": "We need two bags of rice.",
+    "correctResponseId": null
+  }
+]

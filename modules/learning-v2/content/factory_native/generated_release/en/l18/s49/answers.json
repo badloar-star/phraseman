@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-49:word:effort",
+    "correctText": "effort",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-49:i01",
+    "correctText": "You made such a great effort.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-49:i02",
+    "correctText": "You made such a great effort.",
+    "correctResponseId": "en:lesson-18:session-49:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-49:i03",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-49:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-49:word:success",
+    "correctText": "success",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-49:i04",
+    "correctText": "This is such a great success.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-49:i05",
+    "correctText": "This is such a great success.",
+    "correctResponseId": "en:lesson-18:session-49:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-49:i06",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-49:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-49:word:failure",
+    "correctText": "failure",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-49:i07",
+    "correctText": "This failure is so serious.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-49:i08",
+    "correctText": "This failure is so serious.",
+    "correctResponseId": "en:lesson-18:session-49:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-49:i09",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-49:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-49:word:improvement",
+    "correctText": "improvement",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-49:i10",
+    "correctText": "This is such a big improvement.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-49:i11",
+    "correctText": "This is such a big improvement.",
+    "correctResponseId": "en:lesson-18:session-49:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-49:i12",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-49:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-49:i13",
+    "correctText": "en:lesson-18:session-49:i13:p1=effort\nen:lesson-18:session-49:i13:p2=success\nen:lesson-18:session-49:i13:p3=failure\nen:lesson-18:session-49:i13:p4=improvement",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-49:i14",
+    "correctText": "We are going to discuss the improvement.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-49:i15",
+    "correctText": "We are meeting on Monday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-49:i16",
+    "correctText": "This result is clearer than before.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-49:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

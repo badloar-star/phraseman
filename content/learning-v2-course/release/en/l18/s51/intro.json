@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-18:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "so + adjective; such + noun phrase",
+    "uk": "so + adjective; such + noun phrase"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-18:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сильное впечатление",
+        "uk": "Сильне враження"
+      },
+      "bodyByLocale": {
+        "ru": "opportunity — возможность, благоприятный случай. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
+        "uk": "opportunity — можливість, сприятлива нагода. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-51:intro1:r1",
+              "text": "This is such a good opportunity."
+            },
+            {
+              "responseId": "en:lesson-18:session-51:intro1:r2",
+              "text": "This is so a good opportunity."
+            },
+            {
+              "responseId": "en:lesson-18:session-51:intro1:r3",
+              "text": "This is a such good opportunity."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-51:intro1:r1",
+              "text": "This is such a good opportunity."
+            },
+            {
+              "responseId": "en:lesson-18:session-51:intro1:r2",
+              "text": "This is so a good opportunity."
+            },
+            {
+              "responseId": "en:lesson-18:session-51:intro1:r3",
+              "text": "This is a such good opportunity."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-18:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Когда называем человека или вещь",
+        "uk": "Коли називаємо людину або річ"
+      },
+      "bodyByLocale": {
+        "ru": "attention — внимание. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
+        "uk": "attention — увага. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-51:intro2:r1",
+              "text": "This needs such careful attention."
+            },
+            {
+              "responseId": "en:lesson-18:session-51:intro2:r2",
+              "text": "This needs so careful attention."
+            },
+            {
+              "responseId": "en:lesson-18:session-51:intro2:r3",
+              "text": "This needs such a careful attention."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-51:intro2:r1",
+              "text": "This needs such careful attention."
+            },
+            {
+              "responseId": "en:lesson-18:session-51:intro2:r2",
+              "text": "This needs so careful attention."
+            },
+            {
+              "responseId": "en:lesson-18:session-51:intro2:r3",
+              "text": "This needs such a careful attention."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-18:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подчеркнуть впечатление",
+        "uk": "Підкреслити враження"
+      },
+      "bodyByLocale": {
+        "ru": "interest — интерес. opinion — мнение. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
+        "uk": "interest — інтерес. opinion — думка. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-51:intro3:r1",
+              "text": "Your opinion is so useful."
+            },
+            {
+              "responseId": "en:lesson-18:session-51:intro3:r2",
+              "text": "Your opinion is such useful."
+            },
+            {
+              "responseId": "en:lesson-18:session-51:intro3:r3",
+              "text": "Your opinion is much useful."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-51:intro3:r1",
+              "text": "Your opinion is so useful."
+            },
+            {
+              "responseId": "en:lesson-18:session-51:intro3:r2",
+              "text": "Your opinion is such useful."
+            },
+            {
+              "responseId": "en:lesson-18:session-51:intro3:r3",
+              "text": "Your opinion is much useful."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "56808430858e25cb241d338fd842dd0e3923dcf2ca13c1cbd4530d2b5a91254e"
+}

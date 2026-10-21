@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-50",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-50:word:respect",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — respect",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-50:word:respect:audio"
+      ],
+      "accessibilityLabel": "Картка слова — respect",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-50:word:respect:audio",
+          "transcript": "respect"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-50:word:respect:r1",
+            "targetText": "respect",
+            "meaningByLocale": {
+              "ru": "уважение.",
+              "uk": "повага."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "respect",
+          "definitionByLocale": {
+            "ru": "уважение.",
+            "uk": "повага."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-50:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із сильним враженням: «Взаємна повага така важлива».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із сильним враженням: «Взаємна повага така важлива».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Mutual respect is so important.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Взаимное уважение так важно».",
+          "uk": "Скажіть із сильним враженням: «Взаємна повага така важлива»."
+        },
+        "orderedTokens": [
+          "Mutual",
+          "respect",
+          "is",
+          "so",
+          "important"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-50:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-50:i02:r1",
+          "text": "Mutual respect is so important."
+        },
+        {
+          "responseId": "en:lesson-18:session-50:i02:r2",
+          "text": "Mutual respect is such important."
+        },
+        {
+          "responseId": "en:lesson-18:session-50:i02:r3",
+          "text": "Mutual respect is much important."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-50:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-50:i02:audio",
+          "transcript": "Mutual respect is so important."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-50:i02:r1",
+            "targetText": "Mutual respect is so important.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i02:r2",
+            "targetText": "Mutual respect is such important.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i02:r3",
+            "targetText": "Mutual respect is much important.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Mutual respect is so important.",
+              "uk": "У записі звучить Mutual respect is so important."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Mutual respect is so important.",
+              "uk": "У записі звучить Mutual respect is so important."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-50:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Підкресліть якість із so або such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-50:i03:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-50:i03:r2",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-50:i03:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "Mutual respect is ___ important.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-50:i03:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i03:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i03:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Підкресліть якість із so або such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-50:i03:r2",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска прилагательное без существительного: so.",
+              "uk": "Після пропуску прикметник без іменника: so."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i03:r3",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-50:word:freedom",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — freedom",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-50:word:freedom:audio"
+      ],
+      "accessibilityLabel": "Картка слова — freedom",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-50:word:freedom:audio",
+          "transcript": "freedom"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-50:word:freedom:r1",
+            "targetText": "freedom",
+            "meaningByLocale": {
+              "ru": "свобода.",
+              "uk": "свобода."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "freedom",
+          "definitionByLocale": {
+            "ru": "свобода.",
+            "uk": "свобода."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-50:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із сильним враженням: «Свобода така важлива».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із сильним враженням: «Свобода така важлива».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Freedom is so important.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Свобода так важна».",
+          "uk": "Скажіть із сильним враженням: «Свобода така важлива»."
+        },
+        "orderedTokens": [
+          "Freedom",
+          "is",
+          "so",
+          "important"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-50:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-50:i05:r1",
+          "text": "Freedom is so important."
+        },
+        {
+          "responseId": "en:lesson-18:session-50:i05:r2",
+          "text": "Freedom is such important."
+        },
+        {
+          "responseId": "en:lesson-18:session-50:i05:r3",
+          "text": "Freedom is much important."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-50:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-50:i05:audio",
+          "transcript": "Freedom is so important."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-50:i05:r1",
+            "targetText": "Freedom is so important.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i05:r2",
+            "targetText": "Freedom is such important.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i05:r3",
+            "targetText": "Freedom is much important.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-50:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Freedom is so important.",
+              "uk": "У записі звучить Freedom is so important."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Freedom is so important.",
+              "uk": "У записі звучить Freedom is so important."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-50:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Підкресліть якість із so або such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-50:i06:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-50:i06:r2",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-50:i06:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "Freedom is ___ important.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-50:i06:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i06:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i06:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Підкресліть якість із so або such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-50:i06:r2",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска прилагательное без существительного: so.",
+              "uk": "Після пропуску прикметник без іменника: so."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i06:r3",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-50:word:independence",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — independence",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-50:word:independence:audio"
+      ],
+      "accessibilityLabel": "Картка слова — independence",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-50:word:independence:audio",
+          "transcript": "independence"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-50:word:independence:r1",
+            "targetText": "independence",
+            "meaningByLocale": {
+              "ru": "независимость, самостоятельность.",
+              "uk": "незалежність, самостійність."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "independence",
+          "definitionByLocale": {
+            "ru": "независимость, самостоятельность.",
+            "uk": "незалежність, самостійність."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-50:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із сильним враженням: «Незалежність — таке чудове відчуття».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із сильним враженням: «Незалежність — таке чудове відчуття».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Independence is such a great feeling.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Независимость — такое прекрасное чувство».",
+          "uk": "Скажіть із сильним враженням: «Незалежність — таке чудове відчуття»."
+        },
+        "orderedTokens": [
+          "Independence",
+          "is",
+          "such",
+          "a",
+          "great",
+          "feeling"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-50:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-50:i08:r1",
+          "text": "Independence is such a great feeling."
+        },
+        {
+          "responseId": "en:lesson-18:session-50:i08:r2",
+          "text": "Independence is so a great feeling."
+        },
+        {
+          "responseId": "en:lesson-18:session-50:i08:r3",
+          "text": "Independence is much a great feeling."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-50:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-50:i08:audio",
+          "transcript": "Independence is such a great feeling."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-50:i08:r1",
+            "targetText": "Independence is such a great feeling.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i08:r2",
+            "targetText": "Independence is so a great feeling.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i08:r3",
+            "targetText": "Independence is much a great feeling.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-50:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Independence is such a great feeling.",
+              "uk": "У записі звучить Independence is such a great feeling."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Independence is such a great feeling.",
+              "uk": "У записі звучить Independence is such a great feeling."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-50:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Підкресліть якість із so або such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-50:i09:r1",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-50:i09:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-50:i09:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "Independence is ___ a great feeling.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-50:i09:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i09:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i09:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Підкресліть якість із so або such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-50:i09:r2",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.",
+              "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i09:r3",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-50:word:responsibility",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — responsibility",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-50:word:responsibility:audio"
+      ],
+      "accessibilityLabel": "Картка слова — responsibility",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-50:word:responsibility:audio",
+          "transcript": "responsibility"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-50:word:responsibility:r1",
+            "targetText": "responsibility",
+            "meaningByLocale": {
+              "ru": "ответственность, обязанность.",
+              "uk": "відповідальність, обов’язок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "responsibility",
+          "definitionByLocale": {
+            "ru": "ответственность, обязанность.",
+            "uk": "відповідальність, обов’язок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-50:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть із сильним враженням: «Це така велика відповідальність».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть із сильним враженням: «Це така велика відповідальність».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is such a big responsibility.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Это такая большая ответственность».",
+          "uk": "Скажіть із сильним враженням: «Це така велика відповідальність»."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "such",
+          "a",
+          "big",
+          "responsibility"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-50:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-50:i11:r1",
+          "text": "This is such a big responsibility."
+        },
+        {
+          "responseId": "en:lesson-18:session-50:i11:r2",
+          "text": "This is so a big responsibility."
+        },
+        {
+          "responseId": "en:lesson-18:session-50:i11:r3",
+          "text": "This is much a big responsibility."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-50:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-50:i11:audio",
+          "transcript": "This is such a big responsibility."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-50:i11:r1",
+            "targetText": "This is such a big responsibility.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i11:r2",
+            "targetText": "This is so a big responsibility.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i11:r3",
+            "targetText": "This is much a big responsibility.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-50:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is such a big responsibility.",
+              "uk": "У записі звучить This is such a big responsibility."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is such a big responsibility.",
+              "uk": "У записі звучить This is such a big responsibility."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-50:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Підкресліть якість із so або such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-50:i12:r1",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-50:i12:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-50:i12:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "This is ___ a big responsibility.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-50:i12:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i12:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i12:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Підкресліть якість із so або such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-50:i12:r2",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.",
+              "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-50:i12:r3",
+            "correct": false,
+            "testedDimension": "Підкресліть якість із so або such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-50:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-50:i13:p1",
+            "target": "respect",
+            "meaningByLocale": {
+              "ru": "уважение",
+              "uk": "повага"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-50:i13:p2",
+            "target": "freedom",
+            "meaningByLocale": {
+              "ru": "свобода",
+              "uk": "свобода"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-50:i13:p3",
+            "target": "independence",
+            "meaningByLocale": {
+              "ru": "независимость, самостоятельность",
+              "uk": "незалежність, самостійність"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-50:i13:p4",
+            "target": "responsibility",
+            "meaningByLocale": {
+              "ru": "ответственность, обязанность",
+              "uk": "відповідальність, обов’язок"
+            }
+          }
+        ],
+        "leftColumn": [
+          "respect",
+          "freedom",
+          "independence",
+          "responsibility"
+        ],
+        "rightColumn": [
+          "повага",
+          "свобода",
+          "незалежність, самостійність",
+          "відповідальність, обов’язок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-50:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-50:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-50:i14:audio",
+          "transcript": "We are going to discuss this responsibility."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to discuss this responsibility.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "discuss",
+          "this",
+          "responsibility"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-50:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий узгоджений план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-50:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий узгоджений план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-50:i15:audio",
+          "transcript": "We are meeting our family tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting our family tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "our",
+          "family",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-50:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: порівняйте два варіанти",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-50:i16:audio"
+      ],
+      "accessibilityLabel": "Повторення: порівняйте два варіанти",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-50:i16:audio",
+          "transcript": "This task is harder than the last one."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This task is harder than the last one.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-50:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: назвіть кількість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-50:i17:audio"
+      ],
+      "accessibilityLabel": "Повторення: назвіть кількість",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-50:i17:audio",
+          "transcript": "We need two cartons of juice."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two cartons of juice.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fd924550b2203bc7ec4e3bef7dd549f70a4ffb3aaeb779884410b7df54a250eb"
+}

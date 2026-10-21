@@ -1,0 +1,2325 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-18:session-54",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-18:session-54:word:energy",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — energy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:word:energy:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — energy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:word:energy:audio",
+            "transcript": "energy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-54:word:energy:r1",
+              "targetText": "energy",
+              "meaningByLocale": {
+                "ru": "энергия, силы.",
+                "uk": "енергія, сили."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "energy",
+            "definitionByLocale": {
+              "ru": "энергия, силы.",
+              "uk": "енергія, сили."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с сильным впечатлением: «У тебя столько энергии».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с сильным впечатлением: «У тебя столько энергии».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You have such great energy.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «У тебя столько энергии».",
+            "uk": "Скажіть із сильним враженням: «У тебе стільки енергії»."
+          },
+          "orderedTokens": [
+            "You",
+            "have",
+            "such",
+            "great",
+            "energy"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-54:i02:r1",
+            "text": "You have such great energy."
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i02:r2",
+            "text": "You have so great energy."
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i02:r3",
+            "text": "You have much great energy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:i02:audio",
+            "transcript": "You have such great energy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-54:i02:r1",
+              "targetText": "You have such great energy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i02:r2",
+              "targetText": "You have so great energy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i02:r3",
+              "targetText": "You have much great energy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-54:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You have such great energy.",
+                "uk": "У записі звучить You have such great energy."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You have such great energy.",
+                "uk": "У записі звучить You have such great energy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните качество с so или such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-54:i03:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i03:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i03:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "You have ___ great energy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-54:i03:r1",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i03:r2",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i03:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Подчеркните качество с so или such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-54:i03:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "Здесь неисчисляемое значение: such без a.",
+                "uk": "Тут незлічуване значення: such без a."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i03:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:word:strength",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — strength",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:word:strength:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — strength",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:word:strength:audio",
+            "transcript": "strength"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-54:word:strength:r1",
+              "targetText": "strength",
+              "meaningByLocale": {
+                "ru": "сила.",
+                "uk": "сила."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "strength",
+            "definitionByLocale": {
+              "ru": "сила.",
+              "uk": "сила."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с сильным впечатлением: «Твоя сила так полезна».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с сильным впечатлением: «Твоя сила так полезна».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Your strength is so useful.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Твоя сила так полезна».",
+            "uk": "Скажіть із сильним враженням: «Твоя сила така корисна»."
+          },
+          "orderedTokens": [
+            "Your",
+            "strength",
+            "is",
+            "so",
+            "useful"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-54:i05:r1",
+            "text": "Your strength is so useful."
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i05:r2",
+            "text": "Your strength is such useful."
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i05:r3",
+            "text": "Your strength is much useful."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:i05:audio",
+            "transcript": "Your strength is so useful."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-54:i05:r1",
+              "targetText": "Your strength is so useful.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i05:r2",
+              "targetText": "Your strength is such useful.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i05:r3",
+              "targetText": "Your strength is much useful.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-54:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Your strength is so useful.",
+                "uk": "У записі звучить Your strength is so useful."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Your strength is so useful.",
+                "uk": "У записі звучить Your strength is so useful."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните качество с so или such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-54:i06:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i06:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i06:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "Your strength is ___ useful.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-54:i06:r1",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i06:r2",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i06:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Подчеркните качество с so или such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-54:i06:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска прилагательное без существительного: so.",
+                "uk": "Після пропуску прикметник без іменника: so."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i06:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:word:fitness",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fitness",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:word:fitness:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fitness",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:word:fitness:audio",
+            "transcript": "fitness"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-54:word:fitness:r1",
+              "targetText": "fitness",
+              "meaningByLocale": {
+                "ru": "физическая форма.",
+                "uk": "фізична форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fitness",
+            "definitionByLocale": {
+              "ru": "физическая форма.",
+              "uk": "фізична форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с сильным впечатлением: «Физическая форма так важна».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с сильным впечатлением: «Физическая форма так важна».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Fitness is so important.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Физическая форма так важна».",
+            "uk": "Скажіть із сильним враженням: «Фізична форма така важлива»."
+          },
+          "orderedTokens": [
+            "Fitness",
+            "is",
+            "so",
+            "important"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-54:i08:r1",
+            "text": "Fitness is so important."
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i08:r2",
+            "text": "Fitness is such important."
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i08:r3",
+            "text": "Fitness is much important."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:i08:audio",
+            "transcript": "Fitness is so important."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-54:i08:r1",
+              "targetText": "Fitness is so important.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i08:r2",
+              "targetText": "Fitness is such important.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i08:r3",
+              "targetText": "Fitness is much important.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-54:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Fitness is so important.",
+                "uk": "У записі звучить Fitness is so important."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Fitness is so important.",
+                "uk": "У записі звучить Fitness is so important."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните качество с so или such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-54:i09:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i09:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i09:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "Fitness is ___ important.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-54:i09:r1",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i09:r2",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i09:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Подчеркните качество с so или such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-54:i09:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска прилагательное без существительного: so.",
+                "uk": "Після пропуску прикметник без іменника: so."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i09:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:word:motivation",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — motivation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:word:motivation:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — motivation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:word:motivation:audio",
+            "transcript": "motivation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-54:word:motivation:r1",
+              "targetText": "motivation",
+              "meaningByLocale": {
+                "ru": "мотивация, желание действовать.",
+                "uk": "мотивація, бажання діяти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "motivation",
+            "definitionByLocale": {
+              "ru": "мотивация, желание действовать.",
+              "uk": "мотивація, бажання діяти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с сильным впечатлением: «Желание действовать так важно».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с сильным впечатлением: «Желание действовать так важно».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Motivation is so important.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Желание действовать так важно».",
+            "uk": "Скажіть із сильним враженням: «Бажання діяти таке важливе»."
+          },
+          "orderedTokens": [
+            "Motivation",
+            "is",
+            "so",
+            "important"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-54:i11:r1",
+            "text": "Motivation is so important."
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i11:r2",
+            "text": "Motivation is such important."
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i11:r3",
+            "text": "Motivation is much important."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:i11:audio",
+            "transcript": "Motivation is so important."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-54:i11:r1",
+              "targetText": "Motivation is so important.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i11:r2",
+              "targetText": "Motivation is such important.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i11:r3",
+              "targetText": "Motivation is much important.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-54:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Motivation is so important.",
+                "uk": "У записі звучить Motivation is so important."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Motivation is so important.",
+                "uk": "У записі звучить Motivation is so important."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните качество с so или such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-54:i12:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i12:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i12:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "Motivation is ___ important.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-54:i12:r1",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i12:r2",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i12:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Подчеркните качество с so или such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-54:i12:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска прилагательное без существительного: so.",
+                "uk": "Після пропуску прикметник без іменника: so."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i12:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-54:i13:p1",
+              "target": "energy",
+              "meaningByLocale": {
+                "ru": "энергия, силы",
+                "uk": "енергія, сили"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-54:i13:p2",
+              "target": "strength",
+              "meaningByLocale": {
+                "ru": "сила",
+                "uk": "сила"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-54:i13:p3",
+              "target": "fitness",
+              "meaningByLocale": {
+                "ru": "физическая форма",
+                "uk": "фізична форма"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-54:i13:p4",
+              "target": "motivation",
+              "meaningByLocale": {
+                "ru": "мотивация, желание действовать",
+                "uk": "мотивація, бажання діяти"
+              }
+            }
+          ],
+          "leftColumn": [
+            "energy",
+            "strength",
+            "fitness",
+            "motivation"
+          ],
+          "rightColumn": [
+            "энергия, силы",
+            "сила",
+            "физическая форма",
+            "мотивация, желание действовать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное намерение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное намерение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:i14:audio",
+            "transcript": "We are going to walk to the park."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to walk to the park.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "walk",
+            "to",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанный согласованный план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанный согласованный план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:i15:audio",
+            "transcript": "We are meeting at the gym tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting at the gym tomorrow.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "at",
+            "the",
+            "gym",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: сравните два варианта",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:i16:audio"
+        ],
+        "accessibilityLabel": "Повторение: сравните два варианта",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:i16:audio",
+            "transcript": "This bag is heavier than mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This bag is heavier than mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: назовите количество",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:i17:audio"
+        ],
+        "accessibilityLabel": "Повторение: назовите количество",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:i17:audio",
+            "transcript": "We need two cartons of juice."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two cartons of juice.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-18:session-54:word:energy",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — energy",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:word:energy:audio"
+        ],
+        "accessibilityLabel": "Картка слова — energy",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:word:energy:audio",
+            "transcript": "energy"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-54:word:energy:r1",
+              "targetText": "energy",
+              "meaningByLocale": {
+                "ru": "энергия, силы.",
+                "uk": "енергія, сили."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "energy",
+            "definitionByLocale": {
+              "ru": "энергия, силы.",
+              "uk": "енергія, сили."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із сильним враженням: «У тебе стільки енергії».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із сильним враженням: «У тебе стільки енергії».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You have such great energy.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «У тебя столько энергии».",
+            "uk": "Скажіть із сильним враженням: «У тебе стільки енергії»."
+          },
+          "orderedTokens": [
+            "You",
+            "have",
+            "such",
+            "great",
+            "energy"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-54:i02:r1",
+            "text": "You have such great energy."
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i02:r2",
+            "text": "You have so great energy."
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i02:r3",
+            "text": "You have much great energy."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:i02:audio",
+            "transcript": "You have such great energy."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-54:i02:r1",
+              "targetText": "You have such great energy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i02:r2",
+              "targetText": "You have so great energy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i02:r3",
+              "targetText": "You have much great energy.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-54:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You have such great energy.",
+                "uk": "У записі звучить You have such great energy."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You have such great energy.",
+                "uk": "У записі звучить You have such great energy."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть якість із so або such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-54:i03:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i03:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i03:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "You have ___ great energy.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-54:i03:r1",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i03:r2",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i03:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Підкресліть якість із so або such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-54:i03:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "Здесь неисчисляемое значение: such без a.",
+                "uk": "Тут незлічуване значення: such без a."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i03:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:word:strength",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — strength",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:word:strength:audio"
+        ],
+        "accessibilityLabel": "Картка слова — strength",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:word:strength:audio",
+            "transcript": "strength"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-54:word:strength:r1",
+              "targetText": "strength",
+              "meaningByLocale": {
+                "ru": "сила.",
+                "uk": "сила."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "strength",
+            "definitionByLocale": {
+              "ru": "сила.",
+              "uk": "сила."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із сильним враженням: «Твоя сила така корисна».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із сильним враженням: «Твоя сила така корисна».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Your strength is so useful.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Твоя сила так полезна».",
+            "uk": "Скажіть із сильним враженням: «Твоя сила така корисна»."
+          },
+          "orderedTokens": [
+            "Your",
+            "strength",
+            "is",
+            "so",
+            "useful"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-54:i05:r1",
+            "text": "Your strength is so useful."
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i05:r2",
+            "text": "Your strength is such useful."
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i05:r3",
+            "text": "Your strength is much useful."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:i05:audio",
+            "transcript": "Your strength is so useful."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-54:i05:r1",
+              "targetText": "Your strength is so useful.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i05:r2",
+              "targetText": "Your strength is such useful.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i05:r3",
+              "targetText": "Your strength is much useful.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-54:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Your strength is so useful.",
+                "uk": "У записі звучить Your strength is so useful."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Your strength is so useful.",
+                "uk": "У записі звучить Your strength is so useful."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть якість із so або such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-54:i06:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i06:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i06:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "Your strength is ___ useful.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-54:i06:r1",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i06:r2",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i06:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Підкресліть якість із so або such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-54:i06:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска прилагательное без существительного: so.",
+                "uk": "Після пропуску прикметник без іменника: so."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i06:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:word:fitness",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fitness",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:word:fitness:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fitness",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:word:fitness:audio",
+            "transcript": "fitness"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-54:word:fitness:r1",
+              "targetText": "fitness",
+              "meaningByLocale": {
+                "ru": "физическая форма.",
+                "uk": "фізична форма."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fitness",
+            "definitionByLocale": {
+              "ru": "физическая форма.",
+              "uk": "фізична форма."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із сильним враженням: «Фізична форма така важлива».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із сильним враженням: «Фізична форма така важлива».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Fitness is so important.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Физическая форма так важна».",
+            "uk": "Скажіть із сильним враженням: «Фізична форма така важлива»."
+          },
+          "orderedTokens": [
+            "Fitness",
+            "is",
+            "so",
+            "important"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-54:i08:r1",
+            "text": "Fitness is so important."
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i08:r2",
+            "text": "Fitness is such important."
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i08:r3",
+            "text": "Fitness is much important."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:i08:audio",
+            "transcript": "Fitness is so important."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-54:i08:r1",
+              "targetText": "Fitness is so important.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i08:r2",
+              "targetText": "Fitness is such important.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i08:r3",
+              "targetText": "Fitness is much important.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-54:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Fitness is so important.",
+                "uk": "У записі звучить Fitness is so important."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Fitness is so important.",
+                "uk": "У записі звучить Fitness is so important."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть якість із so або such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-54:i09:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i09:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i09:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "Fitness is ___ important.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-54:i09:r1",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i09:r2",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i09:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Підкресліть якість із so або such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-54:i09:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска прилагательное без существительного: so.",
+                "uk": "Після пропуску прикметник без іменника: so."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i09:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:word:motivation",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — motivation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:word:motivation:audio"
+        ],
+        "accessibilityLabel": "Картка слова — motivation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:word:motivation:audio",
+            "transcript": "motivation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-54:word:motivation:r1",
+              "targetText": "motivation",
+              "meaningByLocale": {
+                "ru": "мотивация, желание действовать.",
+                "uk": "мотивація, бажання діяти."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "motivation",
+            "definitionByLocale": {
+              "ru": "мотивация, желание действовать.",
+              "uk": "мотивація, бажання діяти."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із сильним враженням: «Бажання діяти таке важливе».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із сильним враженням: «Бажання діяти таке важливе».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Motivation is so important.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Желание действовать так важно».",
+            "uk": "Скажіть із сильним враженням: «Бажання діяти таке важливе»."
+          },
+          "orderedTokens": [
+            "Motivation",
+            "is",
+            "so",
+            "important"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-54:i11:r1",
+            "text": "Motivation is so important."
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i11:r2",
+            "text": "Motivation is such important."
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i11:r3",
+            "text": "Motivation is much important."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:i11:audio",
+            "transcript": "Motivation is so important."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-54:i11:r1",
+              "targetText": "Motivation is so important.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i11:r2",
+              "targetText": "Motivation is such important.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i11:r3",
+              "targetText": "Motivation is much important.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-54:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Motivation is so important.",
+                "uk": "У записі звучить Motivation is so important."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Motivation is so important.",
+                "uk": "У записі звучить Motivation is so important."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть якість із so або such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-54:i12:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i12:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-54:i12:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "Motivation is ___ important.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-54:i12:r1",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i12:r2",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i12:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Підкресліть якість із so або such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-54:i12:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска прилагательное без существительного: so.",
+                "uk": "Після пропуску прикметник без іменника: so."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-54:i12:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-54:i13:p1",
+              "target": "energy",
+              "meaningByLocale": {
+                "ru": "энергия, силы",
+                "uk": "енергія, сили"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-54:i13:p2",
+              "target": "strength",
+              "meaningByLocale": {
+                "ru": "сила",
+                "uk": "сила"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-54:i13:p3",
+              "target": "fitness",
+              "meaningByLocale": {
+                "ru": "физическая форма",
+                "uk": "фізична форма"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-54:i13:p4",
+              "target": "motivation",
+              "meaningByLocale": {
+                "ru": "мотивация, желание действовать",
+                "uk": "мотивація, бажання діяти"
+              }
+            }
+          ],
+          "leftColumn": [
+            "energy",
+            "strength",
+            "fitness",
+            "motivation"
+          ],
+          "rightColumn": [
+            "енергія, сили",
+            "сила",
+            "фізична форма",
+            "мотивація, бажання діяти"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий намір",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий намір",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:i14:audio",
+            "transcript": "We are going to walk to the park."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to walk to the park.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "walk",
+            "to",
+            "the",
+            "park"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий узгоджений план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий узгоджений план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:i15:audio",
+            "transcript": "We are meeting at the gym tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting at the gym tomorrow.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "at",
+            "the",
+            "gym",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: порівняйте два варіанти",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:i16:audio"
+        ],
+        "accessibilityLabel": "Повторення: порівняйте два варіанти",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:i16:audio",
+            "transcript": "This bag is heavier than mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This bag is heavier than mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-54:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: назвіть кількість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-54:i17:audio"
+        ],
+        "accessibilityLabel": "Повторення: назвіть кількість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-54:i17:audio",
+            "transcript": "We need two cartons of juice."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two cartons of juice.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-18:session-54:word:energy",
+      "correctText": "energy",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-54:i01",
+      "correctText": "You have such great energy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-54:i02",
+      "correctText": "You have such great energy.",
+      "correctResponseId": "en:lesson-18:session-54:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-54:i03",
+      "correctText": "such",
+      "correctResponseId": "en:lesson-18:session-54:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-54:word:strength",
+      "correctText": "strength",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-54:i04",
+      "correctText": "Your strength is so useful.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-54:i05",
+      "correctText": "Your strength is so useful.",
+      "correctResponseId": "en:lesson-18:session-54:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-54:i06",
+      "correctText": "so",
+      "correctResponseId": "en:lesson-18:session-54:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-54:word:fitness",
+      "correctText": "fitness",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-54:i07",
+      "correctText": "Fitness is so important.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-54:i08",
+      "correctText": "Fitness is so important.",
+      "correctResponseId": "en:lesson-18:session-54:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-54:i09",
+      "correctText": "so",
+      "correctResponseId": "en:lesson-18:session-54:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-54:word:motivation",
+      "correctText": "motivation",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-54:i10",
+      "correctText": "Motivation is so important.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-54:i11",
+      "correctText": "Motivation is so important.",
+      "correctResponseId": "en:lesson-18:session-54:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-54:i12",
+      "correctText": "so",
+      "correctResponseId": "en:lesson-18:session-54:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-54:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-54:i14",
+      "correctText": "We are going to walk to the park.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-54:i15",
+      "correctText": "We are meeting at the gym tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-54:i16",
+      "correctText": "This bag is heavier than mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-54:i17",
+      "correctText": "We need two cartons of juice.",
+      "correctResponseId": null
+    }
+  ]
+}

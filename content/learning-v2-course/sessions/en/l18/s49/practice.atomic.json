@@ -1,0 +1,2329 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-18:session-49",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-18:session-49:word:effort",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — effort",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:word:effort:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — effort",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:word:effort:audio",
+            "transcript": "effort"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-49:word:effort:r1",
+              "targetText": "effort",
+              "meaningByLocale": {
+                "ru": "усилие, старание.",
+                "uk": "зусилля, старання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "effort",
+            "definitionByLocale": {
+              "ru": "усилие, старание.",
+              "uk": "зусилля, старання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с сильным впечатлением: «Ты приложил такое большое усилие».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с сильным впечатлением: «Ты приложил такое большое усилие».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You made such a great effort.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Ты приложил такое большое усилие».",
+            "uk": "Скажіть із сильним враженням: «Ти доклав такого великого зусилля»."
+          },
+          "orderedTokens": [
+            "You",
+            "made",
+            "such",
+            "a",
+            "great",
+            "effort"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-49:i02:r1",
+            "text": "You made such a great effort."
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i02:r2",
+            "text": "You made so a great effort."
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i02:r3",
+            "text": "You made much a great effort."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:i02:audio",
+            "transcript": "You made such a great effort."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-49:i02:r1",
+              "targetText": "You made such a great effort.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i02:r2",
+              "targetText": "You made so a great effort.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i02:r3",
+              "targetText": "You made much a great effort.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-49:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You made such a great effort.",
+                "uk": "У записі звучить You made such a great effort."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You made such a great effort.",
+                "uk": "У записі звучить You made such a great effort."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните качество с so или such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-49:i03:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i03:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i03:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "You made ___ a great effort.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-49:i03:r1",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i03:r2",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i03:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Подчеркните качество с so или such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-49:i03:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.",
+                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i03:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:word:success",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — success",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:word:success:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — success",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:word:success:audio",
+            "transcript": "success"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-49:word:success:r1",
+              "targetText": "success",
+              "meaningByLocale": {
+                "ru": "успех.",
+                "uk": "успіх."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "success",
+            "definitionByLocale": {
+              "ru": "успех.",
+              "uk": "успіх."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с сильным впечатлением: «Это такой большой успех».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с сильным впечатлением: «Это такой большой успех».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is such a great success.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Это такой большой успех».",
+            "uk": "Скажіть із сильним враженням: «Це такий великий успіх»."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "such",
+            "a",
+            "great",
+            "success"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-49:i05:r1",
+            "text": "This is such a great success."
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i05:r2",
+            "text": "This is so a great success."
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i05:r3",
+            "text": "This is much a great success."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:i05:audio",
+            "transcript": "This is such a great success."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-49:i05:r1",
+              "targetText": "This is such a great success.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i05:r2",
+              "targetText": "This is so a great success.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i05:r3",
+              "targetText": "This is much a great success.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-49:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is such a great success.",
+                "uk": "У записі звучить This is such a great success."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is such a great success.",
+                "uk": "У записі звучить This is such a great success."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните качество с so или such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-49:i06:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i06:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i06:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "This is ___ a great success.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-49:i06:r1",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i06:r2",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i06:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Подчеркните качество с so или such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-49:i06:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.",
+                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i06:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:word:failure",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — failure",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:word:failure:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — failure",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:word:failure:audio",
+            "transcript": "failure"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-49:word:failure:r1",
+              "targetText": "failure",
+              "meaningByLocale": {
+                "ru": "неудача, провал.",
+                "uk": "невдача, провал."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "failure",
+            "definitionByLocale": {
+              "ru": "неудача, провал.",
+              "uk": "невдача, провал."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с сильным впечатлением: «Эта неудача такая серьёзная».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с сильным впечатлением: «Эта неудача такая серьёзная».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This failure is so serious.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Эта неудача такая серьёзная».",
+            "uk": "Скажіть із сильним враженням: «Ця невдача така серйозна»."
+          },
+          "orderedTokens": [
+            "This",
+            "failure",
+            "is",
+            "so",
+            "serious"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-49:i08:r1",
+            "text": "This failure is so serious."
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i08:r2",
+            "text": "This failure is such serious."
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i08:r3",
+            "text": "This failure is much serious."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:i08:audio",
+            "transcript": "This failure is so serious."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-49:i08:r1",
+              "targetText": "This failure is so serious.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i08:r2",
+              "targetText": "This failure is such serious.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i08:r3",
+              "targetText": "This failure is much serious.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-49:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This failure is so serious.",
+                "uk": "У записі звучить This failure is so serious."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This failure is so serious.",
+                "uk": "У записі звучить This failure is so serious."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните качество с so или such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-49:i09:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i09:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i09:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "This failure is ___ serious.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-49:i09:r1",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i09:r2",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i09:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Подчеркните качество с so или such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-49:i09:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска прилагательное без существительного: so.",
+                "uk": "Після пропуску прикметник без іменника: so."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i09:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:word:improvement",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — improvement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:word:improvement:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — improvement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:word:improvement:audio",
+            "transcript": "improvement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-49:word:improvement:r1",
+              "targetText": "improvement",
+              "meaningByLocale": {
+                "ru": "улучшение.",
+                "uk": "поліпшення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "improvement",
+            "definitionByLocale": {
+              "ru": "улучшение.",
+              "uk": "поліпшення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите с сильным впечатлением: «Это такое большое улучшение».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите с сильным впечатлением: «Это такое большое улучшение».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is such a big improvement.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Это такое большое улучшение».",
+            "uk": "Скажіть із сильним враженням: «Це таке велике поліпшення»."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "such",
+            "a",
+            "big",
+            "improvement"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-49:i11:r1",
+            "text": "This is such a big improvement."
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i11:r2",
+            "text": "This is so a big improvement."
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i11:r3",
+            "text": "This is much a big improvement."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:i11:audio",
+            "transcript": "This is such a big improvement."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-49:i11:r1",
+              "targetText": "This is such a big improvement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i11:r2",
+              "targetText": "This is so a big improvement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i11:r3",
+              "targetText": "This is much a big improvement.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-49:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is such a big improvement.",
+                "uk": "У записі звучить This is such a big improvement."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is such a big improvement.",
+                "uk": "У записі звучить This is such a big improvement."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Подчеркните качество с so или such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-49:i12:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i12:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i12:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подчеркните качество с so или such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "This is ___ a big improvement.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-49:i12:r1",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i12:r2",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i12:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Подчеркните качество с so или such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-49:i12:r2",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.",
+                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i12:r3",
+              "correct": false,
+              "testedDimension": "Подчеркните качество с so или such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-49:i13:p1",
+              "target": "effort",
+              "meaningByLocale": {
+                "ru": "усилие, старание",
+                "uk": "зусилля, старання"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-49:i13:p2",
+              "target": "success",
+              "meaningByLocale": {
+                "ru": "успех",
+                "uk": "успіх"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-49:i13:p3",
+              "target": "failure",
+              "meaningByLocale": {
+                "ru": "неудача, провал",
+                "uk": "невдача, провал"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-49:i13:p4",
+              "target": "improvement",
+              "meaningByLocale": {
+                "ru": "улучшение",
+                "uk": "поліпшення"
+              }
+            }
+          ],
+          "leftColumn": [
+            "effort",
+            "success",
+            "failure",
+            "improvement"
+          ],
+          "rightColumn": [
+            "усилие, старание",
+            "успех",
+            "неудача, провал",
+            "улучшение"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное намерение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное намерение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:i14:audio",
+            "transcript": "We are going to discuss the improvement."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to discuss the improvement.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "discuss",
+            "the",
+            "improvement"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанный согласованный план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанный согласованный план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:i15:audio",
+            "transcript": "We are meeting on Monday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting on Monday.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "on",
+            "Monday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: сравните два варианта",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:i16:audio"
+        ],
+        "accessibilityLabel": "Повторение: сравните два варианта",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:i16:audio",
+            "transcript": "This result is clearer than before."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This result is clearer than before.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: назовите количество",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:i17:audio"
+        ],
+        "accessibilityLabel": "Повторение: назовите количество",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:i17:audio",
+            "transcript": "We need two bottles of water."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two bottles of water.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-18:session-49:word:effort",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — effort",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:word:effort:audio"
+        ],
+        "accessibilityLabel": "Картка слова — effort",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:word:effort:audio",
+            "transcript": "effort"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-49:word:effort:r1",
+              "targetText": "effort",
+              "meaningByLocale": {
+                "ru": "усилие, старание.",
+                "uk": "зусилля, старання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "effort",
+            "definitionByLocale": {
+              "ru": "усилие, старание.",
+              "uk": "зусилля, старання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із сильним враженням: «Ти доклав такого великого зусилля».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із сильним враженням: «Ти доклав такого великого зусилля».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You made such a great effort.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Ты приложил такое большое усилие».",
+            "uk": "Скажіть із сильним враженням: «Ти доклав такого великого зусилля»."
+          },
+          "orderedTokens": [
+            "You",
+            "made",
+            "such",
+            "a",
+            "great",
+            "effort"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-49:i02:r1",
+            "text": "You made such a great effort."
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i02:r2",
+            "text": "You made so a great effort."
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i02:r3",
+            "text": "You made much a great effort."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:i02:audio",
+            "transcript": "You made such a great effort."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-49:i02:r1",
+              "targetText": "You made such a great effort.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i02:r2",
+              "targetText": "You made so a great effort.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i02:r3",
+              "targetText": "You made much a great effort.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-49:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You made such a great effort.",
+                "uk": "У записі звучить You made such a great effort."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You made such a great effort.",
+                "uk": "У записі звучить You made such a great effort."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть якість із so або such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-49:i03:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i03:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i03:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "You made ___ a great effort.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-49:i03:r1",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i03:r2",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i03:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Підкресліть якість із so або such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-49:i03:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.",
+                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i03:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:word:success",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — success",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:word:success:audio"
+        ],
+        "accessibilityLabel": "Картка слова — success",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:word:success:audio",
+            "transcript": "success"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-49:word:success:r1",
+              "targetText": "success",
+              "meaningByLocale": {
+                "ru": "успех.",
+                "uk": "успіх."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "success",
+            "definitionByLocale": {
+              "ru": "успех.",
+              "uk": "успіх."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із сильним враженням: «Це такий великий успіх».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із сильним враженням: «Це такий великий успіх».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is such a great success.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Это такой большой успех».",
+            "uk": "Скажіть із сильним враженням: «Це такий великий успіх»."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "such",
+            "a",
+            "great",
+            "success"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-49:i05:r1",
+            "text": "This is such a great success."
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i05:r2",
+            "text": "This is so a great success."
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i05:r3",
+            "text": "This is much a great success."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:i05:audio",
+            "transcript": "This is such a great success."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-49:i05:r1",
+              "targetText": "This is such a great success.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i05:r2",
+              "targetText": "This is so a great success.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i05:r3",
+              "targetText": "This is much a great success.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-49:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is such a great success.",
+                "uk": "У записі звучить This is such a great success."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is such a great success.",
+                "uk": "У записі звучить This is such a great success."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть якість із so або such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-49:i06:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i06:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i06:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "This is ___ a great success.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-49:i06:r1",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i06:r2",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i06:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Підкресліть якість із so або such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-49:i06:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.",
+                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i06:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:word:failure",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — failure",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:word:failure:audio"
+        ],
+        "accessibilityLabel": "Картка слова — failure",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:word:failure:audio",
+            "transcript": "failure"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-49:word:failure:r1",
+              "targetText": "failure",
+              "meaningByLocale": {
+                "ru": "неудача, провал.",
+                "uk": "невдача, провал."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "failure",
+            "definitionByLocale": {
+              "ru": "неудача, провал.",
+              "uk": "невдача, провал."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із сильним враженням: «Ця невдача така серйозна».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із сильним враженням: «Ця невдача така серйозна».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This failure is so serious.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Эта неудача такая серьёзная».",
+            "uk": "Скажіть із сильним враженням: «Ця невдача така серйозна»."
+          },
+          "orderedTokens": [
+            "This",
+            "failure",
+            "is",
+            "so",
+            "serious"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-49:i08:r1",
+            "text": "This failure is so serious."
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i08:r2",
+            "text": "This failure is such serious."
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i08:r3",
+            "text": "This failure is much serious."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:i08:audio",
+            "transcript": "This failure is so serious."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-49:i08:r1",
+              "targetText": "This failure is so serious.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i08:r2",
+              "targetText": "This failure is such serious.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i08:r3",
+              "targetText": "This failure is much serious.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-49:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This failure is so serious.",
+                "uk": "У записі звучить This failure is so serious."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This failure is so serious.",
+                "uk": "У записі звучить This failure is so serious."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть якість із so або such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-49:i09:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i09:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i09:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "This failure is ___ serious.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-49:i09:r1",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i09:r2",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i09:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Підкресліть якість із so або such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-49:i09:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска прилагательное без существительного: so.",
+                "uk": "Після пропуску прикметник без іменника: so."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i09:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:word:improvement",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — improvement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:word:improvement:audio"
+        ],
+        "accessibilityLabel": "Картка слова — improvement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:word:improvement:audio",
+            "transcript": "improvement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-49:word:improvement:r1",
+              "targetText": "improvement",
+              "meaningByLocale": {
+                "ru": "улучшение.",
+                "uk": "поліпшення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "improvement",
+            "definitionByLocale": {
+              "ru": "улучшение.",
+              "uk": "поліпшення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть із сильним враженням: «Це таке велике поліпшення».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть із сильним враженням: «Це таке велике поліпшення».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This is such a big improvement.",
+          "localizedMeaning": {
+            "ru": "Скажите с сильным впечатлением: «Это такое большое улучшение».",
+            "uk": "Скажіть із сильним враженням: «Це таке велике поліпшення»."
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "such",
+            "a",
+            "big",
+            "improvement"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-49:i11:r1",
+            "text": "This is such a big improvement."
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i11:r2",
+            "text": "This is so a big improvement."
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i11:r3",
+            "text": "This is much a big improvement."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:i11:audio",
+            "transcript": "This is such a big improvement."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-49:i11:r1",
+              "targetText": "This is such a big improvement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i11:r2",
+              "targetText": "This is so a big improvement.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i11:r3",
+              "targetText": "This is much a big improvement.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-49:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is such a big improvement.",
+                "uk": "У записі звучить This is such a big improvement."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This is such a big improvement.",
+                "uk": "У записі звучить This is such a big improvement."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Підкресліть якість із so або such.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-49:i12:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i12:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-49:i12:r3",
+            "text": "much"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Підкресліть якість із so або such.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Подчеркните качество с so или such.",
+            "uk": "Підкресліть якість із so або such."
+          },
+          "gappedTargetPhrase": "This is ___ a big improvement.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-49:i12:r1",
+              "text": "such"
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i12:r2",
+              "text": "so"
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i12:r3",
+              "text": "much"
+            }
+          ],
+          "testedDimension": "Підкресліть якість із so або such.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-49:i12:r2",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.",
+                "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-49:i12:r3",
+              "correct": false,
+              "testedDimension": "Підкресліть якість із so або such.",
+              "feedbackByLocale": {
+                "ru": "Здесь much не подходит перед этой группой слов.",
+                "uk": "Тут much не підходить перед цією групою слів."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-49:i13:p1",
+              "target": "effort",
+              "meaningByLocale": {
+                "ru": "усилие, старание",
+                "uk": "зусилля, старання"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-49:i13:p2",
+              "target": "success",
+              "meaningByLocale": {
+                "ru": "успех",
+                "uk": "успіх"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-49:i13:p3",
+              "target": "failure",
+              "meaningByLocale": {
+                "ru": "неудача, провал",
+                "uk": "невдача, провал"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-49:i13:p4",
+              "target": "improvement",
+              "meaningByLocale": {
+                "ru": "улучшение",
+                "uk": "поліпшення"
+              }
+            }
+          ],
+          "leftColumn": [
+            "effort",
+            "success",
+            "failure",
+            "improvement"
+          ],
+          "rightColumn": [
+            "зусилля, старання",
+            "успіх",
+            "невдача, провал",
+            "поліпшення"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий намір",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий намір",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:i14:audio",
+            "transcript": "We are going to discuss the improvement."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to discuss the improvement.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "discuss",
+            "the",
+            "improvement"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий узгоджений план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий узгоджений план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:i15:audio",
+            "transcript": "We are meeting on Monday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting on Monday.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "on",
+            "Monday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: порівняйте два варіанти",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:i16:audio"
+        ],
+        "accessibilityLabel": "Повторення: порівняйте два варіанти",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:i16:audio",
+            "transcript": "This result is clearer than before."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This result is clearer than before.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-49:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: назвіть кількість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-49:i17:audio"
+        ],
+        "accessibilityLabel": "Повторення: назвіть кількість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-49:i17:audio",
+            "transcript": "We need two bottles of water."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We need two bottles of water.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-18:session-49:word:effort",
+      "correctText": "effort",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-49:i01",
+      "correctText": "You made such a great effort.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-49:i02",
+      "correctText": "You made such a great effort.",
+      "correctResponseId": "en:lesson-18:session-49:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-49:i03",
+      "correctText": "such",
+      "correctResponseId": "en:lesson-18:session-49:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-49:word:success",
+      "correctText": "success",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-49:i04",
+      "correctText": "This is such a great success.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-49:i05",
+      "correctText": "This is such a great success.",
+      "correctResponseId": "en:lesson-18:session-49:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-49:i06",
+      "correctText": "such",
+      "correctResponseId": "en:lesson-18:session-49:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-49:word:failure",
+      "correctText": "failure",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-49:i07",
+      "correctText": "This failure is so serious.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-49:i08",
+      "correctText": "This failure is so serious.",
+      "correctResponseId": "en:lesson-18:session-49:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-49:i09",
+      "correctText": "so",
+      "correctResponseId": "en:lesson-18:session-49:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-49:word:improvement",
+      "correctText": "improvement",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-49:i10",
+      "correctText": "This is such a big improvement.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-49:i11",
+      "correctText": "This is such a big improvement.",
+      "correctResponseId": "en:lesson-18:session-49:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-49:i12",
+      "correctText": "such",
+      "correctResponseId": "en:lesson-18:session-49:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-49:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-49:i14",
+      "correctText": "We are going to discuss the improvement.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-49:i15",
+      "correctText": "We are meeting on Monday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-49:i16",
+      "correctText": "This result is clearer than before.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-49:i17",
+      "correctText": "We need two bottles of water.",
+      "correctResponseId": null
+    }
+  ]
+}

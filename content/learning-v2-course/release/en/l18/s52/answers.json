@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-52:word:benefit",
+    "correctText": "benefit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-52:i01",
+    "correctText": "This benefit is so important.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-52:i02",
+    "correctText": "This benefit is so important.",
+    "correctResponseId": "en:lesson-18:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-52:i03",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-52:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-52:word:advantage",
+    "correctText": "advantage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-52:i04",
+    "correctText": "This is such a big advantage.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-52:i05",
+    "correctText": "This is such a big advantage.",
+    "correctResponseId": "en:lesson-18:session-52:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-52:i06",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-52:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-52:word:disadvantage",
+    "correctText": "disadvantage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-52:i07",
+    "correctText": "This disadvantage is so serious.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-52:i08",
+    "correctText": "This disadvantage is so serious.",
+    "correctResponseId": "en:lesson-18:session-52:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-52:i09",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-18:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-52:word:difference",
+    "correctText": "difference",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-52:i10",
+    "correctText": "There is such a big difference.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-52:i11",
+    "correctText": "There is such a big difference.",
+    "correctResponseId": "en:lesson-18:session-52:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-52:i12",
+    "correctText": "such",
+    "correctResponseId": "en:lesson-18:session-52:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-52:i13",
+    "correctText": "en:lesson-18:session-52:i13:p1=benefit\nen:lesson-18:session-52:i13:p2=advantage\nen:lesson-18:session-52:i13:p3=disadvantage\nen:lesson-18:session-52:i13:p4=difference",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-52:i14",
+    "correctText": "We are going to discuss the difference.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-52:i15",
+    "correctText": "We are meeting at the library tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-52:i16",
+    "correctText": "This room is larger than ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-52:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

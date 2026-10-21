@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-51",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-51:word:opportunity",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — opportunity",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-51:word:opportunity:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — opportunity",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-51:word:opportunity:audio",
+          "transcript": "opportunity"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-51:word:opportunity:r1",
+            "targetText": "opportunity",
+            "meaningByLocale": {
+              "ru": "возможность, благоприятный случай.",
+              "uk": "можливість, сприятлива нагода."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "opportunity",
+          "definitionByLocale": {
+            "ru": "возможность, благоприятный случай.",
+            "uk": "можливість, сприятлива нагода."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-51:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с сильным впечатлением: «Это такая хорошая возможность».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с сильным впечатлением: «Это такая хорошая возможность».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is such a good opportunity.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Это такая хорошая возможность».",
+          "uk": "Скажіть із сильним враженням: «Це така добра можливість»."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "such",
+          "a",
+          "good",
+          "opportunity"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-51:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-51:i02:r1",
+          "text": "This is such a good opportunity."
+        },
+        {
+          "responseId": "en:lesson-18:session-51:i02:r2",
+          "text": "This is so a good opportunity."
+        },
+        {
+          "responseId": "en:lesson-18:session-51:i02:r3",
+          "text": "This is much a good opportunity."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-51:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-51:i02:audio",
+          "transcript": "This is such a good opportunity."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-51:i02:r1",
+            "targetText": "This is such a good opportunity.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i02:r2",
+            "targetText": "This is so a good opportunity.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i02:r3",
+            "targetText": "This is much a good opportunity.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-51:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is such a good opportunity.",
+              "uk": "У записі звучить This is such a good opportunity."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is such a good opportunity.",
+              "uk": "У записі звучить This is such a good opportunity."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-51:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните качество с so или such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-51:i03:r1",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-51:i03:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-51:i03:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "This is ___ a good opportunity.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-51:i03:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i03:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i03:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Подчеркните качество с so или such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-51:i03:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.",
+              "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i03:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-51:word:attention",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — attention",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-51:word:attention:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — attention",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-51:word:attention:audio",
+          "transcript": "attention"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-51:word:attention:r1",
+            "targetText": "attention",
+            "meaningByLocale": {
+              "ru": "внимание.",
+              "uk": "увага."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "attention",
+          "definitionByLocale": {
+            "ru": "внимание.",
+            "uk": "увага."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-51:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с сильным впечатлением: «Это требует такого внимательного отношения».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с сильным впечатлением: «Это требует такого внимательного отношения».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This needs such careful attention.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Это требует такого внимательного отношения».",
+          "uk": "Скажіть із сильним враженням: «Це потребує такої пильної уваги»."
+        },
+        "orderedTokens": [
+          "This",
+          "needs",
+          "such",
+          "careful",
+          "attention"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-51:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-51:i05:r1",
+          "text": "This needs such careful attention."
+        },
+        {
+          "responseId": "en:lesson-18:session-51:i05:r2",
+          "text": "This needs so careful attention."
+        },
+        {
+          "responseId": "en:lesson-18:session-51:i05:r3",
+          "text": "This needs much careful attention."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-51:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-51:i05:audio",
+          "transcript": "This needs such careful attention."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-51:i05:r1",
+            "targetText": "This needs such careful attention.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i05:r2",
+            "targetText": "This needs so careful attention.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i05:r3",
+            "targetText": "This needs much careful attention.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-51:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This needs such careful attention.",
+              "uk": "У записі звучить This needs such careful attention."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This needs such careful attention.",
+              "uk": "У записі звучить This needs such careful attention."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-51:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните качество с so или such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-51:i06:r1",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-51:i06:r2",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-51:i06:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "This needs ___ careful attention.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-51:i06:r1",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i06:r2",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i06:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Подчеркните качество с so или such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-51:i06:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "Здесь неисчисляемое значение: such без a.",
+              "uk": "Тут незлічуване значення: such без a."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i06:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-51:word:interest",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — interest",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-51:word:interest:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — interest",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-51:word:interest:audio",
+          "transcript": "interest"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-51:word:interest:r1",
+            "targetText": "interest",
+            "meaningByLocale": {
+              "ru": "интерес.",
+              "uk": "інтерес."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "interest",
+          "definitionByLocale": {
+            "ru": "интерес.",
+            "uk": "інтерес."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-51:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с сильным впечатлением: «Вашему интересу так рады».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с сильным впечатлением: «Вашему интересу так рады».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Your interest is so welcome.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Вашему интересу так рады».",
+          "uk": "Скажіть із сильним враженням: «Вашому інтересу так раді»."
+        },
+        "orderedTokens": [
+          "Your",
+          "interest",
+          "is",
+          "so",
+          "welcome"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-51:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-51:i08:r1",
+          "text": "Your interest is so welcome."
+        },
+        {
+          "responseId": "en:lesson-18:session-51:i08:r2",
+          "text": "Your interest is such welcome."
+        },
+        {
+          "responseId": "en:lesson-18:session-51:i08:r3",
+          "text": "Your interest is much welcome."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-51:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-51:i08:audio",
+          "transcript": "Your interest is so welcome."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-51:i08:r1",
+            "targetText": "Your interest is so welcome.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i08:r2",
+            "targetText": "Your interest is such welcome.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i08:r3",
+            "targetText": "Your interest is much welcome.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-51:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your interest is so welcome.",
+              "uk": "У записі звучить Your interest is so welcome."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your interest is so welcome.",
+              "uk": "У записі звучить Your interest is so welcome."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-51:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните качество с so или such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-51:i09:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-51:i09:r2",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-51:i09:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "Your interest is ___ welcome.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-51:i09:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i09:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i09:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Подчеркните качество с so или such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-51:i09:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска прилагательное без существительного: so.",
+              "uk": "Після пропуску прикметник без іменника: so."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i09:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-51:word:opinion",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — opinion",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-51:word:opinion:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — opinion",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-51:word:opinion:audio",
+          "transcript": "opinion"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-51:word:opinion:r1",
+            "targetText": "opinion",
+            "meaningByLocale": {
+              "ru": "мнение.",
+              "uk": "думка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "opinion",
+          "definitionByLocale": {
+            "ru": "мнение.",
+            "uk": "думка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-51:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите с сильным впечатлением: «Ваше мнение так полезно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите с сильным впечатлением: «Ваше мнение так полезно».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Your opinion is so useful.",
+        "localizedMeaning": {
+          "ru": "Скажите с сильным впечатлением: «Ваше мнение так полезно».",
+          "uk": "Скажіть із сильним враженням: «Ваша думка така корисна»."
+        },
+        "orderedTokens": [
+          "Your",
+          "opinion",
+          "is",
+          "so",
+          "useful"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-51:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-51:i11:r1",
+          "text": "Your opinion is so useful."
+        },
+        {
+          "responseId": "en:lesson-18:session-51:i11:r2",
+          "text": "Your opinion is such useful."
+        },
+        {
+          "responseId": "en:lesson-18:session-51:i11:r3",
+          "text": "Your opinion is much useful."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-51:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-51:i11:audio",
+          "transcript": "Your opinion is so useful."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-51:i11:r1",
+            "targetText": "Your opinion is so useful.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i11:r2",
+            "targetText": "Your opinion is such useful.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i11:r3",
+            "targetText": "Your opinion is much useful.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-51:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your opinion is so useful.",
+              "uk": "У записі звучить Your opinion is so useful."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Your opinion is so useful.",
+              "uk": "У записі звучить Your opinion is so useful."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-51:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подчеркните качество с so или such.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-51:i12:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-18:session-51:i12:r2",
+          "text": "such"
+        },
+        {
+          "responseId": "en:lesson-18:session-51:i12:r3",
+          "text": "much"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подчеркните качество с so или such.",
+          "uk": "Підкресліть якість із so або such."
+        },
+        "gappedTargetPhrase": "Your opinion is ___ useful.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-51:i12:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i12:r2",
+            "text": "such"
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i12:r3",
+            "text": "much"
+          }
+        ],
+        "testedDimension": "Подчеркните качество с so или such.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-51:i12:r2",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "После пропуска прилагательное без существительного: so.",
+              "uk": "Після пропуску прикметник без іменника: so."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-51:i12:r3",
+            "correct": false,
+            "testedDimension": "Подчеркните качество с so или such.",
+            "feedbackByLocale": {
+              "ru": "Здесь much не подходит перед этой группой слов.",
+              "uk": "Тут much не підходить перед цією групою слів."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-51:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-51:i13:p1",
+            "target": "opportunity",
+            "meaningByLocale": {
+              "ru": "возможность, благоприятный случай",
+              "uk": "можливість, сприятлива нагода"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-51:i13:p2",
+            "target": "attention",
+            "meaningByLocale": {
+              "ru": "внимание",
+              "uk": "увага"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-51:i13:p3",
+            "target": "interest",
+            "meaningByLocale": {
+              "ru": "интерес",
+              "uk": "інтерес"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-51:i13:p4",
+            "target": "opinion",
+            "meaningByLocale": {
+              "ru": "мнение",
+              "uk": "думка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "opportunity",
+          "attention",
+          "interest",
+          "opinion"
+        ],
+        "rightColumn": [
+          "возможность, благоприятный случай",
+          "внимание",
+          "интерес",
+          "мнение"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-51:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное намерение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-51:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное намерение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-51:i14:audio",
+          "transcript": "We are going to discuss this opportunity."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to discuss this opportunity.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "discuss",
+          "this",
+          "opportunity"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-51:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанный согласованный план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-51:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанный согласованный план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-51:i15:audio",
+          "transcript": "We are meeting our teacher tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting our teacher tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "our",
+          "teacher",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-51:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: сравните два варианта",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-51:i16:audio"
+      ],
+      "accessibilityLabel": "Повторение: сравните два варианта",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-51:i16:audio",
+          "transcript": "This room is quieter than that one."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This room is quieter than that one.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-51:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: назовите количество",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-51:i17:audio"
+      ],
+      "accessibilityLabel": "Повторение: назовите количество",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-51:i17:audio",
+          "transcript": "We need two bags of rice."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two bags of rice.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "bebbb89e5f72b6ccce4b8a5a2f8d5454c107dce913b9ac312ef8fbe31095e5a7"
+}

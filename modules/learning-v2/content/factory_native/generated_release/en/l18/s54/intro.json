@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-18:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "so + adjective; such + noun phrase",
+    "uk": "so + adjective; such + noun phrase"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-18:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сильное впечатление",
+        "uk": "Сильне враження"
+      },
+      "bodyByLocale": {
+        "ru": "energy — энергия, силы. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
+        "uk": "energy — енергія, сили. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-54:intro1:r1",
+              "text": "You have such great energy."
+            },
+            {
+              "responseId": "en:lesson-18:session-54:intro1:r2",
+              "text": "You have so great energy."
+            },
+            {
+              "responseId": "en:lesson-18:session-54:intro1:r3",
+              "text": "You have such a great energy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-54:intro1:r1",
+              "text": "You have such great energy."
+            },
+            {
+              "responseId": "en:lesson-18:session-54:intro1:r2",
+              "text": "You have so great energy."
+            },
+            {
+              "responseId": "en:lesson-18:session-54:intro1:r3",
+              "text": "You have such a great energy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-18:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Как построить фразу",
+        "uk": "Як побудувати фразу"
+      },
+      "bodyByLocale": {
+        "ru": "strength — сила. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
+        "uk": "strength — сила. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-54:intro2:r1",
+              "text": "Your strength is so useful."
+            },
+            {
+              "responseId": "en:lesson-18:session-54:intro2:r2",
+              "text": "Your strength is such useful."
+            },
+            {
+              "responseId": "en:lesson-18:session-54:intro2:r3",
+              "text": "Your strength is much useful."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-54:intro2:r1",
+              "text": "Your strength is so useful."
+            },
+            {
+              "responseId": "en:lesson-18:session-54:intro2:r2",
+              "text": "Your strength is such useful."
+            },
+            {
+              "responseId": "en:lesson-18:session-54:intro2:r3",
+              "text": "Your strength is much useful."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-18:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подчеркнуть впечатление",
+        "uk": "Підкреслити враження"
+      },
+      "bodyByLocale": {
+        "ru": "fitness — физическая форма. motivation — мотивация, желание действовать. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
+        "uk": "fitness — фізична форма. motivation — мотивація, бажання діяти. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-54:intro3:r1",
+              "text": "Motivation is so important."
+            },
+            {
+              "responseId": "en:lesson-18:session-54:intro3:r2",
+              "text": "Motivation is such important."
+            },
+            {
+              "responseId": "en:lesson-18:session-54:intro3:r3",
+              "text": "Motivation is much important."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-54:intro3:r1",
+              "text": "Motivation is so important."
+            },
+            {
+              "responseId": "en:lesson-18:session-54:intro3:r2",
+              "text": "Motivation is such important."
+            },
+            {
+              "responseId": "en:lesson-18:session-54:intro3:r3",
+              "text": "Motivation is much important."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4cd7f4df6a5ae6acdf568737965a75fa0b197f0f564b8f3fbde3312fa421e1da"
+}

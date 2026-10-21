@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-18:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "the + superlative adjective",
+    "uk": "the + superlative adjective"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-18:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выделить вариант 1",
+        "uk": "Виділити варіант 1"
+      },
+      "bodyByLocale": {
+        "ru": "local shop — магазин рядом с домом, местный магазин. online shop — интернет-магазин. Вы сравнили три варианта. Назовите один из них со значением «самый». Перед формой на -est в этой конструкции ставим the. У слов на -e добавляется -st: large → largest, wide → widest. Речь только об этой группе вариантов.",
+        "uk": "local shop — магазин поруч із домом, місцевий магазин. online shop — інтернет-магазин. Ви порівняли три варіанти. Назвіть один із них зі значенням «най-». Перед формою на -est у цій конструкції ставимо the. До слів на -e додається -st: large → largest, wide → widest. Ідеться лише про цю групу варіантів."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-10:intro1:r1",
+              "text": "This local shop is the nearest."
+            },
+            {
+              "responseId": "en:lesson-18:session-10:intro1:r2",
+              "text": "This local shop is nearest."
+            },
+            {
+              "responseId": "en:lesson-18:session-10:intro1:r3",
+              "text": "This local shop is the nearer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-10:intro1:r1",
+              "text": "This local shop is the nearest."
+            },
+            {
+              "responseId": "en:lesson-18:session-10:intro1:r2",
+              "text": "This local shop is nearest."
+            },
+            {
+              "responseId": "en:lesson-18:session-10:intro1:r3",
+              "text": "This local shop is the nearer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-18:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Выделить вариант 2",
+        "uk": "Виділити варіант 2"
+      },
+      "bodyByLocale": {
+        "ru": "chain store — магазин торговой сети. Вы сравнили три варианта. Назовите один из них со значением «самый». Перед формой на -est в этой конструкции ставим the. У слов на -e добавляется -st: large → largest, wide → widest. Речь только об этой группе вариантов.",
+        "uk": "chain store — магазин торговельної мережі. Ви порівняли три варіанти. Назвіть один із них зі значенням «най-». Перед формою на -est у цій конструкції ставимо the. До слів на -e додається -st: large → largest, wide → widest. Ідеться лише про цю групу варіантів."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-10:intro2:r1",
+              "text": "This chain store is the largest."
+            },
+            {
+              "responseId": "en:lesson-18:session-10:intro2:r2",
+              "text": "This chain store is largest."
+            },
+            {
+              "responseId": "en:lesson-18:session-10:intro2:r3",
+              "text": "This chain store is the larger."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-10:intro2:r1",
+              "text": "This chain store is the largest."
+            },
+            {
+              "responseId": "en:lesson-18:session-10:intro2:r2",
+              "text": "This chain store is largest."
+            },
+            {
+              "responseId": "en:lesson-18:session-10:intro2:r3",
+              "text": "This chain store is the larger."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-18:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Выделить вариант 3",
+        "uk": "Виділити варіант 3"
+      },
+      "bodyByLocale": {
+        "ru": "repair shop — ремонтная мастерская. Вы сравнили три варианта. Назовите один из них со значением «самый». Перед формой на -est в этой конструкции ставим the. У слов на -e добавляется -st: large → largest, wide → widest. Речь только об этой группе вариантов.",
+        "uk": "repair shop — ремонтна майстерня. Ви порівняли три варіанти. Назвіть один із них зі значенням «най-». Перед формою на -est у цій конструкції ставимо the. До слів на -e додається -st: large → largest, wide → widest. Ідеться лише про цю групу варіантів."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-10:intro3:r1",
+              "text": "This repair shop is the oldest."
+            },
+            {
+              "responseId": "en:lesson-18:session-10:intro3:r2",
+              "text": "This repair shop is oldest."
+            },
+            {
+              "responseId": "en:lesson-18:session-10:intro3:r3",
+              "text": "This repair shop is the older."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-10:intro3:r1",
+              "text": "This repair shop is the oldest."
+            },
+            {
+              "responseId": "en:lesson-18:session-10:intro3:r2",
+              "text": "This repair shop is oldest."
+            },
+            {
+              "responseId": "en:lesson-18:session-10:intro3:r3",
+              "text": "This repair shop is the older."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d52494022ea98a45ce4160286258040dc164ff161ad24e7ad4c9ada66e56d848"
+}

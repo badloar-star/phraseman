@@ -1,0 +1,1131 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-12",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-12:word:fresh-fruit",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fresh fruit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-12:word:fresh-fruit:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fresh fruit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-12:word:fresh-fruit:audio",
+          "transcript": "fresh fruit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-12:word:fresh-fruit:r1",
+            "targetText": "fresh fruit",
+            "meaningByLocale": {
+              "ru": "свежие фрукты.",
+              "uk": "свіжі фрукти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fresh fruit",
+          "definitionByLocale": {
+            "ru": "свежие фрукты.",
+            "uk": "свіжі фрукти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-12:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "З усіх трьох. Скажіть: «Свіжі фрукти — найдешевший перекус тут».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З усіх трьох. Скажіть: «Свіжі фрукти — найдешевший перекус тут».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The fresh fruit is the cheapest snack here.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Свежие фрукты — самый дешёвый перекус здесь».",
+          "uk": "З усіх трьох. Скажіть: «Свіжі фрукти — найдешевший перекус тут»."
+        },
+        "orderedTokens": [
+          "The",
+          "fresh",
+          "fruit",
+          "is",
+          "the",
+          "cheapest",
+          "snack",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-12:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-12:i02:r1",
+          "text": "The fresh fruit is the cheapest snack here."
+        },
+        {
+          "responseId": "en:lesson-18:session-12:i02:r2",
+          "text": "The fresh fruit is cheapest snack here."
+        },
+        {
+          "responseId": "en:lesson-18:session-12:i02:r3",
+          "text": "The fresh fruit is the cheaper snack here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-12:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-12:i02:audio",
+          "transcript": "The fresh fruit is the cheapest snack here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-12:i02:r1",
+            "targetText": "The fresh fruit is the cheapest snack here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i02:r2",
+            "targetText": "The fresh fruit is cheapest snack here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i02:r3",
+            "targetText": "The fresh fruit is the cheaper snack here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-12:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The fresh fruit is the cheapest snack here.",
+              "uk": "У записі звучить The fresh fruit is the cheapest snack here."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The fresh fruit is the cheapest snack here.",
+              "uk": "У записі звучить The fresh fruit is the cheapest snack here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-12:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть значення «най-» у цій групі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-12:i03:r1",
+          "text": "the cheapest"
+        },
+        {
+          "responseId": "en:lesson-18:session-12:i03:r2",
+          "text": "cheapest"
+        },
+        {
+          "responseId": "en:lesson-18:session-12:i03:r3",
+          "text": "the cheaper"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "The fresh fruit is ___ snack here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-12:i03:r1",
+            "text": "the cheapest"
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i03:r2",
+            "text": "cheapest"
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i03:r3",
+            "text": "the cheaper"
+          }
+        ],
+        "testedDimension": "Виберіть значення «най-» у цій групі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-12:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма cheapest.",
+              "uk": "Для всієї групи потрібна форма cheapest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-12:word:dried-fruit",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dried fruit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-12:word:dried-fruit:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dried fruit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-12:word:dried-fruit:audio",
+          "transcript": "dried fruit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-12:word:dried-fruit:r1",
+            "targetText": "dried fruit",
+            "meaningByLocale": {
+              "ru": "сухофрукты.",
+              "uk": "сухофрукти."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dried fruit",
+          "definitionByLocale": {
+            "ru": "сухофрукты.",
+            "uk": "сухофрукти."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-12:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "З усіх трьох. Скажіть: «Сухофрукти — найсолодший перекус тут».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З усіх трьох. Скажіть: «Сухофрукти — найсолодший перекус тут».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The dried fruit is the sweetest snack here.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Сухофрукты — самый сладкий перекус здесь».",
+          "uk": "З усіх трьох. Скажіть: «Сухофрукти — найсолодший перекус тут»."
+        },
+        "orderedTokens": [
+          "The",
+          "dried",
+          "fruit",
+          "is",
+          "the",
+          "sweetest",
+          "snack",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-12:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-12:i05:r1",
+          "text": "The dried fruit is the sweetest snack here."
+        },
+        {
+          "responseId": "en:lesson-18:session-12:i05:r2",
+          "text": "The dried fruit is sweetest snack here."
+        },
+        {
+          "responseId": "en:lesson-18:session-12:i05:r3",
+          "text": "The dried fruit is the sweeter snack here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-12:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-12:i05:audio",
+          "transcript": "The dried fruit is the sweetest snack here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-12:i05:r1",
+            "targetText": "The dried fruit is the sweetest snack here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i05:r2",
+            "targetText": "The dried fruit is sweetest snack here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i05:r3",
+            "targetText": "The dried fruit is the sweeter snack here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-12:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The dried fruit is the sweetest snack here.",
+              "uk": "У записі звучить The dried fruit is the sweetest snack here."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The dried fruit is the sweetest snack here.",
+              "uk": "У записі звучить The dried fruit is the sweetest snack here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-12:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть значення «най-» у цій групі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-12:i06:r1",
+          "text": "the sweetest"
+        },
+        {
+          "responseId": "en:lesson-18:session-12:i06:r2",
+          "text": "sweetest"
+        },
+        {
+          "responseId": "en:lesson-18:session-12:i06:r3",
+          "text": "the sweeter"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "The dried fruit is ___ snack here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-12:i06:r1",
+            "text": "the sweetest"
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i06:r2",
+            "text": "sweetest"
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i06:r3",
+            "text": "the sweeter"
+          }
+        ],
+        "testedDimension": "Виберіть значення «най-» у цій групі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-12:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма sweetest.",
+              "uk": "Для всієї групи потрібна форма sweetest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-12:word:mixed-nuts",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mixed nuts",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-12:word:mixed-nuts:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mixed nuts",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-12:word:mixed-nuts:audio",
+          "transcript": "mixed nuts"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-12:word:mixed-nuts:r1",
+            "targetText": "mixed nuts",
+            "meaningByLocale": {
+              "ru": "смесь орехов.",
+              "uk": "суміш горіхів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mixed nuts",
+          "definitionByLocale": {
+            "ru": "смесь орехов.",
+            "uk": "суміш горіхів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-12:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "З усіх трьох. Скажіть: «Цей пакет суміші горіхів найбільший».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З усіх трьох. Скажіть: «Цей пакет суміші горіхів найбільший».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This bag of mixed nuts is the largest.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Этот пакет смеси орехов самый большой».",
+          "uk": "З усіх трьох. Скажіть: «Цей пакет суміші горіхів найбільший»."
+        },
+        "orderedTokens": [
+          "This",
+          "bag",
+          "of",
+          "mixed",
+          "nuts",
+          "is",
+          "the",
+          "largest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-12:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-12:i08:r1",
+          "text": "This bag of mixed nuts is the largest."
+        },
+        {
+          "responseId": "en:lesson-18:session-12:i08:r2",
+          "text": "This bag of mixed nuts is largest."
+        },
+        {
+          "responseId": "en:lesson-18:session-12:i08:r3",
+          "text": "This bag of mixed nuts is the larger."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-12:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-12:i08:audio",
+          "transcript": "This bag of mixed nuts is the largest."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-12:i08:r1",
+            "targetText": "This bag of mixed nuts is the largest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i08:r2",
+            "targetText": "This bag of mixed nuts is largest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i08:r3",
+            "targetText": "This bag of mixed nuts is the larger.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-12:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This bag of mixed nuts is the largest.",
+              "uk": "У записі звучить This bag of mixed nuts is the largest."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This bag of mixed nuts is the largest.",
+              "uk": "У записі звучить This bag of mixed nuts is the largest."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-12:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть значення «най-» у цій групі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-12:i09:r1",
+          "text": "the largest"
+        },
+        {
+          "responseId": "en:lesson-18:session-12:i09:r2",
+          "text": "largest"
+        },
+        {
+          "responseId": "en:lesson-18:session-12:i09:r3",
+          "text": "the larger"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "This bag of mixed nuts is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-12:i09:r1",
+            "text": "the largest"
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i09:r2",
+            "text": "largest"
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i09:r3",
+            "text": "the larger"
+          }
+        ],
+        "testedDimension": "Виберіть значення «най-» у цій групі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-12:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма largest.",
+              "uk": "Для всієї групи потрібна форма largest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-12:word:plain-yoghurt",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — plain yoghurt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-12:word:plain-yoghurt:audio"
+      ],
+      "accessibilityLabel": "Картка слова — plain yoghurt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-12:word:plain-yoghurt:audio",
+          "transcript": "plain yoghurt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-12:word:plain-yoghurt:r1",
+            "targetText": "plain yoghurt",
+            "meaningByLocale": {
+              "ru": "йогурт без вкусовых добавок.",
+              "uk": "йогурт без смакових добавок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "plain yoghurt",
+          "definitionByLocale": {
+            "ru": "йогурт без вкусовых добавок.",
+            "uk": "йогурт без смакових добавок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-12:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "З усіх трьох. Скажіть: «Йогурт без добавок — найдешевший варіант».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З усіх трьох. Скажіть: «Йогурт без добавок — найдешевший варіант».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The plain yoghurt is the cheapest option.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Йогурт без добавок — самый дешёвый вариант».",
+          "uk": "З усіх трьох. Скажіть: «Йогурт без добавок — найдешевший варіант»."
+        },
+        "orderedTokens": [
+          "The",
+          "plain",
+          "yoghurt",
+          "is",
+          "the",
+          "cheapest",
+          "option"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-12:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-12:i11:r1",
+          "text": "The plain yoghurt is the cheapest option."
+        },
+        {
+          "responseId": "en:lesson-18:session-12:i11:r2",
+          "text": "The plain yoghurt is cheapest option."
+        },
+        {
+          "responseId": "en:lesson-18:session-12:i11:r3",
+          "text": "The plain yoghurt is the cheaper option."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-12:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-12:i11:audio",
+          "transcript": "The plain yoghurt is the cheapest option."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-12:i11:r1",
+            "targetText": "The plain yoghurt is the cheapest option.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i11:r2",
+            "targetText": "The plain yoghurt is cheapest option.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i11:r3",
+            "targetText": "The plain yoghurt is the cheaper option.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-12:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The plain yoghurt is the cheapest option.",
+              "uk": "У записі звучить The plain yoghurt is the cheapest option."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The plain yoghurt is the cheapest option.",
+              "uk": "У записі звучить The plain yoghurt is the cheapest option."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-12:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть значення «най-» у цій групі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-12:i12:r1",
+          "text": "the cheapest"
+        },
+        {
+          "responseId": "en:lesson-18:session-12:i12:r2",
+          "text": "cheapest"
+        },
+        {
+          "responseId": "en:lesson-18:session-12:i12:r3",
+          "text": "the cheaper"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "The plain yoghurt is ___ option.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-12:i12:r1",
+            "text": "the cheapest"
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i12:r2",
+            "text": "cheapest"
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i12:r3",
+            "text": "the cheaper"
+          }
+        ],
+        "testedDimension": "Виберіть значення «най-» у цій групі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-12:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-12:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма cheapest.",
+              "uk": "Для всієї групи потрібна форма cheapest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-12:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-12:i13:p1",
+            "target": "fresh fruit",
+            "meaningByLocale": {
+              "ru": "свежие фрукты",
+              "uk": "свіжі фрукти"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-12:i13:p2",
+            "target": "dried fruit",
+            "meaningByLocale": {
+              "ru": "сухофрукты",
+              "uk": "сухофрукти"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-12:i13:p3",
+            "target": "mixed nuts",
+            "meaningByLocale": {
+              "ru": "смесь орехов",
+              "uk": "суміш горіхів"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-12:i13:p4",
+            "target": "plain yoghurt",
+            "meaningByLocale": {
+              "ru": "йогурт без вкусовых добавок",
+              "uk": "йогурт без смакових добавок"
+            }
+          }
+        ],
+        "leftColumn": [
+          "fresh fruit",
+          "dried fruit",
+          "mixed nuts",
+          "plain yoghurt"
+        ],
+        "rightColumn": [
+          "свіжі фрукти",
+          "сухофрукти",
+          "суміш горіхів",
+          "йогурт без смакових добавок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-12:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-12:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-12:i14:audio",
+          "transcript": "We are going to buy fresh fruit."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to buy fresh fruit.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "buy",
+          "fresh",
+          "fruit"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-12:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий узгоджений план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-12:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий узгоджений план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-12:i15:audio",
+          "transcript": "We are meeting at the food market tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting at the food market tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "at",
+          "the",
+          "food",
+          "market",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-12:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: порівняйте два варіанти",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-12:i16:audio"
+      ],
+      "accessibilityLabel": "Повторення: порівняйте два варіанти",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-12:i16:audio",
+          "transcript": "The dried fruit is sweeter than the plain yoghurt."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The dried fruit is sweeter than the plain yoghurt.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-12:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: назвіть дві пляшки води",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-12:i17:audio"
+      ],
+      "accessibilityLabel": "Повторення: назвіть дві пляшки води",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-12:i17:audio",
+          "transcript": "We need two bottles of water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two bottles of water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "51f595eac610392b165c60eb3bfd7e70f3bc1f0f41b814e008632cdfb25dc670"
+}

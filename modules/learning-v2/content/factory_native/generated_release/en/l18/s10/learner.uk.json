@@ -1,0 +1,1126 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-10",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-10:word:local-shop",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — local shop",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-10:word:local-shop:audio"
+      ],
+      "accessibilityLabel": "Картка слова — local shop",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-10:word:local-shop:audio",
+          "transcript": "local shop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-10:word:local-shop:r1",
+            "targetText": "local shop",
+            "meaningByLocale": {
+              "ru": "магазин рядом с домом, местный магазин.",
+              "uk": "магазин поруч із домом, місцевий магазин."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "local shop",
+          "definitionByLocale": {
+            "ru": "магазин рядом с домом, местный магазин.",
+            "uk": "магазин поруч із домом, місцевий магазин."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-10:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "З усіх трьох. Скажіть: «Цей місцевий магазин найближчий».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З усіх трьох. Скажіть: «Цей місцевий магазин найближчий».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This local shop is the nearest.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Этот местный магазин ближе всех».",
+          "uk": "З усіх трьох. Скажіть: «Цей місцевий магазин найближчий»."
+        },
+        "orderedTokens": [
+          "This",
+          "local",
+          "shop",
+          "is",
+          "the",
+          "nearest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-10:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-10:i02:r1",
+          "text": "This local shop is the nearest."
+        },
+        {
+          "responseId": "en:lesson-18:session-10:i02:r2",
+          "text": "This local shop is nearest."
+        },
+        {
+          "responseId": "en:lesson-18:session-10:i02:r3",
+          "text": "This local shop is the nearer."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-10:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-10:i02:audio",
+          "transcript": "This local shop is the nearest."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-10:i02:r1",
+            "targetText": "This local shop is the nearest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i02:r2",
+            "targetText": "This local shop is nearest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i02:r3",
+            "targetText": "This local shop is the nearer.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-10:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This local shop is the nearest.",
+              "uk": "У записі звучить This local shop is the nearest."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This local shop is the nearest.",
+              "uk": "У записі звучить This local shop is the nearest."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-10:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть значення «най-» у цій групі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-10:i03:r1",
+          "text": "the nearest"
+        },
+        {
+          "responseId": "en:lesson-18:session-10:i03:r2",
+          "text": "nearest"
+        },
+        {
+          "responseId": "en:lesson-18:session-10:i03:r3",
+          "text": "the nearer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "This local shop is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-10:i03:r1",
+            "text": "the nearest"
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i03:r2",
+            "text": "nearest"
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i03:r3",
+            "text": "the nearer"
+          }
+        ],
+        "testedDimension": "Виберіть значення «най-» у цій групі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-10:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма nearest.",
+              "uk": "Для всієї групи потрібна форма nearest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-10:word:online-shop",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — online shop",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-10:word:online-shop:audio"
+      ],
+      "accessibilityLabel": "Картка слова — online shop",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-10:word:online-shop:audio",
+          "transcript": "online shop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-10:word:online-shop:r1",
+            "targetText": "online shop",
+            "meaningByLocale": {
+              "ru": "интернет-магазин.",
+              "uk": "інтернет-магазин."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "online shop",
+          "definitionByLocale": {
+            "ru": "интернет-магазин.",
+            "uk": "інтернет-магазин."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-10:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "З усіх трьох. Скажіть: «Цей інтернет-магазин — найдешевший варіант».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З усіх трьох. Скажіть: «Цей інтернет-магазин — найдешевший варіант».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This online shop is the cheapest option.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Этот интернет-магазин — самый дешёвый вариант».",
+          "uk": "З усіх трьох. Скажіть: «Цей інтернет-магазин — найдешевший варіант»."
+        },
+        "orderedTokens": [
+          "This",
+          "online",
+          "shop",
+          "is",
+          "the",
+          "cheapest",
+          "option"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-10:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-10:i05:r1",
+          "text": "This online shop is the cheapest option."
+        },
+        {
+          "responseId": "en:lesson-18:session-10:i05:r2",
+          "text": "This online shop is cheapest option."
+        },
+        {
+          "responseId": "en:lesson-18:session-10:i05:r3",
+          "text": "This online shop is the cheaper option."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-10:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-10:i05:audio",
+          "transcript": "This online shop is the cheapest option."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-10:i05:r1",
+            "targetText": "This online shop is the cheapest option.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i05:r2",
+            "targetText": "This online shop is cheapest option.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i05:r3",
+            "targetText": "This online shop is the cheaper option.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-10:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This online shop is the cheapest option.",
+              "uk": "У записі звучить This online shop is the cheapest option."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This online shop is the cheapest option.",
+              "uk": "У записі звучить This online shop is the cheapest option."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-10:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть значення «най-» у цій групі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-10:i06:r1",
+          "text": "the cheapest"
+        },
+        {
+          "responseId": "en:lesson-18:session-10:i06:r2",
+          "text": "cheapest"
+        },
+        {
+          "responseId": "en:lesson-18:session-10:i06:r3",
+          "text": "the cheaper"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "This online shop is ___ option.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-10:i06:r1",
+            "text": "the cheapest"
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i06:r2",
+            "text": "cheapest"
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i06:r3",
+            "text": "the cheaper"
+          }
+        ],
+        "testedDimension": "Виберіть значення «най-» у цій групі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-10:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма cheapest.",
+              "uk": "Для всієї групи потрібна форма cheapest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-10:word:chain-store",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — chain store",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-10:word:chain-store:audio"
+      ],
+      "accessibilityLabel": "Картка слова — chain store",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-10:word:chain-store:audio",
+          "transcript": "chain store"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-10:word:chain-store:r1",
+            "targetText": "chain store",
+            "meaningByLocale": {
+              "ru": "магазин торговой сети.",
+              "uk": "магазин торговельної мережі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chain store",
+          "definitionByLocale": {
+            "ru": "магазин торговой сети.",
+            "uk": "магазин торговельної мережі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-10:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "З усіх трьох. Скажіть: «Цей магазин торговельної мережі найбільший».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З усіх трьох. Скажіть: «Цей магазин торговельної мережі найбільший».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This chain store is the largest.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Этот магазин торговой сети самый большой».",
+          "uk": "З усіх трьох. Скажіть: «Цей магазин торговельної мережі найбільший»."
+        },
+        "orderedTokens": [
+          "This",
+          "chain",
+          "store",
+          "is",
+          "the",
+          "largest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-10:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-10:i08:r1",
+          "text": "This chain store is the largest."
+        },
+        {
+          "responseId": "en:lesson-18:session-10:i08:r2",
+          "text": "This chain store is largest."
+        },
+        {
+          "responseId": "en:lesson-18:session-10:i08:r3",
+          "text": "This chain store is the larger."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-10:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-10:i08:audio",
+          "transcript": "This chain store is the largest."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-10:i08:r1",
+            "targetText": "This chain store is the largest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i08:r2",
+            "targetText": "This chain store is largest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i08:r3",
+            "targetText": "This chain store is the larger.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-10:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This chain store is the largest.",
+              "uk": "У записі звучить This chain store is the largest."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This chain store is the largest.",
+              "uk": "У записі звучить This chain store is the largest."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-10:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть значення «най-» у цій групі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-10:i09:r1",
+          "text": "the largest"
+        },
+        {
+          "responseId": "en:lesson-18:session-10:i09:r2",
+          "text": "largest"
+        },
+        {
+          "responseId": "en:lesson-18:session-10:i09:r3",
+          "text": "the larger"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "This chain store is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-10:i09:r1",
+            "text": "the largest"
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i09:r2",
+            "text": "largest"
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i09:r3",
+            "text": "the larger"
+          }
+        ],
+        "testedDimension": "Виберіть значення «най-» у цій групі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-10:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма largest.",
+              "uk": "Для всієї групи потрібна форма largest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-10:word:repair-shop",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — repair shop",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-10:word:repair-shop:audio"
+      ],
+      "accessibilityLabel": "Картка слова — repair shop",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-10:word:repair-shop:audio",
+          "transcript": "repair shop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-10:word:repair-shop:r1",
+            "targetText": "repair shop",
+            "meaningByLocale": {
+              "ru": "ремонтная мастерская.",
+              "uk": "ремонтна майстерня."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "repair shop",
+          "definitionByLocale": {
+            "ru": "ремонтная мастерская.",
+            "uk": "ремонтна майстерня."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-10:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "З усіх трьох. Скажіть: «Ця ремонтна майстерня найстаріша».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З усіх трьох. Скажіть: «Ця ремонтна майстерня найстаріша».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This repair shop is the oldest.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Эта ремонтная мастерская самая старая».",
+          "uk": "З усіх трьох. Скажіть: «Ця ремонтна майстерня найстаріша»."
+        },
+        "orderedTokens": [
+          "This",
+          "repair",
+          "shop",
+          "is",
+          "the",
+          "oldest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-10:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-10:i11:r1",
+          "text": "This repair shop is the oldest."
+        },
+        {
+          "responseId": "en:lesson-18:session-10:i11:r2",
+          "text": "This repair shop is oldest."
+        },
+        {
+          "responseId": "en:lesson-18:session-10:i11:r3",
+          "text": "This repair shop is the older."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-10:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-10:i11:audio",
+          "transcript": "This repair shop is the oldest."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-10:i11:r1",
+            "targetText": "This repair shop is the oldest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i11:r2",
+            "targetText": "This repair shop is oldest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i11:r3",
+            "targetText": "This repair shop is the older.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-10:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This repair shop is the oldest.",
+              "uk": "У записі звучить This repair shop is the oldest."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This repair shop is the oldest.",
+              "uk": "У записі звучить This repair shop is the oldest."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-10:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть значення «най-» у цій групі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-10:i12:r1",
+          "text": "the oldest"
+        },
+        {
+          "responseId": "en:lesson-18:session-10:i12:r2",
+          "text": "oldest"
+        },
+        {
+          "responseId": "en:lesson-18:session-10:i12:r3",
+          "text": "the older"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "This repair shop is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-10:i12:r1",
+            "text": "the oldest"
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i12:r2",
+            "text": "oldest"
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i12:r3",
+            "text": "the older"
+          }
+        ],
+        "testedDimension": "Виберіть значення «най-» у цій групі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-10:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-10:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма oldest.",
+              "uk": "Для всієї групи потрібна форма oldest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-10:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-10:i13:p1",
+            "target": "local shop",
+            "meaningByLocale": {
+              "ru": "магазин рядом с домом, местный магазин",
+              "uk": "магазин поруч із домом, місцевий магазин"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-10:i13:p2",
+            "target": "online shop",
+            "meaningByLocale": {
+              "ru": "интернет-магазин",
+              "uk": "інтернет-магазин"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-10:i13:p3",
+            "target": "chain store",
+            "meaningByLocale": {
+              "ru": "магазин торговой сети",
+              "uk": "магазин торговельної мережі"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-10:i13:p4",
+            "target": "repair shop",
+            "meaningByLocale": {
+              "ru": "ремонтная мастерская",
+              "uk": "ремонтна майстерня"
+            }
+          }
+        ],
+        "leftColumn": [
+          "local shop",
+          "online shop",
+          "chain store",
+          "repair shop"
+        ],
+        "rightColumn": [
+          "магазин поруч із домом, місцевий магазин",
+          "інтернет-магазин",
+          "магазин торговельної мережі",
+          "ремонтна майстерня"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-10:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-10:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-10:i14:audio",
+          "transcript": "We are going to visit the local shop."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to visit the local shop.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "visit",
+          "the",
+          "local",
+          "shop"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-10:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий узгоджений план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-10:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий узгоджений план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-10:i15:audio",
+          "transcript": "We are meeting at the repair shop tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting at the repair shop tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "at",
+          "the",
+          "repair",
+          "shop",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-10:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: порівняйте два варіанти",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-10:i16:audio"
+      ],
+      "accessibilityLabel": "Повторення: порівняйте два варіанти",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-10:i16:audio",
+          "transcript": "This local shop is nearer than that one."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This local shop is nearer than that one.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-10:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: назвіть дві пляшки води",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-10:i17:audio"
+      ],
+      "accessibilityLabel": "Повторення: назвіть дві пляшки води",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-10:i17:audio",
+          "transcript": "We need two bottles of water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two bottles of water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "11e9f2eabaeab753ea04f87d2c2b3c2c382c184088e788519344937138aefdcd"
+}

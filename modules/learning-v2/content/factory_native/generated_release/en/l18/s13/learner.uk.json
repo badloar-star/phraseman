@@ -1,0 +1,1125 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-13",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-13:word:school-bus",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — school bus",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-13:word:school-bus:audio"
+      ],
+      "accessibilityLabel": "Картка слова — school bus",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-13:word:school-bus:audio",
+          "transcript": "school bus"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-13:word:school-bus:r1",
+            "targetText": "school bus",
+            "meaningByLocale": {
+              "ru": "школьный автобус.",
+              "uk": "шкільний автобус."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "school bus",
+          "definitionByLocale": {
+            "ru": "школьный автобус.",
+            "uk": "шкільний автобус."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-13:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "З усіх трьох. Скажіть: «Цей шкільний автобус найстаріший».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З усіх трьох. Скажіть: «Цей шкільний автобус найстаріший».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This school bus is the oldest.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Этот школьный автобус самый старый».",
+          "uk": "З усіх трьох. Скажіть: «Цей шкільний автобус найстаріший»."
+        },
+        "orderedTokens": [
+          "This",
+          "school",
+          "bus",
+          "is",
+          "the",
+          "oldest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-13:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-13:i02:r1",
+          "text": "This school bus is the oldest."
+        },
+        {
+          "responseId": "en:lesson-18:session-13:i02:r2",
+          "text": "This school bus is oldest."
+        },
+        {
+          "responseId": "en:lesson-18:session-13:i02:r3",
+          "text": "This school bus is the older."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-13:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-13:i02:audio",
+          "transcript": "This school bus is the oldest."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-13:i02:r1",
+            "targetText": "This school bus is the oldest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i02:r2",
+            "targetText": "This school bus is oldest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i02:r3",
+            "targetText": "This school bus is the older.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-13:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This school bus is the oldest.",
+              "uk": "У записі звучить This school bus is the oldest."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This school bus is the oldest.",
+              "uk": "У записі звучить This school bus is the oldest."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-13:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть значення «най-» у цій групі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-13:i03:r1",
+          "text": "the oldest"
+        },
+        {
+          "responseId": "en:lesson-18:session-13:i03:r2",
+          "text": "oldest"
+        },
+        {
+          "responseId": "en:lesson-18:session-13:i03:r3",
+          "text": "the older"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "This school bus is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-13:i03:r1",
+            "text": "the oldest"
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i03:r2",
+            "text": "oldest"
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i03:r3",
+            "text": "the older"
+          }
+        ],
+        "testedDimension": "Виберіть значення «най-» у цій групі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-13:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма oldest.",
+              "uk": "Для всієї групи потрібна форма oldest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-13:word:school-gate",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — school gate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-13:word:school-gate:audio"
+      ],
+      "accessibilityLabel": "Картка слова — school gate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-13:word:school-gate:audio",
+          "transcript": "school gate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-13:word:school-gate:r1",
+            "targetText": "school gate",
+            "meaningByLocale": {
+              "ru": "школьные ворота или калитка.",
+              "uk": "шкільні ворота або хвіртка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "school gate",
+          "definitionByLocale": {
+            "ru": "школьные ворота или калитка.",
+            "uk": "шкільні ворота або хвіртка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-13:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "З усіх трьох. Скажіть: «Ці шкільні ворота найширші».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З усіх трьох. Скажіть: «Ці шкільні ворота найширші».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This school gate is the widest.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Эти школьные ворота самые широкие».",
+          "uk": "З усіх трьох. Скажіть: «Ці шкільні ворота найширші»."
+        },
+        "orderedTokens": [
+          "This",
+          "school",
+          "gate",
+          "is",
+          "the",
+          "widest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-13:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-13:i05:r1",
+          "text": "This school gate is the widest."
+        },
+        {
+          "responseId": "en:lesson-18:session-13:i05:r2",
+          "text": "This school gate is widest."
+        },
+        {
+          "responseId": "en:lesson-18:session-13:i05:r3",
+          "text": "This school gate is the wider."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-13:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-13:i05:audio",
+          "transcript": "This school gate is the widest."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-13:i05:r1",
+            "targetText": "This school gate is the widest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i05:r2",
+            "targetText": "This school gate is widest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i05:r3",
+            "targetText": "This school gate is the wider.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-13:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This school gate is the widest.",
+              "uk": "У записі звучить This school gate is the widest."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This school gate is the widest.",
+              "uk": "У записі звучить This school gate is the widest."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-13:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть значення «най-» у цій групі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-13:i06:r1",
+          "text": "the widest"
+        },
+        {
+          "responseId": "en:lesson-18:session-13:i06:r2",
+          "text": "widest"
+        },
+        {
+          "responseId": "en:lesson-18:session-13:i06:r3",
+          "text": "the wider"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "This school gate is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-13:i06:r1",
+            "text": "the widest"
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i06:r2",
+            "text": "widest"
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i06:r3",
+            "text": "the wider"
+          }
+        ],
+        "testedDimension": "Виберіть значення «най-» у цій групі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-13:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма widest.",
+              "uk": "Для всієї групи потрібна форма widest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-13:word:school-entrance",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — school entrance",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-13:word:school-entrance:audio"
+      ],
+      "accessibilityLabel": "Картка слова — school entrance",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-13:word:school-entrance:audio",
+          "transcript": "school entrance"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-13:word:school-entrance:r1",
+            "targetText": "school entrance",
+            "meaningByLocale": {
+              "ru": "вход в школу.",
+              "uk": "вхід до школи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "school entrance",
+          "definitionByLocale": {
+            "ru": "вход в школу.",
+            "uk": "вхід до школи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-13:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "З усіх трьох. Скажіть: «Цей вхід до школи найбезпечніший».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З усіх трьох. Скажіть: «Цей вхід до школи найбезпечніший».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This school entrance is the safest.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Этот вход в школу самый безопасный».",
+          "uk": "З усіх трьох. Скажіть: «Цей вхід до школи найбезпечніший»."
+        },
+        "orderedTokens": [
+          "This",
+          "school",
+          "entrance",
+          "is",
+          "the",
+          "safest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-13:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-13:i08:r1",
+          "text": "This school entrance is the safest."
+        },
+        {
+          "responseId": "en:lesson-18:session-13:i08:r2",
+          "text": "This school entrance is safest."
+        },
+        {
+          "responseId": "en:lesson-18:session-13:i08:r3",
+          "text": "This school entrance is the safer."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-13:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-13:i08:audio",
+          "transcript": "This school entrance is the safest."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-13:i08:r1",
+            "targetText": "This school entrance is the safest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i08:r2",
+            "targetText": "This school entrance is safest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i08:r3",
+            "targetText": "This school entrance is the safer.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-13:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This school entrance is the safest.",
+              "uk": "У записі звучить This school entrance is the safest."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This school entrance is the safest.",
+              "uk": "У записі звучить This school entrance is the safest."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-13:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть значення «най-» у цій групі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-13:i09:r1",
+          "text": "the safest"
+        },
+        {
+          "responseId": "en:lesson-18:session-13:i09:r2",
+          "text": "safest"
+        },
+        {
+          "responseId": "en:lesson-18:session-13:i09:r3",
+          "text": "the safer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "This school entrance is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-13:i09:r1",
+            "text": "the safest"
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i09:r2",
+            "text": "safest"
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i09:r3",
+            "text": "the safer"
+          }
+        ],
+        "testedDimension": "Виберіть значення «най-» у цій групі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-13:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма safest.",
+              "uk": "Для всієї групи потрібна форма safest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-13:word:school-office",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — school office",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-13:word:school-office:audio"
+      ],
+      "accessibilityLabel": "Картка слова — school office",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-13:word:school-office:audio",
+          "transcript": "school office"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-13:word:school-office:r1",
+            "targetText": "school office",
+            "meaningByLocale": {
+              "ru": "административный кабинет школы.",
+              "uk": "адміністративний кабінет школи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "school office",
+          "definitionByLocale": {
+            "ru": "административный кабинет школы.",
+            "uk": "адміністративний кабінет школи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-13:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "З усіх трьох. Скажіть: «Цей адміністративний кабінет школи найменший».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З усіх трьох. Скажіть: «Цей адміністративний кабінет школи найменший».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This school office is the smallest.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Этот административный кабинет школы самый маленький».",
+          "uk": "З усіх трьох. Скажіть: «Цей адміністративний кабінет школи найменший»."
+        },
+        "orderedTokens": [
+          "This",
+          "school",
+          "office",
+          "is",
+          "the",
+          "smallest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-13:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-13:i11:r1",
+          "text": "This school office is the smallest."
+        },
+        {
+          "responseId": "en:lesson-18:session-13:i11:r2",
+          "text": "This school office is smallest."
+        },
+        {
+          "responseId": "en:lesson-18:session-13:i11:r3",
+          "text": "This school office is the smaller."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-13:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-13:i11:audio",
+          "transcript": "This school office is the smallest."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-13:i11:r1",
+            "targetText": "This school office is the smallest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i11:r2",
+            "targetText": "This school office is smallest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i11:r3",
+            "targetText": "This school office is the smaller.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-13:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This school office is the smallest.",
+              "uk": "У записі звучить This school office is the smallest."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This school office is the smallest.",
+              "uk": "У записі звучить This school office is the smallest."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-13:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть значення «най-» у цій групі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-13:i12:r1",
+          "text": "the smallest"
+        },
+        {
+          "responseId": "en:lesson-18:session-13:i12:r2",
+          "text": "smallest"
+        },
+        {
+          "responseId": "en:lesson-18:session-13:i12:r3",
+          "text": "the smaller"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "This school office is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-13:i12:r1",
+            "text": "the smallest"
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i12:r2",
+            "text": "smallest"
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i12:r3",
+            "text": "the smaller"
+          }
+        ],
+        "testedDimension": "Виберіть значення «най-» у цій групі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-13:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-13:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма smallest.",
+              "uk": "Для всієї групи потрібна форма smallest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-13:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-13:i13:p1",
+            "target": "school bus",
+            "meaningByLocale": {
+              "ru": "школьный автобус",
+              "uk": "шкільний автобус"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-13:i13:p2",
+            "target": "school gate",
+            "meaningByLocale": {
+              "ru": "школьные ворота или калитка",
+              "uk": "шкільні ворота або хвіртка"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-13:i13:p3",
+            "target": "school entrance",
+            "meaningByLocale": {
+              "ru": "вход в школу",
+              "uk": "вхід до школи"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-13:i13:p4",
+            "target": "school office",
+            "meaningByLocale": {
+              "ru": "административный кабинет школы",
+              "uk": "адміністративний кабінет школи"
+            }
+          }
+        ],
+        "leftColumn": [
+          "school bus",
+          "school gate",
+          "school entrance",
+          "school office"
+        ],
+        "rightColumn": [
+          "шкільний автобус",
+          "шкільні ворота або хвіртка",
+          "вхід до школи",
+          "адміністративний кабінет школи"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-13:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-13:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-13:i14:audio",
+          "transcript": "We are going to visit the school office."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to visit the school office.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "visit",
+          "the",
+          "school",
+          "office"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-13:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий узгоджений план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-13:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий узгоджений план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-13:i15:audio",
+          "transcript": "We are meeting at the school entrance tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting at the school entrance tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "at",
+          "the",
+          "school",
+          "entrance",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-13:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: порівняйте два варіанти",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-13:i16:audio"
+      ],
+      "accessibilityLabel": "Повторення: порівняйте два варіанти",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-13:i16:audio",
+          "transcript": "This school bus is older than that one."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This school bus is older than that one.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-13:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: назвіть дві пляшки води",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-13:i17:audio"
+      ],
+      "accessibilityLabel": "Повторення: назвіть дві пляшки води",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-13:i17:audio",
+          "transcript": "We need two bottles of water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two bottles of water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2236e20287e548cff74779d63a8ce17cc51843848130dbdc339ccd606235fc02"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-12:word:fresh-fruit",
+    "correctText": "fresh fruit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-12:i01",
+    "correctText": "The fresh fruit is the cheapest snack here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-12:i02",
+    "correctText": "The fresh fruit is the cheapest snack here.",
+    "correctResponseId": "en:lesson-18:session-12:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-12:i03",
+    "correctText": "the cheapest",
+    "correctResponseId": "en:lesson-18:session-12:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-12:word:dried-fruit",
+    "correctText": "dried fruit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-12:i04",
+    "correctText": "The dried fruit is the sweetest snack here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-12:i05",
+    "correctText": "The dried fruit is the sweetest snack here.",
+    "correctResponseId": "en:lesson-18:session-12:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-12:i06",
+    "correctText": "the sweetest",
+    "correctResponseId": "en:lesson-18:session-12:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-12:word:mixed-nuts",
+    "correctText": "mixed nuts",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-12:i07",
+    "correctText": "This bag of mixed nuts is the largest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-12:i08",
+    "correctText": "This bag of mixed nuts is the largest.",
+    "correctResponseId": "en:lesson-18:session-12:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-12:i09",
+    "correctText": "the largest",
+    "correctResponseId": "en:lesson-18:session-12:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-12:word:plain-yoghurt",
+    "correctText": "plain yoghurt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-12:i10",
+    "correctText": "The plain yoghurt is the cheapest option.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-12:i11",
+    "correctText": "The plain yoghurt is the cheapest option.",
+    "correctResponseId": "en:lesson-18:session-12:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-12:i12",
+    "correctText": "the cheapest",
+    "correctResponseId": "en:lesson-18:session-12:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-12:i13",
+    "correctText": "en:lesson-18:session-12:i13:p1=fresh fruit\nen:lesson-18:session-12:i13:p2=dried fruit\nen:lesson-18:session-12:i13:p3=mixed nuts\nen:lesson-18:session-12:i13:p4=plain yoghurt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-12:i14",
+    "correctText": "We are going to buy fresh fruit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-12:i15",
+    "correctText": "We are meeting at the food market tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-12:i16",
+    "correctText": "The dried fruit is sweeter than the plain yoghurt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-12:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

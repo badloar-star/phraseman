@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-18:session-15",
+  "entries": [
+    {
+      "interactionId": "en:lesson-18:session-15:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-15:intro1:r2": {
+          "ru": "Перед этой формой нужно the.",
+          "uk": "Перед цією формою потрібне the."
+        },
+        "en:lesson-18:session-15:intro1:r3": {
+          "ru": "Из всей группы — lightest, не lighter.",
+          "uk": "З усієї групи — lightest, не lighter."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-15:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-15:intro2:r2": {
+          "ru": "Перед этой формой нужно the.",
+          "uk": "Перед цією формою потрібне the."
+        },
+        "en:lesson-18:session-15:intro2:r3": {
+          "ru": "Из всей группы — smallest, не smaller.",
+          "uk": "З усієї групи — smallest, не smaller."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-15:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-15:intro3:r2": {
+          "ru": "Перед этой формой нужно the.",
+          "uk": "Перед цією формою потрібне the."
+        },
+        "en:lesson-18:session-15:intro3:r3": {
+          "ru": "Из всей группы — widest, не wider.",
+          "uk": "З усієї групи — widest, не wider."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cedf69f27b11aa69520dfb566b8a54f3f053ad34e3f67eedd7b3e54c9536d140"
+}

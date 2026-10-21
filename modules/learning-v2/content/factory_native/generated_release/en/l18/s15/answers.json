@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-15:word:dining-chair",
+    "correctText": "dining chair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-15:i01",
+    "correctText": "This dining chair is the lightest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-15:i02",
+    "correctText": "This dining chair is the lightest.",
+    "correctResponseId": "en:lesson-18:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-15:i03",
+    "correctText": "the lightest",
+    "correctResponseId": "en:lesson-18:session-15:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-15:word:office-chair",
+    "correctText": "office chair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-15:i04",
+    "correctText": "This office chair is the softest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-15:i05",
+    "correctText": "This office chair is the softest.",
+    "correctResponseId": "en:lesson-18:session-15:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-15:i06",
+    "correctText": "the softest",
+    "correctResponseId": "en:lesson-18:session-15:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-15:word:kitchen-table",
+    "correctText": "kitchen table",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-15:i07",
+    "correctText": "This kitchen table is the smallest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-15:i08",
+    "correctText": "This kitchen table is the smallest.",
+    "correctResponseId": "en:lesson-18:session-15:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-15:i09",
+    "correctText": "the smallest",
+    "correctResponseId": "en:lesson-18:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-15:word:dining-table",
+    "correctText": "dining table",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-15:i10",
+    "correctText": "This dining table is the widest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-15:i11",
+    "correctText": "This dining table is the widest.",
+    "correctResponseId": "en:lesson-18:session-15:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-15:i12",
+    "correctText": "the widest",
+    "correctResponseId": "en:lesson-18:session-15:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-15:i13",
+    "correctText": "en:lesson-18:session-15:i13:p1=dining chair\nen:lesson-18:session-15:i13:p2=office chair\nen:lesson-18:session-15:i13:p3=kitchen table\nen:lesson-18:session-15:i13:p4=dining table",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-15:i14",
+    "correctText": "We are going to buy a kitchen table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-15:i15",
+    "correctText": "We are collecting our dining table on Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-15:i16",
+    "correctText": "This office chair is softer than mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-15:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

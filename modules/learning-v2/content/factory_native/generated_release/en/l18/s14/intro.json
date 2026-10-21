@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-18:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "the + superlative adjective",
+    "uk": "the + superlative adjective"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-18:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выделить вариант 1",
+        "uk": "Виділити варіант 1"
+      },
+      "bodyByLocale": {
+        "ru": "standard delivery — обычная доставка. express delivery — ускоренная доставка. Вы сравнили три варианта. Назовите один из них со значением «самый». Перед формой на -est в этой конструкции ставим the. У слов на -e добавляется -st: large → largest, wide → widest. Речь только об этой группе вариантов.",
+        "uk": "standard delivery — звичайна доставка. express delivery — прискорена доставка. Ви порівняли три варіанти. Назвіть один із них зі значенням «най-». Перед формою на -est у цій конструкції ставимо the. До слів на -e додається -st: large → largest, wide → widest. Ідеться лише про цю групу варіантів."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-14:intro1:r1",
+              "text": "Standard delivery is the slowest option here."
+            },
+            {
+              "responseId": "en:lesson-18:session-14:intro1:r2",
+              "text": "Standard delivery is slowest option here."
+            },
+            {
+              "responseId": "en:lesson-18:session-14:intro1:r3",
+              "text": "Standard delivery is the slower option here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-14:intro1:r1",
+              "text": "Standard delivery is the slowest option here."
+            },
+            {
+              "responseId": "en:lesson-18:session-14:intro1:r2",
+              "text": "Standard delivery is slowest option here."
+            },
+            {
+              "responseId": "en:lesson-18:session-14:intro1:r3",
+              "text": "Standard delivery is the slower option here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-18:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Выделить вариант 2",
+        "uk": "Виділити варіант 2"
+      },
+      "bodyByLocale": {
+        "ru": "next-day delivery — доставка на следующий день. Вы сравнили три варианта. Назовите один из них со значением «самый». Перед формой на -est в этой конструкции ставим the. У слов на -e добавляется -st: large → largest, wide → widest. Речь только об этой группе вариантов.",
+        "uk": "next-day delivery — доставка наступного дня. Ви порівняли три варіанти. Назвіть один із них зі значенням «най-». Перед формою на -est у цій конструкції ставимо the. До слів на -e додається -st: large → largest, wide → widest. Ідеться лише про цю групу варіантів."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-14:intro2:r1",
+              "text": "This shop has the cheapest next-day delivery."
+            },
+            {
+              "responseId": "en:lesson-18:session-14:intro2:r2",
+              "text": "This shop has cheapest next-day delivery."
+            },
+            {
+              "responseId": "en:lesson-18:session-14:intro2:r3",
+              "text": "This shop has the cheaper next-day delivery."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-14:intro2:r1",
+              "text": "This shop has the cheapest next-day delivery."
+            },
+            {
+              "responseId": "en:lesson-18:session-14:intro2:r2",
+              "text": "This shop has cheapest next-day delivery."
+            },
+            {
+              "responseId": "en:lesson-18:session-14:intro2:r3",
+              "text": "This shop has the cheaper next-day delivery."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-18:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Выделить вариант 3",
+        "uk": "Виділити варіант 3"
+      },
+      "bodyByLocale": {
+        "ru": "free collection — бесплатный самовывоз. Вы сравнили три варианта. Назовите один из них со значением «самый». Перед формой на -est в этой конструкции ставим the. У слов на -e добавляется -st: large → largest, wide → widest. Речь только об этой группе вариантов.",
+        "uk": "free collection — безкоштовний самовивіз. Ви порівняли три варіанти. Назвіть один із них зі значенням «най-». Перед формою на -est у цій конструкції ставимо the. До слів на -e додається -st: large → largest, wide → widest. Ідеться лише про цю групу варіантів."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-14:intro3:r1",
+              "text": "Free collection is the cheapest option here."
+            },
+            {
+              "responseId": "en:lesson-18:session-14:intro3:r2",
+              "text": "Free collection is cheapest option here."
+            },
+            {
+              "responseId": "en:lesson-18:session-14:intro3:r3",
+              "text": "Free collection is the cheaper option here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-14:intro3:r1",
+              "text": "Free collection is the cheapest option here."
+            },
+            {
+              "responseId": "en:lesson-18:session-14:intro3:r2",
+              "text": "Free collection is cheapest option here."
+            },
+            {
+              "responseId": "en:lesson-18:session-14:intro3:r3",
+              "text": "Free collection is the cheaper option here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "40aad8c688d83e215930c691c94d0c9939354101117497e76e56b1679b6e2e33"
+}

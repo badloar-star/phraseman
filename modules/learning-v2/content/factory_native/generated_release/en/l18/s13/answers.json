@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-13:word:school-bus",
+    "correctText": "school bus",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-13:i01",
+    "correctText": "This school bus is the oldest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-13:i02",
+    "correctText": "This school bus is the oldest.",
+    "correctResponseId": "en:lesson-18:session-13:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-13:i03",
+    "correctText": "the oldest",
+    "correctResponseId": "en:lesson-18:session-13:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-13:word:school-gate",
+    "correctText": "school gate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-13:i04",
+    "correctText": "This school gate is the widest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-13:i05",
+    "correctText": "This school gate is the widest.",
+    "correctResponseId": "en:lesson-18:session-13:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-13:i06",
+    "correctText": "the widest",
+    "correctResponseId": "en:lesson-18:session-13:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-13:word:school-entrance",
+    "correctText": "school entrance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-13:i07",
+    "correctText": "This school entrance is the safest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-13:i08",
+    "correctText": "This school entrance is the safest.",
+    "correctResponseId": "en:lesson-18:session-13:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-13:i09",
+    "correctText": "the safest",
+    "correctResponseId": "en:lesson-18:session-13:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-13:word:school-office",
+    "correctText": "school office",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-13:i10",
+    "correctText": "This school office is the smallest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-13:i11",
+    "correctText": "This school office is the smallest.",
+    "correctResponseId": "en:lesson-18:session-13:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-13:i12",
+    "correctText": "the smallest",
+    "correctResponseId": "en:lesson-18:session-13:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-13:i13",
+    "correctText": "en:lesson-18:session-13:i13:p1=school bus\nen:lesson-18:session-13:i13:p2=school gate\nen:lesson-18:session-13:i13:p3=school entrance\nen:lesson-18:session-13:i13:p4=school office",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-13:i14",
+    "correctText": "We are going to visit the school office.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-13:i15",
+    "correctText": "We are meeting at the school entrance tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-13:i16",
+    "correctText": "This school bus is older than that one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-13:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

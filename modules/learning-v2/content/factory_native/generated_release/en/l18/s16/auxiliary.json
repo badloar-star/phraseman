@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-18:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-18:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-16:intro1:r2": {
+          "ru": "Перед этой формой нужно the.",
+          "uk": "Перед цією формою потрібне the."
+        },
+        "en:lesson-18:session-16:intro1:r3": {
+          "ru": "Из всей группы — earliest, не earlier.",
+          "uk": "З усієї групи — earliest, не earlier."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-16:intro2:r2": {
+          "ru": "Перед этой формой нужно the.",
+          "uk": "Перед цією формою потрібне the."
+        },
+        "en:lesson-18:session-16:intro2:r3": {
+          "ru": "Из всей группы — latest, не later.",
+          "uk": "З усієї групи — latest, не later."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-16:intro3:r2": {
+          "ru": "Перед этой формой нужно the.",
+          "uk": "Перед цією формою потрібне the."
+        },
+        "en:lesson-18:session-16:intro3:r3": {
+          "ru": "Из всей группы — earliest, не earlier.",
+          "uk": "З усієї групи — earliest, не earlier."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f8eb22832e12bad286b45ed5a571563230a3c9d5c260e0ab18cb1db00b6faf12"
+}

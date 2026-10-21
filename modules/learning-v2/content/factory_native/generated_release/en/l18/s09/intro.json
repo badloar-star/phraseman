@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-18:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "the + superlative adjective",
+    "uk": "the + superlative adjective"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-18:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выделить один вариант из группы",
+        "uk": "Виділити один варіант із групи"
+      },
+      "bodyByLocale": {
+        "ru": "Delivery time — срок доставки. Вы сравнили три магазина: этот доставляет быстрее остальных. Shortest означает «самый короткий». Для short добавляем -est; перед формой ставим the: the shortest delivery time.",
+        "uk": "Delivery time — строк доставки. Ви порівняли три магазини: цей доставляє швидше за решту. Shortest означає «найкоротший». До short додаємо -est; перед формою ставимо the: the shortest delivery time."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-09:intro1:r1",
+              "text": "This shop has the shortest delivery time."
+            },
+            {
+              "responseId": "en:lesson-18:session-09:intro1:r2",
+              "text": "This shop has shortest delivery time."
+            },
+            {
+              "responseId": "en:lesson-18:session-09:intro1:r3",
+              "text": "This shop has the shorter delivery time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-09:intro1:r1",
+              "text": "This shop has the shortest delivery time."
+            },
+            {
+              "responseId": "en:lesson-18:session-09:intro1:r2",
+              "text": "This shop has shortest delivery time."
+            },
+            {
+              "responseId": "en:lesson-18:session-09:intro1:r3",
+              "text": "This shop has the shorter delivery time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-18:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Самое долгое ожидание",
+        "uk": "Найдовше очікування"
+      },
+      "bodyByLocale": {
+        "ru": "Waiting time — время ожидания. Journey time — время в пути. Вы сравнили время ожидания в трёх клиниках: здесь оно самое долгое. Long → the longest. Если говорим «самый» в выбранной группе, используем превосходную степень.",
+        "uk": "Waiting time — час очікування. Journey time — час у дорозі. Ви порівняли час очікування у трьох клініках: тут він найдовший. Long → the longest. Для значення «най-» у вибраній групі використовуємо найвищий ступінь."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-09:intro2:r1",
+              "text": "This clinic has the longest waiting time."
+            },
+            {
+              "responseId": "en:lesson-18:session-09:intro2:r2",
+              "text": "This clinic has longest waiting time."
+            },
+            {
+              "responseId": "en:lesson-18:session-09:intro2:r3",
+              "text": "This clinic has the longer waiting time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-09:intro2:r1",
+              "text": "This clinic has the longest waiting time."
+            },
+            {
+              "responseId": "en:lesson-18:session-09:intro2:r2",
+              "text": "This clinic has longest waiting time."
+            },
+            {
+              "responseId": "en:lesson-18:session-09:intro2:r3",
+              "text": "This clinic has the longer waiting time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-18:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Самый ранний перерыв",
+        "uk": "Найраніша перерва"
+      },
+      "bodyByLocale": {
+        "ru": "Lunch break — обеденный перерыв. У вашей группы перерыв начинается раньше, чем у всех остальных. Early → earliest: y меняется на i, затем -est. Перед этой формой тоже нужно the.",
+        "uk": "Lunch break — обідня перерва. У вашої групи перерва починається раніше, ніж у всіх інших. Early → earliest: y змінюється на i, потім -est. Перед цією формою також потрібне the."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-09:intro3:r1",
+              "text": "We have the earliest lunch break."
+            },
+            {
+              "responseId": "en:lesson-18:session-09:intro3:r2",
+              "text": "We have the earlyest lunch break."
+            },
+            {
+              "responseId": "en:lesson-18:session-09:intro3:r3",
+              "text": "We have earliest lunch break."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-09:intro3:r1",
+              "text": "We have the earliest lunch break."
+            },
+            {
+              "responseId": "en:lesson-18:session-09:intro3:r2",
+              "text": "We have the earlyest lunch break."
+            },
+            {
+              "responseId": "en:lesson-18:session-09:intro3:r3",
+              "text": "We have earliest lunch break."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "caf19166b0786a58369800df50ee69141bb194dc8885e249a0e5e2125ac31f54"
+}

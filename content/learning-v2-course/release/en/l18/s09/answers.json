@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-09:word:delivery-time",
+    "correctText": "delivery time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-09:i01",
+    "correctText": "This shop has the shortest delivery time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-09:i02",
+    "correctText": "This shop has the shortest delivery time.",
+    "correctResponseId": "en:lesson-18:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-09:i03",
+    "correctText": "the shortest",
+    "correctResponseId": "en:lesson-18:session-09:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-09:word:waiting-time",
+    "correctText": "waiting time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-09:i04",
+    "correctText": "This clinic has the longest waiting time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-09:i05",
+    "correctText": "This clinic has the longest waiting time.",
+    "correctResponseId": "en:lesson-18:session-09:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-09:i06",
+    "correctText": "the longest",
+    "correctResponseId": "en:lesson-18:session-09:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-09:word:journey-time",
+    "correctText": "journey time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-09:i07",
+    "correctText": "This route has the shortest journey time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-09:i08",
+    "correctText": "This route has the shortest journey time.",
+    "correctResponseId": "en:lesson-18:session-09:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-09:i09",
+    "correctText": "the shortest",
+    "correctResponseId": "en:lesson-18:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-09:word:lunch-break",
+    "correctText": "lunch break",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-09:i10",
+    "correctText": "We have the earliest lunch break.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-09:i11",
+    "correctText": "We have the earliest lunch break.",
+    "correctResponseId": "en:lesson-18:session-09:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-09:i12",
+    "correctText": "the earliest",
+    "correctResponseId": "en:lesson-18:session-09:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-09:i13",
+    "correctText": "en:lesson-18:session-09:i13:p1=delivery time\nen:lesson-18:session-09:i13:p2=waiting time\nen:lesson-18:session-09:i13:p3=journey time\nen:lesson-18:session-09:i13:p4=lunch break",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-09:i14",
+    "correctText": "This shop has the shortest delivery time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-09:i15",
+    "correctText": "We have the earliest lunch break.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-09:i16",
+    "correctText": "This clinic has the longest waiting time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-09:i17",
+    "correctText": "This route has the shortest journey time.",
+    "correctResponseId": null
+  }
+]

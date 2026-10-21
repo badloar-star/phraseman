@@ -1,0 +1,1125 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-15:word:dining-chair",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dining chair",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-15:word:dining-chair:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dining chair",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-15:word:dining-chair:audio",
+          "transcript": "dining chair"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-15:word:dining-chair:r1",
+            "targetText": "dining chair",
+            "meaningByLocale": {
+              "ru": "обеденный стул.",
+              "uk": "обідній стілець."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dining chair",
+          "definitionByLocale": {
+            "ru": "обеденный стул.",
+            "uk": "обідній стілець."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-15:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "З усіх трьох. Скажіть: «Цей обідній стілець найлегший».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З усіх трьох. Скажіть: «Цей обідній стілець найлегший».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This dining chair is the lightest.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Этот обеденный стул самый лёгкий».",
+          "uk": "З усіх трьох. Скажіть: «Цей обідній стілець найлегший»."
+        },
+        "orderedTokens": [
+          "This",
+          "dining",
+          "chair",
+          "is",
+          "the",
+          "lightest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-15:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-15:i02:r1",
+          "text": "This dining chair is the lightest."
+        },
+        {
+          "responseId": "en:lesson-18:session-15:i02:r2",
+          "text": "This dining chair is lightest."
+        },
+        {
+          "responseId": "en:lesson-18:session-15:i02:r3",
+          "text": "This dining chair is the lighter."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-15:i02:audio",
+          "transcript": "This dining chair is the lightest."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-15:i02:r1",
+            "targetText": "This dining chair is the lightest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i02:r2",
+            "targetText": "This dining chair is lightest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i02:r3",
+            "targetText": "This dining chair is the lighter.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This dining chair is the lightest.",
+              "uk": "У записі звучить This dining chair is the lightest."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This dining chair is the lightest.",
+              "uk": "У записі звучить This dining chair is the lightest."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-15:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть значення «най-» у цій групі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-15:i03:r1",
+          "text": "the lightest"
+        },
+        {
+          "responseId": "en:lesson-18:session-15:i03:r2",
+          "text": "lightest"
+        },
+        {
+          "responseId": "en:lesson-18:session-15:i03:r3",
+          "text": "the lighter"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "This dining chair is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-15:i03:r1",
+            "text": "the lightest"
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i03:r2",
+            "text": "lightest"
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i03:r3",
+            "text": "the lighter"
+          }
+        ],
+        "testedDimension": "Виберіть значення «най-» у цій групі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-15:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма lightest.",
+              "uk": "Для всієї групи потрібна форма lightest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-15:word:office-chair",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — office chair",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-15:word:office-chair:audio"
+      ],
+      "accessibilityLabel": "Картка слова — office chair",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-15:word:office-chair:audio",
+          "transcript": "office chair"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-15:word:office-chair:r1",
+            "targetText": "office chair",
+            "meaningByLocale": {
+              "ru": "офисный стул или кресло.",
+              "uk": "офісний стілець або крісло."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "office chair",
+          "definitionByLocale": {
+            "ru": "офисный стул или кресло.",
+            "uk": "офісний стілець або крісло."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-15:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "З усіх трьох. Скажіть: «Це офісне крісло найм’якше».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З усіх трьох. Скажіть: «Це офісне крісло найм’якше».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This office chair is the softest.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Это офисное кресло самое мягкое».",
+          "uk": "З усіх трьох. Скажіть: «Це офісне крісло найм’якше»."
+        },
+        "orderedTokens": [
+          "This",
+          "office",
+          "chair",
+          "is",
+          "the",
+          "softest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-15:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-15:i05:r1",
+          "text": "This office chair is the softest."
+        },
+        {
+          "responseId": "en:lesson-18:session-15:i05:r2",
+          "text": "This office chair is softest."
+        },
+        {
+          "responseId": "en:lesson-18:session-15:i05:r3",
+          "text": "This office chair is the softer."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-15:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-15:i05:audio",
+          "transcript": "This office chair is the softest."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-15:i05:r1",
+            "targetText": "This office chair is the softest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i05:r2",
+            "targetText": "This office chair is softest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i05:r3",
+            "targetText": "This office chair is the softer.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-15:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This office chair is the softest.",
+              "uk": "У записі звучить This office chair is the softest."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This office chair is the softest.",
+              "uk": "У записі звучить This office chair is the softest."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-15:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть значення «най-» у цій групі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-15:i06:r1",
+          "text": "the softest"
+        },
+        {
+          "responseId": "en:lesson-18:session-15:i06:r2",
+          "text": "softest"
+        },
+        {
+          "responseId": "en:lesson-18:session-15:i06:r3",
+          "text": "the softer"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "This office chair is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-15:i06:r1",
+            "text": "the softest"
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i06:r2",
+            "text": "softest"
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i06:r3",
+            "text": "the softer"
+          }
+        ],
+        "testedDimension": "Виберіть значення «най-» у цій групі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-15:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма softest.",
+              "uk": "Для всієї групи потрібна форма softest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-15:word:kitchen-table",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — kitchen table",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-15:word:kitchen-table:audio"
+      ],
+      "accessibilityLabel": "Картка слова — kitchen table",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-15:word:kitchen-table:audio",
+          "transcript": "kitchen table"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-15:word:kitchen-table:r1",
+            "targetText": "kitchen table",
+            "meaningByLocale": {
+              "ru": "кухонный стол.",
+              "uk": "кухонний стіл."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "kitchen table",
+          "definitionByLocale": {
+            "ru": "кухонный стол.",
+            "uk": "кухонний стіл."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-15:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "З усіх трьох. Скажіть: «Цей кухонний стіл найменший».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З усіх трьох. Скажіть: «Цей кухонний стіл найменший».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This kitchen table is the smallest.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Этот кухонный стол самый маленький».",
+          "uk": "З усіх трьох. Скажіть: «Цей кухонний стіл найменший»."
+        },
+        "orderedTokens": [
+          "This",
+          "kitchen",
+          "table",
+          "is",
+          "the",
+          "smallest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-15:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-15:i08:r1",
+          "text": "This kitchen table is the smallest."
+        },
+        {
+          "responseId": "en:lesson-18:session-15:i08:r2",
+          "text": "This kitchen table is smallest."
+        },
+        {
+          "responseId": "en:lesson-18:session-15:i08:r3",
+          "text": "This kitchen table is the smaller."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-15:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-15:i08:audio",
+          "transcript": "This kitchen table is the smallest."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-15:i08:r1",
+            "targetText": "This kitchen table is the smallest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i08:r2",
+            "targetText": "This kitchen table is smallest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i08:r3",
+            "targetText": "This kitchen table is the smaller.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This kitchen table is the smallest.",
+              "uk": "У записі звучить This kitchen table is the smallest."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This kitchen table is the smallest.",
+              "uk": "У записі звучить This kitchen table is the smallest."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-15:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть значення «най-» у цій групі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-15:i09:r1",
+          "text": "the smallest"
+        },
+        {
+          "responseId": "en:lesson-18:session-15:i09:r2",
+          "text": "smallest"
+        },
+        {
+          "responseId": "en:lesson-18:session-15:i09:r3",
+          "text": "the smaller"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "This kitchen table is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-15:i09:r1",
+            "text": "the smallest"
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i09:r2",
+            "text": "smallest"
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i09:r3",
+            "text": "the smaller"
+          }
+        ],
+        "testedDimension": "Виберіть значення «най-» у цій групі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-15:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма smallest.",
+              "uk": "Для всієї групи потрібна форма smallest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-15:word:dining-table",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dining table",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-15:word:dining-table:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dining table",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-15:word:dining-table:audio",
+          "transcript": "dining table"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-15:word:dining-table:r1",
+            "targetText": "dining table",
+            "meaningByLocale": {
+              "ru": "обеденный стол.",
+              "uk": "обідній стіл."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dining table",
+          "definitionByLocale": {
+            "ru": "обеденный стол.",
+            "uk": "обідній стіл."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-15:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "З усіх трьох. Скажіть: «Цей обідній стіл найширший».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З усіх трьох. Скажіть: «Цей обідній стіл найширший».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This dining table is the widest.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Этот обеденный стол самый широкий».",
+          "uk": "З усіх трьох. Скажіть: «Цей обідній стіл найширший»."
+        },
+        "orderedTokens": [
+          "This",
+          "dining",
+          "table",
+          "is",
+          "the",
+          "widest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-15:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-15:i11:r1",
+          "text": "This dining table is the widest."
+        },
+        {
+          "responseId": "en:lesson-18:session-15:i11:r2",
+          "text": "This dining table is widest."
+        },
+        {
+          "responseId": "en:lesson-18:session-15:i11:r3",
+          "text": "This dining table is the wider."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-15:i11:audio",
+          "transcript": "This dining table is the widest."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-15:i11:r1",
+            "targetText": "This dining table is the widest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i11:r2",
+            "targetText": "This dining table is widest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i11:r3",
+            "targetText": "This dining table is the wider.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-15:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This dining table is the widest.",
+              "uk": "У записі звучить This dining table is the widest."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This dining table is the widest.",
+              "uk": "У записі звучить This dining table is the widest."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-15:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть значення «най-» у цій групі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-15:i12:r1",
+          "text": "the widest"
+        },
+        {
+          "responseId": "en:lesson-18:session-15:i12:r2",
+          "text": "widest"
+        },
+        {
+          "responseId": "en:lesson-18:session-15:i12:r3",
+          "text": "the wider"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "This dining table is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-15:i12:r1",
+            "text": "the widest"
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i12:r2",
+            "text": "widest"
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i12:r3",
+            "text": "the wider"
+          }
+        ],
+        "testedDimension": "Виберіть значення «най-» у цій групі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-15:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-15:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть значення «най-» у цій групі.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма widest.",
+              "uk": "Для всієї групи потрібна форма widest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-15:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-15:i13:p1",
+            "target": "dining chair",
+            "meaningByLocale": {
+              "ru": "обеденный стул",
+              "uk": "обідній стілець"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-15:i13:p2",
+            "target": "office chair",
+            "meaningByLocale": {
+              "ru": "офисный стул или кресло",
+              "uk": "офісний стілець або крісло"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-15:i13:p3",
+            "target": "kitchen table",
+            "meaningByLocale": {
+              "ru": "кухонный стол",
+              "uk": "кухонний стіл"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-15:i13:p4",
+            "target": "dining table",
+            "meaningByLocale": {
+              "ru": "обеденный стол",
+              "uk": "обідній стіл"
+            }
+          }
+        ],
+        "leftColumn": [
+          "dining chair",
+          "office chair",
+          "kitchen table",
+          "dining table"
+        ],
+        "rightColumn": [
+          "обідній стілець",
+          "офісний стілець або крісло",
+          "кухонний стіл",
+          "обідній стіл"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-15:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-15:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-15:i14:audio",
+          "transcript": "We are going to buy a kitchen table."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to buy a kitchen table.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "buy",
+          "a",
+          "kitchen",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-15:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий узгоджений план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-15:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий узгоджений план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-15:i15:audio",
+          "transcript": "We are collecting our dining table on Friday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are collecting our dining table on Friday.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "collecting",
+          "our",
+          "dining",
+          "table",
+          "on",
+          "Friday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-15:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: порівняйте два варіанти",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-15:i16:audio"
+      ],
+      "accessibilityLabel": "Повторення: порівняйте два варіанти",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-15:i16:audio",
+          "transcript": "This office chair is softer than mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This office chair is softer than mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-15:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: назвіть дві пляшки води",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-15:i17:audio"
+      ],
+      "accessibilityLabel": "Повторення: назвіть дві пляшки води",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-15:i17:audio",
+          "transcript": "We need two bottles of water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two bottles of water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2967dccd497c3e0428ea363bdb21627a08f85588925292e3b91b23c36eb81991"
+}

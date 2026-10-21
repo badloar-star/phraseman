@@ -1,0 +1,1125 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-11",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-11:word:front-garden",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — front garden",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-11:word:front-garden:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — front garden",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-11:word:front-garden:audio",
+          "transcript": "front garden"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-11:word:front-garden:r1",
+            "targetText": "front garden",
+            "meaningByLocale": {
+              "ru": "сад или участок перед домом.",
+              "uk": "сад або ділянка перед будинком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "front garden",
+          "definitionByLocale": {
+            "ru": "сад или участок перед домом.",
+            "uk": "сад або ділянка перед будинком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-11:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Из всех трёх. Скажите: «Этот участок перед домом самый маленький».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Из всех трёх. Скажите: «Этот участок перед домом самый маленький».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This front garden is the smallest.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Этот участок перед домом самый маленький».",
+          "uk": "З усіх трьох. Скажіть: «Ця ділянка перед будинком найменша»."
+        },
+        "orderedTokens": [
+          "This",
+          "front",
+          "garden",
+          "is",
+          "the",
+          "smallest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-11:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-11:i02:r1",
+          "text": "This front garden is the smallest."
+        },
+        {
+          "responseId": "en:lesson-18:session-11:i02:r2",
+          "text": "This front garden is smallest."
+        },
+        {
+          "responseId": "en:lesson-18:session-11:i02:r3",
+          "text": "This front garden is the smaller."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-11:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-11:i02:audio",
+          "transcript": "This front garden is the smallest."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-11:i02:r1",
+            "targetText": "This front garden is the smallest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i02:r2",
+            "targetText": "This front garden is smallest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i02:r3",
+            "targetText": "This front garden is the smaller.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-11:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This front garden is the smallest.",
+              "uk": "У записі звучить This front garden is the smallest."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This front garden is the smallest.",
+              "uk": "У записі звучить This front garden is the smallest."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-11:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите значение «самый» в этой группе.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-11:i03:r1",
+          "text": "the smallest"
+        },
+        {
+          "responseId": "en:lesson-18:session-11:i03:r2",
+          "text": "smallest"
+        },
+        {
+          "responseId": "en:lesson-18:session-11:i03:r3",
+          "text": "the smaller"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "This front garden is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-11:i03:r1",
+            "text": "the smallest"
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i03:r2",
+            "text": "smallest"
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i03:r3",
+            "text": "the smaller"
+          }
+        ],
+        "testedDimension": "Выберите значение «самый» в этой группе.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-11:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма smallest.",
+              "uk": "Для всієї групи потрібна форма smallest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-11:word:back-garden",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — back garden",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-11:word:back-garden:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — back garden",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-11:word:back-garden:audio",
+          "transcript": "back garden"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-11:word:back-garden:r1",
+            "targetText": "back garden",
+            "meaningByLocale": {
+              "ru": "сад или участок за домом.",
+              "uk": "сад або ділянка за будинком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "back garden",
+          "definitionByLocale": {
+            "ru": "сад или участок за домом.",
+            "uk": "сад або ділянка за будинком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-11:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Из всех трёх. Скажите: «Этот участок за домом самый большой».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Из всех трёх. Скажите: «Этот участок за домом самый большой».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This back garden is the largest.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Этот участок за домом самый большой».",
+          "uk": "З усіх трьох. Скажіть: «Ця ділянка за будинком найбільша»."
+        },
+        "orderedTokens": [
+          "This",
+          "back",
+          "garden",
+          "is",
+          "the",
+          "largest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-11:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-11:i05:r1",
+          "text": "This back garden is the largest."
+        },
+        {
+          "responseId": "en:lesson-18:session-11:i05:r2",
+          "text": "This back garden is largest."
+        },
+        {
+          "responseId": "en:lesson-18:session-11:i05:r3",
+          "text": "This back garden is the larger."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-11:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-11:i05:audio",
+          "transcript": "This back garden is the largest."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-11:i05:r1",
+            "targetText": "This back garden is the largest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i05:r2",
+            "targetText": "This back garden is largest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i05:r3",
+            "targetText": "This back garden is the larger.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-11:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This back garden is the largest.",
+              "uk": "У записі звучить This back garden is the largest."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This back garden is the largest.",
+              "uk": "У записі звучить This back garden is the largest."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-11:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите значение «самый» в этой группе.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-11:i06:r1",
+          "text": "the largest"
+        },
+        {
+          "responseId": "en:lesson-18:session-11:i06:r2",
+          "text": "largest"
+        },
+        {
+          "responseId": "en:lesson-18:session-11:i06:r3",
+          "text": "the larger"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "This back garden is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-11:i06:r1",
+            "text": "the largest"
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i06:r2",
+            "text": "largest"
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i06:r3",
+            "text": "the larger"
+          }
+        ],
+        "testedDimension": "Выберите значение «самый» в этой группе.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-11:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма largest.",
+              "uk": "Для всієї групи потрібна форма largest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-11:word:front-gate",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — front gate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-11:word:front-gate:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — front gate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-11:word:front-gate:audio",
+          "transcript": "front gate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-11:word:front-gate:r1",
+            "targetText": "front gate",
+            "meaningByLocale": {
+              "ru": "ворота или калитка перед домом.",
+              "uk": "ворота або хвіртка перед будинком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "front gate",
+          "definitionByLocale": {
+            "ru": "ворота или калитка перед домом.",
+            "uk": "ворота або хвіртка перед будинком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-11:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Из всех трёх. Скажите: «Эти ворота перед домом самые широкие».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Из всех трёх. Скажите: «Эти ворота перед домом самые широкие».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This front gate is the widest.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Эти ворота перед домом самые широкие».",
+          "uk": "З усіх трьох. Скажіть: «Ці ворота перед будинком найширші»."
+        },
+        "orderedTokens": [
+          "This",
+          "front",
+          "gate",
+          "is",
+          "the",
+          "widest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-11:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-11:i08:r1",
+          "text": "This front gate is the widest."
+        },
+        {
+          "responseId": "en:lesson-18:session-11:i08:r2",
+          "text": "This front gate is widest."
+        },
+        {
+          "responseId": "en:lesson-18:session-11:i08:r3",
+          "text": "This front gate is the wider."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-11:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-11:i08:audio",
+          "transcript": "This front gate is the widest."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-11:i08:r1",
+            "targetText": "This front gate is the widest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i08:r2",
+            "targetText": "This front gate is widest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i08:r3",
+            "targetText": "This front gate is the wider.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-11:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This front gate is the widest.",
+              "uk": "У записі звучить This front gate is the widest."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This front gate is the widest.",
+              "uk": "У записі звучить This front gate is the widest."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-11:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите значение «самый» в этой группе.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-11:i09:r1",
+          "text": "the widest"
+        },
+        {
+          "responseId": "en:lesson-18:session-11:i09:r2",
+          "text": "widest"
+        },
+        {
+          "responseId": "en:lesson-18:session-11:i09:r3",
+          "text": "the wider"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "This front gate is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-11:i09:r1",
+            "text": "the widest"
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i09:r2",
+            "text": "widest"
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i09:r3",
+            "text": "the wider"
+          }
+        ],
+        "testedDimension": "Выберите значение «самый» в этой группе.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-11:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма widest.",
+              "uk": "Для всієї групи потрібна форма widest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-11:word:back-gate",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — back gate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-11:word:back-gate:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — back gate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-11:word:back-gate:audio",
+          "transcript": "back gate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-11:word:back-gate:r1",
+            "targetText": "back gate",
+            "meaningByLocale": {
+              "ru": "ворота или калитка за домом.",
+              "uk": "ворота або хвіртка за будинком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "back gate",
+          "definitionByLocale": {
+            "ru": "ворота или калитка за домом.",
+            "uk": "ворота або хвіртка за будинком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-11:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Из всех трёх. Скажите: «Эта калитка за домом самая узкая».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Из всех трёх. Скажите: «Эта калитка за домом самая узкая».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This back gate is the narrowest.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Эта калитка за домом самая узкая».",
+          "uk": "З усіх трьох. Скажіть: «Ця хвіртка за будинком найвужча»."
+        },
+        "orderedTokens": [
+          "This",
+          "back",
+          "gate",
+          "is",
+          "the",
+          "narrowest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-11:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-11:i11:r1",
+          "text": "This back gate is the narrowest."
+        },
+        {
+          "responseId": "en:lesson-18:session-11:i11:r2",
+          "text": "This back gate is narrowest."
+        },
+        {
+          "responseId": "en:lesson-18:session-11:i11:r3",
+          "text": "This back gate is the narrower."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-11:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-11:i11:audio",
+          "transcript": "This back gate is the narrowest."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-11:i11:r1",
+            "targetText": "This back gate is the narrowest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i11:r2",
+            "targetText": "This back gate is narrowest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i11:r3",
+            "targetText": "This back gate is the narrower.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-11:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This back gate is the narrowest.",
+              "uk": "У записі звучить This back gate is the narrowest."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This back gate is the narrowest.",
+              "uk": "У записі звучить This back gate is the narrowest."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-11:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите значение «самый» в этой группе.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-11:i12:r1",
+          "text": "the narrowest"
+        },
+        {
+          "responseId": "en:lesson-18:session-11:i12:r2",
+          "text": "narrowest"
+        },
+        {
+          "responseId": "en:lesson-18:session-11:i12:r3",
+          "text": "the narrower"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "This back gate is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-11:i12:r1",
+            "text": "the narrowest"
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i12:r2",
+            "text": "narrowest"
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i12:r3",
+            "text": "the narrower"
+          }
+        ],
+        "testedDimension": "Выберите значение «самый» в этой группе.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-11:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-11:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма narrowest.",
+              "uk": "Для всієї групи потрібна форма narrowest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-11:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-11:i13:p1",
+            "target": "front garden",
+            "meaningByLocale": {
+              "ru": "сад или участок перед домом",
+              "uk": "сад або ділянка перед будинком"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-11:i13:p2",
+            "target": "back garden",
+            "meaningByLocale": {
+              "ru": "сад или участок за домом",
+              "uk": "сад або ділянка за будинком"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-11:i13:p3",
+            "target": "front gate",
+            "meaningByLocale": {
+              "ru": "ворота или калитка перед домом",
+              "uk": "ворота або хвіртка перед будинком"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-11:i13:p4",
+            "target": "back gate",
+            "meaningByLocale": {
+              "ru": "ворота или калитка за домом",
+              "uk": "ворота або хвіртка за будинком"
+            }
+          }
+        ],
+        "leftColumn": [
+          "front garden",
+          "back garden",
+          "front gate",
+          "back gate"
+        ],
+        "rightColumn": [
+          "сад или участок перед домом",
+          "сад или участок за домом",
+          "ворота или калитка перед домом",
+          "ворота или калитка за домом"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-11:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное намерение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-11:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное намерение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-11:i14:audio",
+          "transcript": "We are going to paint the front gate."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to paint the front gate.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "paint",
+          "the",
+          "front",
+          "gate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-11:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанный согласованный план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-11:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанный согласованный план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-11:i15:audio",
+          "transcript": "We are meeting in the back garden tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting in the back garden tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "in",
+          "the",
+          "back",
+          "garden",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-11:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: сравните два варианта",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-11:i16:audio"
+      ],
+      "accessibilityLabel": "Повторение: сравните два варианта",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-11:i16:audio",
+          "transcript": "This front garden is smaller than ours."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This front garden is smaller than ours.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-11:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: назовите две бутылки воды",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-11:i17:audio"
+      ],
+      "accessibilityLabel": "Повторение: назовите две бутылки воды",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-11:i17:audio",
+          "transcript": "We need two bottles of water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two bottles of water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6afbe00dcf19e8fe9039a9b14f80f27a3f8ac372add32b6f706fe69deb520f39"
+}

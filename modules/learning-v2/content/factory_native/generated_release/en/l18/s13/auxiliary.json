@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-18:session-13",
+  "entries": [
+    {
+      "interactionId": "en:lesson-18:session-13:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-13:intro1:r2": {
+          "ru": "Перед этой формой нужно the.",
+          "uk": "Перед цією формою потрібне the."
+        },
+        "en:lesson-18:session-13:intro1:r3": {
+          "ru": "Из всей группы — oldest, не older.",
+          "uk": "З усієї групи — oldest, не older."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-13:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-13:intro2:r2": {
+          "ru": "Перед этой формой нужно the.",
+          "uk": "Перед цією формою потрібне the."
+        },
+        "en:lesson-18:session-13:intro2:r3": {
+          "ru": "Из всей группы — safest, не safer.",
+          "uk": "З усієї групи — safest, не safer."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-13:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-13:intro3:r2": {
+          "ru": "Перед этой формой нужно the.",
+          "uk": "Перед цією формою потрібне the."
+        },
+        "en:lesson-18:session-13:intro3:r3": {
+          "ru": "Из всей группы — smallest, не smaller.",
+          "uk": "З усієї групи — smallest, не smaller."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1c8688b830843a21854d9ec67ef5aba9eec992737f318fe957acc22b8582d24d"
+}

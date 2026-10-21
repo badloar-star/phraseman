@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-10:word:local-shop",
+    "correctText": "local shop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-10:i01",
+    "correctText": "This local shop is the nearest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-10:i02",
+    "correctText": "This local shop is the nearest.",
+    "correctResponseId": "en:lesson-18:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-10:i03",
+    "correctText": "the nearest",
+    "correctResponseId": "en:lesson-18:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-10:word:online-shop",
+    "correctText": "online shop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-10:i04",
+    "correctText": "This online shop is the cheapest option.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-10:i05",
+    "correctText": "This online shop is the cheapest option.",
+    "correctResponseId": "en:lesson-18:session-10:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-10:i06",
+    "correctText": "the cheapest",
+    "correctResponseId": "en:lesson-18:session-10:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-10:word:chain-store",
+    "correctText": "chain store",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-10:i07",
+    "correctText": "This chain store is the largest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-10:i08",
+    "correctText": "This chain store is the largest.",
+    "correctResponseId": "en:lesson-18:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-10:i09",
+    "correctText": "the largest",
+    "correctResponseId": "en:lesson-18:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-10:word:repair-shop",
+    "correctText": "repair shop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-10:i10",
+    "correctText": "This repair shop is the oldest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-10:i11",
+    "correctText": "This repair shop is the oldest.",
+    "correctResponseId": "en:lesson-18:session-10:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-10:i12",
+    "correctText": "the oldest",
+    "correctResponseId": "en:lesson-18:session-10:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-10:i13",
+    "correctText": "en:lesson-18:session-10:i13:p1=local shop\nen:lesson-18:session-10:i13:p2=online shop\nen:lesson-18:session-10:i13:p3=chain store\nen:lesson-18:session-10:i13:p4=repair shop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-10:i14",
+    "correctText": "We are going to visit the local shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-10:i15",
+    "correctText": "We are meeting at the repair shop tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-10:i16",
+    "correctText": "This local shop is nearer than that one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-10:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-14:word:standard-delivery",
+    "correctText": "standard delivery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-14:i01",
+    "correctText": "Standard delivery is the slowest option here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-14:i02",
+    "correctText": "Standard delivery is the slowest option here.",
+    "correctResponseId": "en:lesson-18:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-14:i03",
+    "correctText": "the slowest",
+    "correctResponseId": "en:lesson-18:session-14:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-14:word:express-delivery",
+    "correctText": "express delivery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-14:i04",
+    "correctText": "Express delivery is the fastest option here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-14:i05",
+    "correctText": "Express delivery is the fastest option here.",
+    "correctResponseId": "en:lesson-18:session-14:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-14:i06",
+    "correctText": "the fastest",
+    "correctResponseId": "en:lesson-18:session-14:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-14:word:next-day-delivery",
+    "correctText": "next-day delivery",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-14:i07",
+    "correctText": "This shop has the cheapest next-day delivery.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-14:i08",
+    "correctText": "This shop has the cheapest next-day delivery.",
+    "correctResponseId": "en:lesson-18:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-14:i09",
+    "correctText": "the cheapest",
+    "correctResponseId": "en:lesson-18:session-14:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-14:word:free-collection",
+    "correctText": "free collection",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-14:i10",
+    "correctText": "Free collection is the cheapest option here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-14:i11",
+    "correctText": "Free collection is the cheapest option here.",
+    "correctResponseId": "en:lesson-18:session-14:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-14:i12",
+    "correctText": "the cheapest",
+    "correctResponseId": "en:lesson-18:session-14:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-14:i13",
+    "correctText": "en:lesson-18:session-14:i13:p1=standard delivery\nen:lesson-18:session-14:i13:p2=express delivery\nen:lesson-18:session-14:i13:p3=next-day delivery\nen:lesson-18:session-14:i13:p4=free collection",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-14:i14",
+    "correctText": "We are going to choose standard delivery.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-14:i15",
+    "correctText": "We are collecting our order at three tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-14:i16",
+    "correctText": "Express delivery is faster than standard delivery.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-14:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,1125 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-16",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-16:word:home-visit",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — home visit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-16:word:home-visit:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — home visit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-16:word:home-visit:audio",
+          "transcript": "home visit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-16:word:home-visit:r1",
+            "targetText": "home visit",
+            "meaningByLocale": {
+              "ru": "визит специалиста на дом.",
+              "uk": "візит фахівця додому."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "home visit",
+          "definitionByLocale": {
+            "ru": "визит специалиста на дом.",
+            "uk": "візит фахівця додому."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-16:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Из всех трёх. Скажите: «Мы записались на самый ранний визит специалиста на дом».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Из всех трёх. Скажите: «Мы записались на самый ранний визит специалиста на дом».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We booked the earliest home visit.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Мы записались на самый ранний визит специалиста на дом».",
+          "uk": "З усіх трьох. Скажіть: «Ми записалися на найраніший візит фахівця додому»."
+        },
+        "orderedTokens": [
+          "We",
+          "booked",
+          "the",
+          "earliest",
+          "home",
+          "visit"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-16:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-16:i02:r1",
+          "text": "We booked the earliest home visit."
+        },
+        {
+          "responseId": "en:lesson-18:session-16:i02:r2",
+          "text": "We booked earliest home visit."
+        },
+        {
+          "responseId": "en:lesson-18:session-16:i02:r3",
+          "text": "We booked the earlier home visit."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-16:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-16:i02:audio",
+          "transcript": "We booked the earliest home visit."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-16:i02:r1",
+            "targetText": "We booked the earliest home visit.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i02:r2",
+            "targetText": "We booked earliest home visit.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i02:r3",
+            "targetText": "We booked the earlier home visit.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-16:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We booked the earliest home visit.",
+              "uk": "У записі звучить We booked the earliest home visit."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We booked the earliest home visit.",
+              "uk": "У записі звучить We booked the earliest home visit."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-16:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите значение «самый» в этой группе.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-16:i03:r1",
+          "text": "the earliest"
+        },
+        {
+          "responseId": "en:lesson-18:session-16:i03:r2",
+          "text": "earliest"
+        },
+        {
+          "responseId": "en:lesson-18:session-16:i03:r3",
+          "text": "the earlier"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "We booked ___ home visit.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-16:i03:r1",
+            "text": "the earliest"
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i03:r2",
+            "text": "earliest"
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i03:r3",
+            "text": "the earlier"
+          }
+        ],
+        "testedDimension": "Выберите значение «самый» в этой группе.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-16:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма earliest.",
+              "uk": "Для всієї групи потрібна форма earliest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-16:word:phone-appointment",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — phone appointment",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-16:word:phone-appointment:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — phone appointment",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-16:word:phone-appointment:audio",
+          "transcript": "phone appointment"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-16:word:phone-appointment:r1",
+            "targetText": "phone appointment",
+            "meaningByLocale": {
+              "ru": "назначенная консультация по телефону.",
+              "uk": "призначена консультація телефоном."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "phone appointment",
+          "definitionByLocale": {
+            "ru": "назначенная консультация по телефону.",
+            "uk": "призначена консультація телефоном."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-16:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Из всех трёх. Скажите: «Эта консультация по телефону самая короткая».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Из всех трёх. Скажите: «Эта консультация по телефону самая короткая».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This phone appointment is the shortest.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Эта консультация по телефону самая короткая».",
+          "uk": "З усіх трьох. Скажіть: «Ця консультація телефоном найкоротша»."
+        },
+        "orderedTokens": [
+          "This",
+          "phone",
+          "appointment",
+          "is",
+          "the",
+          "shortest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-16:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-16:i05:r1",
+          "text": "This phone appointment is the shortest."
+        },
+        {
+          "responseId": "en:lesson-18:session-16:i05:r2",
+          "text": "This phone appointment is shortest."
+        },
+        {
+          "responseId": "en:lesson-18:session-16:i05:r3",
+          "text": "This phone appointment is the shorter."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-16:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-16:i05:audio",
+          "transcript": "This phone appointment is the shortest."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-16:i05:r1",
+            "targetText": "This phone appointment is the shortest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i05:r2",
+            "targetText": "This phone appointment is shortest.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i05:r3",
+            "targetText": "This phone appointment is the shorter.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-16:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This phone appointment is the shortest.",
+              "uk": "У записі звучить This phone appointment is the shortest."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This phone appointment is the shortest.",
+              "uk": "У записі звучить This phone appointment is the shortest."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-16:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите значение «самый» в этой группе.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-16:i06:r1",
+          "text": "the shortest"
+        },
+        {
+          "responseId": "en:lesson-18:session-16:i06:r2",
+          "text": "shortest"
+        },
+        {
+          "responseId": "en:lesson-18:session-16:i06:r3",
+          "text": "the shorter"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "This phone appointment is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-16:i06:r1",
+            "text": "the shortest"
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i06:r2",
+            "text": "shortest"
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i06:r3",
+            "text": "the shorter"
+          }
+        ],
+        "testedDimension": "Выберите значение «самый» в этой группе.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-16:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма shortest.",
+              "uk": "Для всієї групи потрібна форма shortest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-16:word:dental-appointment",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dental appointment",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-16:word:dental-appointment:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dental appointment",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-16:word:dental-appointment:audio",
+          "transcript": "dental appointment"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-16:word:dental-appointment:r1",
+            "targetText": "dental appointment",
+            "meaningByLocale": {
+              "ru": "приём у стоматолога.",
+              "uk": "прийом у стоматолога."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dental appointment",
+          "definitionByLocale": {
+            "ru": "приём у стоматолога.",
+            "uk": "прийом у стоматолога."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-16:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Из всех трёх. Скажите: «Мы записались на самый поздний приём у стоматолога».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Из всех трёх. Скажите: «Мы записались на самый поздний приём у стоматолога».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We booked the latest dental appointment.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Мы записались на самый поздний приём у стоматолога».",
+          "uk": "З усіх трьох. Скажіть: «Ми записалися на найпізніший прийом у стоматолога»."
+        },
+        "orderedTokens": [
+          "We",
+          "booked",
+          "the",
+          "latest",
+          "dental",
+          "appointment"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-16:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-16:i08:r1",
+          "text": "We booked the latest dental appointment."
+        },
+        {
+          "responseId": "en:lesson-18:session-16:i08:r2",
+          "text": "We booked latest dental appointment."
+        },
+        {
+          "responseId": "en:lesson-18:session-16:i08:r3",
+          "text": "We booked the later dental appointment."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-16:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-16:i08:audio",
+          "transcript": "We booked the latest dental appointment."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-16:i08:r1",
+            "targetText": "We booked the latest dental appointment.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i08:r2",
+            "targetText": "We booked latest dental appointment.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i08:r3",
+            "targetText": "We booked the later dental appointment.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We booked the latest dental appointment.",
+              "uk": "У записі звучить We booked the latest dental appointment."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We booked the latest dental appointment.",
+              "uk": "У записі звучить We booked the latest dental appointment."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-16:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите значение «самый» в этой группе.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-16:i09:r1",
+          "text": "the latest"
+        },
+        {
+          "responseId": "en:lesson-18:session-16:i09:r2",
+          "text": "latest"
+        },
+        {
+          "responseId": "en:lesson-18:session-16:i09:r3",
+          "text": "the later"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "We booked ___ dental appointment.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-16:i09:r1",
+            "text": "the latest"
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i09:r2",
+            "text": "latest"
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i09:r3",
+            "text": "the later"
+          }
+        ],
+        "testedDimension": "Выберите значение «самый» в этой группе.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-16:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма latest.",
+              "uk": "Для всієї групи потрібна форма latest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-16:word:appointment-time",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — appointment time",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-16:word:appointment-time:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — appointment time",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-16:word:appointment-time:audio",
+          "transcript": "appointment time"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-16:word:appointment-time:r1",
+            "targetText": "appointment time",
+            "meaningByLocale": {
+              "ru": "время назначенного приёма.",
+              "uk": "час призначеного прийому."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "appointment time",
+          "definitionByLocale": {
+            "ru": "время назначенного приёма.",
+            "uk": "час призначеного прийому."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-16:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Из всех трёх. Скажите: «Это самое раннее время приёма».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Из всех трёх. Скажите: «Это самое раннее время приёма».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the earliest appointment time.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Это самое раннее время приёма».",
+          "uk": "З усіх трьох. Скажіть: «Це найраніший час прийому»."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "earliest",
+          "appointment",
+          "time"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-16:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-16:i11:r1",
+          "text": "This is the earliest appointment time."
+        },
+        {
+          "responseId": "en:lesson-18:session-16:i11:r2",
+          "text": "This is earliest appointment time."
+        },
+        {
+          "responseId": "en:lesson-18:session-16:i11:r3",
+          "text": "This is the earlier appointment time."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-16:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-16:i11:audio",
+          "transcript": "This is the earliest appointment time."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-16:i11:r1",
+            "targetText": "This is the earliest appointment time.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i11:r2",
+            "targetText": "This is earliest appointment time.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i11:r3",
+            "targetText": "This is the earlier appointment time.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-16:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is the earliest appointment time.",
+              "uk": "У записі звучить This is the earliest appointment time."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is the earliest appointment time.",
+              "uk": "У записі звучить This is the earliest appointment time."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-16:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите значение «самый» в этой группе.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-16:i12:r1",
+          "text": "the earliest"
+        },
+        {
+          "responseId": "en:lesson-18:session-16:i12:r2",
+          "text": "earliest"
+        },
+        {
+          "responseId": "en:lesson-18:session-16:i12:r3",
+          "text": "the earlier"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "This is ___ appointment time.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-16:i12:r1",
+            "text": "the earliest"
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i12:r2",
+            "text": "earliest"
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i12:r3",
+            "text": "the earlier"
+          }
+        ],
+        "testedDimension": "Выберите значение «самый» в этой группе.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-16:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-16:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма earliest.",
+              "uk": "Для всієї групи потрібна форма earliest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-16:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-16:i13:p1",
+            "target": "home visit",
+            "meaningByLocale": {
+              "ru": "визит специалиста на дом",
+              "uk": "візит фахівця додому"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-16:i13:p2",
+            "target": "phone appointment",
+            "meaningByLocale": {
+              "ru": "назначенная консультация по телефону",
+              "uk": "призначена консультація телефоном"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-16:i13:p3",
+            "target": "dental appointment",
+            "meaningByLocale": {
+              "ru": "приём у стоматолога",
+              "uk": "прийом у стоматолога"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-16:i13:p4",
+            "target": "appointment time",
+            "meaningByLocale": {
+              "ru": "время назначенного приёма",
+              "uk": "час призначеного прийому"
+            }
+          }
+        ],
+        "leftColumn": [
+          "home visit",
+          "phone appointment",
+          "dental appointment",
+          "appointment time"
+        ],
+        "rightColumn": [
+          "визит специалиста на дом",
+          "назначенная консультация по телефону",
+          "приём у стоматолога",
+          "время назначенного приёма"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-16:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное намерение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-16:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное намерение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-16:i14:audio",
+          "transcript": "We are going to book a phone appointment."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to book a phone appointment.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "book",
+          "a",
+          "phone",
+          "appointment"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-16:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанный согласованный план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанный согласованный план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-16:i15:audio",
+          "transcript": "We are seeing the dentist at four tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are seeing the dentist at four tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "seeing",
+          "the",
+          "dentist",
+          "at",
+          "four",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-16:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: сравните два варианта",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-16:i16:audio"
+      ],
+      "accessibilityLabel": "Повторение: сравните два варианта",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-16:i16:audio",
+          "transcript": "This phone appointment is shorter than mine."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This phone appointment is shorter than mine.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-16:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: назовите две бутылки воды",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "Повторение: назовите две бутылки воды",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-16:i17:audio",
+          "transcript": "We need two bottles of water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two bottles of water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a29e9a12aaa293c3f1e97a570e44f50bff866d655ae06c3a97b922a909d2ceeb"
+}

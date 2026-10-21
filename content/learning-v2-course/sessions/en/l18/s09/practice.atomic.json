@@ -1,0 +1,2339 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-18:session-09",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-18:session-09:word:delivery-time",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — delivery time",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:word:delivery-time:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — delivery time",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:word:delivery-time:audio",
+            "transcript": "delivery time"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-09:word:delivery-time:r1",
+              "targetText": "delivery time",
+              "meaningByLocale": {
+                "ru": "срок доставки.",
+                "uk": "строк доставки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "delivery time",
+            "definitionByLocale": {
+              "ru": "срок доставки.",
+              "uk": "строк доставки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Из всех трёх вариантов. Скажите: «У этого магазина самый короткий срок доставки».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Из всех трёх вариантов. Скажите: «У этого магазина самый короткий срок доставки».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This shop has the shortest delivery time.",
+          "localizedMeaning": {
+            "ru": "Из всех трёх вариантов. Скажите: «У этого магазина самый короткий срок доставки».",
+            "uk": "З усіх трьох варіантів. Скажіть: «У цього магазину найкоротший строк доставки»."
+          },
+          "orderedTokens": [
+            "This",
+            "shop",
+            "has",
+            "the",
+            "shortest",
+            "delivery",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-09:i02:r1",
+            "text": "This shop has the shortest delivery time."
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i02:r2",
+            "text": "This shop has shortest delivery time."
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i02:r3",
+            "text": "This shop has the shorter delivery time."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:i02:audio",
+            "transcript": "This shop has the shortest delivery time."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-09:i02:r1",
+              "targetText": "This shop has the shortest delivery time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i02:r2",
+              "targetText": "This shop has shortest delivery time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i02:r3",
+              "targetText": "This shop has the shorter delivery time.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-09:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This shop has the shortest delivery time.",
+                "uk": "У записі звучить This shop has the shortest delivery time."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This shop has the shortest delivery time.",
+                "uk": "У записі звучить This shop has the shortest delivery time."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите значение «самый» в группе из трёх вариантов.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-09:i03:r1",
+            "text": "the shortest"
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i03:r2",
+            "text": "shortest"
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i03:r3",
+            "text": "the shorter"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите значение «самый» в группе из трёх вариантов.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите значение «самый» в группе из трёх вариантов.",
+            "uk": "Виберіть значення «най-» у групі з трьох варіантів."
+          },
+          "gappedTargetPhrase": "This shop has ___ delivery time.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-09:i03:r1",
+              "text": "the shortest"
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i03:r2",
+              "text": "shortest"
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i03:r3",
+              "text": "the shorter"
+            }
+          ],
+          "testedDimension": "Выберите значение «самый» в группе из трёх вариантов.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-09:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите значение «самый» в группе из трёх вариантов.",
+              "feedbackByLocale": {
+                "ru": "Перед этой формой в данной конструкции нужно the.",
+                "uk": "Перед цією формою в цій конструкції потрібне the."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите значение «самый» в группе из трёх вариантов.",
+              "feedbackByLocale": {
+                "ru": "Нужна превосходная степень: shortest.",
+                "uk": "Потрібен найвищий ступінь: shortest."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:word:waiting-time",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — waiting time",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:word:waiting-time:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — waiting time",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:word:waiting-time:audio",
+            "transcript": "waiting time"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-09:word:waiting-time:r1",
+              "targetText": "waiting time",
+              "meaningByLocale": {
+                "ru": "время ожидания.",
+                "uk": "час очікування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "waiting time",
+            "definitionByLocale": {
+              "ru": "время ожидания.",
+              "uk": "час очікування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Из всех трёх вариантов. Скажите: «В этой клинике самое долгое время ожидания».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Из всех трёх вариантов. Скажите: «В этой клинике самое долгое время ожидания».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This clinic has the longest waiting time.",
+          "localizedMeaning": {
+            "ru": "Из всех трёх вариантов. Скажите: «В этой клинике самое долгое время ожидания».",
+            "uk": "З усіх трьох варіантів. Скажіть: «У цій клініці найдовший час очікування»."
+          },
+          "orderedTokens": [
+            "This",
+            "clinic",
+            "has",
+            "the",
+            "longest",
+            "waiting",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-09:i05:r1",
+            "text": "This clinic has the longest waiting time."
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i05:r2",
+            "text": "This clinic has longest waiting time."
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i05:r3",
+            "text": "This clinic has the longer waiting time."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:i05:audio",
+            "transcript": "This clinic has the longest waiting time."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-09:i05:r1",
+              "targetText": "This clinic has the longest waiting time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i05:r2",
+              "targetText": "This clinic has longest waiting time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i05:r3",
+              "targetText": "This clinic has the longer waiting time.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-09:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This clinic has the longest waiting time.",
+                "uk": "У записі звучить This clinic has the longest waiting time."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This clinic has the longest waiting time.",
+                "uk": "У записі звучить This clinic has the longest waiting time."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите значение «самый» в группе из трёх вариантов.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-09:i06:r1",
+            "text": "the longest"
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i06:r2",
+            "text": "longest"
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i06:r3",
+            "text": "the longer"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите значение «самый» в группе из трёх вариантов.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите значение «самый» в группе из трёх вариантов.",
+            "uk": "Виберіть значення «най-» у групі з трьох варіантів."
+          },
+          "gappedTargetPhrase": "This clinic has ___ waiting time.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-09:i06:r1",
+              "text": "the longest"
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i06:r2",
+              "text": "longest"
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i06:r3",
+              "text": "the longer"
+            }
+          ],
+          "testedDimension": "Выберите значение «самый» в группе из трёх вариантов.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-09:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите значение «самый» в группе из трёх вариантов.",
+              "feedbackByLocale": {
+                "ru": "Перед этой формой в данной конструкции нужно the.",
+                "uk": "Перед цією формою в цій конструкції потрібне the."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите значение «самый» в группе из трёх вариантов.",
+              "feedbackByLocale": {
+                "ru": "Нужна превосходная степень: longest.",
+                "uk": "Потрібен найвищий ступінь: longest."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:word:journey-time",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — journey time",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:word:journey-time:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — journey time",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:word:journey-time:audio",
+            "transcript": "journey time"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-09:word:journey-time:r1",
+              "targetText": "journey time",
+              "meaningByLocale": {
+                "ru": "время в пути.",
+                "uk": "час у дорозі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "journey time",
+            "definitionByLocale": {
+              "ru": "время в пути.",
+              "uk": "час у дорозі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Из всех трёх вариантов. Скажите: «На этом маршруте самое короткое время в пути».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Из всех трёх вариантов. Скажите: «На этом маршруте самое короткое время в пути».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This route has the shortest journey time.",
+          "localizedMeaning": {
+            "ru": "Из всех трёх вариантов. Скажите: «На этом маршруте самое короткое время в пути».",
+            "uk": "З усіх трьох варіантів. Скажіть: «На цьому маршруті найкоротший час у дорозі»."
+          },
+          "orderedTokens": [
+            "This",
+            "route",
+            "has",
+            "the",
+            "shortest",
+            "journey",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-09:i08:r1",
+            "text": "This route has the shortest journey time."
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i08:r2",
+            "text": "This route has shortest journey time."
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i08:r3",
+            "text": "This route has the shorter journey time."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:i08:audio",
+            "transcript": "This route has the shortest journey time."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-09:i08:r1",
+              "targetText": "This route has the shortest journey time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i08:r2",
+              "targetText": "This route has shortest journey time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i08:r3",
+              "targetText": "This route has the shorter journey time.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-09:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This route has the shortest journey time.",
+                "uk": "У записі звучить This route has the shortest journey time."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This route has the shortest journey time.",
+                "uk": "У записі звучить This route has the shortest journey time."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите значение «самый» в группе из трёх вариантов.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-09:i09:r1",
+            "text": "the shortest"
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i09:r2",
+            "text": "shortest"
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i09:r3",
+            "text": "the shorter"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите значение «самый» в группе из трёх вариантов.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите значение «самый» в группе из трёх вариантов.",
+            "uk": "Виберіть значення «най-» у групі з трьох варіантів."
+          },
+          "gappedTargetPhrase": "This route has ___ journey time.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-09:i09:r1",
+              "text": "the shortest"
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i09:r2",
+              "text": "shortest"
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i09:r3",
+              "text": "the shorter"
+            }
+          ],
+          "testedDimension": "Выберите значение «самый» в группе из трёх вариантов.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-09:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите значение «самый» в группе из трёх вариантов.",
+              "feedbackByLocale": {
+                "ru": "Перед этой формой в данной конструкции нужно the.",
+                "uk": "Перед цією формою в цій конструкції потрібне the."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите значение «самый» в группе из трёх вариантов.",
+              "feedbackByLocale": {
+                "ru": "Нужна превосходная степень: shortest.",
+                "uk": "Потрібен найвищий ступінь: shortest."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:word:lunch-break",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — lunch break",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:word:lunch-break:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — lunch break",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:word:lunch-break:audio",
+            "transcript": "lunch break"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-09:word:lunch-break:r1",
+              "targetText": "lunch break",
+              "meaningByLocale": {
+                "ru": "обеденный перерыв.",
+                "uk": "обідня перерва."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lunch break",
+            "definitionByLocale": {
+              "ru": "обеденный перерыв.",
+              "uk": "обідня перерва."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Из всех трёх вариантов. Скажите: «У нас самый ранний обеденный перерыв».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Из всех трёх вариантов. Скажите: «У нас самый ранний обеденный перерыв».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have the earliest lunch break.",
+          "localizedMeaning": {
+            "ru": "Из всех трёх вариантов. Скажите: «У нас самый ранний обеденный перерыв».",
+            "uk": "З усіх трьох варіантів. Скажіть: «У нас найраніша обідня перерва»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "the",
+            "earliest",
+            "lunch",
+            "break"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-09:i11:r1",
+            "text": "We have the earliest lunch break."
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i11:r2",
+            "text": "We have earliest lunch break."
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i11:r3",
+            "text": "We have the earlier lunch break."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:i11:audio",
+            "transcript": "We have the earliest lunch break."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-09:i11:r1",
+              "targetText": "We have the earliest lunch break.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i11:r2",
+              "targetText": "We have earliest lunch break.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i11:r3",
+              "targetText": "We have the earlier lunch break.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-09:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have the earliest lunch break.",
+                "uk": "У записі звучить We have the earliest lunch break."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have the earliest lunch break.",
+                "uk": "У записі звучить We have the earliest lunch break."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите значение «самый» в группе из трёх вариантов.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-09:i12:r1",
+            "text": "the earliest"
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i12:r2",
+            "text": "earliest"
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i12:r3",
+            "text": "the earlier"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите значение «самый» в группе из трёх вариантов.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите значение «самый» в группе из трёх вариантов.",
+            "uk": "Виберіть значення «най-» у групі з трьох варіантів."
+          },
+          "gappedTargetPhrase": "We have ___ lunch break.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-09:i12:r1",
+              "text": "the earliest"
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i12:r2",
+              "text": "earliest"
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i12:r3",
+              "text": "the earlier"
+            }
+          ],
+          "testedDimension": "Выберите значение «самый» в группе из трёх вариантов.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-09:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите значение «самый» в группе из трёх вариантов.",
+              "feedbackByLocale": {
+                "ru": "Перед этой формой в данной конструкции нужно the.",
+                "uk": "Перед цією формою в цій конструкції потрібне the."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите значение «самый» в группе из трёх вариантов.",
+              "feedbackByLocale": {
+                "ru": "Нужна превосходная степень: earliest.",
+                "uk": "Потрібен найвищий ступінь: earliest."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-09:i13:p1",
+              "target": "delivery time",
+              "meaningByLocale": {
+                "ru": "срок доставки",
+                "uk": "строк доставки"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-09:i13:p2",
+              "target": "waiting time",
+              "meaningByLocale": {
+                "ru": "время ожидания",
+                "uk": "час очікування"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-09:i13:p3",
+              "target": "journey time",
+              "meaningByLocale": {
+                "ru": "время в пути",
+                "uk": "час у дорозі"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-09:i13:p4",
+              "target": "lunch break",
+              "meaningByLocale": {
+                "ru": "обеденный перерыв",
+                "uk": "обідня перерва"
+              }
+            }
+          ],
+          "leftColumn": [
+            "delivery time",
+            "waiting time",
+            "journey time",
+            "lunch break"
+          ],
+          "rightColumn": [
+            "срок доставки",
+            "время ожидания",
+            "время в пути",
+            "обеденный перерыв"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное о доставке",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное о доставке",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:i14:audio",
+            "transcript": "This shop has the shortest delivery time."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This shop has the shortest delivery time.",
+          "orderedTokens": [
+            "This",
+            "shop",
+            "has",
+            "the",
+            "shortest",
+            "delivery",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное о перерыве",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное о перерыве",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:i15:audio",
+            "transcript": "We have the earliest lunch break."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have the earliest lunch break.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "the",
+            "earliest",
+            "lunch",
+            "break"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Назовите самое долгое ожидание",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:i16:audio"
+        ],
+        "accessibilityLabel": "Назовите самое долгое ожидание",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:i16:audio",
+            "transcript": "This clinic has the longest waiting time."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This clinic has the longest waiting time.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Назовите самое короткое время в пути",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:i17:audio"
+        ],
+        "accessibilityLabel": "Назовите самое короткое время в пути",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:i17:audio",
+            "transcript": "This route has the shortest journey time."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This route has the shortest journey time.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-18:session-09:word:delivery-time",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — delivery time",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:word:delivery-time:audio"
+        ],
+        "accessibilityLabel": "Картка слова — delivery time",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:word:delivery-time:audio",
+            "transcript": "delivery time"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-09:word:delivery-time:r1",
+              "targetText": "delivery time",
+              "meaningByLocale": {
+                "ru": "срок доставки.",
+                "uk": "строк доставки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "delivery time",
+            "definitionByLocale": {
+              "ru": "срок доставки.",
+              "uk": "строк доставки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "З усіх трьох варіантів. Скажіть: «У цього магазину найкоротший строк доставки».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З усіх трьох варіантів. Скажіть: «У цього магазину найкоротший строк доставки».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This shop has the shortest delivery time.",
+          "localizedMeaning": {
+            "ru": "Из всех трёх вариантов. Скажите: «У этого магазина самый короткий срок доставки».",
+            "uk": "З усіх трьох варіантів. Скажіть: «У цього магазину найкоротший строк доставки»."
+          },
+          "orderedTokens": [
+            "This",
+            "shop",
+            "has",
+            "the",
+            "shortest",
+            "delivery",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-09:i02:r1",
+            "text": "This shop has the shortest delivery time."
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i02:r2",
+            "text": "This shop has shortest delivery time."
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i02:r3",
+            "text": "This shop has the shorter delivery time."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:i02:audio",
+            "transcript": "This shop has the shortest delivery time."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-09:i02:r1",
+              "targetText": "This shop has the shortest delivery time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i02:r2",
+              "targetText": "This shop has shortest delivery time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i02:r3",
+              "targetText": "This shop has the shorter delivery time.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-09:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This shop has the shortest delivery time.",
+                "uk": "У записі звучить This shop has the shortest delivery time."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This shop has the shortest delivery time.",
+                "uk": "У записі звучить This shop has the shortest delivery time."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть значення «най-» у групі з трьох варіантів.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-09:i03:r1",
+            "text": "the shortest"
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i03:r2",
+            "text": "shortest"
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i03:r3",
+            "text": "the shorter"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть значення «най-» у групі з трьох варіантів.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите значение «самый» в группе из трёх вариантов.",
+            "uk": "Виберіть значення «най-» у групі з трьох варіантів."
+          },
+          "gappedTargetPhrase": "This shop has ___ delivery time.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-09:i03:r1",
+              "text": "the shortest"
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i03:r2",
+              "text": "shortest"
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i03:r3",
+              "text": "the shorter"
+            }
+          ],
+          "testedDimension": "Виберіть значення «най-» у групі з трьох варіантів.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-09:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть значення «най-» у групі з трьох варіантів.",
+              "feedbackByLocale": {
+                "ru": "Перед этой формой в данной конструкции нужно the.",
+                "uk": "Перед цією формою в цій конструкції потрібне the."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть значення «най-» у групі з трьох варіантів.",
+              "feedbackByLocale": {
+                "ru": "Нужна превосходная степень: shortest.",
+                "uk": "Потрібен найвищий ступінь: shortest."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:word:waiting-time",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — waiting time",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:word:waiting-time:audio"
+        ],
+        "accessibilityLabel": "Картка слова — waiting time",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:word:waiting-time:audio",
+            "transcript": "waiting time"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-09:word:waiting-time:r1",
+              "targetText": "waiting time",
+              "meaningByLocale": {
+                "ru": "время ожидания.",
+                "uk": "час очікування."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "waiting time",
+            "definitionByLocale": {
+              "ru": "время ожидания.",
+              "uk": "час очікування."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "З усіх трьох варіантів. Скажіть: «У цій клініці найдовший час очікування».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З усіх трьох варіантів. Скажіть: «У цій клініці найдовший час очікування».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This clinic has the longest waiting time.",
+          "localizedMeaning": {
+            "ru": "Из всех трёх вариантов. Скажите: «В этой клинике самое долгое время ожидания».",
+            "uk": "З усіх трьох варіантів. Скажіть: «У цій клініці найдовший час очікування»."
+          },
+          "orderedTokens": [
+            "This",
+            "clinic",
+            "has",
+            "the",
+            "longest",
+            "waiting",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-09:i05:r1",
+            "text": "This clinic has the longest waiting time."
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i05:r2",
+            "text": "This clinic has longest waiting time."
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i05:r3",
+            "text": "This clinic has the longer waiting time."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:i05:audio",
+            "transcript": "This clinic has the longest waiting time."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-09:i05:r1",
+              "targetText": "This clinic has the longest waiting time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i05:r2",
+              "targetText": "This clinic has longest waiting time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i05:r3",
+              "targetText": "This clinic has the longer waiting time.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-09:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This clinic has the longest waiting time.",
+                "uk": "У записі звучить This clinic has the longest waiting time."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This clinic has the longest waiting time.",
+                "uk": "У записі звучить This clinic has the longest waiting time."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть значення «най-» у групі з трьох варіантів.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-09:i06:r1",
+            "text": "the longest"
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i06:r2",
+            "text": "longest"
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i06:r3",
+            "text": "the longer"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть значення «най-» у групі з трьох варіантів.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите значение «самый» в группе из трёх вариантов.",
+            "uk": "Виберіть значення «най-» у групі з трьох варіантів."
+          },
+          "gappedTargetPhrase": "This clinic has ___ waiting time.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-09:i06:r1",
+              "text": "the longest"
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i06:r2",
+              "text": "longest"
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i06:r3",
+              "text": "the longer"
+            }
+          ],
+          "testedDimension": "Виберіть значення «най-» у групі з трьох варіантів.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-09:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть значення «най-» у групі з трьох варіантів.",
+              "feedbackByLocale": {
+                "ru": "Перед этой формой в данной конструкции нужно the.",
+                "uk": "Перед цією формою в цій конструкції потрібне the."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть значення «най-» у групі з трьох варіантів.",
+              "feedbackByLocale": {
+                "ru": "Нужна превосходная степень: longest.",
+                "uk": "Потрібен найвищий ступінь: longest."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:word:journey-time",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — journey time",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:word:journey-time:audio"
+        ],
+        "accessibilityLabel": "Картка слова — journey time",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:word:journey-time:audio",
+            "transcript": "journey time"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-09:word:journey-time:r1",
+              "targetText": "journey time",
+              "meaningByLocale": {
+                "ru": "время в пути.",
+                "uk": "час у дорозі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "journey time",
+            "definitionByLocale": {
+              "ru": "время в пути.",
+              "uk": "час у дорозі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "З усіх трьох варіантів. Скажіть: «На цьому маршруті найкоротший час у дорозі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З усіх трьох варіантів. Скажіть: «На цьому маршруті найкоротший час у дорозі».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This route has the shortest journey time.",
+          "localizedMeaning": {
+            "ru": "Из всех трёх вариантов. Скажите: «На этом маршруте самое короткое время в пути».",
+            "uk": "З усіх трьох варіантів. Скажіть: «На цьому маршруті найкоротший час у дорозі»."
+          },
+          "orderedTokens": [
+            "This",
+            "route",
+            "has",
+            "the",
+            "shortest",
+            "journey",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-09:i08:r1",
+            "text": "This route has the shortest journey time."
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i08:r2",
+            "text": "This route has shortest journey time."
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i08:r3",
+            "text": "This route has the shorter journey time."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:i08:audio",
+            "transcript": "This route has the shortest journey time."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-09:i08:r1",
+              "targetText": "This route has the shortest journey time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i08:r2",
+              "targetText": "This route has shortest journey time.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i08:r3",
+              "targetText": "This route has the shorter journey time.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-09:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This route has the shortest journey time.",
+                "uk": "У записі звучить This route has the shortest journey time."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This route has the shortest journey time.",
+                "uk": "У записі звучить This route has the shortest journey time."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть значення «най-» у групі з трьох варіантів.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-09:i09:r1",
+            "text": "the shortest"
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i09:r2",
+            "text": "shortest"
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i09:r3",
+            "text": "the shorter"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть значення «най-» у групі з трьох варіантів.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите значение «самый» в группе из трёх вариантов.",
+            "uk": "Виберіть значення «най-» у групі з трьох варіантів."
+          },
+          "gappedTargetPhrase": "This route has ___ journey time.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-09:i09:r1",
+              "text": "the shortest"
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i09:r2",
+              "text": "shortest"
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i09:r3",
+              "text": "the shorter"
+            }
+          ],
+          "testedDimension": "Виберіть значення «най-» у групі з трьох варіантів.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-09:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть значення «най-» у групі з трьох варіантів.",
+              "feedbackByLocale": {
+                "ru": "Перед этой формой в данной конструкции нужно the.",
+                "uk": "Перед цією формою в цій конструкції потрібне the."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть значення «най-» у групі з трьох варіантів.",
+              "feedbackByLocale": {
+                "ru": "Нужна превосходная степень: shortest.",
+                "uk": "Потрібен найвищий ступінь: shortest."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:word:lunch-break",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — lunch break",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:word:lunch-break:audio"
+        ],
+        "accessibilityLabel": "Картка слова — lunch break",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:word:lunch-break:audio",
+            "transcript": "lunch break"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-09:word:lunch-break:r1",
+              "targetText": "lunch break",
+              "meaningByLocale": {
+                "ru": "обеденный перерыв.",
+                "uk": "обідня перерва."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "lunch break",
+            "definitionByLocale": {
+              "ru": "обеденный перерыв.",
+              "uk": "обідня перерва."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "З усіх трьох варіантів. Скажіть: «У нас найраніша обідня перерва».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З усіх трьох варіантів. Скажіть: «У нас найраніша обідня перерва».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We have the earliest lunch break.",
+          "localizedMeaning": {
+            "ru": "Из всех трёх вариантов. Скажите: «У нас самый ранний обеденный перерыв».",
+            "uk": "З усіх трьох варіантів. Скажіть: «У нас найраніша обідня перерва»."
+          },
+          "orderedTokens": [
+            "We",
+            "have",
+            "the",
+            "earliest",
+            "lunch",
+            "break"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-09:i11:r1",
+            "text": "We have the earliest lunch break."
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i11:r2",
+            "text": "We have earliest lunch break."
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i11:r3",
+            "text": "We have the earlier lunch break."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:i11:audio",
+            "transcript": "We have the earliest lunch break."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-09:i11:r1",
+              "targetText": "We have the earliest lunch break.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i11:r2",
+              "targetText": "We have earliest lunch break.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i11:r3",
+              "targetText": "We have the earlier lunch break.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-09:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have the earliest lunch break.",
+                "uk": "У записі звучить We have the earliest lunch break."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We have the earliest lunch break.",
+                "uk": "У записі звучить We have the earliest lunch break."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть значення «най-» у групі з трьох варіантів.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-09:i12:r1",
+            "text": "the earliest"
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i12:r2",
+            "text": "earliest"
+          },
+          {
+            "responseId": "en:lesson-18:session-09:i12:r3",
+            "text": "the earlier"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть значення «най-» у групі з трьох варіантів.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите значение «самый» в группе из трёх вариантов.",
+            "uk": "Виберіть значення «най-» у групі з трьох варіантів."
+          },
+          "gappedTargetPhrase": "We have ___ lunch break.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-09:i12:r1",
+              "text": "the earliest"
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i12:r2",
+              "text": "earliest"
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i12:r3",
+              "text": "the earlier"
+            }
+          ],
+          "testedDimension": "Виберіть значення «най-» у групі з трьох варіантів.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-09:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть значення «най-» у групі з трьох варіантів.",
+              "feedbackByLocale": {
+                "ru": "Перед этой формой в данной конструкции нужно the.",
+                "uk": "Перед цією формою в цій конструкції потрібне the."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-09:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть значення «най-» у групі з трьох варіантів.",
+              "feedbackByLocale": {
+                "ru": "Нужна превосходная степень: earliest.",
+                "uk": "Потрібен найвищий ступінь: earliest."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-09:i13:p1",
+              "target": "delivery time",
+              "meaningByLocale": {
+                "ru": "срок доставки",
+                "uk": "строк доставки"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-09:i13:p2",
+              "target": "waiting time",
+              "meaningByLocale": {
+                "ru": "время ожидания",
+                "uk": "час очікування"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-09:i13:p3",
+              "target": "journey time",
+              "meaningByLocale": {
+                "ru": "время в пути",
+                "uk": "час у дорозі"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-09:i13:p4",
+              "target": "lunch break",
+              "meaningByLocale": {
+                "ru": "обеденный перерыв",
+                "uk": "обідня перерва"
+              }
+            }
+          ],
+          "leftColumn": [
+            "delivery time",
+            "waiting time",
+            "journey time",
+            "lunch break"
+          ],
+          "rightColumn": [
+            "строк доставки",
+            "час очікування",
+            "час у дорозі",
+            "обідня перерва"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте про доставку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте про доставку",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:i14:audio",
+            "transcript": "This shop has the shortest delivery time."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This shop has the shortest delivery time.",
+          "orderedTokens": [
+            "This",
+            "shop",
+            "has",
+            "the",
+            "shortest",
+            "delivery",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте про перерву",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте про перерву",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:i15:audio",
+            "transcript": "We have the earliest lunch break."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We have the earliest lunch break.",
+          "orderedTokens": [
+            "We",
+            "have",
+            "the",
+            "earliest",
+            "lunch",
+            "break"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Назвіть найдовше очікування",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:i16:audio"
+        ],
+        "accessibilityLabel": "Назвіть найдовше очікування",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:i16:audio",
+            "transcript": "This clinic has the longest waiting time."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This clinic has the longest waiting time.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-09:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Назвіть найкоротший час у дорозі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-09:i17:audio"
+        ],
+        "accessibilityLabel": "Назвіть найкоротший час у дорозі",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-09:i17:audio",
+            "transcript": "This route has the shortest journey time."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This route has the shortest journey time.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-18:session-09:word:delivery-time",
+      "correctText": "delivery time",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-09:i01",
+      "correctText": "This shop has the shortest delivery time.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-09:i02",
+      "correctText": "This shop has the shortest delivery time.",
+      "correctResponseId": "en:lesson-18:session-09:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-09:i03",
+      "correctText": "the shortest",
+      "correctResponseId": "en:lesson-18:session-09:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-09:word:waiting-time",
+      "correctText": "waiting time",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-09:i04",
+      "correctText": "This clinic has the longest waiting time.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-09:i05",
+      "correctText": "This clinic has the longest waiting time.",
+      "correctResponseId": "en:lesson-18:session-09:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-09:i06",
+      "correctText": "the longest",
+      "correctResponseId": "en:lesson-18:session-09:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-09:word:journey-time",
+      "correctText": "journey time",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-09:i07",
+      "correctText": "This route has the shortest journey time.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-09:i08",
+      "correctText": "This route has the shortest journey time.",
+      "correctResponseId": "en:lesson-18:session-09:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-09:i09",
+      "correctText": "the shortest",
+      "correctResponseId": "en:lesson-18:session-09:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-09:word:lunch-break",
+      "correctText": "lunch break",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-09:i10",
+      "correctText": "We have the earliest lunch break.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-09:i11",
+      "correctText": "We have the earliest lunch break.",
+      "correctResponseId": "en:lesson-18:session-09:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-09:i12",
+      "correctText": "the earliest",
+      "correctResponseId": "en:lesson-18:session-09:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-09:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-09:i14",
+      "correctText": "This shop has the shortest delivery time.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-09:i15",
+      "correctText": "We have the earliest lunch break.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-09:i16",
+      "correctText": "This clinic has the longest waiting time.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-09:i17",
+      "correctText": "This route has the shortest journey time.",
+      "correctResponseId": null
+    }
+  ]
+}

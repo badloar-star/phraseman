@@ -1,0 +1,1128 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-14",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-14:word:standard-delivery",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — standard delivery",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-14:word:standard-delivery:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — standard delivery",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-14:word:standard-delivery:audio",
+          "transcript": "standard delivery"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-14:word:standard-delivery:r1",
+            "targetText": "standard delivery",
+            "meaningByLocale": {
+              "ru": "обычная доставка.",
+              "uk": "звичайна доставка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "standard delivery",
+          "definitionByLocale": {
+            "ru": "обычная доставка.",
+            "uk": "звичайна доставка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-14:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Из всех трёх. Скажите: «Обычная доставка — самый медленный вариант здесь».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Из всех трёх. Скажите: «Обычная доставка — самый медленный вариант здесь».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Standard delivery is the slowest option here.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Обычная доставка — самый медленный вариант здесь».",
+          "uk": "З усіх трьох. Скажіть: «Звичайна доставка — найповільніший варіант тут»."
+        },
+        "orderedTokens": [
+          "Standard",
+          "delivery",
+          "is",
+          "the",
+          "slowest",
+          "option",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-14:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-14:i02:r1",
+          "text": "Standard delivery is the slowest option here."
+        },
+        {
+          "responseId": "en:lesson-18:session-14:i02:r2",
+          "text": "Standard delivery is slowest option here."
+        },
+        {
+          "responseId": "en:lesson-18:session-14:i02:r3",
+          "text": "Standard delivery is the slower option here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-14:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-14:i02:audio",
+          "transcript": "Standard delivery is the slowest option here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-14:i02:r1",
+            "targetText": "Standard delivery is the slowest option here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i02:r2",
+            "targetText": "Standard delivery is slowest option here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i02:r3",
+            "targetText": "Standard delivery is the slower option here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-14:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Standard delivery is the slowest option here.",
+              "uk": "У записі звучить Standard delivery is the slowest option here."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Standard delivery is the slowest option here.",
+              "uk": "У записі звучить Standard delivery is the slowest option here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-14:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите значение «самый» в этой группе.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-14:i03:r1",
+          "text": "the slowest"
+        },
+        {
+          "responseId": "en:lesson-18:session-14:i03:r2",
+          "text": "slowest"
+        },
+        {
+          "responseId": "en:lesson-18:session-14:i03:r3",
+          "text": "the slower"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "Standard delivery is ___ option here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-14:i03:r1",
+            "text": "the slowest"
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i03:r2",
+            "text": "slowest"
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i03:r3",
+            "text": "the slower"
+          }
+        ],
+        "testedDimension": "Выберите значение «самый» в этой группе.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-14:i03:r2",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i03:r3",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма slowest.",
+              "uk": "Для всієї групи потрібна форма slowest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-14:word:express-delivery",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — express delivery",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-14:word:express-delivery:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — express delivery",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-14:word:express-delivery:audio",
+          "transcript": "express delivery"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-14:word:express-delivery:r1",
+            "targetText": "express delivery",
+            "meaningByLocale": {
+              "ru": "ускоренная доставка.",
+              "uk": "прискорена доставка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "express delivery",
+          "definitionByLocale": {
+            "ru": "ускоренная доставка.",
+            "uk": "прискорена доставка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-14:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Из всех трёх. Скажите: «Ускоренная доставка — самый быстрый вариант здесь».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Из всех трёх. Скажите: «Ускоренная доставка — самый быстрый вариант здесь».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Express delivery is the fastest option here.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Ускоренная доставка — самый быстрый вариант здесь».",
+          "uk": "З усіх трьох. Скажіть: «Прискорена доставка — найшвидший варіант тут»."
+        },
+        "orderedTokens": [
+          "Express",
+          "delivery",
+          "is",
+          "the",
+          "fastest",
+          "option",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-14:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-14:i05:r1",
+          "text": "Express delivery is the fastest option here."
+        },
+        {
+          "responseId": "en:lesson-18:session-14:i05:r2",
+          "text": "Express delivery is fastest option here."
+        },
+        {
+          "responseId": "en:lesson-18:session-14:i05:r3",
+          "text": "Express delivery is the faster option here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-14:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-14:i05:audio",
+          "transcript": "Express delivery is the fastest option here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-14:i05:r1",
+            "targetText": "Express delivery is the fastest option here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i05:r2",
+            "targetText": "Express delivery is fastest option here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i05:r3",
+            "targetText": "Express delivery is the faster option here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-14:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Express delivery is the fastest option here.",
+              "uk": "У записі звучить Express delivery is the fastest option here."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Express delivery is the fastest option here.",
+              "uk": "У записі звучить Express delivery is the fastest option here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-14:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите значение «самый» в этой группе.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-14:i06:r1",
+          "text": "the fastest"
+        },
+        {
+          "responseId": "en:lesson-18:session-14:i06:r2",
+          "text": "fastest"
+        },
+        {
+          "responseId": "en:lesson-18:session-14:i06:r3",
+          "text": "the faster"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "Express delivery is ___ option here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-14:i06:r1",
+            "text": "the fastest"
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i06:r2",
+            "text": "fastest"
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i06:r3",
+            "text": "the faster"
+          }
+        ],
+        "testedDimension": "Выберите значение «самый» в этой группе.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-14:i06:r2",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i06:r3",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма fastest.",
+              "uk": "Для всієї групи потрібна форма fastest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-14:word:next-day-delivery",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — next-day delivery",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-14:word:next-day-delivery:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — next-day delivery",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-14:word:next-day-delivery:audio",
+          "transcript": "next-day delivery"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-14:word:next-day-delivery:r1",
+            "targetText": "next-day delivery",
+            "meaningByLocale": {
+              "ru": "доставка на следующий день.",
+              "uk": "доставка наступного дня."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "next-day delivery",
+          "definitionByLocale": {
+            "ru": "доставка на следующий день.",
+            "uk": "доставка наступного дня."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-14:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Из всех трёх. Скажите: «У этого магазина самая дешёвая доставка на следующий день».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Из всех трёх. Скажите: «У этого магазина самая дешёвая доставка на следующий день».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This shop has the cheapest next-day delivery.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «У этого магазина самая дешёвая доставка на следующий день».",
+          "uk": "З усіх трьох. Скажіть: «У цього магазину найдешевша доставка наступного дня»."
+        },
+        "orderedTokens": [
+          "This",
+          "shop",
+          "has",
+          "the",
+          "cheapest",
+          "next-day",
+          "delivery"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-14:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-14:i08:r1",
+          "text": "This shop has the cheapest next-day delivery."
+        },
+        {
+          "responseId": "en:lesson-18:session-14:i08:r2",
+          "text": "This shop has cheapest next-day delivery."
+        },
+        {
+          "responseId": "en:lesson-18:session-14:i08:r3",
+          "text": "This shop has the cheaper next-day delivery."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-14:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-14:i08:audio",
+          "transcript": "This shop has the cheapest next-day delivery."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-14:i08:r1",
+            "targetText": "This shop has the cheapest next-day delivery.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i08:r2",
+            "targetText": "This shop has cheapest next-day delivery.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i08:r3",
+            "targetText": "This shop has the cheaper next-day delivery.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-14:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This shop has the cheapest next-day delivery.",
+              "uk": "У записі звучить This shop has the cheapest next-day delivery."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This shop has the cheapest next-day delivery.",
+              "uk": "У записі звучить This shop has the cheapest next-day delivery."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-14:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите значение «самый» в этой группе.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-14:i09:r1",
+          "text": "the cheapest"
+        },
+        {
+          "responseId": "en:lesson-18:session-14:i09:r2",
+          "text": "cheapest"
+        },
+        {
+          "responseId": "en:lesson-18:session-14:i09:r3",
+          "text": "the cheaper"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "This shop has ___ next-day delivery.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-14:i09:r1",
+            "text": "the cheapest"
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i09:r2",
+            "text": "cheapest"
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i09:r3",
+            "text": "the cheaper"
+          }
+        ],
+        "testedDimension": "Выберите значение «самый» в этой группе.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-14:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма cheapest.",
+              "uk": "Для всієї групи потрібна форма cheapest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-14:word:free-collection",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — free collection",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-14:word:free-collection:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — free collection",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-14:word:free-collection:audio",
+          "transcript": "free collection"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-14:word:free-collection:r1",
+            "targetText": "free collection",
+            "meaningByLocale": {
+              "ru": "бесплатный самовывоз.",
+              "uk": "безкоштовний самовивіз."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "free collection",
+          "definitionByLocale": {
+            "ru": "бесплатный самовывоз.",
+            "uk": "безкоштовний самовивіз."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-14:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Из всех трёх. Скажите: «Бесплатный самовывоз — самый дешёвый вариант здесь».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Из всех трёх. Скажите: «Бесплатный самовывоз — самый дешёвый вариант здесь».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Free collection is the cheapest option here.",
+        "localizedMeaning": {
+          "ru": "Из всех трёх. Скажите: «Бесплатный самовывоз — самый дешёвый вариант здесь».",
+          "uk": "З усіх трьох. Скажіть: «Безкоштовний самовивіз — найдешевший варіант тут»."
+        },
+        "orderedTokens": [
+          "Free",
+          "collection",
+          "is",
+          "the",
+          "cheapest",
+          "option",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-14:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-14:i11:r1",
+          "text": "Free collection is the cheapest option here."
+        },
+        {
+          "responseId": "en:lesson-18:session-14:i11:r2",
+          "text": "Free collection is cheapest option here."
+        },
+        {
+          "responseId": "en:lesson-18:session-14:i11:r3",
+          "text": "Free collection is the cheaper option here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-14:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-14:i11:audio",
+          "transcript": "Free collection is the cheapest option here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-14:i11:r1",
+            "targetText": "Free collection is the cheapest option here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i11:r2",
+            "targetText": "Free collection is cheapest option here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i11:r3",
+            "targetText": "Free collection is the cheaper option here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-14:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Free collection is the cheapest option here.",
+              "uk": "У записі звучить Free collection is the cheapest option here."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Free collection is the cheapest option here.",
+              "uk": "У записі звучить Free collection is the cheapest option here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-14:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите значение «самый» в этой группе.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-14:i12:r1",
+          "text": "the cheapest"
+        },
+        {
+          "responseId": "en:lesson-18:session-14:i12:r2",
+          "text": "cheapest"
+        },
+        {
+          "responseId": "en:lesson-18:session-14:i12:r3",
+          "text": "the cheaper"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите значение «самый» в этой группе.",
+          "uk": "Виберіть значення «най-» у цій групі."
+        },
+        "gappedTargetPhrase": "Free collection is ___ option here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-14:i12:r1",
+            "text": "the cheapest"
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i12:r2",
+            "text": "cheapest"
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i12:r3",
+            "text": "the cheaper"
+          }
+        ],
+        "testedDimension": "Выберите значение «самый» в этой группе.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-14:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужно the.",
+              "uk": "У цій конструкції потрібне the."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-14:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите значение «самый» в этой группе.",
+            "feedbackByLocale": {
+              "ru": "Для всей группы нужна форма cheapest.",
+              "uk": "Для всієї групи потрібна форма cheapest."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-14:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-14:i13:p1",
+            "target": "standard delivery",
+            "meaningByLocale": {
+              "ru": "обычная доставка",
+              "uk": "звичайна доставка"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-14:i13:p2",
+            "target": "express delivery",
+            "meaningByLocale": {
+              "ru": "ускоренная доставка",
+              "uk": "прискорена доставка"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-14:i13:p3",
+            "target": "next-day delivery",
+            "meaningByLocale": {
+              "ru": "доставка на следующий день",
+              "uk": "доставка наступного дня"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-14:i13:p4",
+            "target": "free collection",
+            "meaningByLocale": {
+              "ru": "бесплатный самовывоз",
+              "uk": "безкоштовний самовивіз"
+            }
+          }
+        ],
+        "leftColumn": [
+          "standard delivery",
+          "express delivery",
+          "next-day delivery",
+          "free collection"
+        ],
+        "rightColumn": [
+          "обычная доставка",
+          "ускоренная доставка",
+          "доставка на следующий день",
+          "бесплатный самовывоз"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-14:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное намерение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-14:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное намерение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-14:i14:audio",
+          "transcript": "We are going to choose standard delivery."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to choose standard delivery.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "choose",
+          "standard",
+          "delivery"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-14:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанный согласованный план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-14:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанный согласованный план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-14:i15:audio",
+          "transcript": "We are collecting our order at three tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are collecting our order at three tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "collecting",
+          "our",
+          "order",
+          "at",
+          "three",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-14:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: сравните два варианта",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-14:i16:audio"
+      ],
+      "accessibilityLabel": "Повторение: сравните два варианта",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-14:i16:audio",
+          "transcript": "Express delivery is faster than standard delivery."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Express delivery is faster than standard delivery.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-14:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: назовите две бутылки воды",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-14:i17:audio"
+      ],
+      "accessibilityLabel": "Повторение: назовите две бутылки воды",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-14:i17:audio",
+          "transcript": "We need two bottles of water."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need two bottles of water.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "061c4cd97e88759c6146ac685b4c24f2f1db22d63a000694515a9c2452c67fe6"
+}

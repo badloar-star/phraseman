@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-18:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-18:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-09:intro1:r2": {
+          "ru": "В этой конструкции перед shortest нужно the.",
+          "uk": "У цій конструкції перед shortest потрібне the."
+        },
+        "en:lesson-18:session-09:intro1:r3": {
+          "ru": "Из всей группы — shortest. Shorter сравнивает с другим вариантом.",
+          "uk": "З усієї групи — shortest. Shorter порівнює з іншим варіантом."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-09:intro2:r2": {
+          "ru": "Нужна конструкция the longest waiting time.",
+          "uk": "Потрібна конструкція the longest waiting time."
+        },
+        "en:lesson-18:session-09:intro2:r3": {
+          "ru": "Среди всех трёх — longest, не longer.",
+          "uk": "Серед усіх трьох — longest, не longer."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-09:intro3:r2": {
+          "ru": "Правильное написание earliest: y → i.",
+          "uk": "Правильне написання earliest: y → i."
+        },
+        "en:lesson-18:session-09:intro3:r3": {
+          "ru": "Нужно the earliest lunch break.",
+          "uk": "Потрібно the earliest lunch break."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "038b91c4664ddef54d4825826de2858e431df770ad53d872363477863f9c3741"
+}

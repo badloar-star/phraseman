@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-18:session-14",
+  "entries": [
+    {
+      "interactionId": "en:lesson-18:session-14:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-14:intro1:r2": {
+          "ru": "Перед этой формой нужно the.",
+          "uk": "Перед цією формою потрібне the."
+        },
+        "en:lesson-18:session-14:intro1:r3": {
+          "ru": "Из всей группы — slowest, не slower.",
+          "uk": "З усієї групи — slowest, не slower."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-14:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-14:intro2:r2": {
+          "ru": "Перед этой формой нужно the.",
+          "uk": "Перед цією формою потрібне the."
+        },
+        "en:lesson-18:session-14:intro2:r3": {
+          "ru": "Из всей группы — cheapest, не cheaper.",
+          "uk": "З усієї групи — cheapest, не cheaper."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-14:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-14:intro3:r2": {
+          "ru": "Перед этой формой нужно the.",
+          "uk": "Перед цією формою потрібне the."
+        },
+        "en:lesson-18:session-14:intro3:r3": {
+          "ru": "Из всей группы — cheapest, не cheaper.",
+          "uk": "З усієї групи — cheapest, не cheaper."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "160f50e9478096c7797413a62602cfee0b77d86cb7c94f1136b2c1a5ede9804e"
+}

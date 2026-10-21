@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-16:word:home-visit",
+    "correctText": "home visit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-16:i01",
+    "correctText": "We booked the earliest home visit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-16:i02",
+    "correctText": "We booked the earliest home visit.",
+    "correctResponseId": "en:lesson-18:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-16:i03",
+    "correctText": "the earliest",
+    "correctResponseId": "en:lesson-18:session-16:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-16:word:phone-appointment",
+    "correctText": "phone appointment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-16:i04",
+    "correctText": "This phone appointment is the shortest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-16:i05",
+    "correctText": "This phone appointment is the shortest.",
+    "correctResponseId": "en:lesson-18:session-16:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-16:i06",
+    "correctText": "the shortest",
+    "correctResponseId": "en:lesson-18:session-16:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-16:word:dental-appointment",
+    "correctText": "dental appointment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-16:i07",
+    "correctText": "We booked the latest dental appointment.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-16:i08",
+    "correctText": "We booked the latest dental appointment.",
+    "correctResponseId": "en:lesson-18:session-16:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-16:i09",
+    "correctText": "the latest",
+    "correctResponseId": "en:lesson-18:session-16:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-16:word:appointment-time",
+    "correctText": "appointment time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-16:i10",
+    "correctText": "This is the earliest appointment time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-16:i11",
+    "correctText": "This is the earliest appointment time.",
+    "correctResponseId": "en:lesson-18:session-16:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-16:i12",
+    "correctText": "the earliest",
+    "correctResponseId": "en:lesson-18:session-16:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-16:i13",
+    "correctText": "en:lesson-18:session-16:i13:p1=home visit\nen:lesson-18:session-16:i13:p2=phone appointment\nen:lesson-18:session-16:i13:p3=dental appointment\nen:lesson-18:session-16:i13:p4=appointment time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-16:i14",
+    "correctText": "We are going to book a phone appointment.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-16:i15",
+    "correctText": "We are seeing the dentist at four tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-16:i16",
+    "correctText": "This phone appointment is shorter than mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-16:i17",
+    "correctText": "We need two bottles of water.",
+    "correctResponseId": null
+  }
+]

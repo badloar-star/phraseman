@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "I was; you were; he/she/it was; we/they were",
+    "uk": "I was; you were; he/she/it was; we/they were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Я был дома",
+        "uk": "Я був удома"
+      },
+      "bodyByLocale": {
+        "ru": "Yesterday — «вчера». Сейчас вы в кафе, но вчера были дома: I was at home yesterday. Was — прошедшая форма am/is. С I, he, she, it используем was: I was tired — «Я был уставшим / была уставшей». Английская форма не меняется по полу. Выберите фразу о том, что вчера вы были дома.",
+        "uk": "Yesterday — «учора». Зараз ви в кафе, але вчора були вдома: I was at home yesterday. Was — минула форма am/is. З I, he, she, it використовуємо was: I was tired — «Я був утомлений / була втомлена». Англійська форма не змінюється за статтю. Виберіть фразу про те, що вчора ви були вдома."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-01:intro1:r1",
+              "text": "I was at home yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-01:intro1:r2",
+              "text": "I am at home yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-01:intro1:r3",
+              "text": "I were at home yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-01:intro1:r1",
+              "text": "I was at home yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-01:intro1:r2",
+              "text": "I am at home yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-01:intro1:r3",
+              "text": "I were at home yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Мы были вместе",
+        "uk": "Ми були разом"
+      },
+      "bodyByLocale": {
+        "ru": "Last night — «вчера вечером / прошлой ночью». Вы с другом были дома вчера вечером: We were at home last night. С you, we, they нужна were. You were подходит и одному собеседнику, и нескольким. Не добавляем am или are перед were.",
+        "uk": "Last night — «учора ввечері / минулої ночі». Ви з другом були вдома вчора ввечері: We were at home last night. З you, we, they потрібна were. You were підходить і одному співрозмовнику, і кільком. Не додаємо am або are перед were."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-01:intro2:r1",
+              "text": "We were at home last night."
+            },
+            {
+              "responseId": "en:lesson-11:session-01:intro2:r2",
+              "text": "We was at home last night."
+            },
+            {
+              "responseId": "en:lesson-11:session-01:intro2:r3",
+              "text": "We are were at home last night."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-01:intro2:r1",
+              "text": "We were at home last night."
+            },
+            {
+              "responseId": "en:lesson-11:session-01:intro2:r2",
+              "text": "We was at home last night."
+            },
+            {
+              "responseId": "en:lesson-11:session-01:intro2:r3",
+              "text": "We are were at home last night."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "На прошлой неделе и в прошлом году",
+        "uk": "Минулого тижня й минулого року"
+      },
+      "bodyByLocale": {
+        "ru": "Last week — «на прошлой неделе», last year — «в прошлом году». Перед этими выражениями не ставим in или on: She was in London last year. Вы рассказываете о сестре: в прошлом году она была в Лондоне. Выберите эту фразу.",
+        "uk": "Last week — «минулого тижня», last year — «торік / минулого року». Перед цими виразами не ставимо in або on: She was in London last year. Ви розповідаєте про сестру: торік вона була в Лондоні. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-01:intro3:r1",
+              "text": "She was in London last year."
+            },
+            {
+              "responseId": "en:lesson-11:session-01:intro3:r2",
+              "text": "She were in London last year."
+            },
+            {
+              "responseId": "en:lesson-11:session-01:intro3:r3",
+              "text": "She was in London in last year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-01:intro3:r1",
+              "text": "She was in London last year."
+            },
+            {
+              "responseId": "en:lesson-11:session-01:intro3:r2",
+              "text": "She were in London last year."
+            },
+            {
+              "responseId": "en:lesson-11:session-01:intro3:r3",
+              "text": "She was in London in last year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "46dc9c21524d01a607d321442f97b96fd5c98dfa7abd0e73d10c2eb993d37296"
+}

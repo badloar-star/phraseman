@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-02:intro1:r2": {
+          "ru": "С soap здесь нужна was.",
+          "uk": "Із soap тут потрібна was."
+        },
+        "en:lesson-11:session-02:intro1:r3": {
+          "ru": "Yesterday обозначает прошлое: нужна was.",
+          "uk": "Yesterday позначає минуле: потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-02:intro2:r2": {
+          "ru": "С toilet paper нужна was.",
+          "uk": "Із toilet paper потрібна was."
+        },
+        "en:lesson-11:session-02:intro2:r3": {
+          "ru": "Am подходит к I в настоящем. Здесь was.",
+          "uk": "Am підходить до I в теперішньому. Тут was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-02:intro3:r2": {
+          "ru": "Одна раковина: was.",
+          "uk": "Один умивальник: was."
+        },
+        "en:lesson-11:session-02:intro3:r3": {
+          "ru": "Clean — чистый. Cleaning означало бы действие уборки, а не состояние.",
+          "uk": "Clean — чистий. Cleaning означало б дію прибирання, а не стан."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a58bf1a172bbd43f83bfa81b236e3344506601172c5c49c33568878253e84401"
+}

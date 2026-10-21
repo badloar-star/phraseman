@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-56",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-56:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-56:intro1:r2": {
+          "ru": "Перед making нужна am.",
+          "uk": "Перед making потрібна am."
+        },
+        "en:lesson-10:session-56:intro1:r3": {
+          "ru": "После am для текущего действия нужна форма making.",
+          "uk": "Після am для поточної дії потрібна форма making."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-56:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-56:intro2:r2": {
+          "ru": "Нужна am перед sitting.",
+          "uk": "Потрібна am перед sitting."
+        },
+        "en:lesson-10:session-56:intro2:r3": {
+          "ru": "Нужна форма sitting, а не sit.",
+          "uk": "Потрібна форма sitting, а не sit."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-56:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-56:intro3:r2": {
+          "ru": "At the moment обозначает время: сейчас.",
+          "uk": "At the moment позначає час: зараз."
+        },
+        "en:lesson-10:session-56:intro3:r3": {
+          "ru": "As usual — как обычно. Для согласия здесь Of course.",
+          "uk": "As usual — як завжди. Для згоди тут Of course."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ac8d39dc817444babb4c0d23cb843fc9a2409be24e6a3de6154a94f51b0f5e37"
+}

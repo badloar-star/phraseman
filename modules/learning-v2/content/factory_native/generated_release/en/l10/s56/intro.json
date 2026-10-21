@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "right now; at the moment; as usual; of course",
+    "uk": "right now; at the moment; as usual; of course"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Прямо сейчас",
+        "uk": "Просто зараз"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, что вы делаете. Вы готовите чай прямо сейчас: I am making tea right now. Right now — «прямо сейчас». Для действия в процессе используем am/is/are + -ing. У make убираем e: making. Не нужно говорить I making.",
+        "uk": "Друг запитує, що ви робите. Ви готуєте чай просто зараз: I am making tea right now. Right now — «просто зараз». Для дії в процесі використовуємо am/is/are + -ing. У make прибираємо e: making. Не потрібно казати I making."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-56:intro1:r1",
+              "text": "I am making tea right now."
+            },
+            {
+              "responseId": "en:lesson-10:session-56:intro1:r2",
+              "text": "I making tea right now."
+            },
+            {
+              "responseId": "en:lesson-10:session-56:intro1:r3",
+              "text": "I am make tea right now."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-56:intro1:r1",
+              "text": "I am making tea right now."
+            },
+            {
+              "responseId": "en:lesson-10:session-56:intro1:r2",
+              "text": "I making tea right now."
+            },
+            {
+              "responseId": "en:lesson-10:session-56:intro1:r3",
+              "text": "I am make tea right now."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "В данный момент",
+        "uk": "У цей момент"
+      },
+      "bodyByLocale": {
+        "ru": "At the moment тоже означает «сейчас, в данный момент». Вы сидите дома: I am sitting at home at the moment. В sitting удваиваем t. При этом не каждый глагол с «сейчас» требует -ing: I know the answer — «Я знаю ответ». Know описывает знание, а не действие в процессе. Сейчас выберите фразу о том, что вы сидите дома.",
+        "uk": "At the moment теж означає «зараз, у цей момент». Ви сидите вдома: I am sitting at home at the moment. У sitting подвоюємо t. Водночас не кожне дієслово із «зараз» потребує -ing: I know the answer — «Я знаю відповідь». Know описує знання, а не дію в процесі. Зараз виберіть фразу про те, що ви сидите вдома."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-56:intro2:r1",
+              "text": "I am sitting at home at the moment."
+            },
+            {
+              "responseId": "en:lesson-10:session-56:intro2:r2",
+              "text": "I sitting at home at the moment."
+            },
+            {
+              "responseId": "en:lesson-10:session-56:intro2:r3",
+              "text": "I am sit at home at the moment."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-56:intro2:r1",
+              "text": "I am sitting at home at the moment."
+            },
+            {
+              "responseId": "en:lesson-10:session-56:intro2:r2",
+              "text": "I sitting at home at the moment."
+            },
+            {
+              "responseId": "en:lesson-10:session-56:intro2:r3",
+              "text": "I am sit at home at the moment."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Как обычно — и готовность помочь",
+        "uk": "Як завжди — і готовність допомогти"
+      },
+      "bodyByLocale": {
+        "ru": "As usual — «как обычно»: I am walking home, as usual — «Я иду домой, как обычно». Эта фраза не запрещает -ing: мы описываем текущую прогулку и добавляем, что так бывает обычно. Для общей привычки: I usually walk home. Usually стоит перед walk. Ещё одна полезная фраза — Of course: друг просит помочь, и вы отвечаете «Конечно». Выберите этот ответ.",
+        "uk": "As usual — «як завжди»: I am walking home, as usual — «Я йду додому, як завжди». Ця фраза не забороняє -ing: ми описуємо поточну прогулянку й додаємо, що так буває зазвичай. Для загальної звички: I usually walk home. Usually стоїть перед walk. Ще одна корисна фраза — Of course: друг просить допомогти, і ви відповідаєте «Звісно». Виберіть цю відповідь."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-56:intro3:r1",
+              "text": "Of course."
+            },
+            {
+              "responseId": "en:lesson-10:session-56:intro3:r2",
+              "text": "At the moment."
+            },
+            {
+              "responseId": "en:lesson-10:session-56:intro3:r3",
+              "text": "As usual."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-56:intro3:r1",
+              "text": "Of course."
+            },
+            {
+              "responseId": "en:lesson-10:session-56:intro3:r2",
+              "text": "At the moment."
+            },
+            {
+              "responseId": "en:lesson-10:session-56:intro3:r3",
+              "text": "As usual."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "99448968af2a4c788010256f0954c209508515708e4b79d5093d42a2b1fcbfd4"
+}

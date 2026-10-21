@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-01:word:yesterday",
+    "correctText": "yesterday",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-01:i01",
+    "correctText": "I was at home yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-01:i02",
+    "correctText": "He was tired yesterday.",
+    "correctResponseId": "en:lesson-11:session-01:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-01:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-01:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-01:word:last-night",
+    "correctText": "last night",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-01:i04",
+    "correctText": "We were in a cafe last night.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-01:i05",
+    "correctText": "You were quiet last night.",
+    "correctResponseId": "en:lesson-11:session-01:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-01:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-01:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-01:word:last-week",
+    "correctText": "last week",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-01:i07",
+    "correctText": "He was ill last week.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-01:i08",
+    "correctText": "We were in London last week.",
+    "correctResponseId": "en:lesson-11:session-01:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-01:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-01:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-01:word:last-year",
+    "correctText": "last year",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-01:i10",
+    "correctText": "She was a student last year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-01:i11",
+    "correctText": "They were in Paris last year.",
+    "correctResponseId": "en:lesson-11:session-01:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-01:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-01:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-01:i13",
+    "correctText": "en:lesson-11:session-01:i13:p1=yesterday\nen:lesson-11:session-01:i13:p2=last night\nen:lesson-11:session-01:i13:p3=last week\nen:lesson-11:session-01:i13:p4=last year",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-01:i14",
+    "correctText": "You were late yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-01:i15",
+    "correctText": "It was cold last night.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-01:i16",
+    "correctText": "I was happy yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-01:i17",
+    "correctText": "They were in London last week.",
+    "correctResponseId": null
+  }
+]

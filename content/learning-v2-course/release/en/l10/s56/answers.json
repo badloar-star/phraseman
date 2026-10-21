@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-56:word:right-now",
+    "correctText": "right now",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-56:i01",
+    "correctText": "I am making tea right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-56:i02",
+    "correctText": "She is cooking right now.",
+    "correctResponseId": "en:lesson-10:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-56:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-56:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-56:word:at-the-moment",
+    "correctText": "at the moment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-56:i04",
+    "correctText": "I am at home at the moment.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-56:i05",
+    "correctText": "We are waiting at the moment.",
+    "correctResponseId": "en:lesson-10:session-56:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-56:i06",
+    "correctText": "sitting",
+    "correctResponseId": "en:lesson-10:session-56:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-56:word:as-usual",
+    "correctText": "as usual",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-56:i07",
+    "correctText": "The bus is late as usual.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-56:i08",
+    "correctText": "Tom is cooking as usual.",
+    "correctResponseId": "en:lesson-10:session-56:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-56:i09",
+    "correctText": "walk",
+    "correctResponseId": "en:lesson-10:session-56:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-56:word:of-course",
+    "correctText": "of course",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-56:i10",
+    "correctText": "Of course.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-56:i11",
+    "correctText": "Of course, I can help.",
+    "correctResponseId": "en:lesson-10:session-56:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-56:i12",
+    "correctText": "know",
+    "correctResponseId": "en:lesson-10:session-56:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-56:i13",
+    "correctText": "en:lesson-10:session-56:i13:p1=right now\nen:lesson-10:session-56:i13:p2=at the moment\nen:lesson-10:session-56:i13:p3=as usual\nen:lesson-10:session-56:i13:p4=of course",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-56:i14",
+    "correctText": "Are you working right now?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-56:i15",
+    "correctText": "I am not working at the moment.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-56:i16",
+    "correctText": "I am working in a cafe today.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-56:i17",
+    "correctText": "Of course, sit here.",
+    "correctResponseId": null
+  }
+]

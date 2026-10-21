@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-02:word:soap",
+    "correctText": "soap",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-02:i01",
+    "correctText": "The soap was on the shelf.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-02:i02",
+    "correctText": "The soap was wet.",
+    "correctResponseId": "en:lesson-11:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-02:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-02:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-02:word:shower-gel",
+    "correctText": "shower gel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-02:i04",
+    "correctText": "The shower gel was in the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-02:i05",
+    "correctText": "The shower gel was cheap.",
+    "correctResponseId": "en:lesson-11:session-02:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-02:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-02:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-02:word:toilet-paper",
+    "correctText": "toilet paper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-02:i07",
+    "correctText": "The toilet paper was in the cupboard.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-02:i08",
+    "correctText": "The toilet paper was dry.",
+    "correctResponseId": "en:lesson-11:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-02:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-02:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-02:word:washbasin",
+    "correctText": "washbasin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-02:i10",
+    "correctText": "The washbasin was dirty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-02:i11",
+    "correctText": "The washbasin was white.",
+    "correctResponseId": "en:lesson-11:session-02:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-02:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-02:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-02:i13",
+    "correctText": "en:lesson-11:session-02:i13:p1=soap\nen:lesson-11:session-02:i13:p2=shower gel\nen:lesson-11:session-02:i13:p3=toilet paper\nen:lesson-11:session-02:i13:p4=washbasin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-02:i14",
+    "correctText": "The washbasin was clean yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-02:i15",
+    "correctText": "Please don't touch the wall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-02:i16",
+    "correctText": "The shower gel was on the shelf yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-02:i17",
+    "correctText": "The soap was in the bag yesterday.",
+    "correctResponseId": null
+  }
+]

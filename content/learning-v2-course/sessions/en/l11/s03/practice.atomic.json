@@ -1,0 +1,2335 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-11:session-03",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-11:session-03:word:washing-powder",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — washing powder",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:word:washing-powder:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — washing powder",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:word:washing-powder:audio",
+            "transcript": "washing powder"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-03:word:washing-powder:r1",
+              "targetText": "washing powder",
+              "meaningByLocale": {
+                "ru": "стиральный порошок. Учим название целиком.",
+                "uk": "пральний порошок. Вчимо назву цілком."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "washing powder",
+            "definitionByLocale": {
+              "ru": "стиральный порошок. Учим название целиком.",
+              "uk": "пральний порошок. Вчимо назву цілком."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Стиральный порошок был в шкафу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Стиральный порошок был в шкафу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The washing powder was in the cupboard.",
+          "localizedMeaning": {
+            "ru": "Стиральный порошок был в шкафу",
+            "uk": "Пральний порошок був у шафці"
+          },
+          "orderedTokens": [
+            "The",
+            "washing",
+            "powder",
+            "was",
+            "in",
+            "the",
+            "cupboard"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-03:i02:r1",
+            "text": "The washing powder was cheap."
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i02:r2",
+            "text": "The washing powder was expensive."
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i02:r3",
+            "text": "The washing powder was here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:i02:audio",
+            "transcript": "The washing powder was cheap."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-03:i02:r1",
+              "targetText": "The washing powder was cheap.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i02:r2",
+              "targetText": "The washing powder was expensive.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i02:r3",
+              "targetText": "The washing powder was here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-03:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The washing powder was cheap.",
+                "uk": "У записі звучить The washing powder was cheap."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The washing powder was cheap.",
+                "uk": "У записі звучить The washing powder was cheap."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Расскажите о вчерашнем месте порошка",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-03:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите о вчерашнем месте порошка",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Расскажите о вчерашнем месте порошка",
+            "uk": "Розкажіть про вчорашнє місце порошку"
+          },
+          "gappedTargetPhrase": "The washing powder ___ on the shelf yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-03:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Расскажите о вчерашнем месте порошка",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-03:i03:r2",
+              "correct": false,
+              "testedDimension": "Расскажите о вчерашнем месте порошка",
+              "feedbackByLocale": {
+                "ru": "С powder здесь нужна was.",
+                "uk": "Із powder тут потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i03:r3",
+              "correct": false,
+              "testedDimension": "Расскажите о вчерашнем месте порошка",
+              "feedbackByLocale": {
+                "ru": "Yesterday — прошлое, нужна was.",
+                "uk": "Yesterday — минуле, потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:word:washing-up-liquid",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — washing-up liquid",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:word:washing-up-liquid:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — washing-up liquid",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:word:washing-up-liquid:audio",
+            "transcript": "washing-up liquid"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-03:word:washing-up-liquid:r1",
+              "targetText": "washing-up liquid",
+              "meaningByLocale": {
+                "ru": "жидкое средство для мытья посуды.",
+                "uk": "рідкий засіб для миття посуду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "washing-up liquid",
+            "definitionByLocale": {
+              "ru": "жидкое средство для мытья посуды.",
+              "uk": "рідкий засіб для миття посуду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Средство для посуды было у раковины",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Средство для посуды было у раковины",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The washing-up liquid was by the sink.",
+          "localizedMeaning": {
+            "ru": "Средство для посуды было у раковины",
+            "uk": "Засіб для посуду був біля раковини"
+          },
+          "orderedTokens": [
+            "The",
+            "washing-up",
+            "liquid",
+            "was",
+            "by",
+            "the",
+            "sink"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-03:i05:r1",
+            "text": "The washing-up liquid was green."
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i05:r2",
+            "text": "The washing-up liquid was blue."
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i05:r3",
+            "text": "The washing-up liquid was cheap."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:i05:audio",
+            "transcript": "The washing-up liquid was green."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-03:i05:r1",
+              "targetText": "The washing-up liquid was green.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i05:r2",
+              "targetText": "The washing-up liquid was blue.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i05:r3",
+              "targetText": "The washing-up liquid was cheap.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-03:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The washing-up liquid was green.",
+                "uk": "У записі звучить The washing-up liquid was green."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The washing-up liquid was green.",
+                "uk": "У записі звучить The washing-up liquid was green."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Теперь средство здесь: выберите форму настоящего времени",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-03:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i06:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Теперь средство здесь: выберите форму настоящего времени",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Теперь средство здесь: выберите форму настоящего времени",
+            "uk": "Тепер засіб тут: виберіть форму теперішнього часу"
+          },
+          "gappedTargetPhrase": "The washing-up liquid ___ here right now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-03:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i06:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i06:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Теперь средство здесь: выберите форму настоящего времени",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-03:i06:r2",
+              "correct": false,
+              "testedDimension": "Теперь средство здесь: выберите форму настоящего времени",
+              "feedbackByLocale": {
+                "ru": "Здесь единственное число: is.",
+                "uk": "Тут однина: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i06:r3",
+              "correct": false,
+              "testedDimension": "Теперь средство здесь: выберите форму настоящего времени",
+              "feedbackByLocale": {
+                "ru": "Am используется с I. Здесь is.",
+                "uk": "Am використовується з I. Тут is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:word:cleaning-cloth",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cleaning cloth",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:word:cleaning-cloth:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cleaning cloth",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:word:cleaning-cloth:audio",
+            "transcript": "cleaning cloth"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-03:word:cleaning-cloth:r1",
+              "targetText": "cleaning cloth",
+              "meaningByLocale": {
+                "ru": "тряпка для уборки.",
+                "uk": "ганчірка для прибирання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cleaning cloth",
+            "definitionByLocale": {
+              "ru": "тряпка для уборки.",
+              "uk": "ганчірка для прибирання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Тряпка для уборки была мокрой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тряпка для уборки была мокрой",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The cleaning cloth was wet.",
+          "localizedMeaning": {
+            "ru": "Тряпка для уборки была мокрой",
+            "uk": "Ганчірка для прибирання була мокра"
+          },
+          "orderedTokens": [
+            "The",
+            "cleaning",
+            "cloth",
+            "was",
+            "wet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-03:i08:r1",
+            "text": "The cleaning cloth was on the table."
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i08:r2",
+            "text": "The cleaning cloth was on the shelf."
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i08:r3",
+            "text": "The cleaning cloth was on the floor."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:i08:audio",
+            "transcript": "The cleaning cloth was on the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-03:i08:r1",
+              "targetText": "The cleaning cloth was on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i08:r2",
+              "targetText": "The cleaning cloth was on the shelf.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i08:r3",
+              "targetText": "The cleaning cloth was on the floor.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-03:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cleaning cloth was on the table.",
+                "uk": "У записі звучить The cleaning cloth was on the table."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cleaning cloth was on the table.",
+                "uk": "У записі звучить The cleaning cloth was on the table."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера эта тряпка была грязной",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-03:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера эта тряпка была грязной",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера эта тряпка была грязной",
+            "uk": "Учора ця ганчірка була брудна"
+          },
+          "gappedTargetPhrase": "The cleaning cloth ___ dirty yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-03:i09:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Вчера эта тряпка была грязной",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-03:i09:r2",
+              "correct": false,
+              "testedDimension": "Вчера эта тряпка была грязной",
+              "feedbackByLocale": {
+                "ru": "Одна тряпка: was.",
+                "uk": "Одна ганчірка: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i09:r3",
+              "correct": false,
+              "testedDimension": "Вчера эта тряпка была грязной",
+              "feedbackByLocale": {
+                "ru": "Am относится к I в настоящем. Здесь was.",
+                "uk": "Am стосується I в теперішньому. Тут was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:word:rubber-gloves",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rubber gloves",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:word:rubber-gloves:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rubber gloves",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:word:rubber-gloves:audio",
+            "transcript": "rubber gloves"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-03:word:rubber-gloves:r1",
+              "targetText": "rubber gloves",
+              "meaningByLocale": {
+                "ru": "резиновые перчатки. Множественное число: were.",
+                "uk": "гумові рукавички. Множина: were."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rubber gloves",
+            "definitionByLocale": {
+              "ru": "резиновые перчатки. Множественное число: were.",
+              "uk": "гумові рукавички. Множина: were."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Резиновые перчатки были на столе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Резиновые перчатки были на столе",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The rubber gloves were on the table.",
+          "localizedMeaning": {
+            "ru": "Резиновые перчатки были на столе",
+            "uk": "Гумові рукавички були на столі"
+          },
+          "orderedTokens": [
+            "The",
+            "rubber",
+            "gloves",
+            "were",
+            "on",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-03:i11:r1",
+            "text": "The rubber gloves were yellow."
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i11:r2",
+            "text": "The rubber gloves were green."
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i11:r3",
+            "text": "The rubber gloves were wet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:i11:audio",
+            "transcript": "The rubber gloves were yellow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-03:i11:r1",
+              "targetText": "The rubber gloves were yellow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i11:r2",
+              "targetText": "The rubber gloves were green.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i11:r3",
+              "targetText": "The rubber gloves were wet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-03:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The rubber gloves were yellow.",
+                "uk": "У записі звучить The rubber gloves were yellow."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The rubber gloves were yellow.",
+                "uk": "У записі звучить The rubber gloves were yellow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "После уборки перчатки были грязными",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-03:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i12:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "После уборки перчатки были грязными",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "После уборки перчатки были грязными",
+            "uk": "Після прибирання рукавички були брудні"
+          },
+          "gappedTargetPhrase": "The rubber gloves ___ dirty.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-03:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i12:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "После уборки перчатки были грязными",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-03:i12:r2",
+              "correct": false,
+              "testedDimension": "После уборки перчатки были грязными",
+              "feedbackByLocale": {
+                "ru": "Gloves — множественное число: were.",
+                "uk": "Gloves — множина: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i12:r3",
+              "correct": false,
+              "testedDimension": "После уборки перчатки были грязными",
+              "feedbackByLocale": {
+                "ru": "Для множественного числа в прошлом нужна were.",
+                "uk": "Для множини в минулому потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините названия с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините названия с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-03:i13:p1",
+              "target": "washing powder",
+              "meaningByLocale": {
+                "ru": "стиральный порошок",
+                "uk": "пральний порошок"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-03:i13:p2",
+              "target": "washing-up liquid",
+              "meaningByLocale": {
+                "ru": "средство для посуды",
+                "uk": "засіб для посуду"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-03:i13:p3",
+              "target": "cleaning cloth",
+              "meaningByLocale": {
+                "ru": "тряпка для уборки",
+                "uk": "ганчірка для прибирання"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-03:i13:p4",
+              "target": "rubber gloves",
+              "meaningByLocale": {
+                "ru": "резиновые перчатки",
+                "uk": "гумові рукавички"
+              }
+            }
+          ],
+          "leftColumn": [
+            "washing powder",
+            "washing-up liquid",
+            "cleaning cloth",
+            "rubber gloves"
+          ],
+          "rightColumn": [
+            "стиральный порошок",
+            "средство для посуды",
+            "тряпка для уборки",
+            "резиновые перчатки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную просьбу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную просьбу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:i14:audio",
+            "transcript": "Please don't move the table."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't move the table.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "move",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:i15:audio",
+            "transcript": "The cleaning cloth was dry last night."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The cleaning cloth was dry last night.",
+          "orderedTokens": [
+            "The",
+            "cleaning",
+            "cloth",
+            "was",
+            "dry",
+            "last",
+            "night"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вспомните, что вчера перчатки были в сумке",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:i16:audio"
+        ],
+        "accessibilityLabel": "Вспомните, что вчера перчатки были в сумке",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:i16:audio",
+            "transcript": "The rubber gloves were in the bag yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The rubber gloves were in the bag yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вспомните, что вчера средство для посуды было дешёвым",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:i17:audio"
+        ],
+        "accessibilityLabel": "Вспомните, что вчера средство для посуды было дешёвым",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:i17:audio",
+            "transcript": "The washing-up liquid was cheap yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The washing-up liquid was cheap yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-11:session-03:word:washing-powder",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — washing powder",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:word:washing-powder:audio"
+        ],
+        "accessibilityLabel": "Картка слова — washing powder",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:word:washing-powder:audio",
+            "transcript": "washing powder"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-03:word:washing-powder:r1",
+              "targetText": "washing powder",
+              "meaningByLocale": {
+                "ru": "стиральный порошок. Учим название целиком.",
+                "uk": "пральний порошок. Вчимо назву цілком."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "washing powder",
+            "definitionByLocale": {
+              "ru": "стиральный порошок. Учим название целиком.",
+              "uk": "пральний порошок. Вчимо назву цілком."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Пральний порошок був у шафці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Пральний порошок був у шафці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The washing powder was in the cupboard.",
+          "localizedMeaning": {
+            "ru": "Стиральный порошок был в шкафу",
+            "uk": "Пральний порошок був у шафці"
+          },
+          "orderedTokens": [
+            "The",
+            "washing",
+            "powder",
+            "was",
+            "in",
+            "the",
+            "cupboard"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-03:i02:r1",
+            "text": "The washing powder was cheap."
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i02:r2",
+            "text": "The washing powder was expensive."
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i02:r3",
+            "text": "The washing powder was here."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:i02:audio",
+            "transcript": "The washing powder was cheap."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-03:i02:r1",
+              "targetText": "The washing powder was cheap.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i02:r2",
+              "targetText": "The washing powder was expensive.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i02:r3",
+              "targetText": "The washing powder was here.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-03:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The washing powder was cheap.",
+                "uk": "У записі звучить The washing powder was cheap."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The washing powder was cheap.",
+                "uk": "У записі звучить The washing powder was cheap."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Розкажіть про вчорашнє місце порошку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-03:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про вчорашнє місце порошку",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Расскажите о вчерашнем месте порошка",
+            "uk": "Розкажіть про вчорашнє місце порошку"
+          },
+          "gappedTargetPhrase": "The washing powder ___ on the shelf yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-03:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i03:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Розкажіть про вчорашнє місце порошку",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-03:i03:r2",
+              "correct": false,
+              "testedDimension": "Розкажіть про вчорашнє місце порошку",
+              "feedbackByLocale": {
+                "ru": "С powder здесь нужна was.",
+                "uk": "Із powder тут потрібна was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i03:r3",
+              "correct": false,
+              "testedDimension": "Розкажіть про вчорашнє місце порошку",
+              "feedbackByLocale": {
+                "ru": "Yesterday — прошлое, нужна was.",
+                "uk": "Yesterday — минуле, потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:word:washing-up-liquid",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — washing-up liquid",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:word:washing-up-liquid:audio"
+        ],
+        "accessibilityLabel": "Картка слова — washing-up liquid",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:word:washing-up-liquid:audio",
+            "transcript": "washing-up liquid"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-03:word:washing-up-liquid:r1",
+              "targetText": "washing-up liquid",
+              "meaningByLocale": {
+                "ru": "жидкое средство для мытья посуды.",
+                "uk": "рідкий засіб для миття посуду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "washing-up liquid",
+            "definitionByLocale": {
+              "ru": "жидкое средство для мытья посуды.",
+              "uk": "рідкий засіб для миття посуду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Засіб для посуду був біля раковини",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Засіб для посуду був біля раковини",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The washing-up liquid was by the sink.",
+          "localizedMeaning": {
+            "ru": "Средство для посуды было у раковины",
+            "uk": "Засіб для посуду був біля раковини"
+          },
+          "orderedTokens": [
+            "The",
+            "washing-up",
+            "liquid",
+            "was",
+            "by",
+            "the",
+            "sink"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-03:i05:r1",
+            "text": "The washing-up liquid was green."
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i05:r2",
+            "text": "The washing-up liquid was blue."
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i05:r3",
+            "text": "The washing-up liquid was cheap."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:i05:audio",
+            "transcript": "The washing-up liquid was green."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-03:i05:r1",
+              "targetText": "The washing-up liquid was green.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i05:r2",
+              "targetText": "The washing-up liquid was blue.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i05:r3",
+              "targetText": "The washing-up liquid was cheap.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-03:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The washing-up liquid was green.",
+                "uk": "У записі звучить The washing-up liquid was green."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The washing-up liquid was green.",
+                "uk": "У записі звучить The washing-up liquid was green."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Тепер засіб тут: виберіть форму теперішнього часу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-03:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i06:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Тепер засіб тут: виберіть форму теперішнього часу",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Теперь средство здесь: выберите форму настоящего времени",
+            "uk": "Тепер засіб тут: виберіть форму теперішнього часу"
+          },
+          "gappedTargetPhrase": "The washing-up liquid ___ here right now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-03:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i06:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i06:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Тепер засіб тут: виберіть форму теперішнього часу",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-03:i06:r2",
+              "correct": false,
+              "testedDimension": "Тепер засіб тут: виберіть форму теперішнього часу",
+              "feedbackByLocale": {
+                "ru": "Здесь единственное число: is.",
+                "uk": "Тут однина: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i06:r3",
+              "correct": false,
+              "testedDimension": "Тепер засіб тут: виберіть форму теперішнього часу",
+              "feedbackByLocale": {
+                "ru": "Am используется с I. Здесь is.",
+                "uk": "Am використовується з I. Тут is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:word:cleaning-cloth",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cleaning cloth",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:word:cleaning-cloth:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cleaning cloth",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:word:cleaning-cloth:audio",
+            "transcript": "cleaning cloth"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-03:word:cleaning-cloth:r1",
+              "targetText": "cleaning cloth",
+              "meaningByLocale": {
+                "ru": "тряпка для уборки.",
+                "uk": "ганчірка для прибирання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cleaning cloth",
+            "definitionByLocale": {
+              "ru": "тряпка для уборки.",
+              "uk": "ганчірка для прибирання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ганчірка для прибирання була мокра",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ганчірка для прибирання була мокра",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The cleaning cloth was wet.",
+          "localizedMeaning": {
+            "ru": "Тряпка для уборки была мокрой",
+            "uk": "Ганчірка для прибирання була мокра"
+          },
+          "orderedTokens": [
+            "The",
+            "cleaning",
+            "cloth",
+            "was",
+            "wet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-03:i08:r1",
+            "text": "The cleaning cloth was on the table."
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i08:r2",
+            "text": "The cleaning cloth was on the shelf."
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i08:r3",
+            "text": "The cleaning cloth was on the floor."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:i08:audio",
+            "transcript": "The cleaning cloth was on the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-03:i08:r1",
+              "targetText": "The cleaning cloth was on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i08:r2",
+              "targetText": "The cleaning cloth was on the shelf.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i08:r3",
+              "targetText": "The cleaning cloth was on the floor.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-03:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cleaning cloth was on the table.",
+                "uk": "У записі звучить The cleaning cloth was on the table."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cleaning cloth was on the table.",
+                "uk": "У записі звучить The cleaning cloth was on the table."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора ця ганчірка була брудна",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-03:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора ця ганчірка була брудна",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера эта тряпка была грязной",
+            "uk": "Учора ця ганчірка була брудна"
+          },
+          "gappedTargetPhrase": "The cleaning cloth ___ dirty yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-03:i09:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Учора ця ганчірка була брудна",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-03:i09:r2",
+              "correct": false,
+              "testedDimension": "Учора ця ганчірка була брудна",
+              "feedbackByLocale": {
+                "ru": "Одна тряпка: was.",
+                "uk": "Одна ганчірка: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i09:r3",
+              "correct": false,
+              "testedDimension": "Учора ця ганчірка була брудна",
+              "feedbackByLocale": {
+                "ru": "Am относится к I в настоящем. Здесь was.",
+                "uk": "Am стосується I в теперішньому. Тут was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:word:rubber-gloves",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rubber gloves",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:word:rubber-gloves:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rubber gloves",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:word:rubber-gloves:audio",
+            "transcript": "rubber gloves"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-03:word:rubber-gloves:r1",
+              "targetText": "rubber gloves",
+              "meaningByLocale": {
+                "ru": "резиновые перчатки. Множественное число: were.",
+                "uk": "гумові рукавички. Множина: were."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rubber gloves",
+            "definitionByLocale": {
+              "ru": "резиновые перчатки. Множественное число: were.",
+              "uk": "гумові рукавички. Множина: were."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гумові рукавички були на столі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гумові рукавички були на столі",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The rubber gloves were on the table.",
+          "localizedMeaning": {
+            "ru": "Резиновые перчатки были на столе",
+            "uk": "Гумові рукавички були на столі"
+          },
+          "orderedTokens": [
+            "The",
+            "rubber",
+            "gloves",
+            "were",
+            "on",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-03:i11:r1",
+            "text": "The rubber gloves were yellow."
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i11:r2",
+            "text": "The rubber gloves were green."
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i11:r3",
+            "text": "The rubber gloves were wet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:i11:audio",
+            "transcript": "The rubber gloves were yellow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-03:i11:r1",
+              "targetText": "The rubber gloves were yellow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i11:r2",
+              "targetText": "The rubber gloves were green.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i11:r3",
+              "targetText": "The rubber gloves were wet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-03:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The rubber gloves were yellow.",
+                "uk": "У записі звучить The rubber gloves were yellow."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The rubber gloves were yellow.",
+                "uk": "У записі звучить The rubber gloves were yellow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Після прибирання рукавички були брудні",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-03:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-03:i12:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Після прибирання рукавички були брудні",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "После уборки перчатки были грязными",
+            "uk": "Після прибирання рукавички були брудні"
+          },
+          "gappedTargetPhrase": "The rubber gloves ___ dirty.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-03:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i12:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Після прибирання рукавички були брудні",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-03:i12:r2",
+              "correct": false,
+              "testedDimension": "Після прибирання рукавички були брудні",
+              "feedbackByLocale": {
+                "ru": "Gloves — множественное число: were.",
+                "uk": "Gloves — множина: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-03:i12:r3",
+              "correct": false,
+              "testedDimension": "Після прибирання рукавички були брудні",
+              "feedbackByLocale": {
+                "ru": "Для множественного числа в прошлом нужна were.",
+                "uk": "Для множини в минулому потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте назви з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте назви з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-03:i13:p1",
+              "target": "washing powder",
+              "meaningByLocale": {
+                "ru": "стиральный порошок",
+                "uk": "пральний порошок"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-03:i13:p2",
+              "target": "washing-up liquid",
+              "meaningByLocale": {
+                "ru": "средство для посуды",
+                "uk": "засіб для посуду"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-03:i13:p3",
+              "target": "cleaning cloth",
+              "meaningByLocale": {
+                "ru": "тряпка для уборки",
+                "uk": "ганчірка для прибирання"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-03:i13:p4",
+              "target": "rubber gloves",
+              "meaningByLocale": {
+                "ru": "резиновые перчатки",
+                "uk": "гумові рукавички"
+              }
+            }
+          ],
+          "leftColumn": [
+            "washing powder",
+            "washing-up liquid",
+            "cleaning cloth",
+            "rubber gloves"
+          ],
+          "rightColumn": [
+            "пральний порошок",
+            "засіб для посуду",
+            "ганчірка для прибирання",
+            "гумові рукавички"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте прохання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте прохання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:i14:audio",
+            "transcript": "Please don't move the table."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't move the table.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "move",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:i15:audio",
+            "transcript": "The cleaning cloth was dry last night."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The cleaning cloth was dry last night.",
+          "orderedTokens": [
+            "The",
+            "cleaning",
+            "cloth",
+            "was",
+            "dry",
+            "last",
+            "night"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Згадайте, що вчора рукавички були в сумці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:i16:audio"
+        ],
+        "accessibilityLabel": "Згадайте, що вчора рукавички були в сумці",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:i16:audio",
+            "transcript": "The rubber gloves were in the bag yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The rubber gloves were in the bag yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-03:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Згадайте, що вчора засіб для посуду був дешевий",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-03:i17:audio"
+        ],
+        "accessibilityLabel": "Згадайте, що вчора засіб для посуду був дешевий",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-03:i17:audio",
+            "transcript": "The washing-up liquid was cheap yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The washing-up liquid was cheap yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-11:session-03:word:washing-powder",
+      "correctText": "washing powder",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-03:i01",
+      "correctText": "The washing powder was in the cupboard.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-03:i02",
+      "correctText": "The washing powder was cheap.",
+      "correctResponseId": "en:lesson-11:session-03:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-03:i03",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-03:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-03:word:washing-up-liquid",
+      "correctText": "washing-up liquid",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-03:i04",
+      "correctText": "The washing-up liquid was by the sink.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-03:i05",
+      "correctText": "The washing-up liquid was green.",
+      "correctResponseId": "en:lesson-11:session-03:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-03:i06",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-11:session-03:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-03:word:cleaning-cloth",
+      "correctText": "cleaning cloth",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-03:i07",
+      "correctText": "The cleaning cloth was wet.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-03:i08",
+      "correctText": "The cleaning cloth was on the table.",
+      "correctResponseId": "en:lesson-11:session-03:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-03:i09",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-03:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-03:word:rubber-gloves",
+      "correctText": "rubber gloves",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-03:i10",
+      "correctText": "The rubber gloves were on the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-03:i11",
+      "correctText": "The rubber gloves were yellow.",
+      "correctResponseId": "en:lesson-11:session-03:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-03:i12",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-11:session-03:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-03:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-03:i14",
+      "correctText": "Please don't move the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-03:i15",
+      "correctText": "The cleaning cloth was dry last night.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-03:i16",
+      "correctText": "The rubber gloves were in the bag yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-03:i17",
+      "correctText": "The washing-up liquid was cheap yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

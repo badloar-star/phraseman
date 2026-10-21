@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-02",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-02:word:soap",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — soap",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-02:word:soap:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — soap",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-02:word:soap:audio",
+          "transcript": "soap"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-02:word:soap:r1",
+            "targetText": "soap",
+            "meaningByLocale": {
+              "ru": "мыло. Здесь неисчисляемое: the soap was.",
+              "uk": "мило. Тут незлічуване: the soap was."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "soap",
+          "definitionByLocale": {
+            "ru": "мыло. Здесь неисчисляемое: the soap was.",
+            "uk": "мило. Тут незлічуване: the soap was."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-02:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Мыло было на полке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мыло было на полке",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The soap was on the shelf.",
+        "localizedMeaning": {
+          "ru": "Мыло было на полке",
+          "uk": "Мило було на полиці"
+        },
+        "orderedTokens": [
+          "The",
+          "soap",
+          "was",
+          "on",
+          "the",
+          "shelf"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-02:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-02:i02:r1",
+          "text": "The soap was wet."
+        },
+        {
+          "responseId": "en:lesson-11:session-02:i02:r2",
+          "text": "The soap was dry."
+        },
+        {
+          "responseId": "en:lesson-11:session-02:i02:r3",
+          "text": "The soap was white."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-02:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-02:i02:audio",
+          "transcript": "The soap was wet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-02:i02:r1",
+            "targetText": "The soap was wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i02:r2",
+            "targetText": "The soap was dry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i02:r3",
+            "targetText": "The soap was white.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-02:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The soap was wet.",
+              "uk": "У записі звучить The soap was wet."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The soap was wet.",
+              "uk": "У записі звучить The soap was wet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-02:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Говорим о мыле вчера",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-02:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-02:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-02:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Говорим о мыле вчера",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Говорим о мыле вчера",
+          "uk": "Говоримо про мило вчора"
+        },
+        "gappedTargetPhrase": "The soap ___ here yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-02:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Говорим о мыле вчера",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-02:i03:r2",
+            "correct": false,
+            "testedDimension": "Говорим о мыле вчера",
+            "feedbackByLocale": {
+              "ru": "С soap нужна was.",
+              "uk": "Із soap потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i03:r3",
+            "correct": false,
+            "testedDimension": "Говорим о мыле вчера",
+            "feedbackByLocale": {
+              "ru": "Yesterday — прошлое, нужна was.",
+              "uk": "Yesterday — минуле, потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-02:word:shower-gel",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shower gel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-02:word:shower-gel:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shower gel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-02:word:shower-gel:audio",
+          "transcript": "shower gel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-02:word:shower-gel:r1",
+            "targetText": "shower gel",
+            "meaningByLocale": {
+              "ru": "гель для душа. Учим выражение целиком.",
+              "uk": "гель для душу. Вчимо вираз цілком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shower gel",
+          "definitionByLocale": {
+            "ru": "гель для душа. Учим выражение целиком.",
+            "uk": "гель для душу. Вчимо вираз цілком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-02:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Гель для душа был в сумке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Гель для душа был в сумке",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The shower gel was in the bag.",
+        "localizedMeaning": {
+          "ru": "Гель для душа был в сумке",
+          "uk": "Гель для душу був у сумці"
+        },
+        "orderedTokens": [
+          "The",
+          "shower",
+          "gel",
+          "was",
+          "in",
+          "the",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-02:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-02:i05:r1",
+          "text": "The shower gel was cheap."
+        },
+        {
+          "responseId": "en:lesson-11:session-02:i05:r2",
+          "text": "The shower gel was expensive."
+        },
+        {
+          "responseId": "en:lesson-11:session-02:i05:r3",
+          "text": "The shower gel was blue."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-02:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-02:i05:audio",
+          "transcript": "The shower gel was cheap."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-02:i05:r1",
+            "targetText": "The shower gel was cheap.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i05:r2",
+            "targetText": "The shower gel was expensive.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i05:r3",
+            "targetText": "The shower gel was blue.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-02:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shower gel was cheap.",
+              "uk": "У записі звучить The shower gel was cheap."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shower gel was cheap.",
+              "uk": "У записі звучить The shower gel was cheap."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-02:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Теперь гель рядом с вами: выберите настоящее время",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-02:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-02:i06:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-11:session-02:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Теперь гель рядом с вами: выберите настоящее время",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Теперь гель рядом с вами: выберите настоящее время",
+          "uk": "Тепер гель поруч із вами: виберіть теперішній час"
+        },
+        "gappedTargetPhrase": "The shower gel ___ here right now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-02:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Теперь гель рядом с вами: выберите настоящее время",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-02:i06:r2",
+            "correct": false,
+            "testedDimension": "Теперь гель рядом с вами: выберите настоящее время",
+            "feedbackByLocale": {
+              "ru": "Здесь единственное число: is.",
+              "uk": "Тут однина: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i06:r3",
+            "correct": false,
+            "testedDimension": "Теперь гель рядом с вами: выберите настоящее время",
+            "feedbackByLocale": {
+              "ru": "Am используется с I. Здесь is.",
+              "uk": "Am використовується з I. Тут is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-02:word:toilet-paper",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — toilet paper",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-02:word:toilet-paper:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — toilet paper",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-02:word:toilet-paper:audio",
+          "transcript": "toilet paper"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-02:word:toilet-paper:r1",
+            "targetText": "toilet paper",
+            "meaningByLocale": {
+              "ru": "туалетная бумага. Здесь неисчисляемое: was.",
+              "uk": "туалетний папір. Тут незлічуване: was."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "toilet paper",
+          "definitionByLocale": {
+            "ru": "туалетная бумага. Здесь неисчисляемое: was.",
+            "uk": "туалетний папір. Тут незлічуване: was."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-02:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Туалетная бумага была в шкафу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Туалетная бумага была в шкафу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The toilet paper was in the cupboard.",
+        "localizedMeaning": {
+          "ru": "Туалетная бумага была в шкафу",
+          "uk": "Туалетний папір був у шафці"
+        },
+        "orderedTokens": [
+          "The",
+          "toilet",
+          "paper",
+          "was",
+          "in",
+          "the",
+          "cupboard"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-02:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-02:i08:r1",
+          "text": "The toilet paper was dry."
+        },
+        {
+          "responseId": "en:lesson-11:session-02:i08:r2",
+          "text": "The toilet paper was wet."
+        },
+        {
+          "responseId": "en:lesson-11:session-02:i08:r3",
+          "text": "The toilet paper was cheap."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-02:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-02:i08:audio",
+          "transcript": "The toilet paper was dry."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-02:i08:r1",
+            "targetText": "The toilet paper was dry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i08:r2",
+            "targetText": "The toilet paper was wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i08:r3",
+            "targetText": "The toilet paper was cheap.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-02:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The toilet paper was dry.",
+              "uk": "У записі звучить The toilet paper was dry."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The toilet paper was dry.",
+              "uk": "У записі звучить The toilet paper was dry."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-02:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вспомните вчерашнее место бумаги",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-02:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-02:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-02:i09:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вспомните вчерашнее место бумаги",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните вчерашнее место бумаги",
+          "uk": "Згадайте вчорашнє місце паперу"
+        },
+        "gappedTargetPhrase": "The toilet paper ___ on the shelf yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-02:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i09:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Вспомните вчерашнее место бумаги",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-02:i09:r2",
+            "correct": false,
+            "testedDimension": "Вспомните вчерашнее место бумаги",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна was.",
+              "uk": "Тут потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i09:r3",
+            "correct": false,
+            "testedDimension": "Вспомните вчерашнее место бумаги",
+            "feedbackByLocale": {
+              "ru": "Are — настоящее и множественное число. Здесь was.",
+              "uk": "Are — теперішній час і множина. Тут was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-02:word:washbasin",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — washbasin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-02:word:washbasin:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — washbasin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-02:word:washbasin:audio",
+          "transcript": "washbasin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-02:word:washbasin:r1",
+            "targetText": "washbasin",
+            "meaningByLocale": {
+              "ru": "раковина для умывания.",
+              "uk": "умивальник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "washbasin",
+          "definitionByLocale": {
+            "ru": "раковина для умывания.",
+            "uk": "умивальник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-02:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Раковина была грязной",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Раковина была грязной",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The washbasin was dirty.",
+        "localizedMeaning": {
+          "ru": "Раковина была грязной",
+          "uk": "Умивальник був брудний"
+        },
+        "orderedTokens": [
+          "The",
+          "washbasin",
+          "was",
+          "dirty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-02:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-02:i11:r1",
+          "text": "The washbasin was white."
+        },
+        {
+          "responseId": "en:lesson-11:session-02:i11:r2",
+          "text": "The washbasin was blue."
+        },
+        {
+          "responseId": "en:lesson-11:session-02:i11:r3",
+          "text": "The washbasin was clean."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-02:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-02:i11:audio",
+          "transcript": "The washbasin was white."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-02:i11:r1",
+            "targetText": "The washbasin was white.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i11:r2",
+            "targetText": "The washbasin was blue.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i11:r3",
+            "targetText": "The washbasin was clean.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-02:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The washbasin was white.",
+              "uk": "У записі звучить The washbasin was white."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The washbasin was white.",
+              "uk": "У записі звучить The washbasin was white."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-02:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "После уборки полотенца были чистыми",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-02:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-02:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-02:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "После уборки полотенца были чистыми",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "После уборки полотенца были чистыми",
+          "uk": "Після прибирання рушники були чистими"
+        },
+        "gappedTargetPhrase": "The towels ___ clean.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-02:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "После уборки полотенца были чистыми",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-02:i12:r2",
+            "correct": false,
+            "testedDimension": "После уборки полотенца были чистыми",
+            "feedbackByLocale": {
+              "ru": "Towels — несколько полотенец: were.",
+              "uk": "Towels — кілька рушників: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-02:i12:r3",
+            "correct": false,
+            "testedDimension": "После уборки полотенца были чистыми",
+            "feedbackByLocale": {
+              "ru": "Am относится к I в настоящем. Здесь were.",
+              "uk": "Am стосується I в теперішньому. Тут were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-02:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-02:i13:p1",
+            "target": "soap",
+            "meaningByLocale": {
+              "ru": "мыло",
+              "uk": "мило"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-02:i13:p2",
+            "target": "shower gel",
+            "meaningByLocale": {
+              "ru": "гель для душа",
+              "uk": "гель для душу"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-02:i13:p3",
+            "target": "toilet paper",
+            "meaningByLocale": {
+              "ru": "туалетная бумага",
+              "uk": "туалетний папір"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-02:i13:p4",
+            "target": "washbasin",
+            "meaningByLocale": {
+              "ru": "раковина для умывания",
+              "uk": "умивальник"
+            }
+          }
+        ],
+        "leftColumn": [
+          "soap",
+          "shower gel",
+          "toilet paper",
+          "washbasin"
+        ],
+        "rightColumn": [
+          "мыло",
+          "гель для душа",
+          "туалетная бумага",
+          "раковина для умывания"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-02:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-02:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-02:i14:audio",
+          "transcript": "The washbasin was clean yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The washbasin was clean yesterday.",
+        "orderedTokens": [
+          "The",
+          "washbasin",
+          "was",
+          "clean",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-02:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную просьбу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-02:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную просьбу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-02:i15:audio",
+          "transcript": "Please don't touch the wall."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't touch the wall.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "touch",
+          "the",
+          "wall"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-02:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что вчера гель был на полке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-02:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что вчера гель был на полке",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-02:i16:audio",
+          "transcript": "The shower gel was on the shelf yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The shower gel was on the shelf yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-02:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что вчера мыло было в сумке",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-02:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите, что вчера мыло было в сумке",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-02:i17:audio",
+          "transcript": "The soap was in the bag yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The soap was in the bag yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "764aed343893277efe151957157c1b4b7030cc65c99dd6524dcb9350e7a60291"
+}

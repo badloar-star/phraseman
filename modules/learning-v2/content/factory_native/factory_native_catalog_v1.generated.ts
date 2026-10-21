@@ -3920,4 +3920,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"My room is untidy; I am wearing a sleeveless shirt; I am not ready yet","uk":"My room is untidy; I am wearing a sleeveless shirt; I am not ready yet"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 56,
+    sourceFingerprint: "a76c201ad3131cbc7360204fb8e7c8e47c5dd8e298e106e235e305cc855d3c5c",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"right now; at the moment; as usual; of course","uk":"right now; at the moment; as usual; of course"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 11, sessionOrdinal: 1,
+    sourceFingerprint: "355ec2e8294b4b85226e2446cd8ab0badaf2c9331f12c1b1e35f254a2c8c39ff",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I was; you were; he/she/it was; we/they were","uk":"I was; you were; he/she/it was; we/they were"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 11, sessionOrdinal: 2,
+    sourceFingerprint: "92d62f586101ce2c3819eac7f92b894b2a22cbdf5f25786e8ab9a055022cabe6",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"was/were; yesterday и right now","uk":"was/were; yesterday і right now"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 11, sessionOrdinal: 3,
+    sourceFingerprint: "d09d90bc691c765b5cbb39ed119f43226efdf9901bc6aec455c83b97bfc4b52e",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"was/were; yesterday и right now","uk":"was/were; yesterday і right now"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
+  }),
 ]);

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; yesterday и right now",
+    "uk": "was/were; yesterday і right now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вчера и сейчас",
+        "uk": "Учора й зараз"
+      },
+      "bodyByLocale": {
+        "ru": "Soap — «мыло», shower gel — «гель для душа». Мыло сейчас у раковины, но вчера было на полке: The soap was on the shelf yesterday. Was показывает прошлое; для места сейчас говорим The soap is here right now. Не говорим the soap were: здесь soap — неисчисляемое существительное, форма единственного числа. Выберите фразу о вчерашнем месте мыла.",
+        "uk": "Soap — «мило», shower gel — «гель для душу». Мило зараз біля раковини, але вчора було на полиці: The soap was on the shelf yesterday. Was показує минуле; для місця зараз кажемо The soap is here right now. Не кажемо the soap were: тут soap — незлічуваний іменник, форма однини. Виберіть фразу про вчорашнє місце мила."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-02:intro1:r1",
+              "text": "The soap was on the shelf yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-02:intro1:r2",
+              "text": "The soap were on the shelf yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-02:intro1:r3",
+              "text": "The soap is on the shelf yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-02:intro1:r1",
+              "text": "The soap was on the shelf yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-02:intro1:r2",
+              "text": "The soap were on the shelf yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-02:intro1:r3",
+              "text": "The soap is on the shelf yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Где была бумага",
+        "uk": "Де був папір"
+      },
+      "bodyByLocale": {
+        "ru": "Toilet paper — «туалетная бумага». Бумага была в шкафу: The toilet paper was in the cupboard. Здесь paper — неисчисляемое существительное: was, а не were. Вы говорите о знакомой вам бумаге, поэтому используете the.",
+        "uk": "Toilet paper — «туалетний папір». Папір був у шафці: The toilet paper was in the cupboard. Тут paper — незлічуваний іменник: was, а не were. Ви говорите про відомий вам папір, тому використовуєте the."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-02:intro2:r1",
+              "text": "The toilet paper was in the cupboard."
+            },
+            {
+              "responseId": "en:lesson-11:session-02:intro2:r2",
+              "text": "The toilet paper were in the cupboard."
+            },
+            {
+              "responseId": "en:lesson-11:session-02:intro2:r3",
+              "text": "The toilet paper am in the cupboard."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-02:intro2:r1",
+              "text": "The toilet paper was in the cupboard."
+            },
+            {
+              "responseId": "en:lesson-11:session-02:intro2:r2",
+              "text": "The toilet paper were in the cupboard."
+            },
+            {
+              "responseId": "en:lesson-11:session-02:intro2:r3",
+              "text": "The toilet paper am in the cupboard."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Раковина и полотенца",
+        "uk": "Раковина й рушники"
+      },
+      "bodyByLocale": {
+        "ru": "Washbasin — «раковина для умывания». После уборки она была чистой: The washbasin was clean. Полотенца тоже были чистыми: The towels were clean. Один предмет — was, несколько — were. Если друг тянется к свежей краске на стене, попросите: Please don’t touch the wall — «Пожалуйста, не трогай стену». Сейчас выберите фразу о чистой раковине.",
+        "uk": "Washbasin — «умивальник». Після прибирання він був чистим: The washbasin was clean. Рушники теж були чистими: The towels were clean. Один предмет — was, кілька — were. Якщо друг тягнеться до свіжої фарби на стіні, попросіть: Please don’t touch the wall — «Будь ласка, не чіпай стіну». Зараз виберіть фразу про чистий умивальник."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-02:intro3:r1",
+              "text": "The washbasin was clean."
+            },
+            {
+              "responseId": "en:lesson-11:session-02:intro3:r2",
+              "text": "The washbasin were clean."
+            },
+            {
+              "responseId": "en:lesson-11:session-02:intro3:r3",
+              "text": "The washbasin was cleaning."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-02:intro3:r1",
+              "text": "The washbasin was clean."
+            },
+            {
+              "responseId": "en:lesson-11:session-02:intro3:r2",
+              "text": "The washbasin were clean."
+            },
+            {
+              "responseId": "en:lesson-11:session-02:intro3:r3",
+              "text": "The washbasin was cleaning."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8010a633e59235907de9dd543d0aa7674623942bc57fb2b1f3c049b982d99a44"
+}

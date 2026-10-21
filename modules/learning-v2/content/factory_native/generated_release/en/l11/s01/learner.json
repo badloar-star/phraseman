@@ -1,0 +1,1117 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-01",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-01:word:yesterday",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — yesterday",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-01:word:yesterday:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — yesterday",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-01:word:yesterday:audio",
+          "transcript": "yesterday"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-01:word:yesterday:r1",
+            "targetText": "yesterday",
+            "meaningByLocale": {
+              "ru": "вчера. День перед сегодняшним.",
+              "uk": "учора. День перед сьогоднішнім."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "yesterday",
+          "definitionByLocale": {
+            "ru": "вчера. День перед сегодняшним.",
+            "uk": "учора. День перед сьогоднішнім."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-01:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вчера вы были дома. Начните с I, yesterday поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера вы были дома. Начните с I, yesterday поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was at home yesterday.",
+        "localizedMeaning": {
+          "ru": "Вчера вы были дома. Начните с I, yesterday поставьте в конце",
+          "uk": "Учора ви були вдома. Почніть з I, yesterday поставте в кінці"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "at",
+          "home",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-01:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-01:i02:r1",
+          "text": "He was tired yesterday."
+        },
+        {
+          "responseId": "en:lesson-11:session-01:i02:r2",
+          "text": "He was busy yesterday."
+        },
+        {
+          "responseId": "en:lesson-11:session-01:i02:r3",
+          "text": "He was hungry yesterday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-01:i02:audio",
+          "transcript": "He was tired yesterday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-01:i02:r1",
+            "targetText": "He was tired yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i02:r2",
+            "targetText": "He was busy yesterday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i02:r3",
+            "targetText": "He was hungry yesterday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He was tired yesterday.",
+              "uk": "У записі звучить He was tired yesterday."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He was tired yesterday.",
+              "uk": "У записі звучить He was tired yesterday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-01:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вспомните, где была Анна вчера",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-01:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-01:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-01:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вспомните, где была Анна вчера",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, где была Анна вчера",
+          "uk": "Згадайте, де була Анна вчора"
+        },
+        "gappedTargetPhrase": "Anna ___ at work yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-01:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Вспомните, где была Анна вчера",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-01:i03:r2",
+            "correct": false,
+            "testedDimension": "Вспомните, где была Анна вчера",
+            "feedbackByLocale": {
+              "ru": "С Anna, как с she, нужна was.",
+              "uk": "З Anna, як із she, потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i03:r3",
+            "correct": false,
+            "testedDimension": "Вспомните, где была Анна вчера",
+            "feedbackByLocale": {
+              "ru": "Вчера — прошлое, нужна was.",
+              "uk": "Учора — минуле, потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-01:word:last-night",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — last night",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-01:word:last-night:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — last night",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-01:word:last-night:audio",
+          "transcript": "last night"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-01:word:last-night:r1",
+            "targetText": "last night",
+            "meaningByLocale": {
+              "ru": "вчера вечером или прошлой ночью, в зависимости от ситуации.",
+              "uk": "учора ввечері або минулої ночі, залежно від ситуації."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "last night",
+          "definitionByLocale": {
+            "ru": "вчера вечером или прошлой ночью, в зависимости от ситуации.",
+            "uk": "учора ввечері або минулої ночі, залежно від ситуації."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-01:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вчера вечером вы с другом были в кафе. Начните с We, last night поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера вечером вы с другом были в кафе. Начните с We, last night поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We were in a cafe last night.",
+        "localizedMeaning": {
+          "ru": "Вчера вечером вы с другом были в кафе. Начните с We, last night поставьте в конце",
+          "uk": "Учора ввечері ви з другом були в кафе. Почніть з We, last night поставте в кінці"
+        },
+        "orderedTokens": [
+          "We",
+          "were",
+          "in",
+          "a",
+          "cafe",
+          "last",
+          "night"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-01:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-01:i05:r1",
+          "text": "You were quiet last night."
+        },
+        {
+          "responseId": "en:lesson-11:session-01:i05:r2",
+          "text": "You were tired last night."
+        },
+        {
+          "responseId": "en:lesson-11:session-01:i05:r3",
+          "text": "You were busy last night."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-01:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-01:i05:audio",
+          "transcript": "You were quiet last night."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-01:i05:r1",
+            "targetText": "You were quiet last night.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i05:r2",
+            "targetText": "You were tired last night.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i05:r3",
+            "targetText": "You were busy last night.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-01:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were quiet last night.",
+              "uk": "У записі звучить You were quiet last night."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were quiet last night.",
+              "uk": "У записі звучить You were quiet last night."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-01:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Расскажите, где вчера вечером были друзья",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-01:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-01:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-01:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите, где вчера вечером были друзья",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Расскажите, где вчера вечером были друзья",
+          "uk": "Розкажіть, де вчора ввечері були друзі"
+        },
+        "gappedTargetPhrase": "They ___ at home last night.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-01:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Расскажите, где вчера вечером были друзья",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-01:i06:r2",
+            "correct": false,
+            "testedDimension": "Расскажите, где вчера вечером были друзья",
+            "feedbackByLocale": {
+              "ru": "С they нужна were.",
+              "uk": "З they потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i06:r3",
+            "correct": false,
+            "testedDimension": "Расскажите, где вчера вечером были друзья",
+            "feedbackByLocale": {
+              "ru": "Last night — прошлое, нужна were.",
+              "uk": "Last night — минуле, потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-01:word:last-week",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — last week",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-01:word:last-week:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — last week",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-01:word:last-week:audio",
+          "transcript": "last week"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-01:word:last-week:r1",
+            "targetText": "last week",
+            "meaningByLocale": {
+              "ru": "на прошлой неделе. Перед выражением не нужен предлог.",
+              "uk": "минулого тижня. Перед виразом не потрібен прийменник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "last week",
+          "definitionByLocale": {
+            "ru": "на прошлой неделе. Перед выражением не нужен предлог.",
+            "uk": "минулого тижня. Перед виразом не потрібен прийменник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-01:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На прошлой неделе он болел. Начните с He, last week поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На прошлой неделе он болел. Начните с He, last week поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "He was ill last week.",
+        "localizedMeaning": {
+          "ru": "На прошлой неделе он болел. Начните с He, last week поставьте в конце",
+          "uk": "Минулого тижня він хворів. Почніть з He, last week поставте в кінці"
+        },
+        "orderedTokens": [
+          "He",
+          "was",
+          "ill",
+          "last",
+          "week"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-01:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-01:i08:r1",
+          "text": "We were in London last week."
+        },
+        {
+          "responseId": "en:lesson-11:session-01:i08:r2",
+          "text": "We were in Paris last week."
+        },
+        {
+          "responseId": "en:lesson-11:session-01:i08:r3",
+          "text": "We were in Rome last week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-01:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-01:i08:audio",
+          "transcript": "We were in London last week."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-01:i08:r1",
+            "targetText": "We were in London last week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i08:r2",
+            "targetText": "We were in Paris last week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i08:r3",
+            "targetText": "We were in Rome last week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-01:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We were in London last week.",
+              "uk": "У записі звучить We were in London last week."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We were in London last week.",
+              "uk": "У записі звучить We were in London last week."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-01:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На прошлой неделе вы с другом были заняты",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-01:i09:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-01:i09:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-01:i09:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На прошлой неделе вы с другом были заняты",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На прошлой неделе вы с другом были заняты",
+          "uk": "Минулого тижня ви з другом були зайняті"
+        },
+        "gappedTargetPhrase": "We ___ busy last week.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-01:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i09:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "На прошлой неделе вы с другом были заняты",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-01:i09:r2",
+            "correct": false,
+            "testedDimension": "На прошлой неделе вы с другом были заняты",
+            "feedbackByLocale": {
+              "ru": "С we нужна were.",
+              "uk": "З we потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i09:r3",
+            "correct": false,
+            "testedDimension": "На прошлой неделе вы с другом были заняты",
+            "feedbackByLocale": {
+              "ru": "Last week — прошлое, нужна were.",
+              "uk": "Last week — минуле, потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-01:word:last-year",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — last year",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-01:word:last-year:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — last year",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-01:word:last-year:audio",
+          "transcript": "last year"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-01:word:last-year:r1",
+            "targetText": "last year",
+            "meaningByLocale": {
+              "ru": "в прошлом году. Перед выражением не нужен предлог.",
+              "uk": "торік, минулого року. Перед виразом не потрібен прийменник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "last year",
+          "definitionByLocale": {
+            "ru": "в прошлом году. Перед выражением не нужен предлог.",
+            "uk": "торік, минулого року. Перед виразом не потрібен прийменник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-01:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "В прошлом году она была студенткой. Начните с She, last year поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В прошлом году она была студенткой. Начните с She, last year поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She was a student last year.",
+        "localizedMeaning": {
+          "ru": "В прошлом году она была студенткой. Начните с She, last year поставьте в конце",
+          "uk": "Торік вона була студенткою. Почніть з She, last year поставте в кінці"
+        },
+        "orderedTokens": [
+          "She",
+          "was",
+          "a",
+          "student",
+          "last",
+          "year"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-01:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-01:i11:r1",
+          "text": "They were in Paris last year."
+        },
+        {
+          "responseId": "en:lesson-11:session-01:i11:r2",
+          "text": "They were in Paris last week."
+        },
+        {
+          "responseId": "en:lesson-11:session-01:i11:r3",
+          "text": "They were in Paris last night."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-01:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-01:i11:audio",
+          "transcript": "They were in Paris last year."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-01:i11:r1",
+            "targetText": "They were in Paris last year.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i11:r2",
+            "targetText": "They were in Paris last week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i11:r3",
+            "targetText": "They were in Paris last night.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-01:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They were in Paris last year.",
+              "uk": "У записі звучить They were in Paris last year."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They were in Paris last year.",
+              "uk": "У записі звучить They were in Paris last year."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-01:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вспомните, каким был этот дом в прошлом году",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-01:i12:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-01:i12:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-01:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вспомните, каким был этот дом в прошлом году",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вспомните, каким был этот дом в прошлом году",
+          "uk": "Згадайте, яким був цей будинок торік"
+        },
+        "gappedTargetPhrase": "It ___ empty last year.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-01:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i12:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Вспомните, каким был этот дом в прошлом году",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-01:i12:r2",
+            "correct": false,
+            "testedDimension": "Вспомните, каким был этот дом в прошлом году",
+            "feedbackByLocale": {
+              "ru": "С it нужна was.",
+              "uk": "З it потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-01:i12:r3",
+            "correct": false,
+            "testedDimension": "Вспомните, каким был этот дом в прошлом году",
+            "feedbackByLocale": {
+              "ru": "Am относится к I в настоящем, здесь was.",
+              "uk": "Am стосується I в теперішньому, тут was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-01:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения времени с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения времени с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-01:i13:p1",
+            "target": "yesterday",
+            "meaningByLocale": {
+              "ru": "вчера",
+              "uk": "учора"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-01:i13:p2",
+            "target": "last night",
+            "meaningByLocale": {
+              "ru": "вчера вечером",
+              "uk": "учора ввечері"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-01:i13:p3",
+            "target": "last week",
+            "meaningByLocale": {
+              "ru": "на прошлой неделе",
+              "uk": "минулого тижня"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-01:i13:p4",
+            "target": "last year",
+            "meaningByLocale": {
+              "ru": "в прошлом году",
+              "uk": "торік"
+            }
+          }
+        ],
+        "leftColumn": [
+          "yesterday",
+          "last night",
+          "last week",
+          "last year"
+        ],
+        "rightColumn": [
+          "вчера",
+          "вчера вечером",
+          "на прошлой неделе",
+          "в прошлом году"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-01:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-01:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-01:i14:audio",
+          "transcript": "You were late yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You were late yesterday.",
+        "orderedTokens": [
+          "You",
+          "were",
+          "late",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-01:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-01:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-01:i15:audio",
+          "transcript": "It was cold last night."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It was cold last night.",
+        "orderedTokens": [
+          "It",
+          "was",
+          "cold",
+          "last",
+          "night"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-01:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Расскажите, что вчера были счастливы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-01:i16:audio"
+      ],
+      "accessibilityLabel": "Расскажите, что вчера были счастливы",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-01:i16:audio",
+          "transcript": "I was happy yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I was happy yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-01:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Расскажите, что на прошлой неделе друзья были в Лондоне",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-01:i17:audio"
+      ],
+      "accessibilityLabel": "Расскажите, что на прошлой неделе друзья были в Лондоне",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-01:i17:audio",
+          "transcript": "They were in London last week."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "They were in London last week.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "14e968af7a010e5b3beb53f2abd1225aa13458684d62e0cb90369e4b9aeb2e7b"
+}

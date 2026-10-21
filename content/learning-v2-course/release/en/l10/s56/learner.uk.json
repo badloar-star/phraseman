@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-56",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-56:word:right-now",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — right now",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-56:word:right-now:audio"
+      ],
+      "accessibilityLabel": "Картка слова — right now",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-56:word:right-now:audio",
+          "transcript": "right now"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-56:word:right-now:r1",
+            "targetText": "right now",
+            "meaningByLocale": {
+              "ru": "прямо сейчас. Подчеркнуть, что речь об этом мгновении.",
+              "uk": "просто зараз. Підкреслити, що йдеться про цю мить."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "right now",
+          "definitionByLocale": {
+            "ru": "прямо сейчас. Подчеркнуть, что речь об этом мгновении.",
+            "uk": "просто зараз. Підкреслити, що йдеться про цю мить."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-56:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви готуєте чай просто зараз. Почніть з I, вираз часу поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви готуєте чай просто зараз. Почніть з I, вираз часу поставте в кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am making tea right now.",
+        "localizedMeaning": {
+          "ru": "Вы готовите чай прямо сейчас. Начните с I, выражение времени поставьте в конце",
+          "uk": "Ви готуєте чай просто зараз. Почніть з I, вираз часу поставте в кінці"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "making",
+          "tea",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-56:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-56:i02:r1",
+          "text": "She is cooking right now."
+        },
+        {
+          "responseId": "en:lesson-10:session-56:i02:r2",
+          "text": "She is reading right now."
+        },
+        {
+          "responseId": "en:lesson-10:session-56:i02:r3",
+          "text": "She is sleeping right now."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-56:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-56:i02:audio",
+          "transcript": "She is cooking right now."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-56:i02:r1",
+            "targetText": "She is cooking right now.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i02:r2",
+            "targetText": "She is reading right now.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i02:r3",
+            "targetText": "She is sleeping right now.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-56:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is cooking right now.",
+              "uk": "У записі звучить She is cooking right now."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is cooking right now.",
+              "uk": "У записі звучить She is cooking right now."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-56:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Доповніть фразу про дію в процесі",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-56:i03:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-56:i03:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-56:i03:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Доповніть фразу про дію в процесі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните фразу о действии в процессе",
+          "uk": "Доповніть фразу про дію в процесі"
+        },
+        "gappedTargetPhrase": "He ___ eating right now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-56:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i03:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Доповніть фразу про дію в процесі",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-56:i03:r2",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про дію в процесі",
+            "feedbackByLocale": {
+              "ru": "С he нужна is.",
+              "uk": "З he потрібна is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i03:r3",
+            "correct": false,
+            "testedDimension": "Доповніть фразу про дію в процесі",
+            "feedbackByLocale": {
+              "ru": "Перед eating нужна is, не does.",
+              "uk": "Перед eating потрібна is, не does."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-56:word:at-the-moment",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — at the moment",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-56:word:at-the-moment:audio"
+      ],
+      "accessibilityLabel": "Картка слова — at the moment",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-56:word:at-the-moment:audio",
+          "transcript": "at the moment"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-56:word:at-the-moment:r1",
+            "targetText": "at the moment",
+            "meaningByLocale": {
+              "ru": "сейчас, в данный момент. Выражение времени.",
+              "uk": "зараз, у цей момент. Вираз часу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "at the moment",
+          "definitionByLocale": {
+            "ru": "сейчас, в данный момент. Выражение времени.",
+            "uk": "зараз, у цей момент. Вираз часу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-56:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що зараз ви вдома. Почніть з I, вираз часу поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що зараз ви вдома. Почніть з I, вираз часу поставте в кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am at home at the moment.",
+        "localizedMeaning": {
+          "ru": "Скажите, что сейчас вы дома. Начните с I, выражение времени поставьте в конце",
+          "uk": "Скажіть, що зараз ви вдома. Почніть з I, вираз часу поставте в кінці"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "at",
+          "home",
+          "at",
+          "the",
+          "moment"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-56:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-56:i05:r1",
+          "text": "We are waiting at the moment."
+        },
+        {
+          "responseId": "en:lesson-10:session-56:i05:r2",
+          "text": "We are working at the moment."
+        },
+        {
+          "responseId": "en:lesson-10:session-56:i05:r3",
+          "text": "We are eating at the moment."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-56:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-56:i05:audio",
+          "transcript": "We are waiting at the moment."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-56:i05:r1",
+            "targetText": "We are waiting at the moment.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i05:r2",
+            "targetText": "We are working at the moment.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i05:r3",
+            "targetText": "We are eating at the moment.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-56:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are waiting at the moment.",
+              "uk": "У записі звучить We are waiting at the moment."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are waiting at the moment.",
+              "uk": "У записі звучить We are waiting at the moment."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-56:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви сидите біля вікна. Виберіть правильне написання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-56:i06:r1",
+          "text": "sitting"
+        },
+        {
+          "responseId": "en:lesson-10:session-56:i06:r2",
+          "text": "siting"
+        },
+        {
+          "responseId": "en:lesson-10:session-56:i06:r3",
+          "text": "sit"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви сидите біля вікна. Виберіть правильне написання",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы сидите у окна. Выберите правильное написание",
+          "uk": "Ви сидите біля вікна. Виберіть правильне написання"
+        },
+        "gappedTargetPhrase": "I am ___ by the window at the moment.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-56:i06:r1",
+            "text": "sitting"
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i06:r2",
+            "text": "siting"
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i06:r3",
+            "text": "sit"
+          }
+        ],
+        "testedDimension": "Ви сидите біля вікна. Виберіть правильне написання",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-56:i06:r2",
+            "correct": false,
+            "testedDimension": "Ви сидите біля вікна. Виберіть правильне написання",
+            "feedbackByLocale": {
+              "ru": "В sitting удваиваем t.",
+              "uk": "У sitting подвоюємо t."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i06:r3",
+            "correct": false,
+            "testedDimension": "Ви сидите біля вікна. Виберіть правильне написання",
+            "feedbackByLocale": {
+              "ru": "После am для действия в процессе нужна sitting.",
+              "uk": "Після am для дії в процесі потрібна sitting."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-56:word:as-usual",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — as usual",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-56:word:as-usual:audio"
+      ],
+      "accessibilityLabel": "Картка слова — as usual",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-56:word:as-usual:audio",
+          "transcript": "as usual"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-56:word:as-usual:r1",
+            "targetText": "as usual",
+            "meaningByLocale": {
+              "ru": "как обычно. Сравнить происходящее с привычной ситуацией.",
+              "uk": "як завжди. Порівняти те, що відбувається, зі звичною ситуацією."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "as usual",
+          "definitionByLocale": {
+            "ru": "как обычно. Сравнить происходящее с привычной ситуацией.",
+            "uk": "як завжди. Порівняти те, що відбувається, зі звичною ситуацією."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-56:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Автобус знову запізнився: він запізнюється, як завжди. Почніть з The bus, as usual поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Автобус знову запізнився: він запізнюється, як завжди. Почніть з The bus, as usual поставте в кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bus is late as usual.",
+        "localizedMeaning": {
+          "ru": "Автобус снова опоздал: он опаздывает, как обычно. Начните с The bus, as usual поставьте в конце",
+          "uk": "Автобус знову запізнився: він запізнюється, як завжди. Почніть з The bus, as usual поставте в кінці"
+        },
+        "orderedTokens": [
+          "The",
+          "bus",
+          "is",
+          "late",
+          "as",
+          "usual"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-56:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-56:i08:r1",
+          "text": "Tom is cooking as usual."
+        },
+        {
+          "responseId": "en:lesson-10:session-56:i08:r2",
+          "text": "Tom is reading as usual."
+        },
+        {
+          "responseId": "en:lesson-10:session-56:i08:r3",
+          "text": "Tom is walking as usual."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-56:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-56:i08:audio",
+          "transcript": "Tom is cooking as usual."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-56:i08:r1",
+            "targetText": "Tom is cooking as usual.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i08:r2",
+            "targetText": "Tom is reading as usual.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i08:r3",
+            "targetText": "Tom is walking as usual.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-56:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Tom is cooking as usual.",
+              "uk": "У записі звучить Tom is cooking as usual."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Tom is cooking as usual.",
+              "uk": "У записі звучить Tom is cooking as usual."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-56:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг запитує про вашу звичку. Usually вже стоїть перед змістовим дієсловом",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-56:i09:r1",
+          "text": "walk"
+        },
+        {
+          "responseId": "en:lesson-10:session-56:i09:r2",
+          "text": "walking"
+        },
+        {
+          "responseId": "en:lesson-10:session-56:i09:r3",
+          "text": "walks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг запитує про вашу звичку. Usually вже стоїть перед змістовим дієсловом",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спрашивает о вашей привычке. Usually уже стоит перед смысловым глаголом",
+          "uk": "Друг запитує про вашу звичку. Usually вже стоїть перед змістовим дієсловом"
+        },
+        "gappedTargetPhrase": "I usually ___ home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-56:i09:r1",
+            "text": "walk"
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i09:r2",
+            "text": "walking"
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i09:r3",
+            "text": "walks"
+          }
+        ],
+        "testedDimension": "Друг запитує про вашу звичку. Usually вже стоїть перед змістовим дієсловом",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-56:i09:r2",
+            "correct": false,
+            "testedDimension": "Друг запитує про вашу звичку. Usually вже стоїть перед змістовим дієсловом",
+            "feedbackByLocale": {
+              "ru": "Для общей привычки с I нужна walk без -ing.",
+              "uk": "Для загальної звички з I потрібна walk без -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i09:r3",
+            "correct": false,
+            "testedDimension": "Друг запитує про вашу звичку. Usually вже стоїть перед змістовим дієсловом",
+            "feedbackByLocale": {
+              "ru": "После I нужна walk без s.",
+              "uk": "Після I потрібна walk без s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-56:word:of-course",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — of course",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-56:word:of-course:audio"
+      ],
+      "accessibilityLabel": "Картка слова — of course",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-56:word:of-course:audio",
+          "transcript": "of course"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-56:word:of-course:r1",
+            "targetText": "of course",
+            "meaningByLocale": {
+              "ru": "конечно. Уверенное согласие или подтверждение.",
+              "uk": "звісно. Упевнена згода або підтвердження."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "of course",
+          "definitionByLocale": {
+            "ru": "конечно. Уверенное согласие или подтверждение.",
+            "uk": "звісно. Упевнена згода або підтвердження."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-56:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг просить допомогти. Дайте відповідь: звісно",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг просить допомогти. Дайте відповідь: звісно",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Of course.",
+        "localizedMeaning": {
+          "ru": "Друг просит помочь. Ответьте: конечно",
+          "uk": "Друг просить допомогти. Дайте відповідь: звісно"
+        },
+        "orderedTokens": [
+          "Of",
+          "course"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-56:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-56:i11:r1",
+          "text": "Of course, I can help."
+        },
+        {
+          "responseId": "en:lesson-10:session-56:i11:r2",
+          "text": "Of course, I can wait."
+        },
+        {
+          "responseId": "en:lesson-10:session-56:i11:r3",
+          "text": "Of course, I can come."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-56:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-56:i11:audio",
+          "transcript": "Of course, I can help."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-56:i11:r1",
+            "targetText": "Of course, I can help.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i11:r2",
+            "targetText": "Of course, I can wait.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i11:r3",
+            "targetText": "Of course, I can come.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-56:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Of course, I can help.",
+              "uk": "У записі звучить Of course, I can help."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Of course, I can help.",
+              "uk": "У записі звучить Of course, I can help."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-56:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Підтвердьте, що знаєте відповідь. Know позначає знання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-56:i12:r1",
+          "text": "know"
+        },
+        {
+          "responseId": "en:lesson-10:session-56:i12:r2",
+          "text": "am knowing"
+        },
+        {
+          "responseId": "en:lesson-10:session-56:i12:r3",
+          "text": "knows"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підтвердьте, що знаєте відповідь. Know позначає знання",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подтвердите, что знаете ответ. Know обозначает знание",
+          "uk": "Підтвердьте, що знаєте відповідь. Know позначає знання"
+        },
+        "gappedTargetPhrase": "Of course, I ___ the answer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-56:i12:r1",
+            "text": "know"
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i12:r2",
+            "text": "am knowing"
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i12:r3",
+            "text": "knows"
+          }
+        ],
+        "testedDimension": "Підтвердьте, що знаєте відповідь. Know позначає знання",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-56:i12:r2",
+            "correct": false,
+            "testedDimension": "Підтвердьте, що знаєте відповідь. Know позначає знання",
+            "feedbackByLocale": {
+              "ru": "В этом значении говорим I know без am и -ing.",
+              "uk": "У цьому значенні кажемо I know без am та -ing."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-56:i12:r3",
+            "correct": false,
+            "testedDimension": "Підтвердьте, що знаєте відповідь. Know позначає знання",
+            "feedbackByLocale": {
+              "ru": "После I нужна know без s.",
+              "uk": "Після I потрібна know без s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-56:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-56:i13:p1",
+            "target": "right now",
+            "meaningByLocale": {
+              "ru": "прямо сейчас",
+              "uk": "просто зараз"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-56:i13:p2",
+            "target": "at the moment",
+            "meaningByLocale": {
+              "ru": "в данный момент",
+              "uk": "у цей момент"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-56:i13:p3",
+            "target": "as usual",
+            "meaningByLocale": {
+              "ru": "как обычно",
+              "uk": "як завжди"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-56:i13:p4",
+            "target": "of course",
+            "meaningByLocale": {
+              "ru": "конечно",
+              "uk": "звісно"
+            }
+          }
+        ],
+        "leftColumn": [
+          "right now",
+          "at the moment",
+          "as usual",
+          "of course"
+        ],
+        "rightColumn": [
+          "просто зараз",
+          "у цей момент",
+          "як завжди",
+          "звісно"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-56:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-56:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-56:i14:audio",
+          "transcript": "Are you working right now?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Are you working right now?",
+        "orderedTokens": [
+          "Are",
+          "you",
+          "working",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-56:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-56:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-56:i15:audio",
+          "transcript": "I am not working at the moment."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am not working at the moment.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "working",
+          "at",
+          "the",
+          "moment"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-56:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Зазвичай ви працюєте вдома, але сьогодні в кафе. Скажіть: сьогодні я працюю в кафе",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-56:i16:audio"
+      ],
+      "accessibilityLabel": "Зазвичай ви працюєте вдома, але сьогодні в кафе. Скажіть: сьогодні я працюю в кафе",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-56:i16:audio",
+          "transcript": "I am working in a cafe today."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am working in a cafe today.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-56:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує, чи можна сісти поруч. Погодьтеся: звісно, сідай тут",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-56:i17:audio"
+      ],
+      "accessibilityLabel": "Друг запитує, чи можна сісти поруч. Погодьтеся: звісно, сідай тут",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-56:i17:audio",
+          "transcript": "Of course, sit here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Of course, sit here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a4868deb566091f1783bcbf0a90eb1438152e252b2006bd0e93ae2eb38c653e7"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; yesterday и right now",
+    "uk": "was/were; yesterday і right now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Средства для стирки и посуды",
+        "uk": "Засоби для прання й посуду"
+      },
+      "bodyByLocale": {
+        "ru": "Washing powder — «стиральный порошок», washing-up liquid — «средство для мытья посуды». Учим названия целиком. Вчера порошок был в шкафу: The washing powder was in the cupboard yesterday. Сегодня он на полке: The washing powder is on the shelf right now. Для вчерашнего места используйте was.",
+        "uk": "Washing powder — «пральний порошок», washing-up liquid — «засіб для миття посуду». Вчимо назви цілком. Учора порошок був у шафці: The washing powder was in the cupboard yesterday. Сьогодні він на полиці: The washing powder is on the shelf right now. Для вчорашнього місця використовуйте was."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-03:intro1:r1",
+              "text": "The washing powder was in the cupboard yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-03:intro1:r2",
+              "text": "The washing powder were in the cupboard yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-03:intro1:r3",
+              "text": "The washing powder is in the cupboard yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-03:intro1:r1",
+              "text": "The washing powder was in the cupboard yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-03:intro1:r2",
+              "text": "The washing powder were in the cupboard yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-03:intro1:r3",
+              "text": "The washing powder is in the cupboard yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одна тряпка, несколько перчаток",
+        "uk": "Одна ганчірка, кілька рукавичок"
+      },
+      "bodyByLocale": {
+        "ru": "Cleaning cloth — «тряпка для уборки», rubber gloves — «резиновые перчатки». После уборки тряпка была мокрой: The cleaning cloth was wet. Перчатки тоже были мокрыми: The rubber gloves were wet. Gloves — множественное число, поэтому were. Выберите фразу о перчатках.",
+        "uk": "Cleaning cloth — «ганчірка для прибирання», rubber gloves — «гумові рукавички». Після прибирання ганчірка була мокрою: The cleaning cloth was wet. Рукавички теж були мокрими: The rubber gloves were wet. Gloves — множина, тому were. Виберіть фразу про рукавички."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-03:intro2:r1",
+              "text": "The rubber gloves were wet."
+            },
+            {
+              "responseId": "en:lesson-11:session-03:intro2:r2",
+              "text": "The rubber gloves was wet."
+            },
+            {
+              "responseId": "en:lesson-11:session-03:intro2:r3",
+              "text": "The rubber gloves is wet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-03:intro2:r1",
+              "text": "The rubber gloves were wet."
+            },
+            {
+              "responseId": "en:lesson-11:session-03:intro2:r2",
+              "text": "The rubber gloves was wet."
+            },
+            {
+              "responseId": "en:lesson-11:session-03:intro2:r3",
+              "text": "The rubber gloves is wet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Попросить не двигать вещь",
+        "uk": "Попросити не рухати річ"
+      },
+      "bodyByLocale": {
+        "ru": "Друг хочет передвинуть стол во время уборки. Попросите: Please don’t move the table — «Пожалуйста, не двигай стол». После don’t нужна обычная форма move. Вчера этот стол был у окна: The table was by the window yesterday. Сейчас выберите просьбу не двигать стол.",
+        "uk": "Друг хоче пересунути стіл під час прибирання. Попросіть: Please don’t move the table — «Будь ласка, не рухай стіл». Після don’t потрібна звичайна форма move. Учора цей стіл був біля вікна: The table was by the window yesterday. Зараз виберіть прохання не рухати стіл."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-03:intro3:r1",
+              "text": "Please don’t move the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-03:intro3:r2",
+              "text": "Please don’t moving the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-03:intro3:r3",
+              "text": "Please doesn’t move the table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-03:intro3:r1",
+              "text": "Please don’t move the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-03:intro3:r2",
+              "text": "Please don’t moving the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-03:intro3:r3",
+              "text": "Please doesn’t move the table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d92612757ebee73d813c11fd7f13cd5392f73fd4d6a6cf2a42e66c4b34a6b8d3"
+}

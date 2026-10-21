@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-03:intro1:r2": {
+          "ru": "Powder здесь неисчисляемое: нужна was.",
+          "uk": "Powder тут незлічуване: потрібна was."
+        },
+        "en:lesson-11:session-03:intro1:r3": {
+          "ru": "Yesterday требует прошедшего времени: was.",
+          "uk": "Yesterday потребує минулого часу: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-03:intro2:r2": {
+          "ru": "С gloves нужна were.",
+          "uk": "Із gloves потрібна were."
+        },
+        "en:lesson-11:session-03:intro2:r3": {
+          "ru": "Is не подходит к множественному числу и прошлому времени.",
+          "uk": "Is не підходить до множини й минулого часу."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-03:intro3:r2": {
+          "ru": "После don’t нужна move без -ing.",
+          "uk": "Після don’t потрібна move без -ing."
+        },
+        "en:lesson-11:session-03:intro3:r3": {
+          "ru": "В просьбе используется don’t, а не doesn’t.",
+          "uk": "У проханні використовується don’t, а не doesn’t."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "78b628f9440c1ba082be864bddbe5c8e095410f6ac415757fdf22e9e84d979cf"
+}

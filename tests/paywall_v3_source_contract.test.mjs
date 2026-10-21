@@ -65,13 +65,17 @@ test('the Plus paywall is the only one: A–G screens, variant picker and A/B sh
 });
 
 test('year price is the big one; «≈ per month» of the year plan is small', () => {
-  const ui = read(UI);
+  // тест устарел структурно после 1359f5244 (тарифы переехали в PaywallPlanRows, вариант A), поведение не менялось: сумма списания —
+  // самая крупная цифра строки (S.big), «≈ в месяц» — мелко под ней (S.per). Отдельного стиля «месяц крупнее/мельче года» в строках нет:
+  // у года и у месяца один и тот же крупный стиль суммы.
+  const ui = read('components/paywall/PaywallPlanRows.tsx');
   const size = (key) => Number(ui.match(new RegExp(`${key}: \\{[^}]*fontSize: ([\\d.]+)`))?.[1]);
-  assert.ok(size('priceBig') > size('priceMonth'), 'year total is larger than the month price');
-  assert.ok(size('priceBig') > size('planSmall'), 'year total is larger than «≈ per month»');
-  assert.match(ui, /testID="paywall-year-price" style=\{\[S\.priceBig/);
+  assert.ok(size('big') > size('per'), 'year total is larger than «≈ per month»');
+  assert.ok(size('big') > size('strike'), 'year total is larger than the struck-through standard price');
+  assert.match(ui, /testID=\{priceTestID\} style=\{\[S\.big/);
+  assert.match(ui, /priceTestID="paywall-year-price"/);
   assert.match(ui, /yearPerMonthApprox\(lang, yearlyPerMonth\)/);
-  assert.match(ui, /<Text style=\{\[S\.planSmall[^>]*>\{yearPerMonthApprox/);
+  assert.match(ui, /\{subPrice \? <Text style=\{\[S\.per/);
 });
 
 test('trial length comes only from the store — no hard-coded 7/12/17 day durations', () => {

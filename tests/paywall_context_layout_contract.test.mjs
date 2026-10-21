@@ -31,10 +31,12 @@ test('plus window is a sheet over the previous screen with plans side by side (�
   assert.match(nav, /PAYWALL_SHEET_STACK_OPTIONS[\s\S]{0,80}presentation: 'transparentModal'/);
   assert.match(read('app', '_layout.tsx'), /name="premium_modal" options=\{PAYWALL_SHEET_STACK_OPTIONS\}/);
   assert.match(read('components', 'paywall', 'paywallShared.tsx'), /presentation: 'transparentModal'/);
-  const plus = read('components', 'paywall', 'PaywallPlus.tsx');
-  assert.match(plus, /planRow: \{ flexDirection: 'row'/);
-  // зачем (владелец 12.10, стиль «Тень»): выбранный тариф приподнят сдвигом на внешней обёртке (tileOuter), а не кольцом.
-  assert.match(plus, /testID="paywall-plan-yearly"[\s\S]{0,400}outerStyle=\{tileOuter\(yearOn\)\}/);
+  // тест устарел структурно после 1359f5244 (тарифы переехали в PaywallPlanRows, вариант A «Строки, цена справа»), поведение не менялось:
+  // тарифы идут строками одного блока, выбранный тариф выделен тенью-свечением, а не кольцом/рамкой контейнера.
+  const rows = read('components', 'paywall', 'PaywallPlanRows.tsx');
+  assert.match(rows, /row: \{ minHeight: PLAN_ROW_MIN_HEIGHT/);
+  assert.match(rows, /testID="paywall-plan-yearly"/);
+  assert.match(rows, /on \? \{ boxShadow: \[\{ offsetX: 0, offsetY: 12/);
 });
 
 // зачем (владелец 11.10: «цены должны показываться все равно, везде»; приказ «пейволы все сделать»): блока «Цены не загрузились» с кнопкой «Ещё раз» больше нет.
@@ -71,8 +73,11 @@ test('sheet and its tiles differ in every theme: graphite dark had opaqueSheet =
 
 test('plan tiles are never empty: shimmer skeleton, or the quiet price note that stays through silent retries (Сверка 11.10)', () => {
   const plus = read('components', 'paywall', 'PaywallPlus.tsx');
-  assert.match(plus, /import SkeletonBlock from '\.\.\/SkeletonShimmer';/);
-  assert.match(plus, /<SkeletonBlock width="100%" height=\{PLAN_CARD_HEIGHT\}/);
+  // тест устарел структурно после 1359f5244: скелет тарифов живёт в PaywallPlanRows.tsx, PaywallPlus лишь выбирает его
+  const rows = read('components', 'paywall', 'PaywallPlanRows.tsx');
+  assert.match(rows, /import SkeletonBlock from '\.\.\/SkeletonShimmer';/);
+  assert.match(rows, /<SkeletonBlock width="100%" height=\{PLAN_ROW_MIN_HEIGHT\}/);
+  assert.match(plus, /<PaywallPlanRowsSkeleton g=\{g\} \/>/);
   const screen = read('components', 'paywall', 'PaywallPlusScreen.tsx');
   assert.match(screen, /const plansShown: PaywallPlusState = state === 'loading' && sawPricesError \? 'error' : state;/);
   assert.match(screen, /plansShown === 'loading' \? <PaywallPlusPlansSkeleton/);

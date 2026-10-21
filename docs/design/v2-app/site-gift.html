@@ -37,14 +37,14 @@
     <h1>Подарок Phraseman Plus на сайте</h1>
     <p>Макет страницы knowlyapps.com/gift после решений владельца 21.10. Цены — заглушка: настоящие суммы приходят с сервера. Ничего не выложено и не оплачивается.</p>
     <div class="rules">
-      <div><b>Три способа</b><span>Письмом с кодом (по умолчанию), ссылкой, по нику с обязательным «Это он/она ✓».</span></div>
+      <div><b>Два способа</b><span>Письмом с кодом (по умолчанию) или ссылкой.</span></div>
       <div><b>Уже есть Plus</b><span>Подарок продлевает срок.</span></div>
       <div><b>Только месяц и год</b><span>«Навсегда» не продаём.</span></div>
-      <div><b>Отмена</b><span>Код и ссылку — до активации. Подарок по нику отменить нельзя.</span></div>
+      <div><b>Отмена</b><span>Код и ссылку — до активации. Деньги возвращаем вручную через поддержку.</span></div>
       <div><b>iOS</b><span>В приложении на iPhone нет ни ссылки, ни упоминания этой страницы.</span></div>
     </div>
   </section>
-  <nav class="toc"><a href="#s01">01 · Форма · письмом с кодом (по умолчанию)</a><a href="#s02">02 · Форма · ссылкой</a><a href="#s03">03 · Форма · по нику, обязательное «Это она ✓»</a><a href="#s04">04 · Форма · по нику</a><a href="#s05">05 · После оплаты · по нику (Plus продлён) + открытка в приложении</a><a href="#s06">06 · После оплаты · ссылкой (можно отменить до активации)</a><a href="#s07">07 · Получатель открыл ссылку</a></nav>
+  <nav class="toc"><a href="#s01">01 · Форма · письмом с кодом (по умолчанию)</a><a href="#s02">02 · Форма · ссылкой</a><a href="#s03">03 · Форма · письмом с кодом</a><a href="#s04">04 · Форма · ссылкой</a><a href="#s05">05 · После оплаты · ссылкой (можно отменить до активации)</a><a href="#s06">06 · Получатель открыл ссылку</a></nav>
   <section class="screen" id="s01" data-w="1280" data-h="1380">
   <header><span class="num">01</span><div><h2>Форма · письмом с кодом (по умолчанию)</h2><p>Компьютер · светлая</p></div></header>
   <div class="viewport"><iframe title="Форма · письмом с кодом (по умолчанию)" width="1280" height="1380" loading="lazy" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot; data-mode=&quot;light&quot; lang=&quot;ru&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;&lt;title&gt;Подарите новый мир · Phraseman&lt;/title&gt;&lt;meta name=&quot;description&quot; content=&quot;Phraseman — живой язык для вашей жизни.&quot;&gt;&lt;link rel=&quot;icon&quot; href=&quot;../../../knowly-www/assets/approved/brand.png&quot;&gt;&lt;link rel=&quot;canonical&quot; href=&quot;https://knowlyapps.com/gift/&quot; /&gt;
@@ -151,6 +151,18 @@
     .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-from { color: #d8ccb0; }
     .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-plan { color: #efca70; }
     .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-catchphrase { color: #f2e5c8; }
+    /* «Как вручить» — письмом / ссылкой (владелец 21.10, макет docs/design/site/gift-plus.html) */
+    .gift-deliver { display: grid; gap: 10px; }
+    .gift-deliver h3 { margin: 0; font-size: 15px; font-weight: 700; color: var(--text); }
+    .gift-seg { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 5px; border-radius: 16px; background: color-mix(in srgb, var(--fill) 6%, var(--card-solid)); box-shadow: var(--shadow-sm); }
+    .gift-seg button { all: unset; box-sizing: border-box; cursor: pointer; text-align: center; padding: 11px 6px; border-radius: 12px; font: 650 14px/1.25 var(--font); color: var(--sec); transition: background-color .16s ease, color .16s ease, transform .12s ease; }
+    .gift-seg button:active { transform: scale(.97); }
+    .gift-seg button:focus-visible { outline: 2px solid var(--fill); outline-offset: 2px; }
+    .gift-seg button[aria-checked=&quot;true&quot;] { background: var(--card-solid); color: var(--text); box-shadow: var(--shadow-sm), inset 0 0 0 1px color-mix(in srgb, var(--fill) 55%, transparent); }
+    .gift-seg small { display: block; font-weight: 500; font-size: 11.5px; opacity: .8; margin-top: 3px; }
+    .gift-hint { margin: 0; font-size: 13px; line-height: 1.5; color: var(--sec); }
+    @media (max-width: 340px) { .gift-seg small { display: none; } }
+    @media (prefers-reduced-motion: reduce) { .gift-seg button { transition: none; } }
     @media (prefers-reduced-motion: reduce) { .gift-canvas .cert::after { animation: none; opacity: 0; } }
     @media (max-width: 900px) { .gift-canvas .cert { position: static; } }
     @media (max-width: 480px) {
@@ -165,17 +177,10 @@
 &lt;style&gt;
   .deliver{display:grid;gap:10px}
   .deliver h3{margin:0;font-size:15px;font-weight:700;color:var(--text)}
-  .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:16px;background:color-mix(in srgb,var(--fill) 6%,var(--card-solid));box-shadow:var(--shadow-sm)}
+  .seg{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;padding:5px;border-radius:16px;background:color-mix(in srgb,var(--fill) 6%,var(--card-solid));box-shadow:var(--shadow-sm)}
   .seg span{text-align:center;padding:10px 6px;border-radius:12px;font-size:13.5px;font-weight:650;color:var(--sec)}
   .seg span.on{background:var(--card-solid);color:var(--text);box-shadow:var(--shadow-sm),inset 0 0 0 1.5px color-mix(in srgb,var(--fill) 60%,transparent)}
   .seg small{display:block;font-weight:500;font-size:11px;opacity:.8;margin-top:2px}
-  .who{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;background:color-mix(in srgb,var(--fill) 9%,var(--card-solid));box-shadow:var(--shadow-sm)}
-  .who .ava{width:44px;height:44px;border-radius:50%;flex:none;background:radial-gradient(circle at 35% 30%,#ffe6a8,#c98a1c 70%);box-shadow:0 0 0 3px var(--card-solid),0 0 0 5px color-mix(in srgb,var(--fill) 55%,transparent)}
-  .who .meta{min-width:0;flex:1}
-  .who b{display:block;font-size:15px;color:var(--text)}
-  .who span{display:block;font-size:12.5px;color:var(--sec)}
-  .who .ok{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--text);white-space:nowrap}
-  .who .box{width:20px;height:20px;border-radius:6px;background:var(--cta);color:var(--cta-ink);display:grid;place-items:center;font-size:13px;font-weight:800}
   .hint{margin:0;font-size:13px;line-height:1.45;color:var(--sec)}
   .hint b{color:var(--text)}
   .done{box-sizing:border-box;width:100%;max-width:760px;margin:56px auto 72px;padding:0 16px;text-align:center;display:grid;gap:18px}
@@ -190,10 +195,6 @@
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:left}
   .steps div{padding:14px;border-radius:18px;background:var(--card-solid);box-shadow:var(--shadow-sm);font-size:13.5px;color:var(--sec)}
   .steps b{display:block;color:var(--text);font-size:14.5px;margin-bottom:4px}
-  .app-card{max-width:340px;margin:0 auto;padding:20px;border-radius:28px;background:#101413;color:#f4f1e8;text-align:left;box-shadow:var(--shadow);display:grid;gap:10px}
-  .app-card small{opacity:.6;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
-  .app-card b{font-size:20px}
-  .app-card .ring{width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe6a8,#c98a1c 70%);box-shadow:0 0 0 3px #101413,0 0 0 6px #e7c46a}
   @media (max-width:560px){.steps{grid-template-columns:1fr}.seg small{display:none}}
 &lt;/style&gt;
 &lt;/head&gt;&lt;body data-approved-studio=&quot;20260908&quot; class=&quot;cinema edition route-gift inner-cinema&quot;&gt;&lt;a class=&quot;skip&quot; href=&quot;#content&quot; data-i18n=&quot;v2.skip&quot;&gt;К содержанию&lt;/a&gt;&lt;header class=&quot;site-header&quot;&gt;&lt;div class=&quot;container nav-row&quot;&gt;&lt;a class=&quot;brand&quot; href=&quot;/&quot; aria-label=&quot;Phraseman — главная&quot; data-i18n-aria=&quot;v2.aria.home&quot;&gt;&lt;img src=&quot;../../../knowly-www/assets/approved/brand.png&quot; alt=&quot;&quot; width=&quot;36&quot; height=&quot;36&quot;&gt;&lt;span&gt;phrase&lt;span class=&quot;brand-tail&quot;&gt;man&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;nav id=&quot;main-nav&quot; aria-label=&quot;Главная навигация&quot; data-i18n-aria=&quot;v2.aria.nav&quot;&gt;&lt;a href=&quot;/app/&quot; data-i18n=&quot;approved.0&quot;&gt;Приложение&lt;/a&gt;&lt;a href=&quot;/english-level-test/&quot; data-i18n=&quot;approved.1&quot;&gt;Тест уровня&lt;/a&gt;&lt;a href=&quot;/guides/&quot; data-i18n=&quot;approved.2&quot;&gt;Журнал&lt;/a&gt;&lt;a href=&quot;/gift/&quot; data-i18n=&quot;approved.3&quot;&gt;Подарить&lt;/a&gt;&lt;a href=&quot;/contact/&quot; data-i18n=&quot;approved.4&quot;&gt;Поддержка&lt;/a&gt;&lt;/nav&gt;&lt;div class=&quot;nav-actions&quot;&gt;&lt;a class=&quot;language&quot; href=&quot;#site-preferences&quot; aria-label=&quot;Язык и оформление&quot; data-i18n-aria=&quot;v2.aria.langLook&quot; aria-expanded=&quot;false&quot; id=&quot;site-language&quot;&gt;RU &lt;span aria-hidden=&quot;true&quot;&gt;⌄&lt;/span&gt;&lt;/a&gt;&lt;a class=&quot;button small primary&quot; href=&quot;/download/&quot; data-i18n=&quot;v2.start&quot;&gt;Начать бесплатно&lt;span aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;&lt;/a&gt;&lt;button class=&quot;menu-button icon-button&quot; aria-label=&quot;Открыть меню&quot; data-i18n-aria=&quot;v2.aria.menu&quot; aria-controls=&quot;main-nav&quot; aria-expanded=&quot;false&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M4 7h16M4 12h16M4 17h16&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id=&quot;site-preferences&quot; class=&quot;site-language-menu&quot; hidden&gt;&lt;button type=&quot;button&quot; data-lang-btn=&quot;ru&quot;&gt;Русский&lt;/button&gt;&lt;button type=&quot;button&quot; data-lang-btn=&quot;en&quot;&gt;English&lt;/button&gt;&lt;button type=&quot;button&quot; id=&quot;theme-toggle&quot; data-i18n=&quot;v2.themeToggle&quot;&gt;Светлая / тёмная тема&lt;/button&gt;&lt;/div&gt;&lt;/header&gt;&lt;main id=&quot;content&quot;&gt;&lt;section class=&quot;edition-gift-top spatial-scene&quot;&gt;&lt;div class=&quot;container&quot;&gt;&lt;span class=&quot;eyebrow&quot; data-i18n=&quot;v2.gf.eyebrow&quot;&gt;ПОДАРОК, КОТОРЫЙ ОСТАНЕТСЯ С ЧЕЛОВЕКОМ&lt;/span&gt;&lt;h1 data-i18n=&quot;v2.gf.h1&quot;&gt;Открой близкому&lt;br&gt;&lt;em&gt;новый мир.&lt;/em&gt;&lt;/h1&gt;&lt;p data-i18n=&quot;v2.gf.lead&quot;&gt;Именной сертификат Phraseman.&lt;br&gt;Три варианта подарка. Каждый — со своим характером.&lt;/p&gt;&lt;/div&gt;&lt;/section&gt;&lt;section class=&quot;container gift-config&quot;&gt;&lt;div class=&quot;gift-controls&quot;&gt;&lt;h2 data-i18n=&quot;v2.gf.choose&quot;&gt;Выбери подарок&lt;/h2&gt;&lt;div class=&quot;runtime-surface&quot;&gt;&lt;div class=&quot;gift-options&quot; role=&quot;radiogroup&quot; aria-label=&quot;Выбор подарка&quot; data-i18n-aria=&quot;v2.gf.aria.choice&quot;&gt;
@@ -214,7 +215,7 @@
         &lt;/div&gt;
         
       &lt;/div&gt;&lt;form class=&quot;gift-form&quot; id=&quot;giftForm&quot; novalidate&gt;
-        &lt;div class=&quot;deliver&quot;&gt;&lt;h3&gt;Как вручить&lt;/h3&gt;&lt;div class=&quot;seg&quot;&gt;&lt;span class=&quot;on&quot;&gt;Письмом&lt;small&gt;код на твою почту&lt;/small&gt;&lt;/span&gt;&lt;span class=&quot;&quot;&gt;Ссылкой&lt;small&gt;отправишь сам&lt;/small&gt;&lt;/span&gt;&lt;span class=&quot;&quot;&gt;По нику&lt;small&gt;сразу в приложение&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;div class=&quot;deliver&quot;&gt;&lt;h3&gt;Как вручить&lt;/h3&gt;&lt;div class=&quot;seg&quot;&gt;&lt;span class=&quot;on&quot;&gt;Письмом&lt;small&gt;код на твою почту&lt;/small&gt;&lt;/span&gt;&lt;span class=&quot;&quot;&gt;Ссылкой&lt;small&gt;отправишь сам&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
         
         &lt;p class=&quot;hint&quot;&gt;Пришлём на твою почту сертификат с кодом. Маша введёт его в приложении: Настройки → Промокоды. Если у неё уже есть Plus — он продлится. Код можно отменить, пока он не активирован.&lt;/p&gt;
         &lt;div class=&quot;field&quot;&gt;&lt;label&gt;Кому (имя на сертификате)&lt;/label&gt;&lt;input type=&quot;text&quot; value=&quot;Маша&quot; /&gt;&lt;/div&gt;
@@ -342,6 +343,18 @@
     .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-from { color: #d8ccb0; }
     .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-plan { color: #efca70; }
     .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-catchphrase { color: #f2e5c8; }
+    /* «Как вручить» — письмом / ссылкой (владелец 21.10, макет docs/design/site/gift-plus.html) */
+    .gift-deliver { display: grid; gap: 10px; }
+    .gift-deliver h3 { margin: 0; font-size: 15px; font-weight: 700; color: var(--text); }
+    .gift-seg { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 5px; border-radius: 16px; background: color-mix(in srgb, var(--fill) 6%, var(--card-solid)); box-shadow: var(--shadow-sm); }
+    .gift-seg button { all: unset; box-sizing: border-box; cursor: pointer; text-align: center; padding: 11px 6px; border-radius: 12px; font: 650 14px/1.25 var(--font); color: var(--sec); transition: background-color .16s ease, color .16s ease, transform .12s ease; }
+    .gift-seg button:active { transform: scale(.97); }
+    .gift-seg button:focus-visible { outline: 2px solid var(--fill); outline-offset: 2px; }
+    .gift-seg button[aria-checked=&quot;true&quot;] { background: var(--card-solid); color: var(--text); box-shadow: var(--shadow-sm), inset 0 0 0 1px color-mix(in srgb, var(--fill) 55%, transparent); }
+    .gift-seg small { display: block; font-weight: 500; font-size: 11.5px; opacity: .8; margin-top: 3px; }
+    .gift-hint { margin: 0; font-size: 13px; line-height: 1.5; color: var(--sec); }
+    @media (max-width: 340px) { .gift-seg small { display: none; } }
+    @media (prefers-reduced-motion: reduce) { .gift-seg button { transition: none; } }
     @media (prefers-reduced-motion: reduce) { .gift-canvas .cert::after { animation: none; opacity: 0; } }
     @media (max-width: 900px) { .gift-canvas .cert { position: static; } }
     @media (max-width: 480px) {
@@ -356,17 +369,10 @@
 &lt;style&gt;
   .deliver{display:grid;gap:10px}
   .deliver h3{margin:0;font-size:15px;font-weight:700;color:var(--text)}
-  .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:16px;background:color-mix(in srgb,var(--fill) 6%,var(--card-solid));box-shadow:var(--shadow-sm)}
+  .seg{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;padding:5px;border-radius:16px;background:color-mix(in srgb,var(--fill) 6%,var(--card-solid));box-shadow:var(--shadow-sm)}
   .seg span{text-align:center;padding:10px 6px;border-radius:12px;font-size:13.5px;font-weight:650;color:var(--sec)}
   .seg span.on{background:var(--card-solid);color:var(--text);box-shadow:var(--shadow-sm),inset 0 0 0 1.5px color-mix(in srgb,var(--fill) 60%,transparent)}
   .seg small{display:block;font-weight:500;font-size:11px;opacity:.8;margin-top:2px}
-  .who{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;background:color-mix(in srgb,var(--fill) 9%,var(--card-solid));box-shadow:var(--shadow-sm)}
-  .who .ava{width:44px;height:44px;border-radius:50%;flex:none;background:radial-gradient(circle at 35% 30%,#ffe6a8,#c98a1c 70%);box-shadow:0 0 0 3px var(--card-solid),0 0 0 5px color-mix(in srgb,var(--fill) 55%,transparent)}
-  .who .meta{min-width:0;flex:1}
-  .who b{display:block;font-size:15px;color:var(--text)}
-  .who span{display:block;font-size:12.5px;color:var(--sec)}
-  .who .ok{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--text);white-space:nowrap}
-  .who .box{width:20px;height:20px;border-radius:6px;background:var(--cta);color:var(--cta-ink);display:grid;place-items:center;font-size:13px;font-weight:800}
   .hint{margin:0;font-size:13px;line-height:1.45;color:var(--sec)}
   .hint b{color:var(--text)}
   .done{box-sizing:border-box;width:100%;max-width:760px;margin:56px auto 72px;padding:0 16px;text-align:center;display:grid;gap:18px}
@@ -381,10 +387,6 @@
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:left}
   .steps div{padding:14px;border-radius:18px;background:var(--card-solid);box-shadow:var(--shadow-sm);font-size:13.5px;color:var(--sec)}
   .steps b{display:block;color:var(--text);font-size:14.5px;margin-bottom:4px}
-  .app-card{max-width:340px;margin:0 auto;padding:20px;border-radius:28px;background:#101413;color:#f4f1e8;text-align:left;box-shadow:var(--shadow);display:grid;gap:10px}
-  .app-card small{opacity:.6;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
-  .app-card b{font-size:20px}
-  .app-card .ring{width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe6a8,#c98a1c 70%);box-shadow:0 0 0 3px #101413,0 0 0 6px #e7c46a}
   @media (max-width:560px){.steps{grid-template-columns:1fr}.seg small{display:none}}
 &lt;/style&gt;
 &lt;/head&gt;&lt;body data-approved-studio=&quot;20260908&quot; class=&quot;cinema edition route-gift inner-cinema&quot;&gt;&lt;a class=&quot;skip&quot; href=&quot;#content&quot; data-i18n=&quot;v2.skip&quot;&gt;К содержанию&lt;/a&gt;&lt;header class=&quot;site-header&quot;&gt;&lt;div class=&quot;container nav-row&quot;&gt;&lt;a class=&quot;brand&quot; href=&quot;/&quot; aria-label=&quot;Phraseman — главная&quot; data-i18n-aria=&quot;v2.aria.home&quot;&gt;&lt;img src=&quot;../../../knowly-www/assets/approved/brand.png&quot; alt=&quot;&quot; width=&quot;36&quot; height=&quot;36&quot;&gt;&lt;span&gt;phrase&lt;span class=&quot;brand-tail&quot;&gt;man&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;nav id=&quot;main-nav&quot; aria-label=&quot;Главная навигация&quot; data-i18n-aria=&quot;v2.aria.nav&quot;&gt;&lt;a href=&quot;/app/&quot; data-i18n=&quot;approved.0&quot;&gt;Приложение&lt;/a&gt;&lt;a href=&quot;/english-level-test/&quot; data-i18n=&quot;approved.1&quot;&gt;Тест уровня&lt;/a&gt;&lt;a href=&quot;/guides/&quot; data-i18n=&quot;approved.2&quot;&gt;Журнал&lt;/a&gt;&lt;a href=&quot;/gift/&quot; data-i18n=&quot;approved.3&quot;&gt;Подарить&lt;/a&gt;&lt;a href=&quot;/contact/&quot; data-i18n=&quot;approved.4&quot;&gt;Поддержка&lt;/a&gt;&lt;/nav&gt;&lt;div class=&quot;nav-actions&quot;&gt;&lt;a class=&quot;language&quot; href=&quot;#site-preferences&quot; aria-label=&quot;Язык и оформление&quot; data-i18n-aria=&quot;v2.aria.langLook&quot; aria-expanded=&quot;false&quot; id=&quot;site-language&quot;&gt;RU &lt;span aria-hidden=&quot;true&quot;&gt;⌄&lt;/span&gt;&lt;/a&gt;&lt;a class=&quot;button small primary&quot; href=&quot;/download/&quot; data-i18n=&quot;v2.start&quot;&gt;Начать бесплатно&lt;span aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;&lt;/a&gt;&lt;button class=&quot;menu-button icon-button&quot; aria-label=&quot;Открыть меню&quot; data-i18n-aria=&quot;v2.aria.menu&quot; aria-controls=&quot;main-nav&quot; aria-expanded=&quot;false&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M4 7h16M4 12h16M4 17h16&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id=&quot;site-preferences&quot; class=&quot;site-language-menu&quot; hidden&gt;&lt;button type=&quot;button&quot; data-lang-btn=&quot;ru&quot;&gt;Русский&lt;/button&gt;&lt;button type=&quot;button&quot; data-lang-btn=&quot;en&quot;&gt;English&lt;/button&gt;&lt;button type=&quot;button&quot; id=&quot;theme-toggle&quot; data-i18n=&quot;v2.themeToggle&quot;&gt;Светлая / тёмная тема&lt;/button&gt;&lt;/div&gt;&lt;/header&gt;&lt;main id=&quot;content&quot;&gt;&lt;section class=&quot;edition-gift-top spatial-scene&quot;&gt;&lt;div class=&quot;container&quot;&gt;&lt;span class=&quot;eyebrow&quot; data-i18n=&quot;v2.gf.eyebrow&quot;&gt;ПОДАРОК, КОТОРЫЙ ОСТАНЕТСЯ С ЧЕЛОВЕКОМ&lt;/span&gt;&lt;h1 data-i18n=&quot;v2.gf.h1&quot;&gt;Открой близкому&lt;br&gt;&lt;em&gt;новый мир.&lt;/em&gt;&lt;/h1&gt;&lt;p data-i18n=&quot;v2.gf.lead&quot;&gt;Именной сертификат Phraseman.&lt;br&gt;Три варианта подарка. Каждый — со своим характером.&lt;/p&gt;&lt;/div&gt;&lt;/section&gt;&lt;section class=&quot;container gift-config&quot;&gt;&lt;div class=&quot;gift-controls&quot;&gt;&lt;h2 data-i18n=&quot;v2.gf.choose&quot;&gt;Выбери подарок&lt;/h2&gt;&lt;div class=&quot;runtime-surface&quot;&gt;&lt;div class=&quot;gift-options&quot; role=&quot;radiogroup&quot; aria-label=&quot;Выбор подарка&quot; data-i18n-aria=&quot;v2.gf.aria.choice&quot;&gt;
@@ -405,7 +407,7 @@
         &lt;/div&gt;
         
       &lt;/div&gt;&lt;form class=&quot;gift-form&quot; id=&quot;giftForm&quot; novalidate&gt;
-        &lt;div class=&quot;deliver&quot;&gt;&lt;h3&gt;Как вручить&lt;/h3&gt;&lt;div class=&quot;seg&quot;&gt;&lt;span class=&quot;&quot;&gt;Письмом&lt;small&gt;код на твою почту&lt;/small&gt;&lt;/span&gt;&lt;span class=&quot;on&quot;&gt;Ссылкой&lt;small&gt;отправишь сам&lt;/small&gt;&lt;/span&gt;&lt;span class=&quot;&quot;&gt;По нику&lt;small&gt;сразу в приложение&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;div class=&quot;deliver&quot;&gt;&lt;h3&gt;Как вручить&lt;/h3&gt;&lt;div class=&quot;seg&quot;&gt;&lt;span class=&quot;&quot;&gt;Письмом&lt;small&gt;код на твою почту&lt;/small&gt;&lt;/span&gt;&lt;span class=&quot;on&quot;&gt;Ссылкой&lt;small&gt;отправишь сам&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
         
         &lt;p class=&quot;hint&quot;&gt;После оплаты дадим ссылку-подарок. Отправь её Маше в любом мессенджере: ссылка откроет Phraseman, и подарок включится одной кнопкой. Если у Маши уже есть Plus — он продлится. Ссылку можно отменить, пока Маша её не открыла.&lt;/p&gt;
         &lt;div class=&quot;field&quot;&gt;&lt;label&gt;Кому (имя на сертификате)&lt;/label&gt;&lt;input type=&quot;text&quot; value=&quot;Маша&quot; /&gt;&lt;/div&gt;
@@ -427,9 +429,9 @@
 
 
 &lt;/body&gt;&lt;/html&gt;"></iframe></div>
-</section><section class="screen" id="s03" data-w="1280" data-h="1500">
-  <header><span class="num">03</span><div><h2>Форма · по нику, обязательное «Это она ✓»</h2><p>Компьютер · тёмная</p></div></header>
-  <div class="viewport"><iframe title="Форма · по нику, обязательное «Это она ✓»" width="1280" height="1500" loading="lazy" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;dark&quot; data-mode=&quot;dark&quot; lang=&quot;ru&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;&lt;title&gt;Подарите новый мир · Phraseman&lt;/title&gt;&lt;meta name=&quot;description&quot; content=&quot;Phraseman — живой язык для вашей жизни.&quot;&gt;&lt;link rel=&quot;icon&quot; href=&quot;../../../knowly-www/assets/approved/brand.png&quot;&gt;&lt;link rel=&quot;canonical&quot; href=&quot;https://knowlyapps.com/gift/&quot; /&gt;
+</section><section class="screen" id="s03" data-w="1280" data-h="1380">
+  <header><span class="num">03</span><div><h2>Форма · письмом с кодом</h2><p>Компьютер · тёмная</p></div></header>
+  <div class="viewport"><iframe title="Форма · письмом с кодом" width="1280" height="1380" loading="lazy" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;dark&quot; data-mode=&quot;dark&quot; lang=&quot;ru&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;&lt;title&gt;Подарите новый мир · Phraseman&lt;/title&gt;&lt;meta name=&quot;description&quot; content=&quot;Phraseman — живой язык для вашей жизни.&quot;&gt;&lt;link rel=&quot;icon&quot; href=&quot;../../../knowly-www/assets/approved/brand.png&quot;&gt;&lt;link rel=&quot;canonical&quot; href=&quot;https://knowlyapps.com/gift/&quot; /&gt;
 &lt;meta property=&quot;og:type&quot; content=&quot;website&quot; /&gt;
 &lt;meta property=&quot;og:url&quot; content=&quot;https://knowlyapps.com/gift/&quot; /&gt;
 &lt;meta property=&quot;og:title&quot; content=&quot;Подарочный сертификат Phraseman&quot; /&gt;
@@ -533,6 +535,18 @@
     .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-from { color: #d8ccb0; }
     .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-plan { color: #efca70; }
     .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-catchphrase { color: #f2e5c8; }
+    /* «Как вручить» — письмом / ссылкой (владелец 21.10, макет docs/design/site/gift-plus.html) */
+    .gift-deliver { display: grid; gap: 10px; }
+    .gift-deliver h3 { margin: 0; font-size: 15px; font-weight: 700; color: var(--text); }
+    .gift-seg { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 5px; border-radius: 16px; background: color-mix(in srgb, var(--fill) 6%, var(--card-solid)); box-shadow: var(--shadow-sm); }
+    .gift-seg button { all: unset; box-sizing: border-box; cursor: pointer; text-align: center; padding: 11px 6px; border-radius: 12px; font: 650 14px/1.25 var(--font); color: var(--sec); transition: background-color .16s ease, color .16s ease, transform .12s ease; }
+    .gift-seg button:active { transform: scale(.97); }
+    .gift-seg button:focus-visible { outline: 2px solid var(--fill); outline-offset: 2px; }
+    .gift-seg button[aria-checked=&quot;true&quot;] { background: var(--card-solid); color: var(--text); box-shadow: var(--shadow-sm), inset 0 0 0 1px color-mix(in srgb, var(--fill) 55%, transparent); }
+    .gift-seg small { display: block; font-weight: 500; font-size: 11.5px; opacity: .8; margin-top: 3px; }
+    .gift-hint { margin: 0; font-size: 13px; line-height: 1.5; color: var(--sec); }
+    @media (max-width: 340px) { .gift-seg small { display: none; } }
+    @media (prefers-reduced-motion: reduce) { .gift-seg button { transition: none; } }
     @media (prefers-reduced-motion: reduce) { .gift-canvas .cert::after { animation: none; opacity: 0; } }
     @media (max-width: 900px) { .gift-canvas .cert { position: static; } }
     @media (max-width: 480px) {
@@ -547,17 +561,10 @@
 &lt;style&gt;
   .deliver{display:grid;gap:10px}
   .deliver h3{margin:0;font-size:15px;font-weight:700;color:var(--text)}
-  .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:16px;background:color-mix(in srgb,var(--fill) 6%,var(--card-solid));box-shadow:var(--shadow-sm)}
+  .seg{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;padding:5px;border-radius:16px;background:color-mix(in srgb,var(--fill) 6%,var(--card-solid));box-shadow:var(--shadow-sm)}
   .seg span{text-align:center;padding:10px 6px;border-radius:12px;font-size:13.5px;font-weight:650;color:var(--sec)}
   .seg span.on{background:var(--card-solid);color:var(--text);box-shadow:var(--shadow-sm),inset 0 0 0 1.5px color-mix(in srgb,var(--fill) 60%,transparent)}
   .seg small{display:block;font-weight:500;font-size:11px;opacity:.8;margin-top:2px}
-  .who{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;background:color-mix(in srgb,var(--fill) 9%,var(--card-solid));box-shadow:var(--shadow-sm)}
-  .who .ava{width:44px;height:44px;border-radius:50%;flex:none;background:radial-gradient(circle at 35% 30%,#ffe6a8,#c98a1c 70%);box-shadow:0 0 0 3px var(--card-solid),0 0 0 5px color-mix(in srgb,var(--fill) 55%,transparent)}
-  .who .meta{min-width:0;flex:1}
-  .who b{display:block;font-size:15px;color:var(--text)}
-  .who span{display:block;font-size:12.5px;color:var(--sec)}
-  .who .ok{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--text);white-space:nowrap}
-  .who .box{width:20px;height:20px;border-radius:6px;background:var(--cta);color:var(--cta-ink);display:grid;place-items:center;font-size:13px;font-weight:800}
   .hint{margin:0;font-size:13px;line-height:1.45;color:var(--sec)}
   .hint b{color:var(--text)}
   .done{box-sizing:border-box;width:100%;max-width:760px;margin:56px auto 72px;padding:0 16px;text-align:center;display:grid;gap:18px}
@@ -572,10 +579,6 @@
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:left}
   .steps div{padding:14px;border-radius:18px;background:var(--card-solid);box-shadow:var(--shadow-sm);font-size:13.5px;color:var(--sec)}
   .steps b{display:block;color:var(--text);font-size:14.5px;margin-bottom:4px}
-  .app-card{max-width:340px;margin:0 auto;padding:20px;border-radius:28px;background:#101413;color:#f4f1e8;text-align:left;box-shadow:var(--shadow);display:grid;gap:10px}
-  .app-card small{opacity:.6;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
-  .app-card b{font-size:20px}
-  .app-card .ring{width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe6a8,#c98a1c 70%);box-shadow:0 0 0 3px #101413,0 0 0 6px #e7c46a}
   @media (max-width:560px){.steps{grid-template-columns:1fr}.seg small{display:none}}
 &lt;/style&gt;
 &lt;/head&gt;&lt;body data-approved-studio=&quot;20260908&quot; class=&quot;cinema edition route-gift inner-cinema&quot;&gt;&lt;a class=&quot;skip&quot; href=&quot;#content&quot; data-i18n=&quot;v2.skip&quot;&gt;К содержанию&lt;/a&gt;&lt;header class=&quot;site-header&quot;&gt;&lt;div class=&quot;container nav-row&quot;&gt;&lt;a class=&quot;brand&quot; href=&quot;/&quot; aria-label=&quot;Phraseman — главная&quot; data-i18n-aria=&quot;v2.aria.home&quot;&gt;&lt;img src=&quot;../../../knowly-www/assets/approved/brand.png&quot; alt=&quot;&quot; width=&quot;36&quot; height=&quot;36&quot;&gt;&lt;span&gt;phrase&lt;span class=&quot;brand-tail&quot;&gt;man&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;nav id=&quot;main-nav&quot; aria-label=&quot;Главная навигация&quot; data-i18n-aria=&quot;v2.aria.nav&quot;&gt;&lt;a href=&quot;/app/&quot; data-i18n=&quot;approved.0&quot;&gt;Приложение&lt;/a&gt;&lt;a href=&quot;/english-level-test/&quot; data-i18n=&quot;approved.1&quot;&gt;Тест уровня&lt;/a&gt;&lt;a href=&quot;/guides/&quot; data-i18n=&quot;approved.2&quot;&gt;Журнал&lt;/a&gt;&lt;a href=&quot;/gift/&quot; data-i18n=&quot;approved.3&quot;&gt;Подарить&lt;/a&gt;&lt;a href=&quot;/contact/&quot; data-i18n=&quot;approved.4&quot;&gt;Поддержка&lt;/a&gt;&lt;/nav&gt;&lt;div class=&quot;nav-actions&quot;&gt;&lt;a class=&quot;language&quot; href=&quot;#site-preferences&quot; aria-label=&quot;Язык и оформление&quot; data-i18n-aria=&quot;v2.aria.langLook&quot; aria-expanded=&quot;false&quot; id=&quot;site-language&quot;&gt;RU &lt;span aria-hidden=&quot;true&quot;&gt;⌄&lt;/span&gt;&lt;/a&gt;&lt;a class=&quot;button small primary&quot; href=&quot;/download/&quot; data-i18n=&quot;v2.start&quot;&gt;Начать бесплатно&lt;span aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;&lt;/a&gt;&lt;button class=&quot;menu-button icon-button&quot; aria-label=&quot;Открыть меню&quot; data-i18n-aria=&quot;v2.aria.menu&quot; aria-controls=&quot;main-nav&quot; aria-expanded=&quot;false&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M4 7h16M4 12h16M4 17h16&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id=&quot;site-preferences&quot; class=&quot;site-language-menu&quot; hidden&gt;&lt;button type=&quot;button&quot; data-lang-btn=&quot;ru&quot;&gt;Русский&lt;/button&gt;&lt;button type=&quot;button&quot; data-lang-btn=&quot;en&quot;&gt;English&lt;/button&gt;&lt;button type=&quot;button&quot; id=&quot;theme-toggle&quot; data-i18n=&quot;v2.themeToggle&quot;&gt;Светлая / тёмная тема&lt;/button&gt;&lt;/div&gt;&lt;/header&gt;&lt;main id=&quot;content&quot;&gt;&lt;section class=&quot;edition-gift-top spatial-scene&quot;&gt;&lt;div class=&quot;container&quot;&gt;&lt;span class=&quot;eyebrow&quot; data-i18n=&quot;v2.gf.eyebrow&quot;&gt;ПОДАРОК, КОТОРЫЙ ОСТАНЕТСЯ С ЧЕЛОВЕКОМ&lt;/span&gt;&lt;h1 data-i18n=&quot;v2.gf.h1&quot;&gt;Открой близкому&lt;br&gt;&lt;em&gt;новый мир.&lt;/em&gt;&lt;/h1&gt;&lt;p data-i18n=&quot;v2.gf.lead&quot;&gt;Именной сертификат Phraseman.&lt;br&gt;Три варианта подарка. Каждый — со своим характером.&lt;/p&gt;&lt;/div&gt;&lt;/section&gt;&lt;section class=&quot;container gift-config&quot;&gt;&lt;div class=&quot;gift-controls&quot;&gt;&lt;h2 data-i18n=&quot;v2.gf.choose&quot;&gt;Выбери подарок&lt;/h2&gt;&lt;div class=&quot;runtime-surface&quot;&gt;&lt;div class=&quot;gift-options&quot; role=&quot;radiogroup&quot; aria-label=&quot;Выбор подарка&quot; data-i18n-aria=&quot;v2.gf.aria.choice&quot;&gt;
@@ -596,16 +599,14 @@
         &lt;/div&gt;
         
       &lt;/div&gt;&lt;form class=&quot;gift-form&quot; id=&quot;giftForm&quot; novalidate&gt;
-        &lt;div class=&quot;deliver&quot;&gt;&lt;h3&gt;Как вручить&lt;/h3&gt;&lt;div class=&quot;seg&quot;&gt;&lt;span class=&quot;&quot;&gt;Письмом&lt;small&gt;код на твою почту&lt;/small&gt;&lt;/span&gt;&lt;span class=&quot;&quot;&gt;Ссылкой&lt;small&gt;отправишь сам&lt;/small&gt;&lt;/span&gt;&lt;span class=&quot;on&quot;&gt;По нику&lt;small&gt;сразу в приложение&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;div class=&quot;deliver&quot;&gt;&lt;h3&gt;Как вручить&lt;/h3&gt;&lt;div class=&quot;seg&quot;&gt;&lt;span class=&quot;on&quot;&gt;Письмом&lt;small&gt;код на твою почту&lt;/small&gt;&lt;/span&gt;&lt;span class=&quot;&quot;&gt;Ссылкой&lt;small&gt;отправишь сам&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
         
-        &lt;div class=&quot;field&quot;&gt;&lt;label&gt;Ник или код друга в Phraseman&lt;/label&gt;&lt;input type=&quot;text&quot; value=&quot;masha_k&quot; /&gt;&lt;/div&gt;
-        &lt;div class=&quot;who&quot;&gt;&lt;div class=&quot;ava&quot;&gt;&lt;/div&gt;&lt;div class=&quot;meta&quot;&gt;&lt;b&gt;masha_k&lt;/b&gt;&lt;span&gt;Ранг «Стажёр» · в Phraseman с июня&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ok&quot;&gt;&lt;span class=&quot;box&quot;&gt;✓&lt;/span&gt;Это она&lt;/div&gt;&lt;/div&gt;
-        &lt;p class=&quot;hint&quot;&gt;Plus включится у Маши сразу после оплаты, а если Plus уже есть — продлится на год. &lt;b&gt;Подарок по нику отменить нельзя&lt;/b&gt; — проверь, что это она.&lt;/p&gt;
+        &lt;p class=&quot;hint&quot;&gt;Пришлём на твою почту сертификат с кодом. Маша введёт его в приложении: Настройки → Промокоды. Если у неё уже есть Plus — он продлится. Код можно отменить, пока он не активирован.&lt;/p&gt;
         &lt;div class=&quot;field&quot;&gt;&lt;label&gt;Кому (имя на сертификате)&lt;/label&gt;&lt;input type=&quot;text&quot; value=&quot;Маша&quot; /&gt;&lt;/div&gt;
         &lt;div class=&quot;field&quot;&gt;&lt;label&gt;От кого&lt;/label&gt;&lt;input type=&quot;text&quot; value=&quot;Саша&quot; /&gt;&lt;/div&gt;
-        &lt;div class=&quot;field&quot;&gt;&lt;label&gt;Твой email — пришлём чек&lt;/label&gt;&lt;input type=&quot;email&quot; value=&quot;sasha@example.com&quot; /&gt;&lt;/div&gt;
+        &lt;div class=&quot;field&quot;&gt;&lt;label&gt;Твой email — на него придёт сертификат&lt;/label&gt;&lt;input type=&quot;email&quot; value=&quot;sasha@example.com&quot; /&gt;&lt;/div&gt;
         &lt;button class=&quot;btn btn-primary&quot; type=&quot;button&quot; style=&quot;width:100%;&quot;&gt;&lt;span&gt;Оплатить картой&lt;/span&gt;&lt;/button&gt;
-        &lt;p class=&quot;gift-terms&quot;&gt;Разовый платёж, автопродления нет · Plus включится у получателя сразу.&lt;/p&gt;
+        &lt;p class=&quot;gift-terms&quot;&gt;Разовый платёж, автопродления нет · Код действует 365 дней.&lt;/p&gt;
       &lt;/form&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;gift-canvas runtime-surface&quot;&gt;&lt;aside class=&quot;cert&quot; data-plan=&quot;yearly&quot; id=&quot;giftCertificate&quot; aria-label=&quot;Предпросмотр сертификата&quot; data-i18n-aria=&quot;v2.gf.aria.preview&quot;&gt;
       &lt;div class=&quot;cert-head&quot;&gt;&lt;small data-i18n=&quot;gf.cert.tag&quot;&gt;ПОДАРОЧНЫЙ СЕРТИФИКАТ&lt;/small&gt;&lt;b&gt;Phraseman&lt;/b&gt;&lt;/div&gt;
       &lt;div class=&quot;cert-body&quot;&gt;
@@ -616,13 +617,13 @@
         &lt;div class=&quot;cert-plan&quot; id=&quot;pvPlan&quot;&gt;Год Phraseman Plus&lt;/div&gt;
         &lt;div class=&quot;cert-catchphrase&quot; id=&quot;pvCatchphrase&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;
       &lt;/div&gt;
-    &lt;/aside&gt;&lt;/div&gt;&lt;/section&gt;&lt;section class=&quot;container gift-how&quot;&gt;&lt;article&gt;&lt;span&gt;01&lt;/span&gt;&lt;h3 data-i18n=&quot;v2.gf.step1&quot;&gt;Выбери срок&lt;/h3&gt;&lt;p data-i18n=&quot;v2.gf.step1Text&quot;&gt;Месяц — познакомиться. Год — войти в ритм.&lt;/p&gt;&lt;/article&gt;&lt;article&gt;&lt;span&gt;02&lt;/span&gt;&lt;h3 data-i18n=&quot;v2.gf.step2&quot;&gt;Получи сертификат&lt;/h3&gt;&lt;p data-i18n=&quot;v2.gf.step2Text&quot;&gt;Plus включится у получателя сразу после оплаты — без кода.&lt;/p&gt;&lt;/article&gt;&lt;article&gt;&lt;span&gt;03&lt;/span&gt;&lt;h3 data-i18n=&quot;v2.gf.step3&quot;&gt;Подари возможности&lt;/h3&gt;&lt;p data-i18n=&quot;v2.gf.step3Text&quot;&gt;Получатель увидит открытку от тебя при входе в приложение.&lt;/p&gt;&lt;/article&gt;&lt;/section&gt;&lt;/main&gt;&lt;footer class=&quot;footer&quot;&gt;&lt;div class=&quot;container&quot;&gt;&lt;div class=&quot;footer-top&quot;&gt;&lt;div&gt;&lt;a class=&quot;brand&quot; href=&quot;/&quot; aria-label=&quot;Phraseman — главная&quot; data-i18n-aria=&quot;v2.aria.home&quot;&gt;&lt;img src=&quot;../../../knowly-www/assets/approved/brand.png&quot; alt=&quot;&quot; width=&quot;36&quot; height=&quot;36&quot;&gt;&lt;span&gt;phrase&lt;span class=&quot;brand-tail&quot;&gt;man&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;p data-i18n=&quot;approved.13&quot;&gt;Чуть больше языка.&lt;br&gt;Чуть больше свободы.&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;footer-links&quot;&gt;&lt;div&gt;&lt;b data-i18n=&quot;approved.14&quot;&gt;Практиковаться&lt;/b&gt;&lt;a href=&quot;/app/&quot; data-i18n=&quot;approved.15&quot;&gt;О приложении&lt;/a&gt;&lt;a href=&quot;/download/&quot; data-i18n=&quot;approved.16&quot;&gt;Скачать Phraseman&lt;/a&gt;&lt;a href=&quot;/english-level-test/&quot; data-i18n=&quot;approved.17&quot;&gt;Определить уровень&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;b data-i18n=&quot;approved.19&quot;&gt;Открывать больше&lt;/b&gt;&lt;a href=&quot;/guides/&quot; data-i18n=&quot;approved.20&quot;&gt;Гайды и истории&lt;/a&gt;&lt;a href=&quot;/premium/&quot; data-i18n=&quot;approved.21&quot;&gt;Plus и Pro&lt;/a&gt;&lt;a href=&quot;/gift/&quot; data-i18n=&quot;approved.22&quot;&gt;Подарить доступ&lt;/a&gt;&lt;a href=&quot;/russia/&quot; data-i18n=&quot;approved.23&quot;&gt;Оплата в России&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;b data-i18n=&quot;approved.24&quot;&gt;Мы рядом&lt;/b&gt;&lt;a href=&quot;/contact/&quot; data-i18n=&quot;approved.4&quot;&gt;Поддержка&lt;/a&gt;&lt;a href=&quot;/faq/&quot; data-i18n=&quot;approved.25&quot;&gt;Частые вопросы&lt;/a&gt;&lt;a href=&quot;/#reviews&quot; data-i18n=&quot;approved.26&quot;&gt;Отзывы&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;footer-bottom&quot;&gt;&lt;span&gt;© 2026 Knowly · Phraseman&lt;/span&gt;&lt;div&gt;&lt;a href=&quot;/legal/privacy/&quot; data-i18n=&quot;approved.27&quot;&gt;Конфиденциальность&lt;/a&gt;&lt;a href=&quot;/legal/terms/&quot; data-i18n=&quot;v2.footer.terms&quot;&gt;Условия&lt;/a&gt;&lt;a href=&quot;/legal/data-deletion/&quot; data-i18n=&quot;approved.29&quot;&gt;Удаление данных&lt;/a&gt;&lt;a href=&quot;#cookie-settings&quot; data-cookie-settings data-i18n=&quot;approved.30&quot;&gt;Настройки cookies&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/footer&gt;
+    &lt;/aside&gt;&lt;/div&gt;&lt;/section&gt;&lt;section class=&quot;container gift-how&quot;&gt;&lt;article&gt;&lt;span&gt;01&lt;/span&gt;&lt;h3 data-i18n=&quot;v2.gf.step1&quot;&gt;Выбери срок&lt;/h3&gt;&lt;p data-i18n=&quot;v2.gf.step1Text&quot;&gt;Месяц — познакомиться. Год — войти в ритм.&lt;/p&gt;&lt;/article&gt;&lt;article&gt;&lt;span&gt;02&lt;/span&gt;&lt;h3 data-i18n=&quot;v2.gf.step2&quot;&gt;Получи сертификат&lt;/h3&gt;&lt;p data-i18n=&quot;v2.gf.step2Text&quot;&gt;После оплаты письмо с кодом придёт на email, указанный при оформлении.&lt;/p&gt;&lt;/article&gt;&lt;article&gt;&lt;span&gt;03&lt;/span&gt;&lt;h3 data-i18n=&quot;v2.gf.step3&quot;&gt;Подари возможности&lt;/h3&gt;&lt;p data-i18n=&quot;v2.gf.step3Text&quot;&gt;Получатель вводит код в приложении: Настройки → Промокоды. Банковская карта ему не нужна.&lt;/p&gt;&lt;/article&gt;&lt;/section&gt;&lt;/main&gt;&lt;footer class=&quot;footer&quot;&gt;&lt;div class=&quot;container&quot;&gt;&lt;div class=&quot;footer-top&quot;&gt;&lt;div&gt;&lt;a class=&quot;brand&quot; href=&quot;/&quot; aria-label=&quot;Phraseman — главная&quot; data-i18n-aria=&quot;v2.aria.home&quot;&gt;&lt;img src=&quot;../../../knowly-www/assets/approved/brand.png&quot; alt=&quot;&quot; width=&quot;36&quot; height=&quot;36&quot;&gt;&lt;span&gt;phrase&lt;span class=&quot;brand-tail&quot;&gt;man&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;p data-i18n=&quot;approved.13&quot;&gt;Чуть больше языка.&lt;br&gt;Чуть больше свободы.&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;footer-links&quot;&gt;&lt;div&gt;&lt;b data-i18n=&quot;approved.14&quot;&gt;Практиковаться&lt;/b&gt;&lt;a href=&quot;/app/&quot; data-i18n=&quot;approved.15&quot;&gt;О приложении&lt;/a&gt;&lt;a href=&quot;/download/&quot; data-i18n=&quot;approved.16&quot;&gt;Скачать Phraseman&lt;/a&gt;&lt;a href=&quot;/english-level-test/&quot; data-i18n=&quot;approved.17&quot;&gt;Определить уровень&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;b data-i18n=&quot;approved.19&quot;&gt;Открывать больше&lt;/b&gt;&lt;a href=&quot;/guides/&quot; data-i18n=&quot;approved.20&quot;&gt;Гайды и истории&lt;/a&gt;&lt;a href=&quot;/premium/&quot; data-i18n=&quot;approved.21&quot;&gt;Plus и Pro&lt;/a&gt;&lt;a href=&quot;/gift/&quot; data-i18n=&quot;approved.22&quot;&gt;Подарить доступ&lt;/a&gt;&lt;a href=&quot;/russia/&quot; data-i18n=&quot;approved.23&quot;&gt;Оплата в России&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;b data-i18n=&quot;approved.24&quot;&gt;Мы рядом&lt;/b&gt;&lt;a href=&quot;/contact/&quot; data-i18n=&quot;approved.4&quot;&gt;Поддержка&lt;/a&gt;&lt;a href=&quot;/faq/&quot; data-i18n=&quot;approved.25&quot;&gt;Частые вопросы&lt;/a&gt;&lt;a href=&quot;/#reviews&quot; data-i18n=&quot;approved.26&quot;&gt;Отзывы&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;footer-bottom&quot;&gt;&lt;span&gt;© 2026 Knowly · Phraseman&lt;/span&gt;&lt;div&gt;&lt;a href=&quot;/legal/privacy/&quot; data-i18n=&quot;approved.27&quot;&gt;Конфиденциальность&lt;/a&gt;&lt;a href=&quot;/legal/terms/&quot; data-i18n=&quot;v2.footer.terms&quot;&gt;Условия&lt;/a&gt;&lt;a href=&quot;/legal/data-deletion/&quot; data-i18n=&quot;approved.29&quot;&gt;Удаление данных&lt;/a&gt;&lt;a href=&quot;#cookie-settings&quot; data-cookie-settings data-i18n=&quot;approved.30&quot;&gt;Настройки cookies&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/footer&gt;
 
 
 &lt;/body&gt;&lt;/html&gt;"></iframe></div>
-</section><section class="screen" id="s04" data-w="390" data-h="2350">
-  <header><span class="num">04</span><div><h2>Форма · по нику</h2><p>Телефон 390</p></div></header>
-  <div class="viewport phone"><iframe title="Форма · по нику" width="390" height="2350" loading="lazy" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot; data-mode=&quot;light&quot; lang=&quot;ru&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;&lt;title&gt;Подарите новый мир · Phraseman&lt;/title&gt;&lt;meta name=&quot;description&quot; content=&quot;Phraseman — живой язык для вашей жизни.&quot;&gt;&lt;link rel=&quot;icon&quot; href=&quot;../../../knowly-www/assets/approved/brand.png&quot;&gt;&lt;link rel=&quot;canonical&quot; href=&quot;https://knowlyapps.com/gift/&quot; /&gt;
+</section><section class="screen" id="s04" data-w="390" data-h="2250">
+  <header><span class="num">04</span><div><h2>Форма · ссылкой</h2><p>Телефон 390</p></div></header>
+  <div class="viewport phone"><iframe title="Форма · ссылкой" width="390" height="2250" loading="lazy" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot; data-mode=&quot;light&quot; lang=&quot;ru&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;&lt;title&gt;Подарите новый мир · Phraseman&lt;/title&gt;&lt;meta name=&quot;description&quot; content=&quot;Phraseman — живой язык для вашей жизни.&quot;&gt;&lt;link rel=&quot;icon&quot; href=&quot;../../../knowly-www/assets/approved/brand.png&quot;&gt;&lt;link rel=&quot;canonical&quot; href=&quot;https://knowlyapps.com/gift/&quot; /&gt;
 &lt;meta property=&quot;og:type&quot; content=&quot;website&quot; /&gt;
 &lt;meta property=&quot;og:url&quot; content=&quot;https://knowlyapps.com/gift/&quot; /&gt;
 &lt;meta property=&quot;og:title&quot; content=&quot;Подарочный сертификат Phraseman&quot; /&gt;
@@ -726,6 +727,18 @@
     .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-from { color: #d8ccb0; }
     .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-plan { color: #efca70; }
     .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-catchphrase { color: #f2e5c8; }
+    /* «Как вручить» — письмом / ссылкой (владелец 21.10, макет docs/design/site/gift-plus.html) */
+    .gift-deliver { display: grid; gap: 10px; }
+    .gift-deliver h3 { margin: 0; font-size: 15px; font-weight: 700; color: var(--text); }
+    .gift-seg { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 5px; border-radius: 16px; background: color-mix(in srgb, var(--fill) 6%, var(--card-solid)); box-shadow: var(--shadow-sm); }
+    .gift-seg button { all: unset; box-sizing: border-box; cursor: pointer; text-align: center; padding: 11px 6px; border-radius: 12px; font: 650 14px/1.25 var(--font); color: var(--sec); transition: background-color .16s ease, color .16s ease, transform .12s ease; }
+    .gift-seg button:active { transform: scale(.97); }
+    .gift-seg button:focus-visible { outline: 2px solid var(--fill); outline-offset: 2px; }
+    .gift-seg button[aria-checked=&quot;true&quot;] { background: var(--card-solid); color: var(--text); box-shadow: var(--shadow-sm), inset 0 0 0 1px color-mix(in srgb, var(--fill) 55%, transparent); }
+    .gift-seg small { display: block; font-weight: 500; font-size: 11.5px; opacity: .8; margin-top: 3px; }
+    .gift-hint { margin: 0; font-size: 13px; line-height: 1.5; color: var(--sec); }
+    @media (max-width: 340px) { .gift-seg small { display: none; } }
+    @media (prefers-reduced-motion: reduce) { .gift-seg button { transition: none; } }
     @media (prefers-reduced-motion: reduce) { .gift-canvas .cert::after { animation: none; opacity: 0; } }
     @media (max-width: 900px) { .gift-canvas .cert { position: static; } }
     @media (max-width: 480px) {
@@ -740,17 +753,10 @@
 &lt;style&gt;
   .deliver{display:grid;gap:10px}
   .deliver h3{margin:0;font-size:15px;font-weight:700;color:var(--text)}
-  .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:16px;background:color-mix(in srgb,var(--fill) 6%,var(--card-solid));box-shadow:var(--shadow-sm)}
+  .seg{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;padding:5px;border-radius:16px;background:color-mix(in srgb,var(--fill) 6%,var(--card-solid));box-shadow:var(--shadow-sm)}
   .seg span{text-align:center;padding:10px 6px;border-radius:12px;font-size:13.5px;font-weight:650;color:var(--sec)}
   .seg span.on{background:var(--card-solid);color:var(--text);box-shadow:var(--shadow-sm),inset 0 0 0 1.5px color-mix(in srgb,var(--fill) 60%,transparent)}
   .seg small{display:block;font-weight:500;font-size:11px;opacity:.8;margin-top:2px}
-  .who{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;background:color-mix(in srgb,var(--fill) 9%,var(--card-solid));box-shadow:var(--shadow-sm)}
-  .who .ava{width:44px;height:44px;border-radius:50%;flex:none;background:radial-gradient(circle at 35% 30%,#ffe6a8,#c98a1c 70%);box-shadow:0 0 0 3px var(--card-solid),0 0 0 5px color-mix(in srgb,var(--fill) 55%,transparent)}
-  .who .meta{min-width:0;flex:1}
-  .who b{display:block;font-size:15px;color:var(--text)}
-  .who span{display:block;font-size:12.5px;color:var(--sec)}
-  .who .ok{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--text);white-space:nowrap}
-  .who .box{width:20px;height:20px;border-radius:6px;background:var(--cta);color:var(--cta-ink);display:grid;place-items:center;font-size:13px;font-weight:800}
   .hint{margin:0;font-size:13px;line-height:1.45;color:var(--sec)}
   .hint b{color:var(--text)}
   .done{box-sizing:border-box;width:100%;max-width:760px;margin:56px auto 72px;padding:0 16px;text-align:center;display:grid;gap:18px}
@@ -765,10 +771,6 @@
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:left}
   .steps div{padding:14px;border-radius:18px;background:var(--card-solid);box-shadow:var(--shadow-sm);font-size:13.5px;color:var(--sec)}
   .steps b{display:block;color:var(--text);font-size:14.5px;margin-bottom:4px}
-  .app-card{max-width:340px;margin:0 auto;padding:20px;border-radius:28px;background:#101413;color:#f4f1e8;text-align:left;box-shadow:var(--shadow);display:grid;gap:10px}
-  .app-card small{opacity:.6;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
-  .app-card b{font-size:20px}
-  .app-card .ring{width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe6a8,#c98a1c 70%);box-shadow:0 0 0 3px #101413,0 0 0 6px #e7c46a}
   @media (max-width:560px){.steps{grid-template-columns:1fr}.seg small{display:none}}
 &lt;/style&gt;
 &lt;/head&gt;&lt;body data-approved-studio=&quot;20260908&quot; class=&quot;cinema edition route-gift inner-cinema&quot;&gt;&lt;a class=&quot;skip&quot; href=&quot;#content&quot; data-i18n=&quot;v2.skip&quot;&gt;К содержанию&lt;/a&gt;&lt;header class=&quot;site-header&quot;&gt;&lt;div class=&quot;container nav-row&quot;&gt;&lt;a class=&quot;brand&quot; href=&quot;/&quot; aria-label=&quot;Phraseman — главная&quot; data-i18n-aria=&quot;v2.aria.home&quot;&gt;&lt;img src=&quot;../../../knowly-www/assets/approved/brand.png&quot; alt=&quot;&quot; width=&quot;36&quot; height=&quot;36&quot;&gt;&lt;span&gt;phrase&lt;span class=&quot;brand-tail&quot;&gt;man&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;nav id=&quot;main-nav&quot; aria-label=&quot;Главная навигация&quot; data-i18n-aria=&quot;v2.aria.nav&quot;&gt;&lt;a href=&quot;/app/&quot; data-i18n=&quot;approved.0&quot;&gt;Приложение&lt;/a&gt;&lt;a href=&quot;/english-level-test/&quot; data-i18n=&quot;approved.1&quot;&gt;Тест уровня&lt;/a&gt;&lt;a href=&quot;/guides/&quot; data-i18n=&quot;approved.2&quot;&gt;Журнал&lt;/a&gt;&lt;a href=&quot;/gift/&quot; data-i18n=&quot;approved.3&quot;&gt;Подарить&lt;/a&gt;&lt;a href=&quot;/contact/&quot; data-i18n=&quot;approved.4&quot;&gt;Поддержка&lt;/a&gt;&lt;/nav&gt;&lt;div class=&quot;nav-actions&quot;&gt;&lt;a class=&quot;language&quot; href=&quot;#site-preferences&quot; aria-label=&quot;Язык и оформление&quot; data-i18n-aria=&quot;v2.aria.langLook&quot; aria-expanded=&quot;false&quot; id=&quot;site-language&quot;&gt;RU &lt;span aria-hidden=&quot;true&quot;&gt;⌄&lt;/span&gt;&lt;/a&gt;&lt;a class=&quot;button small primary&quot; href=&quot;/download/&quot; data-i18n=&quot;v2.start&quot;&gt;Начать бесплатно&lt;span aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;&lt;/a&gt;&lt;button class=&quot;menu-button icon-button&quot; aria-label=&quot;Открыть меню&quot; data-i18n-aria=&quot;v2.aria.menu&quot; aria-controls=&quot;main-nav&quot; aria-expanded=&quot;false&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M4 7h16M4 12h16M4 17h16&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id=&quot;site-preferences&quot; class=&quot;site-language-menu&quot; hidden&gt;&lt;button type=&quot;button&quot; data-lang-btn=&quot;ru&quot;&gt;Русский&lt;/button&gt;&lt;button type=&quot;button&quot; data-lang-btn=&quot;en&quot;&gt;English&lt;/button&gt;&lt;button type=&quot;button&quot; id=&quot;theme-toggle&quot; data-i18n=&quot;v2.themeToggle&quot;&gt;Светлая / тёмная тема&lt;/button&gt;&lt;/div&gt;&lt;/header&gt;&lt;main id=&quot;content&quot;&gt;&lt;section class=&quot;edition-gift-top spatial-scene&quot;&gt;&lt;div class=&quot;container&quot;&gt;&lt;span class=&quot;eyebrow&quot; data-i18n=&quot;v2.gf.eyebrow&quot;&gt;ПОДАРОК, КОТОРЫЙ ОСТАНЕТСЯ С ЧЕЛОВЕКОМ&lt;/span&gt;&lt;h1 data-i18n=&quot;v2.gf.h1&quot;&gt;Открой близкому&lt;br&gt;&lt;em&gt;новый мир.&lt;/em&gt;&lt;/h1&gt;&lt;p data-i18n=&quot;v2.gf.lead&quot;&gt;Именной сертификат Phraseman.&lt;br&gt;Три варианта подарка. Каждый — со своим характером.&lt;/p&gt;&lt;/div&gt;&lt;/section&gt;&lt;section class=&quot;container gift-config&quot;&gt;&lt;div class=&quot;gift-controls&quot;&gt;&lt;h2 data-i18n=&quot;v2.gf.choose&quot;&gt;Выбери подарок&lt;/h2&gt;&lt;div class=&quot;runtime-surface&quot;&gt;&lt;div class=&quot;gift-options&quot; role=&quot;radiogroup&quot; aria-label=&quot;Выбор подарка&quot; data-i18n-aria=&quot;v2.gf.aria.choice&quot;&gt;
@@ -789,16 +791,14 @@
         &lt;/div&gt;
         
       &lt;/div&gt;&lt;form class=&quot;gift-form&quot; id=&quot;giftForm&quot; novalidate&gt;
-        &lt;div class=&quot;deliver&quot;&gt;&lt;h3&gt;Как вручить&lt;/h3&gt;&lt;div class=&quot;seg&quot;&gt;&lt;span class=&quot;&quot;&gt;Письмом&lt;small&gt;код на твою почту&lt;/small&gt;&lt;/span&gt;&lt;span class=&quot;&quot;&gt;Ссылкой&lt;small&gt;отправишь сам&lt;/small&gt;&lt;/span&gt;&lt;span class=&quot;on&quot;&gt;По нику&lt;small&gt;сразу в приложение&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;div class=&quot;deliver&quot;&gt;&lt;h3&gt;Как вручить&lt;/h3&gt;&lt;div class=&quot;seg&quot;&gt;&lt;span class=&quot;&quot;&gt;Письмом&lt;small&gt;код на твою почту&lt;/small&gt;&lt;/span&gt;&lt;span class=&quot;on&quot;&gt;Ссылкой&lt;small&gt;отправишь сам&lt;/small&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
         
-        &lt;div class=&quot;field&quot;&gt;&lt;label&gt;Ник или код друга в Phraseman&lt;/label&gt;&lt;input type=&quot;text&quot; value=&quot;masha_k&quot; /&gt;&lt;/div&gt;
-        &lt;div class=&quot;who&quot;&gt;&lt;div class=&quot;ava&quot;&gt;&lt;/div&gt;&lt;div class=&quot;meta&quot;&gt;&lt;b&gt;masha_k&lt;/b&gt;&lt;span&gt;Ранг «Стажёр» · в Phraseman с июня&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;ok&quot;&gt;&lt;span class=&quot;box&quot;&gt;✓&lt;/span&gt;Это она&lt;/div&gt;&lt;/div&gt;
-        &lt;p class=&quot;hint&quot;&gt;Plus включится у Маши сразу после оплаты, а если Plus уже есть — продлится на год. &lt;b&gt;Подарок по нику отменить нельзя&lt;/b&gt; — проверь, что это она.&lt;/p&gt;
+        &lt;p class=&quot;hint&quot;&gt;После оплаты дадим ссылку-подарок. Отправь её Маше в любом мессенджере: ссылка откроет Phraseman, и подарок включится одной кнопкой. Если у Маши уже есть Plus — он продлится. Ссылку можно отменить, пока Маша её не открыла.&lt;/p&gt;
         &lt;div class=&quot;field&quot;&gt;&lt;label&gt;Кому (имя на сертификате)&lt;/label&gt;&lt;input type=&quot;text&quot; value=&quot;Маша&quot; /&gt;&lt;/div&gt;
         &lt;div class=&quot;field&quot;&gt;&lt;label&gt;От кого&lt;/label&gt;&lt;input type=&quot;text&quot; value=&quot;Саша&quot; /&gt;&lt;/div&gt;
-        &lt;div class=&quot;field&quot;&gt;&lt;label&gt;Твой email — пришлём чек&lt;/label&gt;&lt;input type=&quot;email&quot; value=&quot;sasha@example.com&quot; /&gt;&lt;/div&gt;
+        &lt;div class=&quot;field&quot;&gt;&lt;label&gt;Твой email — пришлём чек и копию ссылки&lt;/label&gt;&lt;input type=&quot;email&quot; value=&quot;sasha@example.com&quot; /&gt;&lt;/div&gt;
         &lt;button class=&quot;btn btn-primary&quot; type=&quot;button&quot; style=&quot;width:100%;&quot;&gt;&lt;span&gt;Оплатить картой&lt;/span&gt;&lt;/button&gt;
-        &lt;p class=&quot;gift-terms&quot;&gt;Разовый платёж, автопродления нет · Plus включится у получателя сразу.&lt;/p&gt;
+        &lt;p class=&quot;gift-terms&quot;&gt;Разовый платёж, автопродления нет · Ссылка действует 365 дней.&lt;/p&gt;
       &lt;/form&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;gift-canvas runtime-surface&quot;&gt;&lt;aside class=&quot;cert&quot; data-plan=&quot;yearly&quot; id=&quot;giftCertificate&quot; aria-label=&quot;Предпросмотр сертификата&quot; data-i18n-aria=&quot;v2.gf.aria.preview&quot;&gt;
       &lt;div class=&quot;cert-head&quot;&gt;&lt;small data-i18n=&quot;gf.cert.tag&quot;&gt;ПОДАРОЧНЫЙ СЕРТИФИКАТ&lt;/small&gt;&lt;b&gt;Phraseman&lt;/b&gt;&lt;/div&gt;
       &lt;div class=&quot;cert-body&quot;&gt;
@@ -809,179 +809,12 @@
         &lt;div class=&quot;cert-plan&quot; id=&quot;pvPlan&quot;&gt;Год Phraseman Plus&lt;/div&gt;
         &lt;div class=&quot;cert-catchphrase&quot; id=&quot;pvCatchphrase&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;
       &lt;/div&gt;
-    &lt;/aside&gt;&lt;/div&gt;&lt;/section&gt;&lt;section class=&quot;container gift-how&quot;&gt;&lt;article&gt;&lt;span&gt;01&lt;/span&gt;&lt;h3 data-i18n=&quot;v2.gf.step1&quot;&gt;Выбери срок&lt;/h3&gt;&lt;p data-i18n=&quot;v2.gf.step1Text&quot;&gt;Месяц — познакомиться. Год — войти в ритм.&lt;/p&gt;&lt;/article&gt;&lt;article&gt;&lt;span&gt;02&lt;/span&gt;&lt;h3 data-i18n=&quot;v2.gf.step2&quot;&gt;Получи сертификат&lt;/h3&gt;&lt;p data-i18n=&quot;v2.gf.step2Text&quot;&gt;Plus включится у получателя сразу после оплаты — без кода.&lt;/p&gt;&lt;/article&gt;&lt;article&gt;&lt;span&gt;03&lt;/span&gt;&lt;h3 data-i18n=&quot;v2.gf.step3&quot;&gt;Подари возможности&lt;/h3&gt;&lt;p data-i18n=&quot;v2.gf.step3Text&quot;&gt;Получатель увидит открытку от тебя при входе в приложение.&lt;/p&gt;&lt;/article&gt;&lt;/section&gt;&lt;/main&gt;&lt;footer class=&quot;footer&quot;&gt;&lt;div class=&quot;container&quot;&gt;&lt;div class=&quot;footer-top&quot;&gt;&lt;div&gt;&lt;a class=&quot;brand&quot; href=&quot;/&quot; aria-label=&quot;Phraseman — главная&quot; data-i18n-aria=&quot;v2.aria.home&quot;&gt;&lt;img src=&quot;../../../knowly-www/assets/approved/brand.png&quot; alt=&quot;&quot; width=&quot;36&quot; height=&quot;36&quot;&gt;&lt;span&gt;phrase&lt;span class=&quot;brand-tail&quot;&gt;man&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;p data-i18n=&quot;approved.13&quot;&gt;Чуть больше языка.&lt;br&gt;Чуть больше свободы.&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;footer-links&quot;&gt;&lt;div&gt;&lt;b data-i18n=&quot;approved.14&quot;&gt;Практиковаться&lt;/b&gt;&lt;a href=&quot;/app/&quot; data-i18n=&quot;approved.15&quot;&gt;О приложении&lt;/a&gt;&lt;a href=&quot;/download/&quot; data-i18n=&quot;approved.16&quot;&gt;Скачать Phraseman&lt;/a&gt;&lt;a href=&quot;/english-level-test/&quot; data-i18n=&quot;approved.17&quot;&gt;Определить уровень&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;b data-i18n=&quot;approved.19&quot;&gt;Открывать больше&lt;/b&gt;&lt;a href=&quot;/guides/&quot; data-i18n=&quot;approved.20&quot;&gt;Гайды и истории&lt;/a&gt;&lt;a href=&quot;/premium/&quot; data-i18n=&quot;approved.21&quot;&gt;Plus и Pro&lt;/a&gt;&lt;a href=&quot;/gift/&quot; data-i18n=&quot;approved.22&quot;&gt;Подарить доступ&lt;/a&gt;&lt;a href=&quot;/russia/&quot; data-i18n=&quot;approved.23&quot;&gt;Оплата в России&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;b data-i18n=&quot;approved.24&quot;&gt;Мы рядом&lt;/b&gt;&lt;a href=&quot;/contact/&quot; data-i18n=&quot;approved.4&quot;&gt;Поддержка&lt;/a&gt;&lt;a href=&quot;/faq/&quot; data-i18n=&quot;approved.25&quot;&gt;Частые вопросы&lt;/a&gt;&lt;a href=&quot;/#reviews&quot; data-i18n=&quot;approved.26&quot;&gt;Отзывы&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;footer-bottom&quot;&gt;&lt;span&gt;© 2026 Knowly · Phraseman&lt;/span&gt;&lt;div&gt;&lt;a href=&quot;/legal/privacy/&quot; data-i18n=&quot;approved.27&quot;&gt;Конфиденциальность&lt;/a&gt;&lt;a href=&quot;/legal/terms/&quot; data-i18n=&quot;v2.footer.terms&quot;&gt;Условия&lt;/a&gt;&lt;a href=&quot;/legal/data-deletion/&quot; data-i18n=&quot;approved.29&quot;&gt;Удаление данных&lt;/a&gt;&lt;a href=&quot;#cookie-settings&quot; data-cookie-settings data-i18n=&quot;approved.30&quot;&gt;Настройки cookies&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/footer&gt;
+    &lt;/aside&gt;&lt;/div&gt;&lt;/section&gt;&lt;section class=&quot;container gift-how&quot;&gt;&lt;article&gt;&lt;span&gt;01&lt;/span&gt;&lt;h3 data-i18n=&quot;v2.gf.step1&quot;&gt;Выбери срок&lt;/h3&gt;&lt;p data-i18n=&quot;v2.gf.step1Text&quot;&gt;Месяц — познакомиться. Год — войти в ритм.&lt;/p&gt;&lt;/article&gt;&lt;article&gt;&lt;span&gt;02&lt;/span&gt;&lt;h3 data-i18n=&quot;v2.gf.step2&quot;&gt;Получи сертификат&lt;/h3&gt;&lt;p data-i18n=&quot;v2.gf.step2Text&quot;&gt;После оплаты письмо с кодом придёт на email, указанный при оформлении.&lt;/p&gt;&lt;/article&gt;&lt;article&gt;&lt;span&gt;03&lt;/span&gt;&lt;h3 data-i18n=&quot;v2.gf.step3&quot;&gt;Подари возможности&lt;/h3&gt;&lt;p data-i18n=&quot;v2.gf.step3Text&quot;&gt;Получатель вводит код в приложении: Настройки → Промокоды. Банковская карта ему не нужна.&lt;/p&gt;&lt;/article&gt;&lt;/section&gt;&lt;/main&gt;&lt;footer class=&quot;footer&quot;&gt;&lt;div class=&quot;container&quot;&gt;&lt;div class=&quot;footer-top&quot;&gt;&lt;div&gt;&lt;a class=&quot;brand&quot; href=&quot;/&quot; aria-label=&quot;Phraseman — главная&quot; data-i18n-aria=&quot;v2.aria.home&quot;&gt;&lt;img src=&quot;../../../knowly-www/assets/approved/brand.png&quot; alt=&quot;&quot; width=&quot;36&quot; height=&quot;36&quot;&gt;&lt;span&gt;phrase&lt;span class=&quot;brand-tail&quot;&gt;man&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;p data-i18n=&quot;approved.13&quot;&gt;Чуть больше языка.&lt;br&gt;Чуть больше свободы.&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;footer-links&quot;&gt;&lt;div&gt;&lt;b data-i18n=&quot;approved.14&quot;&gt;Практиковаться&lt;/b&gt;&lt;a href=&quot;/app/&quot; data-i18n=&quot;approved.15&quot;&gt;О приложении&lt;/a&gt;&lt;a href=&quot;/download/&quot; data-i18n=&quot;approved.16&quot;&gt;Скачать Phraseman&lt;/a&gt;&lt;a href=&quot;/english-level-test/&quot; data-i18n=&quot;approved.17&quot;&gt;Определить уровень&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;b data-i18n=&quot;approved.19&quot;&gt;Открывать больше&lt;/b&gt;&lt;a href=&quot;/guides/&quot; data-i18n=&quot;approved.20&quot;&gt;Гайды и истории&lt;/a&gt;&lt;a href=&quot;/premium/&quot; data-i18n=&quot;approved.21&quot;&gt;Plus и Pro&lt;/a&gt;&lt;a href=&quot;/gift/&quot; data-i18n=&quot;approved.22&quot;&gt;Подарить доступ&lt;/a&gt;&lt;a href=&quot;/russia/&quot; data-i18n=&quot;approved.23&quot;&gt;Оплата в России&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;b data-i18n=&quot;approved.24&quot;&gt;Мы рядом&lt;/b&gt;&lt;a href=&quot;/contact/&quot; data-i18n=&quot;approved.4&quot;&gt;Поддержка&lt;/a&gt;&lt;a href=&quot;/faq/&quot; data-i18n=&quot;approved.25&quot;&gt;Частые вопросы&lt;/a&gt;&lt;a href=&quot;/#reviews&quot; data-i18n=&quot;approved.26&quot;&gt;Отзывы&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;footer-bottom&quot;&gt;&lt;span&gt;© 2026 Knowly · Phraseman&lt;/span&gt;&lt;div&gt;&lt;a href=&quot;/legal/privacy/&quot; data-i18n=&quot;approved.27&quot;&gt;Конфиденциальность&lt;/a&gt;&lt;a href=&quot;/legal/terms/&quot; data-i18n=&quot;v2.footer.terms&quot;&gt;Условия&lt;/a&gt;&lt;a href=&quot;/legal/data-deletion/&quot; data-i18n=&quot;approved.29&quot;&gt;Удаление данных&lt;/a&gt;&lt;a href=&quot;#cookie-settings&quot; data-cookie-settings data-i18n=&quot;approved.30&quot;&gt;Настройки cookies&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/footer&gt;
 
 
 &lt;/body&gt;&lt;/html&gt;"></iframe></div>
-</section><section class="screen" id="s05" data-w="1280" data-h="1150">
-  <header><span class="num">05</span><div><h2>После оплаты · по нику (Plus продлён) + открытка в приложении</h2><p>Компьютер · светлая</p></div></header>
-  <div class="viewport"><iframe title="После оплаты · по нику (Plus продлён) + открытка в приложении" width="1280" height="1150" loading="lazy" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot; data-mode=&quot;light&quot; lang=&quot;ru&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;&lt;title&gt;Подарите новый мир · Phraseman&lt;/title&gt;&lt;meta name=&quot;description&quot; content=&quot;Phraseman — живой язык для вашей жизни.&quot;&gt;&lt;link rel=&quot;icon&quot; href=&quot;../../../knowly-www/assets/approved/brand.png&quot;&gt;&lt;link rel=&quot;canonical&quot; href=&quot;https://knowlyapps.com/gift/&quot; /&gt;
-&lt;meta property=&quot;og:type&quot; content=&quot;website&quot; /&gt;
-&lt;meta property=&quot;og:url&quot; content=&quot;https://knowlyapps.com/gift/&quot; /&gt;
-&lt;meta property=&quot;og:title&quot; content=&quot;Подарочный сертификат Phraseman&quot; /&gt;
-&lt;meta property=&quot;og:description&quot; content=&quot;Месяц или год Plus. Именной сертификат с кодом придёт на почту за минуту. Без автопродления.&quot; /&gt;
-&lt;meta property=&quot;og:image&quot; content=&quot;https://knowlyapps.com/assets/og-banner.png&quot; /&gt;
-&lt;meta name=&quot;twitter:card&quot; content=&quot;summary_large_image&quot; /&gt;
-&lt;meta name=&quot;twitter:image&quot; content=&quot;https://knowlyapps.com/assets/og-banner.png&quot; /&gt;&lt;style&gt;
-    /* Живой предпросмотр сертификата — настоящий золотой арт, как в письме
-       получателю. зачем: человек должен увидеть ровно то, что подарит; это
-       главный аргумент страницы, поэтому арт остаётся золотым в обеих темах. */
-    .gift-canvas .cert {
-      --cert-art: url(&quot;../../../knowly-www/assets/gift-certificates/gift-certificate-yearly.webp&quot;);
-      --cert-panel: rgba(255, 251, 242, .82);
-      --cert-panel-border: rgba(89, 66, 19, .16);
-      --cert-shimmer: rgba(255, 255, 255, .76);
-      --cert-ink: #201c12;
-      --cert-soft: #6f6852;
-      --cert-gold: #b8860f;
-      position: sticky;
-      top: 90px;
-      /* зачем: владелец 2026-08-16 — «сертификат стал квадратным, был
-         прямоугольным». Арты gift-certificates/*.webp имеют размер
-         1536×1024, то есть 3:2. Прежний min-height:360px вытягивал блок в
-         квадрат, и `cover` срезал арт по бокам. Держим ровно 3:2 —
-         сертификат виден целиком, как в письме получателю. */
-      aspect-ratio: 3 / 2;
-      display: flex;
-      flex-direction: column;
-      background-color: #f5efe3;
-      background-image: var(--cert-art);
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      border: 1px solid rgba(63, 46, 17, .12);
-      border-radius: 24px;
-      box-shadow: var(--shadow-lg);
-      overflow: hidden;
-      isolation: isolate;
-      transition: background-image .2s ease, border-color .2s ease;
-    }
-    .gift-canvas .cert::after {
-      content: &quot;&quot;;
-      position: absolute;
-      z-index: 3;
-      top: -45%; bottom: -45%; left: -32%;
-      width: 14%;
-      pointer-events: none;
-      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, .08) 32%, var(--cert-shimmer) 48%, rgba(255, 255, 255, .96) 52%, rgba(255, 255, 255, .12) 68%, transparent 100%);
-      filter: blur(.5px);
-      mix-blend-mode: screen;
-      opacity: 0;
-      transform: translateX(-160%) skewX(-18deg);
-      will-change: transform, opacity;
-      animation: cert-shimmer-pass 6s cubic-bezier(.4, 0, .2, 1) infinite;
-    }
-    @keyframes cert-shimmer-pass {
-      0%, 68% { opacity: 0; transform: translateX(-160%) skewX(-18deg); }
-      74% { opacity: .12; }
-      84% { opacity: .58; }
-      96%, 100% { opacity: 0; transform: translateX(650%) skewX(-18deg); }
-    }
-    .gift-canvas .cert[data-plan=&quot;monthly&quot;] {
-      --cert-art: url(&quot;../../../knowly-www/assets/gift-certificates/gift-certificate-monthly.webp&quot;);
-      --cert-panel: rgba(255, 249, 238, .84);
-      --cert-panel-border: rgba(135, 48, 40, .15);
-    }
-    .gift-canvas .cert[data-plan=&quot;yearly&quot;] { --cert-art: url(&quot;../../../knowly-www/assets/gift-certificates/gift-certificate-yearly.webp&quot;); }
-    .gift-canvas .cert[data-plan=&quot;lifetime&quot;] {
-      --cert-art: url(&quot;../../../knowly-www/assets/gift-certificates/gift-certificate-lifetime.webp&quot;);
-      --cert-panel: rgba(8, 14, 13, .84);
-      --cert-panel-border: rgba(222, 181, 92, .38);
-      --cert-shimmer: rgba(246, 207, 111, .78);
-      border-color: rgba(222, 181, 92, .48);
-    }
-    .gift-canvas .cert-head { position: relative; z-index: 2; text-align: center; padding: 22px 24px 17px; }
-    .gift-canvas .cert-head small { display: block; font-size: 11.5px; letter-spacing: 3px; font-weight: 700; color: #3a2905; }
-    .gift-canvas .cert-head b { display: block; font-size: 22px; font-weight: 900; color: #201c12; margin-top: 4px; }
-    .gift-canvas .cert-body {
-      position: relative; z-index: 2;
-      /* Панель занимает низ карточки и не растягивает её сверх 3:2 */
-      margin: auto 22px 22px;
-      padding: 20px 24px 18px;
-      background: var(--cert-panel);
-      border: 1px solid var(--cert-panel-border);
-      border-radius: 18px;
-      box-shadow: 0 12px 34px rgba(28, 22, 12, .13);
-      backdrop-filter: blur(7px);
-      -webkit-backdrop-filter: blur(7px);
-    }
-    .gift-canvas .cert-to { font-size: 20px; font-weight: 900; color: var(--cert-ink); min-height: 1.3em; }
-    .gift-canvas .cert-from { color: var(--cert-soft); font-size: 14.5px; min-height: 1.5em; margin-bottom: 12px; }
-    .gift-canvas .cert-plan { font-weight: 800; color: var(--cert-gold); font-size: 15.5px; }
-    .gift-canvas .cert-catchphrase {
-      display: flex; align-items: flex-end;
-      min-height: 3em; margin-top: 17px;
-      color: #4f4736; font-size: 14.5px; font-weight: 600; line-height: 1.45; text-wrap: balance;
-    }
-    .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-head small { color: #ead394; }
-    .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-head b,
-    .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-to { color: #fff8e8; }
-    .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-from { color: #d8ccb0; }
-    .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-plan { color: #efca70; }
-    .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-catchphrase { color: #f2e5c8; }
-    @media (prefers-reduced-motion: reduce) { .gift-canvas .cert::after { animation: none; opacity: 0; } }
-    @media (max-width: 900px) { .gift-canvas .cert { position: static; } }
-    @media (max-width: 480px) {
-      /* На узком экране пропорция 3:2 оставляет мало места под текст —
-         отпускаем высоту, арт остаётся фоном сверху. */
-      .gift-canvas .cert { aspect-ratio: auto; border-radius: 20px; }
-      .gift-canvas .cert-head { padding: 20px 18px 15px; }
-      .gift-canvas .cert-body { margin: 0 14px 14px; padding: 18px 18px 16px; }
-      .gift-canvas .cert-catchphrase { min-height: 0; margin-top: 12px; }
-    }
-  &lt;/style&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;../../../knowly-www/assets/approved/runtime-components.css&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;../../../knowly-www/assets/v2/base.css?v=20261015&quot;&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;../../../knowly-www/assets/v2/money.css?v=20261015p&quot;&gt;
-&lt;style&gt;
-  .deliver{display:grid;gap:10px}
-  .deliver h3{margin:0;font-size:15px;font-weight:700;color:var(--text)}
-  .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:16px;background:color-mix(in srgb,var(--fill) 6%,var(--card-solid));box-shadow:var(--shadow-sm)}
-  .seg span{text-align:center;padding:10px 6px;border-radius:12px;font-size:13.5px;font-weight:650;color:var(--sec)}
-  .seg span.on{background:var(--card-solid);color:var(--text);box-shadow:var(--shadow-sm),inset 0 0 0 1.5px color-mix(in srgb,var(--fill) 60%,transparent)}
-  .seg small{display:block;font-weight:500;font-size:11px;opacity:.8;margin-top:2px}
-  .who{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;background:color-mix(in srgb,var(--fill) 9%,var(--card-solid));box-shadow:var(--shadow-sm)}
-  .who .ava{width:44px;height:44px;border-radius:50%;flex:none;background:radial-gradient(circle at 35% 30%,#ffe6a8,#c98a1c 70%);box-shadow:0 0 0 3px var(--card-solid),0 0 0 5px color-mix(in srgb,var(--fill) 55%,transparent)}
-  .who .meta{min-width:0;flex:1}
-  .who b{display:block;font-size:15px;color:var(--text)}
-  .who span{display:block;font-size:12.5px;color:var(--sec)}
-  .who .ok{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--text);white-space:nowrap}
-  .who .box{width:20px;height:20px;border-radius:6px;background:var(--cta);color:var(--cta-ink);display:grid;place-items:center;font-size:13px;font-weight:800}
-  .hint{margin:0;font-size:13px;line-height:1.45;color:var(--sec)}
-  .hint b{color:var(--text)}
-  .done{box-sizing:border-box;width:100%;max-width:760px;margin:56px auto 72px;padding:0 16px;text-align:center;display:grid;gap:18px}
-  .done&gt;*{min-width:0}
-  .done h1{margin:0;font-size:clamp(30px,8.5vw,60px);line-height:1.08;text-wrap:balance}
-  .done .card{padding:22px 24px;border-radius:24px;background:var(--card-solid);box-shadow:var(--shadow);text-align:left;display:grid;gap:12px}
-  .done .row{display:flex;justify-content:space-between;gap:16px;font-size:14.5px;color:var(--text)}
-  .done .row span{color:var(--sec)}
-  .linkbox{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 12px;border-radius:14px;background:color-mix(in srgb,var(--fill) 6%,var(--card-solid));font:600 14px ui-monospace,monospace;color:var(--text)}
-  .linkbox .btn{margin-left:auto}
-  .quiet{font-size:13px;color:var(--sec);text-decoration:underline;text-underline-offset:3px}
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:left}
-  .steps div{padding:14px;border-radius:18px;background:var(--card-solid);box-shadow:var(--shadow-sm);font-size:13.5px;color:var(--sec)}
-  .steps b{display:block;color:var(--text);font-size:14.5px;margin-bottom:4px}
-  .app-card{max-width:340px;margin:0 auto;padding:20px;border-radius:28px;background:#101413;color:#f4f1e8;text-align:left;box-shadow:var(--shadow);display:grid;gap:10px}
-  .app-card small{opacity:.6;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
-  .app-card b{font-size:20px}
-  .app-card .ring{width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe6a8,#c98a1c 70%);box-shadow:0 0 0 3px #101413,0 0 0 6px #e7c46a}
-  @media (max-width:560px){.steps{grid-template-columns:1fr}.seg small{display:none}}
-&lt;/style&gt;
-&lt;/head&gt;&lt;body data-approved-studio=&quot;20260908&quot; class=&quot;cinema edition route-gift inner-cinema&quot;&gt;&lt;a class=&quot;skip&quot; href=&quot;#content&quot; data-i18n=&quot;v2.skip&quot;&gt;К содержанию&lt;/a&gt;&lt;header class=&quot;site-header&quot;&gt;&lt;div class=&quot;container nav-row&quot;&gt;&lt;a class=&quot;brand&quot; href=&quot;/&quot; aria-label=&quot;Phraseman — главная&quot; data-i18n-aria=&quot;v2.aria.home&quot;&gt;&lt;img src=&quot;../../../knowly-www/assets/approved/brand.png&quot; alt=&quot;&quot; width=&quot;36&quot; height=&quot;36&quot;&gt;&lt;span&gt;phrase&lt;span class=&quot;brand-tail&quot;&gt;man&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;nav id=&quot;main-nav&quot; aria-label=&quot;Главная навигация&quot; data-i18n-aria=&quot;v2.aria.nav&quot;&gt;&lt;a href=&quot;/app/&quot; data-i18n=&quot;approved.0&quot;&gt;Приложение&lt;/a&gt;&lt;a href=&quot;/english-level-test/&quot; data-i18n=&quot;approved.1&quot;&gt;Тест уровня&lt;/a&gt;&lt;a href=&quot;/guides/&quot; data-i18n=&quot;approved.2&quot;&gt;Журнал&lt;/a&gt;&lt;a href=&quot;/gift/&quot; data-i18n=&quot;approved.3&quot;&gt;Подарить&lt;/a&gt;&lt;a href=&quot;/contact/&quot; data-i18n=&quot;approved.4&quot;&gt;Поддержка&lt;/a&gt;&lt;/nav&gt;&lt;div class=&quot;nav-actions&quot;&gt;&lt;a class=&quot;language&quot; href=&quot;#site-preferences&quot; aria-label=&quot;Язык и оформление&quot; data-i18n-aria=&quot;v2.aria.langLook&quot; aria-expanded=&quot;false&quot; id=&quot;site-language&quot;&gt;RU &lt;span aria-hidden=&quot;true&quot;&gt;⌄&lt;/span&gt;&lt;/a&gt;&lt;a class=&quot;button small primary&quot; href=&quot;/download/&quot; data-i18n=&quot;v2.start&quot;&gt;Начать бесплатно&lt;span aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;&lt;/a&gt;&lt;button class=&quot;menu-button icon-button&quot; aria-label=&quot;Открыть меню&quot; data-i18n-aria=&quot;v2.aria.menu&quot; aria-controls=&quot;main-nav&quot; aria-expanded=&quot;false&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M4 7h16M4 12h16M4 17h16&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id=&quot;site-preferences&quot; class=&quot;site-language-menu&quot; hidden&gt;&lt;button type=&quot;button&quot; data-lang-btn=&quot;ru&quot;&gt;Русский&lt;/button&gt;&lt;button type=&quot;button&quot; data-lang-btn=&quot;en&quot;&gt;English&lt;/button&gt;&lt;button type=&quot;button&quot; id=&quot;theme-toggle&quot; data-i18n=&quot;v2.themeToggle&quot;&gt;Светлая / тёмная тема&lt;/button&gt;&lt;/div&gt;&lt;/header&gt;&lt;main id=&quot;main&quot;&gt;&lt;section class=&quot;container done&quot;&gt;
-  &lt;h1&gt;Подарок у Маши 🎁&lt;/h1&gt;
-  &lt;p class=&quot;hint&quot; style=&quot;font-size:16px&quot;&gt;Год Phraseman Plus уже у &lt;b&gt;masha_k&lt;/b&gt;. У неё был Plus до 3 марта — теперь он продлён до 3 марта 2028.&lt;/p&gt;
-  &lt;div class=&quot;card&quot;&gt;
-    &lt;div class=&quot;row&quot;&gt;&lt;span&gt;Подарок&lt;/span&gt;&lt;b&gt;Год Phraseman Plus&lt;/b&gt;&lt;/div&gt;
-    &lt;div class=&quot;row&quot;&gt;&lt;span&gt;Кому&lt;/span&gt;&lt;b&gt;Маша · masha_k&lt;/b&gt;&lt;/div&gt;
-    &lt;div class=&quot;row&quot;&gt;&lt;span&gt;От кого&lt;/span&gt;&lt;b&gt;Саша&lt;/b&gt;&lt;/div&gt;
-    &lt;div class=&quot;row&quot;&gt;&lt;span&gt;Plus у получателя&lt;/span&gt;&lt;b&gt;продлён до 3 марта 2028&lt;/b&gt;&lt;/div&gt;
-    &lt;div class=&quot;row&quot;&gt;&lt;span&gt;Чек&lt;/span&gt;&lt;b&gt;на sasha@example.com&lt;/b&gt;&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;p class=&quot;hint&quot;&gt;Так Маша увидит подарок в приложении — один раз, при входе:&lt;/p&gt;
-  &lt;div class=&quot;app-card&quot;&gt;&lt;small&gt;Подарок&lt;/small&gt;&lt;div class=&quot;ring&quot;&gt;&lt;/div&gt;&lt;b&gt;Саша подарил тебе год Plus&lt;/b&gt;&lt;span style=&quot;opacity:.75&quot;&gt;Твой Plus продлён до 3 марта 2028. Автопродления нет.&lt;/span&gt;&lt;/div&gt;
-&lt;/section&gt;&lt;/main&gt;&lt;footer class=&quot;footer&quot;&gt;&lt;div class=&quot;container&quot;&gt;&lt;div class=&quot;footer-top&quot;&gt;&lt;div&gt;&lt;a class=&quot;brand&quot; href=&quot;/&quot; aria-label=&quot;Phraseman — главная&quot; data-i18n-aria=&quot;v2.aria.home&quot;&gt;&lt;img src=&quot;../../../knowly-www/assets/approved/brand.png&quot; alt=&quot;&quot; width=&quot;36&quot; height=&quot;36&quot;&gt;&lt;span&gt;phrase&lt;span class=&quot;brand-tail&quot;&gt;man&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;p data-i18n=&quot;approved.13&quot;&gt;Чуть больше языка.&lt;br&gt;Чуть больше свободы.&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;footer-links&quot;&gt;&lt;div&gt;&lt;b data-i18n=&quot;approved.14&quot;&gt;Практиковаться&lt;/b&gt;&lt;a href=&quot;/app/&quot; data-i18n=&quot;approved.15&quot;&gt;О приложении&lt;/a&gt;&lt;a href=&quot;/download/&quot; data-i18n=&quot;approved.16&quot;&gt;Скачать Phraseman&lt;/a&gt;&lt;a href=&quot;/english-level-test/&quot; data-i18n=&quot;approved.17&quot;&gt;Определить уровень&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;b data-i18n=&quot;approved.19&quot;&gt;Открывать больше&lt;/b&gt;&lt;a href=&quot;/guides/&quot; data-i18n=&quot;approved.20&quot;&gt;Гайды и истории&lt;/a&gt;&lt;a href=&quot;/premium/&quot; data-i18n=&quot;approved.21&quot;&gt;Plus и Pro&lt;/a&gt;&lt;a href=&quot;/gift/&quot; data-i18n=&quot;approved.22&quot;&gt;Подарить доступ&lt;/a&gt;&lt;a href=&quot;/russia/&quot; data-i18n=&quot;approved.23&quot;&gt;Оплата в России&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;b data-i18n=&quot;approved.24&quot;&gt;Мы рядом&lt;/b&gt;&lt;a href=&quot;/contact/&quot; data-i18n=&quot;approved.4&quot;&gt;Поддержка&lt;/a&gt;&lt;a href=&quot;/faq/&quot; data-i18n=&quot;approved.25&quot;&gt;Частые вопросы&lt;/a&gt;&lt;a href=&quot;/#reviews&quot; data-i18n=&quot;approved.26&quot;&gt;Отзывы&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;footer-bottom&quot;&gt;&lt;span&gt;© 2026 Knowly · Phraseman&lt;/span&gt;&lt;div&gt;&lt;a href=&quot;/legal/privacy/&quot; data-i18n=&quot;approved.27&quot;&gt;Конфиденциальность&lt;/a&gt;&lt;a href=&quot;/legal/terms/&quot; data-i18n=&quot;v2.footer.terms&quot;&gt;Условия&lt;/a&gt;&lt;a href=&quot;/legal/data-deletion/&quot; data-i18n=&quot;approved.29&quot;&gt;Удаление данных&lt;/a&gt;&lt;a href=&quot;#cookie-settings&quot; data-cookie-settings data-i18n=&quot;approved.30&quot;&gt;Настройки cookies&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/footer&gt;
-
-
-&lt;/body&gt;&lt;/html&gt;"></iframe></div>
-</section><section class="screen" id="s06" data-w="1280" data-h="820">
-  <header><span class="num">06</span><div><h2>После оплаты · ссылкой (можно отменить до активации)</h2><p>Компьютер · светлая</p></div></header>
+</section><section class="screen" id="s05" data-w="1280" data-h="820">
+  <header><span class="num">05</span><div><h2>После оплаты · ссылкой (можно отменить до активации)</h2><p>Компьютер · светлая</p></div></header>
   <div class="viewport"><iframe title="После оплаты · ссылкой (можно отменить до активации)" width="1280" height="820" loading="lazy" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot; data-mode=&quot;light&quot; lang=&quot;ru&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;&lt;title&gt;Подарите новый мир · Phraseman&lt;/title&gt;&lt;meta name=&quot;description&quot; content=&quot;Phraseman — живой язык для вашей жизни.&quot;&gt;&lt;link rel=&quot;icon&quot; href=&quot;../../../knowly-www/assets/approved/brand.png&quot;&gt;&lt;link rel=&quot;canonical&quot; href=&quot;https://knowlyapps.com/gift/&quot; /&gt;
 &lt;meta property=&quot;og:type&quot; content=&quot;website&quot; /&gt;
 &lt;meta property=&quot;og:url&quot; content=&quot;https://knowlyapps.com/gift/&quot; /&gt;
@@ -1086,6 +919,18 @@
     .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-from { color: #d8ccb0; }
     .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-plan { color: #efca70; }
     .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-catchphrase { color: #f2e5c8; }
+    /* «Как вручить» — письмом / ссылкой (владелец 21.10, макет docs/design/site/gift-plus.html) */
+    .gift-deliver { display: grid; gap: 10px; }
+    .gift-deliver h3 { margin: 0; font-size: 15px; font-weight: 700; color: var(--text); }
+    .gift-seg { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 5px; border-radius: 16px; background: color-mix(in srgb, var(--fill) 6%, var(--card-solid)); box-shadow: var(--shadow-sm); }
+    .gift-seg button { all: unset; box-sizing: border-box; cursor: pointer; text-align: center; padding: 11px 6px; border-radius: 12px; font: 650 14px/1.25 var(--font); color: var(--sec); transition: background-color .16s ease, color .16s ease, transform .12s ease; }
+    .gift-seg button:active { transform: scale(.97); }
+    .gift-seg button:focus-visible { outline: 2px solid var(--fill); outline-offset: 2px; }
+    .gift-seg button[aria-checked=&quot;true&quot;] { background: var(--card-solid); color: var(--text); box-shadow: var(--shadow-sm), inset 0 0 0 1px color-mix(in srgb, var(--fill) 55%, transparent); }
+    .gift-seg small { display: block; font-weight: 500; font-size: 11.5px; opacity: .8; margin-top: 3px; }
+    .gift-hint { margin: 0; font-size: 13px; line-height: 1.5; color: var(--sec); }
+    @media (max-width: 340px) { .gift-seg small { display: none; } }
+    @media (prefers-reduced-motion: reduce) { .gift-seg button { transition: none; } }
     @media (prefers-reduced-motion: reduce) { .gift-canvas .cert::after { animation: none; opacity: 0; } }
     @media (max-width: 900px) { .gift-canvas .cert { position: static; } }
     @media (max-width: 480px) {
@@ -1100,17 +945,10 @@
 &lt;style&gt;
   .deliver{display:grid;gap:10px}
   .deliver h3{margin:0;font-size:15px;font-weight:700;color:var(--text)}
-  .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:16px;background:color-mix(in srgb,var(--fill) 6%,var(--card-solid));box-shadow:var(--shadow-sm)}
+  .seg{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;padding:5px;border-radius:16px;background:color-mix(in srgb,var(--fill) 6%,var(--card-solid));box-shadow:var(--shadow-sm)}
   .seg span{text-align:center;padding:10px 6px;border-radius:12px;font-size:13.5px;font-weight:650;color:var(--sec)}
   .seg span.on{background:var(--card-solid);color:var(--text);box-shadow:var(--shadow-sm),inset 0 0 0 1.5px color-mix(in srgb,var(--fill) 60%,transparent)}
   .seg small{display:block;font-weight:500;font-size:11px;opacity:.8;margin-top:2px}
-  .who{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;background:color-mix(in srgb,var(--fill) 9%,var(--card-solid));box-shadow:var(--shadow-sm)}
-  .who .ava{width:44px;height:44px;border-radius:50%;flex:none;background:radial-gradient(circle at 35% 30%,#ffe6a8,#c98a1c 70%);box-shadow:0 0 0 3px var(--card-solid),0 0 0 5px color-mix(in srgb,var(--fill) 55%,transparent)}
-  .who .meta{min-width:0;flex:1}
-  .who b{display:block;font-size:15px;color:var(--text)}
-  .who span{display:block;font-size:12.5px;color:var(--sec)}
-  .who .ok{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--text);white-space:nowrap}
-  .who .box{width:20px;height:20px;border-radius:6px;background:var(--cta);color:var(--cta-ink);display:grid;place-items:center;font-size:13px;font-weight:800}
   .hint{margin:0;font-size:13px;line-height:1.45;color:var(--sec)}
   .hint b{color:var(--text)}
   .done{box-sizing:border-box;width:100%;max-width:760px;margin:56px auto 72px;padding:0 16px;text-align:center;display:grid;gap:18px}
@@ -1125,10 +963,6 @@
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:left}
   .steps div{padding:14px;border-radius:18px;background:var(--card-solid);box-shadow:var(--shadow-sm);font-size:13.5px;color:var(--sec)}
   .steps b{display:block;color:var(--text);font-size:14.5px;margin-bottom:4px}
-  .app-card{max-width:340px;margin:0 auto;padding:20px;border-radius:28px;background:#101413;color:#f4f1e8;text-align:left;box-shadow:var(--shadow);display:grid;gap:10px}
-  .app-card small{opacity:.6;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
-  .app-card b{font-size:20px}
-  .app-card .ring{width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe6a8,#c98a1c 70%);box-shadow:0 0 0 3px #101413,0 0 0 6px #e7c46a}
   @media (max-width:560px){.steps{grid-template-columns:1fr}.seg small{display:none}}
 &lt;/style&gt;
 &lt;/head&gt;&lt;body data-approved-studio=&quot;20260908&quot; class=&quot;cinema edition route-gift inner-cinema&quot;&gt;&lt;a class=&quot;skip&quot; href=&quot;#content&quot; data-i18n=&quot;v2.skip&quot;&gt;К содержанию&lt;/a&gt;&lt;header class=&quot;site-header&quot;&gt;&lt;div class=&quot;container nav-row&quot;&gt;&lt;a class=&quot;brand&quot; href=&quot;/&quot; aria-label=&quot;Phraseman — главная&quot; data-i18n-aria=&quot;v2.aria.home&quot;&gt;&lt;img src=&quot;../../../knowly-www/assets/approved/brand.png&quot; alt=&quot;&quot; width=&quot;36&quot; height=&quot;36&quot;&gt;&lt;span&gt;phrase&lt;span class=&quot;brand-tail&quot;&gt;man&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;nav id=&quot;main-nav&quot; aria-label=&quot;Главная навигация&quot; data-i18n-aria=&quot;v2.aria.nav&quot;&gt;&lt;a href=&quot;/app/&quot; data-i18n=&quot;approved.0&quot;&gt;Приложение&lt;/a&gt;&lt;a href=&quot;/english-level-test/&quot; data-i18n=&quot;approved.1&quot;&gt;Тест уровня&lt;/a&gt;&lt;a href=&quot;/guides/&quot; data-i18n=&quot;approved.2&quot;&gt;Журнал&lt;/a&gt;&lt;a href=&quot;/gift/&quot; data-i18n=&quot;approved.3&quot;&gt;Подарить&lt;/a&gt;&lt;a href=&quot;/contact/&quot; data-i18n=&quot;approved.4&quot;&gt;Поддержка&lt;/a&gt;&lt;/nav&gt;&lt;div class=&quot;nav-actions&quot;&gt;&lt;a class=&quot;language&quot; href=&quot;#site-preferences&quot; aria-label=&quot;Язык и оформление&quot; data-i18n-aria=&quot;v2.aria.langLook&quot; aria-expanded=&quot;false&quot; id=&quot;site-language&quot;&gt;RU &lt;span aria-hidden=&quot;true&quot;&gt;⌄&lt;/span&gt;&lt;/a&gt;&lt;a class=&quot;button small primary&quot; href=&quot;/download/&quot; data-i18n=&quot;v2.start&quot;&gt;Начать бесплатно&lt;span aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;&lt;/a&gt;&lt;button class=&quot;menu-button icon-button&quot; aria-label=&quot;Открыть меню&quot; data-i18n-aria=&quot;v2.aria.menu&quot; aria-controls=&quot;main-nav&quot; aria-expanded=&quot;false&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M4 7h16M4 12h16M4 17h16&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id=&quot;site-preferences&quot; class=&quot;site-language-menu&quot; hidden&gt;&lt;button type=&quot;button&quot; data-lang-btn=&quot;ru&quot;&gt;Русский&lt;/button&gt;&lt;button type=&quot;button&quot; data-lang-btn=&quot;en&quot;&gt;English&lt;/button&gt;&lt;button type=&quot;button&quot; id=&quot;theme-toggle&quot; data-i18n=&quot;v2.themeToggle&quot;&gt;Светлая / тёмная тема&lt;/button&gt;&lt;/div&gt;&lt;/header&gt;&lt;main id=&quot;main&quot;&gt;&lt;section class=&quot;container done&quot;&gt;
@@ -1140,13 +974,13 @@
     &lt;div class=&quot;row&quot;&gt;&lt;span&gt;Ссылка действует&lt;/span&gt;&lt;b&gt;до 21 октября 2027&lt;/b&gt;&lt;/div&gt;
     &lt;div class=&quot;row&quot;&gt;&lt;span&gt;Копия&lt;/span&gt;&lt;b&gt;на sasha@example.com&lt;/b&gt;&lt;/div&gt;
   &lt;/div&gt;
-  &lt;a class=&quot;quiet&quot; href=&quot;#&quot;&gt;Отменить ссылку — пока Маша её не открыла&lt;/a&gt;
+  &lt;a class=&quot;quiet&quot; href=&quot;#&quot;&gt;Отменить ссылку — пока Маша её не открыла (деньги вернём через поддержку)&lt;/a&gt;
 &lt;/section&gt;&lt;/main&gt;&lt;footer class=&quot;footer&quot;&gt;&lt;div class=&quot;container&quot;&gt;&lt;div class=&quot;footer-top&quot;&gt;&lt;div&gt;&lt;a class=&quot;brand&quot; href=&quot;/&quot; aria-label=&quot;Phraseman — главная&quot; data-i18n-aria=&quot;v2.aria.home&quot;&gt;&lt;img src=&quot;../../../knowly-www/assets/approved/brand.png&quot; alt=&quot;&quot; width=&quot;36&quot; height=&quot;36&quot;&gt;&lt;span&gt;phrase&lt;span class=&quot;brand-tail&quot;&gt;man&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;p data-i18n=&quot;approved.13&quot;&gt;Чуть больше языка.&lt;br&gt;Чуть больше свободы.&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;footer-links&quot;&gt;&lt;div&gt;&lt;b data-i18n=&quot;approved.14&quot;&gt;Практиковаться&lt;/b&gt;&lt;a href=&quot;/app/&quot; data-i18n=&quot;approved.15&quot;&gt;О приложении&lt;/a&gt;&lt;a href=&quot;/download/&quot; data-i18n=&quot;approved.16&quot;&gt;Скачать Phraseman&lt;/a&gt;&lt;a href=&quot;/english-level-test/&quot; data-i18n=&quot;approved.17&quot;&gt;Определить уровень&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;b data-i18n=&quot;approved.19&quot;&gt;Открывать больше&lt;/b&gt;&lt;a href=&quot;/guides/&quot; data-i18n=&quot;approved.20&quot;&gt;Гайды и истории&lt;/a&gt;&lt;a href=&quot;/premium/&quot; data-i18n=&quot;approved.21&quot;&gt;Plus и Pro&lt;/a&gt;&lt;a href=&quot;/gift/&quot; data-i18n=&quot;approved.22&quot;&gt;Подарить доступ&lt;/a&gt;&lt;a href=&quot;/russia/&quot; data-i18n=&quot;approved.23&quot;&gt;Оплата в России&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;b data-i18n=&quot;approved.24&quot;&gt;Мы рядом&lt;/b&gt;&lt;a href=&quot;/contact/&quot; data-i18n=&quot;approved.4&quot;&gt;Поддержка&lt;/a&gt;&lt;a href=&quot;/faq/&quot; data-i18n=&quot;approved.25&quot;&gt;Частые вопросы&lt;/a&gt;&lt;a href=&quot;/#reviews&quot; data-i18n=&quot;approved.26&quot;&gt;Отзывы&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;footer-bottom&quot;&gt;&lt;span&gt;© 2026 Knowly · Phraseman&lt;/span&gt;&lt;div&gt;&lt;a href=&quot;/legal/privacy/&quot; data-i18n=&quot;approved.27&quot;&gt;Конфиденциальность&lt;/a&gt;&lt;a href=&quot;/legal/terms/&quot; data-i18n=&quot;v2.footer.terms&quot;&gt;Условия&lt;/a&gt;&lt;a href=&quot;/legal/data-deletion/&quot; data-i18n=&quot;approved.29&quot;&gt;Удаление данных&lt;/a&gt;&lt;a href=&quot;#cookie-settings&quot; data-cookie-settings data-i18n=&quot;approved.30&quot;&gt;Настройки cookies&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/footer&gt;
 
 
 &lt;/body&gt;&lt;/html&gt;"></iframe></div>
-</section><section class="screen" id="s07" data-w="390" data-h="900">
-  <header><span class="num">07</span><div><h2>Получатель открыл ссылку</h2><p>Телефон 390</p></div></header>
+</section><section class="screen" id="s06" data-w="390" data-h="900">
+  <header><span class="num">06</span><div><h2>Получатель открыл ссылку</h2><p>Телефон 390</p></div></header>
   <div class="viewport phone"><iframe title="Получатель открыл ссылку" width="390" height="900" loading="lazy" srcdoc="&lt;!doctype html&gt;&lt;html data-theme=&quot;light&quot; data-mode=&quot;light&quot; lang=&quot;ru&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;&lt;title&gt;Подарите новый мир · Phraseman&lt;/title&gt;&lt;meta name=&quot;description&quot; content=&quot;Phraseman — живой язык для вашей жизни.&quot;&gt;&lt;link rel=&quot;icon&quot; href=&quot;../../../knowly-www/assets/approved/brand.png&quot;&gt;&lt;link rel=&quot;canonical&quot; href=&quot;https://knowlyapps.com/gift/&quot; /&gt;
 &lt;meta property=&quot;og:type&quot; content=&quot;website&quot; /&gt;
 &lt;meta property=&quot;og:url&quot; content=&quot;https://knowlyapps.com/gift/&quot; /&gt;
@@ -1251,6 +1085,18 @@
     .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-from { color: #d8ccb0; }
     .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-plan { color: #efca70; }
     .gift-canvas .cert[data-plan=&quot;lifetime&quot;] .cert-catchphrase { color: #f2e5c8; }
+    /* «Как вручить» — письмом / ссылкой (владелец 21.10, макет docs/design/site/gift-plus.html) */
+    .gift-deliver { display: grid; gap: 10px; }
+    .gift-deliver h3 { margin: 0; font-size: 15px; font-weight: 700; color: var(--text); }
+    .gift-seg { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; padding: 5px; border-radius: 16px; background: color-mix(in srgb, var(--fill) 6%, var(--card-solid)); box-shadow: var(--shadow-sm); }
+    .gift-seg button { all: unset; box-sizing: border-box; cursor: pointer; text-align: center; padding: 11px 6px; border-radius: 12px; font: 650 14px/1.25 var(--font); color: var(--sec); transition: background-color .16s ease, color .16s ease, transform .12s ease; }
+    .gift-seg button:active { transform: scale(.97); }
+    .gift-seg button:focus-visible { outline: 2px solid var(--fill); outline-offset: 2px; }
+    .gift-seg button[aria-checked=&quot;true&quot;] { background: var(--card-solid); color: var(--text); box-shadow: var(--shadow-sm), inset 0 0 0 1px color-mix(in srgb, var(--fill) 55%, transparent); }
+    .gift-seg small { display: block; font-weight: 500; font-size: 11.5px; opacity: .8; margin-top: 3px; }
+    .gift-hint { margin: 0; font-size: 13px; line-height: 1.5; color: var(--sec); }
+    @media (max-width: 340px) { .gift-seg small { display: none; } }
+    @media (prefers-reduced-motion: reduce) { .gift-seg button { transition: none; } }
     @media (prefers-reduced-motion: reduce) { .gift-canvas .cert::after { animation: none; opacity: 0; } }
     @media (max-width: 900px) { .gift-canvas .cert { position: static; } }
     @media (max-width: 480px) {
@@ -1265,17 +1111,10 @@
 &lt;style&gt;
   .deliver{display:grid;gap:10px}
   .deliver h3{margin:0;font-size:15px;font-weight:700;color:var(--text)}
-  .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:16px;background:color-mix(in srgb,var(--fill) 6%,var(--card-solid));box-shadow:var(--shadow-sm)}
+  .seg{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;padding:5px;border-radius:16px;background:color-mix(in srgb,var(--fill) 6%,var(--card-solid));box-shadow:var(--shadow-sm)}
   .seg span{text-align:center;padding:10px 6px;border-radius:12px;font-size:13.5px;font-weight:650;color:var(--sec)}
   .seg span.on{background:var(--card-solid);color:var(--text);box-shadow:var(--shadow-sm),inset 0 0 0 1.5px color-mix(in srgb,var(--fill) 60%,transparent)}
   .seg small{display:block;font-weight:500;font-size:11px;opacity:.8;margin-top:2px}
-  .who{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;background:color-mix(in srgb,var(--fill) 9%,var(--card-solid));box-shadow:var(--shadow-sm)}
-  .who .ava{width:44px;height:44px;border-radius:50%;flex:none;background:radial-gradient(circle at 35% 30%,#ffe6a8,#c98a1c 70%);box-shadow:0 0 0 3px var(--card-solid),0 0 0 5px color-mix(in srgb,var(--fill) 55%,transparent)}
-  .who .meta{min-width:0;flex:1}
-  .who b{display:block;font-size:15px;color:var(--text)}
-  .who span{display:block;font-size:12.5px;color:var(--sec)}
-  .who .ok{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:var(--text);white-space:nowrap}
-  .who .box{width:20px;height:20px;border-radius:6px;background:var(--cta);color:var(--cta-ink);display:grid;place-items:center;font-size:13px;font-weight:800}
   .hint{margin:0;font-size:13px;line-height:1.45;color:var(--sec)}
   .hint b{color:var(--text)}
   .done{box-sizing:border-box;width:100%;max-width:760px;margin:56px auto 72px;padding:0 16px;text-align:center;display:grid;gap:18px}
@@ -1290,10 +1129,6 @@
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:left}
   .steps div{padding:14px;border-radius:18px;background:var(--card-solid);box-shadow:var(--shadow-sm);font-size:13.5px;color:var(--sec)}
   .steps b{display:block;color:var(--text);font-size:14.5px;margin-bottom:4px}
-  .app-card{max-width:340px;margin:0 auto;padding:20px;border-radius:28px;background:#101413;color:#f4f1e8;text-align:left;box-shadow:var(--shadow);display:grid;gap:10px}
-  .app-card small{opacity:.6;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
-  .app-card b{font-size:20px}
-  .app-card .ring{width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe6a8,#c98a1c 70%);box-shadow:0 0 0 3px #101413,0 0 0 6px #e7c46a}
   @media (max-width:560px){.steps{grid-template-columns:1fr}.seg small{display:none}}
 &lt;/style&gt;
 &lt;/head&gt;&lt;body data-approved-studio=&quot;20260908&quot; class=&quot;cinema edition route-gift inner-cinema&quot;&gt;&lt;a class=&quot;skip&quot; href=&quot;#content&quot; data-i18n=&quot;v2.skip&quot;&gt;К содержанию&lt;/a&gt;&lt;header class=&quot;site-header&quot;&gt;&lt;div class=&quot;container nav-row&quot;&gt;&lt;a class=&quot;brand&quot; href=&quot;/&quot; aria-label=&quot;Phraseman — главная&quot; data-i18n-aria=&quot;v2.aria.home&quot;&gt;&lt;img src=&quot;../../../knowly-www/assets/approved/brand.png&quot; alt=&quot;&quot; width=&quot;36&quot; height=&quot;36&quot;&gt;&lt;span&gt;phrase&lt;span class=&quot;brand-tail&quot;&gt;man&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;nav id=&quot;main-nav&quot; aria-label=&quot;Главная навигация&quot; data-i18n-aria=&quot;v2.aria.nav&quot;&gt;&lt;a href=&quot;/app/&quot; data-i18n=&quot;approved.0&quot;&gt;Приложение&lt;/a&gt;&lt;a href=&quot;/english-level-test/&quot; data-i18n=&quot;approved.1&quot;&gt;Тест уровня&lt;/a&gt;&lt;a href=&quot;/guides/&quot; data-i18n=&quot;approved.2&quot;&gt;Журнал&lt;/a&gt;&lt;a href=&quot;/gift/&quot; data-i18n=&quot;approved.3&quot;&gt;Подарить&lt;/a&gt;&lt;a href=&quot;/contact/&quot; data-i18n=&quot;approved.4&quot;&gt;Поддержка&lt;/a&gt;&lt;/nav&gt;&lt;div class=&quot;nav-actions&quot;&gt;&lt;a class=&quot;language&quot; href=&quot;#site-preferences&quot; aria-label=&quot;Язык и оформление&quot; data-i18n-aria=&quot;v2.aria.langLook&quot; aria-expanded=&quot;false&quot; id=&quot;site-language&quot;&gt;RU &lt;span aria-hidden=&quot;true&quot;&gt;⌄&lt;/span&gt;&lt;/a&gt;&lt;a class=&quot;button small primary&quot; href=&quot;/download/&quot; data-i18n=&quot;v2.start&quot;&gt;Начать бесплатно&lt;span aria-hidden=&quot;true&quot;&gt;→&lt;/span&gt;&lt;/a&gt;&lt;button class=&quot;menu-button icon-button&quot; aria-label=&quot;Открыть меню&quot; data-i18n-aria=&quot;v2.aria.menu&quot; aria-controls=&quot;main-nav&quot; aria-expanded=&quot;false&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.7&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M4 7h16M4 12h16M4 17h16&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id=&quot;site-preferences&quot; class=&quot;site-language-menu&quot; hidden&gt;&lt;button type=&quot;button&quot; data-lang-btn=&quot;ru&quot;&gt;Русский&lt;/button&gt;&lt;button type=&quot;button&quot; data-lang-btn=&quot;en&quot;&gt;English&lt;/button&gt;&lt;button type=&quot;button&quot; id=&quot;theme-toggle&quot; data-i18n=&quot;v2.themeToggle&quot;&gt;Светлая / тёмная тема&lt;/button&gt;&lt;/div&gt;&lt;/header&gt;&lt;main id=&quot;main&quot;&gt;&lt;section class=&quot;container done&quot;&gt;

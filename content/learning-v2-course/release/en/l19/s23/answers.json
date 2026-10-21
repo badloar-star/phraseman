@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-23:word:minimum",
+    "correctText": "minimum",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-23:i01",
+    "correctText": "May I check the minimum age?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-23:i02",
+    "correctText": "May I check the minimum age?",
+    "correctResponseId": "en:lesson-19:session-23:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-23:i03",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-23:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-23:word:maximum",
+    "correctText": "maximum",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-23:i04",
+    "correctText": "May I check the maximum weight?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-23:i05",
+    "correctText": "May I check the maximum weight?",
+    "correctResponseId": "en:lesson-19:session-23:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-23:i06",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-23:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-23:word:condition",
+    "correctText": "condition",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-23:i07",
+    "correctText": "May I ask about this condition?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-23:i08",
+    "correctText": "May I ask about this condition?",
+    "correctResponseId": "en:lesson-19:session-23:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-23:i09",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-23:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-23:word:requirement",
+    "correctText": "requirement",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-23:i10",
+    "correctText": "May I check this requirement?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-23:i11",
+    "correctText": "May I check this requirement?",
+    "correctResponseId": "en:lesson-19:session-23:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-23:i12",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-23:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-23:i13",
+    "correctText": "en:lesson-19:session-23:i13:p1=minimum\nen:lesson-19:session-23:i13:p2=maximum\nen:lesson-19:session-23:i13:p3=condition\nen:lesson-19:session-23:i13:p4=requirement",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-23:i14",
+    "correctText": "At twenty, I could understand these conditions.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-23:i15",
+    "correctText": "We are going to check the maximum weight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-23:i16",
+    "correctText": "I can explain this requirement.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-23:i17",
+    "correctText": "This condition is so important.",
+    "correctResponseId": null
+  }
+]

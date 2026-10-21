@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-18:word:channel",
+    "correctText": "channel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-18:i01",
+    "correctText": "May I change the channel?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-18:i02",
+    "correctText": "May I change the channel?",
+    "correctResponseId": "en:lesson-19:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-18:i03",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-18:word:series",
+    "correctText": "series",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-18:i04",
+    "correctText": "May I watch this series?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-18:i05",
+    "correctText": "May I watch this series?",
+    "correctResponseId": "en:lesson-19:session-18:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-18:i06",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-18:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-18:word:episode",
+    "correctText": "episode",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-18:i07",
+    "correctText": "May I watch another episode?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-18:i08",
+    "correctText": "May I watch another episode?",
+    "correctResponseId": "en:lesson-19:session-18:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-18:i09",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-18:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-18:word:remote-control",
+    "correctText": "remote control",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-18:i10",
+    "correctText": "May I use the remote control?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-18:i11",
+    "correctText": "May I use the remote control?",
+    "correctResponseId": "en:lesson-19:session-18:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-18:i12",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-18:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-18:i13",
+    "correctText": "en:lesson-19:session-18:i13:p1=channel\nen:lesson-19:session-18:i13:p2=series\nen:lesson-19:session-18:i13:p3=episode\nen:lesson-19:session-18:i13:p4=remote control",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-18:i14",
+    "correctText": "At ten, I could change the channel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-18:i15",
+    "correctText": "We are going to watch this series.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-18:i16",
+    "correctText": "I can use the remote control.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-18:i17",
+    "correctText": "This episode is so funny.",
+    "correctResponseId": null
+  }
+]

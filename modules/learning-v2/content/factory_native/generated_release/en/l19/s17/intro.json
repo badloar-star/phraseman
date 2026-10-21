@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "May I + base verb?",
+    "uk": "May I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вежливо попросить",
+        "uk": "Ввічливо попросити"
+      },
+      "bodyByLocale": {
+        "ru": "Sample — небольшая порция, чтобы попробовать продукт. В магазине предлагают сыр на пробу; вы вежливо просите порцию. May I + начальная форма глагола? — вежливо спрашиваем разрешение. May стоит перед I, а после I идёт глагол без to. Это более формальный вариант, чем Can I…?, но Can I тоже употребляют для разрешения.",
+        "uk": "Sample — невелика порція, щоб спробувати продукт. У магазині пропонують сир на пробу; ви ввічливо просите порцію. May I + початкова форма дієслова? — ввічливо запитуємо дозволу. May стоїть перед I, а після I йде дієслово без to. Це формальніший варіант, ніж Can I…?, але Can I також уживають для дозволу."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-17:intro1:r1",
+              "text": "May I have a sample?"
+            },
+            {
+              "responseId": "en:lesson-19:session-17:intro1:r2",
+              "text": "May I to have a sample?"
+            },
+            {
+              "responseId": "en:lesson-19:session-17:intro1:r3",
+              "text": "I may have a sample?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-17:intro1:r1",
+              "text": "May I have a sample?"
+            },
+            {
+              "responseId": "en:lesson-19:session-17:intro1:r2",
+              "text": "May I to have a sample?"
+            },
+            {
+              "responseId": "en:lesson-19:session-17:intro1:r3",
+              "text": "I may have a sample?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Попросить слово",
+        "uk": "Попросити слова"
+      },
+      "bodyByLocale": {
+        "ru": "Comment — комментарий или замечание. Вы хотите добавить своё мнение к разговору и сначала вежливо просите слово. May I + начальная форма глагола? — вежливо спрашиваем разрешение. May стоит перед I, а после I идёт глагол без to. Это более формальный вариант, чем Can I…?, но Can I тоже употребляют для разрешения.",
+        "uk": "Comment — коментар або зауваження. Ви хочете додати свою думку до розмови й спочатку ввічливо просите слова. May I + початкова форма дієслова? — ввічливо запитуємо дозволу. May стоїть перед I, а після I йде дієслово без to. Це формальніший варіант, ніж Can I…?, але Can I також уживають для дозволу."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-17:intro2:r1",
+              "text": "May I make a comment?"
+            },
+            {
+              "responseId": "en:lesson-19:session-17:intro2:r2",
+              "text": "May I to make a comment?"
+            },
+            {
+              "responseId": "en:lesson-19:session-17:intro2:r3",
+              "text": "I may make a comment?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-17:intro2:r1",
+              "text": "May I make a comment?"
+            },
+            {
+              "responseId": "en:lesson-19:session-17:intro2:r2",
+              "text": "May I to make a comment?"
+            },
+            {
+              "responseId": "en:lesson-19:session-17:intro2:r3",
+              "text": "I may make a comment?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить разрешение",
+        "uk": "Запитати дозволу"
+      },
+      "bodyByLocale": {
+        "ru": "Mention — упомянуть, например чьё-то имя; перед этим можно спросить разрешение. Extend — продлить срок. В гостинице вы спрашиваете, можно ли остаться дольше. May I + начальная форма глагола? — вежливо спрашиваем разрешение. May стоит перед I, а после I идёт глагол без to. Это более формальный вариант, чем Can I…?, но Can I тоже употребляют для разрешения.",
+        "uk": "Mention — згадати, наприклад чиєсь ім’я; перед цим можна запитати дозволу. Extend — продовжити строк. У готелі ви питаєте, чи можна залишитися довше. May I + початкова форма дієслова? — ввічливо запитуємо дозволу. May стоїть перед I, а після I йде дієслово без to. Це формальніший варіант, ніж Can I…?, але Can I також уживають для дозволу."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-17:intro3:r1",
+              "text": "May I extend my stay?"
+            },
+            {
+              "responseId": "en:lesson-19:session-17:intro3:r2",
+              "text": "May I to extend my stay?"
+            },
+            {
+              "responseId": "en:lesson-19:session-17:intro3:r3",
+              "text": "I may extend my stay?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-17:intro3:r1",
+              "text": "May I extend my stay?"
+            },
+            {
+              "responseId": "en:lesson-19:session-17:intro3:r2",
+              "text": "May I to extend my stay?"
+            },
+            {
+              "responseId": "en:lesson-19:session-17:intro3:r3",
+              "text": "I may extend my stay?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "069bd6c8bedc45829a15f819cb90cf5b16ceac429e3dfb756e0741f66e626ac6"
+}

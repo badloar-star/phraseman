@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-22:word:exact",
+    "correctText": "exact",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-22:i01",
+    "correctText": "May I check the exact price?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-22:i02",
+    "correctText": "May I check the exact price?",
+    "correctResponseId": "en:lesson-19:session-22:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-22:i03",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-22:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-22:word:approximate",
+    "correctText": "approximate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-22:i04",
+    "correctText": "May I ask the approximate cost?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-22:i05",
+    "correctText": "May I ask the approximate cost?",
+    "correctResponseId": "en:lesson-19:session-22:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-22:i06",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-22:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-22:word:amount",
+    "correctText": "amount",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-22:i07",
+    "correctText": "May I pay this amount?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-22:i08",
+    "correctText": "May I pay this amount?",
+    "correctResponseId": "en:lesson-19:session-22:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-22:i09",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-22:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-22:word:average",
+    "correctText": "average",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-22:i10",
+    "correctText": "May I ask about the average rent?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-22:i11",
+    "correctText": "May I ask about the average rent?",
+    "correctResponseId": "en:lesson-19:session-22:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-22:i12",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-22:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-22:i13",
+    "correctText": "en:lesson-19:session-22:i13:p1=exact\nen:lesson-19:session-22:i13:p2=approximate\nen:lesson-19:session-22:i13:p3=amount\nen:lesson-19:session-22:i13:p4=average",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-22:i14",
+    "correctText": "At twenty, I could pay the rent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-22:i15",
+    "correctText": "We are going to check the exact price.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-22:i16",
+    "correctText": "I can pay this amount.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-22:i17",
+    "correctText": "The average rent is so high.",
+    "correctResponseId": null
+  }
+]

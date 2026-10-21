@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "May I + base verb?",
+    "uk": "May I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Можно вас на минутку",
+        "uk": "Можна вас на хвилинку"
+      },
+      "bodyByLocale": {
+        "ru": "Bother — беспокоить, доставлять неудобство. Вам нужна небольшая помощь, но человек занят. May I bother you for a moment? — вежливое начало разговора: «Можно вас на минутку?» May I + начальная форма глагола? — вежливо спрашиваем разрешение. May стоит перед I, а после I идёт глагол без to. Это более формальный вариант, чем Can I…?, но Can I тоже употребляют для разрешения.",
+        "uk": "Bother — турбувати, завдавати незручностей. Вам потрібна невелика допомога, але людина зайнята. May I bother you for a moment? — ввічливий початок розмови: «Можна вас на хвилинку?» May I + початкова форма дієслова? — ввічливо запитуємо дозволу. May стоїть перед I, а після I йде дієслово без to. Це формальніший варіант, ніж Can I…?, але Can I також уживають для дозволу."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-21:intro1:r1",
+              "text": "May I bother you for a moment?"
+            },
+            {
+              "responseId": "en:lesson-19:session-21:intro1:r2",
+              "text": "May I to bother you for a moment?"
+            },
+            {
+              "responseId": "en:lesson-19:session-21:intro1:r3",
+              "text": "I may bother you for a moment?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-21:intro1:r1",
+              "text": "May I bother you for a moment?"
+            },
+            {
+              "responseId": "en:lesson-19:session-21:intro1:r2",
+              "text": "May I to bother you for a moment?"
+            },
+            {
+              "responseId": "en:lesson-19:session-21:intro1:r3",
+              "text": "I may bother you for a moment?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Обратиться к занятому человеку",
+        "uk": "Звернутися до зайнятої людини"
+      },
+      "bodyByLocale": {
+        "ru": "Disturb — потревожить, помешать покою или текущему занятию. Человек читает, а вам нужно задать вопрос. Bother и disturb могут подходить к одной ситуации, строгой границы между ними нет. May I + начальная форма глагола? — вежливо спрашиваем разрешение. May стоит перед I, а после I идёт глагол без to. Это более формальный вариант, чем Can I…?, но Can I тоже употребляют для разрешения.",
+        "uk": "Disturb — потурбувати, завадити спокою або поточному заняттю. Людина читає, а вам потрібно поставити запитання. Bother і disturb можуть підходити до однієї ситуації, суворої межі між ними немає. May I + початкова форма дієслова? — ввічливо запитуємо дозволу. May стоїть перед I, а після I йде дієслово без to. Це формальніший варіант, ніж Can I…?, але Can I також уживають для дозволу."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-21:intro2:r1",
+              "text": "May I disturb you for a moment?"
+            },
+            {
+              "responseId": "en:lesson-19:session-21:intro2:r2",
+              "text": "May I to disturb you for a moment?"
+            },
+            {
+              "responseId": "en:lesson-19:session-21:intro2:r3",
+              "text": "I may disturb you for a moment?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-21:intro2:r1",
+              "text": "May I disturb you for a moment?"
+            },
+            {
+              "responseId": "en:lesson-19:session-21:intro2:r2",
+              "text": "May I to disturb you for a moment?"
+            },
+            {
+              "responseId": "en:lesson-19:session-21:intro2:r3",
+              "text": "I may disturb you for a moment?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кратко и напрямую",
+        "uk": "Коротко й безпосередньо"
+      },
+      "bodyByLocale": {
+        "ru": "Briefly — кратко или ненадолго: вы просите немного времени, чтобы высказаться. Directly — напрямую: вы хотите поговорить с самой женщиной, а не передавать сообщение через другого человека. May I + начальная форма глагола? — вежливо спрашиваем разрешение. May стоит перед I, а после I идёт глагол без to. Это более формальный вариант, чем Can I…?, но Can I тоже употребляют для разрешения.",
+        "uk": "Briefly — коротко або ненадовго: ви просите трохи часу, щоб висловитися. Directly — безпосередньо: ви хочете поговорити із самою жінкою, а не передавати повідомлення через іншу людину. May I + початкова форма дієслова? — ввічливо запитуємо дозволу. May стоїть перед I, а після I йде дієслово без to. Це формальніший варіант, ніж Can I…?, але Can I також уживають для дозволу."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-21:intro3:r1",
+              "text": "May I speak to her directly?"
+            },
+            {
+              "responseId": "en:lesson-19:session-21:intro3:r2",
+              "text": "May I to speak to her directly?"
+            },
+            {
+              "responseId": "en:lesson-19:session-21:intro3:r3",
+              "text": "I may speak to her directly?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-21:intro3:r1",
+              "text": "May I speak to her directly?"
+            },
+            {
+              "responseId": "en:lesson-19:session-21:intro3:r2",
+              "text": "May I to speak to her directly?"
+            },
+            {
+              "responseId": "en:lesson-19:session-21:intro3:r3",
+              "text": "I may speak to her directly?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0a07fe83954ed66ebac2233d21f70d6240f04ad59119796561dae442633fbc54"
+}

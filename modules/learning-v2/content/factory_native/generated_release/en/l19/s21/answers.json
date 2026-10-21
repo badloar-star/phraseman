@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-21:word:bother",
+    "correctText": "bother",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-21:i01",
+    "correctText": "May I bother you for a moment?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-21:i02",
+    "correctText": "May I bother you for a moment?",
+    "correctResponseId": "en:lesson-19:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-21:i03",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-21:word:disturb",
+    "correctText": "disturb",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-21:i04",
+    "correctText": "May I disturb you for a moment?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-21:i05",
+    "correctText": "May I disturb you for a moment?",
+    "correctResponseId": "en:lesson-19:session-21:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-21:i06",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-21:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-21:word:briefly",
+    "correctText": "briefly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-21:i07",
+    "correctText": "May I speak briefly?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-21:i08",
+    "correctText": "May I speak briefly?",
+    "correctResponseId": "en:lesson-19:session-21:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-21:i09",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-21:word:directly",
+    "correctText": "directly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-21:i10",
+    "correctText": "May I speak to her directly?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-21:i11",
+    "correctText": "May I speak to her directly?",
+    "correctResponseId": "en:lesson-19:session-21:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-21:i12",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-21:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-21:i13",
+    "correctText": "en:lesson-19:session-21:i13:p1=bother\nen:lesson-19:session-21:i13:p2=disturb\nen:lesson-19:session-21:i13:p3=briefly\nen:lesson-19:session-21:i13:p4=directly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-21:i14",
+    "correctText": "At twenty, I could speak confidently.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-21:i15",
+    "correctText": "We are going to speak to her directly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-21:i16",
+    "correctText": "I can explain this briefly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-21:i17",
+    "correctText": "This is such a useful explanation.",
+    "correctResponseId": null
+  }
+]

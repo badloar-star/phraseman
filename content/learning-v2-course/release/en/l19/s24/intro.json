@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "May I + base verb?",
+    "uk": "May I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Начать с извинения",
+        "uk": "Почати з вибачення"
+      },
+      "bodyByLocale": {
+        "ru": "Apology — извинение. Вы опоздали на встречу и хотите начать разговор с извинения. Offer an apology — принести извинение. Это формальнее простого I am sorry. May I + начальная форма глагола? — вежливо спрашиваем разрешение. May стоит перед I, а после I идёт глагол без to. Это более формальный вариант, чем Can I…?, но Can I тоже употребляют для разрешения.",
+        "uk": "Apology — вибачення. Ви запізнилися на зустріч і хочете почати розмову з вибачення. Offer an apology — попросити вибачення. Це формальніше за просте I am sorry. May I + початкова форма дієслова? — ввічливо запитуємо дозволу. May стоїть перед I, а після I йде дієслово без to. Це формальніший варіант, ніж Can I…?, але Can I також уживають для дозволу."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-24:intro1:r1",
+              "text": "May I offer an apology?"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:intro1:r2",
+              "text": "May I to offer an apology?"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:intro1:r3",
+              "text": "I may offer an apology?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-24:intro1:r1",
+              "text": "May I offer an apology?"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:intro1:r2",
+              "text": "May I to offer an apology?"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:intro1:r3",
+              "text": "I may offer an apology?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Посоветовать место",
+        "uk": "Порадити місце"
+      },
+      "bodyByLocale": {
+        "ru": "Recommendation — рекомендация, совет. Знакомый выбирает ресторан, и вы хотите посоветовать хорошее место. Make a recommendation — дать рекомендацию. May I + начальная форма глагола? — вежливо спрашиваем разрешение. May стоит перед I, а после I идёт глагол без to. Это более формальный вариант, чем Can I…?, но Can I тоже употребляют для разрешения.",
+        "uk": "Recommendation — рекомендація, порада. Знайомий вибирає ресторан, і ви хочете порадити гарне місце. Make a recommendation — дати рекомендацію. May I + початкова форма дієслова? — ввічливо запитуємо дозволу. May стоїть перед I, а після I йде дієслово без to. Це формальніший варіант, ніж Can I…?, але Can I також уживають для дозволу."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-24:intro2:r1",
+              "text": "May I make a recommendation?"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:intro2:r2",
+              "text": "May I to make a recommendation?"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:intro2:r3",
+              "text": "I may make a recommendation?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-24:intro2:r1",
+              "text": "May I make a recommendation?"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:intro2:r2",
+              "text": "May I to make a recommendation?"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:intro2:r3",
+              "text": "I may make a recommendation?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ответить и высказать сомнения",
+        "uk": "Відповісти й висловити сумніви"
+      },
+      "bodyByLocale": {
+        "ru": "Response здесь — ответ: после обсуждения вы просите слово, чтобы ответить. Doubt — сомнение: вы не уверены, что предложенный план подходит, и хотите объяснить почему. Несколько сомнений — doubts. May I + начальная форма глагола? — вежливо спрашиваем разрешение. May стоит перед I, а после I идёт глагол без to. Это более формальный вариант, чем Can I…?, но Can I тоже употребляют для разрешения.",
+        "uk": "Response тут — відповідь: після обговорення ви просите слова, щоб відповісти. Doubt — сумнів: ви не впевнені, що запропонований план підходить, і хочете пояснити чому. Кілька сумнівів — doubts. May I + початкова форма дієслова? — ввічливо запитуємо дозволу. May стоїть перед I, а після I йде дієслово без to. Це формальніший варіант, ніж Can I…?, але Can I також уживають для дозволу."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-24:intro3:r1",
+              "text": "May I explain my doubt?"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:intro3:r2",
+              "text": "May I to explain my doubt?"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:intro3:r3",
+              "text": "I may explain my doubt?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-24:intro3:r1",
+              "text": "May I explain my doubt?"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:intro3:r2",
+              "text": "May I to explain my doubt?"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:intro3:r3",
+              "text": "I may explain my doubt?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "78bb5c728667c3ee798bd7d345cf2b8a6548db997f574be8c5b9ea5f1e422e5d"
+}

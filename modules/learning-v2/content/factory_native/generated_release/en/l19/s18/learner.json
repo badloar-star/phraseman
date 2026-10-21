@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-19:session-18",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-19:session-18:word:channel",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — channel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-18:word:channel:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — channel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-18:word:channel:audio",
+          "transcript": "channel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-18:word:channel:r1",
+            "targetText": "channel",
+            "meaningByLocale": {
+              "ru": "телевизионный канал.",
+              "uk": "телевізійний канал."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "channel",
+          "definitionByLocale": {
+            "ru": "телевизионный канал.",
+            "uk": "телевізійний канал."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-18:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вежливо спросите с May I: «Можно мне переключить канал?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вежливо спросите с May I: «Можно мне переключить канал?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "May I change the channel?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с May I: «Можно мне переключить канал?»",
+          "uk": "Ввічливо запитайте з May I: «Можна мені перемкнути канал?»"
+        },
+        "orderedTokens": [
+          "May",
+          "I",
+          "change",
+          "the",
+          "channel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-18:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-18:i02:r1",
+          "text": "May I change the channel?"
+        },
+        {
+          "responseId": "en:lesson-19:session-18:i02:r2",
+          "text": "Can I change the channel?"
+        },
+        {
+          "responseId": "en:lesson-19:session-18:i02:r3",
+          "text": "May we change the channel?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-18:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-18:i02:audio",
+          "transcript": "May I change the channel?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-18:i02:r1",
+            "targetText": "May I change the channel?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i02:r2",
+            "targetText": "Can I change the channel?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i02:r3",
+            "targetText": "May we change the channel?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-18:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит May I change the channel?",
+              "uk": "У записі звучить May I change the channel?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит May I change the channel?",
+              "uk": "У записі звучить May I change the channel?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-18:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Начните вежливый вопрос о разрешении.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-18:i03:r1",
+          "text": "May I"
+        },
+        {
+          "responseId": "en:lesson-19:session-18:i03:r2",
+          "text": "I may"
+        },
+        {
+          "responseId": "en:lesson-19:session-18:i03:r3",
+          "text": "May I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ change the channel?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-18:i03:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i03:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i03:r3",
+            "text": "May I to"
+          }
+        ],
+        "testedDimension": "Начните вежливый вопрос о разрешении.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-18:i03:r2",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "В вопросе May стоит перед I.",
+              "uk": "У питанні May стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i03:r3",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "После May I не нужно to.",
+              "uk": "Після May I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-18:word:series",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — series",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-18:word:series:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — series",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-18:word:series:audio",
+          "transcript": "series"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-18:word:series:r1",
+            "targetText": "series",
+            "meaningByLocale": {
+              "ru": "сериал.",
+              "uk": "серіал."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "series",
+          "definitionByLocale": {
+            "ru": "сериал.",
+            "uk": "серіал."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-18:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вежливо спросите с May I: «Можно мне посмотреть этот сериал?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вежливо спросите с May I: «Можно мне посмотреть этот сериал?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "May I watch this series?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с May I: «Можно мне посмотреть этот сериал?»",
+          "uk": "Ввічливо запитайте з May I: «Можна мені подивитися цей серіал?»"
+        },
+        "orderedTokens": [
+          "May",
+          "I",
+          "watch",
+          "this",
+          "series"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-18:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-18:i05:r1",
+          "text": "May I watch this series?"
+        },
+        {
+          "responseId": "en:lesson-19:session-18:i05:r2",
+          "text": "Can I watch this series?"
+        },
+        {
+          "responseId": "en:lesson-19:session-18:i05:r3",
+          "text": "May we watch this series?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-18:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-18:i05:audio",
+          "transcript": "May I watch this series?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-18:i05:r1",
+            "targetText": "May I watch this series?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i05:r2",
+            "targetText": "Can I watch this series?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i05:r3",
+            "targetText": "May we watch this series?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-18:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит May I watch this series?",
+              "uk": "У записі звучить May I watch this series?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит May I watch this series?",
+              "uk": "У записі звучить May I watch this series?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-18:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Начните вежливый вопрос о разрешении.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-18:i06:r1",
+          "text": "May I"
+        },
+        {
+          "responseId": "en:lesson-19:session-18:i06:r2",
+          "text": "I may"
+        },
+        {
+          "responseId": "en:lesson-19:session-18:i06:r3",
+          "text": "May I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ watch this series?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-18:i06:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i06:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i06:r3",
+            "text": "May I to"
+          }
+        ],
+        "testedDimension": "Начните вежливый вопрос о разрешении.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-18:i06:r2",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "В вопросе May стоит перед I.",
+              "uk": "У питанні May стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i06:r3",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "После May I не нужно to.",
+              "uk": "Після May I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-18:word:episode",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — episode",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-18:word:episode:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — episode",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-18:word:episode:audio",
+          "transcript": "episode"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-18:word:episode:r1",
+            "targetText": "episode",
+            "meaningByLocale": {
+              "ru": "серия, отдельный выпуск.",
+              "uk": "серія, окремий випуск."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "episode",
+          "definitionByLocale": {
+            "ru": "серия, отдельный выпуск.",
+            "uk": "серія, окремий випуск."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-18:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вежливо спросите с May I: «Можно мне посмотреть ещё одну серию?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вежливо спросите с May I: «Можно мне посмотреть ещё одну серию?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "May I watch another episode?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с May I: «Можно мне посмотреть ещё одну серию?»",
+          "uk": "Ввічливо запитайте з May I: «Можна мені подивитися ще одну серію?»"
+        },
+        "orderedTokens": [
+          "May",
+          "I",
+          "watch",
+          "another",
+          "episode"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-18:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-18:i08:r1",
+          "text": "May I watch another episode?"
+        },
+        {
+          "responseId": "en:lesson-19:session-18:i08:r2",
+          "text": "Can I watch another episode?"
+        },
+        {
+          "responseId": "en:lesson-19:session-18:i08:r3",
+          "text": "May we watch another episode?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-18:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-18:i08:audio",
+          "transcript": "May I watch another episode?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-18:i08:r1",
+            "targetText": "May I watch another episode?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i08:r2",
+            "targetText": "Can I watch another episode?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i08:r3",
+            "targetText": "May we watch another episode?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-18:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит May I watch another episode?",
+              "uk": "У записі звучить May I watch another episode?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит May I watch another episode?",
+              "uk": "У записі звучить May I watch another episode?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-18:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Начните вежливый вопрос о разрешении.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-18:i09:r1",
+          "text": "May I"
+        },
+        {
+          "responseId": "en:lesson-19:session-18:i09:r2",
+          "text": "I may"
+        },
+        {
+          "responseId": "en:lesson-19:session-18:i09:r3",
+          "text": "May I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ watch another episode?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-18:i09:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i09:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i09:r3",
+            "text": "May I to"
+          }
+        ],
+        "testedDimension": "Начните вежливый вопрос о разрешении.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-18:i09:r2",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "В вопросе May стоит перед I.",
+              "uk": "У питанні May стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i09:r3",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "После May I не нужно to.",
+              "uk": "Після May I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-18:word:remote-control",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — remote control",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-18:word:remote-control:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — remote control",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-18:word:remote-control:audio",
+          "transcript": "remote control"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-18:word:remote-control:r1",
+            "targetText": "remote control",
+            "meaningByLocale": {
+              "ru": "пульт дистанционного управления.",
+              "uk": "пульт дистанційного керування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "remote control",
+          "definitionByLocale": {
+            "ru": "пульт дистанционного управления.",
+            "uk": "пульт дистанційного керування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-18:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вежливо спросите с May I: «Можно мне воспользоваться пультом?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вежливо спросите с May I: «Можно мне воспользоваться пультом?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "May I use the remote control?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с May I: «Можно мне воспользоваться пультом?»",
+          "uk": "Ввічливо запитайте з May I: «Можна мені скористатися пультом?»"
+        },
+        "orderedTokens": [
+          "May",
+          "I",
+          "use",
+          "the",
+          "remote",
+          "control"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-18:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-18:i11:r1",
+          "text": "May I use the remote control?"
+        },
+        {
+          "responseId": "en:lesson-19:session-18:i11:r2",
+          "text": "Can I use the remote control?"
+        },
+        {
+          "responseId": "en:lesson-19:session-18:i11:r3",
+          "text": "May we use the remote control?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-18:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-18:i11:audio",
+          "transcript": "May I use the remote control?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-18:i11:r1",
+            "targetText": "May I use the remote control?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i11:r2",
+            "targetText": "Can I use the remote control?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i11:r3",
+            "targetText": "May we use the remote control?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-18:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит May I use the remote control?",
+              "uk": "У записі звучить May I use the remote control?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит May I use the remote control?",
+              "uk": "У записі звучить May I use the remote control?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-18:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Начните вежливый вопрос о разрешении.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-18:i12:r1",
+          "text": "May I"
+        },
+        {
+          "responseId": "en:lesson-19:session-18:i12:r2",
+          "text": "I may"
+        },
+        {
+          "responseId": "en:lesson-19:session-18:i12:r3",
+          "text": "May I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ use the remote control?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-18:i12:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i12:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i12:r3",
+            "text": "May I to"
+          }
+        ],
+        "testedDimension": "Начните вежливый вопрос о разрешении.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-18:i12:r2",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "В вопросе May стоит перед I.",
+              "uk": "У питанні May стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-18:i12:r3",
+            "correct": false,
+            "testedDimension": "Начните вежливый вопрос о разрешении.",
+            "feedbackByLocale": {
+              "ru": "После May I не нужно to.",
+              "uk": "Після May I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-18:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-19:session-18:i13:p1",
+            "target": "channel",
+            "meaningByLocale": {
+              "ru": "телевизионный канал",
+              "uk": "телевізійний канал"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-18:i13:p2",
+            "target": "series",
+            "meaningByLocale": {
+              "ru": "сериал",
+              "uk": "серіал"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-18:i13:p3",
+            "target": "episode",
+            "meaningByLocale": {
+              "ru": "серия, отдельный выпуск",
+              "uk": "серія, окремий випуск"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-18:i13:p4",
+            "target": "remote control",
+            "meaningByLocale": {
+              "ru": "пульт дистанционного управления",
+              "uk": "пульт дистанційного керування"
+            }
+          }
+        ],
+        "leftColumn": [
+          "channel",
+          "series",
+          "episode",
+          "remote control"
+        ],
+        "rightColumn": [
+          "телевизионный канал",
+          "сериал",
+          "серия, отдельный выпуск",
+          "пульт дистанционного управления"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-18:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное умение в прошлом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-18:i14:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное умение в прошлом",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-18:i14:audio",
+          "transcript": "At ten, I could change the channel."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "At ten, I could change the channel.",
+        "orderedTokens": [
+          "At",
+          "ten,",
+          "I",
+          "could",
+          "change",
+          "the",
+          "channel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-18:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторение: услышанное намерение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-18:i15:audio"
+      ],
+      "accessibilityLabel": "Повторение: услышанное намерение",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-18:i15:audio",
+          "transcript": "We are going to watch this series."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to watch this series.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "watch",
+          "this",
+          "series"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-18:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: скажите, что умеете делать сейчас",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-18:i16:audio"
+      ],
+      "accessibilityLabel": "Повторение: скажите, что умеете делать сейчас",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-18:i16:audio",
+          "transcript": "I can use the remote control."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can use the remote control.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-18:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторение: подчеркните впечатление",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-18:i17:audio"
+      ],
+      "accessibilityLabel": "Повторение: подчеркните впечатление",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-18:i17:audio",
+          "transcript": "This episode is so funny."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This episode is so funny.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cf6fe4bc9d9ba03047fc9e316bf31e9cb382cbde5c77ca8aace5b058cac859ba"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-24:word:apology",
+    "correctText": "apology",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-24:i01",
+    "correctText": "May I offer an apology?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-24:i02",
+    "correctText": "May I offer an apology?",
+    "correctResponseId": "en:lesson-19:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-24:i03",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-24:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-24:word:recommendation",
+    "correctText": "recommendation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-24:i04",
+    "correctText": "May I make a recommendation?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-24:i05",
+    "correctText": "May I make a recommendation?",
+    "correctResponseId": "en:lesson-19:session-24:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-24:i06",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-24:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-24:word:response",
+    "correctText": "response",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-24:i07",
+    "correctText": "May I give my response?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-24:i08",
+    "correctText": "May I give my response?",
+    "correctResponseId": "en:lesson-19:session-24:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-24:i09",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-24:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-24:word:doubt",
+    "correctText": "doubt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-24:i10",
+    "correctText": "May I explain my doubt?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-24:i11",
+    "correctText": "May I explain my doubt?",
+    "correctResponseId": "en:lesson-19:session-24:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-24:i12",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-24:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-24:i13",
+    "correctText": "en:lesson-19:session-24:i13:p1=apology\nen:lesson-19:session-24:i13:p2=recommendation\nen:lesson-19:session-24:i13:p3=response\nen:lesson-19:session-24:i13:p4=doubt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-24:i14",
+    "correctText": "At twenty, I could speak confidently.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-24:i15",
+    "correctText": "We are going to discuss your recommendation.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-24:i16",
+    "correctText": "I can explain my doubts.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-24:i17",
+    "correctText": "This is such a helpful response.",
+    "correctResponseId": null
+  }
+]

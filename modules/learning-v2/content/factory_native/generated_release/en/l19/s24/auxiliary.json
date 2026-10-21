@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-19:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-19:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-24:intro1:r2": {
+          "ru": "После May I нет to.",
+          "uk": "Після May I немає to."
+        },
+        "en:lesson-19:session-24:intro1:r3": {
+          "ru": "В вопросе о разрешении порядок May I, не I may.",
+          "uk": "У питанні про дозвіл порядок May I, не I may."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-19:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-24:intro2:r2": {
+          "ru": "После May I нет to.",
+          "uk": "Після May I немає to."
+        },
+        "en:lesson-19:session-24:intro2:r3": {
+          "ru": "В вопросе о разрешении порядок May I, не I may.",
+          "uk": "У питанні про дозвіл порядок May I, не I may."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-19:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-24:intro3:r2": {
+          "ru": "После May I нет to.",
+          "uk": "Після May I немає to."
+        },
+        "en:lesson-19:session-24:intro3:r3": {
+          "ru": "В вопросе о разрешении порядок May I, не I may.",
+          "uk": "У питанні про дозвіл порядок May I, не I may."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "156198908765f7e838d8bb33e295e9087d9da25eb64e856667f15d3173c6e9d4"
+}

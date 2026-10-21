@@ -1,0 +1,2325 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-19:session-24",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-19:session-24:word:apology",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — apology",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:word:apology:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — apology",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:word:apology:audio",
+            "transcript": "apology"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-24:word:apology:r1",
+              "targetText": "apology",
+              "meaningByLocale": {
+                "ru": "извинение.",
+                "uk": "вибачення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "apology",
+            "definitionByLocale": {
+              "ru": "извинение.",
+              "uk": "вибачення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с May I: «Можно мне принести извинение?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с May I: «Можно мне принести извинение?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I offer an apology?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне принести извинение?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені попросити вибачення?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "offer",
+            "an",
+            "apology"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-24:i02:r1",
+            "text": "May I offer an apology?"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i02:r2",
+            "text": "Can I offer an apology?"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i02:r3",
+            "text": "May we offer an apology?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:i02:audio",
+            "transcript": "May I offer an apology?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-24:i02:r1",
+              "targetText": "May I offer an apology?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i02:r2",
+              "targetText": "Can I offer an apology?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i02:r3",
+              "targetText": "May we offer an apology?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-24:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I offer an apology?",
+                "uk": "У записі звучить May I offer an apology?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I offer an apology?",
+                "uk": "У записі звучить May I offer an apology?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-24:i03:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i03:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i03:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ offer an apology?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-24:i03:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i03:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i03:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-24:i03:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i03:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:word:recommendation",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — recommendation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:word:recommendation:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — recommendation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:word:recommendation:audio",
+            "transcript": "recommendation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-24:word:recommendation:r1",
+              "targetText": "recommendation",
+              "meaningByLocale": {
+                "ru": "рекомендация, совет.",
+                "uk": "рекомендація, порада."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "recommendation",
+            "definitionByLocale": {
+              "ru": "рекомендация, совет.",
+              "uk": "рекомендація, порада."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с May I: «Можно мне дать рекомендацию?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с May I: «Можно мне дать рекомендацию?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I make a recommendation?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне дать рекомендацию?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені дати рекомендацію?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "make",
+            "a",
+            "recommendation"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-24:i05:r1",
+            "text": "May I make a recommendation?"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i05:r2",
+            "text": "Can I make a recommendation?"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i05:r3",
+            "text": "May we make a recommendation?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:i05:audio",
+            "transcript": "May I make a recommendation?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-24:i05:r1",
+              "targetText": "May I make a recommendation?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i05:r2",
+              "targetText": "Can I make a recommendation?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i05:r3",
+              "targetText": "May we make a recommendation?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-24:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I make a recommendation?",
+                "uk": "У записі звучить May I make a recommendation?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I make a recommendation?",
+                "uk": "У записі звучить May I make a recommendation?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-24:i06:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i06:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i06:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ make a recommendation?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-24:i06:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i06:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i06:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-24:i06:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i06:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:word:response",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — response",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:word:response:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — response",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:word:response:audio",
+            "transcript": "response"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-24:word:response:r1",
+              "targetText": "response",
+              "meaningByLocale": {
+                "ru": "ответ, отклик.",
+                "uk": "відповідь, відгук."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "response",
+            "definitionByLocale": {
+              "ru": "ответ, отклик.",
+              "uk": "відповідь, відгук."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с May I: «Можно мне дать свой ответ?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с May I: «Можно мне дать свой ответ?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I give my response?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне дать свой ответ?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені дати свою відповідь?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "give",
+            "my",
+            "response"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-24:i08:r1",
+            "text": "May I give my response?"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i08:r2",
+            "text": "Can I give my response?"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i08:r3",
+            "text": "May we give our response?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:i08:audio",
+            "transcript": "May I give my response?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-24:i08:r1",
+              "targetText": "May I give my response?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i08:r2",
+              "targetText": "Can I give my response?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i08:r3",
+              "targetText": "May we give our response?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-24:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I give my response?",
+                "uk": "У записі звучить May I give my response?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I give my response?",
+                "uk": "У записі звучить May I give my response?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-24:i09:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i09:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i09:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ give my response?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-24:i09:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i09:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i09:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-24:i09:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i09:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:word:doubt",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — doubt",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:word:doubt:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — doubt",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:word:doubt:audio",
+            "transcript": "doubt"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-24:word:doubt:r1",
+              "targetText": "doubt",
+              "meaningByLocale": {
+                "ru": "сомнение.",
+                "uk": "сумнів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "doubt",
+            "definitionByLocale": {
+              "ru": "сомнение.",
+              "uk": "сумнів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с May I: «Можно мне объяснить своё сомнение?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с May I: «Можно мне объяснить своё сомнение?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I explain my doubt?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне объяснить своё сомнение?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені пояснити свій сумнів?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "explain",
+            "my",
+            "doubt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-24:i11:r1",
+            "text": "May I explain my doubt?"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i11:r2",
+            "text": "Can I explain my doubt?"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i11:r3",
+            "text": "May we explain our doubt?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:i11:audio",
+            "transcript": "May I explain my doubt?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-24:i11:r1",
+              "targetText": "May I explain my doubt?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i11:r2",
+              "targetText": "Can I explain my doubt?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i11:r3",
+              "targetText": "May we explain our doubt?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-24:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I explain my doubt?",
+                "uk": "У записі звучить May I explain my doubt?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I explain my doubt?",
+                "uk": "У записі звучить May I explain my doubt?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-24:i12:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i12:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i12:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ explain my doubt?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-24:i12:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i12:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i12:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-24:i12:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i12:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-24:i13:p1",
+              "target": "apology",
+              "meaningByLocale": {
+                "ru": "извинение",
+                "uk": "вибачення"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-24:i13:p2",
+              "target": "recommendation",
+              "meaningByLocale": {
+                "ru": "рекомендация, совет",
+                "uk": "рекомендація, порада"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-24:i13:p3",
+              "target": "response",
+              "meaningByLocale": {
+                "ru": "ответ, отклик",
+                "uk": "відповідь, відгук"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-24:i13:p4",
+              "target": "doubt",
+              "meaningByLocale": {
+                "ru": "сомнение",
+                "uk": "сумнів"
+              }
+            }
+          ],
+          "leftColumn": [
+            "apology",
+            "recommendation",
+            "response",
+            "doubt"
+          ],
+          "rightColumn": [
+            "извинение",
+            "рекомендация, совет",
+            "ответ, отклик",
+            "сомнение"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное умение в прошлом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное умение в прошлом",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:i14:audio",
+            "transcript": "At twenty, I could speak confidently."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "At twenty, I could speak confidently.",
+          "orderedTokens": [
+            "At",
+            "twenty,",
+            "I",
+            "could",
+            "speak",
+            "confidently"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное намерение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное намерение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:i15:audio",
+            "transcript": "We are going to discuss your recommendation."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to discuss your recommendation.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "discuss",
+            "your",
+            "recommendation"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: скажите, что умеете делать сейчас",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:i16:audio"
+        ],
+        "accessibilityLabel": "Повторение: скажите, что умеете делать сейчас",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:i16:audio",
+            "transcript": "I can explain my doubts."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can explain my doubts.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: подчеркните впечатление",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:i17:audio"
+        ],
+        "accessibilityLabel": "Повторение: подчеркните впечатление",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:i17:audio",
+            "transcript": "This is such a helpful response."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is such a helpful response.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-19:session-24:word:apology",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — apology",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:word:apology:audio"
+        ],
+        "accessibilityLabel": "Картка слова — apology",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:word:apology:audio",
+            "transcript": "apology"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-24:word:apology:r1",
+              "targetText": "apology",
+              "meaningByLocale": {
+                "ru": "извинение.",
+                "uk": "вибачення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "apology",
+            "definitionByLocale": {
+              "ru": "извинение.",
+              "uk": "вибачення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з May I: «Можна мені попросити вибачення?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з May I: «Можна мені попросити вибачення?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I offer an apology?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне принести извинение?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені попросити вибачення?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "offer",
+            "an",
+            "apology"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-24:i02:r1",
+            "text": "May I offer an apology?"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i02:r2",
+            "text": "Can I offer an apology?"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i02:r3",
+            "text": "May we offer an apology?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:i02:audio",
+            "transcript": "May I offer an apology?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-24:i02:r1",
+              "targetText": "May I offer an apology?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i02:r2",
+              "targetText": "Can I offer an apology?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i02:r3",
+              "targetText": "May we offer an apology?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-24:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I offer an apology?",
+                "uk": "У записі звучить May I offer an apology?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I offer an apology?",
+                "uk": "У записі звучить May I offer an apology?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-24:i03:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i03:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i03:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ offer an apology?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-24:i03:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i03:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i03:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-24:i03:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i03:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:word:recommendation",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — recommendation",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:word:recommendation:audio"
+        ],
+        "accessibilityLabel": "Картка слова — recommendation",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:word:recommendation:audio",
+            "transcript": "recommendation"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-24:word:recommendation:r1",
+              "targetText": "recommendation",
+              "meaningByLocale": {
+                "ru": "рекомендация, совет.",
+                "uk": "рекомендація, порада."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "recommendation",
+            "definitionByLocale": {
+              "ru": "рекомендация, совет.",
+              "uk": "рекомендація, порада."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з May I: «Можна мені дати рекомендацію?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з May I: «Можна мені дати рекомендацію?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I make a recommendation?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне дать рекомендацию?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені дати рекомендацію?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "make",
+            "a",
+            "recommendation"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-24:i05:r1",
+            "text": "May I make a recommendation?"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i05:r2",
+            "text": "Can I make a recommendation?"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i05:r3",
+            "text": "May we make a recommendation?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:i05:audio",
+            "transcript": "May I make a recommendation?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-24:i05:r1",
+              "targetText": "May I make a recommendation?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i05:r2",
+              "targetText": "Can I make a recommendation?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i05:r3",
+              "targetText": "May we make a recommendation?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-24:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I make a recommendation?",
+                "uk": "У записі звучить May I make a recommendation?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I make a recommendation?",
+                "uk": "У записі звучить May I make a recommendation?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-24:i06:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i06:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i06:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ make a recommendation?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-24:i06:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i06:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i06:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-24:i06:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i06:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:word:response",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — response",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:word:response:audio"
+        ],
+        "accessibilityLabel": "Картка слова — response",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:word:response:audio",
+            "transcript": "response"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-24:word:response:r1",
+              "targetText": "response",
+              "meaningByLocale": {
+                "ru": "ответ, отклик.",
+                "uk": "відповідь, відгук."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "response",
+            "definitionByLocale": {
+              "ru": "ответ, отклик.",
+              "uk": "відповідь, відгук."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з May I: «Можна мені дати свою відповідь?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з May I: «Можна мені дати свою відповідь?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I give my response?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне дать свой ответ?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені дати свою відповідь?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "give",
+            "my",
+            "response"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-24:i08:r1",
+            "text": "May I give my response?"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i08:r2",
+            "text": "Can I give my response?"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i08:r3",
+            "text": "May we give our response?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:i08:audio",
+            "transcript": "May I give my response?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-24:i08:r1",
+              "targetText": "May I give my response?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i08:r2",
+              "targetText": "Can I give my response?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i08:r3",
+              "targetText": "May we give our response?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-24:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I give my response?",
+                "uk": "У записі звучить May I give my response?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I give my response?",
+                "uk": "У записі звучить May I give my response?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-24:i09:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i09:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i09:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ give my response?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-24:i09:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i09:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i09:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-24:i09:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i09:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:word:doubt",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — doubt",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:word:doubt:audio"
+        ],
+        "accessibilityLabel": "Картка слова — doubt",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:word:doubt:audio",
+            "transcript": "doubt"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-24:word:doubt:r1",
+              "targetText": "doubt",
+              "meaningByLocale": {
+                "ru": "сомнение.",
+                "uk": "сумнів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "doubt",
+            "definitionByLocale": {
+              "ru": "сомнение.",
+              "uk": "сумнів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з May I: «Можна мені пояснити свій сумнів?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з May I: «Можна мені пояснити свій сумнів?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I explain my doubt?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне объяснить своё сомнение?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені пояснити свій сумнів?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "explain",
+            "my",
+            "doubt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-24:i11:r1",
+            "text": "May I explain my doubt?"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i11:r2",
+            "text": "Can I explain my doubt?"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i11:r3",
+            "text": "May we explain our doubt?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:i11:audio",
+            "transcript": "May I explain my doubt?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-24:i11:r1",
+              "targetText": "May I explain my doubt?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i11:r2",
+              "targetText": "Can I explain my doubt?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i11:r3",
+              "targetText": "May we explain our doubt?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-24:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I explain my doubt?",
+                "uk": "У записі звучить May I explain my doubt?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I explain my doubt?",
+                "uk": "У записі звучить May I explain my doubt?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-24:i12:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i12:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-24:i12:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ explain my doubt?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-24:i12:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i12:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i12:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-24:i12:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-24:i12:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-24:i13:p1",
+              "target": "apology",
+              "meaningByLocale": {
+                "ru": "извинение",
+                "uk": "вибачення"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-24:i13:p2",
+              "target": "recommendation",
+              "meaningByLocale": {
+                "ru": "рекомендация, совет",
+                "uk": "рекомендація, порада"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-24:i13:p3",
+              "target": "response",
+              "meaningByLocale": {
+                "ru": "ответ, отклик",
+                "uk": "відповідь, відгук"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-24:i13:p4",
+              "target": "doubt",
+              "meaningByLocale": {
+                "ru": "сомнение",
+                "uk": "сумнів"
+              }
+            }
+          ],
+          "leftColumn": [
+            "apology",
+            "recommendation",
+            "response",
+            "doubt"
+          ],
+          "rightColumn": [
+            "вибачення",
+            "рекомендація, порада",
+            "відповідь, відгук",
+            "сумнів"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почуте вміння в минулому",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почуте вміння в минулому",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:i14:audio",
+            "transcript": "At twenty, I could speak confidently."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "At twenty, I could speak confidently.",
+          "orderedTokens": [
+            "At",
+            "twenty,",
+            "I",
+            "could",
+            "speak",
+            "confidently"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий намір",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий намір",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:i15:audio",
+            "transcript": "We are going to discuss your recommendation."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to discuss your recommendation.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "discuss",
+            "your",
+            "recommendation"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: скажіть, що вмієте робити зараз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:i16:audio"
+        ],
+        "accessibilityLabel": "Повторення: скажіть, що вмієте робити зараз",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:i16:audio",
+            "transcript": "I can explain my doubts."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can explain my doubts.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-24:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: підкресліть враження",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-24:i17:audio"
+        ],
+        "accessibilityLabel": "Повторення: підкресліть враження",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-24:i17:audio",
+            "transcript": "This is such a helpful response."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is such a helpful response.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-19:session-24:word:apology",
+      "correctText": "apology",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-24:i01",
+      "correctText": "May I offer an apology?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-24:i02",
+      "correctText": "May I offer an apology?",
+      "correctResponseId": "en:lesson-19:session-24:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-24:i03",
+      "correctText": "May I",
+      "correctResponseId": "en:lesson-19:session-24:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-24:word:recommendation",
+      "correctText": "recommendation",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-24:i04",
+      "correctText": "May I make a recommendation?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-24:i05",
+      "correctText": "May I make a recommendation?",
+      "correctResponseId": "en:lesson-19:session-24:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-24:i06",
+      "correctText": "May I",
+      "correctResponseId": "en:lesson-19:session-24:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-24:word:response",
+      "correctText": "response",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-24:i07",
+      "correctText": "May I give my response?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-24:i08",
+      "correctText": "May I give my response?",
+      "correctResponseId": "en:lesson-19:session-24:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-24:i09",
+      "correctText": "May I",
+      "correctResponseId": "en:lesson-19:session-24:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-24:word:doubt",
+      "correctText": "doubt",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-24:i10",
+      "correctText": "May I explain my doubt?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-24:i11",
+      "correctText": "May I explain my doubt?",
+      "correctResponseId": "en:lesson-19:session-24:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-24:i12",
+      "correctText": "May I",
+      "correctResponseId": "en:lesson-19:session-24:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-24:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-24:i14",
+      "correctText": "At twenty, I could speak confidently.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-24:i15",
+      "correctText": "We are going to discuss your recommendation.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-24:i16",
+      "correctText": "I can explain my doubts.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-24:i17",
+      "correctText": "This is such a helpful response.",
+      "correctResponseId": null
+    }
+  ]
+}

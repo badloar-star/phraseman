@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-19:word:suitable",
+    "correctText": "suitable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-19:i01",
+    "correctText": "May I choose a suitable book?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-19:i02",
+    "correctText": "May I choose a suitable book?",
+    "correctResponseId": "en:lesson-19:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-19:i03",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-19:word:convenient",
+    "correctText": "convenient",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-19:i04",
+    "correctText": "May I suggest a convenient time?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-19:i05",
+    "correctText": "May I suggest a convenient time?",
+    "correctResponseId": "en:lesson-19:session-19:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-19:i06",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-19:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-19:word:additional",
+    "correctText": "additional",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-19:i07",
+    "correctText": "May I request additional help?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-19:i08",
+    "correctText": "May I request additional help?",
+    "correctResponseId": "en:lesson-19:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-19:i09",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-19:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-19:word:specific",
+    "correctText": "specific",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-19:i10",
+    "correctText": "May I request a specific room?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-19:i11",
+    "correctText": "May I request a specific room?",
+    "correctResponseId": "en:lesson-19:session-19:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-19:i12",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-19:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-19:i13",
+    "correctText": "en:lesson-19:session-19:i13:p1=suitable\nen:lesson-19:session-19:i13:p2=convenient\nen:lesson-19:session-19:i13:p3=additional\nen:lesson-19:session-19:i13:p4=specific",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-19:i14",
+    "correctText": "At ten, I could choose a suitable book.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-19:i15",
+    "correctText": "We are going to choose a convenient time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-19:i16",
+    "correctText": "I can give you additional help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-19:i17",
+    "correctText": "This book is so useful.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-19:session-21",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-19:session-21:word:bother",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bother",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-21:word:bother:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bother",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-21:word:bother:audio",
+          "transcript": "bother"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-21:word:bother:r1",
+            "targetText": "bother",
+            "meaningByLocale": {
+              "ru": "беспокоить, доставлять неудобство.",
+              "uk": "турбувати, завдавати незручностей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bother",
+          "definitionByLocale": {
+            "ru": "беспокоить, доставлять неудобство.",
+            "uk": "турбувати, завдавати незручностей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-21:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте з May I: «Можна вас потурбувати на хвилинку?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте з May I: «Можна вас потурбувати на хвилинку?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "May I bother you for a moment?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с May I: «Можно вас побеспокоить на минутку?»",
+          "uk": "Ввічливо запитайте з May I: «Можна вас потурбувати на хвилинку?»"
+        },
+        "orderedTokens": [
+          "May",
+          "I",
+          "bother",
+          "you",
+          "for",
+          "a",
+          "moment"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-21:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-21:i02:r1",
+          "text": "May I bother you for a moment?"
+        },
+        {
+          "responseId": "en:lesson-19:session-21:i02:r2",
+          "text": "Can I bother you for a moment?"
+        },
+        {
+          "responseId": "en:lesson-19:session-21:i02:r3",
+          "text": "May we bother you for a moment?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-21:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-21:i02:audio",
+          "transcript": "May I bother you for a moment?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-21:i02:r1",
+            "targetText": "May I bother you for a moment?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i02:r2",
+            "targetText": "Can I bother you for a moment?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i02:r3",
+            "targetText": "May we bother you for a moment?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-21:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит May I bother you for a moment?",
+              "uk": "У записі звучить May I bother you for a moment?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит May I bother you for a moment?",
+              "uk": "У записі звучить May I bother you for a moment?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-21:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Почніть ввічливе питання про дозвіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-21:i03:r1",
+          "text": "May I"
+        },
+        {
+          "responseId": "en:lesson-19:session-21:i03:r2",
+          "text": "I may"
+        },
+        {
+          "responseId": "en:lesson-19:session-21:i03:r3",
+          "text": "May I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ bother you for a moment?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-21:i03:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i03:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i03:r3",
+            "text": "May I to"
+          }
+        ],
+        "testedDimension": "Почніть ввічливе питання про дозвіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-21:i03:r2",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "В вопросе May стоит перед I.",
+              "uk": "У питанні May стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i03:r3",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "После May I не нужно to.",
+              "uk": "Після May I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-21:word:disturb",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — disturb",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-21:word:disturb:audio"
+      ],
+      "accessibilityLabel": "Картка слова — disturb",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-21:word:disturb:audio",
+          "transcript": "disturb"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-21:word:disturb:r1",
+            "targetText": "disturb",
+            "meaningByLocale": {
+              "ru": "тревожить, нарушать покой или мешать занятию.",
+              "uk": "непокоїти, порушувати спокій або заважати заняттю."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "disturb",
+          "definitionByLocale": {
+            "ru": "тревожить, нарушать покой или мешать занятию.",
+            "uk": "непокоїти, порушувати спокій або заважати заняттю."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-21:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте з May I: «Можна вас потурбувати на хвилинку?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте з May I: «Можна вас потурбувати на хвилинку?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "May I disturb you for a moment?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с May I: «Можно вас потревожить на минутку?»",
+          "uk": "Ввічливо запитайте з May I: «Можна вас потурбувати на хвилинку?»"
+        },
+        "orderedTokens": [
+          "May",
+          "I",
+          "disturb",
+          "you",
+          "for",
+          "a",
+          "moment"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-21:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-21:i05:r1",
+          "text": "May I disturb you for a moment?"
+        },
+        {
+          "responseId": "en:lesson-19:session-21:i05:r2",
+          "text": "Can I disturb you for a moment?"
+        },
+        {
+          "responseId": "en:lesson-19:session-21:i05:r3",
+          "text": "May we disturb you for a moment?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-21:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-21:i05:audio",
+          "transcript": "May I disturb you for a moment?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-21:i05:r1",
+            "targetText": "May I disturb you for a moment?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i05:r2",
+            "targetText": "Can I disturb you for a moment?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i05:r3",
+            "targetText": "May we disturb you for a moment?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-21:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит May I disturb you for a moment?",
+              "uk": "У записі звучить May I disturb you for a moment?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит May I disturb you for a moment?",
+              "uk": "У записі звучить May I disturb you for a moment?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-21:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Почніть ввічливе питання про дозвіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-21:i06:r1",
+          "text": "May I"
+        },
+        {
+          "responseId": "en:lesson-19:session-21:i06:r2",
+          "text": "I may"
+        },
+        {
+          "responseId": "en:lesson-19:session-21:i06:r3",
+          "text": "May I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ disturb you for a moment?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-21:i06:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i06:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i06:r3",
+            "text": "May I to"
+          }
+        ],
+        "testedDimension": "Почніть ввічливе питання про дозвіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-21:i06:r2",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "В вопросе May стоит перед I.",
+              "uk": "У питанні May стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i06:r3",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "После May I не нужно to.",
+              "uk": "Після May I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-21:word:briefly",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — briefly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-21:word:briefly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — briefly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-21:word:briefly:audio",
+          "transcript": "briefly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-21:word:briefly:r1",
+            "targetText": "briefly",
+            "meaningByLocale": {
+              "ru": "кратко, ненадолго.",
+              "uk": "коротко, ненадовго."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "briefly",
+          "definitionByLocale": {
+            "ru": "кратко, ненадолго.",
+            "uk": "коротко, ненадовго."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-21:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте з May I: «Можна мені коротко висловитися?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте з May I: «Можна мені коротко висловитися?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "May I speak briefly?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с May I: «Можно мне высказаться кратко?»",
+          "uk": "Ввічливо запитайте з May I: «Можна мені коротко висловитися?»"
+        },
+        "orderedTokens": [
+          "May",
+          "I",
+          "speak",
+          "briefly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-21:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-21:i08:r1",
+          "text": "May I speak briefly?"
+        },
+        {
+          "responseId": "en:lesson-19:session-21:i08:r2",
+          "text": "Can I speak briefly?"
+        },
+        {
+          "responseId": "en:lesson-19:session-21:i08:r3",
+          "text": "May we speak briefly?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-21:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-21:i08:audio",
+          "transcript": "May I speak briefly?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-21:i08:r1",
+            "targetText": "May I speak briefly?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i08:r2",
+            "targetText": "Can I speak briefly?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i08:r3",
+            "targetText": "May we speak briefly?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-21:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит May I speak briefly?",
+              "uk": "У записі звучить May I speak briefly?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит May I speak briefly?",
+              "uk": "У записі звучить May I speak briefly?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-21:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Почніть ввічливе питання про дозвіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-21:i09:r1",
+          "text": "May I"
+        },
+        {
+          "responseId": "en:lesson-19:session-21:i09:r2",
+          "text": "I may"
+        },
+        {
+          "responseId": "en:lesson-19:session-21:i09:r3",
+          "text": "May I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ speak briefly?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-21:i09:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i09:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i09:r3",
+            "text": "May I to"
+          }
+        ],
+        "testedDimension": "Почніть ввічливе питання про дозвіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-21:i09:r2",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "В вопросе May стоит перед I.",
+              "uk": "У питанні May стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i09:r3",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "После May I не нужно to.",
+              "uk": "Після May I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-21:word:directly",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — directly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-21:word:directly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — directly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-21:word:directly:audio",
+          "transcript": "directly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-21:word:directly:r1",
+            "targetText": "directly",
+            "meaningByLocale": {
+              "ru": "напрямую, непосредственно.",
+              "uk": "безпосередньо, напряму."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "directly",
+          "definitionByLocale": {
+            "ru": "напрямую, непосредственно.",
+            "uk": "безпосередньо, напряму."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-21:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте з May I: «Можна мені поговорити з нею безпосередньо?»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте з May I: «Можна мені поговорити з нею безпосередньо?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "May I speak to her directly?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите с May I: «Можно мне поговорить с ней напрямую?»",
+          "uk": "Ввічливо запитайте з May I: «Можна мені поговорити з нею безпосередньо?»"
+        },
+        "orderedTokens": [
+          "May",
+          "I",
+          "speak",
+          "to",
+          "her",
+          "directly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-21:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-21:i11:r1",
+          "text": "May I speak to her directly?"
+        },
+        {
+          "responseId": "en:lesson-19:session-21:i11:r2",
+          "text": "Can I speak to her directly?"
+        },
+        {
+          "responseId": "en:lesson-19:session-21:i11:r3",
+          "text": "May we speak to her directly?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-21:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-21:i11:audio",
+          "transcript": "May I speak to her directly?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-21:i11:r1",
+            "targetText": "May I speak to her directly?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i11:r2",
+            "targetText": "Can I speak to her directly?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i11:r3",
+            "targetText": "May we speak to her directly?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-21:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит May I speak to her directly?",
+              "uk": "У записі звучить May I speak to her directly?"
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит May I speak to her directly?",
+              "uk": "У записі звучить May I speak to her directly?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-21:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Почніть ввічливе питання про дозвіл.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-21:i12:r1",
+          "text": "May I"
+        },
+        {
+          "responseId": "en:lesson-19:session-21:i12:r2",
+          "text": "I may"
+        },
+        {
+          "responseId": "en:lesson-19:session-21:i12:r3",
+          "text": "May I to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Начните вежливый вопрос о разрешении.",
+          "uk": "Почніть ввічливе питання про дозвіл."
+        },
+        "gappedTargetPhrase": "___ speak to her directly?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-21:i12:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i12:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i12:r3",
+            "text": "May I to"
+          }
+        ],
+        "testedDimension": "Почніть ввічливе питання про дозвіл.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-21:i12:r2",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "В вопросе May стоит перед I.",
+              "uk": "У питанні May стоїть перед I."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-21:i12:r3",
+            "correct": false,
+            "testedDimension": "Почніть ввічливе питання про дозвіл.",
+            "feedbackByLocale": {
+              "ru": "После May I не нужно to.",
+              "uk": "Після May I не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-21:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-19:session-21:i13:p1",
+            "target": "bother",
+            "meaningByLocale": {
+              "ru": "беспокоить, доставлять неудобство",
+              "uk": "турбувати, завдавати незручностей"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-21:i13:p2",
+            "target": "disturb",
+            "meaningByLocale": {
+              "ru": "тревожить, нарушать покой или мешать занятию",
+              "uk": "непокоїти, порушувати спокій або заважати заняттю"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-21:i13:p3",
+            "target": "briefly",
+            "meaningByLocale": {
+              "ru": "кратко, ненадолго",
+              "uk": "коротко, ненадовго"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-21:i13:p4",
+            "target": "directly",
+            "meaningByLocale": {
+              "ru": "напрямую, непосредственно",
+              "uk": "безпосередньо, напряму"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bother",
+          "disturb",
+          "briefly",
+          "directly"
+        ],
+        "rightColumn": [
+          "турбувати, завдавати незручностей",
+          "непокоїти, порушувати спокій або заважати заняттю",
+          "коротко, ненадовго",
+          "безпосередньо, напряму"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-21:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почуте вміння в минулому",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-21:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почуте вміння в минулому",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-21:i14:audio",
+          "transcript": "At twenty, I could speak confidently."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "At twenty, I could speak confidently.",
+        "orderedTokens": [
+          "At",
+          "twenty,",
+          "I",
+          "could",
+          "speak",
+          "confidently"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-21:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-21:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-21:i15:audio",
+          "transcript": "We are going to speak to her directly."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to speak to her directly.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "speak",
+          "to",
+          "her",
+          "directly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-21:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: скажіть, що вмієте робити зараз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-21:i16:audio"
+      ],
+      "accessibilityLabel": "Повторення: скажіть, що вмієте робити зараз",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-21:i16:audio",
+          "transcript": "I can explain this briefly."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can explain this briefly.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-21:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: підкресліть враження",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-21:i17:audio"
+      ],
+      "accessibilityLabel": "Повторення: підкресліть враження",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-21:i17:audio",
+          "transcript": "This is such a useful explanation."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is such a useful explanation.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6c5ac2a656bbc98cb64a145ef03afac1f8ebd8c6475b86e31aed65ea370ef547"
+}

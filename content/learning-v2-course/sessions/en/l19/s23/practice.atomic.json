@@ -1,0 +1,2335 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-19:session-23",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-19:session-23:word:minimum",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — minimum",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:word:minimum:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — minimum",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:word:minimum:audio",
+            "transcript": "minimum"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-23:word:minimum:r1",
+              "targetText": "minimum",
+              "meaningByLocale": {
+                "ru": "минимальный, наименьший допустимый.",
+                "uk": "мінімальний, найменший допустимий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "minimum",
+            "definitionByLocale": {
+              "ru": "минимальный, наименьший допустимый.",
+              "uk": "мінімальний, найменший допустимий."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с May I: «Можно мне уточнить минимальный возраст?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с May I: «Можно мне уточнить минимальный возраст?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I check the minimum age?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне уточнить минимальный возраст?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені уточнити мінімальний вік?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "check",
+            "the",
+            "minimum",
+            "age"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-23:i02:r1",
+            "text": "May I check the minimum age?"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i02:r2",
+            "text": "Can I check the minimum age?"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i02:r3",
+            "text": "May we check the minimum age?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:i02:audio",
+            "transcript": "May I check the minimum age?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-23:i02:r1",
+              "targetText": "May I check the minimum age?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i02:r2",
+              "targetText": "Can I check the minimum age?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i02:r3",
+              "targetText": "May we check the minimum age?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-23:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I check the minimum age?",
+                "uk": "У записі звучить May I check the minimum age?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I check the minimum age?",
+                "uk": "У записі звучить May I check the minimum age?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-23:i03:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i03:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i03:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ check the minimum age?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-23:i03:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i03:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i03:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-23:i03:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i03:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:word:maximum",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — maximum",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:word:maximum:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — maximum",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:word:maximum:audio",
+            "transcript": "maximum"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-23:word:maximum:r1",
+              "targetText": "maximum",
+              "meaningByLocale": {
+                "ru": "максимальный, наибольший допустимый.",
+                "uk": "максимальний, найбільший допустимий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "maximum",
+            "definitionByLocale": {
+              "ru": "максимальный, наибольший допустимый.",
+              "uk": "максимальний, найбільший допустимий."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с May I: «Можно мне уточнить максимальный вес?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с May I: «Можно мне уточнить максимальный вес?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I check the maximum weight?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне уточнить максимальный вес?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені уточнити максимальну вагу?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "check",
+            "the",
+            "maximum",
+            "weight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-23:i05:r1",
+            "text": "May I check the maximum weight?"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i05:r2",
+            "text": "Can I check the maximum weight?"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i05:r3",
+            "text": "May we check the maximum weight?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:i05:audio",
+            "transcript": "May I check the maximum weight?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-23:i05:r1",
+              "targetText": "May I check the maximum weight?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i05:r2",
+              "targetText": "Can I check the maximum weight?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i05:r3",
+              "targetText": "May we check the maximum weight?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-23:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I check the maximum weight?",
+                "uk": "У записі звучить May I check the maximum weight?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I check the maximum weight?",
+                "uk": "У записі звучить May I check the maximum weight?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-23:i06:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i06:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i06:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ check the maximum weight?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-23:i06:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i06:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i06:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-23:i06:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i06:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:word:condition",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — condition",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:word:condition:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — condition",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:word:condition:audio",
+            "transcript": "condition"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-23:word:condition:r1",
+              "targetText": "condition",
+              "meaningByLocale": {
+                "ru": "условие.",
+                "uk": "умова."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "condition",
+            "definitionByLocale": {
+              "ru": "условие.",
+              "uk": "умова."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с May I: «Можно мне спросить об этом условии?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с May I: «Можно мне спросить об этом условии?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I ask about this condition?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне спросить об этом условии?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені запитати про цю умову?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "ask",
+            "about",
+            "this",
+            "condition"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-23:i08:r1",
+            "text": "May I ask about this condition?"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i08:r2",
+            "text": "Can I ask about this condition?"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i08:r3",
+            "text": "May we ask about this condition?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:i08:audio",
+            "transcript": "May I ask about this condition?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-23:i08:r1",
+              "targetText": "May I ask about this condition?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i08:r2",
+              "targetText": "Can I ask about this condition?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i08:r3",
+              "targetText": "May we ask about this condition?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-23:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I ask about this condition?",
+                "uk": "У записі звучить May I ask about this condition?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I ask about this condition?",
+                "uk": "У записі звучить May I ask about this condition?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-23:i09:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i09:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i09:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ ask about this condition?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-23:i09:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i09:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i09:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-23:i09:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i09:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:word:requirement",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — requirement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:word:requirement:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — requirement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:word:requirement:audio",
+            "transcript": "requirement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-23:word:requirement:r1",
+              "targetText": "requirement",
+              "meaningByLocale": {
+                "ru": "требование.",
+                "uk": "вимога."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "requirement",
+            "definitionByLocale": {
+              "ru": "требование.",
+              "uk": "вимога."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с May I: «Можно мне уточнить это требование?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с May I: «Можно мне уточнить это требование?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I check this requirement?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне уточнить это требование?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені уточнити цю вимогу?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "check",
+            "this",
+            "requirement"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-23:i11:r1",
+            "text": "May I check this requirement?"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i11:r2",
+            "text": "Can I check this requirement?"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i11:r3",
+            "text": "May we check this requirement?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:i11:audio",
+            "transcript": "May I check this requirement?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-23:i11:r1",
+              "targetText": "May I check this requirement?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i11:r2",
+              "targetText": "Can I check this requirement?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i11:r3",
+              "targetText": "May we check this requirement?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-23:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I check this requirement?",
+                "uk": "У записі звучить May I check this requirement?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I check this requirement?",
+                "uk": "У записі звучить May I check this requirement?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-23:i12:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i12:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i12:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ check this requirement?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-23:i12:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i12:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i12:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-23:i12:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i12:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-23:i13:p1",
+              "target": "minimum",
+              "meaningByLocale": {
+                "ru": "минимальный, наименьший допустимый",
+                "uk": "мінімальний, найменший допустимий"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-23:i13:p2",
+              "target": "maximum",
+              "meaningByLocale": {
+                "ru": "максимальный, наибольший допустимый",
+                "uk": "максимальний, найбільший допустимий"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-23:i13:p3",
+              "target": "condition",
+              "meaningByLocale": {
+                "ru": "условие",
+                "uk": "умова"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-23:i13:p4",
+              "target": "requirement",
+              "meaningByLocale": {
+                "ru": "требование",
+                "uk": "вимога"
+              }
+            }
+          ],
+          "leftColumn": [
+            "minimum",
+            "maximum",
+            "condition",
+            "requirement"
+          ],
+          "rightColumn": [
+            "минимальный, наименьший допустимый",
+            "максимальный, наибольший допустимый",
+            "условие",
+            "требование"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное умение в прошлом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное умение в прошлом",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:i14:audio",
+            "transcript": "At twenty, I could understand these conditions."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "At twenty, I could understand these conditions.",
+          "orderedTokens": [
+            "At",
+            "twenty,",
+            "I",
+            "could",
+            "understand",
+            "these",
+            "conditions"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное намерение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное намерение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:i15:audio",
+            "transcript": "We are going to check the maximum weight."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to check the maximum weight.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "check",
+            "the",
+            "maximum",
+            "weight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: скажите, что умеете делать сейчас",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:i16:audio"
+        ],
+        "accessibilityLabel": "Повторение: скажите, что умеете делать сейчас",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:i16:audio",
+            "transcript": "I can explain this requirement."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can explain this requirement.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: подчеркните впечатление",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:i17:audio"
+        ],
+        "accessibilityLabel": "Повторение: подчеркните впечатление",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:i17:audio",
+            "transcript": "This condition is so important."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This condition is so important.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-19:session-23:word:minimum",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — minimum",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:word:minimum:audio"
+        ],
+        "accessibilityLabel": "Картка слова — minimum",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:word:minimum:audio",
+            "transcript": "minimum"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-23:word:minimum:r1",
+              "targetText": "minimum",
+              "meaningByLocale": {
+                "ru": "минимальный, наименьший допустимый.",
+                "uk": "мінімальний, найменший допустимий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "minimum",
+            "definitionByLocale": {
+              "ru": "минимальный, наименьший допустимый.",
+              "uk": "мінімальний, найменший допустимий."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з May I: «Можна мені уточнити мінімальний вік?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з May I: «Можна мені уточнити мінімальний вік?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I check the minimum age?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне уточнить минимальный возраст?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені уточнити мінімальний вік?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "check",
+            "the",
+            "minimum",
+            "age"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-23:i02:r1",
+            "text": "May I check the minimum age?"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i02:r2",
+            "text": "Can I check the minimum age?"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i02:r3",
+            "text": "May we check the minimum age?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:i02:audio",
+            "transcript": "May I check the minimum age?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-23:i02:r1",
+              "targetText": "May I check the minimum age?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i02:r2",
+              "targetText": "Can I check the minimum age?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i02:r3",
+              "targetText": "May we check the minimum age?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-23:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I check the minimum age?",
+                "uk": "У записі звучить May I check the minimum age?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I check the minimum age?",
+                "uk": "У записі звучить May I check the minimum age?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-23:i03:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i03:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i03:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ check the minimum age?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-23:i03:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i03:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i03:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-23:i03:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i03:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:word:maximum",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — maximum",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:word:maximum:audio"
+        ],
+        "accessibilityLabel": "Картка слова — maximum",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:word:maximum:audio",
+            "transcript": "maximum"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-23:word:maximum:r1",
+              "targetText": "maximum",
+              "meaningByLocale": {
+                "ru": "максимальный, наибольший допустимый.",
+                "uk": "максимальний, найбільший допустимий."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "maximum",
+            "definitionByLocale": {
+              "ru": "максимальный, наибольший допустимый.",
+              "uk": "максимальний, найбільший допустимий."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з May I: «Можна мені уточнити максимальну вагу?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з May I: «Можна мені уточнити максимальну вагу?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I check the maximum weight?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне уточнить максимальный вес?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені уточнити максимальну вагу?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "check",
+            "the",
+            "maximum",
+            "weight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-23:i05:r1",
+            "text": "May I check the maximum weight?"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i05:r2",
+            "text": "Can I check the maximum weight?"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i05:r3",
+            "text": "May we check the maximum weight?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:i05:audio",
+            "transcript": "May I check the maximum weight?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-23:i05:r1",
+              "targetText": "May I check the maximum weight?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i05:r2",
+              "targetText": "Can I check the maximum weight?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i05:r3",
+              "targetText": "May we check the maximum weight?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-23:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I check the maximum weight?",
+                "uk": "У записі звучить May I check the maximum weight?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I check the maximum weight?",
+                "uk": "У записі звучить May I check the maximum weight?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-23:i06:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i06:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i06:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ check the maximum weight?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-23:i06:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i06:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i06:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-23:i06:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i06:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:word:condition",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — condition",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:word:condition:audio"
+        ],
+        "accessibilityLabel": "Картка слова — condition",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:word:condition:audio",
+            "transcript": "condition"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-23:word:condition:r1",
+              "targetText": "condition",
+              "meaningByLocale": {
+                "ru": "условие.",
+                "uk": "умова."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "condition",
+            "definitionByLocale": {
+              "ru": "условие.",
+              "uk": "умова."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з May I: «Можна мені запитати про цю умову?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з May I: «Можна мені запитати про цю умову?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I ask about this condition?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне спросить об этом условии?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені запитати про цю умову?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "ask",
+            "about",
+            "this",
+            "condition"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-23:i08:r1",
+            "text": "May I ask about this condition?"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i08:r2",
+            "text": "Can I ask about this condition?"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i08:r3",
+            "text": "May we ask about this condition?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:i08:audio",
+            "transcript": "May I ask about this condition?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-23:i08:r1",
+              "targetText": "May I ask about this condition?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i08:r2",
+              "targetText": "Can I ask about this condition?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i08:r3",
+              "targetText": "May we ask about this condition?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-23:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I ask about this condition?",
+                "uk": "У записі звучить May I ask about this condition?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I ask about this condition?",
+                "uk": "У записі звучить May I ask about this condition?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-23:i09:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i09:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i09:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ ask about this condition?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-23:i09:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i09:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i09:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-23:i09:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i09:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:word:requirement",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — requirement",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:word:requirement:audio"
+        ],
+        "accessibilityLabel": "Картка слова — requirement",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:word:requirement:audio",
+            "transcript": "requirement"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-23:word:requirement:r1",
+              "targetText": "requirement",
+              "meaningByLocale": {
+                "ru": "требование.",
+                "uk": "вимога."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "requirement",
+            "definitionByLocale": {
+              "ru": "требование.",
+              "uk": "вимога."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з May I: «Можна мені уточнити цю вимогу?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з May I: «Можна мені уточнити цю вимогу?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I check this requirement?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне уточнить это требование?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені уточнити цю вимогу?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "check",
+            "this",
+            "requirement"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-23:i11:r1",
+            "text": "May I check this requirement?"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i11:r2",
+            "text": "Can I check this requirement?"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i11:r3",
+            "text": "May we check this requirement?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:i11:audio",
+            "transcript": "May I check this requirement?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-23:i11:r1",
+              "targetText": "May I check this requirement?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i11:r2",
+              "targetText": "Can I check this requirement?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i11:r3",
+              "targetText": "May we check this requirement?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-23:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I check this requirement?",
+                "uk": "У записі звучить May I check this requirement?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I check this requirement?",
+                "uk": "У записі звучить May I check this requirement?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-23:i12:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i12:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-23:i12:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ check this requirement?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-23:i12:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i12:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i12:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-23:i12:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-23:i12:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-23:i13:p1",
+              "target": "minimum",
+              "meaningByLocale": {
+                "ru": "минимальный, наименьший допустимый",
+                "uk": "мінімальний, найменший допустимий"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-23:i13:p2",
+              "target": "maximum",
+              "meaningByLocale": {
+                "ru": "максимальный, наибольший допустимый",
+                "uk": "максимальний, найбільший допустимий"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-23:i13:p3",
+              "target": "condition",
+              "meaningByLocale": {
+                "ru": "условие",
+                "uk": "умова"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-23:i13:p4",
+              "target": "requirement",
+              "meaningByLocale": {
+                "ru": "требование",
+                "uk": "вимога"
+              }
+            }
+          ],
+          "leftColumn": [
+            "minimum",
+            "maximum",
+            "condition",
+            "requirement"
+          ],
+          "rightColumn": [
+            "мінімальний, найменший допустимий",
+            "максимальний, найбільший допустимий",
+            "умова",
+            "вимога"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почуте вміння в минулому",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почуте вміння в минулому",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:i14:audio",
+            "transcript": "At twenty, I could understand these conditions."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "At twenty, I could understand these conditions.",
+          "orderedTokens": [
+            "At",
+            "twenty,",
+            "I",
+            "could",
+            "understand",
+            "these",
+            "conditions"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий намір",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий намір",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:i15:audio",
+            "transcript": "We are going to check the maximum weight."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to check the maximum weight.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "check",
+            "the",
+            "maximum",
+            "weight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: скажіть, що вмієте робити зараз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:i16:audio"
+        ],
+        "accessibilityLabel": "Повторення: скажіть, що вмієте робити зараз",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:i16:audio",
+            "transcript": "I can explain this requirement."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can explain this requirement.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-23:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: підкресліть враження",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-23:i17:audio"
+        ],
+        "accessibilityLabel": "Повторення: підкресліть враження",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-23:i17:audio",
+            "transcript": "This condition is so important."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This condition is so important.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-19:session-23:word:minimum",
+      "correctText": "minimum",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-23:i01",
+      "correctText": "May I check the minimum age?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-23:i02",
+      "correctText": "May I check the minimum age?",
+      "correctResponseId": "en:lesson-19:session-23:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-23:i03",
+      "correctText": "May I",
+      "correctResponseId": "en:lesson-19:session-23:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-23:word:maximum",
+      "correctText": "maximum",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-23:i04",
+      "correctText": "May I check the maximum weight?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-23:i05",
+      "correctText": "May I check the maximum weight?",
+      "correctResponseId": "en:lesson-19:session-23:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-23:i06",
+      "correctText": "May I",
+      "correctResponseId": "en:lesson-19:session-23:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-23:word:condition",
+      "correctText": "condition",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-23:i07",
+      "correctText": "May I ask about this condition?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-23:i08",
+      "correctText": "May I ask about this condition?",
+      "correctResponseId": "en:lesson-19:session-23:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-23:i09",
+      "correctText": "May I",
+      "correctResponseId": "en:lesson-19:session-23:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-23:word:requirement",
+      "correctText": "requirement",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-23:i10",
+      "correctText": "May I check this requirement?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-23:i11",
+      "correctText": "May I check this requirement?",
+      "correctResponseId": "en:lesson-19:session-23:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-23:i12",
+      "correctText": "May I",
+      "correctResponseId": "en:lesson-19:session-23:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-23:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-23:i14",
+      "correctText": "At twenty, I could understand these conditions.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-23:i15",
+      "correctText": "We are going to check the maximum weight.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-23:i16",
+      "correctText": "I can explain this requirement.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-23:i17",
+      "correctText": "This condition is so important.",
+      "correctResponseId": null
+    }
+  ]
+}

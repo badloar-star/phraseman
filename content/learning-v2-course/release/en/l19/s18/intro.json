@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "May I + base verb?",
+    "uk": "May I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Переключить канал",
+        "uk": "Перемкнути канал"
+      },
+      "bodyByLocale": {
+        "ru": "Channel здесь — телевизионный канал. В гостях вы хотите переключить телевизор и вежливо спрашиваете хозяина. May I + начальная форма глагола? — вежливо спрашиваем разрешение. May стоит перед I, а после I идёт глагол без to. Это более формальный вариант, чем Can I…?, но Can I тоже употребляют для разрешения.",
+        "uk": "Channel тут — телевізійний канал. У гостях ви хочете перемкнути телевізор і ввічливо питаєте господаря. May I + початкова форма дієслова? — ввічливо запитуємо дозволу. May стоїть перед I, а після I йде дієслово без to. Це формальніший варіант, ніж Can I…?, але Can I також уживають для дозволу."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-18:intro1:r1",
+              "text": "May I change the channel?"
+            },
+            {
+              "responseId": "en:lesson-19:session-18:intro1:r2",
+              "text": "May I to change the channel?"
+            },
+            {
+              "responseId": "en:lesson-19:session-18:intro1:r3",
+              "text": "I may change the channel?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-18:intro1:r1",
+              "text": "May I change the channel?"
+            },
+            {
+              "responseId": "en:lesson-19:session-18:intro1:r2",
+              "text": "May I to change the channel?"
+            },
+            {
+              "responseId": "en:lesson-19:session-18:intro1:r3",
+              "text": "I may change the channel?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Посмотреть сериал",
+        "uk": "Подивитися серіал"
+      },
+      "bodyByLocale": {
+        "ru": "Series — сериал из нескольких выпусков. Это слово заканчивается на s даже когда речь об одном сериале: this series. Вы просите разрешения посмотреть его. May I + начальная форма глагола? — вежливо спрашиваем разрешение. May стоит перед I, а после I идёт глагол без to. Это более формальный вариант, чем Can I…?, но Can I тоже употребляют для разрешения.",
+        "uk": "Series — серіал із кількох випусків. Це слово закінчується на s навіть коли йдеться про один серіал: this series. Ви просите дозволу подивитися його. May I + початкова форма дієслова? — ввічливо запитуємо дозволу. May стоїть перед I, а після I йде дієслово без to. Це формальніший варіант, ніж Can I…?, але Can I також уживають для дозволу."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-18:intro2:r1",
+              "text": "May I watch this series?"
+            },
+            {
+              "responseId": "en:lesson-19:session-18:intro2:r2",
+              "text": "May I to watch this series?"
+            },
+            {
+              "responseId": "en:lesson-19:session-18:intro2:r3",
+              "text": "I may watch this series?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-18:intro2:r1",
+              "text": "May I watch this series?"
+            },
+            {
+              "responseId": "en:lesson-19:session-18:intro2:r2",
+              "text": "May I to watch this series?"
+            },
+            {
+              "responseId": "en:lesson-19:session-18:intro2:r3",
+              "text": "I may watch this series?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ещё одна серия",
+        "uk": "Ще одна серія"
+      },
+      "bodyByLocale": {
+        "ru": "Episode — одна серия или выпуск. Remote control — пульт. После серии вы хотите продолжить просмотр и спрашиваете, можно ли воспользоваться пультом. May I + начальная форма глагола? — вежливо спрашиваем разрешение. May стоит перед I, а после I идёт глагол без to. Это более формальный вариант, чем Can I…?, но Can I тоже употребляют для разрешения.",
+        "uk": "Episode — одна серія або випуск. Remote control — пульт. Після серії ви хочете продовжити перегляд і питаєте, чи можна скористатися пультом. May I + початкова форма дієслова? — ввічливо запитуємо дозволу. May стоїть перед I, а після I йде дієслово без to. Це формальніший варіант, ніж Can I…?, але Can I також уживають для дозволу."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-18:intro3:r1",
+              "text": "May I use the remote control?"
+            },
+            {
+              "responseId": "en:lesson-19:session-18:intro3:r2",
+              "text": "May I to use the remote control?"
+            },
+            {
+              "responseId": "en:lesson-19:session-18:intro3:r3",
+              "text": "I may use the remote control?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-18:intro3:r1",
+              "text": "May I use the remote control?"
+            },
+            {
+              "responseId": "en:lesson-19:session-18:intro3:r2",
+              "text": "May I to use the remote control?"
+            },
+            {
+              "responseId": "en:lesson-19:session-18:intro3:r3",
+              "text": "I may use the remote control?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c1820eea235f7f7a0d5afe13e43567de4818aa1c239e5d5937d6262fb0977cbe"
+}

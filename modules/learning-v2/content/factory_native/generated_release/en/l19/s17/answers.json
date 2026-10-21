@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-17:word:sample",
+    "correctText": "sample",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-17:i01",
+    "correctText": "May I have a sample?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-17:i02",
+    "correctText": "May I have a sample?",
+    "correctResponseId": "en:lesson-19:session-17:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-17:i03",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-17:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-17:word:comment",
+    "correctText": "comment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-17:i04",
+    "correctText": "May I make a comment?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-17:i05",
+    "correctText": "May I make a comment?",
+    "correctResponseId": "en:lesson-19:session-17:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-17:i06",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-17:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-17:word:mention",
+    "correctText": "mention",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-17:i07",
+    "correctText": "May I mention your name?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-17:i08",
+    "correctText": "May I mention your name?",
+    "correctResponseId": "en:lesson-19:session-17:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-17:i09",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-17:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-17:word:extend",
+    "correctText": "extend",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-17:i10",
+    "correctText": "May I extend my stay?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-17:i11",
+    "correctText": "May I extend my stay?",
+    "correctResponseId": "en:lesson-19:session-17:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-17:i12",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-17:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-17:i13",
+    "correctText": "en:lesson-19:session-17:i13:p1=sample\nen:lesson-19:session-17:i13:p2=comment\nen:lesson-19:session-17:i13:p3=mention\nen:lesson-19:session-17:i13:p4=extend",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-17:i14",
+    "correctText": "May I have a sample?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-17:i15",
+    "correctText": "May I make a comment?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-17:i16",
+    "correctText": "May I mention your name?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-17:i17",
+    "correctText": "May I extend my stay?",
+    "correctResponseId": null
+  }
+]

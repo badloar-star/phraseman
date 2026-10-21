@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-20:word:reasonable",
+    "correctText": "reasonable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-20:i01",
+    "correctText": "May I suggest a reasonable price?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-20:i02",
+    "correctText": "May I suggest a reasonable price?",
+    "correctResponseId": "en:lesson-19:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-20:i03",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-20:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-20:word:ordinary",
+    "correctText": "ordinary",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-20:i04",
+    "correctText": "May I wear ordinary clothes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-20:i05",
+    "correctText": "May I wear ordinary clothes?",
+    "correctResponseId": "en:lesson-19:session-20:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-20:i06",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-20:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-20:word:basic",
+    "correctText": "basic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-20:i07",
+    "correctText": "May I ask a basic question?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-20:i08",
+    "correctText": "May I ask a basic question?",
+    "correctResponseId": "en:lesson-19:session-20:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-20:i09",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-20:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-20:word:original",
+    "correctText": "original",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-20:i10",
+    "correctText": "May I see the original photo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-20:i11",
+    "correctText": "May I see the original photo?",
+    "correctResponseId": "en:lesson-19:session-20:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-20:i12",
+    "correctText": "May I",
+    "correctResponseId": "en:lesson-19:session-20:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-20:i13",
+    "correctText": "en:lesson-19:session-20:i13:p1=reasonable\nen:lesson-19:session-20:i13:p2=ordinary\nen:lesson-19:session-20:i13:p3=basic\nen:lesson-19:session-20:i13:p4=original",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-20:i14",
+    "correctText": "At twenty, I could suggest a reasonable price.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-20:i15",
+    "correctText": "We are going to wear ordinary clothes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-20:i16",
+    "correctText": "I can find the original photo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-20:i17",
+    "correctText": "This price is so high.",
+    "correctResponseId": null
+  }
+]

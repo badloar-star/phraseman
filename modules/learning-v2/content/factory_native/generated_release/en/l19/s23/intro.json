@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "May I + base verb?",
+    "uk": "May I + base verb?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "С какого возраста",
+        "uk": "З якого віку"
+      },
+      "bodyByLocale": {
+        "ru": "Minimum — минимальный. Вы хотите записать ребёнка в спортивный клуб и уточняете, с какого возраста принимают детей. Minimum age — нижняя возрастная граница. May I + начальная форма глагола? — вежливо спрашиваем разрешение. May стоит перед I, а после I идёт глагол без to. Это более формальный вариант, чем Can I…?, но Can I тоже употребляют для разрешения.",
+        "uk": "Minimum — мінімальний. Ви хочете записати дитину до спортивного клубу й уточнюєте, з якого віку приймають дітей. Minimum age — нижня вікова межа. May I + початкова форма дієслова? — ввічливо запитуємо дозволу. May стоїть перед I, а після I йде дієслово без to. Це формальніший варіант, ніж Can I…?, але Can I також уживають для дозволу."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-23:intro1:r1",
+              "text": "May I check the minimum age?"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:intro1:r2",
+              "text": "May I to check the minimum age?"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:intro1:r3",
+              "text": "I may check the minimum age?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-23:intro1:r1",
+              "text": "May I check the minimum age?"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:intro1:r2",
+              "text": "May I to check the minimum age?"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:intro1:r3",
+              "text": "I may check the minimum age?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Какой вес разрешён",
+        "uk": "Яку вагу дозволено"
+      },
+      "bodyByLocale": {
+        "ru": "Maximum — максимальный. Перед полётом вы проверяете, какой вес багажа разрешён. Maximum weight — верхняя граница, которую нельзя превышать по правилам этой поездки. May I + начальная форма глагола? — вежливо спрашиваем разрешение. May стоит перед I, а после I идёт глагол без to. Это более формальный вариант, чем Can I…?, но Can I тоже употребляют для разрешения.",
+        "uk": "Maximum — максимальний. Перед польотом ви перевіряєте, яку вагу багажу дозволено. Maximum weight — верхня межа, яку не можна перевищувати за правилами цієї поїздки. May I + початкова форма дієслова? — ввічливо запитуємо дозволу. May стоїть перед I, а після I йде дієслово без to. Це формальніший варіант, ніж Can I…?, але Can I також уживають для дозволу."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-23:intro2:r1",
+              "text": "May I check the maximum weight?"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:intro2:r2",
+              "text": "May I to check the maximum weight?"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:intro2:r3",
+              "text": "I may check the maximum weight?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-23:intro2:r1",
+              "text": "May I check the maximum weight?"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:intro2:r2",
+              "text": "May I to check the maximum weight?"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:intro2:r3",
+              "text": "I may check the maximum weight?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Условия и требования",
+        "uk": "Умови й вимоги"
+      },
+      "bodyByLocale": {
+        "ru": "Condition здесь — условие: в договоре аренды есть пункт, который вам нужно уточнить. Requirement — требование: например, какой документ нужно показать при получении машины. Несколько требований — requirements. May I + начальная форма глагола? — вежливо спрашиваем разрешение. May стоит перед I, а после I идёт глагол без to. Это более формальный вариант, чем Can I…?, но Can I тоже употребляют для разрешения.",
+        "uk": "Condition тут — умова: у договорі оренди є пункт, який вам потрібно уточнити. Requirement — вимога: наприклад, який документ потрібно показати під час отримання машини. Кілька вимог — requirements. May I + початкова форма дієслова? — ввічливо запитуємо дозволу. May стоїть перед I, а після I йде дієслово без to. Це формальніший варіант, ніж Can I…?, але Can I також уживають для дозволу."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-23:intro3:r1",
+              "text": "May I check this requirement?"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:intro3:r2",
+              "text": "May I to check this requirement?"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:intro3:r3",
+              "text": "I may check this requirement?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-23:intro3:r1",
+              "text": "May I check this requirement?"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:intro3:r2",
+              "text": "May I to check this requirement?"
+            },
+            {
+              "responseId": "en:lesson-19:session-23:intro3:r3",
+              "text": "I may check this requirement?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ca3143030946c8dd3a040abaef63440d5eedef13e5b447efc89d5acbabe264f4"
+}

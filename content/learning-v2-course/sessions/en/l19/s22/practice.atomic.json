@@ -1,0 +1,2337 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-19:session-22",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-19:session-22:word:exact",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — exact",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:word:exact:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — exact",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:word:exact:audio",
+            "transcript": "exact"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-22:word:exact:r1",
+              "targetText": "exact",
+              "meaningByLocale": {
+                "ru": "точный.",
+                "uk": "точний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "exact",
+            "definitionByLocale": {
+              "ru": "точный.",
+              "uk": "точний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с May I: «Можно мне уточнить точную цену?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с May I: «Можно мне уточнить точную цену?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I check the exact price?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне уточнить точную цену?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені уточнити точну ціну?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "check",
+            "the",
+            "exact",
+            "price"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-22:i02:r1",
+            "text": "May I check the exact price?"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i02:r2",
+            "text": "Can I check the exact price?"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i02:r3",
+            "text": "May we check the exact price?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:i02:audio",
+            "transcript": "May I check the exact price?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-22:i02:r1",
+              "targetText": "May I check the exact price?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i02:r2",
+              "targetText": "Can I check the exact price?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i02:r3",
+              "targetText": "May we check the exact price?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-22:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I check the exact price?",
+                "uk": "У записі звучить May I check the exact price?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I check the exact price?",
+                "uk": "У записі звучить May I check the exact price?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-22:i03:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i03:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i03:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ check the exact price?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-22:i03:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i03:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i03:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-22:i03:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i03:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:word:approximate",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — approximate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:word:approximate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — approximate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:word:approximate:audio",
+            "transcript": "approximate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-22:word:approximate:r1",
+              "targetText": "approximate",
+              "meaningByLocale": {
+                "ru": "приблизительный.",
+                "uk": "приблизний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "approximate",
+            "definitionByLocale": {
+              "ru": "приблизительный.",
+              "uk": "приблизний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с May I: «Можно мне узнать приблизительную стоимость?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с May I: «Можно мне узнать приблизительную стоимость?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I ask the approximate cost?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне узнать приблизительную стоимость?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені дізнатися приблизну вартість?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "ask",
+            "the",
+            "approximate",
+            "cost"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-22:i05:r1",
+            "text": "May I ask the approximate cost?"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i05:r2",
+            "text": "Can I ask the approximate cost?"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i05:r3",
+            "text": "May we ask the approximate cost?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:i05:audio",
+            "transcript": "May I ask the approximate cost?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-22:i05:r1",
+              "targetText": "May I ask the approximate cost?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i05:r2",
+              "targetText": "Can I ask the approximate cost?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i05:r3",
+              "targetText": "May we ask the approximate cost?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-22:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I ask the approximate cost?",
+                "uk": "У записі звучить May I ask the approximate cost?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I ask the approximate cost?",
+                "uk": "У записі звучить May I ask the approximate cost?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-22:i06:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i06:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i06:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ ask the approximate cost?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-22:i06:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i06:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i06:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-22:i06:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i06:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:word:amount",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — amount",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:word:amount:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — amount",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:word:amount:audio",
+            "transcript": "amount"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-22:word:amount:r1",
+              "targetText": "amount",
+              "meaningByLocale": {
+                "ru": "количество, сумма.",
+                "uk": "кількість, сума."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "amount",
+            "definitionByLocale": {
+              "ru": "количество, сумма.",
+              "uk": "кількість, сума."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с May I: «Можно мне заплатить эту сумму?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с May I: «Можно мне заплатить эту сумму?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I pay this amount?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне заплатить эту сумму?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені заплатити цю суму?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "pay",
+            "this",
+            "amount"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-22:i08:r1",
+            "text": "May I pay this amount?"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i08:r2",
+            "text": "Can I pay this amount?"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i08:r3",
+            "text": "May we pay this amount?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:i08:audio",
+            "transcript": "May I pay this amount?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-22:i08:r1",
+              "targetText": "May I pay this amount?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i08:r2",
+              "targetText": "Can I pay this amount?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i08:r3",
+              "targetText": "May we pay this amount?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-22:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I pay this amount?",
+                "uk": "У записі звучить May I pay this amount?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I pay this amount?",
+                "uk": "У записі звучить May I pay this amount?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-22:i09:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i09:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i09:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ pay this amount?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-22:i09:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i09:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i09:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-22:i09:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i09:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:word:average",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — average",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:word:average:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — average",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:word:average:audio",
+            "transcript": "average"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-22:word:average:r1",
+              "targetText": "average",
+              "meaningByLocale": {
+                "ru": "средний.",
+                "uk": "середній."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "average",
+            "definitionByLocale": {
+              "ru": "средний.",
+              "uk": "середній."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежливо спросите с May I: «Можно мне узнать о средней арендной плате?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежливо спросите с May I: «Можно мне узнать о средней арендной плате?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I ask about the average rent?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне узнать о средней арендной плате?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені дізнатися про середню орендну плату?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "ask",
+            "about",
+            "the",
+            "average",
+            "rent"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-22:i11:r1",
+            "text": "May I ask about the average rent?"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i11:r2",
+            "text": "Can I ask about the average rent?"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i11:r3",
+            "text": "May we ask about the average rent?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:i11:audio",
+            "transcript": "May I ask about the average rent?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-22:i11:r1",
+              "targetText": "May I ask about the average rent?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i11:r2",
+              "targetText": "Can I ask about the average rent?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i11:r3",
+              "targetText": "May we ask about the average rent?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-22:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I ask about the average rent?",
+                "uk": "У записі звучить May I ask about the average rent?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I ask about the average rent?",
+                "uk": "У записі звучить May I ask about the average rent?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните вежливый вопрос о разрешении.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-22:i12:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i12:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i12:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните вежливый вопрос о разрешении.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ ask about the average rent?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-22:i12:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i12:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i12:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Начните вежливый вопрос о разрешении.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-22:i12:r2",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i12:r3",
+              "correct": false,
+              "testedDimension": "Начните вежливый вопрос о разрешении.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-22:i13:p1",
+              "target": "exact",
+              "meaningByLocale": {
+                "ru": "точный",
+                "uk": "точний"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-22:i13:p2",
+              "target": "approximate",
+              "meaningByLocale": {
+                "ru": "приблизительный",
+                "uk": "приблизний"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-22:i13:p3",
+              "target": "amount",
+              "meaningByLocale": {
+                "ru": "количество, сумма",
+                "uk": "кількість, сума"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-22:i13:p4",
+              "target": "average",
+              "meaningByLocale": {
+                "ru": "средний",
+                "uk": "середній"
+              }
+            }
+          ],
+          "leftColumn": [
+            "exact",
+            "approximate",
+            "amount",
+            "average"
+          ],
+          "rightColumn": [
+            "точный",
+            "приблизительный",
+            "количество, сумма",
+            "средний"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное умение в прошлом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное умение в прошлом",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:i14:audio",
+            "transcript": "At twenty, I could pay the rent."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "At twenty, I could pay the rent.",
+          "orderedTokens": [
+            "At",
+            "twenty,",
+            "I",
+            "could",
+            "pay",
+            "the",
+            "rent"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное намерение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное намерение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:i15:audio",
+            "transcript": "We are going to check the exact price."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to check the exact price.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "check",
+            "the",
+            "exact",
+            "price"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: скажите, что умеете делать сейчас",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:i16:audio"
+        ],
+        "accessibilityLabel": "Повторение: скажите, что умеете делать сейчас",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:i16:audio",
+            "transcript": "I can pay this amount."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can pay this amount.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: подчеркните впечатление",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:i17:audio"
+        ],
+        "accessibilityLabel": "Повторение: подчеркните впечатление",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:i17:audio",
+            "transcript": "The average rent is so high."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The average rent is so high.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-19:session-22:word:exact",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — exact",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:word:exact:audio"
+        ],
+        "accessibilityLabel": "Картка слова — exact",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:word:exact:audio",
+            "transcript": "exact"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-22:word:exact:r1",
+              "targetText": "exact",
+              "meaningByLocale": {
+                "ru": "точный.",
+                "uk": "точний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "exact",
+            "definitionByLocale": {
+              "ru": "точный.",
+              "uk": "точний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з May I: «Можна мені уточнити точну ціну?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з May I: «Можна мені уточнити точну ціну?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I check the exact price?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне уточнить точную цену?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені уточнити точну ціну?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "check",
+            "the",
+            "exact",
+            "price"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-22:i02:r1",
+            "text": "May I check the exact price?"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i02:r2",
+            "text": "Can I check the exact price?"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i02:r3",
+            "text": "May we check the exact price?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:i02:audio",
+            "transcript": "May I check the exact price?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-22:i02:r1",
+              "targetText": "May I check the exact price?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i02:r2",
+              "targetText": "Can I check the exact price?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i02:r3",
+              "targetText": "May we check the exact price?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-22:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I check the exact price?",
+                "uk": "У записі звучить May I check the exact price?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I check the exact price?",
+                "uk": "У записі звучить May I check the exact price?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-22:i03:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i03:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i03:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ check the exact price?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-22:i03:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i03:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i03:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-22:i03:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i03:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:word:approximate",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — approximate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:word:approximate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — approximate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:word:approximate:audio",
+            "transcript": "approximate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-22:word:approximate:r1",
+              "targetText": "approximate",
+              "meaningByLocale": {
+                "ru": "приблизительный.",
+                "uk": "приблизний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "approximate",
+            "definitionByLocale": {
+              "ru": "приблизительный.",
+              "uk": "приблизний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з May I: «Можна мені дізнатися приблизну вартість?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з May I: «Можна мені дізнатися приблизну вартість?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I ask the approximate cost?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне узнать приблизительную стоимость?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені дізнатися приблизну вартість?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "ask",
+            "the",
+            "approximate",
+            "cost"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-22:i05:r1",
+            "text": "May I ask the approximate cost?"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i05:r2",
+            "text": "Can I ask the approximate cost?"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i05:r3",
+            "text": "May we ask the approximate cost?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:i05:audio",
+            "transcript": "May I ask the approximate cost?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-22:i05:r1",
+              "targetText": "May I ask the approximate cost?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i05:r2",
+              "targetText": "Can I ask the approximate cost?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i05:r3",
+              "targetText": "May we ask the approximate cost?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-22:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I ask the approximate cost?",
+                "uk": "У записі звучить May I ask the approximate cost?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I ask the approximate cost?",
+                "uk": "У записі звучить May I ask the approximate cost?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-22:i06:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i06:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i06:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ ask the approximate cost?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-22:i06:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i06:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i06:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-22:i06:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i06:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:word:amount",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — amount",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:word:amount:audio"
+        ],
+        "accessibilityLabel": "Картка слова — amount",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:word:amount:audio",
+            "transcript": "amount"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-22:word:amount:r1",
+              "targetText": "amount",
+              "meaningByLocale": {
+                "ru": "количество, сумма.",
+                "uk": "кількість, сума."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "amount",
+            "definitionByLocale": {
+              "ru": "количество, сумма.",
+              "uk": "кількість, сума."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з May I: «Можна мені заплатити цю суму?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з May I: «Можна мені заплатити цю суму?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I pay this amount?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне заплатить эту сумму?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені заплатити цю суму?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "pay",
+            "this",
+            "amount"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-22:i08:r1",
+            "text": "May I pay this amount?"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i08:r2",
+            "text": "Can I pay this amount?"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i08:r3",
+            "text": "May we pay this amount?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:i08:audio",
+            "transcript": "May I pay this amount?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-22:i08:r1",
+              "targetText": "May I pay this amount?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i08:r2",
+              "targetText": "Can I pay this amount?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i08:r3",
+              "targetText": "May we pay this amount?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-22:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I pay this amount?",
+                "uk": "У записі звучить May I pay this amount?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I pay this amount?",
+                "uk": "У записі звучить May I pay this amount?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-22:i09:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i09:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i09:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ pay this amount?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-22:i09:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i09:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i09:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-22:i09:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i09:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:word:average",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — average",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:word:average:audio"
+        ],
+        "accessibilityLabel": "Картка слова — average",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:word:average:audio",
+            "transcript": "average"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-22:word:average:r1",
+              "targetText": "average",
+              "meaningByLocale": {
+                "ru": "средний.",
+                "uk": "середній."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "average",
+            "definitionByLocale": {
+              "ru": "средний.",
+              "uk": "середній."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ввічливо запитайте з May I: «Можна мені дізнатися про середню орендну плату?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ввічливо запитайте з May I: «Можна мені дізнатися про середню орендну плату?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "May I ask about the average rent?",
+          "localizedMeaning": {
+            "ru": "Вежливо спросите с May I: «Можно мне узнать о средней арендной плате?»",
+            "uk": "Ввічливо запитайте з May I: «Можна мені дізнатися про середню орендну плату?»"
+          },
+          "orderedTokens": [
+            "May",
+            "I",
+            "ask",
+            "about",
+            "the",
+            "average",
+            "rent"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-22:i11:r1",
+            "text": "May I ask about the average rent?"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i11:r2",
+            "text": "Can I ask about the average rent?"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i11:r3",
+            "text": "May we ask about the average rent?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:i11:audio",
+            "transcript": "May I ask about the average rent?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-22:i11:r1",
+              "targetText": "May I ask about the average rent?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i11:r2",
+              "targetText": "Can I ask about the average rent?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i11:r3",
+              "targetText": "May we ask about the average rent?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-22:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I ask about the average rent?",
+                "uk": "У записі звучить May I ask about the average rent?"
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит May I ask about the average rent?",
+                "uk": "У записі звучить May I ask about the average rent?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть ввічливе питання про дозвіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-22:i12:r1",
+            "text": "May I"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i12:r2",
+            "text": "I may"
+          },
+          {
+            "responseId": "en:lesson-19:session-22:i12:r3",
+            "text": "May I to"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть ввічливе питання про дозвіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните вежливый вопрос о разрешении.",
+            "uk": "Почніть ввічливе питання про дозвіл."
+          },
+          "gappedTargetPhrase": "___ ask about the average rent?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-22:i12:r1",
+              "text": "May I"
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i12:r2",
+              "text": "I may"
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i12:r3",
+              "text": "May I to"
+            }
+          ],
+          "testedDimension": "Почніть ввічливе питання про дозвіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-22:i12:r2",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "В вопросе May стоит перед I.",
+                "uk": "У питанні May стоїть перед I."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-22:i12:r3",
+              "correct": false,
+              "testedDimension": "Почніть ввічливе питання про дозвіл.",
+              "feedbackByLocale": {
+                "ru": "После May I не нужно to.",
+                "uk": "Після May I не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-22:i13:p1",
+              "target": "exact",
+              "meaningByLocale": {
+                "ru": "точный",
+                "uk": "точний"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-22:i13:p2",
+              "target": "approximate",
+              "meaningByLocale": {
+                "ru": "приблизительный",
+                "uk": "приблизний"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-22:i13:p3",
+              "target": "amount",
+              "meaningByLocale": {
+                "ru": "количество, сумма",
+                "uk": "кількість, сума"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-22:i13:p4",
+              "target": "average",
+              "meaningByLocale": {
+                "ru": "средний",
+                "uk": "середній"
+              }
+            }
+          ],
+          "leftColumn": [
+            "exact",
+            "approximate",
+            "amount",
+            "average"
+          ],
+          "rightColumn": [
+            "точний",
+            "приблизний",
+            "кількість, сума",
+            "середній"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почуте вміння в минулому",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почуте вміння в минулому",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:i14:audio",
+            "transcript": "At twenty, I could pay the rent."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "At twenty, I could pay the rent.",
+          "orderedTokens": [
+            "At",
+            "twenty,",
+            "I",
+            "could",
+            "pay",
+            "the",
+            "rent"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий намір",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий намір",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:i15:audio",
+            "transcript": "We are going to check the exact price."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to check the exact price.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "check",
+            "the",
+            "exact",
+            "price"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: скажіть, що вмієте робити зараз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:i16:audio"
+        ],
+        "accessibilityLabel": "Повторення: скажіть, що вмієте робити зараз",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:i16:audio",
+            "transcript": "I can pay this amount."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can pay this amount.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-22:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: підкресліть враження",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-22:i17:audio"
+        ],
+        "accessibilityLabel": "Повторення: підкресліть враження",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-22:i17:audio",
+            "transcript": "The average rent is so high."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The average rent is so high.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-19:session-22:word:exact",
+      "correctText": "exact",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-22:i01",
+      "correctText": "May I check the exact price?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-22:i02",
+      "correctText": "May I check the exact price?",
+      "correctResponseId": "en:lesson-19:session-22:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-22:i03",
+      "correctText": "May I",
+      "correctResponseId": "en:lesson-19:session-22:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-22:word:approximate",
+      "correctText": "approximate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-22:i04",
+      "correctText": "May I ask the approximate cost?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-22:i05",
+      "correctText": "May I ask the approximate cost?",
+      "correctResponseId": "en:lesson-19:session-22:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-22:i06",
+      "correctText": "May I",
+      "correctResponseId": "en:lesson-19:session-22:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-22:word:amount",
+      "correctText": "amount",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-22:i07",
+      "correctText": "May I pay this amount?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-22:i08",
+      "correctText": "May I pay this amount?",
+      "correctResponseId": "en:lesson-19:session-22:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-22:i09",
+      "correctText": "May I",
+      "correctResponseId": "en:lesson-19:session-22:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-22:word:average",
+      "correctText": "average",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-22:i10",
+      "correctText": "May I ask about the average rent?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-22:i11",
+      "correctText": "May I ask about the average rent?",
+      "correctResponseId": "en:lesson-19:session-22:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-22:i12",
+      "correctText": "May I",
+      "correctResponseId": "en:lesson-19:session-22:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-22:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-22:i14",
+      "correctText": "At twenty, I could pay the rent.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-22:i15",
+      "correctText": "We are going to check the exact price.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-22:i16",
+      "correctText": "I can pay this amount.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-22:i17",
+      "correctText": "The average rent is so high.",
+      "correctResponseId": null
+    }
+  ]
+}

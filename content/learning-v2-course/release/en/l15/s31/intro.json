@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "going to / Present Continuous: intention and arrangement",
+    "uk": "going to / Present Continuous: intention and arrangement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пока намерение",
+        "uk": "Поки намір"
+      },
+      "bodyByLocale": {
+        "ru": "origami — складывание фигурок из бумаги. Повторим going to для намерения. Вы решили попробовать складывать бумажные фигурки; занятие ещё не выбрали. I am going to try origami. — Я собираюсь попробовать оригами. Передайте намерение через going to.",
+        "uk": "origami — складання фігурок із паперу. Повторімо going to для наміру. Ви вирішили спробувати складати паперові фігурки; заняття ще не вибрали. I am going to try origami. — Я збираюся спробувати оригамі. Передайте намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-31:intro1:r1",
+              "text": "I am going to try origami."
+            },
+            {
+              "responseId": "en:lesson-15:session-31:intro1:r2",
+              "text": "I am trying origami."
+            },
+            {
+              "responseId": "en:lesson-15:session-31:intro1:r3",
+              "text": "I is going to try origami."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-31:intro1:r1",
+              "text": "I am going to try origami."
+            },
+            {
+              "responseId": "en:lesson-15:session-31:intro1:r2",
+              "text": "I am trying origami."
+            },
+            {
+              "responseId": "en:lesson-15:session-31:intro1:r3",
+              "text": "I is going to try origami."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже договорились",
+        "uk": "Уже домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "birdwatching — наблюдение за птицами. woodworking — изготовление вещей из дерева. Если время уже согласовано, потренируем Present Continuous. Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. We are going birdwatching on Saturday. — Мы идём наблюдать за птицами в субботу. Передайте договорённость через Present Continuous.",
+        "uk": "birdwatching — спостереження за птахами. woodworking — виготовлення речей із дерева. Якщо час уже узгоджено, потренуймо Present Continuous. Ви з друзями домовилися про суботню прогулянку для спостереження за птахами. We are going birdwatching on Saturday. — Ми йдемо спостерігати за птахами в суботу. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-31:intro2:r1",
+              "text": "We are going birdwatching on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-31:intro2:r2",
+              "text": "We are going to go birdwatching on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-31:intro2:r3",
+              "text": "We is going birdwatching on Saturday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-31:intro2:r1",
+              "text": "We are going birdwatching on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-31:intro2:r2",
+              "text": "We are going to go birdwatching on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-31:intro2:r3",
+              "text": "We is going birdwatching on Saturday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Известен день",
+        "uk": "Відомий день"
+      },
+      "bodyByLocale": {
+        "ru": "stargazing — наблюдение за звёздами. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. They are going stargazing tonight. — Они идут наблюдать за звёздами сегодня вечером. Передайте договорённость через Present Continuous.",
+        "uk": "stargazing — спостереження за зорями. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші батьки узгодили зустріч із клубом любителів зір на цей вечір. They are going stargazing tonight. — Вони йдуть спостерігати за зорями сьогодні ввечері. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-31:intro3:r1",
+              "text": "They are going stargazing tonight."
+            },
+            {
+              "responseId": "en:lesson-15:session-31:intro3:r2",
+              "text": "They are going to go stargazing tonight."
+            },
+            {
+              "responseId": "en:lesson-15:session-31:intro3:r3",
+              "text": "They is going stargazing tonight."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-31:intro3:r1",
+              "text": "They are going stargazing tonight."
+            },
+            {
+              "responseId": "en:lesson-15:session-31:intro3:r2",
+              "text": "They are going to go stargazing tonight."
+            },
+            {
+              "responseId": "en:lesson-15:session-31:intro3:r3",
+              "text": "They is going stargazing tonight."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4e763a139e2332ebd12df9e5e1b92dba87492ce229994d960b9e9eecb4a49d6d"
+}

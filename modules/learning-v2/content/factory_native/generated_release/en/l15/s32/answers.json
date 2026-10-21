@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-32:word:needlework",
+    "correctText": "needlework",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-32:i01",
+    "correctText": "I am going to try needlework.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-32:i02",
+    "correctText": "I am going to try needlework.",
+    "correctResponseId": "en:lesson-15:session-32:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-32:i03",
+    "correctText": "am going to try",
+    "correctResponseId": "en:lesson-15:session-32:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-32:word:scrapbooking",
+    "correctText": "scrapbooking",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-32:i04",
+    "correctText": "She is going to try scrapbooking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-32:i05",
+    "correctText": "She is going to try scrapbooking.",
+    "correctResponseId": "en:lesson-15:session-32:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-32:i06",
+    "correctText": "is going to try",
+    "correctResponseId": "en:lesson-15:session-32:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-32:word:calligraphy",
+    "correctText": "calligraphy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-32:i07",
+    "correctText": "We are trying calligraphy tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-32:i08",
+    "correctText": "We are trying calligraphy tomorrow.",
+    "correctResponseId": "en:lesson-15:session-32:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-32:i09",
+    "correctText": "are trying",
+    "correctResponseId": "en:lesson-15:session-32:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-32:word:flower-pressing",
+    "correctText": "flower pressing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-32:i10",
+    "correctText": "They are trying flower pressing on Sunday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-32:i11",
+    "correctText": "They are trying flower pressing on Sunday.",
+    "correctResponseId": "en:lesson-15:session-32:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-32:i12",
+    "correctText": "are trying",
+    "correctResponseId": "en:lesson-15:session-32:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-32:i13",
+    "correctText": "en:lesson-15:session-32:i13:p1=needlework\nen:lesson-15:session-32:i13:p2=scrapbooking\nen:lesson-15:session-32:i13:p3=calligraphy\nen:lesson-15:session-32:i13:p4=flower pressing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-32:i14",
+    "correctText": "I am going to make an album.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-32:i15",
+    "correctText": "We are attending a class tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-32:i16",
+    "correctText": "I am trying needlework tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-32:i17",
+    "correctText": "We are going to try calligraphy tomorrow.",
+    "correctResponseId": null
+  }
+]

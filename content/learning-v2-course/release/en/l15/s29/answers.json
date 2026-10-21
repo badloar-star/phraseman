@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-29:word:washer-fluid",
+    "correctText": "washer fluid",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-29:i01",
+    "correctText": "I am going to buy washer fluid.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-29:i02",
+    "correctText": "I am going to buy washer fluid.",
+    "correctResponseId": "en:lesson-15:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-29:i03",
+    "correctText": "am going to buy",
+    "correctResponseId": "en:lesson-15:session-29:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-29:word:tyre-pressure",
+    "correctText": "tyre pressure",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-29:i04",
+    "correctText": "She is going to check the tyre pressure.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-29:i05",
+    "correctText": "She is going to check the tyre pressure.",
+    "correctResponseId": "en:lesson-15:session-29:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-29:i06",
+    "correctText": "is going to check",
+    "correctResponseId": "en:lesson-15:session-29:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-29:word:hubcap",
+    "correctText": "hubcap",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-29:i07",
+    "correctText": "We are collecting the hubcap tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-29:i08",
+    "correctText": "We are collecting the hubcap tomorrow.",
+    "correctResponseId": "en:lesson-15:session-29:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-29:i09",
+    "correctText": "are collecting",
+    "correctResponseId": "en:lesson-15:session-29:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-29:word:jump-leads",
+    "correctText": "jump leads",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-29:i10",
+    "correctText": "They are bringing jump leads at nine tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-29:i11",
+    "correctText": "They are bringing jump leads at nine tomorrow.",
+    "correctResponseId": "en:lesson-15:session-29:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-29:i12",
+    "correctText": "are bringing",
+    "correctResponseId": "en:lesson-15:session-29:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-29:i13",
+    "correctText": "en:lesson-15:session-29:i13:p1=washer fluid\nen:lesson-15:session-29:i13:p2=tyre pressure\nen:lesson-15:session-29:i13:p3=hubcap\nen:lesson-15:session-29:i13:p4=jump leads",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-29:i14",
+    "correctText": "I am going to check the car.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-29:i15",
+    "correctText": "We are meeting the mechanic tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-29:i16",
+    "correctText": "I am buying washer fluid tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-29:i17",
+    "correctText": "We are going to collect the hubcap tomorrow.",
+    "correctResponseId": null
+  }
+]

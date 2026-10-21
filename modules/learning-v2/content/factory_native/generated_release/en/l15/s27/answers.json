@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-27:word:launderette",
+    "correctText": "launderette",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-27:i01",
+    "correctText": "I am going to use the launderette.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-27:i02",
+    "correctText": "I am going to use the launderette.",
+    "correctResponseId": "en:lesson-15:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-27:i03",
+    "correctText": "am going to use",
+    "correctResponseId": "en:lesson-15:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-27:word:dry-cleaning",
+    "correctText": "dry cleaning",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-27:i04",
+    "correctText": "She is going to pay for dry cleaning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-27:i05",
+    "correctText": "She is going to pay for dry cleaning.",
+    "correctResponseId": "en:lesson-15:session-27:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-27:i06",
+    "correctText": "is going to pay",
+    "correctResponseId": "en:lesson-15:session-27:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-27:word:key-cutting",
+    "correctText": "key cutting",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-27:i07",
+    "correctText": "We are paying for key cutting tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-27:i08",
+    "correctText": "We are paying for key cutting tomorrow.",
+    "correctResponseId": "en:lesson-15:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-27:i09",
+    "correctText": "are paying",
+    "correctResponseId": "en:lesson-15:session-27:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-27:word:shoe-repair",
+    "correctText": "shoe repair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-27:i10",
+    "correctText": "They are paying for shoe repair on Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-27:i11",
+    "correctText": "They are paying for shoe repair on Friday.",
+    "correctResponseId": "en:lesson-15:session-27:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-27:i12",
+    "correctText": "are paying",
+    "correctResponseId": "en:lesson-15:session-27:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-27:i13",
+    "correctText": "en:lesson-15:session-27:i13:p1=launderette\nen:lesson-15:session-27:i13:p2=dry cleaning\nen:lesson-15:session-27:i13:p3=key cutting\nen:lesson-15:session-27:i13:p4=shoe repair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-27:i14",
+    "correctText": "I am going to wash my clothes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-27:i15",
+    "correctText": "We are collecting the shoes on Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-27:i16",
+    "correctText": "I am using the launderette tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-27:i17",
+    "correctText": "We are going to pay for key cutting tomorrow.",
+    "correctResponseId": null
+  }
+]

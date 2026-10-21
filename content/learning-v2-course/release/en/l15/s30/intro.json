@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "going to / Present Continuous: intention and arrangement",
+    "uk": "going to / Present Continuous: intention and arrangement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пока намерение",
+        "uk": "Поки намір"
+      },
+      "bodyByLocale": {
+        "ru": "half-brother — брат, с которым общий только один родитель. Повторим going to для намерения. Вы решили позвонить брату, с которым у вас общая мама, но разные папы. I am going to call my half-brother. — Я собираюсь позвонить брату, с которым у нас один общий родитель. Передайте намерение через going to.",
+        "uk": "half-brother — брат, з яким спільний лише один із батьків. Повторімо going to для наміру. Ви вирішили зателефонувати братові, з яким у вас спільна мама, але різні тати. I am going to call my half-brother. — Я збираюся зателефонувати братові, з яким у нас один спільний із батьків. Передайте намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-30:intro1:r1",
+              "text": "I am going to call my half-brother."
+            },
+            {
+              "responseId": "en:lesson-15:session-30:intro1:r2",
+              "text": "I am calling my half-brother."
+            },
+            {
+              "responseId": "en:lesson-15:session-30:intro1:r3",
+              "text": "I is going to call my half-brother."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-30:intro1:r1",
+              "text": "I am going to call my half-brother."
+            },
+            {
+              "responseId": "en:lesson-15:session-30:intro1:r2",
+              "text": "I am calling my half-brother."
+            },
+            {
+              "responseId": "en:lesson-15:session-30:intro1:r3",
+              "text": "I is going to call my half-brother."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже договорились",
+        "uk": "Уже домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "son-in-law — муж дочери, зять. half-sister — сестра, с которой общий только один родитель. Если время уже согласовано, потренируем Present Continuous. Вы с супругом договорились встретиться с мужем вашей дочери в воскресенье. We are meeting our son-in-law on Sunday. — Мы встречаемся с зятем в воскресенье. Передайте договорённость через Present Continuous.",
+        "uk": "son-in-law — чоловік доньки, зять. half-sister — сестра, з якою спільний лише один із батьків. Якщо час уже узгоджено, потренуймо Present Continuous. Ви з чоловіком домовилися зустрітися з чоловіком вашої доньки в неділю. We are meeting our son-in-law on Sunday. — Ми зустрічаємося із зятем у неділю. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-30:intro2:r1",
+              "text": "We are meeting our son-in-law on Sunday."
+            },
+            {
+              "responseId": "en:lesson-15:session-30:intro2:r2",
+              "text": "We are going to meet our son-in-law on Sunday."
+            },
+            {
+              "responseId": "en:lesson-15:session-30:intro2:r3",
+              "text": "We is meeting our son-in-law on Sunday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-30:intro2:r1",
+              "text": "We are meeting our son-in-law on Sunday."
+            },
+            {
+              "responseId": "en:lesson-15:session-30:intro2:r2",
+              "text": "We are going to meet our son-in-law on Sunday."
+            },
+            {
+              "responseId": "en:lesson-15:session-30:intro2:r3",
+              "text": "We is meeting our son-in-law on Sunday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Известен день",
+        "uk": "Відомий день"
+      },
+      "bodyByLocale": {
+        "ru": "daughter-in-law — жена сына, невестка. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши родители согласовали встречу с женой вашего брата на завтра. They are meeting their daughter-in-law tomorrow. — Они встречаются с невесткой завтра. Передайте договорённость через Present Continuous.",
+        "uk": "daughter-in-law — дружина сина, невістка. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші батьки узгодили зустріч із дружиною вашого брата на завтра. They are meeting their daughter-in-law tomorrow. — Вони зустрічаються з невісткою завтра. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-30:intro3:r1",
+              "text": "They are meeting their daughter-in-law tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-30:intro3:r2",
+              "text": "They are going to meet their daughter-in-law tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-30:intro3:r3",
+              "text": "They is meeting their daughter-in-law tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-30:intro3:r1",
+              "text": "They are meeting their daughter-in-law tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-30:intro3:r2",
+              "text": "They are going to meet their daughter-in-law tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-30:intro3:r3",
+              "text": "They is meeting their daughter-in-law tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fada69d3b749f1b7eed0b73cd775163b68c1c899609ce3b2c11a1a013cd31f93"
+}

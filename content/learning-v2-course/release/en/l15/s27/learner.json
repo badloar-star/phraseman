@@ -1,0 +1,1129 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-27",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-27:word:launderette",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — launderette",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-27:word:launderette:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — launderette",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-27:word:launderette:audio",
+          "transcript": "launderette"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-27:word:launderette:r1",
+            "targetText": "launderette",
+            "meaningByLocale": {
+              "ru": "прачечная самообслуживания.",
+              "uk": "пральня самообслуговування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "launderette",
+          "definitionByLocale": {
+            "ru": "прачечная самообслуживания.",
+            "uk": "пральня самообслуговування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-27:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваша стиральная машина сломалась; вы решили постирать вещи в прачечной. Передайте намерение через going to. Скажите: «Я собираюсь воспользоваться прачечной самообслуживания».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша стиральная машина сломалась; вы решили постирать вещи в прачечной. Передайте намерение через going to. Скажите: «Я собираюсь воспользоваться прачечной самообслуживания».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to use the launderette.",
+        "localizedMeaning": {
+          "ru": "Ваша стиральная машина сломалась; вы решили постирать вещи в прачечной. Передайте намерение через going to. Скажите: «Я собираюсь воспользоваться прачечной самообслуживания».",
+          "uk": "Ваша пральна машина зламалася; ви вирішили випрати речі в пральні. Передайте намір через going to. Скажіть: «Я збираюся скористатися пральнею самообслуговування»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "use",
+          "the",
+          "launderette"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-27:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-27:i02:r1",
+          "text": "I am going to use the launderette."
+        },
+        {
+          "responseId": "en:lesson-15:session-27:i02:r2",
+          "text": "I am using the launderette."
+        },
+        {
+          "responseId": "en:lesson-15:session-27:i02:r3",
+          "text": "I is going to use the launderette."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-27:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-27:i02:audio",
+          "transcript": "I am going to use the launderette."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-27:i02:r1",
+            "targetText": "I am going to use the launderette.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i02:r2",
+            "targetText": "I am using the launderette.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i02:r3",
+            "targetText": "I is going to use the launderette.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-27:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to use the launderette.",
+              "uk": "У записі звучить I am going to use the launderette."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to use the launderette.",
+              "uk": "У записі звучить I am going to use the launderette."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-27:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваша стиральная машина сломалась; вы решили постирать вещи в прачечной. Передайте намерение через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-27:i03:r1",
+          "text": "am going to use"
+        },
+        {
+          "responseId": "en:lesson-15:session-27:i03:r2",
+          "text": "am using"
+        },
+        {
+          "responseId": "en:lesson-15:session-27:i03:r3",
+          "text": "use"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша стиральная машина сломалась; вы решили постирать вещи в прачечной. Передайте намерение через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваша стиральная машина сломалась; вы решили постирать вещи в прачечной. Передайте намерение через going to.",
+          "uk": "Ваша пральна машина зламалася; ви вирішили випрати речі в пральні. Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ the launderette.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-27:i03:r1",
+            "text": "am going to use"
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i03:r2",
+            "text": "am using"
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i03:r3",
+            "text": "use"
+          }
+        ],
+        "testedDimension": "Ваша стиральная машина сломалась; вы решили постирать вещи в прачечной. Передайте намерение через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-27:i03:r2",
+            "correct": false,
+            "testedDimension": "Ваша стиральная машина сломалась; вы решили постирать вещи в прачечной. Передайте намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i03:r3",
+            "correct": false,
+            "testedDimension": "Ваша стиральная машина сломалась; вы решили постирать вещи в прачечной. Передайте намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: am going to use.",
+              "uk": "Потрібна повна форма: am going to use."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-27:word:dry-cleaning",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dry cleaning",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-27:word:dry-cleaning:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dry cleaning",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-27:word:dry-cleaning:audio",
+          "transcript": "dry cleaning"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-27:word:dry-cleaning:r1",
+            "targetText": "dry cleaning",
+            "meaningByLocale": {
+              "ru": "химчистка одежды.",
+              "uk": "хімчистка одягу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dry cleaning",
+          "definitionByLocale": {
+            "ru": "химчистка одежды.",
+            "uk": "хімчистка одягу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-27:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваша мама решила отдать пальто в химчистку, но ещё не сделала этого. Передайте намерение через going to. Скажите: «Она собирается оплатить химчистку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша мама решила отдать пальто в химчистку, но ещё не сделала этого. Передайте намерение через going to. Скажите: «Она собирается оплатить химчистку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is going to pay for dry cleaning.",
+        "localizedMeaning": {
+          "ru": "Ваша мама решила отдать пальто в химчистку, но ещё не сделала этого. Передайте намерение через going to. Скажите: «Она собирается оплатить химчистку».",
+          "uk": "Ваша мама вирішила віддати пальто до хімчистки, але ще не зробила цього. Передайте намір через going to. Скажіть: «Вона збирається оплатити хімчистку»."
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "going",
+          "to",
+          "pay",
+          "for",
+          "dry",
+          "cleaning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-27:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-27:i05:r1",
+          "text": "She is going to pay for dry cleaning."
+        },
+        {
+          "responseId": "en:lesson-15:session-27:i05:r2",
+          "text": "She is paying for dry cleaning."
+        },
+        {
+          "responseId": "en:lesson-15:session-27:i05:r3",
+          "text": "She are going to pay for dry cleaning."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-27:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-27:i05:audio",
+          "transcript": "She is going to pay for dry cleaning."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-27:i05:r1",
+            "targetText": "She is going to pay for dry cleaning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i05:r2",
+            "targetText": "She is paying for dry cleaning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i05:r3",
+            "targetText": "She are going to pay for dry cleaning.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-27:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to pay for dry cleaning.",
+              "uk": "У записі звучить She is going to pay for dry cleaning."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to pay for dry cleaning.",
+              "uk": "У записі звучить She is going to pay for dry cleaning."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-27:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваша мама решила отдать пальто в химчистку, но ещё не сделала этого. Передайте намерение через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-27:i06:r1",
+          "text": "is going to pay"
+        },
+        {
+          "responseId": "en:lesson-15:session-27:i06:r2",
+          "text": "is paying"
+        },
+        {
+          "responseId": "en:lesson-15:session-27:i06:r3",
+          "text": "pay"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша мама решила отдать пальто в химчистку, но ещё не сделала этого. Передайте намерение через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваша мама решила отдать пальто в химчистку, но ещё не сделала этого. Передайте намерение через going to.",
+          "uk": "Ваша мама вирішила віддати пальто до хімчистки, але ще не зробила цього. Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "She ___ for dry cleaning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-27:i06:r1",
+            "text": "is going to pay"
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i06:r2",
+            "text": "is paying"
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i06:r3",
+            "text": "pay"
+          }
+        ],
+        "testedDimension": "Ваша мама решила отдать пальто в химчистку, но ещё не сделала этого. Передайте намерение через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-27:i06:r2",
+            "correct": false,
+            "testedDimension": "Ваша мама решила отдать пальто в химчистку, но ещё не сделала этого. Передайте намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i06:r3",
+            "correct": false,
+            "testedDimension": "Ваша мама решила отдать пальто в химчистку, но ещё не сделала этого. Передайте намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: is going to pay.",
+              "uk": "Потрібна повна форма: is going to pay."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-27:word:key-cutting",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — key cutting",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-27:word:key-cutting:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — key cutting",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-27:word:key-cutting:audio",
+          "transcript": "key cutting"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-27:word:key-cutting:r1",
+            "targetText": "key cutting",
+            "meaningByLocale": {
+              "ru": "изготовление копии ключа.",
+              "uk": "виготовлення копії ключа."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "key cutting",
+          "definitionByLocale": {
+            "ru": "изготовление копии ключа.",
+            "uk": "виготовлення копії ключа."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-27:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Мастер подтвердил заказ копии ключа; вы договорились прийти и оплатить его завтра. Передайте договорённость через Present Continuous. Скажите: «Мы оплачиваем изготовление копии ключа завтра».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мастер подтвердил заказ копии ключа; вы договорились прийти и оплатить его завтра. Передайте договорённость через Present Continuous. Скажите: «Мы оплачиваем изготовление копии ключа завтра».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are paying for key cutting tomorrow.",
+        "localizedMeaning": {
+          "ru": "Мастер подтвердил заказ копии ключа; вы договорились прийти и оплатить его завтра. Передайте договорённость через Present Continuous. Скажите: «Мы оплачиваем изготовление копии ключа завтра».",
+          "uk": "Майстер підтвердив замовлення копії ключа; ви домовилися прийти й оплатити його завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми оплачуємо виготовлення копії ключа завтра»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "paying",
+          "for",
+          "key",
+          "cutting",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-27:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-27:i08:r1",
+          "text": "We are paying for key cutting tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-27:i08:r2",
+          "text": "We are going to pay for key cutting tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-27:i08:r3",
+          "text": "We is paying for key cutting tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-27:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-27:i08:audio",
+          "transcript": "We are paying for key cutting tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-27:i08:r1",
+            "targetText": "We are paying for key cutting tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i08:r2",
+            "targetText": "We are going to pay for key cutting tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i08:r3",
+            "targetText": "We is paying for key cutting tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-27:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are paying for key cutting tomorrow.",
+              "uk": "У записі звучить We are paying for key cutting tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are paying for key cutting tomorrow.",
+              "uk": "У записі звучить We are paying for key cutting tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-27:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Мастер подтвердил заказ копии ключа; вы договорились прийти и оплатить его завтра. Передайте договорённость через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-27:i09:r1",
+          "text": "are paying"
+        },
+        {
+          "responseId": "en:lesson-15:session-27:i09:r2",
+          "text": "are going to pay"
+        },
+        {
+          "responseId": "en:lesson-15:session-27:i09:r3",
+          "text": "pay"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мастер подтвердил заказ копии ключа; вы договорились прийти и оплатить его завтра. Передайте договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мастер подтвердил заказ копии ключа; вы договорились прийти и оплатить его завтра. Передайте договорённость через Present Continuous.",
+          "uk": "Майстер підтвердив замовлення копії ключа; ви домовилися прийти й оплатити його завтра. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ for key cutting tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-27:i09:r1",
+            "text": "are paying"
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i09:r2",
+            "text": "are going to pay"
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i09:r3",
+            "text": "pay"
+          }
+        ],
+        "testedDimension": "Мастер подтвердил заказ копии ключа; вы договорились прийти и оплатить его завтра. Передайте договорённость через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-27:i09:r2",
+            "correct": false,
+            "testedDimension": "Мастер подтвердил заказ копии ключа; вы договорились прийти и оплатить его завтра. Передайте договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i09:r3",
+            "correct": false,
+            "testedDimension": "Мастер подтвердил заказ копии ключа; вы договорились прийти и оплатить его завтра. Передайте договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are paying.",
+              "uk": "Потрібна повна форма: are paying."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-27:word:shoe-repair",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — shoe repair",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-27:word:shoe-repair:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — shoe repair",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-27:word:shoe-repair:audio",
+          "transcript": "shoe repair"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-27:word:shoe-repair:r1",
+            "targetText": "shoe repair",
+            "meaningByLocale": {
+              "ru": "ремонт обуви.",
+              "uk": "ремонт взуття."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shoe repair",
+          "definitionByLocale": {
+            "ru": "ремонт обуви.",
+            "uk": "ремонт взуття."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-27:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваши родители договорились забрать и оплатить отремонтированную обувь в пятницу. Передайте договорённость через Present Continuous. Скажите: «Они оплачивают ремонт обуви в пятницу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваши родители договорились забрать и оплатить отремонтированную обувь в пятницу. Передайте договорённость через Present Continuous. Скажите: «Они оплачивают ремонт обуви в пятницу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are paying for shoe repair on Friday.",
+        "localizedMeaning": {
+          "ru": "Ваши родители договорились забрать и оплатить отремонтированную обувь в пятницу. Передайте договорённость через Present Continuous. Скажите: «Они оплачивают ремонт обуви в пятницу».",
+          "uk": "Ваші батьки домовилися забрати й оплатити відремонтоване взуття в п’ятницю. Передайте домовленість через Present Continuous. Скажіть: «Вони оплачують ремонт взуття в п’ятницю»."
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "paying",
+          "for",
+          "shoe",
+          "repair",
+          "on",
+          "Friday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-27:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-27:i11:r1",
+          "text": "They are paying for shoe repair on Friday."
+        },
+        {
+          "responseId": "en:lesson-15:session-27:i11:r2",
+          "text": "They are going to pay for shoe repair on Friday."
+        },
+        {
+          "responseId": "en:lesson-15:session-27:i11:r3",
+          "text": "They is paying for shoe repair on Friday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-27:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-27:i11:audio",
+          "transcript": "They are paying for shoe repair on Friday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-27:i11:r1",
+            "targetText": "They are paying for shoe repair on Friday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i11:r2",
+            "targetText": "They are going to pay for shoe repair on Friday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i11:r3",
+            "targetText": "They is paying for shoe repair on Friday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-27:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are paying for shoe repair on Friday.",
+              "uk": "У записі звучить They are paying for shoe repair on Friday."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are paying for shoe repair on Friday.",
+              "uk": "У записі звучить They are paying for shoe repair on Friday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-27:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваши родители договорились забрать и оплатить отремонтированную обувь в пятницу. Передайте договорённость через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-27:i12:r1",
+          "text": "are paying"
+        },
+        {
+          "responseId": "en:lesson-15:session-27:i12:r2",
+          "text": "are going to pay"
+        },
+        {
+          "responseId": "en:lesson-15:session-27:i12:r3",
+          "text": "pay"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваши родители договорились забрать и оплатить отремонтированную обувь в пятницу. Передайте договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваши родители договорились забрать и оплатить отремонтированную обувь в пятницу. Передайте договорённость через Present Continuous.",
+          "uk": "Ваші батьки домовилися забрати й оплатити відремонтоване взуття в п’ятницю. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "They ___ for shoe repair on Friday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-27:i12:r1",
+            "text": "are paying"
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i12:r2",
+            "text": "are going to pay"
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i12:r3",
+            "text": "pay"
+          }
+        ],
+        "testedDimension": "Ваши родители договорились забрать и оплатить отремонтированную обувь в пятницу. Передайте договорённость через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-27:i12:r2",
+            "correct": false,
+            "testedDimension": "Ваши родители договорились забрать и оплатить отремонтированную обувь в пятницу. Передайте договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-27:i12:r3",
+            "correct": false,
+            "testedDimension": "Ваши родители договорились забрать и оплатить отремонтированную обувь в пятницу. Передайте договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are paying.",
+              "uk": "Потрібна повна форма: are paying."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-27:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова и выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова и выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-27:i13:p1",
+            "target": "launderette",
+            "meaningByLocale": {
+              "ru": "прачечная самообслуживания",
+              "uk": "пральня самообслуговування"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-27:i13:p2",
+            "target": "dry cleaning",
+            "meaningByLocale": {
+              "ru": "химчистка одежды",
+              "uk": "хімчистка одягу"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-27:i13:p3",
+            "target": "key cutting",
+            "meaningByLocale": {
+              "ru": "изготовление копии ключа",
+              "uk": "виготовлення копії ключа"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-27:i13:p4",
+            "target": "shoe repair",
+            "meaningByLocale": {
+              "ru": "ремонт обуви",
+              "uk": "ремонт взуття"
+            }
+          }
+        ],
+        "leftColumn": [
+          "launderette",
+          "dry cleaning",
+          "key cutting",
+          "shoe repair"
+        ],
+        "rightColumn": [
+          "прачечная самообслуживания",
+          "химчистка одежды",
+          "изготовление копии ключа",
+          "ремонт обуви"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-27:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-27:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-27:i14:audio",
+          "transcript": "I am going to wash my clothes."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to wash my clothes.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "wash",
+          "my",
+          "clothes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-27:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-27:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-27:i15:audio",
+          "transcript": "We are collecting the shoes on Friday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are collecting the shoes on Friday.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "collecting",
+          "the",
+          "shoes",
+          "on",
+          "Friday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-27:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-27:i16:audio"
+      ],
+      "accessibilityLabel": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-27:i16:audio",
+          "transcript": "I am using the launderette tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am using the launderette tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-27:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Теперь это только ваше намерение. Повторите фразу через going to.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-27:i17:audio"
+      ],
+      "accessibilityLabel": "Теперь это только ваше намерение. Повторите фразу через going to.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-27:i17:audio",
+          "transcript": "We are going to pay for key cutting tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are going to pay for key cutting tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0a36ef17054f33dc5bcaa8d0ef97db5a8f490e9384a2202051d1b9e4c5b5dbfe"
+}

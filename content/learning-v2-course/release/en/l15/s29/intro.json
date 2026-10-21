@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "going to / Present Continuous: intention and arrangement",
+    "uk": "going to / Present Continuous: intention and arrangement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пока намерение",
+        "uk": "Поки намір"
+      },
+      "bodyByLocale": {
+        "ru": "washer fluid — жидкость для омывателя автомобильных стёкол. Повторим going to для намерения. Жидкость для омывателя заканчивается; вы решили купить новую. I am going to buy washer fluid. — Я собираюсь купить жидкость для омывателя. Передайте намерение через going to.",
+        "uk": "washer fluid — рідина для омивача автомобільного скла. Повторімо going to для наміру. Рідина для омивача закінчується; ви вирішили купити нову. I am going to buy washer fluid. — Я збираюся купити рідину для омивача. Передайте намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-29:intro1:r1",
+              "text": "I am going to buy washer fluid."
+            },
+            {
+              "responseId": "en:lesson-15:session-29:intro1:r2",
+              "text": "I am buying washer fluid."
+            },
+            {
+              "responseId": "en:lesson-15:session-29:intro1:r3",
+              "text": "I is going to buy washer fluid."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-29:intro1:r1",
+              "text": "I am going to buy washer fluid."
+            },
+            {
+              "responseId": "en:lesson-15:session-29:intro1:r2",
+              "text": "I am buying washer fluid."
+            },
+            {
+              "responseId": "en:lesson-15:session-29:intro1:r3",
+              "text": "I is going to buy washer fluid."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже договорились",
+        "uk": "Уже домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "hubcap — декоративный колпак автомобильного колеса. tyre pressure — давление воздуха в шине. Если время уже согласовано, потренируем Present Continuous. Магазин подтвердил поступление заказанного колпака и договорился выдать его вам завтра. We are collecting the hubcap tomorrow. — Мы забираем колпак колеса завтра. Передайте договорённость через Present Continuous.",
+        "uk": "hubcap — декоративний ковпак автомобільного колеса. tyre pressure — тиск повітря в шині. Якщо час уже узгоджено, потренуймо Present Continuous. Магазин підтвердив надходження замовленого ковпака й домовився видати його вам завтра. We are collecting the hubcap tomorrow. — Ми забираємо ковпак колеса завтра. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-29:intro2:r1",
+              "text": "We are collecting the hubcap tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-29:intro2:r2",
+              "text": "We are going to collect the hubcap tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-29:intro2:r3",
+              "text": "We is collecting the hubcap tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-29:intro2:r1",
+              "text": "We are collecting the hubcap tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-29:intro2:r2",
+              "text": "We are going to collect the hubcap tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-29:intro2:r3",
+              "text": "We is collecting the hubcap tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Известен день",
+        "uk": "Відомий день"
+      },
+      "bodyByLocale": {
+        "ru": "jump leads — провода для запуска автомобиля от другого аккумулятора. Участники заранее согласовали день. Выбираем форму по указанию задания. Друзья согласились привезти вам провода завтра в девять. They are bringing jump leads at nine tomorrow. — Они привозят провода для запуска машины завтра в девять. Передайте договорённость через Present Continuous.",
+        "uk": "jump leads — дроти для запуску автомобіля від іншого акумулятора. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Друзі погодилися привезти вам дроти завтра о дев’ятій. They are bringing jump leads at nine tomorrow. — Вони привозять дроти для запуску машини завтра о дев’ятій. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-29:intro3:r1",
+              "text": "They are bringing jump leads at nine tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-29:intro3:r2",
+              "text": "They are going to bring jump leads at nine tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-29:intro3:r3",
+              "text": "They is bringing jump leads at nine tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-29:intro3:r1",
+              "text": "They are bringing jump leads at nine tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-29:intro3:r2",
+              "text": "They are going to bring jump leads at nine tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-29:intro3:r3",
+              "text": "They is bringing jump leads at nine tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2aefcb56ebd36c54793aea99c4f59b8cbc668922de37e81ebc20424846b3e384"
+}

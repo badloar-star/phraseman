@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-15:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-15:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-27:intro1:r2": {
+          "ru": "Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.",
+          "uk": "Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to."
+        },
+        "en:lesson-15:session-27:intro1:r3": {
+          "ru": "Форма be не согласована с подлежащим.",
+          "uk": "Форма be не узгоджена з підметом."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-15:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-27:intro2:r2": {
+          "ru": "Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.",
+          "uk": "Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous."
+        },
+        "en:lesson-15:session-27:intro2:r3": {
+          "ru": "Форма be не согласована с подлежащим.",
+          "uk": "Форма be не узгоджена з підметом."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-15:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-15:session-27:intro3:r2": {
+          "ru": "Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.",
+          "uk": "Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous."
+        },
+        "en:lesson-15:session-27:intro3:r3": {
+          "ru": "Форма be не согласована с подлежащим.",
+          "uk": "Форма be не узгоджена з підметом."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a9140a64561d86fb6ffb920d0b46d030c93b6c73d7d4cd9c22a480f9f05820cc"
+}

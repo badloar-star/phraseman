@@ -1,0 +1,1125 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-30",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-30:word:half-brother",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — half-brother",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-30:word:half-brother:audio"
+      ],
+      "accessibilityLabel": "Картка слова — half-brother",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-30:word:half-brother:audio",
+          "transcript": "half-brother"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-30:word:half-brother:r1",
+            "targetText": "half-brother",
+            "meaningByLocale": {
+              "ru": "брат, с которым общий только один родитель.",
+              "uk": "брат, з яким спільний лише один із батьків."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "half-brother",
+          "definitionByLocale": {
+            "ru": "брат, с которым общий только один родитель.",
+            "uk": "брат, з яким спільний лише один із батьків."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-30:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви вирішили зателефонувати братові, з яким у вас спільна мама, але різні тати. Передайте намір через going to. Скажіть: «Я збираюся зателефонувати братові, з яким у нас один спільний із батьків».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили зателефонувати братові, з яким у вас спільна мама, але різні тати. Передайте намір через going to. Скажіть: «Я збираюся зателефонувати братові, з яким у нас один спільний із батьків».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to call my half-brother.",
+        "localizedMeaning": {
+          "ru": "Вы решили позвонить брату, с которым у вас общая мама, но разные папы. Передайте намерение через going to. Скажите: «Я собираюсь позвонить брату, с которым у нас один общий родитель».",
+          "uk": "Ви вирішили зателефонувати братові, з яким у вас спільна мама, але різні тати. Передайте намір через going to. Скажіть: «Я збираюся зателефонувати братові, з яким у нас один спільний із батьків»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "call",
+          "my",
+          "half-brother"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-30:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-30:i02:r1",
+          "text": "I am going to call my half-brother."
+        },
+        {
+          "responseId": "en:lesson-15:session-30:i02:r2",
+          "text": "I am calling my half-brother."
+        },
+        {
+          "responseId": "en:lesson-15:session-30:i02:r3",
+          "text": "I is going to call my half-brother."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-30:i02:audio",
+          "transcript": "I am going to call my half-brother."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-30:i02:r1",
+            "targetText": "I am going to call my half-brother.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i02:r2",
+            "targetText": "I am calling my half-brother.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i02:r3",
+            "targetText": "I is going to call my half-brother.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-30:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to call my half-brother.",
+              "uk": "У записі звучить I am going to call my half-brother."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to call my half-brother.",
+              "uk": "У записі звучить I am going to call my half-brother."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-30:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вирішили зателефонувати братові, з яким у вас спільна мама, але різні тати. Передайте намір через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-30:i03:r1",
+          "text": "am going to call"
+        },
+        {
+          "responseId": "en:lesson-15:session-30:i03:r2",
+          "text": "am calling"
+        },
+        {
+          "responseId": "en:lesson-15:session-30:i03:r3",
+          "text": "call"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили зателефонувати братові, з яким у вас спільна мама, але різні тати. Передайте намір через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы решили позвонить брату, с которым у вас общая мама, но разные папы. Передайте намерение через going to.",
+          "uk": "Ви вирішили зателефонувати братові, з яким у вас спільна мама, але різні тати. Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ my half-brother.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-30:i03:r1",
+            "text": "am going to call"
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i03:r2",
+            "text": "am calling"
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i03:r3",
+            "text": "call"
+          }
+        ],
+        "testedDimension": "Ви вирішили зателефонувати братові, з яким у вас спільна мама, але різні тати. Передайте намір через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-30:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви вирішили зателефонувати братові, з яким у вас спільна мама, але різні тати. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви вирішили зателефонувати братові, з яким у вас спільна мама, але різні тати. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: am going to call.",
+              "uk": "Потрібна повна форма: am going to call."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-30:word:half-sister",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — half-sister",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-30:word:half-sister:audio"
+      ],
+      "accessibilityLabel": "Картка слова — half-sister",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-30:word:half-sister:audio",
+          "transcript": "half-sister"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-30:word:half-sister:r1",
+            "targetText": "half-sister",
+            "meaningByLocale": {
+              "ru": "сестра, с которой общий только один родитель.",
+              "uk": "сестра, з якою спільний лише один із батьків."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "half-sister",
+          "definitionByLocale": {
+            "ru": "сестра, с которой общий только один родитель.",
+            "uk": "сестра, з якою спільний лише один із батьків."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-30:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваша подруга вирішила відвідати сестру; у них спільний тато й різні мами. День іще не вибрано. Передайте намір через going to. Скажіть: «Вона збирається відвідати сестру, з якою в неї один спільний із батьків».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша подруга вирішила відвідати сестру; у них спільний тато й різні мами. День іще не вибрано. Передайте намір через going to. Скажіть: «Вона збирається відвідати сестру, з якою в неї один спільний із батьків».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is going to visit her half-sister.",
+        "localizedMeaning": {
+          "ru": "Ваша подруга решила навестить сестру; у них общий папа и разные мамы. День ещё не выбран. Передайте намерение через going to. Скажите: «Она собирается навестить сестру, с которой у неё один общий родитель».",
+          "uk": "Ваша подруга вирішила відвідати сестру; у них спільний тато й різні мами. День іще не вибрано. Передайте намір через going to. Скажіть: «Вона збирається відвідати сестру, з якою в неї один спільний із батьків»."
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "going",
+          "to",
+          "visit",
+          "her",
+          "half-sister"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-30:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-30:i05:r1",
+          "text": "She is going to visit her half-sister."
+        },
+        {
+          "responseId": "en:lesson-15:session-30:i05:r2",
+          "text": "She is visiting her half-sister."
+        },
+        {
+          "responseId": "en:lesson-15:session-30:i05:r3",
+          "text": "She are going to visit her half-sister."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-30:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-30:i05:audio",
+          "transcript": "She is going to visit her half-sister."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-30:i05:r1",
+            "targetText": "She is going to visit her half-sister.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i05:r2",
+            "targetText": "She is visiting her half-sister.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i05:r3",
+            "targetText": "She are going to visit her half-sister.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-30:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to visit her half-sister.",
+              "uk": "У записі звучить She is going to visit her half-sister."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to visit her half-sister.",
+              "uk": "У записі звучить She is going to visit her half-sister."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-30:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваша подруга вирішила відвідати сестру; у них спільний тато й різні мами. День іще не вибрано. Передайте намір через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-30:i06:r1",
+          "text": "is going to visit"
+        },
+        {
+          "responseId": "en:lesson-15:session-30:i06:r2",
+          "text": "is visiting"
+        },
+        {
+          "responseId": "en:lesson-15:session-30:i06:r3",
+          "text": "visit"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша подруга вирішила відвідати сестру; у них спільний тато й різні мами. День іще не вибрано. Передайте намір через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваша подруга решила навестить сестру; у них общий папа и разные мамы. День ещё не выбран. Передайте намерение через going to.",
+          "uk": "Ваша подруга вирішила відвідати сестру; у них спільний тато й різні мами. День іще не вибрано. Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "She ___ her half-sister.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-30:i06:r1",
+            "text": "is going to visit"
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i06:r2",
+            "text": "is visiting"
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i06:r3",
+            "text": "visit"
+          }
+        ],
+        "testedDimension": "Ваша подруга вирішила відвідати сестру; у них спільний тато й різні мами. День іще не вибрано. Передайте намір через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-30:i06:r2",
+            "correct": false,
+            "testedDimension": "Ваша подруга вирішила відвідати сестру; у них спільний тато й різні мами. День іще не вибрано. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i06:r3",
+            "correct": false,
+            "testedDimension": "Ваша подруга вирішила відвідати сестру; у них спільний тато й різні мами. День іще не вибрано. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: is going to visit.",
+              "uk": "Потрібна повна форма: is going to visit."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-30:word:son-in-law",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — son-in-law",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-30:word:son-in-law:audio"
+      ],
+      "accessibilityLabel": "Картка слова — son-in-law",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-30:word:son-in-law:audio",
+          "transcript": "son-in-law"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-30:word:son-in-law:r1",
+            "targetText": "son-in-law",
+            "meaningByLocale": {
+              "ru": "муж дочери, зять.",
+              "uk": "чоловік доньки, зять."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "son-in-law",
+          "definitionByLocale": {
+            "ru": "муж дочери, зять.",
+            "uk": "чоловік доньки, зять."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-30:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви з чоловіком домовилися зустрітися з чоловіком вашої доньки в неділю. Передайте домовленість через Present Continuous. Скажіть: «Ми зустрічаємося із зятем у неділю».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви з чоловіком домовилися зустрітися з чоловіком вашої доньки в неділю. Передайте домовленість через Present Continuous. Скажіть: «Ми зустрічаємося із зятем у неділю».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are meeting our son-in-law on Sunday.",
+        "localizedMeaning": {
+          "ru": "Вы с супругом договорились встретиться с мужем вашей дочери в воскресенье. Передайте договорённость через Present Continuous. Скажите: «Мы встречаемся с зятем в воскресенье».",
+          "uk": "Ви з чоловіком домовилися зустрітися з чоловіком вашої доньки в неділю. Передайте домовленість через Present Continuous. Скажіть: «Ми зустрічаємося із зятем у неділю»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "our",
+          "son-in-law",
+          "on",
+          "Sunday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-30:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-30:i08:r1",
+          "text": "We are meeting our son-in-law on Sunday."
+        },
+        {
+          "responseId": "en:lesson-15:session-30:i08:r2",
+          "text": "We are going to meet our son-in-law on Sunday."
+        },
+        {
+          "responseId": "en:lesson-15:session-30:i08:r3",
+          "text": "We is meeting our son-in-law on Sunday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-30:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-30:i08:audio",
+          "transcript": "We are meeting our son-in-law on Sunday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-30:i08:r1",
+            "targetText": "We are meeting our son-in-law on Sunday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i08:r2",
+            "targetText": "We are going to meet our son-in-law on Sunday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i08:r3",
+            "targetText": "We is meeting our son-in-law on Sunday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-30:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are meeting our son-in-law on Sunday.",
+              "uk": "У записі звучить We are meeting our son-in-law on Sunday."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are meeting our son-in-law on Sunday.",
+              "uk": "У записі звучить We are meeting our son-in-law on Sunday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-30:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви з чоловіком домовилися зустрітися з чоловіком вашої доньки в неділю. Передайте домовленість через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-30:i09:r1",
+          "text": "are meeting"
+        },
+        {
+          "responseId": "en:lesson-15:session-30:i09:r2",
+          "text": "are going to meet"
+        },
+        {
+          "responseId": "en:lesson-15:session-30:i09:r3",
+          "text": "meet"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви з чоловіком домовилися зустрітися з чоловіком вашої доньки в неділю. Передайте домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы с супругом договорились встретиться с мужем вашей дочери в воскресенье. Передайте договорённость через Present Continuous.",
+          "uk": "Ви з чоловіком домовилися зустрітися з чоловіком вашої доньки в неділю. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ our son-in-law on Sunday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-30:i09:r1",
+            "text": "are meeting"
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i09:r2",
+            "text": "are going to meet"
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i09:r3",
+            "text": "meet"
+          }
+        ],
+        "testedDimension": "Ви з чоловіком домовилися зустрітися з чоловіком вашої доньки в неділю. Передайте домовленість через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-30:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви з чоловіком домовилися зустрітися з чоловіком вашої доньки в неділю. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви з чоловіком домовилися зустрітися з чоловіком вашої доньки в неділю. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are meeting.",
+              "uk": "Потрібна повна форма: are meeting."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-30:word:daughter-in-law",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — daughter-in-law",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-30:word:daughter-in-law:audio"
+      ],
+      "accessibilityLabel": "Картка слова — daughter-in-law",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-30:word:daughter-in-law:audio",
+          "transcript": "daughter-in-law"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-30:word:daughter-in-law:r1",
+            "targetText": "daughter-in-law",
+            "meaningByLocale": {
+              "ru": "жена сына, невестка.",
+              "uk": "дружина сина, невістка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "daughter-in-law",
+          "definitionByLocale": {
+            "ru": "жена сына, невестка.",
+            "uk": "дружина сина, невістка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-30:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваші батьки узгодили зустріч із дружиною вашого брата на завтра. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з невісткою завтра».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваші батьки узгодили зустріч із дружиною вашого брата на завтра. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з невісткою завтра».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are meeting their daughter-in-law tomorrow.",
+        "localizedMeaning": {
+          "ru": "Ваши родители согласовали встречу с женой вашего брата на завтра. Передайте договорённость через Present Continuous. Скажите: «Они встречаются с невесткой завтра».",
+          "uk": "Ваші батьки узгодили зустріч із дружиною вашого брата на завтра. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з невісткою завтра»."
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "meeting",
+          "their",
+          "daughter-in-law",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-30:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-30:i11:r1",
+          "text": "They are meeting their daughter-in-law tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-30:i11:r2",
+          "text": "They are going to meet their daughter-in-law tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-30:i11:r3",
+          "text": "They is meeting their daughter-in-law tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-30:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-30:i11:audio",
+          "transcript": "They are meeting their daughter-in-law tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-30:i11:r1",
+            "targetText": "They are meeting their daughter-in-law tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i11:r2",
+            "targetText": "They are going to meet their daughter-in-law tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i11:r3",
+            "targetText": "They is meeting their daughter-in-law tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-30:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are meeting their daughter-in-law tomorrow.",
+              "uk": "У записі звучить They are meeting their daughter-in-law tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are meeting their daughter-in-law tomorrow.",
+              "uk": "У записі звучить They are meeting their daughter-in-law tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-30:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваші батьки узгодили зустріч із дружиною вашого брата на завтра. Передайте домовленість через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-30:i12:r1",
+          "text": "are meeting"
+        },
+        {
+          "responseId": "en:lesson-15:session-30:i12:r2",
+          "text": "are going to meet"
+        },
+        {
+          "responseId": "en:lesson-15:session-30:i12:r3",
+          "text": "meet"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваші батьки узгодили зустріч із дружиною вашого брата на завтра. Передайте домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваши родители согласовали встречу с женой вашего брата на завтра. Передайте договорённость через Present Continuous.",
+          "uk": "Ваші батьки узгодили зустріч із дружиною вашого брата на завтра. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "They ___ their daughter-in-law tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-30:i12:r1",
+            "text": "are meeting"
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i12:r2",
+            "text": "are going to meet"
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i12:r3",
+            "text": "meet"
+          }
+        ],
+        "testedDimension": "Ваші батьки узгодили зустріч із дружиною вашого брата на завтра. Передайте домовленість через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-30:i12:r2",
+            "correct": false,
+            "testedDimension": "Ваші батьки узгодили зустріч із дружиною вашого брата на завтра. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-30:i12:r3",
+            "correct": false,
+            "testedDimension": "Ваші батьки узгодили зустріч із дружиною вашого брата на завтра. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are meeting.",
+              "uk": "Потрібна повна форма: are meeting."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-30:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова й вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова й вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-30:i13:p1",
+            "target": "half-brother",
+            "meaningByLocale": {
+              "ru": "брат, с которым общий только один родитель",
+              "uk": "брат, з яким спільний лише один із батьків"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-30:i13:p2",
+            "target": "half-sister",
+            "meaningByLocale": {
+              "ru": "сестра, с которой общий только один родитель",
+              "uk": "сестра, з якою спільний лише один із батьків"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-30:i13:p3",
+            "target": "son-in-law",
+            "meaningByLocale": {
+              "ru": "муж дочери, зять",
+              "uk": "чоловік доньки, зять"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-30:i13:p4",
+            "target": "daughter-in-law",
+            "meaningByLocale": {
+              "ru": "жена сына, невестка",
+              "uk": "дружина сина, невістка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "half-brother",
+          "half-sister",
+          "son-in-law",
+          "daughter-in-law"
+        ],
+        "rightColumn": [
+          "брат, з яким спільний лише один із батьків",
+          "сестра, з якою спільний лише один із батьків",
+          "чоловік доньки, зять",
+          "дружина сина, невістка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-30:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-30:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-30:i14:audio",
+          "transcript": "I am going to call my family."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to call my family.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "call",
+          "my",
+          "family"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-30:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-30:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-30:i15:audio",
+          "transcript": "We are meeting on Sunday morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting on Sunday morning.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "on",
+          "Sunday",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-30:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-30:i16:audio"
+      ],
+      "accessibilityLabel": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-30:i16:audio",
+          "transcript": "I am calling my half-brother tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am calling my half-brother tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-30:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-30:i17:audio"
+      ],
+      "accessibilityLabel": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-30:i17:audio",
+          "transcript": "We are going to meet our son-in-law on Sunday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are going to meet our son-in-law on Sunday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5da9666ee982f7c32877d3b0cccf612737cc200e931a967b5ba12fa882c1cff4"
+}

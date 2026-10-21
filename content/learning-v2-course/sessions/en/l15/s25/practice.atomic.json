@@ -1,0 +1,2343 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-15:session-25",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-15:session-25:word:renew",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — renew",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:word:renew:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — renew",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:word:renew:audio",
+            "transcript": "renew"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-25:word:renew:r1",
+              "targetText": "renew",
+              "meaningByLocale": {
+                "ru": "продлить срок действия, оформить на новый срок.",
+                "uk": "продовжити строк дії, оформити на новий строк."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "renew",
+            "definitionByLocale": {
+              "ru": "продлить срок действия, оформить на новый срок.",
+              "uk": "продовжити строк дії, оформити на новий строк."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы решили продлить пропуск, но ещё не выбрали день. Передайте намерение через going to. Скажите: «Я собираюсь продлить свой пропуск».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили продлить пропуск, но ещё не выбрали день. Передайте намерение через going to. Скажите: «Я собираюсь продлить свой пропуск».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to renew my pass.",
+          "localizedMeaning": {
+            "ru": "Вы решили продлить пропуск, но ещё не выбрали день. Передайте намерение через going to. Скажите: «Я собираюсь продлить свой пропуск».",
+            "uk": "Ви вирішили продовжити пропуск, але ще не вибрали день. Передайте намір через going to. Скажіть: «Я збираюся продовжити свій пропуск»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "renew",
+            "my",
+            "pass"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-25:i02:r1",
+            "text": "I am going to renew my pass."
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i02:r2",
+            "text": "I am renewing my pass."
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i02:r3",
+            "text": "I is going to renew my pass."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:i02:audio",
+            "transcript": "I am going to renew my pass."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-25:i02:r1",
+              "targetText": "I am going to renew my pass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i02:r2",
+              "targetText": "I am renewing my pass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i02:r3",
+              "targetText": "I is going to renew my pass.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-25:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to renew my pass.",
+                "uk": "У записі звучить I am going to renew my pass."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to renew my pass.",
+                "uk": "У записі звучить I am going to renew my pass."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы решили продлить пропуск, но ещё не выбрали день. Передайте намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-25:i03:r1",
+            "text": "am going to renew"
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i03:r2",
+            "text": "am renewing"
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i03:r3",
+            "text": "renew"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили продлить пропуск, но ещё не выбрали день. Передайте намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили продлить пропуск, но ещё не выбрали день. Передайте намерение через going to.",
+            "uk": "Ви вирішили продовжити пропуск, але ще не вибрали день. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ my pass.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-25:i03:r1",
+              "text": "am going to renew"
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i03:r2",
+              "text": "am renewing"
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i03:r3",
+              "text": "renew"
+            }
+          ],
+          "testedDimension": "Вы решили продлить пропуск, но ещё не выбрали день. Передайте намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-25:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы решили продлить пропуск, но ещё не выбрали день. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы решили продлить пропуск, но ещё не выбрали день. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am going to renew.",
+                "uk": "Потрібна повна форма: am going to renew."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:word:waiting-list",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — waiting list",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:word:waiting-list:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — waiting list",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:word:waiting-list:audio",
+            "transcript": "waiting list"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-25:word:waiting-list:r1",
+              "targetText": "waiting list",
+              "meaningByLocale": {
+                "ru": "список людей, которые ждут свободного места.",
+                "uk": "список людей, які чекають на вільне місце."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "waiting list",
+            "definitionByLocale": {
+              "ru": "список людей, которые ждут свободного места.",
+              "uk": "список людей, які чекають на вільне місце."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра решила ждать место на курсе, но ещё никуда не записалась. Передайте намерение через going to. Скажите: «Она собирается записаться в список ожидания».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра решила ждать место на курсе, но ещё никуда не записалась. Передайте намерение через going to. Скажите: «Она собирается записаться в список ожидания».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to join the waiting list.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра решила ждать место на курсе, но ещё никуда не записалась. Передайте намерение через going to. Скажите: «Она собирается записаться в список ожидания».",
+            "uk": "Ваша сестра вирішила чекати на місце на курсі, але ще нікуди не записалася. Передайте намір через going to. Скажіть: «Вона збирається записатися до списку очікування»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "join",
+            "the",
+            "waiting",
+            "list"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-25:i05:r1",
+            "text": "She is going to join the waiting list."
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i05:r2",
+            "text": "She is joining the waiting list."
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i05:r3",
+            "text": "She are going to join the waiting list."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:i05:audio",
+            "transcript": "She is going to join the waiting list."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-25:i05:r1",
+              "targetText": "She is going to join the waiting list.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i05:r2",
+              "targetText": "She is joining the waiting list.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i05:r3",
+              "targetText": "She are going to join the waiting list.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-25:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to join the waiting list.",
+                "uk": "У записі звучить She is going to join the waiting list."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to join the waiting list.",
+                "uk": "У записі звучить She is going to join the waiting list."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша сестра решила ждать место на курсе, но ещё никуда не записалась. Передайте намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-25:i06:r1",
+            "text": "is going to join"
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i06:r2",
+            "text": "is joining"
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i06:r3",
+            "text": "join"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра решила ждать место на курсе, но ещё никуда не записалась. Передайте намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша сестра решила ждать место на курсе, но ещё никуда не записалась. Передайте намерение через going to.",
+            "uk": "Ваша сестра вирішила чекати на місце на курсі, але ще нікуди не записалася. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "She ___ the waiting list.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-25:i06:r1",
+              "text": "is going to join"
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i06:r2",
+              "text": "is joining"
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i06:r3",
+              "text": "join"
+            }
+          ],
+          "testedDimension": "Ваша сестра решила ждать место на курсе, но ещё никуда не записалась. Передайте намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-25:i06:r2",
+              "correct": false,
+              "testedDimension": "Ваша сестра решила ждать место на курсе, но ещё никуда не записалась. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i06:r3",
+              "correct": false,
+              "testedDimension": "Ваша сестра решила ждать место на курсе, но ещё никуда не записалась. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: is going to join.",
+                "uk": "Потрібна повна форма: is going to join."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:word:appointment-card",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — appointment card",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:word:appointment-card:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — appointment card",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:word:appointment-card:audio",
+            "transcript": "appointment card"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-25:word:appointment-card:r1",
+              "targetText": "appointment card",
+              "meaningByLocale": {
+                "ru": "карточка с датой и временем назначенного приёма.",
+                "uk": "картка з датою й часом призначеного прийому."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "appointment card",
+            "definitionByLocale": {
+              "ru": "карточка с датой и временем назначенного приёма.",
+              "uk": "картка з датою й часом призначеного прийому."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Передайте договорённость через Present Continuous. Скажите: «Я приношу карточку с записью на приём завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Передайте договорённость через Present Continuous. Скажите: «Я приношу карточку с записью на приём завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am bringing my appointment card tomorrow.",
+          "localizedMeaning": {
+            "ru": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Передайте договорённость через Present Continuous. Скажите: «Я приношу карточку с записью на приём завтра».",
+            "uk": "Прийом у лікаря призначено на завтра; адміністратор попросив узяти картку запису. Передайте домовленість через Present Continuous. Скажіть: «Я приношу картку із записом на прийом завтра»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "bringing",
+            "my",
+            "appointment",
+            "card",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-25:i08:r1",
+            "text": "I am bringing my appointment card tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i08:r2",
+            "text": "I am going to bring my appointment card tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i08:r3",
+            "text": "I is bringing my appointment card tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:i08:audio",
+            "transcript": "I am bringing my appointment card tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-25:i08:r1",
+              "targetText": "I am bringing my appointment card tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i08:r2",
+              "targetText": "I am going to bring my appointment card tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i08:r3",
+              "targetText": "I is bringing my appointment card tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-25:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am bringing my appointment card tomorrow.",
+                "uk": "У записі звучить I am bringing my appointment card tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am bringing my appointment card tomorrow.",
+                "uk": "У записі звучить I am bringing my appointment card tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Передайте договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-25:i09:r1",
+            "text": "am bringing"
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i09:r2",
+            "text": "am going to bring"
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i09:r3",
+            "text": "bring"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Передайте договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Передайте договорённость через Present Continuous.",
+            "uk": "Прийом у лікаря призначено на завтра; адміністратор попросив узяти картку запису. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "I ___ my appointment card tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-25:i09:r1",
+              "text": "am bringing"
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i09:r2",
+              "text": "am going to bring"
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i09:r3",
+              "text": "bring"
+            }
+          ],
+          "testedDimension": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Передайте договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-25:i09:r2",
+              "correct": false,
+              "testedDimension": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i09:r3",
+              "correct": false,
+              "testedDimension": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am bringing.",
+                "uk": "Потрібна повна форма: am bringing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:word:membership",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — membership",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:word:membership:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — membership",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:word:membership:audio",
+            "transcript": "membership"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-25:word:membership:r1",
+              "targetText": "membership",
+              "meaningByLocale": {
+                "ru": "членство в клубе или организации.",
+                "uk": "членство в клубі чи організації."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "membership",
+            "definitionByLocale": {
+              "ru": "членство в клубе или организации.",
+              "uk": "членство в клубі чи організації."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Передайте договорённость через Present Continuous. Скажите: «Мы оплачиваем членство в пятницу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Передайте договорённость через Present Continuous. Скажите: «Мы оплачиваем членство в пятницу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are paying for our membership on Friday.",
+          "localizedMeaning": {
+            "ru": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Передайте договорённость через Present Continuous. Скажите: «Мы оплачиваем членство в пятницу».",
+            "uk": "Ви з другом узгодили візит до клубу в п’ятницю для оплати членства. Передайте домовленість через Present Continuous. Скажіть: «Ми оплачуємо членство в п’ятницю»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "paying",
+            "for",
+            "our",
+            "membership",
+            "on",
+            "Friday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-25:i11:r1",
+            "text": "We are paying for our membership on Friday."
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i11:r2",
+            "text": "We are going to pay for our membership on Friday."
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i11:r3",
+            "text": "We is paying for our membership on Friday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:i11:audio",
+            "transcript": "We are paying for our membership on Friday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-25:i11:r1",
+              "targetText": "We are paying for our membership on Friday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i11:r2",
+              "targetText": "We are going to pay for our membership on Friday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i11:r3",
+              "targetText": "We is paying for our membership on Friday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-25:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are paying for our membership on Friday.",
+                "uk": "У записі звучить We are paying for our membership on Friday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are paying for our membership on Friday.",
+                "uk": "У записі звучить We are paying for our membership on Friday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Передайте договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-25:i12:r1",
+            "text": "are paying"
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i12:r2",
+            "text": "are going to pay"
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i12:r3",
+            "text": "pay"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Передайте договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Передайте договорённость через Present Continuous.",
+            "uk": "Ви з другом узгодили візит до клубу в п’ятницю для оплати членства. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ for our membership on Friday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-25:i12:r1",
+              "text": "are paying"
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i12:r2",
+              "text": "are going to pay"
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i12:r3",
+              "text": "pay"
+            }
+          ],
+          "testedDimension": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Передайте договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-25:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are paying.",
+                "uk": "Потрібна повна форма: are paying."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова и выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова и выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-25:i13:p1",
+              "target": "renew",
+              "meaningByLocale": {
+                "ru": "продлить срок действия, оформить на новый срок",
+                "uk": "продовжити строк дії, оформити на новий строк"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-25:i13:p2",
+              "target": "waiting list",
+              "meaningByLocale": {
+                "ru": "список людей, которые ждут свободного места",
+                "uk": "список людей, які чекають на вільне місце"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-25:i13:p3",
+              "target": "appointment card",
+              "meaningByLocale": {
+                "ru": "карточка с датой и временем назначенного приёма",
+                "uk": "картка з датою й часом призначеного прийому"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-25:i13:p4",
+              "target": "membership",
+              "meaningByLocale": {
+                "ru": "членство в клубе или организации",
+                "uk": "членство в клубі чи організації"
+              }
+            }
+          ],
+          "leftColumn": [
+            "renew",
+            "waiting list",
+            "appointment card",
+            "membership"
+          ],
+          "rightColumn": [
+            "продлить срок действия, оформить на новый срок",
+            "список людей, которые ждут свободного места",
+            "карточка с датой и временем назначенного приёма",
+            "членство в клубе или организации"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:i14:audio",
+            "transcript": "I am going to join the club."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to join the club.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "join",
+            "the",
+            "club"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:i15:audio",
+            "transcript": "We are meeting on Friday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting on Friday.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "on",
+            "Friday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:i16:audio"
+        ],
+        "accessibilityLabel": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:i16:audio",
+            "transcript": "I am renewing my pass tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am renewing my pass tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Теперь это только ваше намерение. Повторите фразу через going to.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:i17:audio"
+        ],
+        "accessibilityLabel": "Теперь это только ваше намерение. Повторите фразу через going to.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:i17:audio",
+            "transcript": "I am going to bring my appointment card tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am going to bring my appointment card tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-15:session-25:word:renew",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — renew",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:word:renew:audio"
+        ],
+        "accessibilityLabel": "Картка слова — renew",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:word:renew:audio",
+            "transcript": "renew"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-25:word:renew:r1",
+              "targetText": "renew",
+              "meaningByLocale": {
+                "ru": "продлить срок действия, оформить на новый срок.",
+                "uk": "продовжити строк дії, оформити на новий строк."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "renew",
+            "definitionByLocale": {
+              "ru": "продлить срок действия, оформить на новый срок.",
+              "uk": "продовжити строк дії, оформити на новий строк."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вирішили продовжити пропуск, але ще не вибрали день. Передайте намір через going to. Скажіть: «Я збираюся продовжити свій пропуск».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили продовжити пропуск, але ще не вибрали день. Передайте намір через going to. Скажіть: «Я збираюся продовжити свій пропуск».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to renew my pass.",
+          "localizedMeaning": {
+            "ru": "Вы решили продлить пропуск, но ещё не выбрали день. Передайте намерение через going to. Скажите: «Я собираюсь продлить свой пропуск».",
+            "uk": "Ви вирішили продовжити пропуск, але ще не вибрали день. Передайте намір через going to. Скажіть: «Я збираюся продовжити свій пропуск»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "renew",
+            "my",
+            "pass"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-25:i02:r1",
+            "text": "I am going to renew my pass."
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i02:r2",
+            "text": "I am renewing my pass."
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i02:r3",
+            "text": "I is going to renew my pass."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:i02:audio",
+            "transcript": "I am going to renew my pass."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-25:i02:r1",
+              "targetText": "I am going to renew my pass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i02:r2",
+              "targetText": "I am renewing my pass.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i02:r3",
+              "targetText": "I is going to renew my pass.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-25:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to renew my pass.",
+                "uk": "У записі звучить I am going to renew my pass."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to renew my pass.",
+                "uk": "У записі звучить I am going to renew my pass."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вирішили продовжити пропуск, але ще не вибрали день. Передайте намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-25:i03:r1",
+            "text": "am going to renew"
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i03:r2",
+            "text": "am renewing"
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i03:r3",
+            "text": "renew"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили продовжити пропуск, але ще не вибрали день. Передайте намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили продлить пропуск, но ещё не выбрали день. Передайте намерение через going to.",
+            "uk": "Ви вирішили продовжити пропуск, але ще не вибрали день. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ my pass.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-25:i03:r1",
+              "text": "am going to renew"
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i03:r2",
+              "text": "am renewing"
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i03:r3",
+              "text": "renew"
+            }
+          ],
+          "testedDimension": "Ви вирішили продовжити пропуск, але ще не вибрали день. Передайте намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-25:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви вирішили продовжити пропуск, але ще не вибрали день. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви вирішили продовжити пропуск, але ще не вибрали день. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am going to renew.",
+                "uk": "Потрібна повна форма: am going to renew."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:word:waiting-list",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — waiting list",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:word:waiting-list:audio"
+        ],
+        "accessibilityLabel": "Картка слова — waiting list",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:word:waiting-list:audio",
+            "transcript": "waiting list"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-25:word:waiting-list:r1",
+              "targetText": "waiting list",
+              "meaningByLocale": {
+                "ru": "список людей, которые ждут свободного места.",
+                "uk": "список людей, які чекають на вільне місце."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "waiting list",
+            "definitionByLocale": {
+              "ru": "список людей, которые ждут свободного места.",
+              "uk": "список людей, які чекають на вільне місце."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра вирішила чекати на місце на курсі, але ще нікуди не записалася. Передайте намір через going to. Скажіть: «Вона збирається записатися до списку очікування».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра вирішила чекати на місце на курсі, але ще нікуди не записалася. Передайте намір через going to. Скажіть: «Вона збирається записатися до списку очікування».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to join the waiting list.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра решила ждать место на курсе, но ещё никуда не записалась. Передайте намерение через going to. Скажите: «Она собирается записаться в список ожидания».",
+            "uk": "Ваша сестра вирішила чекати на місце на курсі, але ще нікуди не записалася. Передайте намір через going to. Скажіть: «Вона збирається записатися до списку очікування»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "join",
+            "the",
+            "waiting",
+            "list"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-25:i05:r1",
+            "text": "She is going to join the waiting list."
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i05:r2",
+            "text": "She is joining the waiting list."
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i05:r3",
+            "text": "She are going to join the waiting list."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:i05:audio",
+            "transcript": "She is going to join the waiting list."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-25:i05:r1",
+              "targetText": "She is going to join the waiting list.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i05:r2",
+              "targetText": "She is joining the waiting list.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i05:r3",
+              "targetText": "She are going to join the waiting list.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-25:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to join the waiting list.",
+                "uk": "У записі звучить She is going to join the waiting list."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to join the waiting list.",
+                "uk": "У записі звучить She is going to join the waiting list."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша сестра вирішила чекати на місце на курсі, але ще нікуди не записалася. Передайте намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-25:i06:r1",
+            "text": "is going to join"
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i06:r2",
+            "text": "is joining"
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i06:r3",
+            "text": "join"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра вирішила чекати на місце на курсі, але ще нікуди не записалася. Передайте намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша сестра решила ждать место на курсе, но ещё никуда не записалась. Передайте намерение через going to.",
+            "uk": "Ваша сестра вирішила чекати на місце на курсі, але ще нікуди не записалася. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "She ___ the waiting list.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-25:i06:r1",
+              "text": "is going to join"
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i06:r2",
+              "text": "is joining"
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i06:r3",
+              "text": "join"
+            }
+          ],
+          "testedDimension": "Ваша сестра вирішила чекати на місце на курсі, але ще нікуди не записалася. Передайте намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-25:i06:r2",
+              "correct": false,
+              "testedDimension": "Ваша сестра вирішила чекати на місце на курсі, але ще нікуди не записалася. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i06:r3",
+              "correct": false,
+              "testedDimension": "Ваша сестра вирішила чекати на місце на курсі, але ще нікуди не записалася. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: is going to join.",
+                "uk": "Потрібна повна форма: is going to join."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:word:appointment-card",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — appointment card",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:word:appointment-card:audio"
+        ],
+        "accessibilityLabel": "Картка слова — appointment card",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:word:appointment-card:audio",
+            "transcript": "appointment card"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-25:word:appointment-card:r1",
+              "targetText": "appointment card",
+              "meaningByLocale": {
+                "ru": "карточка с датой и временем назначенного приёма.",
+                "uk": "картка з датою й часом призначеного прийому."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "appointment card",
+            "definitionByLocale": {
+              "ru": "карточка с датой и временем назначенного приёма.",
+              "uk": "картка з датою й часом призначеного прийому."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Прийом у лікаря призначено на завтра; адміністратор попросив узяти картку запису. Передайте домовленість через Present Continuous. Скажіть: «Я приношу картку із записом на прийом завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прийом у лікаря призначено на завтра; адміністратор попросив узяти картку запису. Передайте домовленість через Present Continuous. Скажіть: «Я приношу картку із записом на прийом завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am bringing my appointment card tomorrow.",
+          "localizedMeaning": {
+            "ru": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Передайте договорённость через Present Continuous. Скажите: «Я приношу карточку с записью на приём завтра».",
+            "uk": "Прийом у лікаря призначено на завтра; адміністратор попросив узяти картку запису. Передайте домовленість через Present Continuous. Скажіть: «Я приношу картку із записом на прийом завтра»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "bringing",
+            "my",
+            "appointment",
+            "card",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-25:i08:r1",
+            "text": "I am bringing my appointment card tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i08:r2",
+            "text": "I am going to bring my appointment card tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i08:r3",
+            "text": "I is bringing my appointment card tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:i08:audio",
+            "transcript": "I am bringing my appointment card tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-25:i08:r1",
+              "targetText": "I am bringing my appointment card tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i08:r2",
+              "targetText": "I am going to bring my appointment card tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i08:r3",
+              "targetText": "I is bringing my appointment card tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-25:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am bringing my appointment card tomorrow.",
+                "uk": "У записі звучить I am bringing my appointment card tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am bringing my appointment card tomorrow.",
+                "uk": "У записі звучить I am bringing my appointment card tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прийом у лікаря призначено на завтра; адміністратор попросив узяти картку запису. Передайте домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-25:i09:r1",
+            "text": "am bringing"
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i09:r2",
+            "text": "am going to bring"
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i09:r3",
+            "text": "bring"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прийом у лікаря призначено на завтра; адміністратор попросив узяти картку запису. Передайте домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Передайте договорённость через Present Continuous.",
+            "uk": "Прийом у лікаря призначено на завтра; адміністратор попросив узяти картку запису. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "I ___ my appointment card tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-25:i09:r1",
+              "text": "am bringing"
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i09:r2",
+              "text": "am going to bring"
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i09:r3",
+              "text": "bring"
+            }
+          ],
+          "testedDimension": "Прийом у лікаря призначено на завтра; адміністратор попросив узяти картку запису. Передайте домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-25:i09:r2",
+              "correct": false,
+              "testedDimension": "Прийом у лікаря призначено на завтра; адміністратор попросив узяти картку запису. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i09:r3",
+              "correct": false,
+              "testedDimension": "Прийом у лікаря призначено на завтра; адміністратор попросив узяти картку запису. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am bringing.",
+                "uk": "Потрібна повна форма: am bringing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:word:membership",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — membership",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:word:membership:audio"
+        ],
+        "accessibilityLabel": "Картка слова — membership",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:word:membership:audio",
+            "transcript": "membership"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-25:word:membership:r1",
+              "targetText": "membership",
+              "meaningByLocale": {
+                "ru": "членство в клубе или организации.",
+                "uk": "членство в клубі чи організації."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "membership",
+            "definitionByLocale": {
+              "ru": "членство в клубе или организации.",
+              "uk": "членство в клубі чи організації."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з другом узгодили візит до клубу в п’ятницю для оплати членства. Передайте домовленість через Present Continuous. Скажіть: «Ми оплачуємо членство в п’ятницю».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з другом узгодили візит до клубу в п’ятницю для оплати членства. Передайте домовленість через Present Continuous. Скажіть: «Ми оплачуємо членство в п’ятницю».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are paying for our membership on Friday.",
+          "localizedMeaning": {
+            "ru": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Передайте договорённость через Present Continuous. Скажите: «Мы оплачиваем членство в пятницу».",
+            "uk": "Ви з другом узгодили візит до клубу в п’ятницю для оплати членства. Передайте домовленість через Present Continuous. Скажіть: «Ми оплачуємо членство в п’ятницю»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "paying",
+            "for",
+            "our",
+            "membership",
+            "on",
+            "Friday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-25:i11:r1",
+            "text": "We are paying for our membership on Friday."
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i11:r2",
+            "text": "We are going to pay for our membership on Friday."
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i11:r3",
+            "text": "We is paying for our membership on Friday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:i11:audio",
+            "transcript": "We are paying for our membership on Friday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-25:i11:r1",
+              "targetText": "We are paying for our membership on Friday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i11:r2",
+              "targetText": "We are going to pay for our membership on Friday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i11:r3",
+              "targetText": "We is paying for our membership on Friday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-25:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are paying for our membership on Friday.",
+                "uk": "У записі звучить We are paying for our membership on Friday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are paying for our membership on Friday.",
+                "uk": "У записі звучить We are paying for our membership on Friday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви з другом узгодили візит до клубу в п’ятницю для оплати членства. Передайте домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-25:i12:r1",
+            "text": "are paying"
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i12:r2",
+            "text": "are going to pay"
+          },
+          {
+            "responseId": "en:lesson-15:session-25:i12:r3",
+            "text": "pay"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з другом узгодили візит до клубу в п’ятницю для оплати членства. Передайте домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Передайте договорённость через Present Continuous.",
+            "uk": "Ви з другом узгодили візит до клубу в п’ятницю для оплати членства. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ for our membership on Friday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-25:i12:r1",
+              "text": "are paying"
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i12:r2",
+              "text": "are going to pay"
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i12:r3",
+              "text": "pay"
+            }
+          ],
+          "testedDimension": "Ви з другом узгодили візит до клубу в п’ятницю для оплати членства. Передайте домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-25:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви з другом узгодили візит до клубу в п’ятницю для оплати членства. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-25:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви з другом узгодили візит до клубу в п’ятницю для оплати членства. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are paying.",
+                "uk": "Потрібна повна форма: are paying."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова й вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова й вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-25:i13:p1",
+              "target": "renew",
+              "meaningByLocale": {
+                "ru": "продлить срок действия, оформить на новый срок",
+                "uk": "продовжити строк дії, оформити на новий строк"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-25:i13:p2",
+              "target": "waiting list",
+              "meaningByLocale": {
+                "ru": "список людей, которые ждут свободного места",
+                "uk": "список людей, які чекають на вільне місце"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-25:i13:p3",
+              "target": "appointment card",
+              "meaningByLocale": {
+                "ru": "карточка с датой и временем назначенного приёма",
+                "uk": "картка з датою й часом призначеного прийому"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-25:i13:p4",
+              "target": "membership",
+              "meaningByLocale": {
+                "ru": "членство в клубе или организации",
+                "uk": "членство в клубі чи організації"
+              }
+            }
+          ],
+          "leftColumn": [
+            "renew",
+            "waiting list",
+            "appointment card",
+            "membership"
+          ],
+          "rightColumn": [
+            "продовжити строк дії, оформити на новий строк",
+            "список людей, які чекають на вільне місце",
+            "картка з датою й часом призначеного прийому",
+            "членство в клубі чи організації"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:i14:audio",
+            "transcript": "I am going to join the club."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to join the club.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "join",
+            "the",
+            "club"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:i15:audio",
+            "transcript": "We are meeting on Friday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting on Friday.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "on",
+            "Friday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:i16:audio"
+        ],
+        "accessibilityLabel": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:i16:audio",
+            "transcript": "I am renewing my pass tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am renewing my pass tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-25:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-25:i17:audio"
+        ],
+        "accessibilityLabel": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-25:i17:audio",
+            "transcript": "I am going to bring my appointment card tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am going to bring my appointment card tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-15:session-25:word:renew",
+      "correctText": "renew",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-25:i01",
+      "correctText": "I am going to renew my pass.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-25:i02",
+      "correctText": "I am going to renew my pass.",
+      "correctResponseId": "en:lesson-15:session-25:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-25:i03",
+      "correctText": "am going to renew",
+      "correctResponseId": "en:lesson-15:session-25:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-25:word:waiting-list",
+      "correctText": "waiting list",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-25:i04",
+      "correctText": "She is going to join the waiting list.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-25:i05",
+      "correctText": "She is going to join the waiting list.",
+      "correctResponseId": "en:lesson-15:session-25:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-25:i06",
+      "correctText": "is going to join",
+      "correctResponseId": "en:lesson-15:session-25:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-25:word:appointment-card",
+      "correctText": "appointment card",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-25:i07",
+      "correctText": "I am bringing my appointment card tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-25:i08",
+      "correctText": "I am bringing my appointment card tomorrow.",
+      "correctResponseId": "en:lesson-15:session-25:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-25:i09",
+      "correctText": "am bringing",
+      "correctResponseId": "en:lesson-15:session-25:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-25:word:membership",
+      "correctText": "membership",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-25:i10",
+      "correctText": "We are paying for our membership on Friday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-25:i11",
+      "correctText": "We are paying for our membership on Friday.",
+      "correctResponseId": "en:lesson-15:session-25:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-25:i12",
+      "correctText": "are paying",
+      "correctResponseId": "en:lesson-15:session-25:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-25:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-25:i14",
+      "correctText": "I am going to join the club.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-25:i15",
+      "correctText": "We are meeting on Friday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-25:i16",
+      "correctText": "I am renewing my pass tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-25:i17",
+      "correctText": "I am going to bring my appointment card tomorrow.",
+      "correctResponseId": null
+    }
+  ]
+}

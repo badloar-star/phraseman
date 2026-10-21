@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-31:word:origami",
+    "correctText": "origami",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-31:i01",
+    "correctText": "I am going to try origami.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-31:i02",
+    "correctText": "I am going to try origami.",
+    "correctResponseId": "en:lesson-15:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-31:i03",
+    "correctText": "am going to try",
+    "correctResponseId": "en:lesson-15:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-31:word:woodworking",
+    "correctText": "woodworking",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-31:i04",
+    "correctText": "She is going to learn woodworking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-31:i05",
+    "correctText": "She is going to learn woodworking.",
+    "correctResponseId": "en:lesson-15:session-31:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-31:i06",
+    "correctText": "is going to learn",
+    "correctResponseId": "en:lesson-15:session-31:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-31:word:birdwatching",
+    "correctText": "birdwatching",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-31:i07",
+    "correctText": "We are going birdwatching on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-31:i08",
+    "correctText": "We are going birdwatching on Saturday.",
+    "correctResponseId": "en:lesson-15:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-31:i09",
+    "correctText": "are going",
+    "correctResponseId": "en:lesson-15:session-31:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-31:word:stargazing",
+    "correctText": "stargazing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-31:i10",
+    "correctText": "They are going stargazing tonight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-31:i11",
+    "correctText": "They are going stargazing tonight.",
+    "correctResponseId": "en:lesson-15:session-31:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-31:i12",
+    "correctText": "are going",
+    "correctResponseId": "en:lesson-15:session-31:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-31:i13",
+    "correctText": "en:lesson-15:session-31:i13:p1=origami\nen:lesson-15:session-31:i13:p2=woodworking\nen:lesson-15:session-31:i13:p3=birdwatching\nen:lesson-15:session-31:i13:p4=stargazing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-31:i14",
+    "correctText": "I am going to try a new hobby.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-31:i15",
+    "correctText": "We are meeting at the park on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-31:i16",
+    "correctText": "I am trying origami tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-31:i17",
+    "correctText": "We are going to go birdwatching on Saturday.",
+    "correctResponseId": null
+  }
+]

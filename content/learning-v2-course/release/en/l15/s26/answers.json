@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-26:word:subscription",
+    "correctText": "subscription",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-26:i01",
+    "correctText": "I am going to buy a subscription.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-26:i02",
+    "correctText": "I am going to buy a subscription.",
+    "correctResponseId": "en:lesson-15:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-26:i03",
+    "correctText": "am going to buy",
+    "correctResponseId": "en:lesson-15:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-26:word:season-ticket",
+    "correctText": "season ticket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-26:i04",
+    "correctText": "She is going to buy a season ticket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-26:i05",
+    "correctText": "She is going to buy a season ticket.",
+    "correctResponseId": "en:lesson-15:session-26:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-26:i06",
+    "correctText": "is going to buy",
+    "correctResponseId": "en:lesson-15:session-26:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-26:word:day-pass",
+    "correctText": "day pass",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-26:i07",
+    "correctText": "We are collecting our day pass tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-26:i08",
+    "correctText": "We are collecting our day pass tomorrow.",
+    "correctResponseId": "en:lesson-15:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-26:i09",
+    "correctText": "are collecting",
+    "correctResponseId": "en:lesson-15:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-26:word:family-pass",
+    "correctText": "family pass",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-26:i10",
+    "correctText": "They are using their family pass on Sunday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-26:i11",
+    "correctText": "They are using their family pass on Sunday.",
+    "correctResponseId": "en:lesson-15:session-26:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-26:i12",
+    "correctText": "are using",
+    "correctResponseId": "en:lesson-15:session-26:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-26:i13",
+    "correctText": "en:lesson-15:session-26:i13:p1=subscription\nen:lesson-15:session-26:i13:p2=season ticket\nen:lesson-15:session-26:i13:p3=day pass\nen:lesson-15:session-26:i13:p4=family pass",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-26:i14",
+    "correctText": "I am going to buy a ticket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-26:i15",
+    "correctText": "We are visiting the museum on Sunday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-26:i16",
+    "correctText": "I am buying a subscription tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-26:i17",
+    "correctText": "We are going to collect our day pass tomorrow.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "going to / Present Continuous: intention and arrangement",
+    "uk": "going to / Present Continuous: intention and arrangement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пока намерение",
+        "uk": "Поки намір"
+      },
+      "bodyByLocale": {
+        "ru": "renew — продлить срок действия, оформить на новый срок. Going to подчёркивает намерение. Present Continuous может подчёркивать уже устроенное будущее дело. Обе формы иногда возможны; здесь тренируем разный акцент. Вы решили продлить пропуск, но ещё не выбрали день. I am going to renew my pass. — Я собираюсь продлить свой пропуск. Передайте намерение через going to.",
+        "uk": "renew — продовжити строк дії, оформити на новий строк. Going to підкреслює намір. Present Continuous може підкреслювати вже організовану майбутню справу. Обидві форми іноді можливі; тут тренуємо різний акцент. Ви вирішили продовжити пропуск, але ще не вибрали день. I am going to renew my pass. — Я збираюся продовжити свій пропуск. Передайте намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-25:intro1:r1",
+              "text": "I am going to renew my pass."
+            },
+            {
+              "responseId": "en:lesson-15:session-25:intro1:r2",
+              "text": "I am renewing my pass."
+            },
+            {
+              "responseId": "en:lesson-15:session-25:intro1:r3",
+              "text": "I is going to renew my pass."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-25:intro1:r1",
+              "text": "I am going to renew my pass."
+            },
+            {
+              "responseId": "en:lesson-15:session-25:intro1:r2",
+              "text": "I am renewing my pass."
+            },
+            {
+              "responseId": "en:lesson-15:session-25:intro1:r3",
+              "text": "I is going to renew my pass."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже договорились",
+        "uk": "Уже домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "appointment card — карточка с датой и временем назначенного приёма. waiting list — список людей, которые ждут свободного места. Если время уже согласовано, потренируем Present Continuous. Приём у врача назначен на завтра; администратор попросил взять карточку записи. I am bringing my appointment card tomorrow. — Я приношу карточку с записью на приём завтра. Передайте договорённость через Present Continuous.",
+        "uk": "appointment card — картка з датою й часом призначеного прийому. waiting list — список людей, які чекають на вільне місце. Якщо час уже узгоджено, потренуймо Present Continuous. Прийом у лікаря призначено на завтра; адміністратор попросив узяти картку запису. I am bringing my appointment card tomorrow. — Я приношу картку із записом на прийом завтра. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-25:intro2:r1",
+              "text": "I am bringing my appointment card tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-25:intro2:r2",
+              "text": "I am going to bring my appointment card tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-25:intro2:r3",
+              "text": "I is bringing my appointment card tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-25:intro2:r1",
+              "text": "I am bringing my appointment card tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-25:intro2:r2",
+              "text": "I am going to bring my appointment card tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-25:intro2:r3",
+              "text": "I is bringing my appointment card tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Известен день",
+        "uk": "Відомий день"
+      },
+      "bodyByLocale": {
+        "ru": "membership — членство в клубе или организации. Участники заранее согласовали день. Выбираем форму по указанию задания. Вы с другом согласовали визит в клуб в пятницу для оплаты членства. We are paying for our membership on Friday. — Мы оплачиваем членство в пятницу. Передайте договорённость через Present Continuous.",
+        "uk": "membership — членство в клубі чи організації. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ви з другом узгодили візит до клубу в п’ятницю для оплати членства. We are paying for our membership on Friday. — Ми оплачуємо членство в п’ятницю. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-25:intro3:r1",
+              "text": "We are paying for our membership on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-25:intro3:r2",
+              "text": "We are going to pay for our membership on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-25:intro3:r3",
+              "text": "We is paying for our membership on Friday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-25:intro3:r1",
+              "text": "We are paying for our membership on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-25:intro3:r2",
+              "text": "We are going to pay for our membership on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-25:intro3:r3",
+              "text": "We is paying for our membership on Friday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4c2ff23da2e400cd825a1719dd0c0585c145f932f888e917badb28d9f285d645"
+}

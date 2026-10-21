@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-32",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-32:word:needlework",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — needlework",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-32:word:needlework:audio"
+      ],
+      "accessibilityLabel": "Картка слова — needlework",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-32:word:needlework:audio",
+          "transcript": "needlework"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-32:word:needlework:r1",
+            "targetText": "needlework",
+            "meaningByLocale": {
+              "ru": "рукоделие с иглой и нитками.",
+              "uk": "рукоділля з голкою й нитками."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "needlework",
+          "definitionByLocale": {
+            "ru": "рукоделие с иглой и нитками.",
+            "uk": "рукоділля з голкою й нитками."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-32:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви вирішили спробувати шити чи вишивати, але ще не вибрали перший виріб. Передайте намір через going to. Скажіть: «Я збираюся спробувати рукоділля з голкою й нитками».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили спробувати шити чи вишивати, але ще не вибрали перший виріб. Передайте намір через going to. Скажіть: «Я збираюся спробувати рукоділля з голкою й нитками».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to try needlework.",
+        "localizedMeaning": {
+          "ru": "Вы решили попробовать шить или вышивать, но ещё не выбрали первое изделие. Передайте намерение через going to. Скажите: «Я собираюсь попробовать рукоделие с иглой и нитками».",
+          "uk": "Ви вирішили спробувати шити чи вишивати, але ще не вибрали перший виріб. Передайте намір через going to. Скажіть: «Я збираюся спробувати рукоділля з голкою й нитками»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "try",
+          "needlework"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-32:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-32:i02:r1",
+          "text": "I am going to try needlework."
+        },
+        {
+          "responseId": "en:lesson-15:session-32:i02:r2",
+          "text": "I am trying needlework."
+        },
+        {
+          "responseId": "en:lesson-15:session-32:i02:r3",
+          "text": "I is going to try needlework."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-32:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-32:i02:audio",
+          "transcript": "I am going to try needlework."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-32:i02:r1",
+            "targetText": "I am going to try needlework.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i02:r2",
+            "targetText": "I am trying needlework.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i02:r3",
+            "targetText": "I is going to try needlework.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-32:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to try needlework.",
+              "uk": "У записі звучить I am going to try needlework."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to try needlework.",
+              "uk": "У записі звучить I am going to try needlework."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-32:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вирішили спробувати шити чи вишивати, але ще не вибрали перший виріб. Передайте намір через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-32:i03:r1",
+          "text": "am going to try"
+        },
+        {
+          "responseId": "en:lesson-15:session-32:i03:r2",
+          "text": "am trying"
+        },
+        {
+          "responseId": "en:lesson-15:session-32:i03:r3",
+          "text": "try"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили спробувати шити чи вишивати, але ще не вибрали перший виріб. Передайте намір через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы решили попробовать шить или вышивать, но ещё не выбрали первое изделие. Передайте намерение через going to.",
+          "uk": "Ви вирішили спробувати шити чи вишивати, але ще не вибрали перший виріб. Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ needlework.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-32:i03:r1",
+            "text": "am going to try"
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i03:r2",
+            "text": "am trying"
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i03:r3",
+            "text": "try"
+          }
+        ],
+        "testedDimension": "Ви вирішили спробувати шити чи вишивати, але ще не вибрали перший виріб. Передайте намір через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-32:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви вирішили спробувати шити чи вишивати, але ще не вибрали перший виріб. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви вирішили спробувати шити чи вишивати, але ще не вибрали перший виріб. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: am going to try.",
+              "uk": "Потрібна повна форма: am going to try."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-32:word:scrapbooking",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — scrapbooking",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-32:word:scrapbooking:audio"
+      ],
+      "accessibilityLabel": "Картка слова — scrapbooking",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-32:word:scrapbooking:audio",
+          "transcript": "scrapbooking"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-32:word:scrapbooking:r1",
+            "targetText": "scrapbooking",
+            "meaningByLocale": {
+              "ru": "оформление альбомов фотографиями, вырезками и памятными мелочами.",
+              "uk": "оформлення альбомів фотографіями, вирізками й пам’ятними дрібницями."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scrapbooking",
+          "definitionByLocale": {
+            "ru": "оформление альбомов фотографиями, вырезками и памятными мелочами.",
+            "uk": "оформлення альбомів фотографіями, вирізками й пам’ятними дрібницями."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-32:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваша подруга вирішила оформити альбом про поїздку; поки це її намір. Передайте намір через going to. Скажіть: «Вона збирається спробувати оформлювати пам’ятні альбоми».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша подруга вирішила оформити альбом про поїздку; поки це її намір. Передайте намір через going to. Скажіть: «Вона збирається спробувати оформлювати пам’ятні альбоми».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is going to try scrapbooking.",
+        "localizedMeaning": {
+          "ru": "Ваша подруга решила оформить альбом о поездке; пока это её намерение. Передайте намерение через going to. Скажите: «Она собирается попробовать оформлять памятные альбомы».",
+          "uk": "Ваша подруга вирішила оформити альбом про поїздку; поки це її намір. Передайте намір через going to. Скажіть: «Вона збирається спробувати оформлювати пам’ятні альбоми»."
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "going",
+          "to",
+          "try",
+          "scrapbooking"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-32:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-32:i05:r1",
+          "text": "She is going to try scrapbooking."
+        },
+        {
+          "responseId": "en:lesson-15:session-32:i05:r2",
+          "text": "She is trying scrapbooking."
+        },
+        {
+          "responseId": "en:lesson-15:session-32:i05:r3",
+          "text": "She are going to try scrapbooking."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-32:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-32:i05:audio",
+          "transcript": "She is going to try scrapbooking."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-32:i05:r1",
+            "targetText": "She is going to try scrapbooking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i05:r2",
+            "targetText": "She is trying scrapbooking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i05:r3",
+            "targetText": "She are going to try scrapbooking.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-32:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to try scrapbooking.",
+              "uk": "У записі звучить She is going to try scrapbooking."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to try scrapbooking.",
+              "uk": "У записі звучить She is going to try scrapbooking."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-32:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваша подруга вирішила оформити альбом про поїздку; поки це її намір. Передайте намір через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-32:i06:r1",
+          "text": "is going to try"
+        },
+        {
+          "responseId": "en:lesson-15:session-32:i06:r2",
+          "text": "is trying"
+        },
+        {
+          "responseId": "en:lesson-15:session-32:i06:r3",
+          "text": "try"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша подруга вирішила оформити альбом про поїздку; поки це її намір. Передайте намір через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваша подруга решила оформить альбом о поездке; пока это её намерение. Передайте намерение через going to.",
+          "uk": "Ваша подруга вирішила оформити альбом про поїздку; поки це її намір. Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "She ___ scrapbooking.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-32:i06:r1",
+            "text": "is going to try"
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i06:r2",
+            "text": "is trying"
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i06:r3",
+            "text": "try"
+          }
+        ],
+        "testedDimension": "Ваша подруга вирішила оформити альбом про поїздку; поки це її намір. Передайте намір через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-32:i06:r2",
+            "correct": false,
+            "testedDimension": "Ваша подруга вирішила оформити альбом про поїздку; поки це її намір. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i06:r3",
+            "correct": false,
+            "testedDimension": "Ваша подруга вирішила оформити альбом про поїздку; поки це її намір. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: is going to try.",
+              "uk": "Потрібна повна форма: is going to try."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-32:word:calligraphy",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — calligraphy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-32:word:calligraphy:audio"
+      ],
+      "accessibilityLabel": "Картка слова — calligraphy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-32:word:calligraphy:audio",
+          "transcript": "calligraphy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-32:word:calligraphy:r1",
+            "targetText": "calligraphy",
+            "meaningByLocale": {
+              "ru": "искусство красивого письма.",
+              "uk": "мистецтво красивого письма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "calligraphy",
+          "definitionByLocale": {
+            "ru": "искусство красивого письма.",
+            "uk": "мистецтво красивого письма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-32:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви з другом записалися на завтрашнє заняття красивим письмом. Передайте домовленість через Present Continuous. Скажіть: «Ми пробуємо каліграфію завтра».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви з другом записалися на завтрашнє заняття красивим письмом. Передайте домовленість через Present Continuous. Скажіть: «Ми пробуємо каліграфію завтра».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are trying calligraphy tomorrow.",
+        "localizedMeaning": {
+          "ru": "Вы с другом записались на завтрашнее занятие красивым письмом. Передайте договорённость через Present Continuous. Скажите: «Мы пробуем каллиграфию завтра».",
+          "uk": "Ви з другом записалися на завтрашнє заняття красивим письмом. Передайте домовленість через Present Continuous. Скажіть: «Ми пробуємо каліграфію завтра»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "trying",
+          "calligraphy",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-32:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-32:i08:r1",
+          "text": "We are trying calligraphy tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-32:i08:r2",
+          "text": "We are going to try calligraphy tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-32:i08:r3",
+          "text": "We is trying calligraphy tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-32:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-32:i08:audio",
+          "transcript": "We are trying calligraphy tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-32:i08:r1",
+            "targetText": "We are trying calligraphy tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i08:r2",
+            "targetText": "We are going to try calligraphy tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i08:r3",
+            "targetText": "We is trying calligraphy tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-32:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are trying calligraphy tomorrow.",
+              "uk": "У записі звучить We are trying calligraphy tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are trying calligraphy tomorrow.",
+              "uk": "У записі звучить We are trying calligraphy tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-32:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви з другом записалися на завтрашнє заняття красивим письмом. Передайте домовленість через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-32:i09:r1",
+          "text": "are trying"
+        },
+        {
+          "responseId": "en:lesson-15:session-32:i09:r2",
+          "text": "are going to try"
+        },
+        {
+          "responseId": "en:lesson-15:session-32:i09:r3",
+          "text": "try"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви з другом записалися на завтрашнє заняття красивим письмом. Передайте домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы с другом записались на завтрашнее занятие красивым письмом. Передайте договорённость через Present Continuous.",
+          "uk": "Ви з другом записалися на завтрашнє заняття красивим письмом. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ calligraphy tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-32:i09:r1",
+            "text": "are trying"
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i09:r2",
+            "text": "are going to try"
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i09:r3",
+            "text": "try"
+          }
+        ],
+        "testedDimension": "Ви з другом записалися на завтрашнє заняття красивим письмом. Передайте домовленість через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-32:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви з другом записалися на завтрашнє заняття красивим письмом. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви з другом записалися на завтрашнє заняття красивим письмом. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are trying.",
+              "uk": "Потрібна повна форма: are trying."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-32:word:flower-pressing",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — flower pressing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-32:word:flower-pressing:audio"
+      ],
+      "accessibilityLabel": "Картка слова — flower pressing",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-32:word:flower-pressing:audio",
+          "transcript": "flower pressing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-32:word:flower-pressing:r1",
+            "targetText": "flower pressing",
+            "meaningByLocale": {
+              "ru": "высушивание цветов под прессом для сохранения формы.",
+              "uk": "висушування квітів під пресом для збереження форми."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flower pressing",
+          "definitionByLocale": {
+            "ru": "высушивание цветов под прессом для сохранения формы.",
+            "uk": "висушування квітів під пресом для збереження форми."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-32:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваші батьки підтвердили участь у недільному занятті із сушіння квітів під пресом. Передайте домовленість через Present Continuous. Скажіть: «Вони пробують сушити квіти під пресом у неділю».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваші батьки підтвердили участь у недільному занятті із сушіння квітів під пресом. Передайте домовленість через Present Continuous. Скажіть: «Вони пробують сушити квіти під пресом у неділю».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are trying flower pressing on Sunday.",
+        "localizedMeaning": {
+          "ru": "Ваши родители подтвердили участие в воскресном занятии по сушке цветов под прессом. Передайте договорённость через Present Continuous. Скажите: «Они пробуют сушить цветы под прессом в воскресенье».",
+          "uk": "Ваші батьки підтвердили участь у недільному занятті із сушіння квітів під пресом. Передайте домовленість через Present Continuous. Скажіть: «Вони пробують сушити квіти під пресом у неділю»."
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "trying",
+          "flower",
+          "pressing",
+          "on",
+          "Sunday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-32:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-32:i11:r1",
+          "text": "They are trying flower pressing on Sunday."
+        },
+        {
+          "responseId": "en:lesson-15:session-32:i11:r2",
+          "text": "They are going to try flower pressing on Sunday."
+        },
+        {
+          "responseId": "en:lesson-15:session-32:i11:r3",
+          "text": "They is trying flower pressing on Sunday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-32:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-32:i11:audio",
+          "transcript": "They are trying flower pressing on Sunday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-32:i11:r1",
+            "targetText": "They are trying flower pressing on Sunday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i11:r2",
+            "targetText": "They are going to try flower pressing on Sunday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i11:r3",
+            "targetText": "They is trying flower pressing on Sunday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-32:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are trying flower pressing on Sunday.",
+              "uk": "У записі звучить They are trying flower pressing on Sunday."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are trying flower pressing on Sunday.",
+              "uk": "У записі звучить They are trying flower pressing on Sunday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-32:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваші батьки підтвердили участь у недільному занятті із сушіння квітів під пресом. Передайте домовленість через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-32:i12:r1",
+          "text": "are trying"
+        },
+        {
+          "responseId": "en:lesson-15:session-32:i12:r2",
+          "text": "are going to try"
+        },
+        {
+          "responseId": "en:lesson-15:session-32:i12:r3",
+          "text": "try"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваші батьки підтвердили участь у недільному занятті із сушіння квітів під пресом. Передайте домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваши родители подтвердили участие в воскресном занятии по сушке цветов под прессом. Передайте договорённость через Present Continuous.",
+          "uk": "Ваші батьки підтвердили участь у недільному занятті із сушіння квітів під пресом. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "They ___ flower pressing on Sunday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-32:i12:r1",
+            "text": "are trying"
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i12:r2",
+            "text": "are going to try"
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i12:r3",
+            "text": "try"
+          }
+        ],
+        "testedDimension": "Ваші батьки підтвердили участь у недільному занятті із сушіння квітів під пресом. Передайте домовленість через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-32:i12:r2",
+            "correct": false,
+            "testedDimension": "Ваші батьки підтвердили участь у недільному занятті із сушіння квітів під пресом. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-32:i12:r3",
+            "correct": false,
+            "testedDimension": "Ваші батьки підтвердили участь у недільному занятті із сушіння квітів під пресом. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are trying.",
+              "uk": "Потрібна повна форма: are trying."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-32:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова й вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова й вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-32:i13:p1",
+            "target": "needlework",
+            "meaningByLocale": {
+              "ru": "рукоделие с иглой и нитками",
+              "uk": "рукоділля з голкою й нитками"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-32:i13:p2",
+            "target": "scrapbooking",
+            "meaningByLocale": {
+              "ru": "оформление альбомов фотографиями, вырезками и памятными мелочами",
+              "uk": "оформлення альбомів фотографіями, вирізками й пам’ятними дрібницями"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-32:i13:p3",
+            "target": "calligraphy",
+            "meaningByLocale": {
+              "ru": "искусство красивого письма",
+              "uk": "мистецтво красивого письма"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-32:i13:p4",
+            "target": "flower pressing",
+            "meaningByLocale": {
+              "ru": "высушивание цветов под прессом для сохранения формы",
+              "uk": "висушування квітів під пресом для збереження форми"
+            }
+          }
+        ],
+        "leftColumn": [
+          "needlework",
+          "scrapbooking",
+          "calligraphy",
+          "flower pressing"
+        ],
+        "rightColumn": [
+          "рукоділля з голкою й нитками",
+          "оформлення альбомів фотографіями, вирізками й пам’ятними дрібницями",
+          "мистецтво красивого письма",
+          "висушування квітів під пресом для збереження форми"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-32:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-32:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-32:i14:audio",
+          "transcript": "I am going to make an album."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to make an album.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "make",
+          "an",
+          "album"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-32:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-32:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-32:i15:audio",
+          "transcript": "We are attending a class tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are attending a class tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "attending",
+          "a",
+          "class",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-32:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-32:i16:audio"
+      ],
+      "accessibilityLabel": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-32:i16:audio",
+          "transcript": "I am trying needlework tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am trying needlework tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-32:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-32:i17:audio"
+      ],
+      "accessibilityLabel": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-32:i17:audio",
+          "transcript": "We are going to try calligraphy tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are going to try calligraphy tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "97a5a435e9d6f96c915eb4c8e82dbd1030756d657d91b3df964631fe1e220c5e"
+}

@@ -1,0 +1,2337 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-15:session-31",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-15:session-31:word:origami",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — origami",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:word:origami:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — origami",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:word:origami:audio",
+            "transcript": "origami"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-31:word:origami:r1",
+              "targetText": "origami",
+              "meaningByLocale": {
+                "ru": "складывание фигурок из бумаги.",
+                "uk": "складання фігурок із паперу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "origami",
+            "definitionByLocale": {
+              "ru": "складывание фигурок из бумаги.",
+              "uk": "складання фігурок із паперу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы решили попробовать складывать бумажные фигурки; занятие ещё не выбрали. Передайте намерение через going to. Скажите: «Я собираюсь попробовать оригами».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили попробовать складывать бумажные фигурки; занятие ещё не выбрали. Передайте намерение через going to. Скажите: «Я собираюсь попробовать оригами».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to try origami.",
+          "localizedMeaning": {
+            "ru": "Вы решили попробовать складывать бумажные фигурки; занятие ещё не выбрали. Передайте намерение через going to. Скажите: «Я собираюсь попробовать оригами».",
+            "uk": "Ви вирішили спробувати складати паперові фігурки; заняття ще не вибрали. Передайте намір через going to. Скажіть: «Я збираюся спробувати оригамі»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "try",
+            "origami"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-31:i02:r1",
+            "text": "I am going to try origami."
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i02:r2",
+            "text": "I am trying origami."
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i02:r3",
+            "text": "I is going to try origami."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:i02:audio",
+            "transcript": "I am going to try origami."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-31:i02:r1",
+              "targetText": "I am going to try origami.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i02:r2",
+              "targetText": "I am trying origami.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i02:r3",
+              "targetText": "I is going to try origami.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-31:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to try origami.",
+                "uk": "У записі звучить I am going to try origami."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to try origami.",
+                "uk": "У записі звучить I am going to try origami."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы решили попробовать складывать бумажные фигурки; занятие ещё не выбрали. Передайте намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-31:i03:r1",
+            "text": "am going to try"
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i03:r2",
+            "text": "am trying"
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i03:r3",
+            "text": "try"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили попробовать складывать бумажные фигурки; занятие ещё не выбрали. Передайте намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили попробовать складывать бумажные фигурки; занятие ещё не выбрали. Передайте намерение через going to.",
+            "uk": "Ви вирішили спробувати складати паперові фігурки; заняття ще не вибрали. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ origami.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-31:i03:r1",
+              "text": "am going to try"
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i03:r2",
+              "text": "am trying"
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i03:r3",
+              "text": "try"
+            }
+          ],
+          "testedDimension": "Вы решили попробовать складывать бумажные фигурки; занятие ещё не выбрали. Передайте намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-31:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы решили попробовать складывать бумажные фигурки; занятие ещё не выбрали. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы решили попробовать складывать бумажные фигурки; занятие ещё не выбрали. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am going to try.",
+                "uk": "Потрібна повна форма: am going to try."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:word:woodworking",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — woodworking",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:word:woodworking:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — woodworking",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:word:woodworking:audio",
+            "transcript": "woodworking"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-31:word:woodworking:r1",
+              "targetText": "woodworking",
+              "meaningByLocale": {
+                "ru": "изготовление вещей из дерева.",
+                "uk": "виготовлення речей із дерева."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "woodworking",
+            "definitionByLocale": {
+              "ru": "изготовление вещей из дерева.",
+              "uk": "виготовлення речей із дерева."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра решила научиться работать с деревом, но ещё не записалась на курс. Передайте намерение через going to. Скажите: «Она собирается научиться делать вещи из дерева».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра решила научиться работать с деревом, но ещё не записалась на курс. Передайте намерение через going to. Скажите: «Она собирается научиться делать вещи из дерева».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to learn woodworking.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра решила научиться работать с деревом, но ещё не записалась на курс. Передайте намерение через going to. Скажите: «Она собирается научиться делать вещи из дерева».",
+            "uk": "Ваша сестра вирішила навчитися працювати з деревом, але ще не записалася на курс. Передайте намір через going to. Скажіть: «Вона збирається навчитися робити речі з дерева»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "learn",
+            "woodworking"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-31:i05:r1",
+            "text": "She is going to learn woodworking."
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i05:r2",
+            "text": "She is learning woodworking."
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i05:r3",
+            "text": "She are going to learn woodworking."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:i05:audio",
+            "transcript": "She is going to learn woodworking."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-31:i05:r1",
+              "targetText": "She is going to learn woodworking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i05:r2",
+              "targetText": "She is learning woodworking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i05:r3",
+              "targetText": "She are going to learn woodworking.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-31:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to learn woodworking.",
+                "uk": "У записі звучить She is going to learn woodworking."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to learn woodworking.",
+                "uk": "У записі звучить She is going to learn woodworking."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша сестра решила научиться работать с деревом, но ещё не записалась на курс. Передайте намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-31:i06:r1",
+            "text": "is going to learn"
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i06:r2",
+            "text": "is learning"
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i06:r3",
+            "text": "learn"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра решила научиться работать с деревом, но ещё не записалась на курс. Передайте намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша сестра решила научиться работать с деревом, но ещё не записалась на курс. Передайте намерение через going to.",
+            "uk": "Ваша сестра вирішила навчитися працювати з деревом, але ще не записалася на курс. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "She ___ woodworking.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-31:i06:r1",
+              "text": "is going to learn"
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i06:r2",
+              "text": "is learning"
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i06:r3",
+              "text": "learn"
+            }
+          ],
+          "testedDimension": "Ваша сестра решила научиться работать с деревом, но ещё не записалась на курс. Передайте намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-31:i06:r2",
+              "correct": false,
+              "testedDimension": "Ваша сестра решила научиться работать с деревом, но ещё не записалась на курс. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i06:r3",
+              "correct": false,
+              "testedDimension": "Ваша сестра решила научиться работать с деревом, но ещё не записалась на курс. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: is going to learn.",
+                "uk": "Потрібна повна форма: is going to learn."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:word:birdwatching",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — birdwatching",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:word:birdwatching:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — birdwatching",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:word:birdwatching:audio",
+            "transcript": "birdwatching"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-31:word:birdwatching:r1",
+              "targetText": "birdwatching",
+              "meaningByLocale": {
+                "ru": "наблюдение за птицами.",
+                "uk": "спостереження за птахами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "birdwatching",
+            "definitionByLocale": {
+              "ru": "наблюдение за птицами.",
+              "uk": "спостереження за птахами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Передайте договорённость через Present Continuous. Скажите: «Мы идём наблюдать за птицами в субботу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Передайте договорённость через Present Continuous. Скажите: «Мы идём наблюдать за птицами в субботу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are going birdwatching on Saturday.",
+          "localizedMeaning": {
+            "ru": "Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Передайте договорённость через Present Continuous. Скажите: «Мы идём наблюдать за птицами в субботу».",
+            "uk": "Ви з друзями домовилися про суботню прогулянку для спостереження за птахами. Передайте домовленість через Present Continuous. Скажіть: «Ми йдемо спостерігати за птахами в суботу»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "birdwatching",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-31:i08:r1",
+            "text": "We are going birdwatching on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i08:r2",
+            "text": "We are going to go birdwatching on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i08:r3",
+            "text": "We is going birdwatching on Saturday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:i08:audio",
+            "transcript": "We are going birdwatching on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-31:i08:r1",
+              "targetText": "We are going birdwatching on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i08:r2",
+              "targetText": "We are going to go birdwatching on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i08:r3",
+              "targetText": "We is going birdwatching on Saturday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-31:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are going birdwatching on Saturday.",
+                "uk": "У записі звучить We are going birdwatching on Saturday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are going birdwatching on Saturday.",
+                "uk": "У записі звучить We are going birdwatching on Saturday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Передайте договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-31:i09:r1",
+            "text": "are going"
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i09:r2",
+            "text": "are going to go"
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i09:r3",
+            "text": "go"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Передайте договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Передайте договорённость через Present Continuous.",
+            "uk": "Ви з друзями домовилися про суботню прогулянку для спостереження за птахами. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ birdwatching on Saturday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-31:i09:r1",
+              "text": "are going"
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i09:r2",
+              "text": "are going to go"
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i09:r3",
+              "text": "go"
+            }
+          ],
+          "testedDimension": "Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Передайте договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-31:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are going.",
+                "uk": "Потрібна повна форма: are going."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:word:stargazing",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stargazing",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:word:stargazing:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stargazing",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:word:stargazing:audio",
+            "transcript": "stargazing"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-31:word:stargazing:r1",
+              "targetText": "stargazing",
+              "meaningByLocale": {
+                "ru": "наблюдение за звёздами.",
+                "uk": "спостереження за зорями."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stargazing",
+            "definitionByLocale": {
+              "ru": "наблюдение за звёздами.",
+              "uk": "спостереження за зорями."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Передайте договорённость через Present Continuous. Скажите: «Они идут наблюдать за звёздами сегодня вечером».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Передайте договорённость через Present Continuous. Скажите: «Они идут наблюдать за звёздами сегодня вечером».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are going stargazing tonight.",
+          "localizedMeaning": {
+            "ru": "Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Передайте договорённость через Present Continuous. Скажите: «Они идут наблюдать за звёздами сегодня вечером».",
+            "uk": "Ваші батьки узгодили зустріч із клубом любителів зір на цей вечір. Передайте домовленість через Present Continuous. Скажіть: «Вони йдуть спостерігати за зорями сьогодні ввечері»."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "going",
+            "stargazing",
+            "tonight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-31:i11:r1",
+            "text": "They are going stargazing tonight."
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i11:r2",
+            "text": "They are going to go stargazing tonight."
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i11:r3",
+            "text": "They is going stargazing tonight."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:i11:audio",
+            "transcript": "They are going stargazing tonight."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-31:i11:r1",
+              "targetText": "They are going stargazing tonight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i11:r2",
+              "targetText": "They are going to go stargazing tonight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i11:r3",
+              "targetText": "They is going stargazing tonight.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-31:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are going stargazing tonight.",
+                "uk": "У записі звучить They are going stargazing tonight."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are going stargazing tonight.",
+                "uk": "У записі звучить They are going stargazing tonight."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Передайте договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-31:i12:r1",
+            "text": "are going"
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i12:r2",
+            "text": "are going to go"
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i12:r3",
+            "text": "go"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Передайте договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Передайте договорённость через Present Continuous.",
+            "uk": "Ваші батьки узгодили зустріч із клубом любителів зір на цей вечір. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "They ___ stargazing tonight.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-31:i12:r1",
+              "text": "are going"
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i12:r2",
+              "text": "are going to go"
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i12:r3",
+              "text": "go"
+            }
+          ],
+          "testedDimension": "Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Передайте договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-31:i12:r2",
+              "correct": false,
+              "testedDimension": "Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i12:r3",
+              "correct": false,
+              "testedDimension": "Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are going.",
+                "uk": "Потрібна повна форма: are going."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова и выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова и выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-31:i13:p1",
+              "target": "origami",
+              "meaningByLocale": {
+                "ru": "складывание фигурок из бумаги",
+                "uk": "складання фігурок із паперу"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-31:i13:p2",
+              "target": "woodworking",
+              "meaningByLocale": {
+                "ru": "изготовление вещей из дерева",
+                "uk": "виготовлення речей із дерева"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-31:i13:p3",
+              "target": "birdwatching",
+              "meaningByLocale": {
+                "ru": "наблюдение за птицами",
+                "uk": "спостереження за птахами"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-31:i13:p4",
+              "target": "stargazing",
+              "meaningByLocale": {
+                "ru": "наблюдение за звёздами",
+                "uk": "спостереження за зорями"
+              }
+            }
+          ],
+          "leftColumn": [
+            "origami",
+            "woodworking",
+            "birdwatching",
+            "stargazing"
+          ],
+          "rightColumn": [
+            "складывание фигурок из бумаги",
+            "изготовление вещей из дерева",
+            "наблюдение за птицами",
+            "наблюдение за звёздами"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:i14:audio",
+            "transcript": "I am going to try a new hobby."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to try a new hobby.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "try",
+            "a",
+            "new",
+            "hobby"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:i15:audio",
+            "transcript": "We are meeting at the park on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting at the park on Saturday.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "at",
+            "the",
+            "park",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:i16:audio"
+        ],
+        "accessibilityLabel": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:i16:audio",
+            "transcript": "I am trying origami tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am trying origami tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Теперь это только ваше намерение. Повторите фразу через going to.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:i17:audio"
+        ],
+        "accessibilityLabel": "Теперь это только ваше намерение. Повторите фразу через going to.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:i17:audio",
+            "transcript": "We are going to go birdwatching on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are going to go birdwatching on Saturday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-15:session-31:word:origami",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — origami",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:word:origami:audio"
+        ],
+        "accessibilityLabel": "Картка слова — origami",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:word:origami:audio",
+            "transcript": "origami"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-31:word:origami:r1",
+              "targetText": "origami",
+              "meaningByLocale": {
+                "ru": "складывание фигурок из бумаги.",
+                "uk": "складання фігурок із паперу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "origami",
+            "definitionByLocale": {
+              "ru": "складывание фигурок из бумаги.",
+              "uk": "складання фігурок із паперу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вирішили спробувати складати паперові фігурки; заняття ще не вибрали. Передайте намір через going to. Скажіть: «Я збираюся спробувати оригамі».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили спробувати складати паперові фігурки; заняття ще не вибрали. Передайте намір через going to. Скажіть: «Я збираюся спробувати оригамі».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to try origami.",
+          "localizedMeaning": {
+            "ru": "Вы решили попробовать складывать бумажные фигурки; занятие ещё не выбрали. Передайте намерение через going to. Скажите: «Я собираюсь попробовать оригами».",
+            "uk": "Ви вирішили спробувати складати паперові фігурки; заняття ще не вибрали. Передайте намір через going to. Скажіть: «Я збираюся спробувати оригамі»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "try",
+            "origami"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-31:i02:r1",
+            "text": "I am going to try origami."
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i02:r2",
+            "text": "I am trying origami."
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i02:r3",
+            "text": "I is going to try origami."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:i02:audio",
+            "transcript": "I am going to try origami."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-31:i02:r1",
+              "targetText": "I am going to try origami.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i02:r2",
+              "targetText": "I am trying origami.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i02:r3",
+              "targetText": "I is going to try origami.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-31:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to try origami.",
+                "uk": "У записі звучить I am going to try origami."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to try origami.",
+                "uk": "У записі звучить I am going to try origami."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вирішили спробувати складати паперові фігурки; заняття ще не вибрали. Передайте намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-31:i03:r1",
+            "text": "am going to try"
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i03:r2",
+            "text": "am trying"
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i03:r3",
+            "text": "try"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили спробувати складати паперові фігурки; заняття ще не вибрали. Передайте намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили попробовать складывать бумажные фигурки; занятие ещё не выбрали. Передайте намерение через going to.",
+            "uk": "Ви вирішили спробувати складати паперові фігурки; заняття ще не вибрали. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ origami.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-31:i03:r1",
+              "text": "am going to try"
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i03:r2",
+              "text": "am trying"
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i03:r3",
+              "text": "try"
+            }
+          ],
+          "testedDimension": "Ви вирішили спробувати складати паперові фігурки; заняття ще не вибрали. Передайте намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-31:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви вирішили спробувати складати паперові фігурки; заняття ще не вибрали. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви вирішили спробувати складати паперові фігурки; заняття ще не вибрали. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am going to try.",
+                "uk": "Потрібна повна форма: am going to try."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:word:woodworking",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — woodworking",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:word:woodworking:audio"
+        ],
+        "accessibilityLabel": "Картка слова — woodworking",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:word:woodworking:audio",
+            "transcript": "woodworking"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-31:word:woodworking:r1",
+              "targetText": "woodworking",
+              "meaningByLocale": {
+                "ru": "изготовление вещей из дерева.",
+                "uk": "виготовлення речей із дерева."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "woodworking",
+            "definitionByLocale": {
+              "ru": "изготовление вещей из дерева.",
+              "uk": "виготовлення речей із дерева."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра вирішила навчитися працювати з деревом, але ще не записалася на курс. Передайте намір через going to. Скажіть: «Вона збирається навчитися робити речі з дерева».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра вирішила навчитися працювати з деревом, але ще не записалася на курс. Передайте намір через going to. Скажіть: «Вона збирається навчитися робити речі з дерева».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to learn woodworking.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра решила научиться работать с деревом, но ещё не записалась на курс. Передайте намерение через going to. Скажите: «Она собирается научиться делать вещи из дерева».",
+            "uk": "Ваша сестра вирішила навчитися працювати з деревом, але ще не записалася на курс. Передайте намір через going to. Скажіть: «Вона збирається навчитися робити речі з дерева»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "learn",
+            "woodworking"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-31:i05:r1",
+            "text": "She is going to learn woodworking."
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i05:r2",
+            "text": "She is learning woodworking."
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i05:r3",
+            "text": "She are going to learn woodworking."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:i05:audio",
+            "transcript": "She is going to learn woodworking."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-31:i05:r1",
+              "targetText": "She is going to learn woodworking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i05:r2",
+              "targetText": "She is learning woodworking.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i05:r3",
+              "targetText": "She are going to learn woodworking.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-31:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to learn woodworking.",
+                "uk": "У записі звучить She is going to learn woodworking."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to learn woodworking.",
+                "uk": "У записі звучить She is going to learn woodworking."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша сестра вирішила навчитися працювати з деревом, але ще не записалася на курс. Передайте намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-31:i06:r1",
+            "text": "is going to learn"
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i06:r2",
+            "text": "is learning"
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i06:r3",
+            "text": "learn"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра вирішила навчитися працювати з деревом, але ще не записалася на курс. Передайте намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша сестра решила научиться работать с деревом, но ещё не записалась на курс. Передайте намерение через going to.",
+            "uk": "Ваша сестра вирішила навчитися працювати з деревом, але ще не записалася на курс. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "She ___ woodworking.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-31:i06:r1",
+              "text": "is going to learn"
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i06:r2",
+              "text": "is learning"
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i06:r3",
+              "text": "learn"
+            }
+          ],
+          "testedDimension": "Ваша сестра вирішила навчитися працювати з деревом, але ще не записалася на курс. Передайте намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-31:i06:r2",
+              "correct": false,
+              "testedDimension": "Ваша сестра вирішила навчитися працювати з деревом, але ще не записалася на курс. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i06:r3",
+              "correct": false,
+              "testedDimension": "Ваша сестра вирішила навчитися працювати з деревом, але ще не записалася на курс. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: is going to learn.",
+                "uk": "Потрібна повна форма: is going to learn."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:word:birdwatching",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — birdwatching",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:word:birdwatching:audio"
+        ],
+        "accessibilityLabel": "Картка слова — birdwatching",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:word:birdwatching:audio",
+            "transcript": "birdwatching"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-31:word:birdwatching:r1",
+              "targetText": "birdwatching",
+              "meaningByLocale": {
+                "ru": "наблюдение за птицами.",
+                "uk": "спостереження за птахами."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "birdwatching",
+            "definitionByLocale": {
+              "ru": "наблюдение за птицами.",
+              "uk": "спостереження за птахами."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з друзями домовилися про суботню прогулянку для спостереження за птахами. Передайте домовленість через Present Continuous. Скажіть: «Ми йдемо спостерігати за птахами в суботу».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з друзями домовилися про суботню прогулянку для спостереження за птахами. Передайте домовленість через Present Continuous. Скажіть: «Ми йдемо спостерігати за птахами в суботу».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are going birdwatching on Saturday.",
+          "localizedMeaning": {
+            "ru": "Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Передайте договорённость через Present Continuous. Скажите: «Мы идём наблюдать за птицами в субботу».",
+            "uk": "Ви з друзями домовилися про суботню прогулянку для спостереження за птахами. Передайте домовленість через Present Continuous. Скажіть: «Ми йдемо спостерігати за птахами в суботу»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "birdwatching",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-31:i08:r1",
+            "text": "We are going birdwatching on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i08:r2",
+            "text": "We are going to go birdwatching on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i08:r3",
+            "text": "We is going birdwatching on Saturday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:i08:audio",
+            "transcript": "We are going birdwatching on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-31:i08:r1",
+              "targetText": "We are going birdwatching on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i08:r2",
+              "targetText": "We are going to go birdwatching on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i08:r3",
+              "targetText": "We is going birdwatching on Saturday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-31:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are going birdwatching on Saturday.",
+                "uk": "У записі звучить We are going birdwatching on Saturday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are going birdwatching on Saturday.",
+                "uk": "У записі звучить We are going birdwatching on Saturday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви з друзями домовилися про суботню прогулянку для спостереження за птахами. Передайте домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-31:i09:r1",
+            "text": "are going"
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i09:r2",
+            "text": "are going to go"
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i09:r3",
+            "text": "go"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з друзями домовилися про суботню прогулянку для спостереження за птахами. Передайте домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Передайте договорённость через Present Continuous.",
+            "uk": "Ви з друзями домовилися про суботню прогулянку для спостереження за птахами. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ birdwatching on Saturday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-31:i09:r1",
+              "text": "are going"
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i09:r2",
+              "text": "are going to go"
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i09:r3",
+              "text": "go"
+            }
+          ],
+          "testedDimension": "Ви з друзями домовилися про суботню прогулянку для спостереження за птахами. Передайте домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-31:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви з друзями домовилися про суботню прогулянку для спостереження за птахами. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви з друзями домовилися про суботню прогулянку для спостереження за птахами. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are going.",
+                "uk": "Потрібна повна форма: are going."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:word:stargazing",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stargazing",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:word:stargazing:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stargazing",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:word:stargazing:audio",
+            "transcript": "stargazing"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-31:word:stargazing:r1",
+              "targetText": "stargazing",
+              "meaningByLocale": {
+                "ru": "наблюдение за звёздами.",
+                "uk": "спостереження за зорями."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stargazing",
+            "definitionByLocale": {
+              "ru": "наблюдение за звёздами.",
+              "uk": "спостереження за зорями."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваші батьки узгодили зустріч із клубом любителів зір на цей вечір. Передайте домовленість через Present Continuous. Скажіть: «Вони йдуть спостерігати за зорями сьогодні ввечері».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші батьки узгодили зустріч із клубом любителів зір на цей вечір. Передайте домовленість через Present Continuous. Скажіть: «Вони йдуть спостерігати за зорями сьогодні ввечері».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are going stargazing tonight.",
+          "localizedMeaning": {
+            "ru": "Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Передайте договорённость через Present Continuous. Скажите: «Они идут наблюдать за звёздами сегодня вечером».",
+            "uk": "Ваші батьки узгодили зустріч із клубом любителів зір на цей вечір. Передайте домовленість через Present Continuous. Скажіть: «Вони йдуть спостерігати за зорями сьогодні ввечері»."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "going",
+            "stargazing",
+            "tonight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-31:i11:r1",
+            "text": "They are going stargazing tonight."
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i11:r2",
+            "text": "They are going to go stargazing tonight."
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i11:r3",
+            "text": "They is going stargazing tonight."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:i11:audio",
+            "transcript": "They are going stargazing tonight."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-31:i11:r1",
+              "targetText": "They are going stargazing tonight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i11:r2",
+              "targetText": "They are going to go stargazing tonight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i11:r3",
+              "targetText": "They is going stargazing tonight.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-31:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are going stargazing tonight.",
+                "uk": "У записі звучить They are going stargazing tonight."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are going stargazing tonight.",
+                "uk": "У записі звучить They are going stargazing tonight."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваші батьки узгодили зустріч із клубом любителів зір на цей вечір. Передайте домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-31:i12:r1",
+            "text": "are going"
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i12:r2",
+            "text": "are going to go"
+          },
+          {
+            "responseId": "en:lesson-15:session-31:i12:r3",
+            "text": "go"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші батьки узгодили зустріч із клубом любителів зір на цей вечір. Передайте домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Передайте договорённость через Present Continuous.",
+            "uk": "Ваші батьки узгодили зустріч із клубом любителів зір на цей вечір. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "They ___ stargazing tonight.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-31:i12:r1",
+              "text": "are going"
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i12:r2",
+              "text": "are going to go"
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i12:r3",
+              "text": "go"
+            }
+          ],
+          "testedDimension": "Ваші батьки узгодили зустріч із клубом любителів зір на цей вечір. Передайте домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-31:i12:r2",
+              "correct": false,
+              "testedDimension": "Ваші батьки узгодили зустріч із клубом любителів зір на цей вечір. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-31:i12:r3",
+              "correct": false,
+              "testedDimension": "Ваші батьки узгодили зустріч із клубом любителів зір на цей вечір. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are going.",
+                "uk": "Потрібна повна форма: are going."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова й вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова й вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-31:i13:p1",
+              "target": "origami",
+              "meaningByLocale": {
+                "ru": "складывание фигурок из бумаги",
+                "uk": "складання фігурок із паперу"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-31:i13:p2",
+              "target": "woodworking",
+              "meaningByLocale": {
+                "ru": "изготовление вещей из дерева",
+                "uk": "виготовлення речей із дерева"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-31:i13:p3",
+              "target": "birdwatching",
+              "meaningByLocale": {
+                "ru": "наблюдение за птицами",
+                "uk": "спостереження за птахами"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-31:i13:p4",
+              "target": "stargazing",
+              "meaningByLocale": {
+                "ru": "наблюдение за звёздами",
+                "uk": "спостереження за зорями"
+              }
+            }
+          ],
+          "leftColumn": [
+            "origami",
+            "woodworking",
+            "birdwatching",
+            "stargazing"
+          ],
+          "rightColumn": [
+            "складання фігурок із паперу",
+            "виготовлення речей із дерева",
+            "спостереження за птахами",
+            "спостереження за зорями"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:i14:audio",
+            "transcript": "I am going to try a new hobby."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to try a new hobby.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "try",
+            "a",
+            "new",
+            "hobby"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:i15:audio",
+            "transcript": "We are meeting at the park on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting at the park on Saturday.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "at",
+            "the",
+            "park",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:i16:audio"
+        ],
+        "accessibilityLabel": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:i16:audio",
+            "transcript": "I am trying origami tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am trying origami tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-31:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-31:i17:audio"
+        ],
+        "accessibilityLabel": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-31:i17:audio",
+            "transcript": "We are going to go birdwatching on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are going to go birdwatching on Saturday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-15:session-31:word:origami",
+      "correctText": "origami",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-31:i01",
+      "correctText": "I am going to try origami.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-31:i02",
+      "correctText": "I am going to try origami.",
+      "correctResponseId": "en:lesson-15:session-31:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-31:i03",
+      "correctText": "am going to try",
+      "correctResponseId": "en:lesson-15:session-31:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-31:word:woodworking",
+      "correctText": "woodworking",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-31:i04",
+      "correctText": "She is going to learn woodworking.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-31:i05",
+      "correctText": "She is going to learn woodworking.",
+      "correctResponseId": "en:lesson-15:session-31:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-31:i06",
+      "correctText": "is going to learn",
+      "correctResponseId": "en:lesson-15:session-31:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-31:word:birdwatching",
+      "correctText": "birdwatching",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-31:i07",
+      "correctText": "We are going birdwatching on Saturday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-31:i08",
+      "correctText": "We are going birdwatching on Saturday.",
+      "correctResponseId": "en:lesson-15:session-31:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-31:i09",
+      "correctText": "are going",
+      "correctResponseId": "en:lesson-15:session-31:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-31:word:stargazing",
+      "correctText": "stargazing",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-31:i10",
+      "correctText": "They are going stargazing tonight.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-31:i11",
+      "correctText": "They are going stargazing tonight.",
+      "correctResponseId": "en:lesson-15:session-31:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-31:i12",
+      "correctText": "are going",
+      "correctResponseId": "en:lesson-15:session-31:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-31:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-31:i14",
+      "correctText": "I am going to try a new hobby.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-31:i15",
+      "correctText": "We are meeting at the park on Saturday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-31:i16",
+      "correctText": "I am trying origami tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-31:i17",
+      "correctText": "We are going to go birdwatching on Saturday.",
+      "correctResponseId": null
+    }
+  ]
+}

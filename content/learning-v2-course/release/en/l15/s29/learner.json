@@ -1,0 +1,1127 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-29",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-29:word:washer-fluid",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — washer fluid",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-29:word:washer-fluid:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — washer fluid",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-29:word:washer-fluid:audio",
+          "transcript": "washer fluid"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-29:word:washer-fluid:r1",
+            "targetText": "washer fluid",
+            "meaningByLocale": {
+              "ru": "жидкость для омывателя автомобильных стёкол.",
+              "uk": "рідина для омивача автомобільного скла."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "washer fluid",
+          "definitionByLocale": {
+            "ru": "жидкость для омывателя автомобильных стёкол.",
+            "uk": "рідина для омивача автомобільного скла."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-29:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Жидкость для омывателя заканчивается; вы решили купить новую. Передайте намерение через going to. Скажите: «Я собираюсь купить жидкость для омывателя».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Жидкость для омывателя заканчивается; вы решили купить новую. Передайте намерение через going to. Скажите: «Я собираюсь купить жидкость для омывателя».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to buy washer fluid.",
+        "localizedMeaning": {
+          "ru": "Жидкость для омывателя заканчивается; вы решили купить новую. Передайте намерение через going to. Скажите: «Я собираюсь купить жидкость для омывателя».",
+          "uk": "Рідина для омивача закінчується; ви вирішили купити нову. Передайте намір через going to. Скажіть: «Я збираюся купити рідину для омивача»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "buy",
+          "washer",
+          "fluid"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-29:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-29:i02:r1",
+          "text": "I am going to buy washer fluid."
+        },
+        {
+          "responseId": "en:lesson-15:session-29:i02:r2",
+          "text": "I am buying washer fluid."
+        },
+        {
+          "responseId": "en:lesson-15:session-29:i02:r3",
+          "text": "I is going to buy washer fluid."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-29:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-29:i02:audio",
+          "transcript": "I am going to buy washer fluid."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-29:i02:r1",
+            "targetText": "I am going to buy washer fluid.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i02:r2",
+            "targetText": "I am buying washer fluid.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i02:r3",
+            "targetText": "I is going to buy washer fluid.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-29:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to buy washer fluid.",
+              "uk": "У записі звучить I am going to buy washer fluid."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to buy washer fluid.",
+              "uk": "У записі звучить I am going to buy washer fluid."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-29:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Жидкость для омывателя заканчивается; вы решили купить новую. Передайте намерение через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-29:i03:r1",
+          "text": "am going to buy"
+        },
+        {
+          "responseId": "en:lesson-15:session-29:i03:r2",
+          "text": "am buying"
+        },
+        {
+          "responseId": "en:lesson-15:session-29:i03:r3",
+          "text": "buy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Жидкость для омывателя заканчивается; вы решили купить новую. Передайте намерение через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Жидкость для омывателя заканчивается; вы решили купить новую. Передайте намерение через going to.",
+          "uk": "Рідина для омивача закінчується; ви вирішили купити нову. Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ washer fluid.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-29:i03:r1",
+            "text": "am going to buy"
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i03:r2",
+            "text": "am buying"
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i03:r3",
+            "text": "buy"
+          }
+        ],
+        "testedDimension": "Жидкость для омывателя заканчивается; вы решили купить новую. Передайте намерение через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-29:i03:r2",
+            "correct": false,
+            "testedDimension": "Жидкость для омывателя заканчивается; вы решили купить новую. Передайте намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i03:r3",
+            "correct": false,
+            "testedDimension": "Жидкость для омывателя заканчивается; вы решили купить новую. Передайте намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: am going to buy.",
+              "uk": "Потрібна повна форма: am going to buy."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-29:word:tyre-pressure",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tyre pressure",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-29:word:tyre-pressure:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tyre pressure",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-29:word:tyre-pressure:audio",
+          "transcript": "tyre pressure"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-29:word:tyre-pressure:r1",
+            "targetText": "tyre pressure",
+            "meaningByLocale": {
+              "ru": "давление воздуха в шине.",
+              "uk": "тиск повітря в шині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tyre pressure",
+          "definitionByLocale": {
+            "ru": "давление воздуха в шине.",
+            "uk": "тиск повітря в шині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-29:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваша сестра решила проверить давление перед дальней поездкой. Передайте намерение через going to. Скажите: «Она собирается проверить давление в шинах».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша сестра решила проверить давление перед дальней поездкой. Передайте намерение через going to. Скажите: «Она собирается проверить давление в шинах».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is going to check the tyre pressure.",
+        "localizedMeaning": {
+          "ru": "Ваша сестра решила проверить давление перед дальней поездкой. Передайте намерение через going to. Скажите: «Она собирается проверить давление в шинах».",
+          "uk": "Ваша сестра вирішила перевірити тиск перед далекою поїздкою. Передайте намір через going to. Скажіть: «Вона збирається перевірити тиск у шинах»."
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "going",
+          "to",
+          "check",
+          "the",
+          "tyre",
+          "pressure"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-29:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-29:i05:r1",
+          "text": "She is going to check the tyre pressure."
+        },
+        {
+          "responseId": "en:lesson-15:session-29:i05:r2",
+          "text": "She is checking the tyre pressure."
+        },
+        {
+          "responseId": "en:lesson-15:session-29:i05:r3",
+          "text": "She are going to check the tyre pressure."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-29:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-29:i05:audio",
+          "transcript": "She is going to check the tyre pressure."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-29:i05:r1",
+            "targetText": "She is going to check the tyre pressure.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i05:r2",
+            "targetText": "She is checking the tyre pressure.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i05:r3",
+            "targetText": "She are going to check the tyre pressure.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-29:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to check the tyre pressure.",
+              "uk": "У записі звучить She is going to check the tyre pressure."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to check the tyre pressure.",
+              "uk": "У записі звучить She is going to check the tyre pressure."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-29:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваша сестра решила проверить давление перед дальней поездкой. Передайте намерение через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-29:i06:r1",
+          "text": "is going to check"
+        },
+        {
+          "responseId": "en:lesson-15:session-29:i06:r2",
+          "text": "is checking"
+        },
+        {
+          "responseId": "en:lesson-15:session-29:i06:r3",
+          "text": "check"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша сестра решила проверить давление перед дальней поездкой. Передайте намерение через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваша сестра решила проверить давление перед дальней поездкой. Передайте намерение через going to.",
+          "uk": "Ваша сестра вирішила перевірити тиск перед далекою поїздкою. Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "She ___ the tyre pressure.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-29:i06:r1",
+            "text": "is going to check"
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i06:r2",
+            "text": "is checking"
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i06:r3",
+            "text": "check"
+          }
+        ],
+        "testedDimension": "Ваша сестра решила проверить давление перед дальней поездкой. Передайте намерение через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-29:i06:r2",
+            "correct": false,
+            "testedDimension": "Ваша сестра решила проверить давление перед дальней поездкой. Передайте намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i06:r3",
+            "correct": false,
+            "testedDimension": "Ваша сестра решила проверить давление перед дальней поездкой. Передайте намерение через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: is going to check.",
+              "uk": "Потрібна повна форма: is going to check."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-29:word:hubcap",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hubcap",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-29:word:hubcap:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hubcap",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-29:word:hubcap:audio",
+          "transcript": "hubcap"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-29:word:hubcap:r1",
+            "targetText": "hubcap",
+            "meaningByLocale": {
+              "ru": "декоративный колпак автомобильного колеса.",
+              "uk": "декоративний ковпак автомобільного колеса."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hubcap",
+          "definitionByLocale": {
+            "ru": "декоративный колпак автомобильного колеса.",
+            "uk": "декоративний ковпак автомобільного колеса."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-29:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Магазин подтвердил поступление заказанного колпака и договорился выдать его вам завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем колпак колеса завтра».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Магазин подтвердил поступление заказанного колпака и договорился выдать его вам завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем колпак колеса завтра».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are collecting the hubcap tomorrow.",
+        "localizedMeaning": {
+          "ru": "Магазин подтвердил поступление заказанного колпака и договорился выдать его вам завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем колпак колеса завтра».",
+          "uk": "Магазин підтвердив надходження замовленого ковпака й домовився видати його вам завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо ковпак колеса завтра»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "collecting",
+          "the",
+          "hubcap",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-29:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-29:i08:r1",
+          "text": "We are collecting the hubcap tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-29:i08:r2",
+          "text": "We are going to collect the hubcap tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-29:i08:r3",
+          "text": "We is collecting the hubcap tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-29:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-29:i08:audio",
+          "transcript": "We are collecting the hubcap tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-29:i08:r1",
+            "targetText": "We are collecting the hubcap tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i08:r2",
+            "targetText": "We are going to collect the hubcap tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i08:r3",
+            "targetText": "We is collecting the hubcap tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-29:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are collecting the hubcap tomorrow.",
+              "uk": "У записі звучить We are collecting the hubcap tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are collecting the hubcap tomorrow.",
+              "uk": "У записі звучить We are collecting the hubcap tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-29:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Магазин подтвердил поступление заказанного колпака и договорился выдать его вам завтра. Передайте договорённость через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-29:i09:r1",
+          "text": "are collecting"
+        },
+        {
+          "responseId": "en:lesson-15:session-29:i09:r2",
+          "text": "are going to collect"
+        },
+        {
+          "responseId": "en:lesson-15:session-29:i09:r3",
+          "text": "collect"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Магазин подтвердил поступление заказанного колпака и договорился выдать его вам завтра. Передайте договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Магазин подтвердил поступление заказанного колпака и договорился выдать его вам завтра. Передайте договорённость через Present Continuous.",
+          "uk": "Магазин підтвердив надходження замовленого ковпака й домовився видати його вам завтра. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ the hubcap tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-29:i09:r1",
+            "text": "are collecting"
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i09:r2",
+            "text": "are going to collect"
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i09:r3",
+            "text": "collect"
+          }
+        ],
+        "testedDimension": "Магазин подтвердил поступление заказанного колпака и договорился выдать его вам завтра. Передайте договорённость через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-29:i09:r2",
+            "correct": false,
+            "testedDimension": "Магазин подтвердил поступление заказанного колпака и договорился выдать его вам завтра. Передайте договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i09:r3",
+            "correct": false,
+            "testedDimension": "Магазин подтвердил поступление заказанного колпака и договорился выдать его вам завтра. Передайте договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are collecting.",
+              "uk": "Потрібна повна форма: are collecting."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-29:word:jump-leads",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — jump leads",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-29:word:jump-leads:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — jump leads",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-29:word:jump-leads:audio",
+          "transcript": "jump leads"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-29:word:jump-leads:r1",
+            "targetText": "jump leads",
+            "meaningByLocale": {
+              "ru": "провода для запуска автомобиля от другого аккумулятора.",
+              "uk": "дроти для запуску автомобіля від іншого акумулятора."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "jump leads",
+          "definitionByLocale": {
+            "ru": "провода для запуска автомобиля от другого аккумулятора.",
+            "uk": "дроти для запуску автомобіля від іншого акумулятора."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-29:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друзья согласились привезти вам провода завтра в девять. Передайте договорённость через Present Continuous. Скажите: «Они привозят провода для запуска машины завтра в девять».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друзья согласились привезти вам провода завтра в девять. Передайте договорённость через Present Continuous. Скажите: «Они привозят провода для запуска машины завтра в девять».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are bringing jump leads at nine tomorrow.",
+        "localizedMeaning": {
+          "ru": "Друзья согласились привезти вам провода завтра в девять. Передайте договорённость через Present Continuous. Скажите: «Они привозят провода для запуска машины завтра в девять».",
+          "uk": "Друзі погодилися привезти вам дроти завтра о дев’ятій. Передайте домовленість через Present Continuous. Скажіть: «Вони привозять дроти для запуску машини завтра о дев’ятій»."
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "bringing",
+          "jump",
+          "leads",
+          "at",
+          "nine",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-29:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-29:i11:r1",
+          "text": "They are bringing jump leads at nine tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-29:i11:r2",
+          "text": "They are going to bring jump leads at nine tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-29:i11:r3",
+          "text": "They is bringing jump leads at nine tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-29:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-29:i11:audio",
+          "transcript": "They are bringing jump leads at nine tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-29:i11:r1",
+            "targetText": "They are bringing jump leads at nine tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i11:r2",
+            "targetText": "They are going to bring jump leads at nine tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i11:r3",
+            "targetText": "They is bringing jump leads at nine tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-29:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are bringing jump leads at nine tomorrow.",
+              "uk": "У записі звучить They are bringing jump leads at nine tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are bringing jump leads at nine tomorrow.",
+              "uk": "У записі звучить They are bringing jump leads at nine tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-29:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друзья согласились привезти вам провода завтра в девять. Передайте договорённость через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-29:i12:r1",
+          "text": "are bringing"
+        },
+        {
+          "responseId": "en:lesson-15:session-29:i12:r2",
+          "text": "are going to bring"
+        },
+        {
+          "responseId": "en:lesson-15:session-29:i12:r3",
+          "text": "bring"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друзья согласились привезти вам провода завтра в девять. Передайте договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друзья согласились привезти вам провода завтра в девять. Передайте договорённость через Present Continuous.",
+          "uk": "Друзі погодилися привезти вам дроти завтра о дев’ятій. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "They ___ jump leads at nine tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-29:i12:r1",
+            "text": "are bringing"
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i12:r2",
+            "text": "are going to bring"
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i12:r3",
+            "text": "bring"
+          }
+        ],
+        "testedDimension": "Друзья согласились привезти вам провода завтра в девять. Передайте договорённость через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-29:i12:r2",
+            "correct": false,
+            "testedDimension": "Друзья согласились привезти вам провода завтра в девять. Передайте договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-29:i12:r3",
+            "correct": false,
+            "testedDimension": "Друзья согласились привезти вам провода завтра в девять. Передайте договорённость через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are bringing.",
+              "uk": "Потрібна повна форма: are bringing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-29:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова и выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова и выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-29:i13:p1",
+            "target": "washer fluid",
+            "meaningByLocale": {
+              "ru": "жидкость для омывателя автомобильных стёкол",
+              "uk": "рідина для омивача автомобільного скла"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-29:i13:p2",
+            "target": "tyre pressure",
+            "meaningByLocale": {
+              "ru": "давление воздуха в шине",
+              "uk": "тиск повітря в шині"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-29:i13:p3",
+            "target": "hubcap",
+            "meaningByLocale": {
+              "ru": "декоративный колпак автомобильного колеса",
+              "uk": "декоративний ковпак автомобільного колеса"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-29:i13:p4",
+            "target": "jump leads",
+            "meaningByLocale": {
+              "ru": "провода для запуска автомобиля от другого аккумулятора",
+              "uk": "дроти для запуску автомобіля від іншого акумулятора"
+            }
+          }
+        ],
+        "leftColumn": [
+          "washer fluid",
+          "tyre pressure",
+          "hubcap",
+          "jump leads"
+        ],
+        "rightColumn": [
+          "жидкость для омывателя автомобильных стёкол",
+          "давление воздуха в шине",
+          "декоративный колпак автомобильного колеса",
+          "провода для запуска автомобиля от другого аккумулятора"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-29:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-29:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-29:i14:audio",
+          "transcript": "I am going to check the car."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to check the car.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "check",
+          "the",
+          "car"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-29:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-29:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-29:i15:audio",
+          "transcript": "We are meeting the mechanic tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting the mechanic tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "the",
+          "mechanic",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-29:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-29:i16:audio"
+      ],
+      "accessibilityLabel": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-29:i16:audio",
+          "transcript": "I am buying washer fluid tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am buying washer fluid tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-29:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Теперь это только ваше намерение. Повторите фразу через going to.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-29:i17:audio"
+      ],
+      "accessibilityLabel": "Теперь это только ваше намерение. Повторите фразу через going to.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-29:i17:audio",
+          "transcript": "We are going to collect the hubcap tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are going to collect the hubcap tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "157e9ad7ebc18aa475b1da6be5f4c8fd99d0b7f0e0ee083c56e43615d721216d"
+}

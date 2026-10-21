@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "going to / Present Continuous: intention and arrangement",
+    "uk": "going to / Present Continuous: intention and arrangement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пока намерение",
+        "uk": "Поки намір"
+      },
+      "bodyByLocale": {
+        "ru": "delivery slot — выбранный промежуток времени доставки. Повторим going to для намерения. Вы решили заказать продукты домой, но время доставки ещё не выбрали. I am going to choose a delivery slot. — Я собираюсь выбрать время доставки. Передайте намерение через going to.",
+        "uk": "delivery slot — вибраний проміжок часу доставки. Повторімо going to для наміру. Ви вирішили замовити продукти додому, але час доставки ще не вибрали. I am going to choose a delivery slot. — Я збираюся вибрати час доставки. Передайте намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-28:intro1:r1",
+              "text": "I am going to choose a delivery slot."
+            },
+            {
+              "responseId": "en:lesson-15:session-28:intro1:r2",
+              "text": "I am choosing a delivery slot."
+            },
+            {
+              "responseId": "en:lesson-15:session-28:intro1:r3",
+              "text": "I is going to choose a delivery slot."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-28:intro1:r1",
+              "text": "I am going to choose a delivery slot."
+            },
+            {
+              "responseId": "en:lesson-15:session-28:intro1:r2",
+              "text": "I am choosing a delivery slot."
+            },
+            {
+              "responseId": "en:lesson-15:session-28:intro1:r3",
+              "text": "I is going to choose a delivery slot."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже договорились",
+        "uk": "Уже домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "click and collect — заказ через интернет с получением в магазине. collection point — место, где можно забрать заказ. Если время уже согласовано, потренируем Present Continuous. Магазин подтвердил ваш заказ; время получения назначено на завтра. We are using click and collect tomorrow. — Мы получаем интернет-заказ в магазине завтра. Передайте договорённость через Present Continuous.",
+        "uk": "click and collect — замовлення через інтернет з отриманням у магазині. collection point — місце, де можна забрати замовлення. Якщо час уже узгоджено, потренуймо Present Continuous. Магазин підтвердив ваше замовлення; час отримання призначено на завтра. We are using click and collect tomorrow. — Ми отримуємо інтернет-замовлення в магазині завтра. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-28:intro2:r1",
+              "text": "We are using click and collect tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-28:intro2:r2",
+              "text": "We are going to use click and collect tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-28:intro2:r3",
+              "text": "We is using click and collect tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-28:intro2:r1",
+              "text": "We are using click and collect tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-28:intro2:r2",
+              "text": "We are going to use click and collect tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-28:intro2:r3",
+              "text": "We is using click and collect tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Известен день",
+        "uk": "Відомий день"
+      },
+      "bodyByLocale": {
+        "ru": "photo booth — кабина для автоматической фотосъёмки. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши друзья согласовали встречу завтра в десять у фотокабины. They are meeting by the photo booth at ten tomorrow. — Они встречаются возле фотокабины завтра в десять. Передайте договорённость через Present Continuous.",
+        "uk": "photo booth — кабіна для автоматичного фотографування. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші друзі узгодили зустріч завтра о десятій біля фотокабіни. They are meeting by the photo booth at ten tomorrow. — Вони зустрічаються біля фотокабіни завтра о десятій. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-28:intro3:r1",
+              "text": "They are meeting by the photo booth at ten tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-28:intro3:r2",
+              "text": "They are going to meet by the photo booth at ten tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-28:intro3:r3",
+              "text": "They is meeting by the photo booth at ten tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-28:intro3:r1",
+              "text": "They are meeting by the photo booth at ten tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-28:intro3:r2",
+              "text": "They are going to meet by the photo booth at ten tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-28:intro3:r3",
+              "text": "They is meeting by the photo booth at ten tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "908e356bd0709014a9b0a9e17e124249331162b509775a3736fac7d0cde6e5a1"
+}

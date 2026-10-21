@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-28:word:delivery-slot",
+    "correctText": "delivery slot",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-28:i01",
+    "correctText": "I am going to choose a delivery slot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-28:i02",
+    "correctText": "I am going to choose a delivery slot.",
+    "correctResponseId": "en:lesson-15:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-28:i03",
+    "correctText": "am going to choose",
+    "correctResponseId": "en:lesson-15:session-28:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-28:word:collection-point",
+    "correctText": "collection point",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-28:i04",
+    "correctText": "She is going to use the collection point.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-28:i05",
+    "correctText": "She is going to use the collection point.",
+    "correctResponseId": "en:lesson-15:session-28:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-28:i06",
+    "correctText": "is going to use",
+    "correctResponseId": "en:lesson-15:session-28:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-28:word:click-and-collect",
+    "correctText": "click and collect",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-28:i07",
+    "correctText": "We are using click and collect tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-28:i08",
+    "correctText": "We are using click and collect tomorrow.",
+    "correctResponseId": "en:lesson-15:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-28:i09",
+    "correctText": "are using",
+    "correctResponseId": "en:lesson-15:session-28:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-28:word:photo-booth",
+    "correctText": "photo booth",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-28:i10",
+    "correctText": "They are meeting by the photo booth at ten tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-28:i11",
+    "correctText": "They are meeting by the photo booth at ten tomorrow.",
+    "correctResponseId": "en:lesson-15:session-28:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-28:i12",
+    "correctText": "are meeting",
+    "correctResponseId": "en:lesson-15:session-28:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-28:i13",
+    "correctText": "en:lesson-15:session-28:i13:p1=delivery slot\nen:lesson-15:session-28:i13:p2=collection point\nen:lesson-15:session-28:i13:p3=click and collect\nen:lesson-15:session-28:i13:p4=photo booth",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-28:i14",
+    "correctText": "I am going to order some food.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-28:i15",
+    "correctText": "We are collecting the order tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-28:i16",
+    "correctText": "I am choosing a delivery slot tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-28:i17",
+    "correctText": "We are going to use click and collect tomorrow.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "going to / Present Continuous: intention and arrangement",
+    "uk": "going to / Present Continuous: intention and arrangement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пока намерение",
+        "uk": "Поки намір"
+      },
+      "bodyByLocale": {
+        "ru": "needlework — рукоделие с иглой и нитками. Повторим going to для намерения. Вы решили попробовать шить или вышивать, но ещё не выбрали первое изделие. I am going to try needlework. — Я собираюсь попробовать рукоделие с иглой и нитками. Передайте намерение через going to.",
+        "uk": "needlework — рукоділля з голкою й нитками. Повторімо going to для наміру. Ви вирішили спробувати шити чи вишивати, але ще не вибрали перший виріб. I am going to try needlework. — Я збираюся спробувати рукоділля з голкою й нитками. Передайте намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-32:intro1:r1",
+              "text": "I am going to try needlework."
+            },
+            {
+              "responseId": "en:lesson-15:session-32:intro1:r2",
+              "text": "I am trying needlework."
+            },
+            {
+              "responseId": "en:lesson-15:session-32:intro1:r3",
+              "text": "I is going to try needlework."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-32:intro1:r1",
+              "text": "I am going to try needlework."
+            },
+            {
+              "responseId": "en:lesson-15:session-32:intro1:r2",
+              "text": "I am trying needlework."
+            },
+            {
+              "responseId": "en:lesson-15:session-32:intro1:r3",
+              "text": "I is going to try needlework."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже договорились",
+        "uk": "Уже домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "calligraphy — искусство красивого письма. scrapbooking — оформление альбомов фотографиями, вырезками и памятными мелочами. Если время уже согласовано, потренируем Present Continuous. Вы с другом записались на завтрашнее занятие красивым письмом. We are trying calligraphy tomorrow. — Мы пробуем каллиграфию завтра. Передайте договорённость через Present Continuous.",
+        "uk": "calligraphy — мистецтво красивого письма. scrapbooking — оформлення альбомів фотографіями, вирізками й пам’ятними дрібницями. Якщо час уже узгоджено, потренуймо Present Continuous. Ви з другом записалися на завтрашнє заняття красивим письмом. We are trying calligraphy tomorrow. — Ми пробуємо каліграфію завтра. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-32:intro2:r1",
+              "text": "We are trying calligraphy tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-32:intro2:r2",
+              "text": "We are going to try calligraphy tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-32:intro2:r3",
+              "text": "We is trying calligraphy tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-32:intro2:r1",
+              "text": "We are trying calligraphy tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-32:intro2:r2",
+              "text": "We are going to try calligraphy tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-32:intro2:r3",
+              "text": "We is trying calligraphy tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Известен день",
+        "uk": "Відомий день"
+      },
+      "bodyByLocale": {
+        "ru": "flower pressing — высушивание цветов под прессом для сохранения формы. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши родители подтвердили участие в воскресном занятии по сушке цветов под прессом. They are trying flower pressing on Sunday. — Они пробуют сушить цветы под прессом в воскресенье. Передайте договорённость через Present Continuous.",
+        "uk": "flower pressing — висушування квітів під пресом для збереження форми. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші батьки підтвердили участь у недільному занятті із сушіння квітів під пресом. They are trying flower pressing on Sunday. — Вони пробують сушити квіти під пресом у неділю. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-32:intro3:r1",
+              "text": "They are trying flower pressing on Sunday."
+            },
+            {
+              "responseId": "en:lesson-15:session-32:intro3:r2",
+              "text": "They are going to try flower pressing on Sunday."
+            },
+            {
+              "responseId": "en:lesson-15:session-32:intro3:r3",
+              "text": "They is trying flower pressing on Sunday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-32:intro3:r1",
+              "text": "They are trying flower pressing on Sunday."
+            },
+            {
+              "responseId": "en:lesson-15:session-32:intro3:r2",
+              "text": "They are going to try flower pressing on Sunday."
+            },
+            {
+              "responseId": "en:lesson-15:session-32:intro3:r3",
+              "text": "They is trying flower pressing on Sunday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5ab04bd1d8f17dc992da6459f5de893292c63c8eadbd394c6f7e7c7763521b97"
+}

@@ -1,0 +1,2347 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-15:session-26",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-15:session-26:word:subscription",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — subscription",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:word:subscription:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — subscription",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:word:subscription:audio",
+            "transcript": "subscription"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-26:word:subscription:r1",
+              "targetText": "subscription",
+              "meaningByLocale": {
+                "ru": "регулярно оплачиваемая подписка на издание или услугу.",
+                "uk": "регулярно оплачувана передплата на видання або послугу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "subscription",
+            "definitionByLocale": {
+              "ru": "регулярно оплачиваемая подписка на издание или услугу.",
+              "uk": "регулярно оплачувана передплата на видання або послугу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы решили подписаться на журнал, но ещё не оформили заказ. Передайте намерение через going to. Скажите: «Я собираюсь оформить подписку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили подписаться на журнал, но ещё не оформили заказ. Передайте намерение через going to. Скажите: «Я собираюсь оформить подписку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to buy a subscription.",
+          "localizedMeaning": {
+            "ru": "Вы решили подписаться на журнал, но ещё не оформили заказ. Передайте намерение через going to. Скажите: «Я собираюсь оформить подписку».",
+            "uk": "Ви вирішили передплатити журнал, але ще не оформили замовлення. Передайте намір через going to. Скажіть: «Я збираюся оформити передплату»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "subscription"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-26:i02:r1",
+            "text": "I am going to buy a subscription."
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i02:r2",
+            "text": "I am buying a subscription."
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i02:r3",
+            "text": "I is going to buy a subscription."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:i02:audio",
+            "transcript": "I am going to buy a subscription."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-26:i02:r1",
+              "targetText": "I am going to buy a subscription.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i02:r2",
+              "targetText": "I am buying a subscription.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i02:r3",
+              "targetText": "I is going to buy a subscription.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-26:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to buy a subscription.",
+                "uk": "У записі звучить I am going to buy a subscription."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to buy a subscription.",
+                "uk": "У записі звучить I am going to buy a subscription."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы решили подписаться на журнал, но ещё не оформили заказ. Передайте намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-26:i03:r1",
+            "text": "am going to buy"
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i03:r2",
+            "text": "am buying"
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i03:r3",
+            "text": "buy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы решили подписаться на журнал, но ещё не оформили заказ. Передайте намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили подписаться на журнал, но ещё не оформили заказ. Передайте намерение через going to.",
+            "uk": "Ви вирішили передплатити журнал, але ще не оформили замовлення. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ a subscription.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-26:i03:r1",
+              "text": "am going to buy"
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i03:r2",
+              "text": "am buying"
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i03:r3",
+              "text": "buy"
+            }
+          ],
+          "testedDimension": "Вы решили подписаться на журнал, но ещё не оформили заказ. Передайте намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-26:i03:r2",
+              "correct": false,
+              "testedDimension": "Вы решили подписаться на журнал, но ещё не оформили заказ. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i03:r3",
+              "correct": false,
+              "testedDimension": "Вы решили подписаться на журнал, но ещё не оформили заказ. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am going to buy.",
+                "uk": "Потрібна повна форма: am going to buy."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:word:season-ticket",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — season ticket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:word:season-ticket:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — season ticket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:word:season-ticket:audio",
+            "transcript": "season ticket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-26:word:season-ticket:r1",
+              "targetText": "season ticket",
+              "meaningByLocale": {
+                "ru": "абонемент на повторные посещения или поездки в течение сезона.",
+                "uk": "абонемент на повторні відвідування або поїздки протягом сезону."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "season ticket",
+            "definitionByLocale": {
+              "ru": "абонемент на повторные посещения или поездки в течение сезона.",
+              "uk": "абонемент на повторні відвідування або поїздки протягом сезону."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра решила ходить на матчи весь сезон, но абонемент ещё не купила. Передайте намерение через going to. Скажите: «Она собирается купить сезонный абонемент».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра решила ходить на матчи весь сезон, но абонемент ещё не купила. Передайте намерение через going to. Скажите: «Она собирается купить сезонный абонемент».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to buy a season ticket.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра решила ходить на матчи весь сезон, но абонемент ещё не купила. Передайте намерение через going to. Скажите: «Она собирается купить сезонный абонемент».",
+            "uk": "Ваша сестра вирішила ходити на матчі весь сезон, але абонемент ще не купила. Передайте намір через going to. Скажіть: «Вона збирається купити сезонний абонемент»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "season",
+            "ticket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-26:i05:r1",
+            "text": "She is going to buy a season ticket."
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i05:r2",
+            "text": "She is buying a season ticket."
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i05:r3",
+            "text": "She are going to buy a season ticket."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:i05:audio",
+            "transcript": "She is going to buy a season ticket."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-26:i05:r1",
+              "targetText": "She is going to buy a season ticket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i05:r2",
+              "targetText": "She is buying a season ticket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i05:r3",
+              "targetText": "She are going to buy a season ticket.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-26:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to buy a season ticket.",
+                "uk": "У записі звучить She is going to buy a season ticket."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to buy a season ticket.",
+                "uk": "У записі звучить She is going to buy a season ticket."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша сестра решила ходить на матчи весь сезон, но абонемент ещё не купила. Передайте намерение через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-26:i06:r1",
+            "text": "is going to buy"
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i06:r2",
+            "text": "is buying"
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i06:r3",
+            "text": "buy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра решила ходить на матчи весь сезон, но абонемент ещё не купила. Передайте намерение через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша сестра решила ходить на матчи весь сезон, но абонемент ещё не купила. Передайте намерение через going to.",
+            "uk": "Ваша сестра вирішила ходити на матчі весь сезон, але абонемент ще не купила. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "She ___ a season ticket.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-26:i06:r1",
+              "text": "is going to buy"
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i06:r2",
+              "text": "is buying"
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i06:r3",
+              "text": "buy"
+            }
+          ],
+          "testedDimension": "Ваша сестра решила ходить на матчи весь сезон, но абонемент ещё не купила. Передайте намерение через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-26:i06:r2",
+              "correct": false,
+              "testedDimension": "Ваша сестра решила ходить на матчи весь сезон, но абонемент ещё не купила. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i06:r3",
+              "correct": false,
+              "testedDimension": "Ваша сестра решила ходить на матчи весь сезон, но абонемент ещё не купила. Передайте намерение через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: is going to buy.",
+                "uk": "Потрібна повна форма: is going to buy."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:word:day-pass",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — day pass",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:word:day-pass:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — day pass",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:word:day-pass:audio",
+            "transcript": "day pass"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-26:word:day-pass:r1",
+              "targetText": "day pass",
+              "meaningByLocale": {
+                "ru": "билет или пропуск, действующий один день.",
+                "uk": "квиток або перепустка, що діє один день."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "day pass",
+            "definitionByLocale": {
+              "ru": "билет или пропуск, действующий один день.",
+              "uk": "квиток або перепустка, що діє один день."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дневной пропуск в бассейн уже оплачен; вы договорились забрать его завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем свой дневной пропуск завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дневной пропуск в бассейн уже оплачен; вы договорились забрать его завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем свой дневной пропуск завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are collecting our day pass tomorrow.",
+          "localizedMeaning": {
+            "ru": "Дневной пропуск в бассейн уже оплачен; вы договорились забрать его завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем свой дневной пропуск завтра».",
+            "uk": "Денну перепустку до басейну вже оплачено; ви домовилися забрати її завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо свою денну перепустку завтра»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "collecting",
+            "our",
+            "day",
+            "pass",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-26:i08:r1",
+            "text": "We are collecting our day pass tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i08:r2",
+            "text": "We are going to collect our day pass tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i08:r3",
+            "text": "We is collecting our day pass tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:i08:audio",
+            "transcript": "We are collecting our day pass tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-26:i08:r1",
+              "targetText": "We are collecting our day pass tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i08:r2",
+              "targetText": "We are going to collect our day pass tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i08:r3",
+              "targetText": "We is collecting our day pass tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-26:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are collecting our day pass tomorrow.",
+                "uk": "У записі звучить We are collecting our day pass tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are collecting our day pass tomorrow.",
+                "uk": "У записі звучить We are collecting our day pass tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дневной пропуск в бассейн уже оплачен; вы договорились забрать его завтра. Передайте договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-26:i09:r1",
+            "text": "are collecting"
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i09:r2",
+            "text": "are going to collect"
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i09:r3",
+            "text": "collect"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дневной пропуск в бассейн уже оплачен; вы договорились забрать его завтра. Передайте договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дневной пропуск в бассейн уже оплачен; вы договорились забрать его завтра. Передайте договорённость через Present Continuous.",
+            "uk": "Денну перепустку до басейну вже оплачено; ви домовилися забрати її завтра. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ our day pass tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-26:i09:r1",
+              "text": "are collecting"
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i09:r2",
+              "text": "are going to collect"
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i09:r3",
+              "text": "collect"
+            }
+          ],
+          "testedDimension": "Дневной пропуск в бассейн уже оплачен; вы договорились забрать его завтра. Передайте договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-26:i09:r2",
+              "correct": false,
+              "testedDimension": "Дневной пропуск в бассейн уже оплачен; вы договорились забрать его завтра. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i09:r3",
+              "correct": false,
+              "testedDimension": "Дневной пропуск в бассейн уже оплачен; вы договорились забрать его завтра. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are collecting.",
+                "uk": "Потрібна повна форма: are collecting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:word:family-pass",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — family pass",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:word:family-pass:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — family pass",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:word:family-pass:audio",
+            "transcript": "family pass"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-26:word:family-pass:r1",
+              "targetText": "family pass",
+              "meaningByLocale": {
+                "ru": "общий билет или пропуск для семьи.",
+                "uk": "спільний квиток або перепустка для сім’ї."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "family pass",
+            "definitionByLocale": {
+              "ru": "общий билет или пропуск для семьи.",
+              "uk": "спільний квиток або перепустка для сім’ї."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваши друзья забронировали семейное посещение музея на воскресенье. Передайте договорённость через Present Continuous. Скажите: «Они пользуются семейным билетом в воскресенье».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши друзья забронировали семейное посещение музея на воскресенье. Передайте договорённость через Present Continuous. Скажите: «Они пользуются семейным билетом в воскресенье».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are using their family pass on Sunday.",
+          "localizedMeaning": {
+            "ru": "Ваши друзья забронировали семейное посещение музея на воскресенье. Передайте договорённость через Present Continuous. Скажите: «Они пользуются семейным билетом в воскресенье».",
+            "uk": "Ваші друзі забронювали сімейне відвідування музею на неділю. Передайте домовленість через Present Continuous. Скажіть: «Вони користуються сімейним квитком у неділю»."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "using",
+            "their",
+            "family",
+            "pass",
+            "on",
+            "Sunday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-26:i11:r1",
+            "text": "They are using their family pass on Sunday."
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i11:r2",
+            "text": "They are going to use their family pass on Sunday."
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i11:r3",
+            "text": "They is using their family pass on Sunday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:i11:audio",
+            "transcript": "They are using their family pass on Sunday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-26:i11:r1",
+              "targetText": "They are using their family pass on Sunday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i11:r2",
+              "targetText": "They are going to use their family pass on Sunday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i11:r3",
+              "targetText": "They is using their family pass on Sunday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-26:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are using their family pass on Sunday.",
+                "uk": "У записі звучить They are using their family pass on Sunday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are using their family pass on Sunday.",
+                "uk": "У записі звучить They are using their family pass on Sunday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваши друзья забронировали семейное посещение музея на воскресенье. Передайте договорённость через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-26:i12:r1",
+            "text": "are using"
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i12:r2",
+            "text": "are going to use"
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i12:r3",
+            "text": "use"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши друзья забронировали семейное посещение музея на воскресенье. Передайте договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваши друзья забронировали семейное посещение музея на воскресенье. Передайте договорённость через Present Continuous.",
+            "uk": "Ваші друзі забронювали сімейне відвідування музею на неділю. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "They ___ their family pass on Sunday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-26:i12:r1",
+              "text": "are using"
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i12:r2",
+              "text": "are going to use"
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i12:r3",
+              "text": "use"
+            }
+          ],
+          "testedDimension": "Ваши друзья забронировали семейное посещение музея на воскресенье. Передайте договорённость через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-26:i12:r2",
+              "correct": false,
+              "testedDimension": "Ваши друзья забронировали семейное посещение музея на воскресенье. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i12:r3",
+              "correct": false,
+              "testedDimension": "Ваши друзья забронировали семейное посещение музея на воскресенье. Передайте договорённость через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are using.",
+                "uk": "Потрібна повна форма: are using."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова и выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова и выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-26:i13:p1",
+              "target": "subscription",
+              "meaningByLocale": {
+                "ru": "регулярно оплачиваемая подписка на издание или услугу",
+                "uk": "регулярно оплачувана передплата на видання або послугу"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-26:i13:p2",
+              "target": "season ticket",
+              "meaningByLocale": {
+                "ru": "абонемент на повторные посещения или поездки в течение сезона",
+                "uk": "абонемент на повторні відвідування або поїздки протягом сезону"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-26:i13:p3",
+              "target": "day pass",
+              "meaningByLocale": {
+                "ru": "билет или пропуск, действующий один день",
+                "uk": "квиток або перепустка, що діє один день"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-26:i13:p4",
+              "target": "family pass",
+              "meaningByLocale": {
+                "ru": "общий билет или пропуск для семьи",
+                "uk": "спільний квиток або перепустка для сім’ї"
+              }
+            }
+          ],
+          "leftColumn": [
+            "subscription",
+            "season ticket",
+            "day pass",
+            "family pass"
+          ],
+          "rightColumn": [
+            "регулярно оплачиваемая подписка на издание или услугу",
+            "абонемент на повторные посещения или поездки в течение сезона",
+            "билет или пропуск, действующий один день",
+            "общий билет или пропуск для семьи"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:i14:audio",
+            "transcript": "I am going to buy a ticket."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to buy a ticket.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "ticket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:i15:audio",
+            "transcript": "We are visiting the museum on Sunday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are visiting the museum on Sunday.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "visiting",
+            "the",
+            "museum",
+            "on",
+            "Sunday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:i16:audio"
+        ],
+        "accessibilityLabel": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:i16:audio",
+            "transcript": "I am buying a subscription tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am buying a subscription tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Теперь это только ваше намерение. Повторите фразу через going to.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:i17:audio"
+        ],
+        "accessibilityLabel": "Теперь это только ваше намерение. Повторите фразу через going to.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:i17:audio",
+            "transcript": "We are going to collect our day pass tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are going to collect our day pass tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-15:session-26:word:subscription",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — subscription",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:word:subscription:audio"
+        ],
+        "accessibilityLabel": "Картка слова — subscription",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:word:subscription:audio",
+            "transcript": "subscription"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-26:word:subscription:r1",
+              "targetText": "subscription",
+              "meaningByLocale": {
+                "ru": "регулярно оплачиваемая подписка на издание или услугу.",
+                "uk": "регулярно оплачувана передплата на видання або послугу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "subscription",
+            "definitionByLocale": {
+              "ru": "регулярно оплачиваемая подписка на издание или услугу.",
+              "uk": "регулярно оплачувана передплата на видання або послугу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви вирішили передплатити журнал, але ще не оформили замовлення. Передайте намір через going to. Скажіть: «Я збираюся оформити передплату».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили передплатити журнал, але ще не оформили замовлення. Передайте намір через going to. Скажіть: «Я збираюся оформити передплату».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am going to buy a subscription.",
+          "localizedMeaning": {
+            "ru": "Вы решили подписаться на журнал, но ещё не оформили заказ. Передайте намерение через going to. Скажите: «Я собираюсь оформить подписку».",
+            "uk": "Ви вирішили передплатити журнал, але ще не оформили замовлення. Передайте намір через going to. Скажіть: «Я збираюся оформити передплату»."
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "subscription"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-26:i02:r1",
+            "text": "I am going to buy a subscription."
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i02:r2",
+            "text": "I am buying a subscription."
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i02:r3",
+            "text": "I is going to buy a subscription."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:i02:audio",
+            "transcript": "I am going to buy a subscription."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-26:i02:r1",
+              "targetText": "I am going to buy a subscription.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i02:r2",
+              "targetText": "I am buying a subscription.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i02:r3",
+              "targetText": "I is going to buy a subscription.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-26:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to buy a subscription.",
+                "uk": "У записі звучить I am going to buy a subscription."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am going to buy a subscription.",
+                "uk": "У записі звучить I am going to buy a subscription."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вирішили передплатити журнал, але ще не оформили замовлення. Передайте намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-26:i03:r1",
+            "text": "am going to buy"
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i03:r2",
+            "text": "am buying"
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i03:r3",
+            "text": "buy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вирішили передплатити журнал, але ще не оформили замовлення. Передайте намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы решили подписаться на журнал, но ещё не оформили заказ. Передайте намерение через going to.",
+            "uk": "Ви вирішили передплатити журнал, але ще не оформили замовлення. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "I ___ a subscription.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-26:i03:r1",
+              "text": "am going to buy"
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i03:r2",
+              "text": "am buying"
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i03:r3",
+              "text": "buy"
+            }
+          ],
+          "testedDimension": "Ви вирішили передплатити журнал, але ще не оформили замовлення. Передайте намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-26:i03:r2",
+              "correct": false,
+              "testedDimension": "Ви вирішили передплатити журнал, але ще не оформили замовлення. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i03:r3",
+              "correct": false,
+              "testedDimension": "Ви вирішили передплатити журнал, але ще не оформили замовлення. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: am going to buy.",
+                "uk": "Потрібна повна форма: am going to buy."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:word:season-ticket",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — season ticket",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:word:season-ticket:audio"
+        ],
+        "accessibilityLabel": "Картка слова — season ticket",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:word:season-ticket:audio",
+            "transcript": "season ticket"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-26:word:season-ticket:r1",
+              "targetText": "season ticket",
+              "meaningByLocale": {
+                "ru": "абонемент на повторные посещения или поездки в течение сезона.",
+                "uk": "абонемент на повторні відвідування або поїздки протягом сезону."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "season ticket",
+            "definitionByLocale": {
+              "ru": "абонемент на повторные посещения или поездки в течение сезона.",
+              "uk": "абонемент на повторні відвідування або поїздки протягом сезону."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра вирішила ходити на матчі весь сезон, але абонемент ще не купила. Передайте намір через going to. Скажіть: «Вона збирається купити сезонний абонемент».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра вирішила ходити на матчі весь сезон, але абонемент ще не купила. Передайте намір через going to. Скажіть: «Вона збирається купити сезонний абонемент».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to buy a season ticket.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра решила ходить на матчи весь сезон, но абонемент ещё не купила. Передайте намерение через going to. Скажите: «Она собирается купить сезонный абонемент».",
+            "uk": "Ваша сестра вирішила ходити на матчі весь сезон, але абонемент ще не купила. Передайте намір через going to. Скажіть: «Вона збирається купити сезонний абонемент»."
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "season",
+            "ticket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-26:i05:r1",
+            "text": "She is going to buy a season ticket."
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i05:r2",
+            "text": "She is buying a season ticket."
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i05:r3",
+            "text": "She are going to buy a season ticket."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:i05:audio",
+            "transcript": "She is going to buy a season ticket."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-26:i05:r1",
+              "targetText": "She is going to buy a season ticket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i05:r2",
+              "targetText": "She is buying a season ticket.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i05:r3",
+              "targetText": "She are going to buy a season ticket.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-26:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to buy a season ticket.",
+                "uk": "У записі звучить She is going to buy a season ticket."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to buy a season ticket.",
+                "uk": "У записі звучить She is going to buy a season ticket."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваша сестра вирішила ходити на матчі весь сезон, але абонемент ще не купила. Передайте намір через going to.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-26:i06:r1",
+            "text": "is going to buy"
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i06:r2",
+            "text": "is buying"
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i06:r3",
+            "text": "buy"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра вирішила ходити на матчі весь сезон, але абонемент ще не купила. Передайте намір через going to.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваша сестра решила ходить на матчи весь сезон, но абонемент ещё не купила. Передайте намерение через going to.",
+            "uk": "Ваша сестра вирішила ходити на матчі весь сезон, але абонемент ще не купила. Передайте намір через going to."
+          },
+          "gappedTargetPhrase": "She ___ a season ticket.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-26:i06:r1",
+              "text": "is going to buy"
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i06:r2",
+              "text": "is buying"
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i06:r3",
+              "text": "buy"
+            }
+          ],
+          "testedDimension": "Ваша сестра вирішила ходити на матчі весь сезон, але абонемент ще не купила. Передайте намір через going to.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-26:i06:r2",
+              "correct": false,
+              "testedDimension": "Ваша сестра вирішила ходити на матчі весь сезон, але абонемент ще не купила. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i06:r3",
+              "correct": false,
+              "testedDimension": "Ваша сестра вирішила ходити на матчі весь сезон, але абонемент ще не купила. Передайте намір через going to.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: is going to buy.",
+                "uk": "Потрібна повна форма: is going to buy."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:word:day-pass",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — day pass",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:word:day-pass:audio"
+        ],
+        "accessibilityLabel": "Картка слова — day pass",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:word:day-pass:audio",
+            "transcript": "day pass"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-26:word:day-pass:r1",
+              "targetText": "day pass",
+              "meaningByLocale": {
+                "ru": "билет или пропуск, действующий один день.",
+                "uk": "квиток або перепустка, що діє один день."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "day pass",
+            "definitionByLocale": {
+              "ru": "билет или пропуск, действующий один день.",
+              "uk": "квиток або перепустка, що діє один день."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Денну перепустку до басейну вже оплачено; ви домовилися забрати її завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо свою денну перепустку завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Денну перепустку до басейну вже оплачено; ви домовилися забрати її завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо свою денну перепустку завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are collecting our day pass tomorrow.",
+          "localizedMeaning": {
+            "ru": "Дневной пропуск в бассейн уже оплачен; вы договорились забрать его завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем свой дневной пропуск завтра».",
+            "uk": "Денну перепустку до басейну вже оплачено; ви домовилися забрати її завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо свою денну перепустку завтра»."
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "collecting",
+            "our",
+            "day",
+            "pass",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-26:i08:r1",
+            "text": "We are collecting our day pass tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i08:r2",
+            "text": "We are going to collect our day pass tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i08:r3",
+            "text": "We is collecting our day pass tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:i08:audio",
+            "transcript": "We are collecting our day pass tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-26:i08:r1",
+              "targetText": "We are collecting our day pass tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i08:r2",
+              "targetText": "We are going to collect our day pass tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i08:r3",
+              "targetText": "We is collecting our day pass tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-26:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are collecting our day pass tomorrow.",
+                "uk": "У записі звучить We are collecting our day pass tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are collecting our day pass tomorrow.",
+                "uk": "У записі звучить We are collecting our day pass tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Денну перепустку до басейну вже оплачено; ви домовилися забрати її завтра. Передайте домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-26:i09:r1",
+            "text": "are collecting"
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i09:r2",
+            "text": "are going to collect"
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i09:r3",
+            "text": "collect"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Денну перепустку до басейну вже оплачено; ви домовилися забрати її завтра. Передайте домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дневной пропуск в бассейн уже оплачен; вы договорились забрать его завтра. Передайте договорённость через Present Continuous.",
+            "uk": "Денну перепустку до басейну вже оплачено; ви домовилися забрати її завтра. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "We ___ our day pass tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-26:i09:r1",
+              "text": "are collecting"
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i09:r2",
+              "text": "are going to collect"
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i09:r3",
+              "text": "collect"
+            }
+          ],
+          "testedDimension": "Денну перепустку до басейну вже оплачено; ви домовилися забрати її завтра. Передайте домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-26:i09:r2",
+              "correct": false,
+              "testedDimension": "Денну перепустку до басейну вже оплачено; ви домовилися забрати її завтра. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i09:r3",
+              "correct": false,
+              "testedDimension": "Денну перепустку до басейну вже оплачено; ви домовилися забрати її завтра. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are collecting.",
+                "uk": "Потрібна повна форма: are collecting."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:word:family-pass",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — family pass",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:word:family-pass:audio"
+        ],
+        "accessibilityLabel": "Картка слова — family pass",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:word:family-pass:audio",
+            "transcript": "family pass"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-26:word:family-pass:r1",
+              "targetText": "family pass",
+              "meaningByLocale": {
+                "ru": "общий билет или пропуск для семьи.",
+                "uk": "спільний квиток або перепустка для сім’ї."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "family pass",
+            "definitionByLocale": {
+              "ru": "общий билет или пропуск для семьи.",
+              "uk": "спільний квиток або перепустка для сім’ї."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваші друзі забронювали сімейне відвідування музею на неділю. Передайте домовленість через Present Continuous. Скажіть: «Вони користуються сімейним квитком у неділю».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші друзі забронювали сімейне відвідування музею на неділю. Передайте домовленість через Present Continuous. Скажіть: «Вони користуються сімейним квитком у неділю».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are using their family pass on Sunday.",
+          "localizedMeaning": {
+            "ru": "Ваши друзья забронировали семейное посещение музея на воскресенье. Передайте договорённость через Present Continuous. Скажите: «Они пользуются семейным билетом в воскресенье».",
+            "uk": "Ваші друзі забронювали сімейне відвідування музею на неділю. Передайте домовленість через Present Continuous. Скажіть: «Вони користуються сімейним квитком у неділю»."
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "using",
+            "their",
+            "family",
+            "pass",
+            "on",
+            "Sunday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-26:i11:r1",
+            "text": "They are using their family pass on Sunday."
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i11:r2",
+            "text": "They are going to use their family pass on Sunday."
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i11:r3",
+            "text": "They is using their family pass on Sunday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:i11:audio",
+            "transcript": "They are using their family pass on Sunday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-26:i11:r1",
+              "targetText": "They are using their family pass on Sunday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i11:r2",
+              "targetText": "They are going to use their family pass on Sunday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i11:r3",
+              "targetText": "They is using their family pass on Sunday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-26:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are using their family pass on Sunday.",
+                "uk": "У записі звучить They are using their family pass on Sunday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are using their family pass on Sunday.",
+                "uk": "У записі звучить They are using their family pass on Sunday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ваші друзі забронювали сімейне відвідування музею на неділю. Передайте домовленість через Present Continuous.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-26:i12:r1",
+            "text": "are using"
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i12:r2",
+            "text": "are going to use"
+          },
+          {
+            "responseId": "en:lesson-15:session-26:i12:r3",
+            "text": "use"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші друзі забронювали сімейне відвідування музею на неділю. Передайте домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Ваши друзья забронировали семейное посещение музея на воскресенье. Передайте договорённость через Present Continuous.",
+            "uk": "Ваші друзі забронювали сімейне відвідування музею на неділю. Передайте домовленість через Present Continuous."
+          },
+          "gappedTargetPhrase": "They ___ their family pass on Sunday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-26:i12:r1",
+              "text": "are using"
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i12:r2",
+              "text": "are going to use"
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i12:r3",
+              "text": "use"
+            }
+          ],
+          "testedDimension": "Ваші друзі забронювали сімейне відвідування музею на неділю. Передайте домовленість через Present Continuous.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-26:i12:r2",
+              "correct": false,
+              "testedDimension": "Ваші друзі забронювали сімейне відвідування музею на неділю. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+                "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-26:i12:r3",
+              "correct": false,
+              "testedDimension": "Ваші друзі забронювали сімейне відвідування музею на неділю. Передайте домовленість через Present Continuous.",
+              "feedbackByLocale": {
+                "ru": "Нужна полная форма: are using.",
+                "uk": "Потрібна повна форма: are using."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова й вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова й вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-26:i13:p1",
+              "target": "subscription",
+              "meaningByLocale": {
+                "ru": "регулярно оплачиваемая подписка на издание или услугу",
+                "uk": "регулярно оплачувана передплата на видання або послугу"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-26:i13:p2",
+              "target": "season ticket",
+              "meaningByLocale": {
+                "ru": "абонемент на повторные посещения или поездки в течение сезона",
+                "uk": "абонемент на повторні відвідування або поїздки протягом сезону"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-26:i13:p3",
+              "target": "day pass",
+              "meaningByLocale": {
+                "ru": "билет или пропуск, действующий один день",
+                "uk": "квиток або перепустка, що діє один день"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-26:i13:p4",
+              "target": "family pass",
+              "meaningByLocale": {
+                "ru": "общий билет или пропуск для семьи",
+                "uk": "спільний квиток або перепустка для сім’ї"
+              }
+            }
+          ],
+          "leftColumn": [
+            "subscription",
+            "season ticket",
+            "day pass",
+            "family pass"
+          ],
+          "rightColumn": [
+            "регулярно оплачувана передплата на видання або послугу",
+            "абонемент на повторні відвідування або поїздки протягом сезону",
+            "квиток або перепустка, що діє один день",
+            "спільний квиток або перепустка для сім’ї"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:i14:audio",
+            "transcript": "I am going to buy a ticket."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am going to buy a ticket.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "going",
+            "to",
+            "buy",
+            "a",
+            "ticket"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:i15:audio",
+            "transcript": "We are visiting the museum on Sunday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are visiting the museum on Sunday.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "visiting",
+            "the",
+            "museum",
+            "on",
+            "Sunday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:i16:audio"
+        ],
+        "accessibilityLabel": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:i16:audio",
+            "transcript": "I am buying a subscription tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am buying a subscription tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-26:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-26:i17:audio"
+        ],
+        "accessibilityLabel": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-26:i17:audio",
+            "transcript": "We are going to collect our day pass tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are going to collect our day pass tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-15:session-26:word:subscription",
+      "correctText": "subscription",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-26:i01",
+      "correctText": "I am going to buy a subscription.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-26:i02",
+      "correctText": "I am going to buy a subscription.",
+      "correctResponseId": "en:lesson-15:session-26:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-26:i03",
+      "correctText": "am going to buy",
+      "correctResponseId": "en:lesson-15:session-26:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-26:word:season-ticket",
+      "correctText": "season ticket",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-26:i04",
+      "correctText": "She is going to buy a season ticket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-26:i05",
+      "correctText": "She is going to buy a season ticket.",
+      "correctResponseId": "en:lesson-15:session-26:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-26:i06",
+      "correctText": "is going to buy",
+      "correctResponseId": "en:lesson-15:session-26:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-26:word:day-pass",
+      "correctText": "day pass",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-26:i07",
+      "correctText": "We are collecting our day pass tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-26:i08",
+      "correctText": "We are collecting our day pass tomorrow.",
+      "correctResponseId": "en:lesson-15:session-26:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-26:i09",
+      "correctText": "are collecting",
+      "correctResponseId": "en:lesson-15:session-26:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-26:word:family-pass",
+      "correctText": "family pass",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-26:i10",
+      "correctText": "They are using their family pass on Sunday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-26:i11",
+      "correctText": "They are using their family pass on Sunday.",
+      "correctResponseId": "en:lesson-15:session-26:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-26:i12",
+      "correctText": "are using",
+      "correctResponseId": "en:lesson-15:session-26:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-26:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-26:i14",
+      "correctText": "I am going to buy a ticket.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-26:i15",
+      "correctText": "We are visiting the museum on Sunday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-26:i16",
+      "correctText": "I am buying a subscription tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-26:i17",
+      "correctText": "We are going to collect our day pass tomorrow.",
+      "correctResponseId": null
+    }
+  ]
+}

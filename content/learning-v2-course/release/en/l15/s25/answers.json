@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-25:word:renew",
+    "correctText": "renew",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-25:i01",
+    "correctText": "I am going to renew my pass.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-25:i02",
+    "correctText": "I am going to renew my pass.",
+    "correctResponseId": "en:lesson-15:session-25:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-25:i03",
+    "correctText": "am going to renew",
+    "correctResponseId": "en:lesson-15:session-25:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-25:word:waiting-list",
+    "correctText": "waiting list",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-25:i04",
+    "correctText": "She is going to join the waiting list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-25:i05",
+    "correctText": "She is going to join the waiting list.",
+    "correctResponseId": "en:lesson-15:session-25:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-25:i06",
+    "correctText": "is going to join",
+    "correctResponseId": "en:lesson-15:session-25:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-25:word:appointment-card",
+    "correctText": "appointment card",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-25:i07",
+    "correctText": "I am bringing my appointment card tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-25:i08",
+    "correctText": "I am bringing my appointment card tomorrow.",
+    "correctResponseId": "en:lesson-15:session-25:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-25:i09",
+    "correctText": "am bringing",
+    "correctResponseId": "en:lesson-15:session-25:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-25:word:membership",
+    "correctText": "membership",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-25:i10",
+    "correctText": "We are paying for our membership on Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-25:i11",
+    "correctText": "We are paying for our membership on Friday.",
+    "correctResponseId": "en:lesson-15:session-25:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-25:i12",
+    "correctText": "are paying",
+    "correctResponseId": "en:lesson-15:session-25:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-25:i13",
+    "correctText": "en:lesson-15:session-25:i13:p1=renew\nen:lesson-15:session-25:i13:p2=waiting list\nen:lesson-15:session-25:i13:p3=appointment card\nen:lesson-15:session-25:i13:p4=membership",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-25:i14",
+    "correctText": "I am going to join the club.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-25:i15",
+    "correctText": "We are meeting on Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-25:i16",
+    "correctText": "I am renewing my pass tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-25:i17",
+    "correctText": "I am going to bring my appointment card tomorrow.",
+    "correctResponseId": null
+  }
+]

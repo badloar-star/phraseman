@@ -1,0 +1,1131 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-28",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-28:word:delivery-slot",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — delivery slot",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-28:word:delivery-slot:audio"
+      ],
+      "accessibilityLabel": "Картка слова — delivery slot",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-28:word:delivery-slot:audio",
+          "transcript": "delivery slot"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-28:word:delivery-slot:r1",
+            "targetText": "delivery slot",
+            "meaningByLocale": {
+              "ru": "выбранный промежуток времени доставки.",
+              "uk": "вибраний проміжок часу доставки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "delivery slot",
+          "definitionByLocale": {
+            "ru": "выбранный промежуток времени доставки.",
+            "uk": "вибраний проміжок часу доставки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-28:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви вирішили замовити продукти додому, але час доставки ще не вибрали. Передайте намір через going to. Скажіть: «Я збираюся вибрати час доставки».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили замовити продукти додому, але час доставки ще не вибрали. Передайте намір через going to. Скажіть: «Я збираюся вибрати час доставки».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to choose a delivery slot.",
+        "localizedMeaning": {
+          "ru": "Вы решили заказать продукты домой, но время доставки ещё не выбрали. Передайте намерение через going to. Скажите: «Я собираюсь выбрать время доставки».",
+          "uk": "Ви вирішили замовити продукти додому, але час доставки ще не вибрали. Передайте намір через going to. Скажіть: «Я збираюся вибрати час доставки»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "choose",
+          "a",
+          "delivery",
+          "slot"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-28:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-28:i02:r1",
+          "text": "I am going to choose a delivery slot."
+        },
+        {
+          "responseId": "en:lesson-15:session-28:i02:r2",
+          "text": "I am choosing a delivery slot."
+        },
+        {
+          "responseId": "en:lesson-15:session-28:i02:r3",
+          "text": "I is going to choose a delivery slot."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-28:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-28:i02:audio",
+          "transcript": "I am going to choose a delivery slot."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-28:i02:r1",
+            "targetText": "I am going to choose a delivery slot.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i02:r2",
+            "targetText": "I am choosing a delivery slot.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i02:r3",
+            "targetText": "I is going to choose a delivery slot.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-28:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to choose a delivery slot.",
+              "uk": "У записі звучить I am going to choose a delivery slot."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to choose a delivery slot.",
+              "uk": "У записі звучить I am going to choose a delivery slot."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-28:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вирішили замовити продукти додому, але час доставки ще не вибрали. Передайте намір через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-28:i03:r1",
+          "text": "am going to choose"
+        },
+        {
+          "responseId": "en:lesson-15:session-28:i03:r2",
+          "text": "am choosing"
+        },
+        {
+          "responseId": "en:lesson-15:session-28:i03:r3",
+          "text": "choose"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили замовити продукти додому, але час доставки ще не вибрали. Передайте намір через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы решили заказать продукты домой, но время доставки ещё не выбрали. Передайте намерение через going to.",
+          "uk": "Ви вирішили замовити продукти додому, але час доставки ще не вибрали. Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ a delivery slot.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-28:i03:r1",
+            "text": "am going to choose"
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i03:r2",
+            "text": "am choosing"
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i03:r3",
+            "text": "choose"
+          }
+        ],
+        "testedDimension": "Ви вирішили замовити продукти додому, але час доставки ще не вибрали. Передайте намір через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-28:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви вирішили замовити продукти додому, але час доставки ще не вибрали. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви вирішили замовити продукти додому, але час доставки ще не вибрали. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: am going to choose.",
+              "uk": "Потрібна повна форма: am going to choose."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-28:word:collection-point",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — collection point",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-28:word:collection-point:audio"
+      ],
+      "accessibilityLabel": "Картка слова — collection point",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-28:word:collection-point:audio",
+          "transcript": "collection point"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-28:word:collection-point:r1",
+            "targetText": "collection point",
+            "meaningByLocale": {
+              "ru": "место, где можно забрать заказ.",
+              "uk": "місце, де можна забрати замовлення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "collection point",
+          "definitionByLocale": {
+            "ru": "место, где можно забрать заказ.",
+            "uk": "місце, де можна забрати замовлення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-28:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваша сестра вирішила забирати замовлення біля дому, але нове замовлення ще не оформила. Передайте намір через going to. Скажіть: «Вона збирається скористатися пунктом видачі».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша сестра вирішила забирати замовлення біля дому, але нове замовлення ще не оформила. Передайте намір через going to. Скажіть: «Вона збирається скористатися пунктом видачі».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is going to use the collection point.",
+        "localizedMeaning": {
+          "ru": "Ваша сестра решила забирать заказы возле дома, но новый заказ ещё не оформила. Передайте намерение через going to. Скажите: «Она собирается воспользоваться пунктом выдачи».",
+          "uk": "Ваша сестра вирішила забирати замовлення біля дому, але нове замовлення ще не оформила. Передайте намір через going to. Скажіть: «Вона збирається скористатися пунктом видачі»."
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "going",
+          "to",
+          "use",
+          "the",
+          "collection",
+          "point"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-28:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-28:i05:r1",
+          "text": "She is going to use the collection point."
+        },
+        {
+          "responseId": "en:lesson-15:session-28:i05:r2",
+          "text": "She is using the collection point."
+        },
+        {
+          "responseId": "en:lesson-15:session-28:i05:r3",
+          "text": "She are going to use the collection point."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-28:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-28:i05:audio",
+          "transcript": "She is going to use the collection point."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-28:i05:r1",
+            "targetText": "She is going to use the collection point.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i05:r2",
+            "targetText": "She is using the collection point.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i05:r3",
+            "targetText": "She are going to use the collection point.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-28:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to use the collection point.",
+              "uk": "У записі звучить She is going to use the collection point."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to use the collection point.",
+              "uk": "У записі звучить She is going to use the collection point."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-28:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваша сестра вирішила забирати замовлення біля дому, але нове замовлення ще не оформила. Передайте намір через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-28:i06:r1",
+          "text": "is going to use"
+        },
+        {
+          "responseId": "en:lesson-15:session-28:i06:r2",
+          "text": "is using"
+        },
+        {
+          "responseId": "en:lesson-15:session-28:i06:r3",
+          "text": "use"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша сестра вирішила забирати замовлення біля дому, але нове замовлення ще не оформила. Передайте намір через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваша сестра решила забирать заказы возле дома, но новый заказ ещё не оформила. Передайте намерение через going to.",
+          "uk": "Ваша сестра вирішила забирати замовлення біля дому, але нове замовлення ще не оформила. Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "She ___ the collection point.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-28:i06:r1",
+            "text": "is going to use"
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i06:r2",
+            "text": "is using"
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i06:r3",
+            "text": "use"
+          }
+        ],
+        "testedDimension": "Ваша сестра вирішила забирати замовлення біля дому, але нове замовлення ще не оформила. Передайте намір через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-28:i06:r2",
+            "correct": false,
+            "testedDimension": "Ваша сестра вирішила забирати замовлення біля дому, але нове замовлення ще не оформила. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i06:r3",
+            "correct": false,
+            "testedDimension": "Ваша сестра вирішила забирати замовлення біля дому, але нове замовлення ще не оформила. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: is going to use.",
+              "uk": "Потрібна повна форма: is going to use."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-28:word:click-and-collect",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — click and collect",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-28:word:click-and-collect:audio"
+      ],
+      "accessibilityLabel": "Картка слова — click and collect",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-28:word:click-and-collect:audio",
+          "transcript": "click and collect"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-28:word:click-and-collect:r1",
+            "targetText": "click and collect",
+            "meaningByLocale": {
+              "ru": "заказ через интернет с получением в магазине.",
+              "uk": "замовлення через інтернет з отриманням у магазині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "click and collect",
+          "definitionByLocale": {
+            "ru": "заказ через интернет с получением в магазине.",
+            "uk": "замовлення через інтернет з отриманням у магазині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-28:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Магазин підтвердив ваше замовлення; час отримання призначено на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми отримуємо інтернет-замовлення в магазині завтра».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Магазин підтвердив ваше замовлення; час отримання призначено на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми отримуємо інтернет-замовлення в магазині завтра».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are using click and collect tomorrow.",
+        "localizedMeaning": {
+          "ru": "Магазин подтвердил ваш заказ; время получения назначено на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы получаем интернет-заказ в магазине завтра».",
+          "uk": "Магазин підтвердив ваше замовлення; час отримання призначено на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми отримуємо інтернет-замовлення в магазині завтра»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "using",
+          "click",
+          "and",
+          "collect",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-28:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-28:i08:r1",
+          "text": "We are using click and collect tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-28:i08:r2",
+          "text": "We are going to use click and collect tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-28:i08:r3",
+          "text": "We is using click and collect tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-28:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-28:i08:audio",
+          "transcript": "We are using click and collect tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-28:i08:r1",
+            "targetText": "We are using click and collect tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i08:r2",
+            "targetText": "We are going to use click and collect tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i08:r3",
+            "targetText": "We is using click and collect tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-28:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are using click and collect tomorrow.",
+              "uk": "У записі звучить We are using click and collect tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are using click and collect tomorrow.",
+              "uk": "У записі звучить We are using click and collect tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-28:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Магазин підтвердив ваше замовлення; час отримання призначено на завтра. Передайте домовленість через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-28:i09:r1",
+          "text": "are using"
+        },
+        {
+          "responseId": "en:lesson-15:session-28:i09:r2",
+          "text": "are going to use"
+        },
+        {
+          "responseId": "en:lesson-15:session-28:i09:r3",
+          "text": "use"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Магазин підтвердив ваше замовлення; час отримання призначено на завтра. Передайте домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Магазин подтвердил ваш заказ; время получения назначено на завтра. Передайте договорённость через Present Continuous.",
+          "uk": "Магазин підтвердив ваше замовлення; час отримання призначено на завтра. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ click and collect tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-28:i09:r1",
+            "text": "are using"
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i09:r2",
+            "text": "are going to use"
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i09:r3",
+            "text": "use"
+          }
+        ],
+        "testedDimension": "Магазин підтвердив ваше замовлення; час отримання призначено на завтра. Передайте домовленість через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-28:i09:r2",
+            "correct": false,
+            "testedDimension": "Магазин підтвердив ваше замовлення; час отримання призначено на завтра. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i09:r3",
+            "correct": false,
+            "testedDimension": "Магазин підтвердив ваше замовлення; час отримання призначено на завтра. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are using.",
+              "uk": "Потрібна повна форма: are using."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-28:word:photo-booth",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — photo booth",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-28:word:photo-booth:audio"
+      ],
+      "accessibilityLabel": "Картка слова — photo booth",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-28:word:photo-booth:audio",
+          "transcript": "photo booth"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-28:word:photo-booth:r1",
+            "targetText": "photo booth",
+            "meaningByLocale": {
+              "ru": "кабина для автоматической фотосъёмки.",
+              "uk": "кабіна для автоматичного фотографування."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "photo booth",
+          "definitionByLocale": {
+            "ru": "кабина для автоматической фотосъёмки.",
+            "uk": "кабіна для автоматичного фотографування."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-28:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваші друзі узгодили зустріч завтра о десятій біля фотокабіни. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються біля фотокабіни завтра о десятій».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваші друзі узгодили зустріч завтра о десятій біля фотокабіни. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються біля фотокабіни завтра о десятій».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are meeting by the photo booth at ten tomorrow.",
+        "localizedMeaning": {
+          "ru": "Ваши друзья согласовали встречу завтра в десять у фотокабины. Передайте договорённость через Present Continuous. Скажите: «Они встречаются возле фотокабины завтра в десять».",
+          "uk": "Ваші друзі узгодили зустріч завтра о десятій біля фотокабіни. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються біля фотокабіни завтра о десятій»."
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "meeting",
+          "by",
+          "the",
+          "photo",
+          "booth",
+          "at",
+          "ten",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-28:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-28:i11:r1",
+          "text": "They are meeting by the photo booth at ten tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-28:i11:r2",
+          "text": "They are going to meet by the photo booth at ten tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-28:i11:r3",
+          "text": "They is meeting by the photo booth at ten tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-28:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-28:i11:audio",
+          "transcript": "They are meeting by the photo booth at ten tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-28:i11:r1",
+            "targetText": "They are meeting by the photo booth at ten tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i11:r2",
+            "targetText": "They are going to meet by the photo booth at ten tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i11:r3",
+            "targetText": "They is meeting by the photo booth at ten tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-28:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are meeting by the photo booth at ten tomorrow.",
+              "uk": "У записі звучить They are meeting by the photo booth at ten tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are meeting by the photo booth at ten tomorrow.",
+              "uk": "У записі звучить They are meeting by the photo booth at ten tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-28:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваші друзі узгодили зустріч завтра о десятій біля фотокабіни. Передайте домовленість через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-28:i12:r1",
+          "text": "are meeting"
+        },
+        {
+          "responseId": "en:lesson-15:session-28:i12:r2",
+          "text": "are going to meet"
+        },
+        {
+          "responseId": "en:lesson-15:session-28:i12:r3",
+          "text": "meet"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваші друзі узгодили зустріч завтра о десятій біля фотокабіни. Передайте домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваши друзья согласовали встречу завтра в десять у фотокабины. Передайте договорённость через Present Continuous.",
+          "uk": "Ваші друзі узгодили зустріч завтра о десятій біля фотокабіни. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "They ___ by the photo booth at ten tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-28:i12:r1",
+            "text": "are meeting"
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i12:r2",
+            "text": "are going to meet"
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i12:r3",
+            "text": "meet"
+          }
+        ],
+        "testedDimension": "Ваші друзі узгодили зустріч завтра о десятій біля фотокабіни. Передайте домовленість через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-28:i12:r2",
+            "correct": false,
+            "testedDimension": "Ваші друзі узгодили зустріч завтра о десятій біля фотокабіни. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-28:i12:r3",
+            "correct": false,
+            "testedDimension": "Ваші друзі узгодили зустріч завтра о десятій біля фотокабіни. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are meeting.",
+              "uk": "Потрібна повна форма: are meeting."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-28:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова й вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова й вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-28:i13:p1",
+            "target": "delivery slot",
+            "meaningByLocale": {
+              "ru": "выбранный промежуток времени доставки",
+              "uk": "вибраний проміжок часу доставки"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-28:i13:p2",
+            "target": "collection point",
+            "meaningByLocale": {
+              "ru": "место, где можно забрать заказ",
+              "uk": "місце, де можна забрати замовлення"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-28:i13:p3",
+            "target": "click and collect",
+            "meaningByLocale": {
+              "ru": "заказ через интернет с получением в магазине",
+              "uk": "замовлення через інтернет з отриманням у магазині"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-28:i13:p4",
+            "target": "photo booth",
+            "meaningByLocale": {
+              "ru": "кабина для автоматической фотосъёмки",
+              "uk": "кабіна для автоматичного фотографування"
+            }
+          }
+        ],
+        "leftColumn": [
+          "delivery slot",
+          "collection point",
+          "click and collect",
+          "photo booth"
+        ],
+        "rightColumn": [
+          "вибраний проміжок часу доставки",
+          "місце, де можна забрати замовлення",
+          "замовлення через інтернет з отриманням у магазині",
+          "кабіна для автоматичного фотографування"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-28:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-28:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-28:i14:audio",
+          "transcript": "I am going to order some food."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to order some food.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "order",
+          "some",
+          "food"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-28:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-28:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-28:i15:audio",
+          "transcript": "We are collecting the order tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are collecting the order tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "collecting",
+          "the",
+          "order",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-28:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-28:i16:audio"
+      ],
+      "accessibilityLabel": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-28:i16:audio",
+          "transcript": "I am choosing a delivery slot tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am choosing a delivery slot tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-28:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-28:i17:audio"
+      ],
+      "accessibilityLabel": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-28:i17:audio",
+          "transcript": "We are going to use click and collect tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are going to use click and collect tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d1d8a683db8e817028f44c8f19c83c90a114086a34968437ee1285f8cb11803a"
+}

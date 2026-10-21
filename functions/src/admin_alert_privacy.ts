@@ -246,7 +246,7 @@ function safeToken(value: unknown, max = 64): string {
   return token;
 }
 
-function safeRoute(value: unknown): string {
+export function safeRoute(value: unknown): string {
   const route = String(value ?? '').trim();
   if (route.length > 160) return '';
   if (/^#[a-z0-9_-]+$/i.test(route)) return `/legacy.html${route}`;
@@ -433,9 +433,9 @@ const DIGEST_CATEGORY_LABELS = Object.freeze({
   operations: 'Операции',
 } as const);
 
-function formatIrelandTime(timestampMs: number): string {
+function formatIrelandTime(timestampMs: number, timeZone = 'Europe/Dublin'): string {
   return new Intl.DateTimeFormat('ru-RU', {
-    timeZone: 'Europe/Dublin',
+    timeZone,
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',
@@ -455,13 +455,16 @@ function renderOwnerDailyDigest(payload: AdminAlertSafePayload): string {
   const template = adminAlertTemplate('ownerDailyDigest');
   const lines = [
     `${template.emoji} <b>${escapeTelegramHtml(template.hero)}</b>`,
-    `Событий с отдельными уведомлениями: <b>${total}</b>`,
+    `Событий за неделю: <b>${total}</b>`,
     Number.isFinite(startMs) && Number.isFinite(endMs)
-      ? `<code>${escapeTelegramHtml(formatIrelandTime(startMs))} → ${escapeTelegramHtml(formatIrelandTime(endMs))}</code>`
-      : 'Окно: 20:00 → 20:00',
+      // зачем (владелец 21.10, №48): сводка приходит в понедельник 10:00 по Киеву — и окно подписано по Киеву.
+      ? `<code>${escapeTelegramHtml(formatIrelandTime(startMs, 'Europe/Kyiv'))} → ${escapeTelegramHtml(formatIrelandTime(endMs, 'Europe/Kyiv'))} (Киев)</code>`
+      : 'Окно: прошлая неделя',
   ];
   for (const category of Object.keys(DIGEST_CATEGORY_LABELS) as Array<keyof typeof DIGEST_CATEGORY_LABELS>) {
-    const categoryMetrics = metrics.filter((metric) => adminAlertDefinition(metric.eventType).category === category);
+    // зачем (владелец 21.10, №48): сводка недельная и короткая — строки с нулём не печатаются.
+    const categoryMetrics = metrics.filter((metric) => adminAlertDefinition(metric.eventType).category === category
+      && metric.available !== false && Number(metric.count) > 0);
     if (categoryMetrics.length === 0) continue;
     lines.push('', `<b>${DIGEST_CATEGORY_LABELS[category]}</b>`);
     for (const metric of categoryMetrics) {

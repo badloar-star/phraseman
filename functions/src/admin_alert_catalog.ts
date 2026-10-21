@@ -63,7 +63,7 @@ export const ADMIN_ALERT_CATALOG = Object.freeze([
   { id: 'jarvisCritical', category: 'operations', mode: 'instant', label: 'Jarvis нашёл критичную проблему', required: false, defaultEnabled: true },
   { id: 'activityDigest', category: 'operations', mode: 'digest', label: 'Активные пользователи и запуски', required: false, defaultEnabled: true },
   { id: 'paywallDigest', category: 'operations', mode: 'digest', label: 'Paywall funnel', required: false, defaultEnabled: true },
-  { id: 'ownerDailyDigest', category: 'operations', mode: 'digest', label: 'Ежедневный дайджест владельца', required: false, defaultEnabled: true },
+  { id: 'ownerDailyDigest', category: 'operations', mode: 'digest', label: 'Недельная сводка владельца', required: false, defaultEnabled: true },
 ] as const satisfies readonly AdminAlertDefinition[]);
 
 export type AdminAlertType = (typeof ADMIN_ALERT_CATALOG)[number]['id'];

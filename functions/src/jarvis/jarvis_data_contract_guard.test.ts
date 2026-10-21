@@ -581,9 +581,10 @@ const ISOLATED_COLLECTION_CONTRACTS = [
   },
   {
     collection: 'admin_alert_dedupe',
-    writer: 'functions/src/admin_alerts.ts',
-    authority: 'admin-only idempotency receipts and critical-error cooldown; server-written, not a Jarvis business projection',
-    fields: ['processedAtMs', 'lastSentAtMs', 'suppressed', 'lastSuppressedAtMs'],
+    writer: 'functions/src/admin_alerts.ts + functions/src/admin_alert_dispatcher.ts',
+    // group.* (владелец 21.10, №48): счётчик повторов ошибки одного вида за час и id первого сообщения в Telegram.
+    authority: 'admin-only idempotency receipts, critical-error cooldown and hourly error-group counters; server-written, not a Jarvis business projection',
+    fields: ['processedAtMs', 'lastSentAtMs', 'suppressed', 'lastSuppressedAtMs', 'groupCount', 'groupLeaderEventId', 'groupMessageId', 'groupUpdatedAtMs'],
   },
   {
     collection: 'spire_task_report_receipts',

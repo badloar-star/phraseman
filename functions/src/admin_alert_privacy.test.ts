@@ -209,9 +209,10 @@ describe('admin Telegram alert privacy formatter', () => {
   });
 
   test('renders one complete daily digest without accepting arbitrary metric text', () => {
+    // count = index + 1: с 21.10 нулевые строки в сводке не печатаются (владелец, №48) — здесь все счётчики ненулевые.
     const metrics = ADMIN_ALERT_IDS
       .filter((eventType) => eventType !== 'ownerDailyDigest')
-      .map((eventType, index) => ({ eventType, count: index }));
+      .map((eventType, index) => ({ eventType, count: index + 1 }));
     const message = renderAdminAlertMessage({
       eventType: 'ownerDailyDigest',
       occurredAtMs: Date.parse('2026-09-12T18:59:59.999Z'),
@@ -224,7 +225,8 @@ describe('admin Telegram alert privacy formatter', () => {
         status: '<script>private</script>',
       },
     });
-    expect(message).toContain('11.09.2026, 20:00 → 12.09.2026, 20:00');
+    // Окно сводки подписано по Киеву (владелец 21.10, №48): 19:00 UTC в сентябре = 22:00 Киев.
+    expect(message).toContain('11.09.2026, 22:00 → 12.09.2026, 22:00 (Киев)');
     expect(message).toContain('Новый пользователь');
     expect(message).toContain('Paywall funnel');
     expect(message).not.toContain('evil');

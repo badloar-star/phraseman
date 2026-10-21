@@ -14,10 +14,12 @@ const NOW_MS = 1_725_000_000_000;
 
 function event(overrides: Partial<AdminAlertOutboxEvent> = {}): AdminAlertOutboxEvent {
   return {
-    eventId: 'user.created:uid-123',
-    eventType: 'newUser',
+    // зачем (владелец 21.10, №48): «новый пользователь» теперь уходит в недельную сводку, поэтому базовое событие —
+    // покупка Plus, которая по-прежнему идёт в Telegram сразу.
+    eventId: 'revenuecat.receipt:r-123',
+    eventType: 'premiumPurchase',
     occurredAtMs: NOW_MS - 1_000,
-    payload: { platform: 'android', uidLast4: '0123' },
+    payload: { provider: 'PLAY_STORE', product: 'plus_yearly', environment: 'PRODUCTION', uidLast4: '0123' },
     attempts: 1,
     ...overrides,
   };
@@ -138,7 +140,8 @@ describe('admin Telegram alert dispatcher', () => {
   });
 
   test('delivers full multipart reports and resumes after the last acknowledged part', async () => {
-    const claimed = event({ eventType: 'contentReport', payload: { nickname: 'Анна 8', appVersion: '1.6.15', details: [{ label: 'Текст репорта', value: 'Ошибка <&> 😀'.repeat(900) }] } });
+    // Версия 2.x: жалобы с 1.x теперь уходят только в сводку (владелец 21.10, №48).
+    const claimed = event({ eventType: 'contentReport', occurredAtMs: Date.now() - 1_000, payload: { nickname: 'Анна 8', appVersion: '2.0.0', details: [{ label: 'Текст репорта', value: 'Ошибка <&> 😀'.repeat(900) }] } });
     const { store } = fakeStore({ claimed });
     const sent: string[] = [];
     let nextPart = 0;
@@ -222,9 +225,12 @@ test('re-renders a legacy snapshot before its first Telegram part is sent', asyn
   const store = new FirestoreAdminAlertDeliveryStore(db as never);
   const claimed = await store.claim('legacy.content_report:legacy-format', NOW_MS);
   const batch = await store.prepareMessages(claimed!);
-  expect(batch.messages.join('')).toContain('<blockquote>Нужен новый формат</blockquote>');
+  // Короткий формат v5 (владелец 21.10): цитата в «ёлочках», одно сообщение.
+  expect(batch.messages.join('')).toContain('«Нужен новый формат»');
+  expect(batch.messages).toHaveLength(1);
   expect(batch.messages).not.toEqual(['старый формат']);
-  expect(documents.get(eventPath)?.deliveryFormatVersion).toBe(4);
+  // v5 (владелец 21.10, №48): короткое сообщение в 2–3 строки.
+  expect(documents.get(eventPath)?.deliveryFormatVersion).toBe(5);
 });
 
 test('does not send a content-free alert when source lookup fails temporarily', async () => {
@@ -239,11 +245,11 @@ test('does not send a content-free alert when source lookup fails temporarily', 
 });
 
 test('daily digest intent does not send empty counters when database aggregation is unavailable', async () => {
-  const end = Date.parse('2026-09-12T19:00:00Z');
+  const end = Date.parse('2026-09-14T07:00:00Z'); // недельное окно (владелец 21.10, №48)
   const documents = new Map<string, Record<string, unknown>>([
     ['admin_alert_events/digest.daily_ireland:2026-09-12:ownerDailyDigest', {
       eventType: 'ownerDailyDigest', source: 'digest.daily_ireland', sourceId: '2026-09-12:ownerDailyDigest',
-      occurredAtMs: end - 1, payload: { windowStartMs: end - 86400000, windowEndMs: end, metrics: [], count: 0 }, status: 'pending', attempts: 0,
+      occurredAtMs: end - 1, payload: { windowStartMs: end - 7 * 86400000, windowEndMs: end, metrics: [], count: 0 }, status: 'pending', attempts: 0,
     }],
     ['admin_config/alerts', { enabled: true, chatId: '123456' }],
   ]);
@@ -262,4 +268,67 @@ test('daily digest intent does not send empty counters when database aggregation
   expect(result.status).toBe('retrying');
   expect(transport).not.toHaveBeenCalled();
   expect(documents.get('admin_alert_events/digest.daily_ireland:2026-09-12:ownerDailyDigest')?.status).toBe('retrying');
+});
+
+// ── Маршрут и склейка повторов (владелец 21.10, №48) ─────────────────────────
+describe('owner routing: instant / weekly digest / drop', () => {
+  const okTransport = jest.fn(async () => ({ status: 200, body: { ok: true, result: { message_id: 7 } } }));
+  beforeEach(() => okTransport.mockClear());
+
+  test('a non-urgent event is only marked for the weekly digest, Telegram is not called', async () => {
+    const { store, transitions } = fakeStore({ claimed: event({ eventId: 'user.created:u1', eventType: 'newUser' }) });
+    const result = await dispatchAdminAlertEvent({ eventId: 'user.created:u1', botToken: 'test', nowMs: NOW_MS, store, transport: okTransport });
+    expect(result).toEqual({ status: 'suppressed', reason: 'weekly:not_urgent' });
+    expect(okTransport).not.toHaveBeenCalled();
+    expect(transitions).toEqual([{ state: 'suppressed', detail: { suppressedAtMs: NOW_MS, reason: 'weekly:not_urgent' } }]);
+  });
+
+  test('a sandbox purchase is never sent', async () => {
+    const { store } = fakeStore({ claimed: event({ payload: { provider: 'APP_STORE', environment: 'SANDBOX' } }) });
+    expect(await dispatchAdminAlertEvent({ eventId: 'x', botToken: 'test', nowMs: NOW_MS, store, transport: okTransport }))
+      .toEqual({ status: 'suppressed', reason: 'drop:test_purchase' });
+    expect(okTransport).not.toHaveBeenCalled();
+  });
+
+  test('a test account (by server nickname) is never sent', async () => {
+    const { store } = fakeStore({});
+    const testerStore = Object.assign(store, {
+      async loadConfig() { return { enabled: true, chatId: '123456', types: {}, testNicknames: ['QA Tester'] }; },
+      async prepareMessages() { return { messages: ['x'], nextPartIndex: 0, payload: { nickname: 'qa tester', environment: 'PRODUCTION' } }; },
+    });
+    expect(await dispatchAdminAlertEvent({ eventId: 'x', botToken: 'test', nowMs: NOW_MS, store: testerStore, transport: okTransport }))
+      .toEqual({ status: 'suppressed', reason: 'drop:test_account' });
+    expect(okTransport).not.toHaveBeenCalled();
+  });
+
+  test('critical error: the leader is sent once and then edited to «×N за час»; members never send a new message', async () => {
+    const claimed = event({ eventId: 'crash:1', eventType: 'criticalError', payload: { category: 'learning_v2', appVersion: '2.0.0' } });
+    const payload = { category: 'learning_v2', appVersion: '2.0.0', details: [{ label: 'Ошибка', value: 'Эпизод не завершился' }] };
+    const edits: Array<{ messageId: number; text: string }> = [];
+    const editTransport = async (input: { messageId: number; text: string }) => { edits.push(input); return { status: 200, body: { ok: true } }; };
+
+    const leader = fakeStore({ claimed });
+    const leaderStore = Object.assign(leader.store, {
+      async prepareMessages() { return { messages: ['first'], nextPartIndex: 0, payload }; },
+      async joinAlertGroup() { return { role: 'leader' } as const; },
+      async completeAlertGroup() { return 3; },
+    });
+    expect(await dispatchAdminAlertEvent({ eventId: 'crash:1', botToken: 'test', nowMs: NOW_MS, store: leaderStore, transport: okTransport, editTransport }))
+      .toEqual({ status: 'sent', messageId: 7 });
+    expect(okTransport).toHaveBeenCalledTimes(1);
+    expect(edits).toHaveLength(1);
+    expect(edits[0]).toMatchObject({ messageId: 7 });
+    expect(edits[0].text).toContain('×3 за час');
+
+    const member = fakeStore({ claimed: { ...claimed, eventId: 'crash:2' } });
+    const memberStore = Object.assign(member.store, {
+      async prepareMessages() { return { messages: ['second'], nextPartIndex: 0, payload }; },
+      async joinAlertGroup() { return { role: 'member', count: 4, leaderMessageId: 7 } as const; },
+      async completeAlertGroup() { return 4; },
+    });
+    expect(await dispatchAdminAlertEvent({ eventId: 'crash:2', botToken: 'test', nowMs: NOW_MS, store: memberStore, transport: okTransport, editTransport }))
+      .toEqual({ status: 'suppressed', reason: 'grouped:4' });
+    expect(okTransport).toHaveBeenCalledTimes(1);
+    expect(edits[1].text).toContain('×4 за час');
+  });
 });

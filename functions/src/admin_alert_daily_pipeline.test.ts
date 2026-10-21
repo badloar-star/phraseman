@@ -43,15 +43,15 @@ function database() {
 
 test('daily pipeline includes lesson completions after more than 5000 other progress events', async () => {
   const {rows, db} = database();
-  const end = Date.parse('2026-09-12T19:00:00Z');
+  const end = Date.parse('2026-09-14T07:00:00Z'); // понедельник 10:00 по Киеву — недельное окно (владелец 21.10, №48)
   rows.set('admin_config/alerts', {enabled: true, chatId: '123456'});
   for (let index = 0; index < 5200; index++) rows.set(`users/u1/progress_events/e${index}`, {
     type: index < 5100 ? 'exercise_complete' : 'lesson_complete', createdAt: end - 1000,
   });
   (admin.firestore as unknown as jest.Mock).mockReturnValue(db);
-  await adminAlertDailyDigestsCron.run({scheduleTime: '2026-09-12T19:00:00Z'});
+  await adminAlertDailyDigestsCron.run({scheduleTime: '2026-09-14T07:00:00Z'});
   const messages: string[] = [];
-  await dispatchAdminAlertEvent({eventId: 'digest.daily_ireland:2026-09-12:ownerDailyDigest', botToken: 'test',
+  await dispatchAdminAlertEvent({eventId: 'digest.weekly_kyiv:2026-09-14:ownerWeeklyDigest', botToken: 'test',
     store: new FirestoreAdminAlertDeliveryStore(db as never), transport: async ({text}) => {
       messages.push(text); return {status: 200, body: {ok: true, result: {message_id: 12}}};
     },
@@ -63,24 +63,24 @@ test('daily pipeline includes lesson completions after more than 5000 other prog
 
 test('daily source paging retains Firestore cursor fields beyond 500 rows', async () => {
   const {rows, db} = database();
-  const end = Date.parse('2026-09-12T19:00:00Z');
+  const end = Date.parse('2026-09-14T07:00:00Z'); // понедельник 10:00 по Киеву — недельное окно (владелец 21.10, №48)
   for (let index = 0; index < 501; index++) {
     rows.set(`admin_alert_events/a${index}`, {eventType: 'newUser', occurredAtMs: end - 1000});
     rows.set(`app_errors/e${index}`, {severity: 'warning', createdAtMs: end - 1000});
     rows.set(`revenuecat_premium_events/r${index}`, {eventType: 'INITIAL_PURCHASE', periodType: 'NORMAL', eventTimestampMs: end - 1000});
     rows.set(`paywall_funnel/p${index}`, {dev: false, ts: end - 1000});
   }
-  const payload = await materializeDailyDigestPayload(db as never, {windowStartMs: end - 86400000, windowEndMs: end});
+  const payload = await materializeDailyDigestPayload(db as never, {windowStartMs: end - 7 * 86400000, windowEndMs: end});
   for (const eventType of ['newUser', 'appErrorDigest', 'revenueDigest', 'paywallDigest']) expect(payload.metrics?.find(metric => metric.eventType === eventType)?.count).toBe(501);
 });
 
 test('daily app-message metric preserves reads, polls and reactions as distinct engaged messages', async () => {
   const {rows, db} = database();
-  const end = Date.parse('2026-09-12T19:00:00Z');
+  const end = Date.parse('2026-09-14T07:00:00Z'); // понедельник 10:00 по Киеву — недельное окно (владелец 21.10, №48)
   rows.set('app_messages/read', {readCountUpdatedAtMs: end - 1000});
   rows.set('app_messages/poll', {pollCountUpdatedAtMs: end - 1000});
   rows.set('app_messages/mixed', {readCountUpdatedAtMs: end - 1000, reactionCountUpdatedAtMs: end - 1000});
-  const payload = await materializeDailyDigestPayload(db as never, {windowStartMs: end - 86400000, windowEndMs: end});
+  const payload = await materializeDailyDigestPayload(db as never, {windowStartMs: end - 7 * 86400000, windowEndMs: end});
   expect(payload.metrics?.find(metric => metric.eventType === 'appMessageDigest')?.count).toBe(3);
 });
 

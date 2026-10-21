@@ -5,21 +5,28 @@ import { onDocumentCreated } from 'firebase-functions/v2/firestore';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { adminAlertDefinition, isAdminAlertType, type AdminAlertType } from './admin_alert_catalog';
-import { renderAdminAlertMessages, sanitizeAdminAlertPayload, type AdminAlertSafePayload } from './admin_alert_privacy';
+import { sanitizeAdminAlertPayload, type AdminAlertSafePayload } from './admin_alert_privacy';
 import { enrichAdminAlertContext } from './admin_alert_context';
 import { materializeDailyDigestPayload } from './admin_alert_daily_counts';
 import { ADMIN_ALERT_EVENTS_COLLECTION } from './admin_alert_outbox';
+import { renderCompactAdminAlert } from './admin_alert_compact';
+import { adminAlertRouteReason, criticalErrorGroupKey, routeAdminAlert } from './admin_alert_routing';
 
 const REGION = 'us-central1';
 const LEASE_MS = 60_000;
 const RECOVERY_LIMIT = 25;
+const LOG = '[ADMIN-ALERT-ROUTE]';
 // Bump when Telegram markup changes. Pending events that have not sent a part
 // yet can be safely re-rendered; partially delivered events keep their frozen
 // snapshot so a retry never mixes two formats in one alert.
 // v4 (2026-09-13): у каждого типа свой шаблон — шапка-герой, тон и порядок
 // блоков. Bump обязателен: иначе ретрай события, отрисованного v3, смешал бы
 // две раскладки в одном письме.
-const TELEGRAM_FORMAT_VERSION = 4;
+// v5 (владелец 21.10, №48): одно короткое сообщение в 2–3 строки + ссылка в админку.
+const TELEGRAM_FORMAT_VERSION = 5;
+/** Ошибки, повторы которых за час склеиваются в одно сообщение «×N за час». */
+const GROUPED_ALERT_TYPES: ReadonlySet<AdminAlertType> = new Set<AdminAlertType>(['criticalError', 'paymentWebhookFailure']);
+const ALERT_GROUP_DOC_PREFIX = 'group.';
 
 export const ADMIN_ALERT_DISPATCH_BOT_TOKEN = defineSecret('ADMIN_ALERT_BOT_TOKEN');
 
@@ -27,6 +34,8 @@ export interface AdminAlertDeliveryConfig {
   readonly enabled: boolean;
   readonly chatId: string;
   readonly types: Readonly<Record<string, boolean>>;
+  /** Ники тестовых аккаунтов: их события не шлются (владелец 21.10). */
+  readonly testNicknames?: readonly string[];
 }
 
 export interface AdminAlertOutboxEvent {
@@ -43,7 +52,13 @@ export interface AdminAlertMessageBatch {
   readonly messages: readonly string[];
   readonly nextPartIndex: number;
   readonly lastMessageId?: number;
+  /** Обогащённый payload — только при свежей отрисовке (для ника тестера и группы ошибки). */
+  readonly payload?: AdminAlertSafePayload;
 }
+
+export type AdminAlertGroupJoin =
+  | { readonly role: 'leader' }
+  | { readonly role: 'member'; readonly count: number; readonly leaderMessageId: number | null };
 
 export interface AdminAlertClaimState {
   readonly status?: unknown;
@@ -61,7 +76,18 @@ export interface AdminAlertDeliveryStore {
   markRetry(eventId: string, detail: { nextAttemptAtMs: number; reason: string }): Promise<void>;
   markDeadLetter(eventId: string, detail: { deadLetterAtMs: number; reason: string }): Promise<void>;
   markSuppressed(eventId: string, detail: { suppressedAtMs: number; reason: string }): Promise<void>;
+  /** Вступить в группу повторов ошибки: первый — лидер (шлёт), остальные — счётчик. */
+  joinAlertGroup?(input: { groupKey: string; eventId: string; nowMs: number }): Promise<AdminAlertGroupJoin>;
+  /** Лидер отправил сообщение: запомнить его id и вернуть, сколько повторов набежало. */
+  completeAlertGroup?(input: { groupKey: string; telegramMessageId: number; nowMs: number }): Promise<number>;
 }
+
+export type TelegramEditTransport = (input: {
+  readonly botToken: string;
+  readonly chatId: string;
+  readonly messageId: number;
+  readonly text: string;
+}) => Promise<TelegramTransportResponse>;
 
 export interface TelegramTransportResponse {
   readonly status: number;
@@ -157,12 +183,64 @@ export async function sendTelegramAdminAlert(input: {
   return { status: response.status, body };
 }
 
+/** Правка уже отправленного сообщения (счётчик «×N за час»). */
+export async function editTelegramAdminAlert(input: {
+  readonly botToken: string;
+  readonly chatId: string;
+  readonly messageId: number;
+  readonly text: string;
+}): Promise<TelegramTransportResponse> {
+  const response = await fetch(`https://api.telegram.org/bot${input.botToken}/editMessageText`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({
+      chat_id: input.chatId,
+      message_id: input.messageId,
+      text: input.text,
+      parse_mode: 'HTML',
+      disable_web_page_preview: true,
+    }),
+    signal: AbortSignal.timeout(15_000),
+  });
+  let body: unknown = null;
+  try {
+    body = await response.json();
+  } catch {
+    body = null;
+  }
+  return { status: response.status, body };
+}
+
+/**
+ * Обновить счётчик повторов в первом сообщении группы. Только «как получится»:
+ * сбой правки не мешает доставке — повторы всё равно посчитает недельная сводка.
+ */
+async function editGroupCounter(input: {
+  readonly botToken: string;
+  readonly chatId: string;
+  readonly messageId: number;
+  readonly event: AdminAlertOutboxEvent;
+  readonly payload: AdminAlertSafePayload;
+  readonly count: number;
+  readonly editTransport?: TelegramEditTransport;
+}): Promise<void> {
+  const text = renderCompactAdminAlert({ eventType: input.event.eventType, occurredAtMs: input.event.occurredAtMs, payload: input.payload }, { count: input.count });
+  try {
+    const response = await (input.editTransport ?? editTelegramAdminAlert)({ botToken: input.botToken, chatId: input.chatId, messageId: input.messageId, text });
+    logger.info(LOG, { step: 'group_edit', eventId: input.event.eventId, eventType: input.event.eventType, count: input.count, status: response.status });
+  } catch {
+    // Исключение fetch может содержать URL с токеном — само исключение не логируем.
+    logger.warn(LOG, { step: 'group_edit_failed', eventId: input.event.eventId, eventType: input.event.eventType, count: input.count });
+  }
+}
+
 export async function dispatchAdminAlertEvent(input: {
   readonly eventId: string;
   readonly botToken: string;
   readonly nowMs?: number;
   readonly store: AdminAlertDeliveryStore;
   readonly transport?: TelegramTransport;
+  readonly editTransport?: TelegramEditTransport;
 }): Promise<
   | { readonly status: 'not-due' }
   | { readonly status: 'suppressed'; readonly reason: string }
@@ -179,6 +257,16 @@ export async function dispatchAdminAlertEvent(input: {
     await input.store.markSuppressed(claimed.eventId, { suppressedAtMs: nowMs, reason });
     return { status: 'suppressed', reason };
   }
+  // зачем (владелец 21.10, №48): «сразу» — только важное; прочее идёт в недельную сводку, тесты не шлются вовсе.
+  // Сводка считает события этой же коллекции, поэтому «в сводку» = пометка без Telegram.
+  const route = routeAdminAlert(claimed, nowMs);
+  logger.info(LOG, { step: 'route', eventId: claimed.eventId, eventType: claimed.eventType, route: adminAlertRouteReason(route),
+    appVersion: claimed.payload.appVersion ?? '', environment: claimed.payload.environment ?? '', ageMs: nowMs - claimed.occurredAtMs });
+  if (route.kind !== 'instant') {
+    const reason = adminAlertRouteReason(route);
+    await input.store.markSuppressed(claimed.eventId, { suppressedAtMs: nowMs, reason });
+    return { status: 'suppressed', reason };
+  }
   if (!input.botToken) {
     const reason = 'telegram_token_missing';
     const nextAttemptAtMs = nextRetryAtMs(nowMs, claimed.attempts);
@@ -189,12 +277,41 @@ export async function dispatchAdminAlertEvent(input: {
   let batch: AdminAlertMessageBatch;
   try {
     batch = input.store.prepareMessages ? await input.store.prepareMessages(claimed)
-      : { messages: renderAdminAlertMessages(claimed), nextPartIndex: 0 };
+      : { messages: [renderCompactAdminAlert(claimed)], nextPartIndex: 0, payload: claimed.payload };
   } catch {
     const reason = 'alert_context_unavailable';
+    logger.warn(LOG, { step: 'prepare_failed', eventId: claimed.eventId, eventType: claimed.eventType, reason });
     const nextAttemptAtMs = nextRetryAtMs(nowMs, claimed.attempts);
     await input.store.markRetry(claimed.eventId, { nextAttemptAtMs, reason });
     return { status: 'retrying', reason, nextAttemptAtMs };
+  }
+  // Ник известен только после серверного поиска профиля — поэтому тестовый аккаунт проверяется здесь.
+  if (batch.payload && (config.testNicknames ?? []).length > 0) {
+    const late = routeAdminAlert({ ...claimed, payload: batch.payload }, nowMs, { testNicknames: config.testNicknames });
+    if (late.kind === 'drop') {
+      const reason = adminAlertRouteReason(late);
+      logger.info(LOG, { step: 'route_late', eventId: claimed.eventId, eventType: claimed.eventType, route: reason });
+      await input.store.markSuppressed(claimed.eventId, { suppressedAtMs: nowMs, reason });
+      return { status: 'suppressed', reason };
+    }
+  }
+  // зачем (владелец 21.10): повтор ошибки того же ВИДА за час — не новое письмо, а «×N за час» в первом.
+  let groupKey: string | null = null;
+  if (GROUPED_ALERT_TYPES.has(claimed.eventType) && batch.payload && batch.nextPartIndex === 0
+    && input.store.joinAlertGroup && input.store.completeAlertGroup) {
+    groupKey = `${claimed.eventType}.${criticalErrorGroupKey({ payload: batch.payload, occurredAtMs: claimed.occurredAtMs })}`;
+    const join = await input.store.joinAlertGroup({ groupKey, eventId: claimed.eventId, nowMs });
+    logger.info(LOG, { step: 'group_join', eventId: claimed.eventId, eventType: claimed.eventType, groupKey, role: join.role,
+      ...(join.role === 'member' ? { count: join.count, leaderMessageId: join.leaderMessageId } : {}) });
+    if (join.role === 'member') {
+      if (join.leaderMessageId) {
+        await editGroupCounter({ botToken: input.botToken, chatId: config.chatId, messageId: join.leaderMessageId,
+          event: claimed, payload: batch.payload, count: join.count, editTransport: input.editTransport });
+      }
+      const reason = `grouped:${join.count}`;
+      await input.store.markSuppressed(claimed.eventId, { suppressedAtMs: nowMs, reason });
+      return { status: 'suppressed', reason };
+    }
   }
   let lastMessageId = batch.lastMessageId ?? 0;
   for (let index = batch.nextPartIndex; index < batch.messages.length; index++) {
@@ -229,6 +346,15 @@ export async function dispatchAdminAlertEvent(input: {
   return { status: 'retrying', reason: classification.reason, nextAttemptAtMs };
   }
   await input.store.markSent(claimed.eventId, { sentAtMs: nowMs, telegramMessageId: lastMessageId });
+  logger.info(LOG, { step: 'sent', eventId: claimed.eventId, eventType: claimed.eventType, telegramMessageId: lastMessageId });
+  if (groupKey && batch.payload && input.store.completeAlertGroup) {
+    // Пока лидер отправлял, могли набежать повторы без id сообщения — догоняем счётчик сейчас.
+    const count = await input.store.completeAlertGroup({ groupKey, telegramMessageId: lastMessageId, nowMs });
+    if (count >= 2) {
+      await editGroupCounter({ botToken: input.botToken, chatId: config.chatId, messageId: lastMessageId,
+        event: claimed, payload: batch.payload, count, editTransport: input.editTransport });
+    }
+  }
   return { status: 'sent', messageId: lastMessageId };
 }
 
@@ -298,13 +424,42 @@ export class FirestoreAdminAlertDeliveryStore implements AdminAlertDeliveryStore
       const document = await this.db.doc(path).get();
       return document.exists ? document.data() ?? null : null;
     });
-    const messages = renderAdminAlertMessages({ ...event, payload });
+    // зачем (владелец 21.10, №48): всегда ОДНО короткое сообщение, без «Часть 1/3» и стеков.
+    const messages = [renderCompactAdminAlert({ ...event, payload })];
     // Freeze first-delivery text. A retry never rereads a renamed profile or an
     // edited report and cannot accidentally skip/mix parts from two versions.
     await this.update(event.eventId, { telegramMessages: messages, telegramNextPart: 0, deliveryFormatVersion: TELEGRAM_FORMAT_VERSION,
       ...(event.eventType === 'ownerDailyDigest' ? {payload} : {}),
     });
-    return { messages, nextPartIndex: 0 };
+    return { messages, nextPartIndex: 0, payload: sanitizeAdminAlertPayload(event.eventType, payload) };
+  }
+
+  async joinAlertGroup(input: { groupKey: string; eventId: string; nowMs: number }): Promise<AdminAlertGroupJoin> {
+    // Состояние группы живёт в admin_alert_dedupe (server-only, закрыта правилами) — новой коллекции не заводим.
+    const ref = this.db.collection('admin_alert_dedupe').doc(`${ALERT_GROUP_DOC_PREFIX}${input.groupKey}`);
+    return this.db.runTransaction(async (tx) => {
+      const snapshot = await tx.get(ref);
+      const data = snapshot.data() ?? {};
+      if (!snapshot.exists || data.groupLeaderEventId === input.eventId) {
+        if (!snapshot.exists) {
+          tx.create(ref, { groupCount: 1, groupLeaderEventId: input.eventId, groupMessageId: null, groupUpdatedAtMs: input.nowMs });
+        }
+        return { role: 'leader' } as const;
+      }
+      const count = Math.max(1, Math.floor(Number(data.groupCount ?? 1))) + 1;
+      tx.set(ref, { groupCount: count, groupUpdatedAtMs: input.nowMs }, { merge: true });
+      const messageId = Number(data.groupMessageId);
+      return { role: 'member', count, leaderMessageId: Number.isSafeInteger(messageId) && messageId > 0 ? messageId : null } as const;
+    });
+  }
+
+  async completeAlertGroup(input: { groupKey: string; telegramMessageId: number; nowMs: number }): Promise<number> {
+    const ref = this.db.collection('admin_alert_dedupe').doc(`${ALERT_GROUP_DOC_PREFIX}${input.groupKey}`);
+    return this.db.runTransaction(async (tx) => {
+      const snapshot = await tx.get(ref);
+      tx.set(ref, { groupMessageId: input.telegramMessageId, groupUpdatedAtMs: input.nowMs }, { merge: true });
+      return Math.max(1, Math.floor(Number(snapshot.data()?.groupCount ?? 1)));
+    });
   }
 
   async renewLease(eventId: string, attempt: number, nowMs: number): Promise<boolean> {
@@ -331,6 +486,9 @@ export class FirestoreAdminAlertDeliveryStore implements AdminAlertDeliveryStore
       enabled: data.enabled === true,
       chatId: String(data.chatId ?? '').trim().slice(0, 160),
       types: Object.fromEntries(Object.entries(types).map(([key, value]) => [key, value !== false])),
+      testNicknames: Array.isArray(data.testNicknames)
+        ? data.testNicknames.filter((name: unknown): name is string => typeof name === 'string' && name.trim().length > 0).slice(0, 50)
+        : [],
     };
   }
 

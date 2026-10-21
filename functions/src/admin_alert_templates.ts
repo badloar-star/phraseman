@@ -122,7 +122,8 @@ export const ADMIN_ALERT_TEMPLATES: Readonly<Record<AdminAlertType, AdminAlertTe
   jarvisCritical: { emoji: '🤖', hero: 'JARVIS: КРИТИЧНАЯ НАХОДКА', mood: 'alarm', zones: HUMAN_FIRST },
   activityDigest: { emoji: '📈', hero: 'АКТИВНОСТЬ ЗА СУТКИ', mood: 'digest', zones: NUMBERS_FIRST },
   paywallDigest: { emoji: '🚪', hero: 'ВОРОНКА ПЕЙВОЛЛА', mood: 'digest', zones: NUMBERS_FIRST },
-  ownerDailyDigest: { emoji: '🌅', hero: 'ИТОГИ ДНЯ', mood: 'digest', zones: NUMBERS_FIRST },
+  // Тип исторический: с 21.10 это недельная сводка (владелец, №48).
+  ownerDailyDigest: { emoji: '🗓', hero: 'ИТОГИ НЕДЕЛИ', mood: 'digest', zones: NUMBERS_FIRST },
 });
 
 /** Полоса-акцент тона. Telegram не даёт цвета, поэтому тон несёт символ. */

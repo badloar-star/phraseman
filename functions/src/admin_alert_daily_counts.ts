@@ -1,6 +1,6 @@
 import * as admin from 'firebase-admin';
 import { ADMIN_ALERT_IDS, isAdminAlertType, type AdminAlertType } from './admin_alert_catalog';
-import { irelandDailyWindow, type DigestWindow } from './admin_alert_digests';
+import { kyivWeeklyWindow, type DigestWindow } from './admin_alert_digests';
 import { revenueAlertFromReceipt } from './admin_alert_sources_revenue';
 import type { AdminAlertSafePayload } from './admin_alert_privacy';
 
@@ -23,7 +23,7 @@ function validateWindow(payload: AdminAlertSafePayload): DigestWindow {
   const startMs = Number(payload.windowStartMs);
   const endMs = Number(payload.windowEndMs);
   if (!Number.isSafeInteger(startMs) || !Number.isSafeInteger(endMs) || startMs <= 0 || endMs <= startMs) throw new Error('invalid_daily_digest_window');
-  const expected = irelandDailyWindow(endMs);
+  const expected = kyivWeeklyWindow(endMs);
   if (startMs !== expected.startMs || endMs !== expected.endMs) throw new Error('invalid_daily_digest_window');
   return expected;
 }

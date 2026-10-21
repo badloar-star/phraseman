@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "review: when and while in past stories",
+    "uk": "review: when and while in past stories"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одновременные действия",
+        "uk": "Одночасні дії"
+      },
+      "bodyByLocale": {
+        "ru": "celery — сельдерей. I was cutting celery while you were cooking. — Я резал сельдерей, пока ты готовил. While вводит действие, которое шло одновременно. Выберите два процесса в прошлом.",
+        "uk": "celery — селера. I was cutting celery while you were cooking. — Я різав селеру, поки ти готував. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-53:intro1:r1",
+              "text": "I was cutting celery while you were cooking."
+            },
+            {
+              "responseId": "en:lesson-14:session-53:intro1:r2",
+              "text": "I was cutting celery while you was cooking."
+            },
+            {
+              "responseId": "en:lesson-14:session-53:intro1:r3",
+              "text": "I am cutting celery while you were cooking."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-53:intro1:r1",
+              "text": "I was cutting celery while you were cooking."
+            },
+            {
+              "responseId": "en:lesson-14:session-53:intro1:r2",
+              "text": "I was cutting celery while you was cooking."
+            },
+            {
+              "responseId": "en:lesson-14:session-53:intro1:r3",
+              "text": "I am cutting celery while you were cooking."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ещё два слова",
+        "uk": "Ще два слова"
+      },
+      "bodyByLocale": {
+        "ru": "broccoli — брокколи. artichoke — артишок. She was cooking an artichoke while I was talking. — Она готовила артишок, пока я говорил. Выберите фразу о двух процессах в прошлом.",
+        "uk": "broccoli — броколі. artichoke — артишок. She was cooking an artichoke while I was talking. — Вона готувала артишок, поки я говорив. Виберіть фразу про два процеси в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-53:intro2:r1",
+              "text": "She was cooking an artichoke while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-53:intro2:r2",
+              "text": "She were cooking an artichoke while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-53:intro2:r3",
+              "text": "She was cooking an artichoke while I were talking."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-53:intro2:r1",
+              "text": "She was cooking an artichoke while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-53:intro2:r2",
+              "text": "She were cooking an artichoke while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-53:intro2:r3",
+              "text": "She was cooking an artichoke while I were talking."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Событие на фоне процесса",
+        "uk": "Подія на тлі процесу"
+      },
+      "bodyByLocale": {
+        "ru": "fennel — фенхель, здесь овощ с белым утолщённым основанием. We were cutting fennel when you called. — Мы резали фенхель, когда ты позвонил. When здесь вводит звонок. Выберите прошлое событие called.",
+        "uk": "fennel — фенхель, тут овоч із білою потовщеною основою. We were cutting fennel when you called. — Ми різали фенхель, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-53:intro3:r1",
+              "text": "We were cutting fennel when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-53:intro3:r2",
+              "text": "We were cutting fennel when you call."
+            },
+            {
+              "responseId": "en:lesson-14:session-53:intro3:r3",
+              "text": "We was cutting fennel when you called."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-53:intro3:r1",
+              "text": "We were cutting fennel when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-53:intro3:r2",
+              "text": "We were cutting fennel when you call."
+            },
+            {
+              "responseId": "en:lesson-14:session-53:intro3:r3",
+              "text": "We was cutting fennel when you called."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e8656f0c4c258211507fb8ca0966d1af367f7bf6bcde59087800be7c23475c35"
+}

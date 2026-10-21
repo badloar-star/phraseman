@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-43:word:otter",
+    "correctText": "otter",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-43:i01",
+    "correctText": "I was drawing an otter while you were reading.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-43:i02",
+    "correctText": "You were drawing an otter while you were reading.",
+    "correctResponseId": "en:lesson-14:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-43:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-43:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-43:word:beaver",
+    "correctText": "beaver",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-43:i04",
+    "correctText": "They were watching a beaver when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-43:i05",
+    "correctText": "You were watching a beaver when I arrived.",
+    "correctResponseId": "en:lesson-14:session-43:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-43:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-43:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-43:word:frog",
+    "correctText": "frog",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-43:i07",
+    "correctText": "She was drawing a frog while I was talking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-43:i08",
+    "correctText": "You were drawing a frog while I was talking.",
+    "correctResponseId": "en:lesson-14:session-43:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-43:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-43:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-43:word:tadpole",
+    "correctText": "tadpole",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-43:i10",
+    "correctText": "We were watching a tadpole when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-43:i11",
+    "correctText": "You were watching a tadpole when you called.",
+    "correctResponseId": "en:lesson-14:session-43:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-43:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-43:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-43:i13",
+    "correctText": "en:lesson-14:session-43:i13:p1=otter\nen:lesson-14:session-43:i13:p2=beaver\nen:lesson-14:session-43:i13:p3=frog\nen:lesson-14:session-43:i13:p4=tadpole",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-43:i14",
+    "correctText": "I was watching the film while she was drawing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-43:i15",
+    "correctText": "They were talking about the animals when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-43:i16",
+    "correctText": "She was drawing an otter while I was reading.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-43:i17",
+    "correctText": "I was watching a tadpole when she arrived.",
+    "correctResponseId": null
+  }
+]

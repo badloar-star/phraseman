@@ -1,0 +1,1134 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-14:session-44",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-14:session-44:word:chessboard",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — chessboard",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-44:word:chessboard:audio"
+      ],
+      "accessibilityLabel": "Картка слова — chessboard",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-44:word:chessboard:audio",
+          "transcript": "chessboard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-44:word:chessboard:r1",
+            "targetText": "chessboard",
+            "meaningByLocale": {
+              "ru": "шахматная доска.",
+              "uk": "шахівниця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chessboard",
+          "definitionByLocale": {
+            "ru": "шахматная доска.",
+            "uk": "шахівниця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-44:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я чистив шахівницю, поки ти читав",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я чистив шахівницю, поки ти читав",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was cleaning the chessboard while you were reading.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я чистил шахматную доску, пока ты читал",
+          "uk": "Скажіть: Я чистив шахівницю, поки ти читав"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "cleaning",
+          "the",
+          "chessboard",
+          "while",
+          "you",
+          "were",
+          "reading"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-44:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-44:i02:r1",
+          "text": "You were cleaning the chessboard while you were reading."
+        },
+        {
+          "responseId": "en:lesson-14:session-44:i02:r2",
+          "text": "I was cleaning the chessboard while you were reading."
+        },
+        {
+          "responseId": "en:lesson-14:session-44:i02:r3",
+          "text": "They were cleaning the chessboard while you were reading."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-44:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-44:i02:audio",
+          "transcript": "You were cleaning the chessboard while you were reading."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-44:i02:r1",
+            "targetText": "You were cleaning the chessboard while you were reading.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i02:r2",
+            "targetText": "I was cleaning the chessboard while you were reading.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i02:r3",
+            "targetText": "They were cleaning the chessboard while you were reading.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-44:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cleaning the chessboard while you were reading.",
+              "uk": "У записі звучить You were cleaning the chessboard while you were reading."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cleaning the chessboard while you were reading.",
+              "uk": "У записі звучить You were cleaning the chessboard while you were reading."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-44:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-44:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-44:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-44:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "I ___ cleaning the chessboard while you were reading.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-44:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-44:i03:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i03:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-44:word:dice",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dice",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-44:word:dice:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dice",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-44:word:dice:audio",
+          "transcript": "dice"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-44:word:dice:r1",
+            "targetText": "dice",
+            "meaningByLocale": {
+              "ru": "игральные кости, кубики.",
+              "uk": "гральні кості, кубики."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dice",
+          "definitionByLocale": {
+            "ru": "игральные кости, кубики.",
+            "uk": "гральні кості, кубики."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-44:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Вони кидали гральні кості, коли я прийшов",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Вони кидали гральні кості, коли я прийшов",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They were rolling the dice when I arrived.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они бросали игральные кости, когда я пришёл",
+          "uk": "Скажіть: Вони кидали гральні кості, коли я прийшов"
+        },
+        "orderedTokens": [
+          "They",
+          "were",
+          "rolling",
+          "the",
+          "dice",
+          "when",
+          "I",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-44:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-44:i05:r1",
+          "text": "You were rolling the dice when I arrived."
+        },
+        {
+          "responseId": "en:lesson-14:session-44:i05:r2",
+          "text": "They were rolling the dice when I arrived."
+        },
+        {
+          "responseId": "en:lesson-14:session-44:i05:r3",
+          "text": "She was rolling the dice when I arrived."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-44:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-44:i05:audio",
+          "transcript": "You were rolling the dice when I arrived."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-44:i05:r1",
+            "targetText": "You were rolling the dice when I arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i05:r2",
+            "targetText": "They were rolling the dice when I arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i05:r3",
+            "targetText": "She was rolling the dice when I arrived.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-44:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were rolling the dice when I arrived.",
+              "uk": "У записі звучить You were rolling the dice when I arrived."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were rolling the dice when I arrived.",
+              "uk": "У записі звучить You were rolling the dice when I arrived."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-44:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-44:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-44:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-44:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "They ___ rolling the dice when I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-44:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-44:i06:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i06:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-44:word:draughts",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — draughts",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-44:word:draughts:audio"
+      ],
+      "accessibilityLabel": "Картка слова — draughts",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-44:word:draughts:audio",
+          "transcript": "draughts"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-44:word:draughts:r1",
+            "targetText": "draughts",
+            "meaningByLocale": {
+              "ru": "шашки, игра.",
+              "uk": "шашки, гра."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "draughts",
+          "definitionByLocale": {
+            "ru": "шашки, игра.",
+            "uk": "шашки, гра."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-44:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Вона грала в шашки, поки я читав",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Вона грала в шашки, поки я читав",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She was playing draughts while I was reading.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она играла в шашки, пока я читал",
+          "uk": "Скажіть: Вона грала в шашки, поки я читав"
+        },
+        "orderedTokens": [
+          "She",
+          "was",
+          "playing",
+          "draughts",
+          "while",
+          "I",
+          "was",
+          "reading"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-44:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-44:i08:r1",
+          "text": "You were playing draughts while I was reading."
+        },
+        {
+          "responseId": "en:lesson-14:session-44:i08:r2",
+          "text": "She was playing draughts while I was reading."
+        },
+        {
+          "responseId": "en:lesson-14:session-44:i08:r3",
+          "text": "They were playing draughts while I was reading."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-44:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-44:i08:audio",
+          "transcript": "You were playing draughts while I was reading."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-44:i08:r1",
+            "targetText": "You were playing draughts while I was reading.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i08:r2",
+            "targetText": "She was playing draughts while I was reading.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i08:r3",
+            "targetText": "They were playing draughts while I was reading.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-44:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were playing draughts while I was reading.",
+              "uk": "У записі звучить You were playing draughts while I was reading."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were playing draughts while I was reading.",
+              "uk": "У записі звучить You were playing draughts while I was reading."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-44:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-44:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-44:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-44:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "She ___ playing draughts while I was reading.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-44:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-44:i09:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i09:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-44:word:word-search",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — word search",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-44:word:word-search:audio"
+      ],
+      "accessibilityLabel": "Картка слова — word search",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-44:word:word-search:audio",
+          "transcript": "word search"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-44:word:word-search:r1",
+            "targetText": "word search",
+            "meaningByLocale": {
+              "ru": "головоломка с поиском слов в сетке букв.",
+              "uk": "головоломка з пошуком слів у сітці літер."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "word search",
+          "definitionByLocale": {
+            "ru": "головоломка с поиском слов в сетке букв.",
+            "uk": "головоломка з пошуком слів у сітці літер."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-44:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ми розв’язували головоломку з пошуком слів, коли ти зателефонував",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ми розв’язували головоломку з пошуком слів, коли ти зателефонував",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We were doing a word search when you called.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы решали головоломку с поиском слов, когда ты позвонил",
+          "uk": "Скажіть: Ми розв’язували головоломку з пошуком слів, коли ти зателефонував"
+        },
+        "orderedTokens": [
+          "We",
+          "were",
+          "doing",
+          "a",
+          "word",
+          "search",
+          "when",
+          "you",
+          "called"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-44:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-44:i11:r1",
+          "text": "You were doing a word search when you called."
+        },
+        {
+          "responseId": "en:lesson-14:session-44:i11:r2",
+          "text": "We were doing a word search when you called."
+        },
+        {
+          "responseId": "en:lesson-14:session-44:i11:r3",
+          "text": "She was doing a word search when you called."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-44:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-44:i11:audio",
+          "transcript": "You were doing a word search when you called."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-44:i11:r1",
+            "targetText": "You were doing a word search when you called.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i11:r2",
+            "targetText": "We were doing a word search when you called.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i11:r3",
+            "targetText": "She was doing a word search when you called.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-44:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were doing a word search when you called.",
+              "uk": "У записі звучить You were doing a word search when you called."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were doing a word search when you called.",
+              "uk": "У записі звучить You were doing a word search when you called."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-44:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-44:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-44:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-44:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "We ___ doing a word search when you called.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-44:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-44:i12:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-44:i12:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-44:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-14:session-44:i13:p1",
+            "target": "chessboard",
+            "meaningByLocale": {
+              "ru": "шахматная доска",
+              "uk": "шахівниця"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-44:i13:p2",
+            "target": "dice",
+            "meaningByLocale": {
+              "ru": "игральные кости, кубики",
+              "uk": "гральні кості, кубики"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-44:i13:p3",
+            "target": "draughts",
+            "meaningByLocale": {
+              "ru": "шашки, игра",
+              "uk": "шашки, гра"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-44:i13:p4",
+            "target": "word search",
+            "meaningByLocale": {
+              "ru": "головоломка с поиском слов в сетке букв",
+              "uk": "головоломка з пошуком слів у сітці літер"
+            }
+          }
+        ],
+        "leftColumn": [
+          "chessboard",
+          "dice",
+          "draughts",
+          "word search"
+        ],
+        "rightColumn": [
+          "шахівниця",
+          "гральні кості, кубики",
+          "шашки, гра",
+          "головоломка з пошуком слів у сітці літер"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-44:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-44:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-44:i14:audio",
+          "transcript": "I was reading while she was playing."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I was reading while she was playing.",
+        "orderedTokens": [
+          "I",
+          "was",
+          "reading",
+          "while",
+          "she",
+          "was",
+          "playing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-44:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-44:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-44:i15:audio",
+          "transcript": "They were playing a game when I arrived."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They were playing a game when I arrived.",
+        "orderedTokens": [
+          "They",
+          "were",
+          "playing",
+          "a",
+          "game",
+          "when",
+          "I",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-44:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: вона кидала гральні кості, поки я читав",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-44:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: вона кидала гральні кості, поки я читав",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-44:i16:audio",
+          "transcript": "She was rolling the dice while I was reading."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She was rolling the dice while I was reading.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-44:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: я грав у шашки, коли вона прийшла",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-44:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: я грав у шашки, коли вона прийшла",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-44:i17:audio",
+          "transcript": "I was playing draughts when she arrived."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I was playing draughts when she arrived.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1acdaca0f4bc84ec1eced7be7f0ccd6d327ffd39432a759fd1658de7858e7299"
+}

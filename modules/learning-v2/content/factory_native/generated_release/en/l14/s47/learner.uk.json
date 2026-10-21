@@ -1,0 +1,1139 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-14:session-47",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-14:session-47:word:garlic-press",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — garlic press",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-47:word:garlic-press:audio"
+      ],
+      "accessibilityLabel": "Картка слова — garlic press",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-47:word:garlic-press:audio",
+          "transcript": "garlic press"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-47:word:garlic-press:r1",
+            "targetText": "garlic press",
+            "meaningByLocale": {
+              "ru": "пресс для чеснока, чеснокодавка.",
+              "uk": "прес для часнику, часникодавка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "garlic press",
+          "definitionByLocale": {
+            "ru": "пресс для чеснока, чеснокодавка.",
+            "uk": "прес для часнику, часникодавка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-47:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я користувався часникодавкою, поки ти готував",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я користувався часникодавкою, поки ти готував",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was using a garlic press while you were cooking.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я пользовался чеснокодавкой, пока ты готовил",
+          "uk": "Скажіть: Я користувався часникодавкою, поки ти готував"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "using",
+          "a",
+          "garlic",
+          "press",
+          "while",
+          "you",
+          "were",
+          "cooking"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-47:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-47:i02:r1",
+          "text": "You were using a garlic press while you were cooking."
+        },
+        {
+          "responseId": "en:lesson-14:session-47:i02:r2",
+          "text": "I was using a garlic press while you were cooking."
+        },
+        {
+          "responseId": "en:lesson-14:session-47:i02:r3",
+          "text": "They were using a garlic press while you were cooking."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-47:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-47:i02:audio",
+          "transcript": "You were using a garlic press while you were cooking."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-47:i02:r1",
+            "targetText": "You were using a garlic press while you were cooking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i02:r2",
+            "targetText": "I was using a garlic press while you were cooking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i02:r3",
+            "targetText": "They were using a garlic press while you were cooking.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-47:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were using a garlic press while you were cooking.",
+              "uk": "У записі звучить You were using a garlic press while you were cooking."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were using a garlic press while you were cooking.",
+              "uk": "У записі звучить You were using a garlic press while you were cooking."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-47:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-47:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-47:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-47:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "I ___ using a garlic press while you were cooking.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-47:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-47:i03:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i03:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-47:word:slotted-spoon",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — slotted spoon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-47:word:slotted-spoon:audio"
+      ],
+      "accessibilityLabel": "Картка слова — slotted spoon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-47:word:slotted-spoon:audio",
+          "transcript": "slotted spoon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-47:word:slotted-spoon:r1",
+            "targetText": "slotted spoon",
+            "meaningByLocale": {
+              "ru": "ложка с отверстиями для стекания жидкости.",
+              "uk": "ложка з отворами для стікання рідини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "slotted spoon",
+          "definitionByLocale": {
+            "ru": "ложка с отверстиями для стекания жидкости.",
+            "uk": "ложка з отворами для стікання рідини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-47:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Вони мили ложку з отворами, коли я прийшов",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Вони мили ложку з отворами, коли я прийшов",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They were washing a slotted spoon when I arrived.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они мыли ложку с отверстиями, когда я пришёл",
+          "uk": "Скажіть: Вони мили ложку з отворами, коли я прийшов"
+        },
+        "orderedTokens": [
+          "They",
+          "were",
+          "washing",
+          "a",
+          "slotted",
+          "spoon",
+          "when",
+          "I",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-47:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-47:i05:r1",
+          "text": "You were washing a slotted spoon when I arrived."
+        },
+        {
+          "responseId": "en:lesson-14:session-47:i05:r2",
+          "text": "They were washing a slotted spoon when I arrived."
+        },
+        {
+          "responseId": "en:lesson-14:session-47:i05:r3",
+          "text": "She was washing a slotted spoon when I arrived."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-47:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-47:i05:audio",
+          "transcript": "You were washing a slotted spoon when I arrived."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-47:i05:r1",
+            "targetText": "You were washing a slotted spoon when I arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i05:r2",
+            "targetText": "They were washing a slotted spoon when I arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i05:r3",
+            "targetText": "She was washing a slotted spoon when I arrived.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-47:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were washing a slotted spoon when I arrived.",
+              "uk": "У записі звучить You were washing a slotted spoon when I arrived."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were washing a slotted spoon when I arrived.",
+              "uk": "У записі звучить You were washing a slotted spoon when I arrived."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-47:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-47:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-47:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-47:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "They ___ washing a slotted spoon when I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-47:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-47:i06:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i06:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-47:word:colander",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — colander",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-47:word:colander:audio"
+      ],
+      "accessibilityLabel": "Картка слова — colander",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-47:word:colander:audio",
+          "transcript": "colander"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-47:word:colander:r1",
+            "targetText": "colander",
+            "meaningByLocale": {
+              "ru": "дуршлаг для отцеживания воды.",
+              "uk": "друшляк для відціджування води."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "colander",
+          "definitionByLocale": {
+            "ru": "дуршлаг для отцеживания воды.",
+            "uk": "друшляк для відціджування води."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-47:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Вона користувалася друшляком, поки я готував",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Вона користувалася друшляком, поки я готував",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She was using a colander while I was cooking.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она пользовалась дуршлагом, пока я готовил",
+          "uk": "Скажіть: Вона користувалася друшляком, поки я готував"
+        },
+        "orderedTokens": [
+          "She",
+          "was",
+          "using",
+          "a",
+          "colander",
+          "while",
+          "I",
+          "was",
+          "cooking"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-47:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-47:i08:r1",
+          "text": "You were using a colander while I was cooking."
+        },
+        {
+          "responseId": "en:lesson-14:session-47:i08:r2",
+          "text": "She was using a colander while I was cooking."
+        },
+        {
+          "responseId": "en:lesson-14:session-47:i08:r3",
+          "text": "They were using a colander while I was cooking."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-47:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-47:i08:audio",
+          "transcript": "You were using a colander while I was cooking."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-47:i08:r1",
+            "targetText": "You were using a colander while I was cooking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i08:r2",
+            "targetText": "She was using a colander while I was cooking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i08:r3",
+            "targetText": "They were using a colander while I was cooking.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-47:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were using a colander while I was cooking.",
+              "uk": "У записі звучить You were using a colander while I was cooking."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were using a colander while I was cooking.",
+              "uk": "У записі звучить You were using a colander while I was cooking."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-47:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-47:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-47:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-47:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "She ___ using a colander while I was cooking.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-47:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-47:i09:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i09:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-47:word:potato-masher",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — potato masher",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-47:word:potato-masher:audio"
+      ],
+      "accessibilityLabel": "Картка слова — potato masher",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-47:word:potato-masher:audio",
+          "transcript": "potato masher"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-47:word:potato-masher:r1",
+            "targetText": "potato masher",
+            "meaningByLocale": {
+              "ru": "толкушка для картофельного пюре.",
+              "uk": "товкачка для картопляного пюре."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "potato masher",
+          "definitionByLocale": {
+            "ru": "толкушка для картофельного пюре.",
+            "uk": "товкачка для картопляного пюре."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-47:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ми шукали товкачку для картоплі, коли ти зателефонував",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ми шукали товкачку для картоплі, коли ти зателефонував",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We were looking for the potato masher when you called.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы искали толкушку для картофеля, когда ты позвонил",
+          "uk": "Скажіть: Ми шукали товкачку для картоплі, коли ти зателефонував"
+        },
+        "orderedTokens": [
+          "We",
+          "were",
+          "looking",
+          "for",
+          "the",
+          "potato",
+          "masher",
+          "when",
+          "you",
+          "called"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-47:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-47:i11:r1",
+          "text": "You were looking for the potato masher when you called."
+        },
+        {
+          "responseId": "en:lesson-14:session-47:i11:r2",
+          "text": "We were looking for the potato masher when you called."
+        },
+        {
+          "responseId": "en:lesson-14:session-47:i11:r3",
+          "text": "She was looking for the potato masher when you called."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-47:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-47:i11:audio",
+          "transcript": "You were looking for the potato masher when you called."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-47:i11:r1",
+            "targetText": "You were looking for the potato masher when you called.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i11:r2",
+            "targetText": "We were looking for the potato masher when you called.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i11:r3",
+            "targetText": "She was looking for the potato masher when you called.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-47:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were looking for the potato masher when you called.",
+              "uk": "У записі звучить You were looking for the potato masher when you called."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were looking for the potato masher when you called.",
+              "uk": "У записі звучить You were looking for the potato masher when you called."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-47:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-47:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-47:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-47:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "We ___ looking for the potato masher when you called.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-47:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-47:i12:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-47:i12:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-47:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-14:session-47:i13:p1",
+            "target": "garlic press",
+            "meaningByLocale": {
+              "ru": "пресс для чеснока, чеснокодавка",
+              "uk": "прес для часнику, часникодавка"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-47:i13:p2",
+            "target": "slotted spoon",
+            "meaningByLocale": {
+              "ru": "ложка с отверстиями для стекания жидкости",
+              "uk": "ложка з отворами для стікання рідини"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-47:i13:p3",
+            "target": "colander",
+            "meaningByLocale": {
+              "ru": "дуршлаг для отцеживания воды",
+              "uk": "друшляк для відціджування води"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-47:i13:p4",
+            "target": "potato masher",
+            "meaningByLocale": {
+              "ru": "толкушка для картофельного пюре",
+              "uk": "товкачка для картопляного пюре"
+            }
+          }
+        ],
+        "leftColumn": [
+          "garlic press",
+          "slotted spoon",
+          "colander",
+          "potato masher"
+        ],
+        "rightColumn": [
+          "прес для часнику, часникодавка",
+          "ложка з отворами для стікання рідини",
+          "друшляк для відціджування води",
+          "товкачка для картопляного пюре"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-47:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-47:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-47:i14:audio",
+          "transcript": "I was washing the dishes while she was cooking."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I was washing the dishes while she was cooking.",
+        "orderedTokens": [
+          "I",
+          "was",
+          "washing",
+          "the",
+          "dishes",
+          "while",
+          "she",
+          "was",
+          "cooking"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-47:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-47:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-47:i15:audio",
+          "transcript": "They were making dinner when I arrived."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They were making dinner when I arrived.",
+        "orderedTokens": [
+          "They",
+          "were",
+          "making",
+          "dinner",
+          "when",
+          "I",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-47:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: вона користувалася часникодавкою, поки я готував",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-47:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: вона користувалася часникодавкою, поки я готував",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-47:i16:audio",
+          "transcript": "She was using a garlic press while I was cooking."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She was using a garlic press while I was cooking.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-47:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: я мив друшляк, коли вона прийшла",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-47:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: я мив друшляк, коли вона прийшла",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-47:i17:audio",
+          "transcript": "I was washing a colander when she arrived."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I was washing a colander when she arrived.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e99a08e1c4f42aad65f00bd7a4baed6f64b6b641cec896b033055f554ea5eac0"
+}

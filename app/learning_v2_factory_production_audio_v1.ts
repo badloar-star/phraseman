@@ -38,10 +38,14 @@ const factoryAudioTables = lazyContent("learning_v2_factory_production_audio", (
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const silentList = require("./learning_v2_factory_silent_audio_v1.json") as { entries: readonly { contentHash: string }[] };
   const silent = new Set(silentList.entries.map((entry) => entry.contentHash));
-  // Старые записи keypad, nobody, thin, hard, mean, reach, already, excuse me, pain и blond есть только в авторском архиве, но не в bootstrap/Storage.
+  // Старые записи keypad, nobody, thin, hard, mean, reach, already, excuse me, pain, blond и gold есть только в авторском архиве, но не в bootstrap/Storage.
   // По поручению владельца для отсутствующих записей используется TTS устройства.
   // Удалить соответствующий хеш из исключений после проверенной публикации записи.
   const unpublished = new Set([
+    "8c7a763d0a4b1b3bb38f596044b3566e4aed95d411655585cb596a88043635ba",
+    "7fc2d0764ac545ea64c3703b2bbe3947c5bb4adfa1fc0248f3ceefffa42216af",
+    "0b7b7b6a64fe75dc56ce70e452167fdb188ee3cb78b886be281eee192ce4fcfa",
+    "f7beed518047c148119b43daae42be8651bf689a4d96cfce6efe628564155c9f",
     "c38759e1793b734cd65fc256bbf37107ccedf3af5ce6d1be888519bc2a92cc52",
     "fe177cbe44c536a4bdbae1e1c55f2cae23a6667ffc33e067d70dcb5a00c8ade5",
     "8b30cc576c7f765eba8d10c6713f3e7ecaa80a89459d46148bb90727fa0589ac",

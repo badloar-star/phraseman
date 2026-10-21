@@ -1,0 +1,1131 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-14:session-51",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-14:session-51:word:linen",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — linen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-51:word:linen:audio"
+      ],
+      "accessibilityLabel": "Картка слова — linen",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-51:word:linen:audio",
+          "transcript": "linen"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-51:word:linen:r1",
+            "targetText": "linen",
+            "meaningByLocale": {
+              "ru": "лён, льняная ткань.",
+              "uk": "льон, лляна тканина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "linen",
+          "definitionByLocale": {
+            "ru": "лён, льняная ткань.",
+            "uk": "льон, лляна тканина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-51:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я різав лляну тканину, поки ти читав",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я різав лляну тканину, поки ти читав",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was cutting linen while you were reading.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я резал льняную ткань, пока ты читал",
+          "uk": "Скажіть: Я різав лляну тканину, поки ти читав"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "cutting",
+          "linen",
+          "while",
+          "you",
+          "were",
+          "reading"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-51:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-51:i02:r1",
+          "text": "You were cutting linen while you were reading."
+        },
+        {
+          "responseId": "en:lesson-14:session-51:i02:r2",
+          "text": "I was cutting linen while you were reading."
+        },
+        {
+          "responseId": "en:lesson-14:session-51:i02:r3",
+          "text": "They were cutting linen while you were reading."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-51:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-51:i02:audio",
+          "transcript": "You were cutting linen while you were reading."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-51:i02:r1",
+            "targetText": "You were cutting linen while you were reading.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i02:r2",
+            "targetText": "I was cutting linen while you were reading.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i02:r3",
+            "targetText": "They were cutting linen while you were reading.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-51:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cutting linen while you were reading.",
+              "uk": "У записі звучить You were cutting linen while you were reading."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cutting linen while you were reading.",
+              "uk": "У записі звучить You were cutting linen while you were reading."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-51:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-51:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-51:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-51:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "I ___ cutting linen while you were reading.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-51:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-51:i03:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i03:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-51:word:velvet",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — velvet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-51:word:velvet:audio"
+      ],
+      "accessibilityLabel": "Картка слова — velvet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-51:word:velvet:audio",
+          "transcript": "velvet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-51:word:velvet:r1",
+            "targetText": "velvet",
+            "meaningByLocale": {
+              "ru": "бархат.",
+              "uk": "оксамит."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "velvet",
+          "definitionByLocale": {
+            "ru": "бархат.",
+            "uk": "оксамит."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-51:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Вони розглядали оксамит, коли я прийшов",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Вони розглядали оксамит, коли я прийшов",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They were looking at velvet when I arrived.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они рассматривали бархат, когда я пришёл",
+          "uk": "Скажіть: Вони розглядали оксамит, коли я прийшов"
+        },
+        "orderedTokens": [
+          "They",
+          "were",
+          "looking",
+          "at",
+          "velvet",
+          "when",
+          "I",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-51:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-51:i05:r1",
+          "text": "You were looking at velvet when I arrived."
+        },
+        {
+          "responseId": "en:lesson-14:session-51:i05:r2",
+          "text": "They were looking at velvet when I arrived."
+        },
+        {
+          "responseId": "en:lesson-14:session-51:i05:r3",
+          "text": "She was looking at velvet when I arrived."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-51:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-51:i05:audio",
+          "transcript": "You were looking at velvet when I arrived."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-51:i05:r1",
+            "targetText": "You were looking at velvet when I arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i05:r2",
+            "targetText": "They were looking at velvet when I arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i05:r3",
+            "targetText": "She was looking at velvet when I arrived.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-51:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were looking at velvet when I arrived.",
+              "uk": "У записі звучить You were looking at velvet when I arrived."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were looking at velvet when I arrived.",
+              "uk": "У записі звучить You were looking at velvet when I arrived."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-51:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-51:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-51:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-51:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "They ___ looking at velvet when I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-51:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-51:i06:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i06:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-51:word:nylon",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — nylon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-51:word:nylon:audio"
+      ],
+      "accessibilityLabel": "Картка слова — nylon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-51:word:nylon:audio",
+          "transcript": "nylon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-51:word:nylon:r1",
+            "targetText": "nylon",
+            "meaningByLocale": {
+              "ru": "нейлон, синтетическая ткань.",
+              "uk": "нейлон, синтетична тканина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nylon",
+          "definitionByLocale": {
+            "ru": "нейлон, синтетическая ткань.",
+            "uk": "нейлон, синтетична тканина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-51:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Вона складала нейлонову тканину, поки я говорив",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Вона складала нейлонову тканину, поки я говорив",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She was folding nylon while I was talking.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она складывала нейлоновую ткань, пока я говорил",
+          "uk": "Скажіть: Вона складала нейлонову тканину, поки я говорив"
+        },
+        "orderedTokens": [
+          "She",
+          "was",
+          "folding",
+          "nylon",
+          "while",
+          "I",
+          "was",
+          "talking"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-51:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-51:i08:r1",
+          "text": "You were folding nylon while I was talking."
+        },
+        {
+          "responseId": "en:lesson-14:session-51:i08:r2",
+          "text": "She was folding nylon while I was talking."
+        },
+        {
+          "responseId": "en:lesson-14:session-51:i08:r3",
+          "text": "They were folding nylon while I was talking."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-51:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-51:i08:audio",
+          "transcript": "You were folding nylon while I was talking."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-51:i08:r1",
+            "targetText": "You were folding nylon while I was talking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i08:r2",
+            "targetText": "She was folding nylon while I was talking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i08:r3",
+            "targetText": "They were folding nylon while I was talking.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-51:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were folding nylon while I was talking.",
+              "uk": "У записі звучить You were folding nylon while I was talking."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were folding nylon while I was talking.",
+              "uk": "У записі звучить You were folding nylon while I was talking."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-51:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-51:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-51:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-51:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "She ___ folding nylon while I was talking.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-51:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-51:i09:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i09:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-51:word:polyester",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — polyester",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-51:word:polyester:audio"
+      ],
+      "accessibilityLabel": "Картка слова — polyester",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-51:word:polyester:audio",
+          "transcript": "polyester"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-51:word:polyester:r1",
+            "targetText": "polyester",
+            "meaningByLocale": {
+              "ru": "полиэстер, синтетическая ткань.",
+              "uk": "поліестер, синтетична тканина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "polyester",
+          "definitionByLocale": {
+            "ru": "полиэстер, синтетическая ткань.",
+            "uk": "поліестер, синтетична тканина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-51:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ми різали тканину з поліестеру, коли ти зателефонував",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ми різали тканину з поліестеру, коли ти зателефонував",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We were cutting polyester when you called.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы резали ткань из полиэстера, когда ты позвонил",
+          "uk": "Скажіть: Ми різали тканину з поліестеру, коли ти зателефонував"
+        },
+        "orderedTokens": [
+          "We",
+          "were",
+          "cutting",
+          "polyester",
+          "when",
+          "you",
+          "called"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-51:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-51:i11:r1",
+          "text": "You were cutting polyester when you called."
+        },
+        {
+          "responseId": "en:lesson-14:session-51:i11:r2",
+          "text": "We were cutting polyester when you called."
+        },
+        {
+          "responseId": "en:lesson-14:session-51:i11:r3",
+          "text": "She was cutting polyester when you called."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-51:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-51:i11:audio",
+          "transcript": "You were cutting polyester when you called."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-51:i11:r1",
+            "targetText": "You were cutting polyester when you called.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i11:r2",
+            "targetText": "We were cutting polyester when you called.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i11:r3",
+            "targetText": "She was cutting polyester when you called.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-51:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cutting polyester when you called.",
+              "uk": "У записі звучить You were cutting polyester when you called."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cutting polyester when you called.",
+              "uk": "У записі звучить You were cutting polyester when you called."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-51:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "У той момент минулого. Виберіть was або were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-51:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-51:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-51:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "We ___ cutting polyester when you called.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-51:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-51:i12:r2",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-51:i12:r3",
+            "correct": false,
+            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-51:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-14:session-51:i13:p1",
+            "target": "linen",
+            "meaningByLocale": {
+              "ru": "лён, льняная ткань",
+              "uk": "льон, лляна тканина"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-51:i13:p2",
+            "target": "velvet",
+            "meaningByLocale": {
+              "ru": "бархат",
+              "uk": "оксамит"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-51:i13:p3",
+            "target": "nylon",
+            "meaningByLocale": {
+              "ru": "нейлон, синтетическая ткань",
+              "uk": "нейлон, синтетична тканина"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-51:i13:p4",
+            "target": "polyester",
+            "meaningByLocale": {
+              "ru": "полиэстер, синтетическая ткань",
+              "uk": "поліестер, синтетична тканина"
+            }
+          }
+        ],
+        "leftColumn": [
+          "linen",
+          "velvet",
+          "nylon",
+          "polyester"
+        ],
+        "rightColumn": [
+          "льон, лляна тканина",
+          "оксамит",
+          "нейлон, синтетична тканина",
+          "поліестер, синтетична тканина"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-51:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-51:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-51:i14:audio",
+          "transcript": "I was cutting fabric while she was reading."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I was cutting fabric while she was reading.",
+        "orderedTokens": [
+          "I",
+          "was",
+          "cutting",
+          "fabric",
+          "while",
+          "she",
+          "was",
+          "reading"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-51:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-51:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-51:i15:audio",
+          "transcript": "They were choosing fabric when I arrived."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They were choosing fabric when I arrived.",
+        "orderedTokens": [
+          "They",
+          "were",
+          "choosing",
+          "fabric",
+          "when",
+          "I",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-51:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: вона різала лляну тканину, поки я читав",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-51:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: вона різала лляну тканину, поки я читав",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-51:i16:audio",
+          "transcript": "She was cutting linen while I was reading."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She was cutting linen while I was reading.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-51:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: я розглядав оксамит, коли вона прийшла",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-51:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: я розглядав оксамит, коли вона прийшла",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-51:i17:audio",
+          "transcript": "I was looking at velvet when she arrived."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I was looking at velvet when she arrived.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "983c6c339db40d94aa855381d21c04a6391c92f4c8fa3fcb5a1b411d64799aed"
+}

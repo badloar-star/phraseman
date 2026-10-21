@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-41:word:butterfly",
+    "correctText": "butterfly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-41:i01",
+    "correctText": "I was watching a butterfly while you were taking a photo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-41:i02",
+    "correctText": "You were watching a butterfly while you were taking a photo.",
+    "correctResponseId": "en:lesson-14:session-41:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-41:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-41:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-41:word:ladybird",
+    "correctText": "ladybird",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-41:i04",
+    "correctText": "They were looking at a ladybird when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-41:i05",
+    "correctText": "You were looking at a ladybird when I arrived.",
+    "correctResponseId": "en:lesson-14:session-41:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-41:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-41:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-41:word:bee",
+    "correctText": "bee",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-41:i07",
+    "correctText": "She was drawing a bee while I was talking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-41:i08",
+    "correctText": "You were drawing a bee while I was talking.",
+    "correctResponseId": "en:lesson-14:session-41:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-41:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-41:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-41:word:wasp",
+    "correctText": "wasp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-41:i10",
+    "correctText": "We were watching a wasp when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-41:i11",
+    "correctText": "You were watching a wasp when you called.",
+    "correctResponseId": "en:lesson-14:session-41:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-41:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-41:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-41:i13",
+    "correctText": "en:lesson-14:session-41:i13:p1=butterfly\nen:lesson-14:session-41:i13:p2=ladybird\nen:lesson-14:session-41:i13:p3=bee\nen:lesson-14:session-41:i13:p4=wasp",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-41:i14",
+    "correctText": "I was taking photos while she was drawing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-41:i15",
+    "correctText": "They were watching the flowers when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-41:i16",
+    "correctText": "She was watching a butterfly while I was drawing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-41:i17",
+    "correctText": "I was looking at a ladybird when she arrived.",
+    "correctResponseId": null
+  }
+]

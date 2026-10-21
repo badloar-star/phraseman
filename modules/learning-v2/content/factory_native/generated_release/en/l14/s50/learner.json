@@ -1,0 +1,1129 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-14:session-50",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-14:session-50:word:salmon",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — salmon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-50:word:salmon:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — salmon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-50:word:salmon:audio",
+          "transcript": "salmon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-50:word:salmon:r1",
+            "targetText": "salmon",
+            "meaningByLocale": {
+              "ru": "лосось.",
+              "uk": "лосось."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "salmon",
+          "definitionByLocale": {
+            "ru": "лосось.",
+            "uk": "лосось."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-50:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я готовил лосося, пока ты читал",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я готовил лосося, пока ты читал",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was cooking salmon while you were reading.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я готовил лосося, пока ты читал",
+          "uk": "Скажіть: Я готував лосося, поки ти читав"
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "cooking",
+          "salmon",
+          "while",
+          "you",
+          "were",
+          "reading"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-50:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-50:i02:r1",
+          "text": "You were cooking salmon while you were reading."
+        },
+        {
+          "responseId": "en:lesson-14:session-50:i02:r2",
+          "text": "I was cooking salmon while you were reading."
+        },
+        {
+          "responseId": "en:lesson-14:session-50:i02:r3",
+          "text": "They were cooking salmon while you were reading."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-50:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-50:i02:audio",
+          "transcript": "You were cooking salmon while you were reading."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-50:i02:r1",
+            "targetText": "You were cooking salmon while you were reading.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i02:r2",
+            "targetText": "I was cooking salmon while you were reading.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i02:r3",
+            "targetText": "They were cooking salmon while you were reading.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cooking salmon while you were reading.",
+              "uk": "У записі звучить You were cooking salmon while you were reading."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cooking salmon while you were reading.",
+              "uk": "У записі звучить You were cooking salmon while you were reading."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-50:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-50:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-50:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-50:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "I ___ cooking salmon while you were reading.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-50:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-50:i03:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i03:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-50:word:cod",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cod",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-50:word:cod:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cod",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-50:word:cod:audio",
+          "transcript": "cod"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-50:word:cod:r1",
+            "targetText": "cod",
+            "meaningByLocale": {
+              "ru": "треска.",
+              "uk": "тріска."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cod",
+          "definitionByLocale": {
+            "ru": "треска.",
+            "uk": "тріска."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-50:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Они готовили треску, когда я пришёл",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Они готовили треску, когда я пришёл",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They were cooking cod when I arrived.",
+        "localizedMeaning": {
+          "ru": "Скажите: Они готовили треску, когда я пришёл",
+          "uk": "Скажіть: Вони готували тріску, коли я прийшов"
+        },
+        "orderedTokens": [
+          "They",
+          "were",
+          "cooking",
+          "cod",
+          "when",
+          "I",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-50:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-50:i05:r1",
+          "text": "You were cooking cod when I arrived."
+        },
+        {
+          "responseId": "en:lesson-14:session-50:i05:r2",
+          "text": "They were cooking cod when I arrived."
+        },
+        {
+          "responseId": "en:lesson-14:session-50:i05:r3",
+          "text": "She was cooking cod when I arrived."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-50:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-50:i05:audio",
+          "transcript": "You were cooking cod when I arrived."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-50:i05:r1",
+            "targetText": "You were cooking cod when I arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i05:r2",
+            "targetText": "They were cooking cod when I arrived.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i05:r3",
+            "targetText": "She was cooking cod when I arrived.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-50:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cooking cod when I arrived.",
+              "uk": "У записі звучить You were cooking cod when I arrived."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cooking cod when I arrived.",
+              "uk": "У записі звучить You were cooking cod when I arrived."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-50:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-50:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-50:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-50:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "They ___ cooking cod when I arrived.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-50:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-50:i06:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i06:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-50:word:haddock",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — haddock",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-50:word:haddock:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — haddock",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-50:word:haddock:audio",
+          "transcript": "haddock"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-50:word:haddock:r1",
+            "targetText": "haddock",
+            "meaningByLocale": {
+              "ru": "пикша, вид морской рыбы.",
+              "uk": "пікша, вид морської риби."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "haddock",
+          "definitionByLocale": {
+            "ru": "пикша, вид морской рыбы.",
+            "uk": "пікша, вид морської риби."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-50:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Она готовила пикшу, пока я говорил",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Она готовила пикшу, пока я говорил",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She was cooking haddock while I was talking.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она готовила пикшу, пока я говорил",
+          "uk": "Скажіть: Вона готувала пікшу, поки я говорив"
+        },
+        "orderedTokens": [
+          "She",
+          "was",
+          "cooking",
+          "haddock",
+          "while",
+          "I",
+          "was",
+          "talking"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-50:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-50:i08:r1",
+          "text": "You were cooking haddock while I was talking."
+        },
+        {
+          "responseId": "en:lesson-14:session-50:i08:r2",
+          "text": "She was cooking haddock while I was talking."
+        },
+        {
+          "responseId": "en:lesson-14:session-50:i08:r3",
+          "text": "They were cooking haddock while I was talking."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-50:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-50:i08:audio",
+          "transcript": "You were cooking haddock while I was talking."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-50:i08:r1",
+            "targetText": "You were cooking haddock while I was talking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i08:r2",
+            "targetText": "She was cooking haddock while I was talking.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i08:r3",
+            "targetText": "They were cooking haddock while I was talking.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-50:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cooking haddock while I was talking.",
+              "uk": "У записі звучить You were cooking haddock while I was talking."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cooking haddock while I was talking.",
+              "uk": "У записі звучить You were cooking haddock while I was talking."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-50:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-50:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-50:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-50:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "She ___ cooking haddock while I was talking.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-50:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-50:i09:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна was.",
+              "uk": "З цим підметом у минулому потрібна was."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i09:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна was.",
+              "uk": "Це не форма минулого. Потрібна was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-50:word:sardines",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sardines",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-50:word:sardines:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sardines",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-50:word:sardines:audio",
+          "transcript": "sardines"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-50:word:sardines:r1",
+            "targetText": "sardines",
+            "meaningByLocale": {
+              "ru": "сардины.",
+              "uk": "сардини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sardines",
+          "definitionByLocale": {
+            "ru": "сардины.",
+            "uk": "сардини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-50:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Мы готовили сардины, когда ты позвонил",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Мы готовили сардины, когда ты позвонил",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We were cooking sardines when you called.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы готовили сардины, когда ты позвонил",
+          "uk": "Скажіть: Ми готували сардини, коли ти зателефонував"
+        },
+        "orderedTokens": [
+          "We",
+          "were",
+          "cooking",
+          "sardines",
+          "when",
+          "you",
+          "called"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-50:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-50:i11:r1",
+          "text": "You were cooking sardines when you called."
+        },
+        {
+          "responseId": "en:lesson-14:session-50:i11:r2",
+          "text": "We were cooking sardines when you called."
+        },
+        {
+          "responseId": "en:lesson-14:session-50:i11:r3",
+          "text": "She was cooking sardines when you called."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-50:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-50:i11:audio",
+          "transcript": "You were cooking sardines when you called."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-14:session-50:i11:r1",
+            "targetText": "You were cooking sardines when you called.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i11:r2",
+            "targetText": "We were cooking sardines when you called.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i11:r3",
+            "targetText": "She was cooking sardines when you called.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-50:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cooking sardines when you called.",
+              "uk": "У записі звучить You were cooking sardines when you called."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You were cooking sardines when you called.",
+              "uk": "У записі звучить You were cooking sardines when you called."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-50:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В тот момент прошлого. Выберите was или were",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-14:session-50:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-14:session-50:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-14:session-50:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В тот момент прошлого. Выберите was или were",
+          "uk": "У той момент минулого. Виберіть was або were"
+        },
+        "gappedTargetPhrase": "We ___ cooking sardines when you called.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-14:session-50:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "В тот момент прошлого. Выберите was или were",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-14:session-50:i12:r2",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим в прошлом нужна were.",
+              "uk": "З цим підметом у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-14:session-50:i12:r3",
+            "correct": false,
+            "testedDimension": "В тот момент прошлого. Выберите was или were",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна were.",
+              "uk": "Це не форма минулого. Потрібна were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-50:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-14:session-50:i13:p1",
+            "target": "salmon",
+            "meaningByLocale": {
+              "ru": "лосось",
+              "uk": "лосось"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-50:i13:p2",
+            "target": "cod",
+            "meaningByLocale": {
+              "ru": "треска",
+              "uk": "тріска"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-50:i13:p3",
+            "target": "haddock",
+            "meaningByLocale": {
+              "ru": "пикша, вид морской рыбы",
+              "uk": "пікша, вид морської риби"
+            }
+          },
+          {
+            "pairId": "en:lesson-14:session-50:i13:p4",
+            "target": "sardines",
+            "meaningByLocale": {
+              "ru": "сардины",
+              "uk": "сардини"
+            }
+          }
+        ],
+        "leftColumn": [
+          "salmon",
+          "cod",
+          "haddock",
+          "sardines"
+        ],
+        "rightColumn": [
+          "лосось",
+          "треска",
+          "пикша, вид морской рыбы",
+          "сардины"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-50:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-50:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-50:i14:audio",
+          "transcript": "I was cooking while she was reading."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I was cooking while she was reading.",
+        "orderedTokens": [
+          "I",
+          "was",
+          "cooking",
+          "while",
+          "she",
+          "was",
+          "reading"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-50:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-50:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-50:i15:audio",
+          "transcript": "They were preparing dinner when I arrived."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They were preparing dinner when I arrived.",
+        "orderedTokens": [
+          "They",
+          "were",
+          "preparing",
+          "dinner",
+          "when",
+          "I",
+          "arrived"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-50:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: она готовила лосося, пока я читал",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-50:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: она готовила лосося, пока я читал",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-50:i16:audio",
+          "transcript": "She was cooking salmon while I was reading."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She was cooking salmon while I was reading.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-14:session-50:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: я готовил треску, когда она пришла",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-14:session-50:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: я готовил треску, когда она пришла",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-14:session-50:i17:audio",
+          "transcript": "I was cooking cod when she arrived."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I was cooking cod when she arrived.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3bd932fee8c57cce16f866f18d6bd8a77ccb58ffd3ef2cddd0df942d1666220c"
+}

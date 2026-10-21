@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-52:word:prawns",
+    "correctText": "prawns",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-52:i01",
+    "correctText": "I was cooking prawns while you were reading.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-52:i02",
+    "correctText": "You were cooking prawns while you were reading.",
+    "correctResponseId": "en:lesson-14:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-52:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-52:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-52:word:mussels",
+    "correctText": "mussels",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-52:i04",
+    "correctText": "They were washing mussels when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-52:i05",
+    "correctText": "You were washing mussels when I arrived.",
+    "correctResponseId": "en:lesson-14:session-52:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-52:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-52:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-52:word:squid",
+    "correctText": "squid",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-52:i07",
+    "correctText": "She was cutting squid while I was talking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-52:i08",
+    "correctText": "You were cutting squid while I was talking.",
+    "correctResponseId": "en:lesson-14:session-52:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-52:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-52:word:crab",
+    "correctText": "crab",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-52:i10",
+    "correctText": "We were cooking a crab when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-52:i11",
+    "correctText": "You were cooking a crab when you called.",
+    "correctResponseId": "en:lesson-14:session-52:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-52:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-52:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-52:i13",
+    "correctText": "en:lesson-14:session-52:i13:p1=prawns\nen:lesson-14:session-52:i13:p2=mussels\nen:lesson-14:session-52:i13:p3=squid\nen:lesson-14:session-52:i13:p4=crab",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-52:i14",
+    "correctText": "I was cooking while she was washing the dishes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-52:i15",
+    "correctText": "They were preparing dinner when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-52:i16",
+    "correctText": "She was cooking prawns while I was reading.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-52:i17",
+    "correctText": "I was washing mussels when she arrived.",
+    "correctResponseId": null
+  }
+]

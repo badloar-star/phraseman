@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-14:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "review: when and while in past stories",
+    "uk": "review: when and while in past stories"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-14:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одновременные действия",
+        "uk": "Одночасні дії"
+      },
+      "bodyByLocale": {
+        "ru": "prawns — креветки. I was cooking prawns while you were reading. — Я готовил креветки, пока ты читал. While вводит действие, которое шло одновременно. Выберите два процесса в прошлом.",
+        "uk": "prawns — креветки. I was cooking prawns while you were reading. — Я готував креветки, поки ти читав. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-52:intro1:r1",
+              "text": "I was cooking prawns while you were reading."
+            },
+            {
+              "responseId": "en:lesson-14:session-52:intro1:r2",
+              "text": "I was cooking prawns while you was reading."
+            },
+            {
+              "responseId": "en:lesson-14:session-52:intro1:r3",
+              "text": "I am cooking prawns while you were reading."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-52:intro1:r1",
+              "text": "I was cooking prawns while you were reading."
+            },
+            {
+              "responseId": "en:lesson-14:session-52:intro1:r2",
+              "text": "I was cooking prawns while you was reading."
+            },
+            {
+              "responseId": "en:lesson-14:session-52:intro1:r3",
+              "text": "I am cooking prawns while you were reading."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-14:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ещё два слова",
+        "uk": "Ще два слова"
+      },
+      "bodyByLocale": {
+        "ru": "mussels — мидии. squid — кальмар. She was cutting squid while I was talking. — Она резала кальмара, пока я говорил. Выберите фразу о двух процессах в прошлом.",
+        "uk": "mussels — мідії. squid — кальмар. She was cutting squid while I was talking. — Вона різала кальмара, поки я говорив. Виберіть фразу про два процеси в минулому."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-52:intro2:r1",
+              "text": "She was cutting squid while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-52:intro2:r2",
+              "text": "She were cutting squid while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-52:intro2:r3",
+              "text": "She was cutting squid while I were talking."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-52:intro2:r1",
+              "text": "She was cutting squid while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-52:intro2:r2",
+              "text": "She were cutting squid while I was talking."
+            },
+            {
+              "responseId": "en:lesson-14:session-52:intro2:r3",
+              "text": "She was cutting squid while I were talking."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-14:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Событие на фоне процесса",
+        "uk": "Подія на тлі процесу"
+      },
+      "bodyByLocale": {
+        "ru": "crab — краб. We were cooking a crab when you called. — Мы готовили краба, когда ты позвонил. When здесь вводит звонок. Выберите прошлое событие called.",
+        "uk": "crab — краб. We were cooking a crab when you called. — Ми готували краба, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called."
+      },
+      "question": {
+        "interactionId": "en:lesson-14:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-14:session-52:intro3:r1",
+              "text": "We were cooking a crab when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-52:intro3:r2",
+              "text": "We were cooking a crab when you call."
+            },
+            {
+              "responseId": "en:lesson-14:session-52:intro3:r3",
+              "text": "We was cooking a crab when you called."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-14:session-52:intro3:r1",
+              "text": "We were cooking a crab when you called."
+            },
+            {
+              "responseId": "en:lesson-14:session-52:intro3:r2",
+              "text": "We were cooking a crab when you call."
+            },
+            {
+              "responseId": "en:lesson-14:session-52:intro3:r3",
+              "text": "We was cooking a crab when you called."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fa834d20885f5cfe781ebdbf53663c2cc981a91146cb59d16a58ab452757020f"
+}

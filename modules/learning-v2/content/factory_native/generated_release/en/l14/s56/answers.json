@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-56:word:feta",
+    "correctText": "feta",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-56:i01",
+    "correctText": "I was cutting feta while you were cooking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-56:i02",
+    "correctText": "You were cutting feta while you were cooking.",
+    "correctResponseId": "en:lesson-14:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-56:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-56:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-56:word:mozzarella",
+    "correctText": "mozzarella",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-56:i04",
+    "correctText": "They were cutting mozzarella when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-56:i05",
+    "correctText": "You were cutting mozzarella when I arrived.",
+    "correctResponseId": "en:lesson-14:session-56:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-56:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-56:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-56:word:cheddar",
+    "correctText": "cheddar",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-56:i07",
+    "correctText": "She was cutting cheddar while I was talking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-56:i08",
+    "correctText": "You were cutting cheddar while I was talking.",
+    "correctResponseId": "en:lesson-14:session-56:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-56:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-56:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-56:word:parmesan",
+    "correctText": "parmesan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-56:i10",
+    "correctText": "We were adding parmesan when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-56:i11",
+    "correctText": "You were adding parmesan when you called.",
+    "correctResponseId": "en:lesson-14:session-56:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-56:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-56:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-56:i13",
+    "correctText": "en:lesson-14:session-56:i13:p1=feta\nen:lesson-14:session-56:i13:p2=mozzarella\nen:lesson-14:session-56:i13:p3=cheddar\nen:lesson-14:session-56:i13:p4=parmesan",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-56:i14",
+    "correctText": "I was making a salad while she was cooking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-56:i15",
+    "correctText": "They were preparing dinner when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-56:i16",
+    "correctText": "She was cutting feta while I was cooking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-56:i17",
+    "correctText": "I was adding parmesan when she arrived.",
+    "correctResponseId": null
+  }
+]

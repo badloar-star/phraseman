@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-49:word:gold",
+    "correctText": "gold",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-49:i01",
+    "correctText": "I was using gold paint while you were drawing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-49:i02",
+    "correctText": "You were using gold paint while you were drawing.",
+    "correctResponseId": "en:lesson-14:session-49:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-49:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-49:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-49:word:silver",
+    "correctText": "silver",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-49:i04",
+    "correctText": "They were using silver paint when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-49:i05",
+    "correctText": "You were using silver paint when I arrived.",
+    "correctResponseId": "en:lesson-14:session-49:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-49:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-49:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-49:word:bronze",
+    "correctText": "bronze",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-49:i07",
+    "correctText": "She was using bronze paint while I was reading.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-49:i08",
+    "correctText": "You were using bronze paint while I was reading.",
+    "correctResponseId": "en:lesson-14:session-49:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-49:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-49:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-49:word:turquoise",
+    "correctText": "turquoise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-49:i10",
+    "correctText": "We were using turquoise paint when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-49:i11",
+    "correctText": "You were using turquoise paint when you called.",
+    "correctResponseId": "en:lesson-14:session-49:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-49:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-49:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-49:i13",
+    "correctText": "en:lesson-14:session-49:i13:p1=gold\nen:lesson-14:session-49:i13:p2=silver\nen:lesson-14:session-49:i13:p3=bronze\nen:lesson-14:session-49:i13:p4=turquoise",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-49:i14",
+    "correctText": "I was painting while she was drawing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-49:i15",
+    "correctText": "They were choosing colours when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-49:i16",
+    "correctText": "She was using gold paint while I was drawing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-49:i17",
+    "correctText": "I was looking for turquoise paint when she arrived.",
+    "correctResponseId": null
+  }
+]

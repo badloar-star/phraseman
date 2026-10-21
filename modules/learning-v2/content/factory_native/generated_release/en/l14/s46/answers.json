@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-14:session-46:word:safety-pin",
+    "correctText": "safety pin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-46:i01",
+    "correctText": "I was looking for a safety pin while you were reading.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-46:i02",
+    "correctText": "You were looking for a safety pin while you were reading.",
+    "correctResponseId": "en:lesson-14:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-46:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-46:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-46:word:sewing-machine",
+    "correctText": "sewing machine",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-46:i04",
+    "correctText": "They were using a sewing machine when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-46:i05",
+    "correctText": "You were using a sewing machine when I arrived.",
+    "correctResponseId": "en:lesson-14:session-46:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-46:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-46:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-46:word:pincushion",
+    "correctText": "pincushion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-46:i07",
+    "correctText": "She was making a pincushion while I was talking.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-46:i08",
+    "correctText": "You were making a pincushion while I was talking.",
+    "correctResponseId": "en:lesson-14:session-46:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-46:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-14:session-46:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-46:word:knitting-needles",
+    "correctText": "knitting needles",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-46:i10",
+    "correctText": "We were looking for the knitting needles when you called.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-46:i11",
+    "correctText": "You were looking for the knitting needles when you called.",
+    "correctResponseId": "en:lesson-14:session-46:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-46:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-14:session-46:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-14:session-46:i13",
+    "correctText": "en:lesson-14:session-46:i13:p1=safety pin\nen:lesson-14:session-46:i13:p2=sewing machine\nen:lesson-14:session-46:i13:p3=pincushion\nen:lesson-14:session-46:i13:p4=knitting needles",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-46:i14",
+    "correctText": "I was reading while she was sewing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-46:i15",
+    "correctText": "They were making a bag when I arrived.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-46:i16",
+    "correctText": "She was looking for a safety pin while I was reading.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-14:session-46:i17",
+    "correctText": "I was using a sewing machine when she arrived.",
+    "correctResponseId": null
+  }
+]

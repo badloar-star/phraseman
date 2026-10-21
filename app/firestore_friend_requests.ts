@@ -198,6 +198,43 @@ export function invalidateFriendsSocialReadCaches(reason: string): void {
   console.log('[READ-TTL]', JSON.stringify({ area: 'friends', event: 'invalidate', reason, had })); // guard-ok: причина сброса кэша, без uid
 }
 
+export type FriendsCacheSocialVerdict = Readonly<{
+  decision: 'invalidate' | 'fresh' | 'no_cache' | 'no_social_event' | 'already_handled';
+  newestEventAt: number;
+  friendsLoadedAt: number | null;
+  requestsLoadedAt: number | null;
+}>;
+
+/** Самое свежее событие дружбы, по которому уже сбросили кэш (защита от повторного сброса при сдвиге часов). */
+let lastHandledCachedSocialEventAt = 0;
+
+/**
+ * Решение без чтений: событие дружбы (friend_request / friend_accepted) в уже лежащем кэше уведомлений новее загрузки
+ * кэшей друзей/заявок → кэш устарел.
+ *
+ * зачем (Ревизор к 17e26d73c): проба уведомлений общая с Главной и колокольчиком — если заявку подтянули они, проба
+ * «Друзей» вернёт ttl_skip/network_same, и без этого сравнения новая заявка ждала бы конца 30-минутного кэша.
+ */
+export function decideFriendsCacheAgainstCachedSocialEvent(
+  rows: ReadonlyArray<{ type?: unknown; createdAt?: unknown }>,
+): FriendsCacheSocialVerdict {
+  const newestEventAt = rows.reduce((max, row) => (
+    row.type === 'friend_request' || row.type === 'friend_accepted' ? Math.max(max, Number(row.createdAt) || 0) : max
+  ), 0);
+  const friendsLoadedAt = friendReadCache ? friendReadCache.expiresAt - FRIENDS_REALTIME_REPLACEMENT_TTL_MS : null;
+  const requestsLoadedAt = incomingRequestsReadCache
+    ? incomingRequestsReadCache.expiresAt - FRIENDS_REALTIME_REPLACEMENT_TTL_MS
+    : null;
+  const base = { newestEventAt, friendsLoadedAt, requestsLoadedAt };
+  if (friendsLoadedAt === null && requestsLoadedAt === null) return { decision: 'no_cache', ...base };
+  if (newestEventAt <= 0) return { decision: 'no_social_event', ...base };
+  if (newestEventAt <= lastHandledCachedSocialEventAt) return { decision: 'already_handled', ...base };
+  const oldestLoadedAt = Math.min(friendsLoadedAt ?? Number.MAX_SAFE_INTEGER, requestsLoadedAt ?? Number.MAX_SAFE_INTEGER);
+  if (newestEventAt <= oldestLoadedAt) return { decision: 'fresh', ...base };
+  lastHandledCachedSocialEventAt = newestEventAt;
+  return { decision: 'invalidate', ...base };
+}
+
 function invalidateFriendReadCaches(stableId: string): void {
   const prefix = `${stableId}:`;
   if (friendReadCache?.scopeKey.startsWith(prefix)) friendReadCache = null;

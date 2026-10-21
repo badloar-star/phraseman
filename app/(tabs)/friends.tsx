@@ -64,6 +64,7 @@ import {
   subscribeToIncomingRequests,
   cleanupStaleFriendData,
   invalidateFriendsSocialReadCaches,
+  decideFriendsCacheAgainstCachedSocialEvent,
   type FriendEntry,
   type FriendRequestEntry,
 } from '../firestore_friend_requests';
@@ -897,7 +898,30 @@ export default function FriendsTabScreen() {
       if (!cancelled) setFriendEvents(friendSocialEventsFromNotifications(rows));
     };
     let unsubFreshRequests: (() => void) | null = null;
-    void readCachedUserNotifications().then(apply);
+    let socialRefreshStarted = false;
+    const refreshAfterSocialEvent = (reason: string) => {
+      if (cancelled || socialRefreshStarted) return;
+      socialRefreshStarted = true;
+      invalidateFriendsSocialReadCaches(reason);
+      friendsAccountStore.retry();
+      unsubFreshRequests = subscribeToIncomingRequests(
+        (data) => {
+          if (cancelled) return;
+          setRequests(pendingFriendOpsRef.current.filterRequests(data, Date.now()));
+        },
+        (error) => console.warn('[FRIENDS] fresh requests after friend event failed', { message: error?.message?.slice(0, 80) }), // guard-ok: причина
+      );
+    };
+    void readCachedUserNotifications().then((rows) => {
+      apply(rows);
+      if (cancelled) return;
+      // зачем (Ревизор к 17e26d73c): проба общая с Главной и колокольчиком — если заявку уже подтянули они, проба здесь
+      // вернёт ttl_skip/network_same и кэш друзей (30 мин) не сбросится. Сравниваем без чтений: событие дружбы в кэше
+      // уведомлений новее загрузки кэшей друзей/заявок → сброс и перечитка, как в сетевой ветке.
+      const verdict = decideFriendsCacheAgainstCachedSocialEvent(rows);
+      console.log('[READ-TTL]', JSON.stringify({ area: 'friends_focus', ...verdict })); // guard-ok: времена и решение, без uid
+      if (verdict.decision === 'invalidate') refreshAfterSocialEvent('cached_notification_friend_event');
+    });
     // зачем (владелец 21.10, №45; Ревизор п.1–2): вместо полного списка уведомлений (до 20) на каждом заходе — проба
     // «последнее уведомление» (1 чтение, не чаще раза в минуту). Новое уведомление о заявке или принятии → кэш друзей и
     // заявок (30 мин) сбрасывается и перечитывается сразу: правило 17.10 «друзья мгновенно» держится без чтений каждые 30 с.
@@ -911,15 +935,7 @@ export default function FriendsTabScreen() {
       const socialNews = fresh.some((row) => row.type === 'friend_request' || row.type === 'friend_accepted');
       console.log('[READ-TTL]', JSON.stringify({ area: 'friends_notifications', source: 'network', socialNews, rows: fresh.length })); // guard-ok: ветка решения
       if (!socialNews) return;
-      invalidateFriendsSocialReadCaches('notification_friend_event');
-      friendsAccountStore.retry();
-      unsubFreshRequests = subscribeToIncomingRequests(
-        (data) => {
-          if (cancelled) return;
-          setRequests(pendingFriendOpsRef.current.filterRequests(data, Date.now()));
-        },
-        (error) => console.warn('[FRIENDS] fresh requests after friend event failed', { message: error?.message?.slice(0, 80) }), // guard-ok: причина
-      );
+      refreshAfterSocialEvent('notification_friend_event');
     });
     return () => {
       cancelled = true;

@@ -582,3 +582,33 @@ test('S02: subscribeToIncomingRequests filters by status pending and returns uns
   // Accepted request must NOT appear.
   expect(entries.find(r => r.fromUid === 'req-uid-777')).toBeUndefined();
 });
+
+// зачем (Ревизор к 17e26d73c): заявку подтянула Главная/колокольчик, проба «Друзей» дала ttl_skip — решение по уже
+// лежащему кэшу уведомлений обязано сбросить 30-минутный кэш друзей без единого чтения.
+test('S03: событие дружбы в кэше уведомлений новее загрузки кэша друзей → invalidate один раз', async () => {
+  mockDocs.set('users/my-uid-111/friends/friend-uid-555', { createdAt: 800 });
+  const {
+    subscribeToFriends,
+    decideFriendsCacheAgainstCachedSocialEvent,
+    invalidateFriendsSocialReadCaches,
+  } = require('../app/firestore_friend_requests');
+  const request = (createdAt: number) => ({ id: `friend_request_${createdAt}`, type: 'friend_request', createdAt });
+
+  expect(decideFriendsCacheAgainstCachedSocialEvent([request(Date.now())]).decision).toBe('no_cache');
+
+  await new Promise<void>(resolve => {
+    subscribeToFriends(() => resolve());
+  });
+  const loadedVerdict = decideFriendsCacheAgainstCachedSocialEvent([request(Date.now() - 60_000)]);
+  expect(loadedVerdict.decision).toBe('fresh');
+  expect(loadedVerdict.friendsLoadedAt).not.toBeNull();
+  expect(decideFriendsCacheAgainstCachedSocialEvent([{ type: 'chat_message', createdAt: Date.now() + 5_000 }]).decision)
+    .toBe('no_social_event');
+
+  const newer = request(Date.now() + 5_000);
+  expect(decideFriendsCacheAgainstCachedSocialEvent([newer]).decision).toBe('invalidate');
+  expect(decideFriendsCacheAgainstCachedSocialEvent([newer]).decision).toBe('already_handled');
+
+  invalidateFriendsSocialReadCaches('test');
+  expect(decideFriendsCacheAgainstCachedSocialEvent([newer]).decision).toBe('no_cache');
+});

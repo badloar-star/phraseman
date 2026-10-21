@@ -42,8 +42,12 @@ describe('D66 friends realtime contract', () => {
     const tab = fs.readFileSync(path.join(root, 'app', '(tabs)', 'friends.tsx'), 'utf8');
     expect(tab).toContain("probeUserNotificationsHead('friends_focus')");
     expect(tab).toContain("row.type === 'friend_request' || row.type === 'friend_accepted'");
-    expect(tab).toContain("invalidateFriendsSocialReadCaches('notification_friend_event')");
+    expect(tab).toContain("refreshAfterSocialEvent('notification_friend_event')");
+    expect(tab).toContain('invalidateFriendsSocialReadCaches(reason);');
     expect(tab).toContain('friendsAccountStore.retry();');
+    // Ревизор к 17e26d73c: заявку уже подтянула Главная — решение по кэшу уведомлений, без чтений.
+    expect(tab).toContain('const verdict = decideFriendsCacheAgainstCachedSocialEvent(rows);');
+    expect(tab).toContain("if (verdict.decision === 'invalidate') refreshAfterSocialEvent('cached_notification_friend_event');");
     expect(tab).not.toContain('refreshUserNotificationsOnce({ minIntervalMs: 30_000 })');
     expect(input).toContain('friendReadCache');
     expect(friends).toContain('if (cancelled) return;');

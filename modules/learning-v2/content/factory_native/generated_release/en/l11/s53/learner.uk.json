@@ -1,0 +1,1114 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-53:word:silly",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — silly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-53:word:silly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — silly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-53:word:silly:audio",
+          "transcript": "silly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-53:word:silly:r1",
+            "targetText": "silly",
+            "meaningByLocale": {
+              "ru": "глупый, неразумный.",
+              "uk": "дурний, нерозумний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "silly",
+          "definitionByLocale": {
+            "ru": "глупый, неразумный.",
+            "uk": "дурний, нерозумний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-53:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: це була дурна ідея",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: це була дурна ідея",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That was a silly idea.",
+        "localizedMeaning": {
+          "ru": "Скажите: это была глупая идея",
+          "uk": "Скажіть: це була дурна ідея"
+        },
+        "orderedTokens": [
+          "That",
+          "was",
+          "a",
+          "silly",
+          "idea"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-53:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-53:i02:r1",
+          "text": "It was a silly mistake."
+        },
+        {
+          "responseId": "en:lesson-11:session-53:i02:r2",
+          "text": "It is a silly mistake."
+        },
+        {
+          "responseId": "en:lesson-11:session-53:i02:r3",
+          "text": "Was it a silly mistake?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-53:i02:audio",
+          "transcript": "It was a silly mistake."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-53:i02:r1",
+            "targetText": "It was a silly mistake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i02:r2",
+            "targetText": "It is a silly mistake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i02:r3",
+            "targetText": "Was it a silly mistake?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It was a silly mistake.",
+              "uk": "У записі звучить It was a silly mistake."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It was a silly mistake.",
+              "uk": "У записі звучить It was a silly mistake."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-53:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На вашу думку, учорашня ідея була дурна. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-53:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-53:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-53:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На вашу думку, учорашня ідея була дурна. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "По вашему мнению, вчерашняя идея была глупой. Выберите форму",
+          "uk": "На вашу думку, учорашня ідея була дурна. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The idea ___ silly.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-53:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "На вашу думку, учорашня ідея була дурна. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "На вашу думку, учорашня ідея була дурна. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Одна идея: was.",
+              "uk": "Одна ідея: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i03:r3",
+            "correct": false,
+            "testedDimension": "На вашу думку, учорашня ідея була дурна. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "В контексте прошлое и одна идея: was.",
+              "uk": "У контексті минуле й одна ідея: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-53:word:sensible",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sensible",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-53:word:sensible:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sensible",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-53:word:sensible:audio",
+          "transcript": "sensible"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-53:word:sensible:r1",
+            "targetText": "sensible",
+            "meaningByLocale": {
+              "ru": "разумный, практичный.",
+              "uk": "розумний, практичний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sensible",
+          "definitionByLocale": {
+            "ru": "разумный, практичный.",
+            "uk": "розумний, практичний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-53:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи був план розумний",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи був план розумний",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the plan sensible?",
+        "localizedMeaning": {
+          "ru": "Спросите, был ли план разумным",
+          "uk": "Запитайте, чи був план розумний"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "plan",
+          "sensible"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-53:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-53:i05:r1",
+          "text": "That was a sensible idea."
+        },
+        {
+          "responseId": "en:lesson-11:session-53:i05:r2",
+          "text": "That was a silly idea."
+        },
+        {
+          "responseId": "en:lesson-11:session-53:i05:r3",
+          "text": "That is a sensible idea."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-53:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-53:i05:audio",
+          "transcript": "That was a sensible idea."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-53:i05:r1",
+            "targetText": "That was a sensible idea.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i05:r2",
+            "targetText": "That was a silly idea.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i05:r3",
+            "targetText": "That is a sensible idea.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-53:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит That was a sensible idea.",
+              "uk": "У записі звучить That was a sensible idea."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит That was a sensible idea.",
+              "uk": "У записі звучить That was a sensible idea."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-53:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Тоді її рішення було розумне. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-53:i06:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-53:i06:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-53:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Тоді її рішення було розумне. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Тогда её решение было разумным. Выберите форму",
+          "uk": "Тоді її рішення було розумне. Виберіть форму"
+        },
+        "gappedTargetPhrase": "Her decision ___ sensible.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-53:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Тоді її рішення було розумне. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-53:i06:r2",
+            "correct": false,
+            "testedDimension": "Тоді її рішення було розумне. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Одно решение: was.",
+              "uk": "Одне рішення: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i06:r3",
+            "correct": false,
+            "testedDimension": "Тоді її рішення було розумне. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "В контексте прошлое и одно решение: was.",
+              "uk": "У контексті минуле й одне рішення: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-53:word:fair",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fair",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-53:word:fair:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fair",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-53:word:fair:audio",
+          "transcript": "fair"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-53:word:fair:r1",
+            "targetText": "fair",
+            "meaningByLocale": {
+              "ru": "справедливый.",
+              "uk": "справедливий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fair",
+          "definitionByLocale": {
+            "ru": "справедливый.",
+            "uk": "справедливий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-53:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: правила були справедливі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: правила були справедливі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The rules were fair.",
+        "localizedMeaning": {
+          "ru": "Скажите: правила были справедливыми",
+          "uk": "Скажіть: правила були справедливі"
+        },
+        "orderedTokens": [
+          "The",
+          "rules",
+          "were",
+          "fair"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-53:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-53:i08:r1",
+          "text": "Was the rule fair?"
+        },
+        {
+          "responseId": "en:lesson-11:session-53:i08:r2",
+          "text": "Is the rule fair?"
+        },
+        {
+          "responseId": "en:lesson-11:session-53:i08:r3",
+          "text": "The rule was fair."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-53:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-53:i08:audio",
+          "transcript": "Was the rule fair?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-53:i08:r1",
+            "targetText": "Was the rule fair?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i08:r2",
+            "targetText": "Is the rule fair?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i08:r3",
+            "targetText": "The rule was fair.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was the rule fair?",
+              "uk": "У записі звучить Was the rule fair?"
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was the rule fair?",
+              "uk": "У записі звучить Was the rule fair?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-53:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Зараз правила справедливі. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-53:i09:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-11:session-53:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-53:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зараз правила справедливі. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас правила справедливые. Выберите форму",
+          "uk": "Зараз правила справедливі. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The rules ___ fair now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-53:i09:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Зараз правила справедливі. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-53:i09:r2",
+            "correct": false,
+            "testedDimension": "Зараз правила справедливі. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Now — сейчас: are.",
+              "uk": "Now — зараз: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i09:r3",
+            "correct": false,
+            "testedDimension": "Зараз правила справедливі. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Несколько правил: are.",
+              "uk": "Кілька правил: are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-53:word:unfair",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — unfair",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-53:word:unfair:audio"
+      ],
+      "accessibilityLabel": "Картка слова — unfair",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-53:word:unfair:audio",
+          "transcript": "unfair"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-53:word:unfair:r1",
+            "targetText": "unfair",
+            "meaningByLocale": {
+              "ru": "несправедливый.",
+              "uk": "несправедливий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unfair",
+          "definitionByLocale": {
+            "ru": "несправедливый.",
+            "uk": "несправедливий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-53:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: це правило було несправедливе",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: це правило було несправедливе",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That rule was unfair.",
+        "localizedMeaning": {
+          "ru": "Скажите: это правило было несправедливым",
+          "uk": "Скажіть: це правило було несправедливе"
+        },
+        "orderedTokens": [
+          "That",
+          "rule",
+          "was",
+          "unfair"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-53:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-53:i11:r1",
+          "text": "The rules were unfair."
+        },
+        {
+          "responseId": "en:lesson-11:session-53:i11:r2",
+          "text": "The rules are unfair."
+        },
+        {
+          "responseId": "en:lesson-11:session-53:i11:r3",
+          "text": "The rules were fair."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-53:i11:audio",
+          "transcript": "The rules were unfair."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-53:i11:r1",
+            "targetText": "The rules were unfair.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i11:r2",
+            "targetText": "The rules are unfair.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i11:r3",
+            "targetText": "The rules were fair.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-53:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The rules were unfair.",
+              "uk": "У записі звучить The rules were unfair."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The rules were unfair.",
+              "uk": "У записі звучить The rules were unfair."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-53:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора правила були несправедливі. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-53:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-53:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-53:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора правила були несправедливі. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера правила были несправедливыми. Выберите форму",
+          "uk": "Учора правила були несправедливі. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The rules ___ unfair yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-53:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Учора правила були несправедливі. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-53:i12:r2",
+            "correct": false,
+            "testedDimension": "Учора правила були несправедливі. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Несколько правил: were.",
+              "uk": "Кілька правил: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-53:i12:r3",
+            "correct": false,
+            "testedDimension": "Учора правила були несправедливі. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: were.",
+              "uk": "Учора: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-53:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-53:i13:p1",
+            "target": "silly",
+            "meaningByLocale": {
+              "ru": "глупый",
+              "uk": "дурний"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-53:i13:p2",
+            "target": "sensible",
+            "meaningByLocale": {
+              "ru": "разумный",
+              "uk": "розумний"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-53:i13:p3",
+            "target": "fair",
+            "meaningByLocale": {
+              "ru": "справедливый",
+              "uk": "справедливий"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-53:i13:p4",
+            "target": "unfair",
+            "meaningByLocale": {
+              "ru": "несправедливый",
+              "uk": "несправедливий"
+            }
+          }
+        ],
+        "leftColumn": [
+          "silly",
+          "sensible",
+          "fair",
+          "unfair"
+        ],
+        "rightColumn": [
+          "дурний",
+          "розумний",
+          "справедливий",
+          "несправедливий"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-53:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте прохання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-53:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте прохання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-53:i14:audio",
+          "transcript": "Please don't change the rules."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't change the rules.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "change",
+          "the",
+          "rules"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-53:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-53:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-53:i15:audio",
+          "transcript": "We are talking about the plan now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are talking about the plan now.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "talking",
+          "about",
+          "the",
+          "plan",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-53:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що ідея була не дурна",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-53:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що ідея була не дурна",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-53:i16:audio",
+          "transcript": "The idea was not silly."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The idea was not silly.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-53:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи були правила несправедливі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-53:i17:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи були правила несправедливі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-53:i17:audio",
+          "transcript": "Were the rules unfair?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Were the rules unfair?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6d66ae841e14db645d0c72d9bd3fcf4d04d08d7fc8d659a4527b5f3c946bc928"
+}

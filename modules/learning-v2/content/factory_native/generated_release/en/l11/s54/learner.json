@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-54",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-54:word:bread-roll",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bread roll",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-54:word:bread-roll:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bread roll",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-54:word:bread-roll:audio",
+          "transcript": "bread roll"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-54:word:bread-roll:r1",
+            "targetText": "bread roll",
+            "meaningByLocale": {
+              "ru": "хлебная булочка.",
+              "uk": "хлібна булочка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bread roll",
+          "definitionByLocale": {
+            "ru": "хлебная булочка.",
+            "uk": "хлібна булочка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-54:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, была ли хлебная булочка свежей",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, была ли хлебная булочка свежей",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the bread roll fresh?",
+        "localizedMeaning": {
+          "ru": "Спросите, была ли хлебная булочка свежей",
+          "uk": "Запитайте, чи була хлібна булочка свіжа"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "bread",
+          "roll",
+          "fresh"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-54:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-54:i02:r1",
+          "text": "The bread roll was on the plate."
+        },
+        {
+          "responseId": "en:lesson-11:session-54:i02:r2",
+          "text": "The bread roll is on the plate."
+        },
+        {
+          "responseId": "en:lesson-11:session-54:i02:r3",
+          "text": "The bread roll was in the bag."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-54:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-54:i02:audio",
+          "transcript": "The bread roll was on the plate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-54:i02:r1",
+            "targetText": "The bread roll was on the plate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i02:r2",
+            "targetText": "The bread roll is on the plate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i02:r3",
+            "targetText": "The bread roll was in the bag.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-54:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bread roll was on the plate.",
+              "uk": "У записі звучить The bread roll was on the plate."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bread roll was on the plate.",
+              "uk": "У записі звучить The bread roll was on the plate."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-54:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На столе было три хлебные булочки. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-54:i03:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-54:i03:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-54:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На столе было три хлебные булочки. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На столе было три хлебные булочки. Выберите форму",
+          "uk": "На столі було три хлібні булочки. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ three bread rolls on the table.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-54:i03:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i03:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "На столе было три хлебные булочки. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-54:i03:r2",
+            "correct": false,
+            "testedDimension": "На столе было три хлебные булочки. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Три булочки: were.",
+              "uk": "Три булочки: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i03:r3",
+            "correct": false,
+            "testedDimension": "На столе было три хлебные булочки. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Было — прошлое: were.",
+              "uk": "Було — минуле: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-54:word:fish-finger",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fish finger",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-54:word:fish-finger:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fish finger",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-54:word:fish-finger:audio",
+          "transcript": "fish finger"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-54:word:fish-finger:r1",
+            "targetText": "fish finger",
+            "meaningByLocale": {
+              "ru": "рыбная палочка в панировке.",
+              "uk": "рибна паличка в паніруванні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fish finger",
+          "definitionByLocale": {
+            "ru": "рыбная палочка в панировке.",
+            "uk": "рибна паличка в паніруванні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-54:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите: рыбная палочка была не холодной",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите: рыбная палочка была не холодной",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The fish finger was not cold.",
+        "localizedMeaning": {
+          "ru": "Сообщите: рыбная палочка была не холодной",
+          "uk": "Повідомте: рибна паличка була не холодна"
+        },
+        "orderedTokens": [
+          "The",
+          "fish",
+          "finger",
+          "was",
+          "not",
+          "cold"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-54:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-54:i05:r1",
+          "text": "There were four fish fingers on the plate."
+        },
+        {
+          "responseId": "en:lesson-11:session-54:i05:r2",
+          "text": "There were two fish fingers on the plate."
+        },
+        {
+          "responseId": "en:lesson-11:session-54:i05:r3",
+          "text": "There were four fish fingers in the box."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-54:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-54:i05:audio",
+          "transcript": "There were four fish fingers on the plate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-54:i05:r1",
+            "targetText": "There were four fish fingers on the plate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i05:r2",
+            "targetText": "There were two fish fingers on the plate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i05:r3",
+            "targetText": "There were four fish fingers in the box.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-54:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There were four fish fingers on the plate.",
+              "uk": "У записі звучить There were four fish fingers on the plate."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There were four fish fingers on the plate.",
+              "uk": "У записі звучить There were four fish fingers on the plate."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-54:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера рыбные палочки были горячими. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-54:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-54:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-54:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера рыбные палочки были горячими. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера рыбные палочки были горячими. Выберите форму",
+          "uk": "Учора рибні палички були гарячі. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The fish fingers ___ hot yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-54:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Вчера рыбные палочки были горячими. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-54:i06:r2",
+            "correct": false,
+            "testedDimension": "Вчера рыбные палочки были горячими. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Несколько палочек: were.",
+              "uk": "Кілька паличок: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i06:r3",
+            "correct": false,
+            "testedDimension": "Вчера рыбные палочки были горячими. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: were.",
+              "uk": "Учора: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-54:word:meatball",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — meatball",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-54:word:meatball:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — meatball",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-54:word:meatball:audio",
+          "transcript": "meatball"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-54:word:meatball:r1",
+            "targetText": "meatball",
+            "meaningByLocale": {
+              "ru": "мясной шарик, фрикаделька.",
+              "uk": "м’ясна кулька, фрикаделька."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "meatball",
+          "definitionByLocale": {
+            "ru": "мясной шарик, фрикаделька.",
+            "uk": "м’ясна кулька, фрикаделька."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-54:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите: на тарелке была фрикаделька. Начните с There",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите: на тарелке была фрикаделька. Начните с There",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There was a meatball on the plate.",
+        "localizedMeaning": {
+          "ru": "Сообщите: на тарелке была фрикаделька. Начните с There",
+          "uk": "Повідомте: на тарілці була фрикаделька. Почніть із There"
+        },
+        "orderedTokens": [
+          "There",
+          "was",
+          "a",
+          "meatball",
+          "on",
+          "the",
+          "plate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-54:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-54:i08:r1",
+          "text": "The meatballs were in the kitchen."
+        },
+        {
+          "responseId": "en:lesson-11:session-54:i08:r2",
+          "text": "The meatballs are in the kitchen."
+        },
+        {
+          "responseId": "en:lesson-11:session-54:i08:r3",
+          "text": "The meatballs were in the fridge."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-54:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-54:i08:audio",
+          "transcript": "The meatballs were in the kitchen."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-54:i08:r1",
+            "targetText": "The meatballs were in the kitchen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i08:r2",
+            "targetText": "The meatballs are in the kitchen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i08:r3",
+            "targetText": "The meatballs were in the fridge.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The meatballs were in the kitchen.",
+              "uk": "У записі звучить The meatballs were in the kitchen."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The meatballs were in the kitchen.",
+              "uk": "У записі звучить The meatballs were in the kitchen."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-54:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сейчас фрикадельки горячие. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-54:i09:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-11:session-54:i09:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-54:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сейчас фрикадельки горячие. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас фрикадельки горячие. Выберите форму",
+          "uk": "Зараз фрикадельки гарячі. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The meatballs ___ hot now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-54:i09:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Сейчас фрикадельки горячие. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-54:i09:r2",
+            "correct": false,
+            "testedDimension": "Сейчас фрикадельки горячие. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Now — сейчас: are.",
+              "uk": "Now — зараз: are."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i09:r3",
+            "correct": false,
+            "testedDimension": "Сейчас фрикадельки горячие. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Несколько фрикаделек: are.",
+              "uk": "Кілька фрикадельок: are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-54:word:sausage-roll",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sausage roll",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-54:word:sausage-roll:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sausage roll",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-54:word:sausage-roll:audio",
+          "transcript": "sausage roll"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-54:word:sausage-roll:r1",
+            "targetText": "sausage roll",
+            "meaningByLocale": {
+              "ru": "выпечка с колбасным фаршем в тесте.",
+              "uk": "випічка з ковбасним фаршем у тісті."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sausage roll",
+          "definitionByLocale": {
+            "ru": "выпечка с колбасным фаршем в тесте.",
+            "uk": "випічка з ковбасним фаршем у тісті."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-54:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, была ли выпечка с мясной начинкой горячей",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, была ли выпечка с мясной начинкой горячей",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the sausage roll hot?",
+        "localizedMeaning": {
+          "ru": "Спросите, была ли выпечка с мясной начинкой горячей",
+          "uk": "Запитайте, чи була випічка з м’ясною начинкою гаряча"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "sausage",
+          "roll",
+          "hot"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-54:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-54:i11:r1",
+          "text": "The sausage roll was delicious."
+        },
+        {
+          "responseId": "en:lesson-11:session-54:i11:r2",
+          "text": "The sausage roll is delicious."
+        },
+        {
+          "responseId": "en:lesson-11:session-54:i11:r3",
+          "text": "Was the sausage roll delicious?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-54:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-54:i11:audio",
+          "transcript": "The sausage roll was delicious."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-54:i11:r1",
+            "targetText": "The sausage roll was delicious.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i11:r2",
+            "targetText": "The sausage roll is delicious.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i11:r3",
+            "targetText": "Was the sausage roll delicious?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-54:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sausage roll was delicious.",
+              "uk": "У записі звучить The sausage roll was delicious."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The sausage roll was delicious.",
+              "uk": "У записі звучить The sausage roll was delicious."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-54:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В сумке было две штуки выпечки с мясной начинкой. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-54:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-54:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-54:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В сумке было две штуки выпечки с мясной начинкой. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В сумке было две штуки выпечки с мясной начинкой. Выберите форму",
+          "uk": "У сумці було дві штуки випічки з м’ясною начинкою. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ two sausage rolls in the bag.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-54:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "В сумке было две штуки выпечки с мясной начинкой. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-54:i12:r2",
+            "correct": false,
+            "testedDimension": "В сумке было две штуки выпечки с мясной начинкой. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Два предмета: were.",
+              "uk": "Два предмети: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-54:i12:r3",
+            "correct": false,
+            "testedDimension": "В сумке было две штуки выпечки с мясной начинкой. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Было — прошлое: were.",
+              "uk": "Було — минуле: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-54:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините еду с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините еду с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-54:i13:p1",
+            "target": "bread roll",
+            "meaningByLocale": {
+              "ru": "хлебная булочка",
+              "uk": "хлібна булочка"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-54:i13:p2",
+            "target": "fish finger",
+            "meaningByLocale": {
+              "ru": "рыбная палочка",
+              "uk": "рибна паличка"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-54:i13:p3",
+            "target": "meatball",
+            "meaningByLocale": {
+              "ru": "фрикаделька",
+              "uk": "фрикаделька"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-54:i13:p4",
+            "target": "sausage roll",
+            "meaningByLocale": {
+              "ru": "выпечка с колбасным фаршем",
+              "uk": "випічка з ковбасним фаршем"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bread roll",
+          "fish finger",
+          "meatball",
+          "sausage roll"
+        ],
+        "rightColumn": [
+          "хлебная булочка",
+          "рыбная палочка",
+          "фрикаделька",
+          "выпечка с колбасным фаршем"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-54:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную просьбу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-54:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную просьбу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-54:i14:audio",
+          "transcript": "Please don't take my plate."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't take my plate.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "take",
+          "my",
+          "plate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-54:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-54:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-54:i15:audio",
+          "transcript": "I am cooking dinner right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am cooking dinner right now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "cooking",
+          "dinner",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-54:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что фрикадельки были не холодными",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-54:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что фрикадельки были не холодными",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-54:i16:audio",
+          "transcript": "The meatballs were not cold."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The meatballs were not cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-54:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, были ли хлебные булочки свежими",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-54:i17:audio"
+      ],
+      "accessibilityLabel": "Спросите, были ли хлебные булочки свежими",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-54:i17:audio",
+          "transcript": "Were the bread rolls fresh?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Were the bread rolls fresh?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4def6e2fb23c8ca9af2d3ef58b70771b4c2ecf22c07b8632d8311c89b42eb1e2"
+}

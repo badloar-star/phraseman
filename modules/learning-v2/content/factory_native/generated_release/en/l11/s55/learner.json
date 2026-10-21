@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-55",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-55:word:laundry-basket",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — laundry basket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-55:word:laundry-basket:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — laundry basket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-55:word:laundry-basket:audio",
+          "transcript": "laundry basket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-55:word:laundry-basket:r1",
+            "targetText": "laundry basket",
+            "meaningByLocale": {
+              "ru": "корзина для белья.",
+              "uk": "кошик для білизни."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "laundry basket",
+          "definitionByLocale": {
+            "ru": "корзина для белья.",
+            "uk": "кошик для білизни."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-55:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, была ли корзина для белья пустой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, была ли корзина для белья пустой",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the laundry basket empty?",
+        "localizedMeaning": {
+          "ru": "Спросите, была ли корзина для белья пустой",
+          "uk": "Запитайте, чи був кошик для білизни порожній"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "laundry",
+          "basket",
+          "empty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-55:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-55:i02:r1",
+          "text": "The laundry basket was in the bathroom."
+        },
+        {
+          "responseId": "en:lesson-11:session-55:i02:r2",
+          "text": "The laundry basket is in the bathroom."
+        },
+        {
+          "responseId": "en:lesson-11:session-55:i02:r3",
+          "text": "The laundry basket was in the bedroom."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-55:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-55:i02:audio",
+          "transcript": "The laundry basket was in the bathroom."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-55:i02:r1",
+            "targetText": "The laundry basket was in the bathroom.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i02:r2",
+            "targetText": "The laundry basket is in the bathroom.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i02:r3",
+            "targetText": "The laundry basket was in the bedroom.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-55:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The laundry basket was in the bathroom.",
+              "uk": "У записі звучить The laundry basket was in the bathroom."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The laundry basket was in the bathroom.",
+              "uk": "У записі звучить The laundry basket was in the bathroom."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-55:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера корзина для белья была полной. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-55:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-55:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-55:i03:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера корзина для белья была полной. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера корзина для белья была полной. Выберите форму",
+          "uk": "Учора кошик для білизни був повний. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The laundry basket ___ full yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-55:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i03:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Вчера корзина для белья была полной. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-55:i03:r2",
+            "correct": false,
+            "testedDimension": "Вчера корзина для белья была полной. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: was.",
+              "uk": "Учора: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i03:r3",
+            "correct": false,
+            "testedDimension": "Вчера корзина для белья была полной. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Одна корзина: was.",
+              "uk": "Один кошик: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-55:word:clothes-horse",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — clothes horse",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-55:word:clothes-horse:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — clothes horse",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-55:word:clothes-horse:audio",
+          "transcript": "clothes horse"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-55:word:clothes-horse:r1",
+            "targetText": "clothes horse",
+            "meaningByLocale": {
+              "ru": "напольная сушилка для белья. Британское название.",
+              "uk": "підлогова сушарка для білизни. Британська назва."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "clothes horse",
+          "definitionByLocale": {
+            "ru": "напольная сушилка для белья. Британское название.",
+            "uk": "підлогова сушарка для білизни. Британська назва."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-55:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите: сушилка для белья была не в кухне",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите: сушилка для белья была не в кухне",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The clothes horse was not in the kitchen.",
+        "localizedMeaning": {
+          "ru": "Сообщите: сушилка для белья была не в кухне",
+          "uk": "Повідомте: сушарка для білизни була не в кухні"
+        },
+        "orderedTokens": [
+          "The",
+          "clothes",
+          "horse",
+          "was",
+          "not",
+          "in",
+          "the",
+          "kitchen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-55:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-55:i05:r1",
+          "text": "The clothes horse was near the window."
+        },
+        {
+          "responseId": "en:lesson-11:session-55:i05:r2",
+          "text": "The clothes horse is near the window."
+        },
+        {
+          "responseId": "en:lesson-11:session-55:i05:r3",
+          "text": "The clothes horse was near the door."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-55:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-55:i05:audio",
+          "transcript": "The clothes horse was near the window."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-55:i05:r1",
+            "targetText": "The clothes horse was near the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i05:r2",
+            "targetText": "The clothes horse is near the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i05:r3",
+            "targetText": "The clothes horse was near the door.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-55:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The clothes horse was near the window.",
+              "uk": "У записі звучить The clothes horse was near the window."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The clothes horse was near the window.",
+              "uk": "У записі звучить The clothes horse was near the window."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-55:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сейчас сушилка для белья здесь. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-55:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-55:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-55:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сейчас сушилка для белья здесь. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас сушилка для белья здесь. Выберите форму",
+          "uk": "Зараз сушарка для білизни тут. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The clothes horse ___ here now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-55:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Сейчас сушилка для белья здесь. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-55:i06:r2",
+            "correct": false,
+            "testedDimension": "Сейчас сушилка для белья здесь. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Now — сейчас: is.",
+              "uk": "Now — зараз: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i06:r3",
+            "correct": false,
+            "testedDimension": "Сейчас сушилка для белья здесь. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Один предмет: is.",
+              "uk": "Один предмет: is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-55:word:washing-up-brush",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — washing-up brush",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-55:word:washing-up-brush:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — washing-up brush",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-55:word:washing-up-brush:audio",
+          "transcript": "washing-up brush"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-55:word:washing-up-brush:r1",
+            "targetText": "washing-up brush",
+            "meaningByLocale": {
+              "ru": "щётка для мытья посуды.",
+              "uk": "щітка для миття посуду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "washing-up brush",
+          "definitionByLocale": {
+            "ru": "щётка для мытья посуды.",
+            "uk": "щітка для миття посуду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-55:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, была ли щётка для посуды чистой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, была ли щётка для посуды чистой",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the washing-up brush clean?",
+        "localizedMeaning": {
+          "ru": "Спросите, была ли щётка для посуды чистой",
+          "uk": "Запитайте, чи була щітка для посуду чиста"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "washing-up",
+          "brush",
+          "clean"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-55:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-55:i08:r1",
+          "text": "The washing-up brush was near the sink."
+        },
+        {
+          "responseId": "en:lesson-11:session-55:i08:r2",
+          "text": "The washing-up brush is near the sink."
+        },
+        {
+          "responseId": "en:lesson-11:session-55:i08:r3",
+          "text": "The washing-up brush was in the cupboard."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-55:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-55:i08:audio",
+          "transcript": "The washing-up brush was near the sink."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-55:i08:r1",
+            "targetText": "The washing-up brush was near the sink.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i08:r2",
+            "targetText": "The washing-up brush is near the sink.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i08:r3",
+            "targetText": "The washing-up brush was in the cupboard.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-55:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The washing-up brush was near the sink.",
+              "uk": "У записі звучить The washing-up brush was near the sink."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The washing-up brush was near the sink.",
+              "uk": "У записі звучить The washing-up brush was near the sink."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-55:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера щётка для посуды была мокрой. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-55:i09:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-55:i09:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-55:i09:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера щётка для посуды была мокрой. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера щётка для посуды была мокрой. Выберите форму",
+          "uk": "Учора щітка для посуду була мокра. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The washing-up brush ___ wet yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-55:i09:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i09:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Вчера щётка для посуды была мокрой. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-55:i09:r2",
+            "correct": false,
+            "testedDimension": "Вчера щётка для посуды была мокрой. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: was.",
+              "uk": "Учора: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i09:r3",
+            "correct": false,
+            "testedDimension": "Вчера щётка для посуды была мокрой. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Одна щётка: was.",
+              "uk": "Одна щітка: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-55:word:oven-glove",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — oven glove",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-55:word:oven-glove:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — oven glove",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-55:word:oven-glove:audio",
+          "transcript": "oven glove"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-55:word:oven-glove:r1",
+            "targetText": "oven glove",
+            "meaningByLocale": {
+              "ru": "кухонная рукавица-прихватка.",
+              "uk": "кухонна рукавиця-прихватка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "oven glove",
+          "definitionByLocale": {
+            "ru": "кухонная рукавица-прихватка.",
+            "uk": "кухонна рукавиця-прихватка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-55:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите: у плиты была рукавица-прихватка. Начните с There",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите: у плиты была рукавица-прихватка. Начните с There",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There was an oven glove near the cooker.",
+        "localizedMeaning": {
+          "ru": "Сообщите: у плиты была рукавица-прихватка. Начните с There",
+          "uk": "Повідомте: біля плити була рукавиця-прихватка. Почніть із There"
+        },
+        "orderedTokens": [
+          "There",
+          "was",
+          "an",
+          "oven",
+          "glove",
+          "near",
+          "the",
+          "cooker"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-55:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-55:i11:r1",
+          "text": "The oven gloves were clean."
+        },
+        {
+          "responseId": "en:lesson-11:session-55:i11:r2",
+          "text": "The oven gloves are clean."
+        },
+        {
+          "responseId": "en:lesson-11:session-55:i11:r3",
+          "text": "The oven gloves were dirty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-55:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-55:i11:audio",
+          "transcript": "The oven gloves were clean."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-55:i11:r1",
+            "targetText": "The oven gloves were clean.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i11:r2",
+            "targetText": "The oven gloves are clean.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i11:r3",
+            "targetText": "The oven gloves were dirty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-55:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The oven gloves were clean.",
+              "uk": "У записі звучить The oven gloves were clean."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The oven gloves were clean.",
+              "uk": "У записі звучить The oven gloves were clean."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-55:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В ящике было две рукавицы-прихватки. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-55:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-55:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-55:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В ящике было две рукавицы-прихватки. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В ящике было две рукавицы-прихватки. Выберите форму",
+          "uk": "У шухляді було дві рукавиці-прихватки. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ two oven gloves in the drawer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-55:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "В ящике было две рукавицы-прихватки. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-55:i12:r2",
+            "correct": false,
+            "testedDimension": "В ящике было две рукавицы-прихватки. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Две рукавицы: were.",
+              "uk": "Дві рукавиці: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-55:i12:r3",
+            "correct": false,
+            "testedDimension": "В ящике было две рукавицы-прихватки. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Было — прошлое: were.",
+              "uk": "Було — минуле: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-55:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините вещи с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините вещи с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-55:i13:p1",
+            "target": "laundry basket",
+            "meaningByLocale": {
+              "ru": "корзина для белья",
+              "uk": "кошик для білизни"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-55:i13:p2",
+            "target": "clothes horse",
+            "meaningByLocale": {
+              "ru": "сушилка для белья",
+              "uk": "сушарка для білизни"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-55:i13:p3",
+            "target": "washing-up brush",
+            "meaningByLocale": {
+              "ru": "щётка для посуды",
+              "uk": "щітка для посуду"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-55:i13:p4",
+            "target": "oven glove",
+            "meaningByLocale": {
+              "ru": "рукавица-прихватка",
+              "uk": "рукавиця-прихватка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "laundry basket",
+          "clothes horse",
+          "washing-up brush",
+          "oven glove"
+        ],
+        "rightColumn": [
+          "корзина для белья",
+          "сушилка для белья",
+          "щётка для посуды",
+          "рукавица-прихватка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-55:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную просьбу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-55:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную просьбу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-55:i14:audio",
+          "transcript": "Please don't move the basket."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't move the basket.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "move",
+          "the",
+          "basket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-55:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-55:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-55:i15:audio",
+          "transcript": "I am cleaning the kitchen right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am cleaning the kitchen right now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "cleaning",
+          "the",
+          "kitchen",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-55:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что щётка для посуды была не грязной",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-55:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что щётка для посуды была не грязной",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-55:i16:audio",
+          "transcript": "The washing-up brush was not dirty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The washing-up brush was not dirty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-55:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, были ли рукавицы-прихватки сухими",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-55:i17:audio"
+      ],
+      "accessibilityLabel": "Спросите, были ли рукавицы-прихватки сухими",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-55:i17:audio",
+          "transcript": "Were the oven gloves dry?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Were the oven gloves dry?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2092da8e83fe993525931e18796e22ec8b0fd18a652f27a5dfe66b62dc698128"
+}

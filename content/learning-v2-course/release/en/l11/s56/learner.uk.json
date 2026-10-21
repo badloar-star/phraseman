@@ -1,0 +1,1104 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-56",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-56:word:I-don't-mind",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — I don't mind",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-56:word:I-don't-mind:audio"
+      ],
+      "accessibilityLabel": "Картка слова — I don't mind",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-56:word:I-don't-mind:audio",
+          "transcript": "I don't mind"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-56:word:I-don't-mind:r1",
+            "targetText": "I don't mind",
+            "meaningByLocale": {
+              "ru": "я не возражаю.",
+              "uk": "я не заперечую."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "I don't mind",
+          "definitionByLocale": {
+            "ru": "я не возражаю.",
+            "uk": "я не заперечую."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-56:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Співрозмовник просить відчинити вікно, і ви не проти. Дайте відповідь: я не заперечую",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Співрозмовник просить відчинити вікно, і ви не проти. Дайте відповідь: я не заперечую",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I don't mind.",
+        "localizedMeaning": {
+          "ru": "Собеседник просит открыть окно, и вы не против. Ответьте: я не возражаю",
+          "uk": "Співрозмовник просить відчинити вікно, і ви не проти. Дайте відповідь: я не заперечую"
+        },
+        "orderedTokens": [
+          "I",
+          "don't",
+          "mind"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-56:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-56:i02:r1",
+          "text": "I don't mind."
+        },
+        {
+          "responseId": "en:lesson-11:session-56:i02:r2",
+          "text": "I don't know."
+        },
+        {
+          "responseId": "en:lesson-11:session-56:i02:r3",
+          "text": "I don't like it."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-56:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-56:i02:audio",
+          "transcript": "I don't mind."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-56:i02:r1",
+            "targetText": "I don't mind.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i02:r2",
+            "targetText": "I don't know.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i02:r3",
+            "targetText": "I don't like it.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-56:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I don't mind.",
+              "uk": "У записі звучить I don't mind."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I don't mind.",
+              "uk": "У записі звучить I don't mind."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-56:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора в кімнаті було холодно. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-56:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-56:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-56:i03:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора в кімнаті було холодно. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера в комнате было холодно. Выберите форму",
+          "uk": "Учора в кімнаті було холодно. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The room ___ cold yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-56:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i03:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Учора в кімнаті було холодно. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-56:i03:r2",
+            "correct": false,
+            "testedDimension": "Учора в кімнаті було холодно. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: was.",
+              "uk": "Учора: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i03:r3",
+            "correct": false,
+            "testedDimension": "Учора в кімнаті було холодно. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Одна комната: was.",
+              "uk": "Одна кімната: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-56:word:that's-all",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — that's all",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-56:word:that's-all:audio"
+      ],
+      "accessibilityLabel": "Картка слова — that's all",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-56:word:that's-all:audio",
+          "transcript": "that's all"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-56:word:that's-all:r1",
+            "targetText": "that's all",
+            "meaningByLocale": {
+              "ru": "это всё.",
+              "uk": "це все."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "that's all",
+          "definitionByLocale": {
+            "ru": "это всё.",
+            "uk": "це все."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-56:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви завершили замовлення. Скажіть: це все",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви завершили замовлення. Скажіть: це все",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That's all.",
+        "localizedMeaning": {
+          "ru": "Вы завершили заказ. Скажите: это всё",
+          "uk": "Ви завершили замовлення. Скажіть: це все"
+        },
+        "orderedTokens": [
+          "That's",
+          "all"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-56:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-56:i05:r1",
+          "text": "That's all, thank you."
+        },
+        {
+          "responseId": "en:lesson-11:session-56:i05:r2",
+          "text": "Thank you."
+        },
+        {
+          "responseId": "en:lesson-11:session-56:i05:r3",
+          "text": "That's all."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-56:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-56:i05:audio",
+          "transcript": "That's all, thank you."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-56:i05:r1",
+            "targetText": "That's all, thank you.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i05:r2",
+            "targetText": "Thank you.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i05:r3",
+            "targetText": "That's all.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-56:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит That's all, thank you.",
+              "uk": "У записі звучить That's all, thank you."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит That's all, thank you.",
+              "uk": "У записі звучить That's all, thank you."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-56:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора в кафе було багато відвідувачів. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-56:i06:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-56:i06:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-56:i06:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора в кафе було багато відвідувачів. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера кафе было занято: в нём было много посетителей. Выберите форму",
+          "uk": "Учора в кафе було багато відвідувачів. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The cafe ___ busy yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-56:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i06:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Учора в кафе було багато відвідувачів. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-56:i06:r2",
+            "correct": false,
+            "testedDimension": "Учора в кафе було багато відвідувачів. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: was.",
+              "uk": "Учора: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i06:r3",
+            "correct": false,
+            "testedDimension": "Учора в кафе було багато відвідувачів. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Одно кафе: was.",
+              "uk": "Одне кафе: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-56:word:take-your-time",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — take your time",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-56:word:take-your-time:audio"
+      ],
+      "accessibilityLabel": "Картка слова — take your time",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-56:word:take-your-time:audio",
+          "transcript": "take your time"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-56:word:take-your-time:r1",
+            "targetText": "take your time",
+            "meaningByLocale": {
+              "ru": "не спешите, не торопитесь.",
+              "uk": "не поспішайте, не кваптеся."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "take your time",
+          "definitionByLocale": {
+            "ru": "не спешите, не торопитесь.",
+            "uk": "не поспішайте, не кваптеся."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-56:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Співрозмовник квапиться, а ви готові чекати. Скажіть: не поспішайте",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Співрозмовник квапиться, а ви готові чекати. Скажіть: не поспішайте",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Take your time.",
+        "localizedMeaning": {
+          "ru": "Собеседник торопится, а вы готовы ждать. Скажите: не спешите",
+          "uk": "Співрозмовник квапиться, а ви готові чекати. Скажіть: не поспішайте"
+        },
+        "orderedTokens": [
+          "Take",
+          "your",
+          "time"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-56:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-56:i08:r1",
+          "text": "Take your time."
+        },
+        {
+          "responseId": "en:lesson-11:session-56:i08:r2",
+          "text": "Take your bag."
+        },
+        {
+          "responseId": "en:lesson-11:session-56:i08:r3",
+          "text": "Take your coat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-56:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-56:i08:audio",
+          "transcript": "Take your time."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-56:i08:r1",
+            "targetText": "Take your time.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i08:r2",
+            "targetText": "Take your bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i08:r3",
+            "targetText": "Take your coat.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-56:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Take your time.",
+              "uk": "У записі звучить Take your time."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Take your time.",
+              "uk": "У записі звучить Take your time."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-56:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора ми були готові, але чекали друга. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-56:i09:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-56:i09:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-56:i09:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора ми були готові, але чекали друга. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера мы были готовы, но ждали друга. Выберите форму",
+          "uk": "Учора ми були готові, але чекали друга. Виберіть форму"
+        },
+        "gappedTargetPhrase": "We ___ ready yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-56:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i09:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Учора ми були готові, але чекали друга. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-56:i09:r2",
+            "correct": false,
+            "testedDimension": "Учора ми були готові, але чекали друга. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "С we в прошлом нужна were.",
+              "uk": "З we у минулому потрібна were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i09:r3",
+            "correct": false,
+            "testedDimension": "Учора ми були готові, але чекали друга. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: were.",
+              "uk": "Учора: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-56:word:after-you",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — after you",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-56:word:after-you:audio"
+      ],
+      "accessibilityLabel": "Картка слова — after you",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-56:word:after-you:audio",
+          "transcript": "after you"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-56:word:after-you:r1",
+            "targetText": "after you",
+            "meaningByLocale": {
+              "ru": "после вас. Пропускаем человека первым.",
+              "uk": "після вас. Пропускаємо людину першою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "after you",
+          "definitionByLocale": {
+            "ru": "после вас. Пропускаем человека первым.",
+            "uk": "після вас. Пропускаємо людину першою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-56:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Біля дверей пропустіть співрозмовника першим. Скажіть: після вас",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Біля дверей пропустіть співрозмовника першим. Скажіть: після вас",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "After you.",
+        "localizedMeaning": {
+          "ru": "У двери пропустите собеседника первым. Скажите: после вас",
+          "uk": "Біля дверей пропустіть співрозмовника першим. Скажіть: після вас"
+        },
+        "orderedTokens": [
+          "After",
+          "you"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-56:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-56:i11:r1",
+          "text": "After you."
+        },
+        {
+          "responseId": "en:lesson-11:session-56:i11:r2",
+          "text": "After me."
+        },
+        {
+          "responseId": "en:lesson-11:session-56:i11:r3",
+          "text": "After him."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-56:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-56:i11:audio",
+          "transcript": "After you."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-56:i11:r1",
+            "targetText": "After you.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i11:r2",
+            "targetText": "After me.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i11:r3",
+            "targetText": "After him.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-56:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит After you.",
+              "uk": "У записі звучить After you."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит After you.",
+              "uk": "У записі звучить After you."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-56:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора двері були відчинені. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-56:i12:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-56:i12:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-56:i12:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора двері були відчинені. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера дверь была открыта. Выберите форму",
+          "uk": "Учора двері були відчинені. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The door ___ open yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-56:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i12:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Учора двері були відчинені. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-56:i12:r2",
+            "correct": false,
+            "testedDimension": "Учора двері були відчинені. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: was.",
+              "uk": "Учора: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-56:i12:r3",
+            "correct": false,
+            "testedDimension": "Учора двері були відчинені. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Door — единственное число: was.",
+              "uk": "Door — однина: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-56:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте відповіді з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте відповіді з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-56:i13:p1",
+            "target": "I don't mind",
+            "meaningByLocale": {
+              "ru": "я не возражаю",
+              "uk": "я не заперечую"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-56:i13:p2",
+            "target": "that's all",
+            "meaningByLocale": {
+              "ru": "это всё",
+              "uk": "це все"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-56:i13:p3",
+            "target": "take your time",
+            "meaningByLocale": {
+              "ru": "не спешите",
+              "uk": "не поспішайте"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-56:i13:p4",
+            "target": "after you",
+            "meaningByLocale": {
+              "ru": "после вас",
+              "uk": "після вас"
+            }
+          }
+        ],
+        "leftColumn": [
+          "I don't mind",
+          "that's all",
+          "take your time",
+          "after you"
+        ],
+        "rightColumn": [
+          "я не заперечую",
+          "це все",
+          "не поспішайте",
+          "після вас"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-56:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте прохання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-56:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте прохання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-56:i14:audio",
+          "transcript": "Please don't hurry."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't hurry.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "hurry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-56:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-56:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-56:i15:audio",
+          "transcript": "I am waiting here right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am waiting here right now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "waiting",
+          "here",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-56:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Завершіть замовлення й подякуйте",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-56:i16:audio"
+      ],
+      "accessibilityLabel": "Завершіть замовлення й подякуйте",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-56:i16:audio",
+          "transcript": "That's all, thank you."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "That's all, thank you.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-56:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Людина шукає квиток, а ви можете зачекати. Скажіть: не поспішайте",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-56:i17:audio"
+      ],
+      "accessibilityLabel": "Людина шукає квиток, а ви можете зачекати. Скажіть: не поспішайте",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-56:i17:audio",
+          "transcript": "Take your time."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Take your time.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "24471d7a59770eba561d728ec8ba97a17122ccd343e4266516470abff15768fa"
+}

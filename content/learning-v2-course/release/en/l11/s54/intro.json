@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; there was/there were; food",
+    "uk": "was/were; there was/there were; food"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Хлебная булочка",
+        "uk": "Хлібна булочка"
+      },
+      "bodyByLocale": {
+        "ru": "Bread roll — «хлебная булочка», небольшой отдельный хлебец к еде. Вчера на тарелке было две булочки: There were two bread rolls on the plate. Две булочки — were; множественное число у roll: rolls. Выберите эту фразу.",
+        "uk": "Bread roll — «хлібна булочка», невеликий окремий хлібець до їжі. Учора на тарілці було дві булочки: There were two bread rolls on the plate. Дві булочки — were; множина в roll: rolls. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-54:intro1:r1",
+              "text": "There were two bread rolls on the plate."
+            },
+            {
+              "responseId": "en:lesson-11:session-54:intro1:r2",
+              "text": "There was two bread rolls on the plate."
+            },
+            {
+              "responseId": "en:lesson-11:session-54:intro1:r3",
+              "text": "There were a bread roll on the plate."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-54:intro1:r1",
+              "text": "There were two bread rolls on the plate."
+            },
+            {
+              "responseId": "en:lesson-11:session-54:intro1:r2",
+              "text": "There was two bread rolls on the plate."
+            },
+            {
+              "responseId": "en:lesson-11:session-54:intro1:r3",
+              "text": "There were a bread roll on the plate."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Рыбные палочки",
+        "uk": "Рибні палички"
+      },
+      "bodyByLocale": {
+        "ru": "Fish finger — «рыбная палочка», кусочек рыбы в панировке. Вчера рыбная палочка была горячей: The fish finger was hot. Здесь finger — часть названия блюда, а не палец. Выберите сообщение о вчерашней еде.",
+        "uk": "Fish finger — «рибна паличка», шматочок риби в паніруванні. Учора рибна паличка була гаряча: The fish finger was hot. Тут finger — частина назви страви, а не палець. Виберіть повідомлення про вчорашню їжу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-54:intro2:r1",
+              "text": "The fish finger was hot."
+            },
+            {
+              "responseId": "en:lesson-11:session-54:intro2:r2",
+              "text": "The fish finger is hot."
+            },
+            {
+              "responseId": "en:lesson-11:session-54:intro2:r3",
+              "text": "The fish finger were hot."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-54:intro2:r1",
+              "text": "The fish finger was hot."
+            },
+            {
+              "responseId": "en:lesson-11:session-54:intro2:r2",
+              "text": "The fish finger is hot."
+            },
+            {
+              "responseId": "en:lesson-11:session-54:intro2:r3",
+              "text": "The fish finger were hot."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Мясной шарик и выпечка",
+        "uk": "М’ясна кулька й випічка"
+      },
+      "bodyByLocale": {
+        "ru": "Meatball — «мясной шарик, фрикаделька». Sausage roll — «мясная начинка в тесте», обычно колбасный фарш в слоёном тесте. Это разные блюда. Вчера мясные шарики были вкусными: The meatballs were delicious. Выберите сообщение о них.",
+        "uk": "Meatball — «м’ясна кулька, фрикаделька». Sausage roll — «м’ясна начинка в тісті», зазвичай ковбасний фарш у листковому тісті. Це різні страви. Учора м’ясні кульки були смачні: The meatballs were delicious. Виберіть повідомлення про них."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-54:intro3:r1",
+              "text": "The meatballs were delicious."
+            },
+            {
+              "responseId": "en:lesson-11:session-54:intro3:r2",
+              "text": "The sausage rolls were delicious."
+            },
+            {
+              "responseId": "en:lesson-11:session-54:intro3:r3",
+              "text": "The meatballs was delicious."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-54:intro3:r1",
+              "text": "The meatballs were delicious."
+            },
+            {
+              "responseId": "en:lesson-11:session-54:intro3:r2",
+              "text": "The sausage rolls were delicious."
+            },
+            {
+              "responseId": "en:lesson-11:session-54:intro3:r3",
+              "text": "The meatballs was delicious."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ffe70439c36b5549b78567dfae1f8d0465d98a6e21d07c86492cd3f7d5b51fc5"
+}

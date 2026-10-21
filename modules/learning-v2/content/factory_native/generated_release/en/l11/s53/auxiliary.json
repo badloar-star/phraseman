@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-53",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-53:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-53:intro1:r2": {
+          "ru": "О вчерашней идее говорим was.",
+          "uk": "Про вчорашню ідею кажемо was."
+        },
+        "en:lesson-11:session-53:intro1:r3": {
+          "ru": "Одна идея: was.",
+          "uk": "Одна ідея: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-53:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-53:intro2:r2": {
+          "ru": "Silly — неразумный, а план был разумным.",
+          "uk": "Silly — нерозумний, а план був розумний."
+        },
+        "en:lesson-11:session-53:intro2:r3": {
+          "ru": "Один план: was.",
+          "uk": "Один план: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-53:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-53:intro3:r2": {
+          "ru": "Unfair — несправедливые, а вы считали их справедливыми.",
+          "uk": "Unfair — несправедливі, а ви вважали їх справедливими."
+        },
+        "en:lesson-11:session-53:intro3:r3": {
+          "ru": "Rules — множественное число: were.",
+          "uk": "Rules — множина: were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a13f85778ac2894c43c50201146b29152269540376153f87bf0336f638fbce21"
+}

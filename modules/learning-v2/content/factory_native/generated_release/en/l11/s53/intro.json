@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; descriptions; questions and negatives",
+    "uk": "was/were; descriptions; questions and negatives"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Глупая идея",
+        "uk": "Дурна ідея"
+      },
+      "bodyByLocale": {
+        "ru": "Silly — «глупый, неразумный»; можно сказать об идее или ошибке, не оценивая человека целиком. That was a silly idea. — «Это была глупая идея». Вы обсуждаете вчерашнюю неудачную идею. Выберите эту фразу.",
+        "uk": "Silly — «дурний, нерозумний»; можна сказати про ідею чи помилку, не оцінюючи людину загалом. That was a silly idea. — «Це була дурна ідея». Ви обговорюєте вчорашню невдалу ідею. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-53:intro1:r1",
+              "text": "That was a silly idea."
+            },
+            {
+              "responseId": "en:lesson-11:session-53:intro1:r2",
+              "text": "That is a silly idea."
+            },
+            {
+              "responseId": "en:lesson-11:session-53:intro1:r3",
+              "text": "That were a silly idea."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-53:intro1:r1",
+              "text": "That was a silly idea."
+            },
+            {
+              "responseId": "en:lesson-11:session-53:intro1:r2",
+              "text": "That is a silly idea."
+            },
+            {
+              "responseId": "en:lesson-11:session-53:intro1:r3",
+              "text": "That were a silly idea."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Разумное решение",
+        "uk": "Розумне рішення"
+      },
+      "bodyByLocale": {
+        "ru": "Sensible — «разумный, практичный». A sensible plan — «разумный план». Вчера план хорошо подходил ситуации: The plan was sensible. Выберите это описание плана.",
+        "uk": "Sensible — «розумний, практичний». A sensible plan — «розумний план». Учора план добре підходив до ситуації: The plan was sensible. Виберіть цей опис плану."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-53:intro2:r1",
+              "text": "The plan was sensible."
+            },
+            {
+              "responseId": "en:lesson-11:session-53:intro2:r2",
+              "text": "The plan was silly."
+            },
+            {
+              "responseId": "en:lesson-11:session-53:intro2:r3",
+              "text": "The plan were sensible."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-53:intro2:r1",
+              "text": "The plan was sensible."
+            },
+            {
+              "responseId": "en:lesson-11:session-53:intro2:r2",
+              "text": "The plan was silly."
+            },
+            {
+              "responseId": "en:lesson-11:session-53:intro2:r3",
+              "text": "The plan were sensible."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Справедливые правила",
+        "uk": "Справедливі правила"
+      },
+      "bodyByLocale": {
+        "ru": "Fair — «справедливый», unfair — «несправедливый». The rules were fair. — «Правила были справедливыми». Например, одинаковые условия действовали для всех игроков. Вчера вы считали правила справедливыми. Выберите эту фразу.",
+        "uk": "Fair — «справедливий», unfair — «несправедливий». The rules were fair. — «Правила були справедливі». Наприклад, однакові умови діяли для всіх гравців. Учора ви вважали правила справедливими. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-53:intro3:r1",
+              "text": "The rules were fair."
+            },
+            {
+              "responseId": "en:lesson-11:session-53:intro3:r2",
+              "text": "The rules were unfair."
+            },
+            {
+              "responseId": "en:lesson-11:session-53:intro3:r3",
+              "text": "The rules was fair."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-53:intro3:r1",
+              "text": "The rules were fair."
+            },
+            {
+              "responseId": "en:lesson-11:session-53:intro3:r2",
+              "text": "The rules were unfair."
+            },
+            {
+              "responseId": "en:lesson-11:session-53:intro3:r3",
+              "text": "The rules was fair."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0c466d57d91d2d9f1ebfa44ca2877970a56c249474800f2b66d51095ea0b30d6"
+}

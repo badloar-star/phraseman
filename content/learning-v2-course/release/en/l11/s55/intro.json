@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; there was/there were; yesterday / now",
+    "uk": "was/were; there was/there were; yesterday / now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Корзина для белья",
+        "uk": "Кошик для білизни"
+      },
+      "bodyByLocale": {
+        "ru": "Laundry basket — «корзина для белья». Вчера она была полной: The laundry basket was full yesterday. Сейчас она пустая: It is empty now. Выберите сообщение о вчерашнем состоянии корзины.",
+        "uk": "Laundry basket — «кошик для білизни». Учора він був повний: The laundry basket was full yesterday. Зараз він порожній: It is empty now. Виберіть повідомлення про вчорашній стан кошика."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-55:intro1:r1",
+              "text": "The laundry basket was full yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-55:intro1:r2",
+              "text": "The laundry basket is full yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-55:intro1:r3",
+              "text": "The laundry basket were full yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-55:intro1:r1",
+              "text": "The laundry basket was full yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-55:intro1:r2",
+              "text": "The laundry basket is full yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-55:intro1:r3",
+              "text": "The laundry basket were full yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сушилка",
+        "uk": "Сушарка"
+      },
+      "bodyByLocale": {
+        "ru": "Clothes horse — «напольная сушилка для белья». Это британское название целого предмета, а не животного. Несмотря на clothes, предмет один: The clothes horse was near the window. Выберите сообщение о сушилке у окна.",
+        "uk": "Clothes horse — «підлогова сушарка для білизни». Це британська назва цілого предмета, а не тварини. Попри clothes, предмет один: The clothes horse was near the window. Виберіть повідомлення про сушарку біля вікна."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-55:intro2:r1",
+              "text": "The clothes horse was near the window."
+            },
+            {
+              "responseId": "en:lesson-11:session-55:intro2:r2",
+              "text": "The clothes horse were near the window."
+            },
+            {
+              "responseId": "en:lesson-11:session-55:intro2:r3",
+              "text": "The clothes horse was near the door."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-55:intro2:r1",
+              "text": "The clothes horse was near the window."
+            },
+            {
+              "responseId": "en:lesson-11:session-55:intro2:r2",
+              "text": "The clothes horse were near the window."
+            },
+            {
+              "responseId": "en:lesson-11:session-55:intro2:r3",
+              "text": "The clothes horse was near the door."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Для кухни",
+        "uk": "Для кухні"
+      },
+      "bodyByLocale": {
+        "ru": "Washing-up brush — «щётка для мытья посуды». Oven glove — «кухонная рукавица-прихватка» для горячей посуды. Вчера у плиты были две такие рукавицы: There were two oven gloves near the cooker. Выберите эту фразу.",
+        "uk": "Washing-up brush — «щітка для миття посуду». Oven glove — «кухонна рукавиця-прихватка» для гарячого посуду. Учора біля плити було дві такі рукавиці: There were two oven gloves near the cooker. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-55:intro3:r1",
+              "text": "There were two oven gloves near the cooker."
+            },
+            {
+              "responseId": "en:lesson-11:session-55:intro3:r2",
+              "text": "There was two oven gloves near the cooker."
+            },
+            {
+              "responseId": "en:lesson-11:session-55:intro3:r3",
+              "text": "There was an oven glove near the cooker."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-55:intro3:r1",
+              "text": "There were two oven gloves near the cooker."
+            },
+            {
+              "responseId": "en:lesson-11:session-55:intro3:r2",
+              "text": "There was two oven gloves near the cooker."
+            },
+            {
+              "responseId": "en:lesson-11:session-55:intro3:r3",
+              "text": "There was an oven glove near the cooker."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7b73a40185de4af5d05bff97b3e340e9d2027de7a2ca5f2b6ccb77a6d708127a"
+}

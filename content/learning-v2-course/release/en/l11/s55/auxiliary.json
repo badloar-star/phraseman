@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-55",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-55:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-55:intro1:r2": {
+          "ru": "Вчера: was.",
+          "uk": "Учора: was."
+        },
+        "en:lesson-11:session-55:intro1:r3": {
+          "ru": "Одна корзина: was.",
+          "uk": "Один кошик: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-55:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-55:intro2:r2": {
+          "ru": "Одна сушилка: was.",
+          "uk": "Одна сушарка: was."
+        },
+        "en:lesson-11:session-55:intro2:r3": {
+          "ru": "Нужно окно, не дверь.",
+          "uk": "Потрібне вікно, не двері."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-55:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-55:intro3:r2": {
+          "ru": "Две рукавицы: were.",
+          "uk": "Дві рукавиці: were."
+        },
+        "en:lesson-11:session-55:intro3:r3": {
+          "ru": "Нужны две рукавицы, не одна.",
+          "uk": "Потрібні дві рукавиці, не одна."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ddd21f5de16721504f1472a25042899dd2a8607c22088bc48959700470ca0d89"
+}

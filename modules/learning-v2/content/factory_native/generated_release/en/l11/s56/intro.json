@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "polite expressions; was/were; now / yesterday",
+    "uk": "polite expressions; was/were; now / yesterday"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Не возражать",
+        "uk": "Не заперечувати"
+      },
+      "bodyByLocale": {
+        "ru": "I don't mind — «я не возражаю». Сосед спрашивает, можно ли открыть окно. Вам это не мешает. Ответьте I don't mind. Это не то же самое, что I don't know — «я не знаю». Выберите ответ без возражений.",
+        "uk": "I don't mind — «я не заперечую». Сусід запитує, чи можна відчинити вікно. Вам це не заважає. Дайте відповідь I don't mind. Це не те саме, що I don't know — «я не знаю». Виберіть відповідь без заперечень."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-56:intro1:r1",
+              "text": "I don't mind."
+            },
+            {
+              "responseId": "en:lesson-11:session-56:intro1:r2",
+              "text": "I don't know."
+            },
+            {
+              "responseId": "en:lesson-11:session-56:intro1:r3",
+              "text": "I doesn't mind."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-56:intro1:r1",
+              "text": "I don't mind."
+            },
+            {
+              "responseId": "en:lesson-11:session-56:intro1:r2",
+              "text": "I don't know."
+            },
+            {
+              "responseId": "en:lesson-11:session-56:intro1:r3",
+              "text": "I doesn't mind."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Закончить заказ",
+        "uk": "Завершити замовлення"
+      },
+      "bodyByLocale": {
+        "ru": "That's all — «это всё». Продавец спрашивает, нужно ли вам ещё что-нибудь. Вы всё выбрали и отвечаете That's all. Выберите этот ответ.",
+        "uk": "That's all — «це все». Продавець запитує, чи потрібно вам ще щось. Ви все вибрали й відповідаєте That's all. Виберіть цю відповідь."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-56:intro2:r1",
+              "text": "That's all."
+            },
+            {
+              "responseId": "en:lesson-11:session-56:intro2:r2",
+              "text": "I don't know."
+            },
+            {
+              "responseId": "en:lesson-11:session-56:intro2:r3",
+              "text": "I am hungry."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-56:intro2:r1",
+              "text": "That's all."
+            },
+            {
+              "responseId": "en:lesson-11:session-56:intro2:r2",
+              "text": "I don't know."
+            },
+            {
+              "responseId": "en:lesson-11:session-56:intro2:r3",
+              "text": "I am hungry."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не спешите; проходите первым",
+        "uk": "Не поспішайте; проходьте першим"
+      },
+      "bodyByLocale": {
+        "ru": "Take your time — «не спешите»: вы даёте человеку время. After you — «после вас»: вы пропускаете человека первым в дверях или очереди. Собеседник торопится выбрать, но вы готовы подождать. Выберите фразу «не спешите».",
+        "uk": "Take your time — «не поспішайте»: ви даєте людині час. After you — «після вас»: ви пропускаєте людину першою у дверях чи черзі. Співрозмовник квапиться вибрати, але ви готові зачекати. Виберіть фразу «не поспішайте»."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-56:intro3:r1",
+              "text": "Take your time."
+            },
+            {
+              "responseId": "en:lesson-11:session-56:intro3:r2",
+              "text": "After you."
+            },
+            {
+              "responseId": "en:lesson-11:session-56:intro3:r3",
+              "text": "Hurry up."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-56:intro3:r1",
+              "text": "Take your time."
+            },
+            {
+              "responseId": "en:lesson-11:session-56:intro3:r2",
+              "text": "After you."
+            },
+            {
+              "responseId": "en:lesson-11:session-56:intro3:r3",
+              "text": "Hurry up."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bb9bceab6251b4f5034a84d4ff136201afbc5a6d9dfa9679aaed5fa8fec4a819"
+}

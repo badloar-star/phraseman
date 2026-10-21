@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-56:word:I-don't-mind",
+    "correctText": "I don't mind",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-56:i01",
+    "correctText": "I don't mind.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-56:i02",
+    "correctText": "I don't mind.",
+    "correctResponseId": "en:lesson-11:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-56:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-56:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-56:word:that's-all",
+    "correctText": "that's all",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-56:i04",
+    "correctText": "That's all.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-56:i05",
+    "correctText": "That's all, thank you.",
+    "correctResponseId": "en:lesson-11:session-56:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-56:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-56:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-56:word:take-your-time",
+    "correctText": "take your time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-56:i07",
+    "correctText": "Take your time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-56:i08",
+    "correctText": "Take your time.",
+    "correctResponseId": "en:lesson-11:session-56:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-56:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-56:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-56:word:after-you",
+    "correctText": "after you",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-56:i10",
+    "correctText": "After you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-56:i11",
+    "correctText": "After you.",
+    "correctResponseId": "en:lesson-11:session-56:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-56:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-56:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-56:i13",
+    "correctText": "en:lesson-11:session-56:i13:p1=I don't mind\nen:lesson-11:session-56:i13:p2=that's all\nen:lesson-11:session-56:i13:p3=take your time\nen:lesson-11:session-56:i13:p4=after you",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-56:i14",
+    "correctText": "Please don't hurry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-56:i15",
+    "correctText": "I am waiting here right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-56:i16",
+    "correctText": "That's all, thank you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-56:i17",
+    "correctText": "Take your time.",
+    "correctResponseId": null
+  }
+]

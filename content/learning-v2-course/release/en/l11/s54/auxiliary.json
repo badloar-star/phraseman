@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-54",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-54:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-54:intro1:r2": {
+          "ru": "Две булочки: were.",
+          "uk": "Дві булочки: were."
+        },
+        "en:lesson-11:session-54:intro1:r3": {
+          "ru": "A bread roll — одна, а нужно две.",
+          "uk": "A bread roll — одна, а потрібно дві."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-54:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-54:intro2:r2": {
+          "ru": "Вчера: was.",
+          "uk": "Учора: was."
+        },
+        "en:lesson-11:session-54:intro2:r3": {
+          "ru": "Одна палочка: was.",
+          "uk": "Одна паличка: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-54:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-54:intro3:r2": {
+          "ru": "Sausage rolls — другое блюдо, выпечка с мясной начинкой.",
+          "uk": "Sausage rolls — інша страва, випічка з м’ясною начинкою."
+        },
+        "en:lesson-11:session-54:intro3:r3": {
+          "ru": "Несколько фрикаделек: were.",
+          "uk": "Кілька фрикадельок: were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ea59f44cd597f82ed05da60ccb0ae2e25aeb57bfe44c58cd0c42e0953fc54a04"
+}

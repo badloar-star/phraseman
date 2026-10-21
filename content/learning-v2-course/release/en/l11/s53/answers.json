@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-53:word:silly",
+    "correctText": "silly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-53:i01",
+    "correctText": "That was a silly idea.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-53:i02",
+    "correctText": "It was a silly mistake.",
+    "correctResponseId": "en:lesson-11:session-53:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-53:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-53:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-53:word:sensible",
+    "correctText": "sensible",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-53:i04",
+    "correctText": "Was the plan sensible?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-53:i05",
+    "correctText": "That was a sensible idea.",
+    "correctResponseId": "en:lesson-11:session-53:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-53:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-53:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-53:word:fair",
+    "correctText": "fair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-53:i07",
+    "correctText": "The rules were fair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-53:i08",
+    "correctText": "Was the rule fair?",
+    "correctResponseId": "en:lesson-11:session-53:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-53:i09",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-11:session-53:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-53:word:unfair",
+    "correctText": "unfair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-53:i10",
+    "correctText": "That rule was unfair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-53:i11",
+    "correctText": "The rules were unfair.",
+    "correctResponseId": "en:lesson-11:session-53:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-53:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-53:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-53:i13",
+    "correctText": "en:lesson-11:session-53:i13:p1=silly\nen:lesson-11:session-53:i13:p2=sensible\nen:lesson-11:session-53:i13:p3=fair\nen:lesson-11:session-53:i13:p4=unfair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-53:i14",
+    "correctText": "Please don't change the rules.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-53:i15",
+    "correctText": "We are talking about the plan now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-53:i16",
+    "correctText": "The idea was not silly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-53:i17",
+    "correctText": "Were the rules unfair?",
+    "correctResponseId": null
+  }
+]

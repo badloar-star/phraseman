@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-54:word:bread-roll",
+    "correctText": "bread roll",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-54:i01",
+    "correctText": "Was the bread roll fresh?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-54:i02",
+    "correctText": "The bread roll was on the plate.",
+    "correctResponseId": "en:lesson-11:session-54:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-54:i03",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-54:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-54:word:fish-finger",
+    "correctText": "fish finger",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-54:i04",
+    "correctText": "The fish finger was not cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-54:i05",
+    "correctText": "There were four fish fingers on the plate.",
+    "correctResponseId": "en:lesson-11:session-54:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-54:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-54:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-54:word:meatball",
+    "correctText": "meatball",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-54:i07",
+    "correctText": "There was a meatball on the plate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-54:i08",
+    "correctText": "The meatballs were in the kitchen.",
+    "correctResponseId": "en:lesson-11:session-54:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-54:i09",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-11:session-54:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-54:word:sausage-roll",
+    "correctText": "sausage roll",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-54:i10",
+    "correctText": "Was the sausage roll hot?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-54:i11",
+    "correctText": "The sausage roll was delicious.",
+    "correctResponseId": "en:lesson-11:session-54:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-54:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-54:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-54:i13",
+    "correctText": "en:lesson-11:session-54:i13:p1=bread roll\nen:lesson-11:session-54:i13:p2=fish finger\nen:lesson-11:session-54:i13:p3=meatball\nen:lesson-11:session-54:i13:p4=sausage roll",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-54:i14",
+    "correctText": "Please don't take my plate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-54:i15",
+    "correctText": "I am cooking dinner right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-54:i16",
+    "correctText": "The meatballs were not cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-54:i17",
+    "correctText": "Were the bread rolls fresh?",
+    "correctResponseId": null
+  }
+]

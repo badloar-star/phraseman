@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-56",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-56:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-56:intro1:r2": {
+          "ru": "Вы не возражаете, а не говорите, что не знаете.",
+          "uk": "Ви не заперечуєте, а не кажете, що не знаєте."
+        },
+        "en:lesson-11:session-56:intro1:r3": {
+          "ru": "С I используем don't, не doesn't.",
+          "uk": "З I використовуємо don't, не doesn't."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-56:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-56:intro2:r2": {
+          "ru": "Вы знаете, что заказ закончен; нужно сказать «это всё».",
+          "uk": "Ви знаєте, що замовлення завершене; потрібно сказати «це все»."
+        },
+        "en:lesson-11:session-56:intro2:r3": {
+          "ru": "Это о голоде, а не о завершении заказа.",
+          "uk": "Це про голод, а не про завершення замовлення."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-56:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-56:intro3:r2": {
+          "ru": "After you пропускает человека первым; здесь нужно дать время на выбор.",
+          "uk": "After you пропускає людину першою; тут потрібно дати час на вибір."
+        },
+        "en:lesson-11:session-56:intro3:r3": {
+          "ru": "Hurry up — поторопитесь, то есть противоположный смысл.",
+          "uk": "Hurry up — покваптеся, тобто протилежний зміст."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4d859b7b837fcaa53c82d0dd2aa689c07d4ec73651afa568d2a455af80a250b8"
+}

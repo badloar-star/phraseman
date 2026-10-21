@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-55:word:laundry-basket",
+    "correctText": "laundry basket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-55:i01",
+    "correctText": "Was the laundry basket empty?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-55:i02",
+    "correctText": "The laundry basket was in the bathroom.",
+    "correctResponseId": "en:lesson-11:session-55:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-55:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-55:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-55:word:clothes-horse",
+    "correctText": "clothes horse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-55:i04",
+    "correctText": "The clothes horse was not in the kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-55:i05",
+    "correctText": "The clothes horse was near the window.",
+    "correctResponseId": "en:lesson-11:session-55:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-55:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-55:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-55:word:washing-up-brush",
+    "correctText": "washing-up brush",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-55:i07",
+    "correctText": "Was the washing-up brush clean?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-55:i08",
+    "correctText": "The washing-up brush was near the sink.",
+    "correctResponseId": "en:lesson-11:session-55:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-55:i09",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-55:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-55:word:oven-glove",
+    "correctText": "oven glove",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-55:i10",
+    "correctText": "There was an oven glove near the cooker.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-55:i11",
+    "correctText": "The oven gloves were clean.",
+    "correctResponseId": "en:lesson-11:session-55:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-55:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-55:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-55:i13",
+    "correctText": "en:lesson-11:session-55:i13:p1=laundry basket\nen:lesson-11:session-55:i13:p2=clothes horse\nen:lesson-11:session-55:i13:p3=washing-up brush\nen:lesson-11:session-55:i13:p4=oven glove",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-55:i14",
+    "correctText": "Please don't move the basket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-55:i15",
+    "correctText": "I am cleaning the kitchen right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-55:i16",
+    "correctText": "The washing-up brush was not dirty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-55:i17",
+    "correctText": "Were the oven gloves dry?",
+    "correctResponseId": null
+  }
+]

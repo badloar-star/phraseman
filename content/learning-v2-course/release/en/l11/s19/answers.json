@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-19:word:lunch-box",
+    "correctText": "lunch box",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-19:i01",
+    "correctText": "There was a lunch box on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-19:i02",
+    "correctText": "The lunch box was empty.",
+    "correctResponseId": "en:lesson-11:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-19:i03",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-19:word:water-bottle",
+    "correctText": "water bottle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-19:i04",
+    "correctText": "Was the water bottle empty?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-19:i05",
+    "correctText": "There were two water bottles on the table.",
+    "correctResponseId": "en:lesson-11:session-19:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-19:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-19:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-19:word:shopping-list",
+    "correctText": "shopping list",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-19:i07",
+    "correctText": "There was a shopping list on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-19:i08",
+    "correctText": "The shopping list was in my bag.",
+    "correctResponseId": "en:lesson-11:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-19:i09",
+    "correctText": "wasn't",
+    "correctResponseId": "en:lesson-11:session-19:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-19:word:paper-bag",
+    "correctText": "paper bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-19:i10",
+    "correctText": "There was a paper bag on the floor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-19:i11",
+    "correctText": "The paper bags were on the chair.",
+    "correctResponseId": "en:lesson-11:session-19:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-19:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-19:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-19:i13",
+    "correctText": "en:lesson-11:session-19:i13:p1=lunch box\nen:lesson-11:session-19:i13:p2=water bottle\nen:lesson-11:session-19:i13:p3=shopping list\nen:lesson-11:session-19:i13:p4=paper bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-19:i14",
+    "correctText": "Please don't move my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-19:i15",
+    "correctText": "I am packing a bag right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-19:i16",
+    "correctText": "The lunch box was not in the fridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-19:i17",
+    "correctText": "There were two water bottles on the table.",
+    "correctResponseId": null
+  }
+]

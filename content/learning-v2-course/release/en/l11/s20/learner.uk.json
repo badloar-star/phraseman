@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-20",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-20:word:public-toilet",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — public toilet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-20:word:public-toilet:audio"
+      ],
+      "accessibilityLabel": "Картка слова — public toilet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-20:word:public-toilet:audio",
+          "transcript": "public toilet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-20:word:public-toilet:r1",
+            "targetText": "public toilet",
+            "meaningByLocale": {
+              "ru": "общественный туалет.",
+              "uk": "громадський туалет."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "public toilet",
+          "definitionByLocale": {
+            "ru": "общественный туалет.",
+            "uk": "громадський туалет."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-20:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: поруч із парком був громадський туалет. Почніть із There",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: поруч із парком був громадський туалет. Почніть із There",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There was a public toilet near the park.",
+        "localizedMeaning": {
+          "ru": "Сообщите: рядом с парком был общественный туалет. Начните с There",
+          "uk": "Повідомте: поруч із парком був громадський туалет. Почніть із There"
+        },
+        "orderedTokens": [
+          "There",
+          "was",
+          "a",
+          "public",
+          "toilet",
+          "near",
+          "the",
+          "park"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-20:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-20:i02:r1",
+          "text": "The public toilet was clean."
+        },
+        {
+          "responseId": "en:lesson-11:session-20:i02:r2",
+          "text": "The public toilet was dirty."
+        },
+        {
+          "responseId": "en:lesson-11:session-20:i02:r3",
+          "text": "Was the public toilet clean?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-20:i02:audio",
+          "transcript": "The public toilet was clean."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-20:i02:r1",
+            "targetText": "The public toilet was clean.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i02:r2",
+            "targetText": "The public toilet was dirty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i02:r3",
+            "targetText": "Was the public toilet clean?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-20:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The public toilet was clean.",
+              "uk": "У записі звучить The public toilet was clean."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The public toilet was clean.",
+              "uk": "У записі звучить The public toilet was clean."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-20:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Поруч зі станцією був один громадський туалет. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-20:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-20:i03:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-20:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поруч зі станцією був один громадський туалет. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Рядом со станцией был один общественный туалет. Выберите форму",
+          "uk": "Поруч зі станцією був один громадський туалет. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ a public toilet near the station.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-20:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i03:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Поруч зі станцією був один громадський туалет. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-20:i03:r2",
+            "correct": false,
+            "testedDimension": "Поруч зі станцією був один громадський туалет. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Один объект: was.",
+              "uk": "Один об’єкт: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i03:r3",
+            "correct": false,
+            "testedDimension": "Поруч зі станцією був один громадський туалет. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "В прошлом об одном объекте: was.",
+              "uk": "У минулому про один об’єкт: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-20:word:bus-driver",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bus driver",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-20:word:bus-driver:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bus driver",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-20:word:bus-driver:audio",
+          "transcript": "bus driver"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-20:word:bus-driver:r1",
+            "targetText": "bus driver",
+            "meaningByLocale": {
+              "ru": "водитель автобуса.",
+              "uk": "водій автобуса."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bus driver",
+          "definitionByLocale": {
+            "ru": "водитель автобуса.",
+            "uk": "водій автобуса."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-20:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи був водій автобуса готовий",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи був водій автобуса готовий",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the bus driver ready?",
+        "localizedMeaning": {
+          "ru": "Спросите, был ли водитель автобуса готов",
+          "uk": "Запитайте, чи був водій автобуса готовий"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "bus",
+          "driver",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-20:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-20:i05:r1",
+          "text": "There was a bus driver next to the bus."
+        },
+        {
+          "responseId": "en:lesson-11:session-20:i05:r2",
+          "text": "There were two bus drivers next to the bus."
+        },
+        {
+          "responseId": "en:lesson-11:session-20:i05:r3",
+          "text": "The bus driver was in the bus."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-20:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-20:i05:audio",
+          "transcript": "There was a bus driver next to the bus."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-20:i05:r1",
+            "targetText": "There was a bus driver next to the bus.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i05:r2",
+            "targetText": "There were two bus drivers next to the bus.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i05:r3",
+            "targetText": "The bus driver was in the bus.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-20:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There was a bus driver next to the bus.",
+              "uk": "У записі звучить There was a bus driver next to the bus."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There was a bus driver next to the bus.",
+              "uk": "У записі звучить There was a bus driver next to the bus."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-20:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Поруч із кафе були два водії автобуса. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-20:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-20:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-20:i06:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поруч із кафе були два водії автобуса. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Рядом с кафе были два водителя автобуса. Выберите форму",
+          "uk": "Поруч із кафе були два водії автобуса. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ two bus drivers near the café.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-20:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i06:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Поруч із кафе були два водії автобуса. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-20:i06:r2",
+            "correct": false,
+            "testedDimension": "Поруч із кафе були два водії автобуса. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Два человека: were.",
+              "uk": "Дві людини: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i06:r3",
+            "correct": false,
+            "testedDimension": "Поруч із кафе були два водії автобуса. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Прошлое и множественное число: were.",
+              "uk": "Минулий час і множина: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-20:word:taxi-driver",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — taxi driver",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-20:word:taxi-driver:audio"
+      ],
+      "accessibilityLabel": "Картка слова — taxi driver",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-20:word:taxi-driver:audio",
+          "transcript": "taxi driver"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-20:word:taxi-driver:r1",
+            "targetText": "taxi driver",
+            "meaningByLocale": {
+              "ru": "водитель такси.",
+              "uk": "водій таксі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "taxi driver",
+          "definitionByLocale": {
+            "ru": "водитель такси.",
+            "uk": "водій таксі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-20:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: поруч із готелем був водій таксі. Почніть із There",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: поруч із готелем був водій таксі. Почніть із There",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There was a taxi driver near the hotel.",
+        "localizedMeaning": {
+          "ru": "Сообщите: рядом с гостиницей был водитель такси. Начните с There",
+          "uk": "Повідомте: поруч із готелем був водій таксі. Почніть із There"
+        },
+        "orderedTokens": [
+          "There",
+          "was",
+          "a",
+          "taxi",
+          "driver",
+          "near",
+          "the",
+          "hotel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-20:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-20:i08:r1",
+          "text": "The taxi driver was friendly."
+        },
+        {
+          "responseId": "en:lesson-11:session-20:i08:r2",
+          "text": "The taxi driver was tired."
+        },
+        {
+          "responseId": "en:lesson-11:session-20:i08:r3",
+          "text": "Was the taxi driver friendly?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-20:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-20:i08:audio",
+          "transcript": "The taxi driver was friendly."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-20:i08:r1",
+            "targetText": "The taxi driver was friendly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i08:r2",
+            "targetText": "The taxi driver was tired.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i08:r3",
+            "targetText": "Was the taxi driver friendly?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-20:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The taxi driver was friendly.",
+              "uk": "У записі звучить The taxi driver was friendly."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The taxi driver was friendly.",
+              "uk": "У записі звучить The taxi driver was friendly."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-20:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг запитав Was the taxi driver late? Він був вчасно. Дайте заперечну відповідь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-20:i09:r1",
+          "text": "wasn't"
+        },
+        {
+          "responseId": "en:lesson-11:session-20:i09:r2",
+          "text": "weren't"
+        },
+        {
+          "responseId": "en:lesson-11:session-20:i09:r3",
+          "text": "didn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг запитав Was the taxi driver late? Він був вчасно. Дайте заперечну відповідь",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг спросил Was the taxi driver late? Он был вовремя. Ответьте отрицательно",
+          "uk": "Друг запитав Was the taxi driver late? Він був вчасно. Дайте заперечну відповідь"
+        },
+        "gappedTargetPhrase": "No, he ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-20:i09:r1",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i09:r2",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i09:r3",
+            "text": "didn't"
+          }
+        ],
+        "testedDimension": "Друг запитав Was the taxi driver late? Він був вчасно. Дайте заперечну відповідь",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-20:i09:r2",
+            "correct": false,
+            "testedDimension": "Друг запитав Was the taxi driver late? Він був вчасно. Дайте заперечну відповідь",
+            "feedbackByLocale": {
+              "ru": "С he нужна wasn’t.",
+              "uk": "З he потрібна wasn’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i09:r3",
+            "correct": false,
+            "testedDimension": "Друг запитав Was the taxi driver late? Він був вчасно. Дайте заперечну відповідь",
+            "feedbackByLocale": {
+              "ru": "На вопрос с was отвечаем wasn’t.",
+              "uk": "На запитання з was відповідаємо wasn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-20:word:pedestrian-crossing",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pedestrian crossing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-20:word:pedestrian-crossing:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pedestrian crossing",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-20:word:pedestrian-crossing:audio",
+          "transcript": "pedestrian crossing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-20:word:pedestrian-crossing:r1",
+            "targetText": "pedestrian crossing",
+            "meaningByLocale": {
+              "ru": "пешеходный переход.",
+              "uk": "пішохідний перехід."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pedestrian crossing",
+          "definitionByLocale": {
+            "ru": "пешеходный переход.",
+            "uk": "пішохідний перехід."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-20:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте: поруч із магазином був пішохідний перехід. Почніть із There",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте: поруч із магазином був пішохідний перехід. Почніть із There",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There was a pedestrian crossing near the shop.",
+        "localizedMeaning": {
+          "ru": "Сообщите: рядом с магазином был пешеходный переход. Начните с There",
+          "uk": "Повідомте: поруч із магазином був пішохідний перехід. Почніть із There"
+        },
+        "orderedTokens": [
+          "There",
+          "was",
+          "a",
+          "pedestrian",
+          "crossing",
+          "near",
+          "the",
+          "shop"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-20:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-20:i11:r1",
+          "text": "There were two pedestrian crossings near the school."
+        },
+        {
+          "responseId": "en:lesson-11:session-20:i11:r2",
+          "text": "There was a pedestrian crossing near the school."
+        },
+        {
+          "responseId": "en:lesson-11:session-20:i11:r3",
+          "text": "There were two pedestrian crossings near the park."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-20:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-20:i11:audio",
+          "transcript": "There were two pedestrian crossings near the school."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-20:i11:r1",
+            "targetText": "There were two pedestrian crossings near the school.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i11:r2",
+            "targetText": "There was a pedestrian crossing near the school.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i11:r3",
+            "targetText": "There were two pedestrian crossings near the park.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-20:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There were two pedestrian crossings near the school.",
+              "uk": "У записі звучить There were two pedestrian crossings near the school."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There were two pedestrian crossings near the school.",
+              "uk": "У записі звучить There were two pedestrian crossings near the school."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-20:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Поруч із парком був один перехід. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-20:i12:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-20:i12:r2",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-20:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поруч із парком був один перехід. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Рядом с парком был один переход. Выберите форму",
+          "uk": "Поруч із парком був один перехід. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ a pedestrian crossing near the park.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-20:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i12:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Поруч із парком був один перехід. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-20:i12:r2",
+            "correct": false,
+            "testedDimension": "Поруч із парком був один перехід. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Один переход: was.",
+              "uk": "Один перехід: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-20:i12:r3",
+            "correct": false,
+            "testedDimension": "Поруч із парком був один перехід. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Нужно прошлое, один объект: was.",
+              "uk": "Потрібен минулий час, один об’єкт: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-20:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-20:i13:p1",
+            "target": "public toilet",
+            "meaningByLocale": {
+              "ru": "общественный туалет",
+              "uk": "громадський туалет"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-20:i13:p2",
+            "target": "bus driver",
+            "meaningByLocale": {
+              "ru": "водитель автобуса",
+              "uk": "водій автобуса"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-20:i13:p3",
+            "target": "taxi driver",
+            "meaningByLocale": {
+              "ru": "водитель такси",
+              "uk": "водій таксі"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-20:i13:p4",
+            "target": "pedestrian crossing",
+            "meaningByLocale": {
+              "ru": "пешеходный переход",
+              "uk": "пішохідний перехід"
+            }
+          }
+        ],
+        "leftColumn": [
+          "public toilet",
+          "bus driver",
+          "taxi driver",
+          "pedestrian crossing"
+        ],
+        "rightColumn": [
+          "громадський туалет",
+          "водій автобуса",
+          "водій таксі",
+          "пішохідний перехід"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-20:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте прохання",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-20:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте прохання",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-20:i14:audio",
+          "transcript": "Please don't hurry me."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't hurry me.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "hurry",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-20:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-20:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-20:i15:audio",
+          "transcript": "I am waiting right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am waiting right now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "waiting",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-20:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи був водій автобуса в кафе",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-20:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи був водій автобуса в кафе",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-20:i16:audio",
+          "transcript": "Was the bus driver in the café?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Was the bus driver in the café?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-20:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повідомте, що поруч із парком були два водії таксі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-20:i17:audio"
+      ],
+      "accessibilityLabel": "Повідомте, що поруч із парком були два водії таксі",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-20:i17:audio",
+          "transcript": "There were two taxi drivers near the park."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There were two taxi drivers near the park.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d3b91bd0eab600e914fa6c6af910ce33e73ef5c3de48d76a18126f0a8961b51d"
+}

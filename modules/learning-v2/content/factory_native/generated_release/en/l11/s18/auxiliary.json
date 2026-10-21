@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-18:intro1:r2": {
+          "ru": "Beans — множественное число: were.",
+          "uk": "Beans — множина: were."
+        },
+        "en:lesson-11:session-18:intro1:r3": {
+          "ru": "Говорим о прошлом и множественном числе: were.",
+          "uk": "Говоримо про минуле та множину: were."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-18:intro2:r2": {
+          "ru": "С неисчисляемым rice нужна was.",
+          "uk": "Із незлічуваним rice потрібна was."
+        },
+        "en:lesson-11:session-18:intro2:r3": {
+          "ru": "Здесь rice — продукт без a.",
+          "uk": "Тут rice — продукт без a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-18:intro3:r2": {
+          "ru": "О воде как жидкости: was.",
+          "uk": "Про воду як рідину: was."
+        },
+        "en:lesson-11:session-18:intro3:r3": {
+          "ru": "В этой фразе water не требует a.",
+          "uk": "У цій фразі water не потребує a."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4ec563ee2a9deab5b0d626293034a5eb2b4edecb93ed0a9284ee40a16b9508b3"
+}

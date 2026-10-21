@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "there was / there were; was / were",
+    "uk": "there was / there were; was / were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Еда с собой",
+        "uk": "Їжа із собою"
+      },
+      "bodyByLocale": {
+        "ru": "Lunch box — «контейнер для обеда», water bottle — «бутылка для воды». Один предмет: There was a lunch box in the bag — «В сумке был контейнер для обеда». Два: There were two water bottles in the bag — «В сумке были две бутылки для воды». Во множественном числе окончание получает последнее слово: bottles. Выберите фразу об одном контейнере.",
+        "uk": "Lunch box — «контейнер для обіду», water bottle — «пляшка для води». Один предмет: There was a lunch box in the bag — «У сумці був контейнер для обіду». Два: There were two water bottles in the bag — «У сумці були дві пляшки для води». У множині закінчення отримує останнє слово: bottles. Виберіть фразу про один контейнер."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-19:intro1:r1",
+              "text": "There was a lunch box in the bag."
+            },
+            {
+              "responseId": "en:lesson-11:session-19:intro1:r2",
+              "text": "There were a lunch box in the bag."
+            },
+            {
+              "responseId": "en:lesson-11:session-19:intro1:r3",
+              "text": "There was lunch box in the bag."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-19:intro1:r1",
+              "text": "There was a lunch box in the bag."
+            },
+            {
+              "responseId": "en:lesson-11:session-19:intro1:r2",
+              "text": "There were a lunch box in the bag."
+            },
+            {
+              "responseId": "en:lesson-11:session-19:intro1:r3",
+              "text": "There was lunch box in the bag."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Список покупок",
+        "uk": "Список покупок"
+      },
+      "bodyByLocale": {
+        "ru": "Shopping list — «список покупок». Вчера на столе был список: There was a shopping list on the table. Если спрашиваем, где был уже известный список: Was the shopping list in your bag? — «Список покупок был в твоей сумке?» Выберите вопрос другу о его сумке.",
+        "uk": "Shopping list — «список покупок». Учора на столі був список: There was a shopping list on the table. Якщо запитуємо, де був уже відомий список: Was the shopping list in your bag? — «Список покупок був у твоїй сумці?» Виберіть запитання другові про його сумку."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-19:intro2:r1",
+              "text": "Was the shopping list in your bag?"
+            },
+            {
+              "responseId": "en:lesson-11:session-19:intro2:r2",
+              "text": "Were the shopping list in your bag?"
+            },
+            {
+              "responseId": "en:lesson-11:session-19:intro2:r3",
+              "text": "Did the shopping list was in your bag?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-19:intro2:r1",
+              "text": "Was the shopping list in your bag?"
+            },
+            {
+              "responseId": "en:lesson-11:session-19:intro2:r2",
+              "text": "Were the shopping list in your bag?"
+            },
+            {
+              "responseId": "en:lesson-11:session-19:intro2:r3",
+              "text": "Did the shopping list was in your bag?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Бумажный пакет",
+        "uk": "Паперовий пакет"
+      },
+      "bodyByLocale": {
+        "ru": "Paper bag — «бумажный пакет». Вчера на стуле лежали два пакета: There were two paper bags on the chair. Обычное действие: I usually take a bag. Действие сейчас: I am packing a bag right now. В фразе о вчерашних пакетах нужно were. Выберите её.",
+        "uk": "Paper bag — «паперовий пакет». Учора на стільці лежали два пакети: There were two paper bags on the chair. Звичайна дія: I usually take a bag. Дія зараз: I am packing a bag right now. У фразі про вчорашні пакети потрібно were. Виберіть її."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-19:intro3:r1",
+              "text": "There were two paper bags on the chair."
+            },
+            {
+              "responseId": "en:lesson-11:session-19:intro3:r2",
+              "text": "There was two paper bags on the chair."
+            },
+            {
+              "responseId": "en:lesson-11:session-19:intro3:r3",
+              "text": "There are two paper bags on the chair."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-19:intro3:r1",
+              "text": "There were two paper bags on the chair."
+            },
+            {
+              "responseId": "en:lesson-11:session-19:intro3:r2",
+              "text": "There was two paper bags on the chair."
+            },
+            {
+              "responseId": "en:lesson-11:session-19:intro3:r3",
+              "text": "There are two paper bags on the chair."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cb4e078bfe96ec8476512d87d821b36536ff7e24efb20b0027c4d97b4e323a25"
+}

@@ -4046,4 +4046,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"there was + один предмет; there were + несколько предметов","uk":"there was + один предмет; there were + кілька предметів"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 11, sessionOrdinal: 18,
+    sourceFingerprint: "d800de5f0c70648e26a07d248d51b0732437fb791345cb43d87dc7a71c974fc4",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"there was / there were; was / were","uk":"there was / there were; was / were"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 11, sessionOrdinal: 19,
+    sourceFingerprint: "e90a6cf94dcc9eee09debbad41df9b0b4bea680b03c3c6918b54628ebf277643",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"there was / there were; was / were","uk":"there was / there were; was / were"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 11, sessionOrdinal: 20,
+    sourceFingerprint: "b8c6cb46979cb036b478ed0fb240121ead27d7d7b76c8e7cf7b55c91e40e0fcc",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"there was / there were; was / were","uk":"there was / there were; was / were"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
+  }),
 ]);

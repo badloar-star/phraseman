@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "there was / there were; was / were",
+    "uk": "there was / there were; was / were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Фасоль к завтраку",
+        "uk": "Квасоля до сніданку"
+      },
+      "bodyByLocale": {
+        "ru": "Baked beans — «фасоль в томатном соусе», которую часто едят на завтрак в Великобритании. По-английски beans — множественное число, хотя русский перевод «фасоль» в единственном: There were baked beans on the plate — «На тарелке была фасоль в томатном соусе». Выберите эту фразу о вчерашнем завтраке.",
+        "uk": "Baked beans — «квасоля в томатному соусі», яку часто їдять на сніданок у Великій Британії. Англійське beans — множина, хоча український переклад «квасоля» в однині: There were baked beans on the plate — «На тарілці була квасоля в томатному соусі». Виберіть цю фразу про вчорашній сніданок."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-18:intro1:r1",
+              "text": "There were baked beans on the plate."
+            },
+            {
+              "responseId": "en:lesson-11:session-18:intro1:r2",
+              "text": "There was baked beans on the plate."
+            },
+            {
+              "responseId": "en:lesson-11:session-18:intro1:r3",
+              "text": "There is baked beans on the plate."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-18:intro1:r1",
+              "text": "There were baked beans on the plate."
+            },
+            {
+              "responseId": "en:lesson-11:session-18:intro1:r2",
+              "text": "There was baked beans on the plate."
+            },
+            {
+              "responseId": "en:lesson-11:session-18:intro1:r3",
+              "text": "There is baked beans on the plate."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Рис и перец",
+        "uk": "Рис і перець"
+      },
+      "bodyByLocale": {
+        "ru": "Brown rice — «бурый рис», black pepper — «чёрный перец», приправа. Rice и pepper в этих значениях не считаем по отдельным штукам: перед ними не нужен a, а после there в прошлом ставим was. There was brown rice in the cupboard — «В шкафу был бурый рис». Выберите эту фразу.",
+        "uk": "Brown rice — «бурий рис», black pepper — «чорний перець», приправа. Rice і pepper у цих значеннях не рахуємо по окремих штуках: перед ними не потрібен a, а після there в минулому ставимо was. There was brown rice in the cupboard — «У шафі був бурий рис». Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-18:intro2:r1",
+              "text": "There was brown rice in the cupboard."
+            },
+            {
+              "responseId": "en:lesson-11:session-18:intro2:r2",
+              "text": "There were brown rice in the cupboard."
+            },
+            {
+              "responseId": "en:lesson-11:session-18:intro2:r3",
+              "text": "There was a brown rice in the cupboard."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-18:intro2:r1",
+              "text": "There was brown rice in the cupboard."
+            },
+            {
+              "responseId": "en:lesson-11:session-18:intro2:r2",
+              "text": "There were brown rice in the cupboard."
+            },
+            {
+              "responseId": "en:lesson-11:session-18:intro2:r3",
+              "text": "There was a brown rice in the cupboard."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Минеральная вода",
+        "uk": "Мінеральна вода"
+      },
+      "bodyByLocale": {
+        "ru": "Mineral water — «минеральная вода». There was mineral water in the bottle — «В бутылке была минеральная вода». Water здесь неисчисляемое: was, без a перед mineral water. Если говорим о знакомой бутылке: Was the bottle empty? — «Бутылка была пустой?» Вчера в ней была вода. Выберите сообщение о воде внутри бутылки.",
+        "uk": "Mineral water — «мінеральна вода». There was mineral water in the bottle — «У пляшці була мінеральна вода». Water тут незлічуване: was, без a перед mineral water. Якщо говоримо про знайому пляшку: Was the bottle empty? — «Пляшка була порожня?» Учора в ній була вода. Виберіть повідомлення про воду всередині пляшки."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-18:intro3:r1",
+              "text": "There was mineral water in the bottle."
+            },
+            {
+              "responseId": "en:lesson-11:session-18:intro3:r2",
+              "text": "There were mineral water in the bottle."
+            },
+            {
+              "responseId": "en:lesson-11:session-18:intro3:r3",
+              "text": "There was a mineral water in the bottle."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-18:intro3:r1",
+              "text": "There was mineral water in the bottle."
+            },
+            {
+              "responseId": "en:lesson-11:session-18:intro3:r2",
+              "text": "There were mineral water in the bottle."
+            },
+            {
+              "responseId": "en:lesson-11:session-18:intro3:r3",
+              "text": "There was a mineral water in the bottle."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f2a5f4ec4d57aea41089f68d2b5069e4a29a2d2b832d9eb4e5e22f708e835fd0"
+}

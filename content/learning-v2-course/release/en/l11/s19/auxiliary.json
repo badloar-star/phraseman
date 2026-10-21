@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-19",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-19:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-19:intro1:r2": {
+          "ru": "Один контейнер: was.",
+          "uk": "Один контейнер: was."
+        },
+        "en:lesson-11:session-19:intro1:r3": {
+          "ru": "Перед одним исчисляемым предметом здесь нужно a.",
+          "uk": "Перед одним злічуваним предметом тут потрібне a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-19:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-19:intro2:r2": {
+          "ru": "Один список: was.",
+          "uk": "Один список: was."
+        },
+        "en:lesson-11:session-19:intro2:r3": {
+          "ru": "В вопросе с was не нужен did.",
+          "uk": "У запитанні з was не потрібен did."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-19:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-19:intro3:r2": {
+          "ru": "Два пакета: were.",
+          "uk": "Два пакети: were."
+        },
+        "en:lesson-11:session-19:intro3:r3": {
+          "ru": "Are — сейчас, а здесь прошлое: were.",
+          "uk": "Are — зараз, а тут минуле: were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e0f8b183e79dd5c2062aeff16eb022940599844e79facfbca50b0b0166bcfdd5"
+}

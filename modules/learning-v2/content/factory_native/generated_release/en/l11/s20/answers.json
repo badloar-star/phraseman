@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-20:word:public-toilet",
+    "correctText": "public toilet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-20:i01",
+    "correctText": "There was a public toilet near the park.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-20:i02",
+    "correctText": "The public toilet was clean.",
+    "correctResponseId": "en:lesson-11:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-20:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-20:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-20:word:bus-driver",
+    "correctText": "bus driver",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-20:i04",
+    "correctText": "Was the bus driver ready?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-20:i05",
+    "correctText": "There was a bus driver next to the bus.",
+    "correctResponseId": "en:lesson-11:session-20:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-20:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-20:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-20:word:taxi-driver",
+    "correctText": "taxi driver",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-20:i07",
+    "correctText": "There was a taxi driver near the hotel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-20:i08",
+    "correctText": "The taxi driver was friendly.",
+    "correctResponseId": "en:lesson-11:session-20:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-20:i09",
+    "correctText": "wasn't",
+    "correctResponseId": "en:lesson-11:session-20:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-20:word:pedestrian-crossing",
+    "correctText": "pedestrian crossing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-20:i10",
+    "correctText": "There was a pedestrian crossing near the shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-20:i11",
+    "correctText": "There were two pedestrian crossings near the school.",
+    "correctResponseId": "en:lesson-11:session-20:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-20:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-20:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-20:i13",
+    "correctText": "en:lesson-11:session-20:i13:p1=public toilet\nen:lesson-11:session-20:i13:p2=bus driver\nen:lesson-11:session-20:i13:p3=taxi driver\nen:lesson-11:session-20:i13:p4=pedestrian crossing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-20:i14",
+    "correctText": "Please don't hurry me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-20:i15",
+    "correctText": "I am waiting right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-20:i16",
+    "correctText": "Was the bus driver in the café?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-20:i17",
+    "correctText": "There were two taxi drivers near the park.",
+    "correctResponseId": null
+  }
+]

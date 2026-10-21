@@ -1,0 +1,2335 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-11:session-18",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-11:session-18:word:baked-beans",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — baked beans",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:word:baked-beans:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — baked beans",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:word:baked-beans:audio",
+            "transcript": "baked beans"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-18:word:baked-beans:r1",
+              "targetText": "baked beans",
+              "meaningByLocale": {
+                "ru": "фасоль в томатном соусе. По-английски множественное число.",
+                "uk": "квасоля в томатному соусі. Англійською множина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "baked beans",
+            "definitionByLocale": {
+              "ru": "фасоль в томатном соусе. По-английски множественное число.",
+              "uk": "квасоля в томатному соусі. Англійською множина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: в миске была фасоль в соусе. Начните с There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: в миске была фасоль в соусе. Начните с There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There were baked beans in the bowl.",
+          "localizedMeaning": {
+            "ru": "Сообщите: в миске была фасоль в соусе. Начните с There",
+            "uk": "Повідомте: у мисці була квасоля в соусі. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "were",
+            "baked",
+            "beans",
+            "in",
+            "the",
+            "bowl"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-18:i02:r1",
+            "text": "The baked beans were hot."
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i02:r2",
+            "text": "The baked beans were cold."
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i02:r3",
+            "text": "Were the baked beans hot?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:i02:audio",
+            "transcript": "The baked beans were hot."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-18:i02:r1",
+              "targetText": "The baked beans were hot.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i02:r2",
+              "targetText": "The baked beans were cold.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i02:r3",
+              "targetText": "Were the baked beans hot?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-18:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The baked beans were hot.",
+                "uk": "У записі звучить The baked beans were hot."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The baked beans were hot.",
+                "uk": "У записі звучить The baked beans were hot."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера на тарелке была фасоль в соусе. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-18:i03:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i03:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера на тарелке была фасоль в соусе. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера на тарелке была фасоль в соусе. Выберите форму",
+            "uk": "Учора на тарілці була квасоля в соусі. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ baked beans on the plate.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-18:i03:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i03:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Вчера на тарелке была фасоль в соусе. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-18:i03:r2",
+              "correct": false,
+              "testedDimension": "Вчера на тарелке была фасоль в соусе. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Beans — множественное число: were.",
+                "uk": "Beans — множина: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i03:r3",
+              "correct": false,
+              "testedDimension": "Вчера на тарелке была фасоль в соусе. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Прошлое, множественное число: were.",
+                "uk": "Минулий час, множина: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:word:brown-rice",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — brown rice",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:word:brown-rice:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — brown rice",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:word:brown-rice:audio",
+            "transcript": "brown rice"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-18:word:brown-rice:r1",
+              "targetText": "brown rice",
+              "meaningByLocale": {
+                "ru": "бурый рис.",
+                "uk": "бурий рис."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brown rice",
+            "definitionByLocale": {
+              "ru": "бурый рис.",
+              "uk": "бурий рис."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: на тарелке был бурый рис. Начните с There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: на тарелке был бурый рис. Начните с There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was brown rice on the plate.",
+          "localizedMeaning": {
+            "ru": "Сообщите: на тарелке был бурый рис. Начните с There",
+            "uk": "Повідомте: на тарілці був бурий рис. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "brown",
+            "rice",
+            "on",
+            "the",
+            "plate"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-18:i05:r1",
+            "text": "The brown rice was in the cupboard."
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i05:r2",
+            "text": "The brown rice was on the table."
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i05:r3",
+            "text": "The brown rice was in the bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:i05:audio",
+            "transcript": "The brown rice was in the cupboard."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-18:i05:r1",
+              "targetText": "The brown rice was in the cupboard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i05:r2",
+              "targetText": "The brown rice was on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i05:r3",
+              "targetText": "The brown rice was in the bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-18:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The brown rice was in the cupboard.",
+                "uk": "У записі звучить The brown rice was in the cupboard."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The brown rice was in the cupboard.",
+                "uk": "У записі звучить The brown rice was in the cupboard."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В сумке был бурый рис. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-18:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В сумке был бурый рис. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В сумке был бурый рис. Выберите форму",
+            "uk": "У сумці був бурий рис. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ brown rice in the bag.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-18:i06:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i06:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В сумке был бурый рис. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-18:i06:r2",
+              "correct": false,
+              "testedDimension": "В сумке был бурый рис. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "С неисчисляемым rice используем was.",
+                "uk": "Із незлічуваним rice використовуємо was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i06:r3",
+              "correct": false,
+              "testedDimension": "В сумке был бурый рис. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Нужна форма прошлого was.",
+                "uk": "Потрібна форма минулого was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:word:black-pepper",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — black pepper",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:word:black-pepper:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — black pepper",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:word:black-pepper:audio",
+            "transcript": "black pepper"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-18:word:black-pepper:r1",
+              "targetText": "black pepper",
+              "meaningByLocale": {
+                "ru": "чёрный перец как приправа.",
+                "uk": "чорний перець як приправа."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "black pepper",
+            "definitionByLocale": {
+              "ru": "чёрный перец как приправа.",
+              "uk": "чорний перець як приправа."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: на столе был чёрный перец. Начните с There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: на столе был чёрный перец. Начните с There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was black pepper on the table.",
+          "localizedMeaning": {
+            "ru": "Сообщите: на столе был чёрный перец. Начните с There",
+            "uk": "Повідомте: на столі був чорний перець. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "black",
+            "pepper",
+            "on",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-18:i08:r1",
+            "text": "Was the black pepper in the cupboard?"
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i08:r2",
+            "text": "The black pepper was in the cupboard."
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i08:r3",
+            "text": "Was the black pepper on the table?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:i08:audio",
+            "transcript": "Was the black pepper in the cupboard?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-18:i08:r1",
+              "targetText": "Was the black pepper in the cupboard?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i08:r2",
+              "targetText": "The black pepper was in the cupboard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i08:r3",
+              "targetText": "Was the black pepper on the table?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-18:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was the black pepper in the cupboard?",
+                "uk": "У записі звучить Was the black pepper in the cupboard?"
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was the black pepper in the cupboard?",
+                "uk": "У записі звучить Was the black pepper in the cupboard?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг спросил Was the black pepper in the bag? Он был на столе. Ответьте отрицательно",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-18:i09:r1",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i09:r2",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i09:r3",
+            "text": "didn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг спросил Was the black pepper in the bag? Он был на столе. Ответьте отрицательно",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спросил Was the black pepper in the bag? Он был на столе. Ответьте отрицательно",
+            "uk": "Друг запитав Was the black pepper in the bag? Він був на столі. Дайте заперечну відповідь"
+          },
+          "gappedTargetPhrase": "No, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-18:i09:r1",
+              "text": "wasn't"
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i09:r2",
+              "text": "weren't"
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i09:r3",
+              "text": "didn't"
+            }
+          ],
+          "testedDimension": "Друг спросил Was the black pepper in the bag? Он был на столе. Ответьте отрицательно",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-18:i09:r2",
+              "correct": false,
+              "testedDimension": "Друг спросил Was the black pepper in the bag? Он был на столе. Ответьте отрицательно",
+              "feedbackByLocale": {
+                "ru": "С it нужна wasn’t.",
+                "uk": "З it потрібна wasn’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i09:r3",
+              "correct": false,
+              "testedDimension": "Друг спросил Was the black pepper in the bag? Он был на столе. Ответьте отрицательно",
+              "feedbackByLocale": {
+                "ru": "Вопрос с was: ответ wasn’t.",
+                "uk": "Запитання з was: відповідь wasn’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:word:mineral-water",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — mineral water",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:word:mineral-water:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — mineral water",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:word:mineral-water:audio",
+            "transcript": "mineral water"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-18:word:mineral-water:r1",
+              "targetText": "mineral water",
+              "meaningByLocale": {
+                "ru": "минеральная вода.",
+                "uk": "мінеральна вода."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mineral water",
+            "definitionByLocale": {
+              "ru": "минеральная вода.",
+              "uk": "мінеральна вода."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: в стакане была минеральная вода. Начните с There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: в стакане была минеральная вода. Начните с There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was mineral water in the glass.",
+          "localizedMeaning": {
+            "ru": "Сообщите: в стакане была минеральная вода. Начните с There",
+            "uk": "Повідомте: у склянці була мінеральна вода. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "mineral",
+            "water",
+            "in",
+            "the",
+            "glass"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-18:i11:r1",
+            "text": "The mineral water was cold."
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i11:r2",
+            "text": "The mineral water was warm."
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i11:r3",
+            "text": "Was the mineral water cold?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:i11:audio",
+            "transcript": "The mineral water was cold."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-18:i11:r1",
+              "targetText": "The mineral water was cold.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i11:r2",
+              "targetText": "The mineral water was warm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i11:r3",
+              "targetText": "Was the mineral water cold?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-18:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The mineral water was cold.",
+                "uk": "У записі звучить The mineral water was cold."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The mineral water was cold.",
+                "uk": "У записі звучить The mineral water was cold."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В бутылке была минеральная вода. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-18:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i12:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В бутылке была минеральная вода. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В бутылке была минеральная вода. Выберите форму",
+            "uk": "У пляшці була мінеральна вода. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ mineral water in the bottle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-18:i12:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i12:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В бутылке была минеральная вода. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-18:i12:r2",
+              "correct": false,
+              "testedDimension": "В бутылке была минеральная вода. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Вода неисчисляемая: was.",
+                "uk": "Вода незлічувана: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i12:r3",
+              "correct": false,
+              "testedDimension": "В бутылке была минеральная вода. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "В прошлом о воде говорим was.",
+                "uk": "У минулому про воду говоримо was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-18:i13:p1",
+              "target": "baked beans",
+              "meaningByLocale": {
+                "ru": "фасоль в томатном соусе",
+                "uk": "квасоля в томатному соусі"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-18:i13:p2",
+              "target": "brown rice",
+              "meaningByLocale": {
+                "ru": "бурый рис",
+                "uk": "бурий рис"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-18:i13:p3",
+              "target": "black pepper",
+              "meaningByLocale": {
+                "ru": "чёрный перец",
+                "uk": "чорний перець"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-18:i13:p4",
+              "target": "mineral water",
+              "meaningByLocale": {
+                "ru": "минеральная вода",
+                "uk": "мінеральна вода"
+              }
+            }
+          ],
+          "leftColumn": [
+            "baked beans",
+            "brown rice",
+            "black pepper",
+            "mineral water"
+          ],
+          "rightColumn": [
+            "фасоль в томатном соусе",
+            "бурый рис",
+            "чёрный перец",
+            "минеральная вода"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную просьбу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную просьбу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:i14:audio",
+            "transcript": "Please don't move my glass."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't move my glass.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "move",
+            "my",
+            "glass"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:i15:audio",
+            "transcript": "I am cooking right now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am cooking right now.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "cooking",
+            "right",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сообщите, что в миске был бурый рис",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:i16:audio"
+        ],
+        "accessibilityLabel": "Сообщите, что в миске был бурый рис",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:i16:audio",
+            "transcript": "There was brown rice in the bowl."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There was brown rice in the bowl.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите, была ли минеральная вода в сумке",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:i17:audio"
+        ],
+        "accessibilityLabel": "Спросите, была ли минеральная вода в сумке",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:i17:audio",
+            "transcript": "Was the mineral water in the bag?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Was the mineral water in the bag?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-11:session-18:word:baked-beans",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — baked beans",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:word:baked-beans:audio"
+        ],
+        "accessibilityLabel": "Картка слова — baked beans",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:word:baked-beans:audio",
+            "transcript": "baked beans"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-18:word:baked-beans:r1",
+              "targetText": "baked beans",
+              "meaningByLocale": {
+                "ru": "фасоль в томатном соусе. По-английски множественное число.",
+                "uk": "квасоля в томатному соусі. Англійською множина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "baked beans",
+            "definitionByLocale": {
+              "ru": "фасоль в томатном соусе. По-английски множественное число.",
+              "uk": "квасоля в томатному соусі. Англійською множина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: у мисці була квасоля в соусі. Почніть із There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: у мисці була квасоля в соусі. Почніть із There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There were baked beans in the bowl.",
+          "localizedMeaning": {
+            "ru": "Сообщите: в миске была фасоль в соусе. Начните с There",
+            "uk": "Повідомте: у мисці була квасоля в соусі. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "were",
+            "baked",
+            "beans",
+            "in",
+            "the",
+            "bowl"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-18:i02:r1",
+            "text": "The baked beans were hot."
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i02:r2",
+            "text": "The baked beans were cold."
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i02:r3",
+            "text": "Were the baked beans hot?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:i02:audio",
+            "transcript": "The baked beans were hot."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-18:i02:r1",
+              "targetText": "The baked beans were hot.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i02:r2",
+              "targetText": "The baked beans were cold.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i02:r3",
+              "targetText": "Were the baked beans hot?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-18:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The baked beans were hot.",
+                "uk": "У записі звучить The baked beans were hot."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The baked beans were hot.",
+                "uk": "У записі звучить The baked beans were hot."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора на тарілці була квасоля в соусі. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-18:i03:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i03:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора на тарілці була квасоля в соусі. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера на тарелке была фасоль в соусе. Выберите форму",
+            "uk": "Учора на тарілці була квасоля в соусі. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ baked beans on the plate.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-18:i03:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i03:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Учора на тарілці була квасоля в соусі. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-18:i03:r2",
+              "correct": false,
+              "testedDimension": "Учора на тарілці була квасоля в соусі. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Beans — множественное число: were.",
+                "uk": "Beans — множина: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i03:r3",
+              "correct": false,
+              "testedDimension": "Учора на тарілці була квасоля в соусі. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Прошлое, множественное число: were.",
+                "uk": "Минулий час, множина: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:word:brown-rice",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — brown rice",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:word:brown-rice:audio"
+        ],
+        "accessibilityLabel": "Картка слова — brown rice",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:word:brown-rice:audio",
+            "transcript": "brown rice"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-18:word:brown-rice:r1",
+              "targetText": "brown rice",
+              "meaningByLocale": {
+                "ru": "бурый рис.",
+                "uk": "бурий рис."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brown rice",
+            "definitionByLocale": {
+              "ru": "бурый рис.",
+              "uk": "бурий рис."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: на тарілці був бурий рис. Почніть із There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: на тарілці був бурий рис. Почніть із There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was brown rice on the plate.",
+          "localizedMeaning": {
+            "ru": "Сообщите: на тарелке был бурый рис. Начните с There",
+            "uk": "Повідомте: на тарілці був бурий рис. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "brown",
+            "rice",
+            "on",
+            "the",
+            "plate"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-18:i05:r1",
+            "text": "The brown rice was in the cupboard."
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i05:r2",
+            "text": "The brown rice was on the table."
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i05:r3",
+            "text": "The brown rice was in the bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:i05:audio",
+            "transcript": "The brown rice was in the cupboard."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-18:i05:r1",
+              "targetText": "The brown rice was in the cupboard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i05:r2",
+              "targetText": "The brown rice was on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i05:r3",
+              "targetText": "The brown rice was in the bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-18:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The brown rice was in the cupboard.",
+                "uk": "У записі звучить The brown rice was in the cupboard."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The brown rice was in the cupboard.",
+                "uk": "У записі звучить The brown rice was in the cupboard."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У сумці був бурий рис. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-18:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i06:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У сумці був бурий рис. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В сумке был бурый рис. Выберите форму",
+            "uk": "У сумці був бурий рис. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ brown rice in the bag.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-18:i06:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i06:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У сумці був бурий рис. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-18:i06:r2",
+              "correct": false,
+              "testedDimension": "У сумці був бурий рис. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "С неисчисляемым rice используем was.",
+                "uk": "Із незлічуваним rice використовуємо was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i06:r3",
+              "correct": false,
+              "testedDimension": "У сумці був бурий рис. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Нужна форма прошлого was.",
+                "uk": "Потрібна форма минулого was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:word:black-pepper",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — black pepper",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:word:black-pepper:audio"
+        ],
+        "accessibilityLabel": "Картка слова — black pepper",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:word:black-pepper:audio",
+            "transcript": "black pepper"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-18:word:black-pepper:r1",
+              "targetText": "black pepper",
+              "meaningByLocale": {
+                "ru": "чёрный перец как приправа.",
+                "uk": "чорний перець як приправа."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "black pepper",
+            "definitionByLocale": {
+              "ru": "чёрный перец как приправа.",
+              "uk": "чорний перець як приправа."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: на столі був чорний перець. Почніть із There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: на столі був чорний перець. Почніть із There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was black pepper on the table.",
+          "localizedMeaning": {
+            "ru": "Сообщите: на столе был чёрный перец. Начните с There",
+            "uk": "Повідомте: на столі був чорний перець. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "black",
+            "pepper",
+            "on",
+            "the",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-18:i08:r1",
+            "text": "Was the black pepper in the cupboard?"
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i08:r2",
+            "text": "The black pepper was in the cupboard."
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i08:r3",
+            "text": "Was the black pepper on the table?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:i08:audio",
+            "transcript": "Was the black pepper in the cupboard?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-18:i08:r1",
+              "targetText": "Was the black pepper in the cupboard?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i08:r2",
+              "targetText": "The black pepper was in the cupboard.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i08:r3",
+              "targetText": "Was the black pepper on the table?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-18:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was the black pepper in the cupboard?",
+                "uk": "У записі звучить Was the black pepper in the cupboard?"
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Was the black pepper in the cupboard?",
+                "uk": "У записі звучить Was the black pepper in the cupboard?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Друг запитав Was the black pepper in the bag? Він був на столі. Дайте заперечну відповідь",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-18:i09:r1",
+            "text": "wasn't"
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i09:r2",
+            "text": "weren't"
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i09:r3",
+            "text": "didn't"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Друг запитав Was the black pepper in the bag? Він був на столі. Дайте заперечну відповідь",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Друг спросил Was the black pepper in the bag? Он был на столе. Ответьте отрицательно",
+            "uk": "Друг запитав Was the black pepper in the bag? Він був на столі. Дайте заперечну відповідь"
+          },
+          "gappedTargetPhrase": "No, it ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-18:i09:r1",
+              "text": "wasn't"
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i09:r2",
+              "text": "weren't"
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i09:r3",
+              "text": "didn't"
+            }
+          ],
+          "testedDimension": "Друг запитав Was the black pepper in the bag? Він був на столі. Дайте заперечну відповідь",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-18:i09:r2",
+              "correct": false,
+              "testedDimension": "Друг запитав Was the black pepper in the bag? Він був на столі. Дайте заперечну відповідь",
+              "feedbackByLocale": {
+                "ru": "С it нужна wasn’t.",
+                "uk": "З it потрібна wasn’t."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i09:r3",
+              "correct": false,
+              "testedDimension": "Друг запитав Was the black pepper in the bag? Він був на столі. Дайте заперечну відповідь",
+              "feedbackByLocale": {
+                "ru": "Вопрос с was: ответ wasn’t.",
+                "uk": "Запитання з was: відповідь wasn’t."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:word:mineral-water",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — mineral water",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:word:mineral-water:audio"
+        ],
+        "accessibilityLabel": "Картка слова — mineral water",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:word:mineral-water:audio",
+            "transcript": "mineral water"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-18:word:mineral-water:r1",
+              "targetText": "mineral water",
+              "meaningByLocale": {
+                "ru": "минеральная вода.",
+                "uk": "мінеральна вода."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "mineral water",
+            "definitionByLocale": {
+              "ru": "минеральная вода.",
+              "uk": "мінеральна вода."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: у склянці була мінеральна вода. Почніть із There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: у склянці була мінеральна вода. Почніть із There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was mineral water in the glass.",
+          "localizedMeaning": {
+            "ru": "Сообщите: в стакане была минеральная вода. Начните с There",
+            "uk": "Повідомте: у склянці була мінеральна вода. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "mineral",
+            "water",
+            "in",
+            "the",
+            "glass"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-18:i11:r1",
+            "text": "The mineral water was cold."
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i11:r2",
+            "text": "The mineral water was warm."
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i11:r3",
+            "text": "Was the mineral water cold?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:i11:audio",
+            "transcript": "The mineral water was cold."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-18:i11:r1",
+              "targetText": "The mineral water was cold.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i11:r2",
+              "targetText": "The mineral water was warm.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i11:r3",
+              "targetText": "Was the mineral water cold?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-18:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The mineral water was cold.",
+                "uk": "У записі звучить The mineral water was cold."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The mineral water was cold.",
+                "uk": "У записі звучить The mineral water was cold."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У пляшці була мінеральна вода. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-18:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i12:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-18:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У пляшці була мінеральна вода. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В бутылке была минеральная вода. Выберите форму",
+            "uk": "У пляшці була мінеральна вода. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ mineral water in the bottle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-18:i12:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i12:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У пляшці була мінеральна вода. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-18:i12:r2",
+              "correct": false,
+              "testedDimension": "У пляшці була мінеральна вода. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Вода неисчисляемая: was.",
+                "uk": "Вода незлічувана: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-18:i12:r3",
+              "correct": false,
+              "testedDimension": "У пляшці була мінеральна вода. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "В прошлом о воде говорим was.",
+                "uk": "У минулому про воду говоримо was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-18:i13:p1",
+              "target": "baked beans",
+              "meaningByLocale": {
+                "ru": "фасоль в томатном соусе",
+                "uk": "квасоля в томатному соусі"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-18:i13:p2",
+              "target": "brown rice",
+              "meaningByLocale": {
+                "ru": "бурый рис",
+                "uk": "бурий рис"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-18:i13:p3",
+              "target": "black pepper",
+              "meaningByLocale": {
+                "ru": "чёрный перец",
+                "uk": "чорний перець"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-18:i13:p4",
+              "target": "mineral water",
+              "meaningByLocale": {
+                "ru": "минеральная вода",
+                "uk": "мінеральна вода"
+              }
+            }
+          ],
+          "leftColumn": [
+            "baked beans",
+            "brown rice",
+            "black pepper",
+            "mineral water"
+          ],
+          "rightColumn": [
+            "квасоля в томатному соусі",
+            "бурий рис",
+            "чорний перець",
+            "мінеральна вода"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте прохання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте прохання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:i14:audio",
+            "transcript": "Please don't move my glass."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't move my glass.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "move",
+            "my",
+            "glass"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:i15:audio",
+            "transcript": "I am cooking right now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am cooking right now.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "cooking",
+            "right",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повідомте, що в мисці був бурий рис",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:i16:audio"
+        ],
+        "accessibilityLabel": "Повідомте, що в мисці був бурий рис",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:i16:audio",
+            "transcript": "There was brown rice in the bowl."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "There was brown rice in the bowl.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-18:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте, чи була мінеральна вода в сумці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-18:i17:audio"
+        ],
+        "accessibilityLabel": "Запитайте, чи була мінеральна вода в сумці",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-18:i17:audio",
+            "transcript": "Was the mineral water in the bag?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Was the mineral water in the bag?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-11:session-18:word:baked-beans",
+      "correctText": "baked beans",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-18:i01",
+      "correctText": "There were baked beans in the bowl.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-18:i02",
+      "correctText": "The baked beans were hot.",
+      "correctResponseId": "en:lesson-11:session-18:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-18:i03",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-11:session-18:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-18:word:brown-rice",
+      "correctText": "brown rice",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-18:i04",
+      "correctText": "There was brown rice on the plate.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-18:i05",
+      "correctText": "The brown rice was in the cupboard.",
+      "correctResponseId": "en:lesson-11:session-18:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-18:i06",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-18:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-18:word:black-pepper",
+      "correctText": "black pepper",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-18:i07",
+      "correctText": "There was black pepper on the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-18:i08",
+      "correctText": "Was the black pepper in the cupboard?",
+      "correctResponseId": "en:lesson-11:session-18:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-18:i09",
+      "correctText": "wasn't",
+      "correctResponseId": "en:lesson-11:session-18:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-18:word:mineral-water",
+      "correctText": "mineral water",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-18:i10",
+      "correctText": "There was mineral water in the glass.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-18:i11",
+      "correctText": "The mineral water was cold.",
+      "correctResponseId": "en:lesson-11:session-18:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-18:i12",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-18:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-18:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-18:i14",
+      "correctText": "Please don't move my glass.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-18:i15",
+      "correctText": "I am cooking right now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-18:i16",
+      "correctText": "There was brown rice in the bowl.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-18:i17",
+      "correctText": "Was the mineral water in the bag?",
+      "correctResponseId": null
+    }
+  ]
+}

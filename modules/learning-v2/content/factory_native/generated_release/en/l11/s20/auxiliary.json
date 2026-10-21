@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-20",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-20:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-20:intro1:r2": {
+          "ru": "Один объект: was.",
+          "uk": "Один об’єкт: was."
+        },
+        "en:lesson-11:session-20:intro1:r3": {
+          "ru": "Is — настоящее, а здесь was.",
+          "uk": "Is — теперішній час, а тут was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-20:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-20:intro2:r2": {
+          "ru": "Два человека: were.",
+          "uk": "Дві людини: were."
+        },
+        "en:lesson-11:session-20:intro2:r3": {
+          "ru": "Перед two не ставим a.",
+          "uk": "Перед two не ставимо a."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-20:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-20:intro3:r2": {
+          "ru": "Один переход: was.",
+          "uk": "Один перехід: was."
+        },
+        "en:lesson-11:session-20:intro3:r3": {
+          "ru": "После there нужна was.",
+          "uk": "Після there потрібна was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c4de4d3c6d9086a662036f77012ec394e171403e75f16255140f671f34f7ce29"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-18:word:baked-beans",
+    "correctText": "baked beans",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-18:i01",
+    "correctText": "There were baked beans in the bowl.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-18:i02",
+    "correctText": "The baked beans were hot.",
+    "correctResponseId": "en:lesson-11:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-18:i03",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-18:word:brown-rice",
+    "correctText": "brown rice",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-18:i04",
+    "correctText": "There was brown rice on the plate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-18:i05",
+    "correctText": "The brown rice was in the cupboard.",
+    "correctResponseId": "en:lesson-11:session-18:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-18:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-18:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-18:word:black-pepper",
+    "correctText": "black pepper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-18:i07",
+    "correctText": "There was black pepper on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-18:i08",
+    "correctText": "Was the black pepper in the cupboard?",
+    "correctResponseId": "en:lesson-11:session-18:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-18:i09",
+    "correctText": "wasn't",
+    "correctResponseId": "en:lesson-11:session-18:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-18:word:mineral-water",
+    "correctText": "mineral water",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-18:i10",
+    "correctText": "There was mineral water in the glass.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-18:i11",
+    "correctText": "The mineral water was cold.",
+    "correctResponseId": "en:lesson-11:session-18:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-18:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-18:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-18:i13",
+    "correctText": "en:lesson-11:session-18:i13:p1=baked beans\nen:lesson-11:session-18:i13:p2=brown rice\nen:lesson-11:session-18:i13:p3=black pepper\nen:lesson-11:session-18:i13:p4=mineral water",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-18:i14",
+    "correctText": "Please don't move my glass.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-18:i15",
+    "correctText": "I am cooking right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-18:i16",
+    "correctText": "There was brown rice in the bowl.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-18:i17",
+    "correctText": "Was the mineral water in the bag?",
+    "correctResponseId": null
+  }
+]

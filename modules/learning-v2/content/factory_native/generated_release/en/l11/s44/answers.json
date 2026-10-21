@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-44:word:loaf-of-bread",
+    "correctText": "loaf of bread",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-44:i01",
+    "correctText": "Was the loaf of bread fresh?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-44:i02",
+    "correctText": "The loaf of bread was in the bag.",
+    "correctResponseId": "en:lesson-11:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-44:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-44:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-44:word:carton-of-milk",
+    "correctText": "carton of milk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-44:i04",
+    "correctText": "There was a carton of milk in the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-44:i05",
+    "correctText": "The carton of milk was in the fridge.",
+    "correctResponseId": "en:lesson-11:session-44:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-44:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-44:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-44:word:tin-of-tuna",
+    "correctText": "tin of tuna",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-44:i07",
+    "correctText": "Was the tin of tuna in the cupboard?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-44:i08",
+    "correctText": "The tin of tuna was on the table.",
+    "correctResponseId": "en:lesson-11:session-44:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-44:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-44:word:bottle-of-water",
+    "correctText": "bottle of water",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-44:i10",
+    "correctText": "The bottle of water was not empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-44:i11",
+    "correctText": "There were two bottles of water in the bag.",
+    "correctResponseId": "en:lesson-11:session-44:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-44:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-44:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-44:i13",
+    "correctText": "en:lesson-11:session-44:i13:p1=loaf of bread\nen:lesson-11:session-44:i13:p2=carton of milk\nen:lesson-11:session-44:i13:p3=tin of tuna\nen:lesson-11:session-44:i13:p4=bottle of water",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-44:i14",
+    "correctText": "Please don't open my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-44:i15",
+    "correctText": "I am carrying the bag right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-44:i16",
+    "correctText": "The carton of milk was not on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-44:i17",
+    "correctText": "Was the bottle of water in the car?",
+    "correctResponseId": null
+  }
+]

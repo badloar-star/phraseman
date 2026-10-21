@@ -1,0 +1,2337 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-11:session-42",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-11:session-42:word:swimming-costume",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — swimming costume",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:word:swimming-costume:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — swimming costume",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:word:swimming-costume:audio",
+            "transcript": "swimming costume"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-42:word:swimming-costume:r1",
+              "targetText": "swimming costume",
+              "meaningByLocale": {
+                "ru": "купальник. Британское название.",
+                "uk": "купальник. Британська назва."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "swimming costume",
+            "definitionByLocale": {
+              "ru": "купальник. Британское название.",
+              "uk": "купальник. Британська назва."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите, был ли купальник сухим",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите, был ли купальник сухим",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the swimming costume dry?",
+          "localizedMeaning": {
+            "ru": "Спросите, был ли купальник сухим",
+            "uk": "Запитайте, чи був купальник сухий"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "swimming",
+            "costume",
+            "dry"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-42:i02:r1",
+            "text": "The swimming costume was on the chair."
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i02:r2",
+            "text": "The swimming costume is on the chair."
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i02:r3",
+            "text": "The swimming costume was in the bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:i02:audio",
+            "transcript": "The swimming costume was on the chair."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-42:i02:r1",
+              "targetText": "The swimming costume was on the chair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i02:r2",
+              "targetText": "The swimming costume is on the chair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i02:r3",
+              "targetText": "The swimming costume was in the bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-42:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The swimming costume was on the chair.",
+                "uk": "У записі звучить The swimming costume was on the chair."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The swimming costume was on the chair.",
+                "uk": "У записі звучить The swimming costume was on the chair."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера купальник был мокрым. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-42:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i03:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера купальник был мокрым. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера купальник был мокрым. Выберите форму",
+            "uk": "Учора купальник був мокрий. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The swimming costume ___ wet yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-42:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i03:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Вчера купальник был мокрым. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-42:i03:r2",
+              "correct": false,
+              "testedDimension": "Вчера купальник был мокрым. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was.",
+                "uk": "Учора: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i03:r3",
+              "correct": false,
+              "testedDimension": "Вчера купальник был мокрым. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Один купальник: was.",
+                "uk": "Один купальник: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:word:swimming-trunks",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — swimming trunks",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:word:swimming-trunks:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — swimming trunks",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:word:swimming-trunks:audio",
+            "transcript": "swimming trunks"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-42:word:swimming-trunks:r1",
+              "targetText": "swimming trunks",
+              "meaningByLocale": {
+                "ru": "плавки. Множественное число.",
+                "uk": "плавки. Множина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "swimming trunks",
+            "definitionByLocale": {
+              "ru": "плавки. Множественное число.",
+              "uk": "плавки. Множина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: плавки были не сухими",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: плавки были не сухими",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The swimming trunks were not dry.",
+          "localizedMeaning": {
+            "ru": "Сообщите: плавки были не сухими",
+            "uk": "Повідомте: плавки були не сухі"
+          },
+          "orderedTokens": [
+            "The",
+            "swimming",
+            "trunks",
+            "were",
+            "not",
+            "dry"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-42:i05:r1",
+            "text": "The swimming trunks were in the bathroom."
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i05:r2",
+            "text": "The swimming trunks are in the bathroom."
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i05:r3",
+            "text": "The swimming trunks were in the bedroom."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:i05:audio",
+            "transcript": "The swimming trunks were in the bathroom."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-42:i05:r1",
+              "targetText": "The swimming trunks were in the bathroom.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i05:r2",
+              "targetText": "The swimming trunks are in the bathroom.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i05:r3",
+              "targetText": "The swimming trunks were in the bedroom.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-42:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The swimming trunks were in the bathroom.",
+                "uk": "У записі звучить The swimming trunks were in the bathroom."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The swimming trunks were in the bathroom.",
+                "uk": "У записі звучить The swimming trunks were in the bathroom."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера плавки были в сумке. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-42:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера плавки были в сумке. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера плавки были в сумке. Выберите форму",
+            "uk": "Учора плавки були в сумці. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The swimming trunks ___ in the bag yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-42:i06:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i06:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Вчера плавки были в сумке. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-42:i06:r2",
+              "correct": false,
+              "testedDimension": "Вчера плавки были в сумке. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Trunks — множественное число: were.",
+                "uk": "Trunks — множина: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i06:r3",
+              "correct": false,
+              "testedDimension": "Вчера плавки были в сумке. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: were.",
+                "uk": "Учора: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:word:swimming-goggles",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — swimming goggles",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:word:swimming-goggles:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — swimming goggles",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:word:swimming-goggles:audio",
+            "transcript": "swimming goggles"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-42:word:swimming-goggles:r1",
+              "targetText": "swimming goggles",
+              "meaningByLocale": {
+                "ru": "очки для плавания. Множественное число.",
+                "uk": "окуляри для плавання. Множина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "swimming goggles",
+            "definitionByLocale": {
+              "ru": "очки для плавания. Множественное число.",
+              "uk": "окуляри для плавання. Множина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите, были ли очки для плавания в сумке",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите, были ли очки для плавания в сумке",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Were the swimming goggles in the bag?",
+          "localizedMeaning": {
+            "ru": "Спросите, были ли очки для плавания в сумке",
+            "uk": "Запитайте, чи були окуляри для плавання в сумці"
+          },
+          "orderedTokens": [
+            "Were",
+            "the",
+            "swimming",
+            "goggles",
+            "in",
+            "the",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-42:i08:r1",
+            "text": "The swimming goggles were under the towel."
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i08:r2",
+            "text": "The swimming goggles were near the towel."
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i08:r3",
+            "text": "The swimming goggles are under the towel."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:i08:audio",
+            "transcript": "The swimming goggles were under the towel."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-42:i08:r1",
+              "targetText": "The swimming goggles were under the towel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i08:r2",
+              "targetText": "The swimming goggles were near the towel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i08:r3",
+              "targetText": "The swimming goggles are under the towel.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-42:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The swimming goggles were under the towel.",
+                "uk": "У записі звучить The swimming goggles were under the towel."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The swimming goggles were under the towel.",
+                "uk": "У записі звучить The swimming goggles were under the towel."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сейчас очки для плавания здесь. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-42:i09:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i09:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сейчас очки для плавания здесь. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сейчас очки для плавания здесь. Выберите форму",
+            "uk": "Зараз окуляри для плавання тут. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The swimming goggles ___ here now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-42:i09:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i09:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Сейчас очки для плавания здесь. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-42:i09:r2",
+              "correct": false,
+              "testedDimension": "Сейчас очки для плавания здесь. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Now — сейчас: are.",
+                "uk": "Now — зараз: are."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i09:r3",
+              "correct": false,
+              "testedDimension": "Сейчас очки для плавания здесь. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Goggles — множественное число: are.",
+                "uk": "Goggles — множина: are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:word:swimming-cap",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — swimming cap",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:word:swimming-cap:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — swimming cap",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:word:swimming-cap:audio",
+            "transcript": "swimming cap"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-42:word:swimming-cap:r1",
+              "targetText": "swimming cap",
+              "meaningByLocale": {
+                "ru": "шапочка для плавания.",
+                "uk": "шапочка для плавання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "swimming cap",
+            "definitionByLocale": {
+              "ru": "шапочка для плавания.",
+              "uk": "шапочка для плавання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: на стуле была шапочка для плавания. Начните с There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: на стуле была шапочка для плавания. Начните с There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was a swimming cap on the chair.",
+          "localizedMeaning": {
+            "ru": "Сообщите: на стуле была шапочка для плавания. Начните с There",
+            "uk": "Повідомте: на стільці була шапочка для плавання. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "a",
+            "swimming",
+            "cap",
+            "on",
+            "the",
+            "chair"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-42:i11:r1",
+            "text": "The swimming cap was blue."
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i11:r2",
+            "text": "The swimming cap was black."
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i11:r3",
+            "text": "The swimming cap is blue."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:i11:audio",
+            "transcript": "The swimming cap was blue."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-42:i11:r1",
+              "targetText": "The swimming cap was blue.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i11:r2",
+              "targetText": "The swimming cap was black.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i11:r3",
+              "targetText": "The swimming cap is blue.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-42:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The swimming cap was blue.",
+                "uk": "У записі звучить The swimming cap was blue."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The swimming cap was blue.",
+                "uk": "У записі звучить The swimming cap was blue."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В сумке было две шапочки для плавания. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-42:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В сумке было две шапочки для плавания. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В сумке было две шапочки для плавания. Выберите форму",
+            "uk": "У сумці було дві шапочки для плавання. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ two swimming caps in the bag.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-42:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "В сумке было две шапочки для плавания. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-42:i12:r2",
+              "correct": false,
+              "testedDimension": "В сумке было две шапочки для плавания. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Два предмета: were.",
+                "uk": "Два предмети: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i12:r3",
+              "correct": false,
+              "testedDimension": "В сумке было две шапочки для плавания. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Было — прошлое: were.",
+                "uk": "Було — минуле: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините вещи с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините вещи с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-42:i13:p1",
+              "target": "swimming costume",
+              "meaningByLocale": {
+                "ru": "купальник",
+                "uk": "купальник"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-42:i13:p2",
+              "target": "swimming trunks",
+              "meaningByLocale": {
+                "ru": "плавки",
+                "uk": "плавки"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-42:i13:p3",
+              "target": "swimming goggles",
+              "meaningByLocale": {
+                "ru": "очки для плавания",
+                "uk": "окуляри для плавання"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-42:i13:p4",
+              "target": "swimming cap",
+              "meaningByLocale": {
+                "ru": "шапочка для плавания",
+                "uk": "шапочка для плавання"
+              }
+            }
+          ],
+          "leftColumn": [
+            "swimming costume",
+            "swimming trunks",
+            "swimming goggles",
+            "swimming cap"
+          ],
+          "rightColumn": [
+            "купальник",
+            "плавки",
+            "очки для плавания",
+            "шапочка для плавания"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную просьбу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную просьбу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:i14:audio",
+            "transcript": "Please don't take my towel."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't take my towel.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "take",
+            "my",
+            "towel"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:i15:audio",
+            "transcript": "I am looking for my bag right now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am looking for my bag right now.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "looking",
+            "for",
+            "my",
+            "bag",
+            "right",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что очки для плавания были не на столе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что очки для плавания были не на столе",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:i16:audio",
+            "transcript": "The swimming goggles were not on the table."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The swimming goggles were not on the table.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите, были ли плавки мокрыми",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:i17:audio"
+        ],
+        "accessibilityLabel": "Спросите, были ли плавки мокрыми",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:i17:audio",
+            "transcript": "Were the swimming trunks wet?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Were the swimming trunks wet?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-11:session-42:word:swimming-costume",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — swimming costume",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:word:swimming-costume:audio"
+        ],
+        "accessibilityLabel": "Картка слова — swimming costume",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:word:swimming-costume:audio",
+            "transcript": "swimming costume"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-42:word:swimming-costume:r1",
+              "targetText": "swimming costume",
+              "meaningByLocale": {
+                "ru": "купальник. Британское название.",
+                "uk": "купальник. Британська назва."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "swimming costume",
+            "definitionByLocale": {
+              "ru": "купальник. Британское название.",
+              "uk": "купальник. Британська назва."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте, чи був купальник сухий",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте, чи був купальник сухий",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the swimming costume dry?",
+          "localizedMeaning": {
+            "ru": "Спросите, был ли купальник сухим",
+            "uk": "Запитайте, чи був купальник сухий"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "swimming",
+            "costume",
+            "dry"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-42:i02:r1",
+            "text": "The swimming costume was on the chair."
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i02:r2",
+            "text": "The swimming costume is on the chair."
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i02:r3",
+            "text": "The swimming costume was in the bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:i02:audio",
+            "transcript": "The swimming costume was on the chair."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-42:i02:r1",
+              "targetText": "The swimming costume was on the chair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i02:r2",
+              "targetText": "The swimming costume is on the chair.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i02:r3",
+              "targetText": "The swimming costume was in the bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-42:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The swimming costume was on the chair.",
+                "uk": "У записі звучить The swimming costume was on the chair."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The swimming costume was on the chair.",
+                "uk": "У записі звучить The swimming costume was on the chair."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора купальник був мокрий. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-42:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i03:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора купальник був мокрий. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера купальник был мокрым. Выберите форму",
+            "uk": "Учора купальник був мокрий. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The swimming costume ___ wet yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-42:i03:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i03:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Учора купальник був мокрий. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-42:i03:r2",
+              "correct": false,
+              "testedDimension": "Учора купальник був мокрий. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was.",
+                "uk": "Учора: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i03:r3",
+              "correct": false,
+              "testedDimension": "Учора купальник був мокрий. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Один купальник: was.",
+                "uk": "Один купальник: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:word:swimming-trunks",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — swimming trunks",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:word:swimming-trunks:audio"
+        ],
+        "accessibilityLabel": "Картка слова — swimming trunks",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:word:swimming-trunks:audio",
+            "transcript": "swimming trunks"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-42:word:swimming-trunks:r1",
+              "targetText": "swimming trunks",
+              "meaningByLocale": {
+                "ru": "плавки. Множественное число.",
+                "uk": "плавки. Множина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "swimming trunks",
+            "definitionByLocale": {
+              "ru": "плавки. Множественное число.",
+              "uk": "плавки. Множина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: плавки були не сухі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: плавки були не сухі",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The swimming trunks were not dry.",
+          "localizedMeaning": {
+            "ru": "Сообщите: плавки были не сухими",
+            "uk": "Повідомте: плавки були не сухі"
+          },
+          "orderedTokens": [
+            "The",
+            "swimming",
+            "trunks",
+            "were",
+            "not",
+            "dry"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-42:i05:r1",
+            "text": "The swimming trunks were in the bathroom."
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i05:r2",
+            "text": "The swimming trunks are in the bathroom."
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i05:r3",
+            "text": "The swimming trunks were in the bedroom."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:i05:audio",
+            "transcript": "The swimming trunks were in the bathroom."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-42:i05:r1",
+              "targetText": "The swimming trunks were in the bathroom.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i05:r2",
+              "targetText": "The swimming trunks are in the bathroom.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i05:r3",
+              "targetText": "The swimming trunks were in the bedroom.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-42:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The swimming trunks were in the bathroom.",
+                "uk": "У записі звучить The swimming trunks were in the bathroom."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The swimming trunks were in the bathroom.",
+                "uk": "У записі звучить The swimming trunks were in the bathroom."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора плавки були в сумці. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-42:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора плавки були в сумці. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера плавки были в сумке. Выберите форму",
+            "uk": "Учора плавки були в сумці. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The swimming trunks ___ in the bag yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-42:i06:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i06:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Учора плавки були в сумці. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-42:i06:r2",
+              "correct": false,
+              "testedDimension": "Учора плавки були в сумці. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Trunks — множественное число: were.",
+                "uk": "Trunks — множина: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i06:r3",
+              "correct": false,
+              "testedDimension": "Учора плавки були в сумці. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: were.",
+                "uk": "Учора: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:word:swimming-goggles",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — swimming goggles",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:word:swimming-goggles:audio"
+        ],
+        "accessibilityLabel": "Картка слова — swimming goggles",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:word:swimming-goggles:audio",
+            "transcript": "swimming goggles"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-42:word:swimming-goggles:r1",
+              "targetText": "swimming goggles",
+              "meaningByLocale": {
+                "ru": "очки для плавания. Множественное число.",
+                "uk": "окуляри для плавання. Множина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "swimming goggles",
+            "definitionByLocale": {
+              "ru": "очки для плавания. Множественное число.",
+              "uk": "окуляри для плавання. Множина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте, чи були окуляри для плавання в сумці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте, чи були окуляри для плавання в сумці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Were the swimming goggles in the bag?",
+          "localizedMeaning": {
+            "ru": "Спросите, были ли очки для плавания в сумке",
+            "uk": "Запитайте, чи були окуляри для плавання в сумці"
+          },
+          "orderedTokens": [
+            "Were",
+            "the",
+            "swimming",
+            "goggles",
+            "in",
+            "the",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-42:i08:r1",
+            "text": "The swimming goggles were under the towel."
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i08:r2",
+            "text": "The swimming goggles were near the towel."
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i08:r3",
+            "text": "The swimming goggles are under the towel."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:i08:audio",
+            "transcript": "The swimming goggles were under the towel."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-42:i08:r1",
+              "targetText": "The swimming goggles were under the towel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i08:r2",
+              "targetText": "The swimming goggles were near the towel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i08:r3",
+              "targetText": "The swimming goggles are under the towel.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-42:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The swimming goggles were under the towel.",
+                "uk": "У записі звучить The swimming goggles were under the towel."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The swimming goggles were under the towel.",
+                "uk": "У записі звучить The swimming goggles were under the towel."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Зараз окуляри для плавання тут. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-42:i09:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i09:r2",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i09:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Зараз окуляри для плавання тут. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сейчас очки для плавания здесь. Выберите форму",
+            "uk": "Зараз окуляри для плавання тут. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The swimming goggles ___ here now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-42:i09:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i09:r2",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i09:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Зараз окуляри для плавання тут. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-42:i09:r2",
+              "correct": false,
+              "testedDimension": "Зараз окуляри для плавання тут. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Now — сейчас: are.",
+                "uk": "Now — зараз: are."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i09:r3",
+              "correct": false,
+              "testedDimension": "Зараз окуляри для плавання тут. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Goggles — множественное число: are.",
+                "uk": "Goggles — множина: are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:word:swimming-cap",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — swimming cap",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:word:swimming-cap:audio"
+        ],
+        "accessibilityLabel": "Картка слова — swimming cap",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:word:swimming-cap:audio",
+            "transcript": "swimming cap"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-42:word:swimming-cap:r1",
+              "targetText": "swimming cap",
+              "meaningByLocale": {
+                "ru": "шапочка для плавания.",
+                "uk": "шапочка для плавання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "swimming cap",
+            "definitionByLocale": {
+              "ru": "шапочка для плавания.",
+              "uk": "шапочка для плавання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: на стільці була шапочка для плавання. Почніть із There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: на стільці була шапочка для плавання. Почніть із There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was a swimming cap on the chair.",
+          "localizedMeaning": {
+            "ru": "Сообщите: на стуле была шапочка для плавания. Начните с There",
+            "uk": "Повідомте: на стільці була шапочка для плавання. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "a",
+            "swimming",
+            "cap",
+            "on",
+            "the",
+            "chair"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-42:i11:r1",
+            "text": "The swimming cap was blue."
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i11:r2",
+            "text": "The swimming cap was black."
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i11:r3",
+            "text": "The swimming cap is blue."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:i11:audio",
+            "transcript": "The swimming cap was blue."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-42:i11:r1",
+              "targetText": "The swimming cap was blue.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i11:r2",
+              "targetText": "The swimming cap was black.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i11:r3",
+              "targetText": "The swimming cap is blue.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-42:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The swimming cap was blue.",
+                "uk": "У записі звучить The swimming cap was blue."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The swimming cap was blue.",
+                "uk": "У записі звучить The swimming cap was blue."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У сумці було дві шапочки для плавання. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-42:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-42:i12:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У сумці було дві шапочки для плавання. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В сумке было две шапочки для плавания. Выберите форму",
+            "uk": "У сумці було дві шапочки для плавання. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ two swimming caps in the bag.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-42:i12:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i12:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i12:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "У сумці було дві шапочки для плавання. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-42:i12:r2",
+              "correct": false,
+              "testedDimension": "У сумці було дві шапочки для плавання. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Два предмета: were.",
+                "uk": "Два предмети: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-42:i12:r3",
+              "correct": false,
+              "testedDimension": "У сумці було дві шапочки для плавання. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Было — прошлое: were.",
+                "uk": "Було — минуле: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте речі з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте речі з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-42:i13:p1",
+              "target": "swimming costume",
+              "meaningByLocale": {
+                "ru": "купальник",
+                "uk": "купальник"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-42:i13:p2",
+              "target": "swimming trunks",
+              "meaningByLocale": {
+                "ru": "плавки",
+                "uk": "плавки"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-42:i13:p3",
+              "target": "swimming goggles",
+              "meaningByLocale": {
+                "ru": "очки для плавания",
+                "uk": "окуляри для плавання"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-42:i13:p4",
+              "target": "swimming cap",
+              "meaningByLocale": {
+                "ru": "шапочка для плавания",
+                "uk": "шапочка для плавання"
+              }
+            }
+          ],
+          "leftColumn": [
+            "swimming costume",
+            "swimming trunks",
+            "swimming goggles",
+            "swimming cap"
+          ],
+          "rightColumn": [
+            "купальник",
+            "плавки",
+            "окуляри для плавання",
+            "шапочка для плавання"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте прохання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте прохання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:i14:audio",
+            "transcript": "Please don't take my towel."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't take my towel.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "take",
+            "my",
+            "towel"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:i15:audio",
+            "transcript": "I am looking for my bag right now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am looking for my bag right now.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "looking",
+            "for",
+            "my",
+            "bag",
+            "right",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що окуляри для плавання були не на столі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що окуляри для плавання були не на столі",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:i16:audio",
+            "transcript": "The swimming goggles were not on the table."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The swimming goggles were not on the table.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-42:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте, чи були плавки мокрі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-42:i17:audio"
+        ],
+        "accessibilityLabel": "Запитайте, чи були плавки мокрі",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-42:i17:audio",
+            "transcript": "Were the swimming trunks wet?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Were the swimming trunks wet?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-11:session-42:word:swimming-costume",
+      "correctText": "swimming costume",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-42:i01",
+      "correctText": "Was the swimming costume dry?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-42:i02",
+      "correctText": "The swimming costume was on the chair.",
+      "correctResponseId": "en:lesson-11:session-42:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-42:i03",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-42:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-42:word:swimming-trunks",
+      "correctText": "swimming trunks",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-42:i04",
+      "correctText": "The swimming trunks were not dry.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-42:i05",
+      "correctText": "The swimming trunks were in the bathroom.",
+      "correctResponseId": "en:lesson-11:session-42:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-42:i06",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-11:session-42:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-42:word:swimming-goggles",
+      "correctText": "swimming goggles",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-42:i07",
+      "correctText": "Were the swimming goggles in the bag?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-42:i08",
+      "correctText": "The swimming goggles were under the towel.",
+      "correctResponseId": "en:lesson-11:session-42:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-42:i09",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-11:session-42:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-42:word:swimming-cap",
+      "correctText": "swimming cap",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-42:i10",
+      "correctText": "There was a swimming cap on the chair.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-42:i11",
+      "correctText": "The swimming cap was blue.",
+      "correctResponseId": "en:lesson-11:session-42:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-42:i12",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-11:session-42:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-42:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-42:i14",
+      "correctText": "Please don't take my towel.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-42:i15",
+      "correctText": "I am looking for my bag right now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-42:i16",
+      "correctText": "The swimming goggles were not on the table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-42:i17",
+      "correctText": "Were the swimming trunks wet?",
+      "correctResponseId": null
+    }
+  ]
+}

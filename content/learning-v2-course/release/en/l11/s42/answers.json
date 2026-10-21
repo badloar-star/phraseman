@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-42:word:swimming-costume",
+    "correctText": "swimming costume",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-42:i01",
+    "correctText": "Was the swimming costume dry?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-42:i02",
+    "correctText": "The swimming costume was on the chair.",
+    "correctResponseId": "en:lesson-11:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-42:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-42:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-42:word:swimming-trunks",
+    "correctText": "swimming trunks",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-42:i04",
+    "correctText": "The swimming trunks were not dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-42:i05",
+    "correctText": "The swimming trunks were in the bathroom.",
+    "correctResponseId": "en:lesson-11:session-42:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-42:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-42:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-42:word:swimming-goggles",
+    "correctText": "swimming goggles",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-42:i07",
+    "correctText": "Were the swimming goggles in the bag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-42:i08",
+    "correctText": "The swimming goggles were under the towel.",
+    "correctResponseId": "en:lesson-11:session-42:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-42:i09",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-11:session-42:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-42:word:swimming-cap",
+    "correctText": "swimming cap",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-42:i10",
+    "correctText": "There was a swimming cap on the chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-42:i11",
+    "correctText": "The swimming cap was blue.",
+    "correctResponseId": "en:lesson-11:session-42:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-42:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-42:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-42:i13",
+    "correctText": "en:lesson-11:session-42:i13:p1=swimming costume\nen:lesson-11:session-42:i13:p2=swimming trunks\nen:lesson-11:session-42:i13:p3=swimming goggles\nen:lesson-11:session-42:i13:p4=swimming cap",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-42:i14",
+    "correctText": "Please don't take my towel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-42:i15",
+    "correctText": "I am looking for my bag right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-42:i16",
+    "correctText": "The swimming goggles were not on the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-42:i17",
+    "correctText": "Were the swimming trunks wet?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; there was/there were; yesterday / now",
+    "uk": "was/were; there was/there were; yesterday / now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Два бутерброда",
+        "uk": "Два бутерброди"
+      },
+      "bodyByLocale": {
+        "ru": "Cheese sandwich — «бутерброд с сыром», ham sandwich — «бутерброд с ветчиной». Вчера бутерброд с сыром был свежим: The cheese sandwich was fresh. Их было два: There were two cheese sandwiches on the plate. После sandwich во множественном числе добавляем -es: sandwiches. Выберите сообщение о двух бутербродах с сыром.",
+        "uk": "Cheese sandwich — «бутерброд із сиром», ham sandwich — «бутерброд із шинкою». Учора бутерброд із сиром був свіжий: The cheese sandwich was fresh. Їх було два: There were two cheese sandwiches on the plate. Після sandwich у множині додаємо -es: sandwiches. Виберіть повідомлення про два бутерброди із сиром."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-41:intro1:r1",
+              "text": "There were two cheese sandwiches on the plate."
+            },
+            {
+              "responseId": "en:lesson-11:session-41:intro1:r2",
+              "text": "There was two cheese sandwiches on the plate."
+            },
+            {
+              "responseId": "en:lesson-11:session-41:intro1:r3",
+              "text": "There were two ham sandwiches on the plate."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-41:intro1:r1",
+              "text": "There were two cheese sandwiches on the plate."
+            },
+            {
+              "responseId": "en:lesson-11:session-41:intro1:r2",
+              "text": "There was two cheese sandwiches on the plate."
+            },
+            {
+              "responseId": "en:lesson-11:session-41:intro1:r3",
+              "text": "There were two ham sandwiches on the plate."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Горячий шоколад",
+        "uk": "Гарячий шоколад"
+      },
+      "bodyByLocale": {
+        "ru": "Hot chocolate — название напитка: «горячий шоколад». Напиток может остыть, но его название не меняется. Вчера он был слишком сладким: The hot chocolate was too sweet yesterday. Сегодня вкус другой. Выберите сообщение о вчерашнем напитке.",
+        "uk": "Hot chocolate — назва напою: «гарячий шоколад». Напій може охолонути, але його назва не змінюється. Учора він був надто солодкий: The hot chocolate was too sweet yesterday. Сьогодні смак інший. Виберіть повідомлення про вчорашній напій."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-41:intro2:r1",
+              "text": "The hot chocolate was too sweet yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-41:intro2:r2",
+              "text": "The hot chocolate is too sweet yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-41:intro2:r3",
+              "text": "The hot chocolate were too sweet yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-41:intro2:r1",
+              "text": "The hot chocolate was too sweet yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-41:intro2:r2",
+              "text": "The hot chocolate is too sweet yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-41:intro2:r3",
+              "text": "The hot chocolate were too sweet yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Фруктовый сок",
+        "uk": "Фруктовий сік"
+      },
+      "bodyByLocale": {
+        "ru": "Fruit juice — «фруктовый сок», общее название соков из фруктов. Вчера сок был холодным: The fruit juice was cold. Чтобы спросить об этом: Was the fruit juice cold? Короткий ответ: Yes, it was. Выберите вопрос о температуре сока.",
+        "uk": "Fruit juice — «фруктовий сік», загальна назва соків із фруктів. Учора сік був холодний: The fruit juice was cold. Щоб запитати про це: Was the fruit juice cold? Коротка відповідь: Yes, it was. Виберіть запитання про температуру соку."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-41:intro3:r1",
+              "text": "Was the fruit juice cold?"
+            },
+            {
+              "responseId": "en:lesson-11:session-41:intro3:r2",
+              "text": "Were the fruit juice cold?"
+            },
+            {
+              "responseId": "en:lesson-11:session-41:intro3:r3",
+              "text": "Was the fruit juice sweet?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-41:intro3:r1",
+              "text": "Was the fruit juice cold?"
+            },
+            {
+              "responseId": "en:lesson-11:session-41:intro3:r2",
+              "text": "Were the fruit juice cold?"
+            },
+            {
+              "responseId": "en:lesson-11:session-41:intro3:r3",
+              "text": "Was the fruit juice sweet?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "37cfa0acaeb00d61265a5b59c4e0160e039de1edaf157ee13256e6dd83ce115b"
+}

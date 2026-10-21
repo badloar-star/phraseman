@@ -4207,4 +4207,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"was/were; questions and negatives; yesterday / now","uk":"was/were; questions and negatives; yesterday / now"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 11, sessionOrdinal: 41,
+    sourceFingerprint: "a1dd937a43221254c2583d0af3507f830d60c1d6d0c6ecd4427d2ba0751f1e4a",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"was/were; there was/there were; yesterday / now","uk":"was/were; there was/there were; yesterday / now"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 11, sessionOrdinal: 42,
+    sourceFingerprint: "091cec801a8daaa4fd473295c0feb5410022052c95645f086f8b56d01f15a124",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"was/were; singular / plural; yesterday / now","uk":"was/were; singular / plural; yesterday / now"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 11, sessionOrdinal: 43,
+    sourceFingerprint: "d72970139d51c7b535ee7c5606e969d5b5b600f3cc4ffd9652f527d44ab1066a",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"was/were; descriptions; yesterday / now","uk":"was/were; descriptions; yesterday / now"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 11, sessionOrdinal: 44,
+    sourceFingerprint: "ab380ab98d4a833a1b9d1acd79ab92b406f13a28f0772ed661935d8fddc3955e",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"was/were; there was/there were; yesterday / now","uk":"was/were; there was/there were; yesterday / now"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 11","uk":"Англійська · Урок 11"}),
+  }),
 ]);

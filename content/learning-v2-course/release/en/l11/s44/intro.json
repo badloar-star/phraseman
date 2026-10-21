@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; there was/there were; yesterday / now",
+    "uk": "was/were; there was/there were; yesterday / now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Хлеб",
+        "uk": "Хліб"
+      },
+      "bodyByLocale": {
+        "ru": "Loaf of bread — «буханка хлеба». Одна: a loaf of bread. Вчера на столе была буханка: There was a loaf of bread on the table. Запомните название целиком: bread здесь не меняется. Выберите сообщение об одной буханке.",
+        "uk": "Loaf of bread — «буханець хліба». Один: a loaf of bread. Учора на столі був буханець: There was a loaf of bread on the table. Запам’ятайте назву цілком: bread тут не змінюється. Виберіть повідомлення про один буханець."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-44:intro1:r1",
+              "text": "There was a loaf of bread on the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-44:intro1:r2",
+              "text": "There were a loaf of bread on the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-44:intro1:r3",
+              "text": "There is a loaf of bread on the table."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-44:intro1:r1",
+              "text": "There was a loaf of bread on the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-44:intro1:r2",
+              "text": "There were a loaf of bread on the table."
+            },
+            {
+              "responseId": "en:lesson-11:session-44:intro1:r3",
+              "text": "There is a loaf of bread on the table."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Молоко и тунец",
+        "uk": "Молоко й тунець"
+      },
+      "bodyByLocale": {
+        "ru": "Carton of milk — «пакет молока», здесь картонная упаковка. Tin of tuna — «банка тунца», консервная банка. Вчера в сумке было два пакета молока: There were two cartons of milk in the bag. Меняем cartons, а milk оставляем без изменений. Выберите эту фразу.",
+        "uk": "Carton of milk — «пакет молока», тут картонна упаковка. Tin of tuna — «банка тунця», консервна банка. Учора в сумці було два пакети молока: There were two cartons of milk in the bag. Змінюємо cartons, а milk залишаємо без змін. Виберіть цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-44:intro2:r1",
+              "text": "There were two cartons of milk in the bag."
+            },
+            {
+              "responseId": "en:lesson-11:session-44:intro2:r2",
+              "text": "There was two cartons of milk in the bag."
+            },
+            {
+              "responseId": "en:lesson-11:session-44:intro2:r3",
+              "text": "There were two tins of tuna in the bag."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-44:intro2:r1",
+              "text": "There were two cartons of milk in the bag."
+            },
+            {
+              "responseId": "en:lesson-11:session-44:intro2:r2",
+              "text": "There was two cartons of milk in the bag."
+            },
+            {
+              "responseId": "en:lesson-11:session-44:intro2:r3",
+              "text": "There were two tins of tuna in the bag."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вода",
+        "uk": "Вода"
+      },
+      "bodyByLocale": {
+        "ru": "Bottle of water — «бутылка воды». Вчера бутылка была в холодильнике: The bottle of water was in the fridge. Одна бутылка — was. Вопрос: Was the bottle of water in the fridge? Выберите этот вопрос.",
+        "uk": "Bottle of water — «пляшка води». Учора пляшка була в холодильнику: The bottle of water was in the fridge. Одна пляшка — was. Запитання: Was the bottle of water in the fridge? Виберіть це запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-44:intro3:r1",
+              "text": "Was the bottle of water in the fridge?"
+            },
+            {
+              "responseId": "en:lesson-11:session-44:intro3:r2",
+              "text": "Were the bottle of water in the fridge?"
+            },
+            {
+              "responseId": "en:lesson-11:session-44:intro3:r3",
+              "text": "Was the bottle of water in the bag?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-44:intro3:r1",
+              "text": "Was the bottle of water in the fridge?"
+            },
+            {
+              "responseId": "en:lesson-11:session-44:intro3:r2",
+              "text": "Were the bottle of water in the fridge?"
+            },
+            {
+              "responseId": "en:lesson-11:session-44:intro3:r3",
+              "text": "Was the bottle of water in the bag?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "feb8cbd6b48d1463eb4626f9b4cfdb8011e29ac470526577b6f51c4a8129a797"
+}

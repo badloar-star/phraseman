@@ -1,0 +1,2335 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-11:session-41",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-11:session-41:word:cheese-sandwich",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cheese sandwich",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:word:cheese-sandwich:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cheese sandwich",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:word:cheese-sandwich:audio",
+            "transcript": "cheese sandwich"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-41:word:cheese-sandwich:r1",
+              "targetText": "cheese sandwich",
+              "meaningByLocale": {
+                "ru": "бутерброд с сыром.",
+                "uk": "бутерброд із сиром."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cheese sandwich",
+            "definitionByLocale": {
+              "ru": "бутерброд с сыром.",
+              "uk": "бутерброд із сиром."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Спросите, был ли бутерброд с сыром свежим",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Спросите, был ли бутерброд с сыром свежим",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the cheese sandwich fresh?",
+          "localizedMeaning": {
+            "ru": "Спросите, был ли бутерброд с сыром свежим",
+            "uk": "Запитайте, чи був бутерброд із сиром свіжий"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "cheese",
+            "sandwich",
+            "fresh"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-41:i02:r1",
+            "text": "The cheese sandwich was on the plate."
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i02:r2",
+            "text": "The cheese sandwich was in the bag."
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i02:r3",
+            "text": "The cheese sandwich is on the plate."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:i02:audio",
+            "transcript": "The cheese sandwich was on the plate."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-41:i02:r1",
+              "targetText": "The cheese sandwich was on the plate.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i02:r2",
+              "targetText": "The cheese sandwich was in the bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i02:r3",
+              "targetText": "The cheese sandwich is on the plate.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-41:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cheese sandwich was on the plate.",
+                "uk": "У записі звучить The cheese sandwich was on the plate."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cheese sandwich was on the plate.",
+                "uk": "У записі звучить The cheese sandwich was on the plate."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На столе было два бутерброда с сыром. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-41:i03:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i03:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На столе было два бутерброда с сыром. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На столе было два бутерброда с сыром. Выберите форму",
+            "uk": "На столі було два бутерброди із сиром. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ two cheese sandwiches on the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-41:i03:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i03:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "На столе было два бутерброда с сыром. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-41:i03:r2",
+              "correct": false,
+              "testedDimension": "На столе было два бутерброда с сыром. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Два предмета: were.",
+                "uk": "Два предмети: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i03:r3",
+              "correct": false,
+              "testedDimension": "На столе было два бутерброда с сыром. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Было — прошлое: were.",
+                "uk": "Було — минуле: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:word:ham-sandwich",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ham sandwich",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:word:ham-sandwich:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ham sandwich",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:word:ham-sandwich:audio",
+            "transcript": "ham sandwich"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-41:word:ham-sandwich:r1",
+              "targetText": "ham sandwich",
+              "meaningByLocale": {
+                "ru": "бутерброд с ветчиной.",
+                "uk": "бутерброд із шинкою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ham sandwich",
+            "definitionByLocale": {
+              "ru": "бутерброд с ветчиной.",
+              "uk": "бутерброд із шинкою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: в сумке был бутерброд с ветчиной. Начните с There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: в сумке был бутерброд с ветчиной. Начните с There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was a ham sandwich in the bag.",
+          "localizedMeaning": {
+            "ru": "Сообщите: в сумке был бутерброд с ветчиной. Начните с There",
+            "uk": "Повідомте: у сумці був бутерброд із шинкою. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "a",
+            "ham",
+            "sandwich",
+            "in",
+            "the",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-41:i05:r1",
+            "text": "The ham sandwich was delicious."
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i05:r2",
+            "text": "The ham sandwich is delicious."
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i05:r3",
+            "text": "Was the ham sandwich delicious?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:i05:audio",
+            "transcript": "The ham sandwich was delicious."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-41:i05:r1",
+              "targetText": "The ham sandwich was delicious.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i05:r2",
+              "targetText": "The ham sandwich is delicious.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i05:r3",
+              "targetText": "Was the ham sandwich delicious?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-41:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The ham sandwich was delicious.",
+                "uk": "У записі звучить The ham sandwich was delicious."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The ham sandwich was delicious.",
+                "uk": "У записі звучить The ham sandwich was delicious."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера бутерброд с ветчиной был на тарелке. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-41:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i06:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера бутерброд с ветчиной был на тарелке. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера бутерброд с ветчиной был на тарелке. Выберите форму",
+            "uk": "Учора бутерброд із шинкою був на тарілці. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The ham sandwich ___ on the plate yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-41:i06:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i06:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i06:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Вчера бутерброд с ветчиной был на тарелке. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-41:i06:r2",
+              "correct": false,
+              "testedDimension": "Вчера бутерброд с ветчиной был на тарелке. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was.",
+                "uk": "Учора: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i06:r3",
+              "correct": false,
+              "testedDimension": "Вчера бутерброд с ветчиной был на тарелке. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Один бутерброд: was.",
+                "uk": "Один бутерброд: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:word:hot-chocolate",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hot chocolate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:word:hot-chocolate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hot chocolate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:word:hot-chocolate:audio",
+            "transcript": "hot chocolate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-41:word:hot-chocolate:r1",
+              "targetText": "hot chocolate",
+              "meaningByLocale": {
+                "ru": "горячий шоколад — напиток.",
+                "uk": "гарячий шоколад — напій."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hot chocolate",
+            "definitionByLocale": {
+              "ru": "горячий шоколад — напиток.",
+              "uk": "гарячий шоколад — напій."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: горячий шоколад был не слишком сладким",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: горячий шоколад был не слишком сладким",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The hot chocolate was not too sweet.",
+          "localizedMeaning": {
+            "ru": "Сообщите: горячий шоколад был не слишком сладким",
+            "uk": "Повідомте: гарячий шоколад був не надто солодкий"
+          },
+          "orderedTokens": [
+            "The",
+            "hot",
+            "chocolate",
+            "was",
+            "not",
+            "too",
+            "sweet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-41:i08:r1",
+            "text": "The hot chocolate was in the kitchen."
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i08:r2",
+            "text": "The hot chocolate was on the table."
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i08:r3",
+            "text": "The hot chocolate is in the kitchen."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:i08:audio",
+            "transcript": "The hot chocolate was in the kitchen."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-41:i08:r1",
+              "targetText": "The hot chocolate was in the kitchen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i08:r2",
+              "targetText": "The hot chocolate was on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i08:r3",
+              "targetText": "The hot chocolate is in the kitchen.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-41:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The hot chocolate was in the kitchen.",
+                "uk": "У записі звучить The hot chocolate was in the kitchen."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The hot chocolate was in the kitchen.",
+                "uk": "У записі звучить The hot chocolate was in the kitchen."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сейчас горячий шоколад на столе. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-41:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сейчас горячий шоколад на столе. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сейчас горячий шоколад на столе. Выберите форму",
+            "uk": "Зараз гарячий шоколад на столі. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The hot chocolate ___ on the table now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-41:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i09:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Сейчас горячий шоколад на столе. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-41:i09:r2",
+              "correct": false,
+              "testedDimension": "Сейчас горячий шоколад на столе. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Now — сейчас: is.",
+                "uk": "Now — зараз: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i09:r3",
+              "correct": false,
+              "testedDimension": "Сейчас горячий шоколад на столе. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "О напитке здесь говорим is.",
+                "uk": "Про напій тут кажемо is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:word:fruit-juice",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fruit juice",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:word:fruit-juice:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fruit juice",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:word:fruit-juice:audio",
+            "transcript": "fruit juice"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-41:word:fruit-juice:r1",
+              "targetText": "fruit juice",
+              "meaningByLocale": {
+                "ru": "фруктовый сок.",
+                "uk": "фруктовий сік."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fruit juice",
+            "definitionByLocale": {
+              "ru": "фруктовый сок.",
+              "uk": "фруктовий сік."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите: фруктовый сок был в холодильнике",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите: фруктовый сок был в холодильнике",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The fruit juice was in the fridge.",
+          "localizedMeaning": {
+            "ru": "Сообщите: фруктовый сок был в холодильнике",
+            "uk": "Повідомте: фруктовий сік був у холодильнику"
+          },
+          "orderedTokens": [
+            "The",
+            "fruit",
+            "juice",
+            "was",
+            "in",
+            "the",
+            "fridge"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-41:i11:r1",
+            "text": "The fruit juice was sweet."
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i11:r2",
+            "text": "The fruit juice is sweet."
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i11:r3",
+            "text": "The fruit juice was cold."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:i11:audio",
+            "transcript": "The fruit juice was sweet."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-41:i11:r1",
+              "targetText": "The fruit juice was sweet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i11:r2",
+              "targetText": "The fruit juice is sweet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i11:r3",
+              "targetText": "The fruit juice was cold.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-41:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The fruit juice was sweet.",
+                "uk": "У записі звучить The fruit juice was sweet."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The fruit juice was sweet.",
+                "uk": "У записі звучить The fruit juice was sweet."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вчера фруктовый сок был холодным. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-41:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i12:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вчера фруктовый сок был холодным. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера фруктовый сок был холодным. Выберите форму",
+            "uk": "Учора фруктовий сік був холодний. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The fruit juice ___ cold yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-41:i12:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i12:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i12:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Вчера фруктовый сок был холодным. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-41:i12:r2",
+              "correct": false,
+              "testedDimension": "Вчера фруктовый сок был холодным. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was.",
+                "uk": "Учора: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i12:r3",
+              "correct": false,
+              "testedDimension": "Вчера фруктовый сок был холодным. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "С juice здесь нужна was.",
+                "uk": "З juice тут потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-41:i13:p1",
+              "target": "cheese sandwich",
+              "meaningByLocale": {
+                "ru": "бутерброд с сыром",
+                "uk": "бутерброд із сиром"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-41:i13:p2",
+              "target": "ham sandwich",
+              "meaningByLocale": {
+                "ru": "бутерброд с ветчиной",
+                "uk": "бутерброд із шинкою"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-41:i13:p3",
+              "target": "hot chocolate",
+              "meaningByLocale": {
+                "ru": "горячий шоколад",
+                "uk": "гарячий шоколад"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-41:i13:p4",
+              "target": "fruit juice",
+              "meaningByLocale": {
+                "ru": "фруктовый сок",
+                "uk": "фруктовий сік"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cheese sandwich",
+            "ham sandwich",
+            "hot chocolate",
+            "fruit juice"
+          ],
+          "rightColumn": [
+            "бутерброд с сыром",
+            "бутерброд с ветчиной",
+            "горячий шоколад",
+            "фруктовый сок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную просьбу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную просьбу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:i14:audio",
+            "transcript": "Please don't take my cup."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't take my cup.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "take",
+            "my",
+            "cup"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:i15:audio",
+            "transcript": "I am eating lunch right now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am eating lunch right now.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "eating",
+            "lunch",
+            "right",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что бутерброд с ветчиной был не в сумке",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что бутерброд с ветчиной был не в сумке",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:i16:audio",
+            "transcript": "The ham sandwich was not in the bag."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The ham sandwich was not in the bag.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите, был ли горячий шоколад вкусным",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:i17:audio"
+        ],
+        "accessibilityLabel": "Спросите, был ли горячий шоколад вкусным",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:i17:audio",
+            "transcript": "Was the hot chocolate delicious?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Was the hot chocolate delicious?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-11:session-41:word:cheese-sandwich",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cheese sandwich",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:word:cheese-sandwich:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cheese sandwich",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:word:cheese-sandwich:audio",
+            "transcript": "cheese sandwich"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-41:word:cheese-sandwich:r1",
+              "targetText": "cheese sandwich",
+              "meaningByLocale": {
+                "ru": "бутерброд с сыром.",
+                "uk": "бутерброд із сиром."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cheese sandwich",
+            "definitionByLocale": {
+              "ru": "бутерброд с сыром.",
+              "uk": "бутерброд із сиром."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запитайте, чи був бутерброд із сиром свіжий",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитайте, чи був бутерброд із сиром свіжий",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Was the cheese sandwich fresh?",
+          "localizedMeaning": {
+            "ru": "Спросите, был ли бутерброд с сыром свежим",
+            "uk": "Запитайте, чи був бутерброд із сиром свіжий"
+          },
+          "orderedTokens": [
+            "Was",
+            "the",
+            "cheese",
+            "sandwich",
+            "fresh"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-41:i02:r1",
+            "text": "The cheese sandwich was on the plate."
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i02:r2",
+            "text": "The cheese sandwich was in the bag."
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i02:r3",
+            "text": "The cheese sandwich is on the plate."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:i02:audio",
+            "transcript": "The cheese sandwich was on the plate."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-41:i02:r1",
+              "targetText": "The cheese sandwich was on the plate.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i02:r2",
+              "targetText": "The cheese sandwich was in the bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i02:r3",
+              "targetText": "The cheese sandwich is on the plate.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-41:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cheese sandwich was on the plate.",
+                "uk": "У записі звучить The cheese sandwich was on the plate."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The cheese sandwich was on the plate.",
+                "uk": "У записі звучить The cheese sandwich was on the plate."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На столі було два бутерброди із сиром. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-41:i03:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i03:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На столі було два бутерброди із сиром. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На столе было два бутерброда с сыром. Выберите форму",
+            "uk": "На столі було два бутерброди із сиром. Виберіть форму"
+          },
+          "gappedTargetPhrase": "There ___ two cheese sandwiches on the table.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-41:i03:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i03:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "На столі було два бутерброди із сиром. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-41:i03:r2",
+              "correct": false,
+              "testedDimension": "На столі було два бутерброди із сиром. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Два предмета: were.",
+                "uk": "Два предмети: were."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i03:r3",
+              "correct": false,
+              "testedDimension": "На столі було два бутерброди із сиром. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Было — прошлое: were.",
+                "uk": "Було — минуле: were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:word:ham-sandwich",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ham sandwich",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:word:ham-sandwich:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ham sandwich",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:word:ham-sandwich:audio",
+            "transcript": "ham sandwich"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-41:word:ham-sandwich:r1",
+              "targetText": "ham sandwich",
+              "meaningByLocale": {
+                "ru": "бутерброд с ветчиной.",
+                "uk": "бутерброд із шинкою."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ham sandwich",
+            "definitionByLocale": {
+              "ru": "бутерброд с ветчиной.",
+              "uk": "бутерброд із шинкою."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: у сумці був бутерброд із шинкою. Почніть із There",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: у сумці був бутерброд із шинкою. Почніть із There",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "There was a ham sandwich in the bag.",
+          "localizedMeaning": {
+            "ru": "Сообщите: в сумке был бутерброд с ветчиной. Начните с There",
+            "uk": "Повідомте: у сумці був бутерброд із шинкою. Почніть із There"
+          },
+          "orderedTokens": [
+            "There",
+            "was",
+            "a",
+            "ham",
+            "sandwich",
+            "in",
+            "the",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-41:i05:r1",
+            "text": "The ham sandwich was delicious."
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i05:r2",
+            "text": "The ham sandwich is delicious."
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i05:r3",
+            "text": "Was the ham sandwich delicious?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:i05:audio",
+            "transcript": "The ham sandwich was delicious."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-41:i05:r1",
+              "targetText": "The ham sandwich was delicious.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i05:r2",
+              "targetText": "The ham sandwich is delicious.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i05:r3",
+              "targetText": "Was the ham sandwich delicious?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-41:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The ham sandwich was delicious.",
+                "uk": "У записі звучить The ham sandwich was delicious."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The ham sandwich was delicious.",
+                "uk": "У записі звучить The ham sandwich was delicious."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора бутерброд із шинкою був на тарілці. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-41:i06:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i06:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора бутерброд із шинкою був на тарілці. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера бутерброд с ветчиной был на тарелке. Выберите форму",
+            "uk": "Учора бутерброд із шинкою був на тарілці. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The ham sandwich ___ on the plate yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-41:i06:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i06:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i06:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Учора бутерброд із шинкою був на тарілці. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-41:i06:r2",
+              "correct": false,
+              "testedDimension": "Учора бутерброд із шинкою був на тарілці. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was.",
+                "uk": "Учора: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i06:r3",
+              "correct": false,
+              "testedDimension": "Учора бутерброд із шинкою був на тарілці. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Один бутерброд: was.",
+                "uk": "Один бутерброд: was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:word:hot-chocolate",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hot chocolate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:word:hot-chocolate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hot chocolate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:word:hot-chocolate:audio",
+            "transcript": "hot chocolate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-41:word:hot-chocolate:r1",
+              "targetText": "hot chocolate",
+              "meaningByLocale": {
+                "ru": "горячий шоколад — напиток.",
+                "uk": "гарячий шоколад — напій."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hot chocolate",
+            "definitionByLocale": {
+              "ru": "горячий шоколад — напиток.",
+              "uk": "гарячий шоколад — напій."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: гарячий шоколад був не надто солодкий",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: гарячий шоколад був не надто солодкий",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The hot chocolate was not too sweet.",
+          "localizedMeaning": {
+            "ru": "Сообщите: горячий шоколад был не слишком сладким",
+            "uk": "Повідомте: гарячий шоколад був не надто солодкий"
+          },
+          "orderedTokens": [
+            "The",
+            "hot",
+            "chocolate",
+            "was",
+            "not",
+            "too",
+            "sweet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-41:i08:r1",
+            "text": "The hot chocolate was in the kitchen."
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i08:r2",
+            "text": "The hot chocolate was on the table."
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i08:r3",
+            "text": "The hot chocolate is in the kitchen."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:i08:audio",
+            "transcript": "The hot chocolate was in the kitchen."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-41:i08:r1",
+              "targetText": "The hot chocolate was in the kitchen.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i08:r2",
+              "targetText": "The hot chocolate was on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i08:r3",
+              "targetText": "The hot chocolate is in the kitchen.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-41:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The hot chocolate was in the kitchen.",
+                "uk": "У записі звучить The hot chocolate was in the kitchen."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The hot chocolate was in the kitchen.",
+                "uk": "У записі звучить The hot chocolate was in the kitchen."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Зараз гарячий шоколад на столі. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-41:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Зараз гарячий шоколад на столі. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сейчас горячий шоколад на столе. Выберите форму",
+            "uk": "Зараз гарячий шоколад на столі. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The hot chocolate ___ on the table now.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-41:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i09:r2",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Зараз гарячий шоколад на столі. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-41:i09:r2",
+              "correct": false,
+              "testedDimension": "Зараз гарячий шоколад на столі. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Now — сейчас: is.",
+                "uk": "Now — зараз: is."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i09:r3",
+              "correct": false,
+              "testedDimension": "Зараз гарячий шоколад на столі. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "О напитке здесь говорим is.",
+                "uk": "Про напій тут кажемо is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:word:fruit-juice",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fruit juice",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:word:fruit-juice:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fruit juice",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:word:fruit-juice:audio",
+            "transcript": "fruit juice"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-41:word:fruit-juice:r1",
+              "targetText": "fruit juice",
+              "meaningByLocale": {
+                "ru": "фруктовый сок.",
+                "uk": "фруктовий сік."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fruit juice",
+            "definitionByLocale": {
+              "ru": "фруктовый сок.",
+              "uk": "фруктовий сік."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте: фруктовий сік був у холодильнику",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте: фруктовий сік був у холодильнику",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The fruit juice was in the fridge.",
+          "localizedMeaning": {
+            "ru": "Сообщите: фруктовый сок был в холодильнике",
+            "uk": "Повідомте: фруктовий сік був у холодильнику"
+          },
+          "orderedTokens": [
+            "The",
+            "fruit",
+            "juice",
+            "was",
+            "in",
+            "the",
+            "fridge"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-41:i11:r1",
+            "text": "The fruit juice was sweet."
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i11:r2",
+            "text": "The fruit juice is sweet."
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i11:r3",
+            "text": "The fruit juice was cold."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:i11:audio",
+            "transcript": "The fruit juice was sweet."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-11:session-41:i11:r1",
+              "targetText": "The fruit juice was sweet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i11:r2",
+              "targetText": "The fruit juice is sweet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i11:r3",
+              "targetText": "The fruit juice was cold.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-41:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The fruit juice was sweet.",
+                "uk": "У записі звучить The fruit juice was sweet."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The fruit juice was sweet.",
+                "uk": "У записі звучить The fruit juice was sweet."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Учора фруктовий сік був холодний. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-11:session-41:i12:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i12:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-41:i12:r3",
+            "text": "were"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Учора фруктовий сік був холодний. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вчера фруктовый сок был холодным. Выберите форму",
+            "uk": "Учора фруктовий сік був холодний. Виберіть форму"
+          },
+          "gappedTargetPhrase": "The fruit juice ___ cold yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-11:session-41:i12:r1",
+              "text": "was"
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i12:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i12:r3",
+              "text": "were"
+            }
+          ],
+          "testedDimension": "Учора фруктовий сік був холодний. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-11:session-41:i12:r2",
+              "correct": false,
+              "testedDimension": "Учора фруктовий сік був холодний. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Вчера: was.",
+                "uk": "Учора: was."
+              }
+            },
+            {
+              "responseId": "en:lesson-11:session-41:i12:r3",
+              "correct": false,
+              "testedDimension": "Учора фруктовий сік був холодний. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "С juice здесь нужна was.",
+                "uk": "З juice тут потрібна was."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-11:session-41:i13:p1",
+              "target": "cheese sandwich",
+              "meaningByLocale": {
+                "ru": "бутерброд с сыром",
+                "uk": "бутерброд із сиром"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-41:i13:p2",
+              "target": "ham sandwich",
+              "meaningByLocale": {
+                "ru": "бутерброд с ветчиной",
+                "uk": "бутерброд із шинкою"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-41:i13:p3",
+              "target": "hot chocolate",
+              "meaningByLocale": {
+                "ru": "горячий шоколад",
+                "uk": "гарячий шоколад"
+              }
+            },
+            {
+              "pairId": "en:lesson-11:session-41:i13:p4",
+              "target": "fruit juice",
+              "meaningByLocale": {
+                "ru": "фруктовый сок",
+                "uk": "фруктовий сік"
+              }
+            }
+          ],
+          "leftColumn": [
+            "cheese sandwich",
+            "ham sandwich",
+            "hot chocolate",
+            "fruit juice"
+          ],
+          "rightColumn": [
+            "бутерброд із сиром",
+            "бутерброд із шинкою",
+            "гарячий шоколад",
+            "фруктовий сік"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте прохання",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте прохання",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:i14:audio",
+            "transcript": "Please don't take my cup."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please don't take my cup.",
+          "orderedTokens": [
+            "Please",
+            "don't",
+            "take",
+            "my",
+            "cup"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:i15:audio",
+            "transcript": "I am eating lunch right now."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am eating lunch right now.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "eating",
+            "lunch",
+            "right",
+            "now"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що бутерброд із шинкою був не в сумці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що бутерброд із шинкою був не в сумці",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:i16:audio",
+            "transcript": "The ham sandwich was not in the bag."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The ham sandwich was not in the bag.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-11:session-41:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте, чи був гарячий шоколад смачний",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-11:session-41:i17:audio"
+        ],
+        "accessibilityLabel": "Запитайте, чи був гарячий шоколад смачний",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-11:session-41:i17:audio",
+            "transcript": "Was the hot chocolate delicious?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Was the hot chocolate delicious?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-11:session-41:word:cheese-sandwich",
+      "correctText": "cheese sandwich",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-41:i01",
+      "correctText": "Was the cheese sandwich fresh?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-41:i02",
+      "correctText": "The cheese sandwich was on the plate.",
+      "correctResponseId": "en:lesson-11:session-41:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-41:i03",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-11:session-41:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-41:word:ham-sandwich",
+      "correctText": "ham sandwich",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-41:i04",
+      "correctText": "There was a ham sandwich in the bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-41:i05",
+      "correctText": "The ham sandwich was delicious.",
+      "correctResponseId": "en:lesson-11:session-41:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-41:i06",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-41:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-41:word:hot-chocolate",
+      "correctText": "hot chocolate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-41:i07",
+      "correctText": "The hot chocolate was not too sweet.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-41:i08",
+      "correctText": "The hot chocolate was in the kitchen.",
+      "correctResponseId": "en:lesson-11:session-41:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-41:i09",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-11:session-41:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-41:word:fruit-juice",
+      "correctText": "fruit juice",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-41:i10",
+      "correctText": "The fruit juice was in the fridge.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-41:i11",
+      "correctText": "The fruit juice was sweet.",
+      "correctResponseId": "en:lesson-11:session-41:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-41:i12",
+      "correctText": "was",
+      "correctResponseId": "en:lesson-11:session-41:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-11:session-41:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-41:i14",
+      "correctText": "Please don't take my cup.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-41:i15",
+      "correctText": "I am eating lunch right now.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-41:i16",
+      "correctText": "The ham sandwich was not in the bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-41:i17",
+      "correctText": "Was the hot chocolate delicious?",
+      "correctResponseId": null
+    }
+  ]
+}

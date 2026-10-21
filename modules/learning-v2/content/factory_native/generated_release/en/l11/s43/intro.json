@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-11:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "was/were; descriptions; yesterday / now",
+    "uk": "was/were; descriptions; yesterday / now"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-11:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Короткие или длинные рукава",
+        "uk": "Короткі чи довгі рукави"
+      },
+      "bodyByLocale": {
+        "ru": "Short-sleeved — «с короткими рукавами», long-sleeved — «с длинными рукавами». Это описания одежды: a short-sleeved shirt, a long-sleeved shirt. Вчера на стуле лежала рубашка с короткими рукавами. Выберите её описание: The shirt was short-sleeved.",
+        "uk": "Short-sleeved — «з короткими рукавами», long-sleeved — «з довгими рукавами». Це описи одягу: a short-sleeved shirt, a long-sleeved shirt. Учора на стільці лежала сорочка з короткими рукавами. Виберіть її опис: The shirt was short-sleeved."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-43:intro1:r1",
+              "text": "The shirt was short-sleeved."
+            },
+            {
+              "responseId": "en:lesson-11:session-43:intro1:r2",
+              "text": "The shirt was long-sleeved."
+            },
+            {
+              "responseId": "en:lesson-11:session-43:intro1:r3",
+              "text": "The shirt were short-sleeved."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-43:intro1:r1",
+              "text": "The shirt was short-sleeved."
+            },
+            {
+              "responseId": "en:lesson-11:session-43:intro1:r2",
+              "text": "The shirt was long-sleeved."
+            },
+            {
+              "responseId": "en:lesson-11:session-43:intro1:r3",
+              "text": "The shirt were short-sleeved."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-11:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Школьная форма",
+        "uk": "Шкільна форма"
+      },
+      "bodyByLocale": {
+        "ru": "School uniform — «школьная форма». Вчера она была чистой: The school uniform was clean yesterday. Хотя форма может состоять из нескольких вещей, uniform здесь в единственном числе: was. Выберите сообщение о вчерашнем состоянии.",
+        "uk": "School uniform — «шкільна форма». Учора вона була чиста: The school uniform was clean yesterday. Хоча форма може складатися з кількох речей, uniform тут в однині: was. Виберіть повідомлення про вчорашній стан."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-43:intro2:r1",
+              "text": "The school uniform was clean yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-43:intro2:r2",
+              "text": "The school uniform is clean yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-43:intro2:r3",
+              "text": "The school uniform were clean yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-43:intro2:r1",
+              "text": "The school uniform was clean yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-43:intro2:r2",
+              "text": "The school uniform is clean yesterday."
+            },
+            {
+              "responseId": "en:lesson-11:session-43:intro2:r3",
+              "text": "The school uniform were clean yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-11:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Обувь для прогулок",
+        "uk": "Взуття для прогулянок"
+      },
+      "bodyByLocale": {
+        "ru": "Walking shoes — «обувь для прогулок», удобные закрытые туфли или ботинки для ходьбы. Shoes — множественное число. Вчера они были мокрыми: The walking shoes were wet. Спросите об этом: Were the walking shoes wet? Выберите вопрос о вчерашнем состоянии обуви.",
+        "uk": "Walking shoes — «взуття для прогулянок», зручні закриті туфлі чи черевики для ходьби. Shoes — множина. Учора вони були мокрі: The walking shoes were wet. Запитайте про це: Were the walking shoes wet? Виберіть запитання про вчорашній стан взуття."
+      },
+      "question": {
+        "interactionId": "en:lesson-11:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-11:session-43:intro3:r1",
+              "text": "Were the walking shoes wet?"
+            },
+            {
+              "responseId": "en:lesson-11:session-43:intro3:r2",
+              "text": "Was the walking shoes wet?"
+            },
+            {
+              "responseId": "en:lesson-11:session-43:intro3:r3",
+              "text": "Are the walking shoes wet?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-11:session-43:intro3:r1",
+              "text": "Were the walking shoes wet?"
+            },
+            {
+              "responseId": "en:lesson-11:session-43:intro3:r2",
+              "text": "Was the walking shoes wet?"
+            },
+            {
+              "responseId": "en:lesson-11:session-43:intro3:r3",
+              "text": "Are the walking shoes wet?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bffad8226343015feb1b8e308985e963affb76f2bb61d5a63ee30c56f7a87a4d"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-43:word:short-sleeved",
+    "correctText": "short-sleeved",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-43:i01",
+    "correctText": "Was the shirt short-sleeved?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-43:i02",
+    "correctText": "The short-sleeved shirt was blue.",
+    "correctResponseId": "en:lesson-11:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-43:i03",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-43:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-43:word:long-sleeved",
+    "correctText": "long-sleeved",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-43:i04",
+    "correctText": "The shirt was long-sleeved.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-43:i05",
+    "correctText": "The long-sleeved shirt was in the cupboard.",
+    "correctResponseId": "en:lesson-11:session-43:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-43:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-43:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-43:word:school-uniform",
+    "correctText": "school uniform",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-43:i07",
+    "correctText": "Was the school uniform clean?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-43:i08",
+    "correctText": "The school uniform was on the bed.",
+    "correctResponseId": "en:lesson-11:session-43:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-43:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-43:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-43:word:walking-shoes",
+    "correctText": "walking shoes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-43:i10",
+    "correctText": "The walking shoes were not dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-43:i11",
+    "correctText": "The walking shoes were near the door.",
+    "correctResponseId": "en:lesson-11:session-43:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-43:i12",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-43:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-43:i13",
+    "correctText": "en:lesson-11:session-43:i13:p1=short-sleeved\nen:lesson-11:session-43:i13:p2=long-sleeved\nen:lesson-11:session-43:i13:p3=school uniform\nen:lesson-11:session-43:i13:p4=walking shoes",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-43:i14",
+    "correctText": "Please don't take my shirt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-43:i15",
+    "correctText": "I am looking for my shirt right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-43:i16",
+    "correctText": "The school uniform was not dirty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-43:i17",
+    "correctText": "Were the walking shoes comfortable?",
+    "correctResponseId": null
+  }
+]

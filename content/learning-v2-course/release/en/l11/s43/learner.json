@@ -1,0 +1,1117 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-11:session-43",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-11:session-43:word:short-sleeved",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — short-sleeved",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-43:word:short-sleeved:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — short-sleeved",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-43:word:short-sleeved:audio",
+          "transcript": "short-sleeved"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-43:word:short-sleeved:r1",
+            "targetText": "short-sleeved",
+            "meaningByLocale": {
+              "ru": "с короткими рукавами. Об одежде.",
+              "uk": "з короткими рукавами. Про одяг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "short-sleeved",
+          "definitionByLocale": {
+            "ru": "с короткими рукавами. Об одежде.",
+            "uk": "з короткими рукавами. Про одяг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-43:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, была ли рубашка с короткими рукавами",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, была ли рубашка с короткими рукавами",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the shirt short-sleeved?",
+        "localizedMeaning": {
+          "ru": "Спросите, была ли рубашка с короткими рукавами",
+          "uk": "Запитайте, чи була сорочка з короткими рукавами"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "shirt",
+          "short-sleeved"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-43:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-43:i02:r1",
+          "text": "The short-sleeved shirt was blue."
+        },
+        {
+          "responseId": "en:lesson-11:session-43:i02:r2",
+          "text": "The short-sleeved shirt was black."
+        },
+        {
+          "responseId": "en:lesson-11:session-43:i02:r3",
+          "text": "The short-sleeved shirt is blue."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-43:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-43:i02:audio",
+          "transcript": "The short-sleeved shirt was blue."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-43:i02:r1",
+            "targetText": "The short-sleeved shirt was blue.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i02:r2",
+            "targetText": "The short-sleeved shirt was black.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i02:r3",
+            "targetText": "The short-sleeved shirt is blue.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The short-sleeved shirt was blue.",
+              "uk": "У записі звучить The short-sleeved shirt was blue."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The short-sleeved shirt was blue.",
+              "uk": "У записі звучить The short-sleeved shirt was blue."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-43:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера рубашка с короткими рукавами была на стуле. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-43:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-43:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-43:i03:r3",
+          "text": "were"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера рубашка с короткими рукавами была на стуле. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера рубашка с короткими рукавами была на стуле. Выберите форму",
+          "uk": "Учора сорочка з короткими рукавами була на стільці. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The short-sleeved shirt ___ on the chair yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-43:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i03:r3",
+            "text": "were"
+          }
+        ],
+        "testedDimension": "Вчера рубашка с короткими рукавами была на стуле. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-43:i03:r2",
+            "correct": false,
+            "testedDimension": "Вчера рубашка с короткими рукавами была на стуле. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: was.",
+              "uk": "Учора: was."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i03:r3",
+            "correct": false,
+            "testedDimension": "Вчера рубашка с короткими рукавами была на стуле. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Одна рубашка: was.",
+              "uk": "Одна сорочка: was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-43:word:long-sleeved",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — long-sleeved",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-43:word:long-sleeved:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — long-sleeved",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-43:word:long-sleeved:audio",
+          "transcript": "long-sleeved"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-43:word:long-sleeved:r1",
+            "targetText": "long-sleeved",
+            "meaningByLocale": {
+              "ru": "с длинными рукавами. Об одежде.",
+              "uk": "з довгими рукавами. Про одяг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "long-sleeved",
+          "definitionByLocale": {
+            "ru": "с длинными рукавами. Об одежде.",
+            "uk": "з довгими рукавами. Про одяг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-43:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите: рубашка была с длинными рукавами",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите: рубашка была с длинными рукавами",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The shirt was long-sleeved.",
+        "localizedMeaning": {
+          "ru": "Сообщите: рубашка была с длинными рукавами",
+          "uk": "Повідомте: сорочка була з довгими рукавами"
+        },
+        "orderedTokens": [
+          "The",
+          "shirt",
+          "was",
+          "long-sleeved"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-43:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-43:i05:r1",
+          "text": "The long-sleeved shirt was in the cupboard."
+        },
+        {
+          "responseId": "en:lesson-11:session-43:i05:r2",
+          "text": "The long-sleeved shirt was on the bed."
+        },
+        {
+          "responseId": "en:lesson-11:session-43:i05:r3",
+          "text": "The long-sleeved shirt is in the cupboard."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-43:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-43:i05:audio",
+          "transcript": "The long-sleeved shirt was in the cupboard."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-43:i05:r1",
+            "targetText": "The long-sleeved shirt was in the cupboard.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i05:r2",
+            "targetText": "The long-sleeved shirt was on the bed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i05:r3",
+            "targetText": "The long-sleeved shirt is in the cupboard.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-43:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The long-sleeved shirt was in the cupboard.",
+              "uk": "У записі звучить The long-sleeved shirt was in the cupboard."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The long-sleeved shirt was in the cupboard.",
+              "uk": "У записі звучить The long-sleeved shirt was in the cupboard."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-43:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "В сумке было две рубашки с длинными рукавами. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-43:i06:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-43:i06:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-43:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "В сумке было две рубашки с длинными рукавами. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "В сумке было две рубашки с длинными рукавами. Выберите форму",
+          "uk": "У сумці було дві сорочки з довгими рукавами. Виберіть форму"
+        },
+        "gappedTargetPhrase": "There ___ two long-sleeved shirts in the bag.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-43:i06:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i06:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "В сумке было две рубашки с длинными рукавами. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-43:i06:r2",
+            "correct": false,
+            "testedDimension": "В сумке было две рубашки с длинными рукавами. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Две рубашки: were.",
+              "uk": "Дві сорочки: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i06:r3",
+            "correct": false,
+            "testedDimension": "В сумке было две рубашки с длинными рукавами. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Было — прошлое: were.",
+              "uk": "Було — минуле: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-43:word:school-uniform",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — school uniform",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-43:word:school-uniform:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — school uniform",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-43:word:school-uniform:audio",
+          "transcript": "school uniform"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-43:word:school-uniform:r1",
+            "targetText": "school uniform",
+            "meaningByLocale": {
+              "ru": "школьная форма.",
+              "uk": "шкільна форма."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "school uniform",
+          "definitionByLocale": {
+            "ru": "школьная форма.",
+            "uk": "шкільна форма."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-43:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, была ли школьная форма чистой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, была ли школьная форма чистой",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the school uniform clean?",
+        "localizedMeaning": {
+          "ru": "Спросите, была ли школьная форма чистой",
+          "uk": "Запитайте, чи була шкільна форма чиста"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "school",
+          "uniform",
+          "clean"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-43:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-43:i08:r1",
+          "text": "The school uniform was on the bed."
+        },
+        {
+          "responseId": "en:lesson-11:session-43:i08:r2",
+          "text": "The school uniform is on the bed."
+        },
+        {
+          "responseId": "en:lesson-11:session-43:i08:r3",
+          "text": "The school uniform was near the door."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-43:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-43:i08:audio",
+          "transcript": "The school uniform was on the bed."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-43:i08:r1",
+            "targetText": "The school uniform was on the bed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i08:r2",
+            "targetText": "The school uniform is on the bed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i08:r3",
+            "targetText": "The school uniform was near the door.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-43:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The school uniform was on the bed.",
+              "uk": "У записі звучить The school uniform was on the bed."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The school uniform was on the bed.",
+              "uk": "У записі звучить The school uniform was on the bed."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-43:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сейчас школьная форма сухая. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-43:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-11:session-43:i09:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-43:i09:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сейчас школьная форма сухая. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас школьная форма сухая. Выберите форму",
+          "uk": "Зараз шкільна форма суха. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The school uniform ___ dry now.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-43:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i09:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i09:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Сейчас школьная форма сухая. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-43:i09:r2",
+            "correct": false,
+            "testedDimension": "Сейчас школьная форма сухая. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Now — сейчас: is.",
+              "uk": "Now — зараз: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i09:r3",
+            "correct": false,
+            "testedDimension": "Сейчас школьная форма сухая. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Uniform здесь в единственном числе: is.",
+              "uk": "Uniform тут в однині: is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-43:word:walking-shoes",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — walking shoes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-43:word:walking-shoes:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — walking shoes",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-43:word:walking-shoes:audio",
+          "transcript": "walking shoes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-43:word:walking-shoes:r1",
+            "targetText": "walking shoes",
+            "meaningByLocale": {
+              "ru": "обувь для прогулок.",
+              "uk": "взуття для прогулянок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "walking shoes",
+          "definitionByLocale": {
+            "ru": "обувь для прогулок.",
+            "uk": "взуття для прогулянок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-43:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите: обувь для прогулок была не сухой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите: обувь для прогулок была не сухой",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The walking shoes were not dry.",
+        "localizedMeaning": {
+          "ru": "Сообщите: обувь для прогулок была не сухой",
+          "uk": "Повідомте: взуття для прогулянок було не сухе"
+        },
+        "orderedTokens": [
+          "The",
+          "walking",
+          "shoes",
+          "were",
+          "not",
+          "dry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-43:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-43:i11:r1",
+          "text": "The walking shoes were near the door."
+        },
+        {
+          "responseId": "en:lesson-11:session-43:i11:r2",
+          "text": "The walking shoes are near the door."
+        },
+        {
+          "responseId": "en:lesson-11:session-43:i11:r3",
+          "text": "The walking shoes were under the bed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-43:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-43:i11:audio",
+          "transcript": "The walking shoes were near the door."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-11:session-43:i11:r1",
+            "targetText": "The walking shoes were near the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i11:r2",
+            "targetText": "The walking shoes are near the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i11:r3",
+            "targetText": "The walking shoes were under the bed.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-43:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The walking shoes were near the door.",
+              "uk": "У записі звучить The walking shoes were near the door."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The walking shoes were near the door.",
+              "uk": "У записі звучить The walking shoes were near the door."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-43:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера обувь для прогулок была грязной. Выберите форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-11:session-43:i12:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-11:session-43:i12:r2",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-11:session-43:i12:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера обувь для прогулок была грязной. Выберите форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера обувь для прогулок была грязной. Выберите форму",
+          "uk": "Учора взуття для прогулянок було брудне. Виберіть форму"
+        },
+        "gappedTargetPhrase": "The walking shoes ___ dirty yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-11:session-43:i12:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i12:r2",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i12:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Вчера обувь для прогулок была грязной. Выберите форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-11:session-43:i12:r2",
+            "correct": false,
+            "testedDimension": "Вчера обувь для прогулок была грязной. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Shoes — множественное число: were.",
+              "uk": "Shoes — множина: were."
+            }
+          },
+          {
+            "responseId": "en:lesson-11:session-43:i12:r3",
+            "correct": false,
+            "testedDimension": "Вчера обувь для прогулок была грязной. Выберите форму",
+            "feedbackByLocale": {
+              "ru": "Вчера: were.",
+              "uk": "Учора: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-43:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-11:session-43:i13:p1",
+            "target": "short-sleeved",
+            "meaningByLocale": {
+              "ru": "с короткими рукавами",
+              "uk": "з короткими рукавами"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-43:i13:p2",
+            "target": "long-sleeved",
+            "meaningByLocale": {
+              "ru": "с длинными рукавами",
+              "uk": "з довгими рукавами"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-43:i13:p3",
+            "target": "school uniform",
+            "meaningByLocale": {
+              "ru": "школьная форма",
+              "uk": "шкільна форма"
+            }
+          },
+          {
+            "pairId": "en:lesson-11:session-43:i13:p4",
+            "target": "walking shoes",
+            "meaningByLocale": {
+              "ru": "обувь для прогулок",
+              "uk": "взуття для прогулянок"
+            }
+          }
+        ],
+        "leftColumn": [
+          "short-sleeved",
+          "long-sleeved",
+          "school uniform",
+          "walking shoes"
+        ],
+        "rightColumn": [
+          "с короткими рукавами",
+          "с длинными рукавами",
+          "школьная форма",
+          "обувь для прогулок"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-43:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную просьбу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-43:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную просьбу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-43:i14:audio",
+          "transcript": "Please don't take my shirt."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please don't take my shirt.",
+        "orderedTokens": [
+          "Please",
+          "don't",
+          "take",
+          "my",
+          "shirt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-43:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-43:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-43:i15:audio",
+          "transcript": "I am looking for my shirt right now."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am looking for my shirt right now.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "looking",
+          "for",
+          "my",
+          "shirt",
+          "right",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-43:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что школьная форма была не грязной",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-43:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что школьная форма была не грязной",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-43:i16:audio",
+          "transcript": "The school uniform was not dirty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The school uniform was not dirty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-11:session-43:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, была ли обувь для прогулок удобной",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-11:session-43:i17:audio"
+      ],
+      "accessibilityLabel": "Спросите, была ли обувь для прогулок удобной",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-11:session-43:i17:audio",
+          "transcript": "Were the walking shoes comfortable?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Were the walking shoes comfortable?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3a3cf763f8c45ee648c9de812b5ea131606a425d9b7746f8f58655a4fd3b1962"
+}

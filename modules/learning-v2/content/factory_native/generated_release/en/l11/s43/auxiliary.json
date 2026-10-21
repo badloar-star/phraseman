@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-43",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-43:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-43:intro1:r2": {
+          "ru": "Long-sleeved — длинные рукава, а нужны короткие.",
+          "uk": "Long-sleeved — довгі рукави, а потрібні короткі."
+        },
+        "en:lesson-11:session-43:intro1:r3": {
+          "ru": "Одна рубашка: was.",
+          "uk": "Одна сорочка: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-43:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-43:intro2:r2": {
+          "ru": "Вчера: was.",
+          "uk": "Учора: was."
+        },
+        "en:lesson-11:session-43:intro2:r3": {
+          "ru": "Uniform здесь в единственном числе: was.",
+          "uk": "Uniform тут в однині: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-43:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-43:intro3:r2": {
+          "ru": "Shoes — множественное число: were.",
+          "uk": "Shoes — множина: were."
+        },
+        "en:lesson-11:session-43:intro3:r3": {
+          "ru": "Are спрашивает о настоящем, а нужно прошлое.",
+          "uk": "Are запитує про теперішнє, а потрібне минуле."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "28f58764020a189a482dae92b097d75955baf2ca2300d825979164f8ea928663"
+}

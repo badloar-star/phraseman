@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-11:session-41:word:cheese-sandwich",
+    "correctText": "cheese sandwich",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-41:i01",
+    "correctText": "Was the cheese sandwich fresh?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-41:i02",
+    "correctText": "The cheese sandwich was on the plate.",
+    "correctResponseId": "en:lesson-11:session-41:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-41:i03",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-11:session-41:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-41:word:ham-sandwich",
+    "correctText": "ham sandwich",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-41:i04",
+    "correctText": "There was a ham sandwich in the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-41:i05",
+    "correctText": "The ham sandwich was delicious.",
+    "correctResponseId": "en:lesson-11:session-41:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-41:i06",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-41:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-41:word:hot-chocolate",
+    "correctText": "hot chocolate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-41:i07",
+    "correctText": "The hot chocolate was not too sweet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-41:i08",
+    "correctText": "The hot chocolate was in the kitchen.",
+    "correctResponseId": "en:lesson-11:session-41:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-41:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-11:session-41:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-41:word:fruit-juice",
+    "correctText": "fruit juice",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-41:i10",
+    "correctText": "The fruit juice was in the fridge.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-41:i11",
+    "correctText": "The fruit juice was sweet.",
+    "correctResponseId": "en:lesson-11:session-41:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-41:i12",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-11:session-41:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-11:session-41:i13",
+    "correctText": "en:lesson-11:session-41:i13:p1=cheese sandwich\nen:lesson-11:session-41:i13:p2=ham sandwich\nen:lesson-11:session-41:i13:p3=hot chocolate\nen:lesson-11:session-41:i13:p4=fruit juice",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-41:i14",
+    "correctText": "Please don't take my cup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-41:i15",
+    "correctText": "I am eating lunch right now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-41:i16",
+    "correctText": "The ham sandwich was not in the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-11:session-41:i17",
+    "correctText": "Was the hot chocolate delicious?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-41",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-41:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-41:intro1:r2": {
+          "ru": "Два бутерброда: were.",
+          "uk": "Два бутерброди: were."
+        },
+        "en:lesson-11:session-41:intro1:r3": {
+          "ru": "Ham — ветчина, а нужны бутерброды с сыром.",
+          "uk": "Ham — шинка, а потрібні бутерброди із сиром."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-41:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-41:intro2:r2": {
+          "ru": "Yesterday — вчера: was.",
+          "uk": "Yesterday — учора: was."
+        },
+        "en:lesson-11:session-41:intro2:r3": {
+          "ru": "О напитке здесь говорим was.",
+          "uk": "Про напій тут кажемо was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-41:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-41:intro3:r2": {
+          "ru": "С juice здесь используем was.",
+          "uk": "З juice тут використовуємо was."
+        },
+        "en:lesson-11:session-41:intro3:r3": {
+          "ru": "Sweet — сладкий: это вопрос о вкусе, не температуре.",
+          "uk": "Sweet — солодкий: це запитання про смак, не температуру."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c2c30407248e07454f319504bf2c26989cd508bd7a78a132d196bdbfc4e864cd"
+}

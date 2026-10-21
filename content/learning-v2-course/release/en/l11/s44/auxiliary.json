@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-11:session-44",
+  "entries": [
+    {
+      "interactionId": "en:lesson-11:session-44:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-44:intro1:r2": {
+          "ru": "Одна буханка: was.",
+          "uk": "Один буханець: was."
+        },
+        "en:lesson-11:session-44:intro1:r3": {
+          "ru": "Говорим о вчерашнем дне: was.",
+          "uk": "Кажемо про вчорашній день: was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-44:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-44:intro2:r2": {
+          "ru": "Два пакета: were.",
+          "uk": "Два пакети: were."
+        },
+        "en:lesson-11:session-44:intro2:r3": {
+          "ru": "Нужны пакеты молока, а не банки тунца.",
+          "uk": "Потрібні пакети молока, а не банки тунця."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-11:session-44:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-11:session-44:intro3:r2": {
+          "ru": "Одна бутылка: was.",
+          "uk": "Одна пляшка: was."
+        },
+        "en:lesson-11:session-44:intro3:r3": {
+          "ru": "Спрашиваем о холодильнике, не сумке.",
+          "uk": "Запитуємо про холодильник, не сумку."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e407e7d27e14aaf8bc3bfb6f6bed5a749cedfc7d1130e9e2bd9956262b3fc1c6"
+}

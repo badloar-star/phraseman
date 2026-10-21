@@ -40,6 +40,7 @@ import { PracticeBackButton, PracticeHeaderTitle, PracticeRoundIconButton } from
 import { PracticeCta, PracticeProgressRow, PracticeStatePanel } from '../components/practice/PracticeStates';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { practiceCoinsAllowedForDeckKeysV1 } from './learning_v2_dictionary_training_deck_v1';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
@@ -236,11 +237,14 @@ export default function FlashcardsRecallSession() {
     () => readDevPracticeRunesFakeState(params.devRunesSeed),
     [params.devRunesSeed],
   );
+  // зачем (координатор 22.10): колода слов словаря Learning V2 — монеты только по флагу (вопрос владельцу на утро).
+  const dictionaryCoinsAllowed = useMemo(() => practiceCoinsAllowedForDeckKeysV1(deckRefs.map(deckRefKey)), [deckRefs]);
   const practiceRunes = usePracticeRunes({
     activity: 'flashcards_training',
     sessionKey: `recall_${deckKey}_${attemptSessionId}`,
     completionOrdinal: 1,
     devFakeStartRunes: devRunesFake?.runes,
+    enabled: dictionaryCoinsAllowed,
   });
 
   const {

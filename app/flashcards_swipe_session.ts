@@ -286,7 +286,8 @@ export function swipeBadgeFullAtPx(width: number): number {
 /** Источник экрана свайпа в объёме, нужном для сопоставления с набором. */
 export type SwipeSourceLike = {
   id: string;
-  kind: 'saved' | 'custom' | 'official' | 'community';
+  // зачем (словарь V2): 'lv2' — слова, выбранные в словаре Learning V2; id источника = токен колоды `lv2:<id>`.
+  kind: 'saved' | 'custom' | 'official' | 'community' | 'lv2';
 };
 
 /** `FcDeckId` источника (`null` — источник без опознаваемого набора). */
@@ -294,6 +295,7 @@ export function deckIdForSwipeSource(source: SwipeSourceLike | null | undefined)
   if (!source) return null;
   if (source.kind === 'saved') return 'saved';
   if (source.kind === 'custom') return 'custom';
+  if (source.kind === 'lv2') return source.id.startsWith('lv2:') && source.id.length > 4 ? (source.id as FcDeckId) : null;
   const raw = typeof source.id === 'string' ? source.id : '';
   const packId = raw.slice(raw.indexOf(':') + 1).trim();
   return packId && raw.includes(':') ? (`pack:${packId}` as FcDeckId) : null;

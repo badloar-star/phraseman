@@ -113,6 +113,7 @@ import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHu
 import { PracticeRuneCounter } from '../components/PracticeRuneCounter';
 import { CoinRewardFlight } from '../components/rewards/CoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { practiceCoinsAllowedForDeckKeysV1 } from './learning_v2_dictionary_training_deck_v1';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { useSessionAttempts } from '../hooks/useSessionAttempts';
@@ -408,11 +409,14 @@ export default function FlashcardsSpeakingSession() {
   // зачем (владелец, 2026-08-27): «Добить» (onRetryWrong) — второй раунд ТОЙ ЖЕ
   // попытки по оставшимся ошибочным карточкам, не новое прохождение — ordinal
   // фиксирован, копилка продолжает жить через оба раунда без сброса.
+  // зачем (координатор 22.10): колода слов словаря Learning V2 — монеты только по флагу (вопрос владельцу на утро).
+  const dictionaryCoinsAllowed = useMemo(() => practiceCoinsAllowedForDeckKeysV1(deckRefs.map(deckRefKey)), [deckRefs]);
   const practiceRunes = usePracticeRunes({
     activity: 'speaking_practice',
     sessionKey: attemptSessionId,
     completionOrdinal: 1,
     devFakeStartRunes: devRunesFake?.runes,
+    enabled: dictionaryCoinsAllowed,
   });
   const runeFlight = useCoinRewardFlight();
   useEffect(() => {
@@ -1294,6 +1298,11 @@ export default function FlashcardsSpeakingSession() {
   const deckTitle = useMemo(() => {
     if (deckRefs.length > 1) return decksCountLabel(lang, deckRefs.length);
     const deckRef = deckRefs[0]!;
+    // зачем (словарь V2, владелец 21.10): слова, выбранные в словаре Learning V2.
+    if (deckRef.kind === 'lv2') return triLang(lang, {
+      ru: 'Словарь', uk: 'Словник', en: 'Dictionary', es: 'Diccionario', 'pt-BR': 'Dicionário',
+      vi: 'Từ điển', id: 'Kamus', tr: 'Sözlük', pl: 'Słownik',
+    });
     if (deckRef.kind === 'custom') return triLang(lang, {
       ru: 'Мои карточки', uk: 'Мої картки', en: 'My cards', es: 'Mis tarjetas', 'pt-BR': 'Meus cartões',
       vi: 'Thẻ của tôi', id: 'Kartu saya', tr: 'Kartlarım', pl: 'Moje karty',

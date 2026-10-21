@@ -29,6 +29,7 @@ import { splitDeckParam } from './deck_selection';
 import { videoIdFromOwnedCommunityId } from './my_packs_video_meta';
 import { missingPackCache } from './my_packs_missing_cache';
 import { STARTER_FIRST_50_PACK_ID, starterFirst50CardItems, starterPackAvailable } from './starter_pack_first_50';
+import { loadLearningV2DictionaryTrainingDeckV1 } from '../learning_v2_dictionary_training_deck_v1';
 import { noteSwallowed } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 export type MistakeSource = 'lesson' | 'quiz' | 'arena' | 'diagnostic' | 'exam' | 'custom' | 'pack';
 
@@ -52,7 +53,9 @@ export type DeckCard = {
 export type DeckRef =
   | { kind: 'saved' }
   | { kind: 'custom' }
-  | { kind: 'pack'; packId: string };
+  | { kind: 'pack'; packId: string }
+  // зачем (словарь V2, владелец 21.10): слова, выбранные в словаре Learning V2 (реестр в памяти + копия на телефоне).
+  | { kind: 'lv2'; deckId: string };
 
 // ── Чистые функции ───────────────────────────────────────────────────────────
 
@@ -66,11 +69,16 @@ function deckRefFromToken(token: string): DeckRef | null {
     const packId = v.slice(5).trim();
     return packId ? { kind: 'pack', packId } : null;
   }
+  if (v.startsWith('lv2:')) {
+    const deckId = v.slice(4).trim();
+    return deckId ? { kind: 'lv2', deckId } : null;
+  }
   return null;
 }
 
 /** Ключ дедупликации ссылки на колоду. */
 export function deckRefKey(deck: DeckRef): string {
+  if (deck.kind === 'lv2') return `lv2:${deck.deckId}`;
   return deck.kind === 'pack' ? `pack:${deck.packId}` : deck.kind;
 }
 
@@ -474,6 +482,9 @@ export async function loadDeckCards(
   if (deck.kind === 'saved') {
     const saved = await loadSelectedSavedContour(studyTarget).catch((swallowedError: unknown): Flashcard[] => { noteSwallowed('deck_sources:promise_2', swallowedError); return []; });
     return deckCardsFromSaved(saved, lang);
+  }
+  if (deck.kind === 'lv2') {
+    return loadLearningV2DictionaryTrainingDeckV1(deck.deckId, lang).catch((swallowedError: unknown): DeckCard[] => { noteSwallowed('deck_sources:lv2_dictionary', swallowedError); return []; });
   }
   if (deck.kind === 'custom') {
     const custom = await listCustomCards(studyTarget).catch((swallowedError: unknown): CardItem[] => { noteSwallowed('deck_sources:promise_3', swallowedError); return []; });

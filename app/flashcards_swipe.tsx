@@ -93,6 +93,7 @@ import {
   swipeCommitDirection,
 } from './flashcards_swipe_session';
 import { parseDeckIdList, type FcDeckId } from './flashcards/deck_selection';
+import { loadLearningV2DictionaryTrainingDeckV1, practiceCoinsAllowedForDeckKeysV1 } from './learning_v2_dictionary_training_deck_v1';
 import { usePackContinueRecorder } from './flashcards/use_pack_continue_recorder';
 import {
   canUseLegacySwipeGrantFailOpen,
@@ -153,7 +154,8 @@ const readAnimatedJs = (value: Animated.Value): number => {
   const getter = (value as unknown as { __getValue?: () => number }).__getValue;
   return typeof getter === 'function' ? Math.round(getter.call(value) * 1000) / 1000 : NaN;
 };
-type SourceKind = 'saved' | 'custom' | 'official' | 'community';
+// зачем (словарь V2, владелец 21.10): 'lv2' — слова, выбранные в словаре Learning V2 (колода `lv2:<id>`).
+type SourceKind = 'saved' | 'custom' | 'official' | 'community' | 'lv2';
 type Phase = 'select' | 'play';
 
 type TrainingSource = {
@@ -297,6 +299,7 @@ const SOURCE_ACCENTS: Record<SourceKind, string> = {
   custom: '#FFB84D', // theme-exempt: тень карточки — чёрная в любой теме
   official: '#7CFF92', // theme-exempt: тень карточки — чёрная в любой теме
   community: '#D6A4FF', // theme-exempt: тень карточки — чёрная в любой теме
+  lv2: '#7CDAFF', // theme-exempt: тень карточки — чёрная в любой теме (как у сохранённых)
 };
 
 function defaultMemory(): CardMemory {
@@ -1491,12 +1494,14 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     () => `${sessionDraftScope.trainingMode}_${sessionDraftScope.sourceIds.join('_')}_${sessionDraftScope.contentLang}_${studyTarget}`,
     [sessionDraftScope, studyTarget],
   );
+  // зачем (координатор 22.10): колода слов словаря Learning V2 — монеты только по флагу (вопрос владельцу на утро).
+  const dictionaryCoinsAllowed = useMemo(() => practiceCoinsAllowedForDeckKeysV1(requestedDeckIds), [requestedDeckIds]);
   const practiceRunes = usePracticeRunes({
     activity: 'flashcards_training',
     sessionKey: runeSessionKey,
     completionOrdinal: 1,
     devFakeStartRunes: devRunesFake?.runes,
-    enabled: swipeAccessGranted,
+    enabled: swipeAccessGranted && dictionaryCoinsAllowed,
   });
   const runeFlight = useCoinRewardFlight();
 
@@ -2178,6 +2183,23 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       if (communityPacksEnabled) {
         next.push(...(await buildCommunitySources(lang, officialOwnedIds, studyTarget)));
       }
+      // зачем (словарь V2, владелец 21.10): слова, выбранные в словаре Learning V2, — свой источник; карточки уже на телефоне.
+      for (const deckId of requestedDeckIds) {
+        if (!deckId.startsWith('lv2:')) continue;
+        const deckCards = await loadLearningV2DictionaryTrainingDeckV1(deckId.slice(4), cardContentLang);
+        tfPrep('sources:lv2', { deckId, cards: deckCards.length });
+        if (deckCards.length === 0) continue;
+        next.push({
+          id: deckId,
+          kind: 'lv2',
+          title: triLang(lang, { ru: 'Словарь', uk: 'Словник', en: 'Dictionary', es: 'Diccionario', 'pt-BR': 'Dicionário', vi: 'Từ điển', id: 'Kamus', tr: 'Sözlük', pl: 'Słownik' }),
+          subtitle: '',
+          count: deckCards.length,
+          icon: 'book-outline',
+          accent: SOURCE_ACCENTS.lv2,
+          cards: deckCards.map((card) => ({ id: card.id, en: card.en, ru: card.ru, uk: card.uk ?? card.ru, es: card.es, categoryId: 'saved', isSystem: true })),
+        });
+      }
       if (!accessIsCurrent()) { tfPrep('sources:exit:access_changed_after_build', { built: next.length }); return; }
       sourcesRetryRef.current = 0;
       setSourcesExhausted(false);
@@ -2227,7 +2249,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     } finally {
       if (accessIsCurrent() && !keepSkeleton) setLoadingSources(false);
     }
-  }, [communityPacksEnabled, lang, officialPacksEnabled, requestedDeckIds, requestedFilter, requestedSourceId, studyTarget, swipeAccessGranted, text.custom, text.saved, tfPrep]);
+  }, [cardContentLang, communityPacksEnabled, lang, officialPacksEnabled, requestedDeckIds, requestedFilter, requestedSourceId, studyTarget, swipeAccessGranted, text.custom, text.saved, tfPrep]);
 
   loadSourcesRef.current = loadSources;
   useEffect(() => {
@@ -2975,7 +2997,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     // зачем (аудит 2026-08-28): earningsRef ещё null до конца гидратации —
     // settle() тогда тихо выходит и копилка не зачитывается никогда (DEV-хаб
     // ставит done=true синхронно на первом рендере, раньше гидратации).
-    if (swipeAccessGranted && done && !practiceRunes.hydrating) void practiceRunes.settle();
+    if (swipeAccessGranted && dictionaryCoinsAllowed && done && !practiceRunes.hydrating) void practiceRunes.settle();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [done, practiceRunes.hydrating, swipeAccessGranted]);
 

@@ -36,6 +36,7 @@ import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHu
 import { PracticeRuneCounter } from '../components/PracticeRuneCounter';
 import { CoinRewardFlight } from '../components/rewards/CoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { practiceCoinsAllowedForDeckKeysV1 } from './learning_v2_dictionary_training_deck_v1';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -253,12 +254,14 @@ export default function FlashcardsBlitzSession() {
   // зачем (владелец, 2026-08-27): sessionKey привязан к roundId — новый раунд
   // (рестарт «Ещё разок») получает новую копилку по цене повтора, ровно как
   // строка ниже уже делает для sessionId попыток.
+  // зачем (координатор 22.10): колода слов словаря Learning V2 — монеты только по флагу (вопрос владельцу на утро).
+  const dictionaryCoinsAllowed = useMemo(() => practiceCoinsAllowedForDeckKeysV1(deckRefs.map(deckRefKey)), [deckRefs]);
   const practiceRunes = usePracticeRunes({
     activity: 'flashcards_blitz',
     sessionKey: `${feedbackAttemptId}_${roundId}`,
     completionOrdinal: 1,
     devFakeStartRunes: devRunesFake?.runes,
-    enabled: blitzAccessGranted,
+    enabled: blitzAccessGranted && dictionaryCoinsAllowed,
   });
   const runeFlight = useCoinRewardFlight();
   // «Руны засчитываются, когда игрок дошёл до экрана празднования» — здесь
@@ -267,7 +270,7 @@ export default function FlashcardsBlitzSession() {
     // зачем (аудит 2026-08-28): earningsRef ещё null до конца гидратации —
     // settle() тогда тихо выходит и копилка не зачитывается никогда (DEV-хаб
     // ставит result синхронно на первом рендере, раньше гидратации).
-    if (blitzAccessGranted && result && !practiceRunes.hydrating) void practiceRunes.settle();
+    if (blitzAccessGranted && dictionaryCoinsAllowed && result && !practiceRunes.hydrating) void practiceRunes.settle();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blitzAccessGranted, result, practiceRunes.hydrating]);
   /** §6: выбор наборов прямо из блица — тот же шит, что у тренировки и слушания. */
@@ -1286,6 +1289,11 @@ export default function FlashcardsBlitzSession() {
       return decksCountLabel(lang, deckRefs.length);
     }
     const deckRef = deckRefs[0]!;
+    // зачем (словарь V2, владелец 21.10): слова, выбранные в словаре Learning V2.
+    if (deckRef.kind === 'lv2') return triLang(lang, {
+      ru: 'Словарь', uk: 'Словник', en: 'Dictionary', es: 'Diccionario', 'pt-BR': 'Dicionário',
+      vi: 'Từ điển', id: 'Kamus', tr: 'Sözlük', pl: 'Słownik',
+    });
     if (deckRef.kind === 'custom') return triLang(lang, {
       ru: 'Мои карточки', uk: 'Мої картки', en: 'My cards', es: 'Mis tarjetas', 'pt-BR': 'Meus cartões',
       vi: 'Thẻ của tôi', id: 'Kartu saya', tr: 'Kartlarım', pl: 'Moje karty',

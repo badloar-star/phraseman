@@ -20,9 +20,10 @@ import { legacyRuUk, type Lang } from '../../constants/i18n';
  *  - 'weak'      — исторический псевдо-набор; новые ошибки открываются отдельным пунктом;
  *  - 'saved'     — «Все сохранённые» (flashcards_v1);
  *  - 'custom'    — «Мои карточки» (custom_flashcards_v2);
- *  - 'pack:<id>' — добавленный набор.
+ *  - 'pack:<id>' — добавленный набор;
+ *  - 'lv2:<id>'  — слова, выбранные в словаре Learning V2 (app/learning_v2_dictionary_training_deck_v1.ts).
  */
-export type FcDeckId = 'weak' | 'saved' | 'custom' | `pack:${string}`;
+export type FcDeckId = 'weak' | 'saved' | 'custom' | `pack:${string}` | `lv2:${string}`;
 
 /** Разделитель списка наборов в параметре `?deck=`. */
 export const DECK_PARAM_SEPARATOR = ',';
@@ -33,6 +34,8 @@ export const SOLO_DECK_ID: FcDeckId = 'weak';
 export function isValidDeckId(v: unknown): v is FcDeckId {
   if (typeof v !== 'string') return false;
   if (v === 'weak' || v === 'saved' || v === 'custom') return true;
+  // зачем (словарь V2, владелец 21.10): колода выбранных в словаре Learning V2 слов — те же режимы «Карточек».
+  if (v.startsWith('lv2:')) return v.length > 'lv2:'.length;
   return v.startsWith('pack:') && v.length > 'pack:'.length;
 }
 

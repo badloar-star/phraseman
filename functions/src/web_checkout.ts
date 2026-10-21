@@ -282,7 +282,7 @@ export function parseJsonBody(req: AnyRequest): Record<string, unknown> | null {
   return {};
 }
 
-function cleanEmail(value: unknown): string | null {
+export function cleanEmail(value: unknown): string | null {
   const email = String(value ?? '').trim().toLowerCase().slice(0, 200);
   return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? email : null;
 }
@@ -291,7 +291,7 @@ export function cleanShortText(value: unknown, max: number): string {
   return String(value ?? '').trim().slice(0, max);
 }
 
-function htmlEscape(value: unknown): string {
+export function htmlEscape(value: unknown): string {
   return String(value ?? '')
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')

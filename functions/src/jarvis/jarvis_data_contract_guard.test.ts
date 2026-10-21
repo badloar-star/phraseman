@@ -404,6 +404,13 @@ const ISOLATED_COLLECTION_CONTRACTS = [
     fields: ['stripeCancelAtPeriodEnd', 'stripeCancellationOperationId', 'stripeAccessEndsAtMs', 'stripeCancellationRequestedAtMs'],
   },
   {
+    // зачем (подарок Plus через сайт, владелец 21.10; ревью Ядра): способ вручения и отмена подарка покупателем до активации.
+    collection: 'web_premium_orders',
+    writer: 'functions/src/web_gift_endpoints.ts',
+    authority: 'server-owned website gift delivery and buyer cancellation before activation (manual refund pending); intentionally unread by Jarvis',
+    fields: ['giftDelivery', 'cancelledAtMs', 'cancelledAtIso', 'refundStatus'],
+  },
+  {
     collection: 'account_deletion_jobs',
     writer: 'functions/src/account_delete_job.ts + functions/src/accounts_v2_deletion/pipeline.ts',
     authority: 'server-only deletion work queue; frozen identityClosure/version/hash/cutoff and the Account V2 prepared receipt/purge cursor (Package 6A) are privacy-control fields and never Jarvis metrics',

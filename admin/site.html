@@ -53,6 +53,9 @@
     .pill.off { background: rgba(248,113,113,0.15); color: var(--bad); }
     .mini { font-size: 11px; color: var(--fg-dim); }
     .btn-sm { padding: 3px 9px; font-size: 11.5px; border-radius: 5px; }
+    .refund-filter { display: flex; gap: 6px; margin: 0 0 10px; }
+    .refund-filter .btn-sm.on { font-weight: 700; }
+    .refund-due { color: #e0603a; font-weight: 700; }
   </style>
 </head>
 <body>
@@ -122,7 +125,9 @@
       <h2>🧾 Заказы веб-оплат (последние 100)</h2>
       <p class="hint">Статусы: <b>created</b> — начал оплату, не завершил · <b>paid_pending_activation</b> —
         оплачен, код выдан, юзер активирует сам · <b>paid_pending_manual_activation</b> — оплачен,
-        кода нет, нужна ручная выдача (Testers) · <b>activated</b> — закрыт. Клик по коду копирует его.</p>
+        кода нет, нужна ручная выдача (Testers) · <b>activated</b> — закрыт · <b>cancelled_by_buyer</b> — покупатель отменил
+        подарок до активации: <b>верни деньги вручную</b> в Stripe или PayPal и нажми «✓ деньги возвращены». Клик по коду копирует его.</p>
+      <div class="refund-filter" id="refund-filter"></div>
       <div id="orders"><div class="empty">Загрузка…</div></div>
     </section>
   </main>
@@ -247,6 +252,9 @@
     }
 
     /* ── Заказы ── */
+    /* зачем (Ревизор и Ядро 21.10, подарок Plus): отмена подарка покупателем = ручной возврат денег.
+       Фильтр «К возврату» показывает только такие заказы, кнопка закрывает возврат (refundStatus → refunded). */
+    let ordersRefundOnly = false;
     async function loadOrders() {
       const snap = await getDocs(query(collection(db, 'web_premium_orders'), orderBy('createdAtIso', 'desc'), limit(100)));
       if (snap.empty) {
@@ -254,8 +262,16 @@
         return;
       }
       const rows = [];
+      let refundPending = 0;
+      snap.forEach((d) => { if (d.data().refundStatus === 'manual_pending') refundPending += 1; });
+      $('refund-filter').innerHTML = `<button class="btn-sm${ordersRefundOnly ? '' : ' on'}" data-refund-filter="all">Все</button>
+        <button class="btn-sm${ordersRefundOnly ? ' on' : ''}" data-refund-filter="refund">К возврату · ${refundPending}</button>`;
+      $('refund-filter').querySelectorAll('[data-refund-filter]').forEach((btn) => {
+        btn.addEventListener('click', () => { ordersRefundOnly = btn.dataset.refundFilter === 'refund'; loadOrders(); });
+      });
       snap.forEach((d) => {
         const o = d.data();
+        if (ordersRefundOnly && o.refundStatus !== 'manual_pending') return;
         const utm = o.utm?.params ? (o.utm.params.utm_campaign || o.utm.params.utm_source || '') : '';
         const date = String(o.paidAtIso || o.createdAtIso || '').replace('T', ' ').slice(0, 16);
         const amount = o.amountCents ? '$' + (o.amountCents / 100).toFixed(2) : '—';
@@ -266,10 +282,10 @@
           <td>${o.planDuration || o.plan || '—'}</td>
           <td>${amount}</td>
           <td>${o.email || '—'}<div class="mini">${o.appNickname ? 'ник: ' + o.appNickname : ''}</div></td>
-          <td class="status-${status}">${status}</td>
+          <td class="status-${status}">${status}${o.refundStatus === 'manual_pending' ? '<div class="mini refund-due">к возврату</div>' : o.refundStatus === 'refunded' ? '<div class="mini">деньги возвращены</div>' : ''}</td>
           <td>${o.activationCode ? `<span class="code" data-code="${o.activationCode}" title="Скопировать">${o.activationCode}</span>` : '—'}</td>
           <td class="mini">${utm}</td>
-          <td>${status.startsWith('paid') ? `<button class="btn-sm" data-activate="${d.id}">✓ закрыт</button>` : ''}</td>
+          <td>${status.startsWith('paid') ? `<button class="btn-sm" data-activate="${d.id}">✓ закрыт</button>` : ''}${o.refundStatus === 'manual_pending' ? `<button class="btn-sm" data-refunded="${d.id}">✓ деньги возвращены</button>` : ''}</td>
         </tr>`);
       });
       $('orders').innerHTML = `<table>
@@ -283,6 +299,24 @@
             el.textContent = 'Скопировано ✓';
             setTimeout(() => { el.textContent = original; }, 1200);
           });
+        });
+      });
+      $('orders').querySelectorAll('[data-refunded]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          if (!confirm('Деньги покупателю уже вернул в Stripe или PayPal?')) return;
+          btn.disabled = true;
+          try {
+            await updateDoc(doc(db, 'web_premium_orders', btn.dataset.refunded), {
+              refundStatus: 'refunded',
+              refundedAtIso: new Date().toISOString(),
+              refundedBy: auth.currentUser?.email || '',
+            });
+            await loadOrders();
+          } catch (e) {
+            btn.disabled = false;
+            console.warn('[GIFT-PLUS] admin:refund_mark_failed', e);
+            showError('Не обновилось: ' + (e.message || e));
+          }
         });
       });
       $('orders').querySelectorAll('[data-activate]').forEach((btn) => {

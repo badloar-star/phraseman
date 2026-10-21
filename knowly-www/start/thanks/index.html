@@ -274,6 +274,7 @@
           emailSub: 'Это подарочный код: перешли его тому, кому даришь, — запиской или сообщением. Код также отправлен тебе на email и сохранён у нас, так что потерять его невозможно.',
           step2: 'Получатель вводит код', step2Text: 'В приложении: <b>Настройки → Промокоды</b> — вставить код и нажать «Активировать».',
           redeemed: 'Подарок уже активирован — отменить его нельзя.',
+          expired: 'Срок подарка истёк — отменить его нельзя.',
           failed: 'Не получилось отменить. Попробуй ещё раз или напиши в поддержку.',
           offline: 'Нет связи. Попробуй ещё раз или напиши в поддержку.',
         },
@@ -282,6 +283,7 @@
           emailSub: 'This is a gift code: pass it on to the person you\u2019re gifting — in a note or a message. The code has also been emailed to you and saved on our side, so it can\u2019t get lost.',
           step2: 'The recipient enters the code', step2Text: 'In the app: <b>Settings → Promo codes</b> — paste the code and tap \u201cActivate\u201d.',
           redeemed: 'This gift has already been activated, so it can\u2019t be cancelled.',
+          expired: 'This gift has expired, so it can\u2019t be cancelled.',
           failed: 'Couldn\u2019t cancel. Try again or contact support.',
           offline: 'No connection. Try again or contact support.',
         },
@@ -348,8 +350,8 @@
               if (res.body && res.body.ok) { box.style.display = 'none'; show('state-gift-cancelled'); return; }
               var reason = res.body && res.body.error;
               console.warn(GIFT_LOG, 'cancel:refused', { http: res.http, error: reason || null });
-              err.textContent = reason === 'already_redeemed' ? gt('redeemed') : gt('failed');
-              if (reason === 'already_redeemed') { confirmBox.hidden = true; return; }
+              err.textContent = reason === 'already_redeemed' ? gt('redeemed') : reason === 'expired' ? gt('expired') : gt('failed');
+              if (reason === 'already_redeemed' || reason === 'expired') { confirmBox.hidden = true; return; }
               yes.disabled = false; no.disabled = false;
             })
             .catch(function (error) {

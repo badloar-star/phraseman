@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-19:word:removal-van",
+    "correctText": "removal van",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-19:i01",
+    "correctText": "We are hiring a removal van on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-19:i02",
+    "correctText": "We are hiring a removal van on Saturday.",
+    "correctResponseId": "en:lesson-15:session-19:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-19:i03",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-19:word:housewarming",
+    "correctText": "housewarming",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-19:i04",
+    "correctText": "I am having a housewarming on Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-19:i05",
+    "correctText": "I am having a housewarming on Friday.",
+    "correctResponseId": "en:lesson-15:session-19:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-19:i06",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-15:session-19:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-19:word:viewing",
+    "correctText": "viewing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-19:i07",
+    "correctText": "She is attending a viewing tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-19:i08",
+    "correctText": "She is attending a viewing tomorrow.",
+    "correctResponseId": "en:lesson-15:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-19:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-19:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-19:word:tenant",
+    "correctText": "tenant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-19:i10",
+    "correctText": "They are meeting the tenant at ten tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-19:i11",
+    "correctText": "They are meeting the tenant at ten tomorrow.",
+    "correctResponseId": "en:lesson-15:session-19:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-19:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-19:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-19:i13",
+    "correctText": "en:lesson-15:session-19:i13:p1=removal van\nen:lesson-15:session-19:i13:p2=housewarming\nen:lesson-15:session-19:i13:p3=viewing\nen:lesson-15:session-19:i13:p4=tenant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-19:i14",
+    "correctText": "We are moving on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-19:i15",
+    "correctText": "She is coming tomorrow morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-19:i16",
+    "correctText": "We are hiring a removal van on Monday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-19:i17",
+    "correctText": "I am having a housewarming on Sunday.",
+    "correctResponseId": null
+  }
+]

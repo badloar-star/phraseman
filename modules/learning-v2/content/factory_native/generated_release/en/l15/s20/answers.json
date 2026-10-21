@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-20:word:car-boot-sale",
+    "correctText": "car boot sale",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-20:i01",
+    "correctText": "We are visiting a car boot sale on Sunday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-20:i02",
+    "correctText": "We are visiting a car boot sale on Sunday.",
+    "correctResponseId": "en:lesson-15:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-20:i03",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-20:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-20:word:craft-fair",
+    "correctText": "craft fair",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-20:i04",
+    "correctText": "I am visiting a craft fair on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-20:i05",
+    "correctText": "I am visiting a craft fair on Saturday.",
+    "correctResponseId": "en:lesson-15:session-20:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-20:i06",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-15:session-20:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-20:word:fun-run",
+    "correctText": "fun run",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-20:i07",
+    "correctText": "She is taking part in a fun run tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-20:i08",
+    "correctText": "She is taking part in a fun run tomorrow.",
+    "correctResponseId": "en:lesson-15:session-20:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-20:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-20:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-20:word:book-club",
+    "correctText": "book club",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-20:i10",
+    "correctText": "They are meeting at the book club tonight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-20:i11",
+    "correctText": "They are meeting at the book club tonight.",
+    "correctResponseId": "en:lesson-15:session-20:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-20:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-20:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-20:i13",
+    "correctText": "en:lesson-15:session-20:i13:p1=car boot sale\nen:lesson-15:session-20:i13:p2=craft fair\nen:lesson-15:session-20:i13:p3=fun run\nen:lesson-15:session-20:i13:p4=book club",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-20:i14",
+    "correctText": "We are meeting on Sunday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-20:i15",
+    "correctText": "She is running tomorrow morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-20:i16",
+    "correctText": "We are visiting a craft fair on Sunday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-20:i17",
+    "correctText": "I am taking part in a fun run on Saturday.",
+    "correctResponseId": null
+  }
+]

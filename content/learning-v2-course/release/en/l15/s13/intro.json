@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "review: going to predictions from present evidence",
+    "uk": "review: going to predictions from present evidence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Признак уже виден",
+        "uk": "Ознаку вже видно"
+      },
+      "bodyByLocale": {
+        "ru": "downpour — сильный ливень. Небо почти чёрное; уже падают первые крупные капли. There is going to be a downpour. — Сейчас будет ливень. По видимому признаку делаем прогноз: be going to + начальная форма глагола.",
+        "uk": "downpour — сильна злива. Небо майже чорне; уже падають перші великі краплі. There is going to be a downpour. — Зараз буде злива. За видимою ознакою робимо прогноз: be going to + початкова форма дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-13:intro1:r1",
+              "text": "There is going to be a downpour."
+            },
+            {
+              "responseId": "en:lesson-15:session-13:intro1:r2",
+              "text": "There is going be a downpour."
+            },
+            {
+              "responseId": "en:lesson-15:session-13:intro1:r3",
+              "text": "There are going to be a downpour."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-13:intro1:r1",
+              "text": "There is going to be a downpour."
+            },
+            {
+              "responseId": "en:lesson-15:session-13:intro1:r2",
+              "text": "There is going be a downpour."
+            },
+            {
+              "responseId": "en:lesson-15:session-13:intro1:r3",
+              "text": "There are going to be a downpour."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ещё два изменения",
+        "uk": "Ще дві зміни"
+      },
+      "bodyByLocale": {
+        "ru": "gale — очень сильный ветер; gust — внезапный порыв ветра. Ветер быстро усиливается; большие ветви уже сильно качаются. There is going to be a gale. — Похоже, будет очень сильный ветер. Выберите прогноз.",
+        "uk": "gale — дуже сильний вітер; gust — раптовий порив вітру. Вітер швидко посилюється; великі гілки вже сильно гойдаються. There is going to be a gale. — Схоже, буде дуже сильний вітер. Виберіть прогноз."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-13:intro2:r1",
+              "text": "There is going to be a gale."
+            },
+            {
+              "responseId": "en:lesson-15:session-13:intro2:r2",
+              "text": "There is going be a gale."
+            },
+            {
+              "responseId": "en:lesson-15:session-13:intro2:r3",
+              "text": "There are going to be a gale."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-13:intro2:r1",
+              "text": "There is going to be a gale."
+            },
+            {
+              "responseId": "en:lesson-15:session-13:intro2:r2",
+              "text": "There is going be a gale."
+            },
+            {
+              "responseId": "en:lesson-15:session-13:intro2:r3",
+              "text": "There are going to be a gale."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Основание для прогноза",
+        "uk": "Підстава для прогнозу"
+      },
+      "bodyByLocale": {
+        "ru": "slush — мокрая снежная каша. Снег на дороге уже тает; воздух становится теплее. There is going to be slush on the road. — На дороге будет снежная каша. После going to форма глагола не меняется.",
+        "uk": "slush — мокра снігова каша. Сніг на дорозі вже тане; повітря стає теплішим. There is going to be slush on the road. — На дорозі буде снігова каша. Після going to форма дієслова не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-13:intro3:r1",
+              "text": "There is going to be slush on the road."
+            },
+            {
+              "responseId": "en:lesson-15:session-13:intro3:r2",
+              "text": "There is going be slush on the road."
+            },
+            {
+              "responseId": "en:lesson-15:session-13:intro3:r3",
+              "text": "There are going to be slush on the road."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-13:intro3:r1",
+              "text": "There is going to be slush on the road."
+            },
+            {
+              "responseId": "en:lesson-15:session-13:intro3:r2",
+              "text": "There is going be slush on the road."
+            },
+            {
+              "responseId": "en:lesson-15:session-13:intro3:r3",
+              "text": "There are going to be slush on the road."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0df97ff4add90e91035f3b7162e39e82a86b87ae1d329926619727be7bab333b"
+}

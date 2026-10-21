@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "Present Continuous: an agreed future arrangement with a time",
+    "uk": "Present Continuous: an agreed future arrangement with a time"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Время уже согласовано",
+        "uk": "Час уже узгоджено"
+      },
+      "bodyByLocale": {
+        "ru": "carer — помощник по уходу за человеком, которому нужна поддержка. Помощник по уходу за вашим папой подтвердил встречу на завтра. I am meeting the carer tomorrow. — Я встречаюсь с помощником по уходу завтра. Am/is/are + глагол с -ing может обозначать будущую договорённость. Время уже согласовано; завтра ещё не наступило.",
+        "uk": "carer — помічник із догляду за людиною, якій потрібна підтримка. Помічник із догляду за вашим татом підтвердив зустріч на завтра. I am meeting the carer tomorrow. — Я зустрічаюся з помічником із догляду завтра. Am/is/are + дієслово з -ing може означати майбутню домовленість. Час уже узгоджено; завтра ще не настало."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-17:intro1:r1",
+              "text": "I am meeting the carer tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-17:intro1:r2",
+              "text": "I is meeting the carer tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-17:intro1:r3",
+              "text": "I are meeting the carer tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-17:intro1:r1",
+              "text": "I am meeting the carer tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-17:intro1:r2",
+              "text": "I is meeting the carer tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-17:intro1:r3",
+              "text": "I are meeting the carer tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "О чём договорились",
+        "uk": "Про що домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "babysitter — человек, который присматривает за ребёнком в отсутствие родителей; dog walker — человек, который выгуливает чужих собак. Вы вместе с супругом договорились познакомиться с няней завтра в шесть. We are meeting the babysitter at six tomorrow. — Мы встречаемся с няней завтра в шесть. Выберите правильную форму be.",
+        "uk": "babysitter — людина, яка доглядає дитину за відсутності батьків; dog walker — людина, яка вигулює чужих собак. Ви разом із чоловіком домовилися познайомитися з нянею завтра о шостій. We are meeting the babysitter at six tomorrow. — Ми зустрічаємося з нянею завтра о шостій. Виберіть правильну форму be."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-17:intro2:r1",
+              "text": "We are meeting the babysitter at six tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-17:intro2:r2",
+              "text": "We am meeting the babysitter at six tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-17:intro2:r3",
+              "text": "We is meeting the babysitter at six tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-17:intro2:r1",
+              "text": "We are meeting the babysitter at six tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-17:intro2:r2",
+              "text": "We am meeting the babysitter at six tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-17:intro2:r3",
+              "text": "We is meeting the babysitter at six tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Договорённость на конкретное время",
+        "uk": "Домовленість на конкретний час"
+      },
+      "bodyByLocale": {
+        "ru": "cleaner — человек, который убирает помещения. Ваши родители договорились встретить помощника по уборке завтра утром. They are meeting the cleaner tomorrow morning. — Они встречаются с помощником по уборке завтра утром. Слова времени показывают: речь о будущем, а не о действии сейчас.",
+        "uk": "cleaner — людина, яка прибирає приміщення. Ваші батьки домовилися зустріти помічника із прибирання завтра вранці. They are meeting the cleaner tomorrow morning. — Вони зустрічаються з помічником із прибирання завтра вранці. Слова часу показують: ідеться про майбутнє, а не про дію зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-17:intro3:r1",
+              "text": "They are meeting the cleaner tomorrow morning."
+            },
+            {
+              "responseId": "en:lesson-15:session-17:intro3:r2",
+              "text": "They am meeting the cleaner tomorrow morning."
+            },
+            {
+              "responseId": "en:lesson-15:session-17:intro3:r3",
+              "text": "They is meeting the cleaner tomorrow morning."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-17:intro3:r1",
+              "text": "They are meeting the cleaner tomorrow morning."
+            },
+            {
+              "responseId": "en:lesson-15:session-17:intro3:r2",
+              "text": "They am meeting the cleaner tomorrow morning."
+            },
+            {
+              "responseId": "en:lesson-15:session-17:intro3:r3",
+              "text": "They is meeting the cleaner tomorrow morning."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "99e6b670929ec31eac638b6483bc3d71795e0bf3168ba96886f5879ff679187b"
+}

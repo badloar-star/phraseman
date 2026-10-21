@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-14:word:dew",
+    "correctText": "dew",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-14:i01",
+    "correctText": "There is going to be dew on the grass.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-14:i02",
+    "correctText": "There is going to be dew on the grass.",
+    "correctResponseId": "en:lesson-15:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-14:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-14:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-14:word:rainbow",
+    "correctText": "rainbow",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-14:i04",
+    "correctText": "There is going to be a rainbow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-14:i05",
+    "correctText": "There is going to be a rainbow.",
+    "correctResponseId": "en:lesson-15:session-14:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-14:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-14:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-14:word:sunbeam",
+    "correctText": "sunbeam",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-14:i07",
+    "correctText": "A sunbeam is going to reach the floor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-14:i08",
+    "correctText": "A sunbeam is going to reach the floor.",
+    "correctResponseId": "en:lesson-15:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-14:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-14:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-14:word:treetop",
+    "correctText": "treetop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-14:i10",
+    "correctText": "The treetop is going to touch the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-14:i11",
+    "correctText": "The treetop is going to touch the window.",
+    "correctResponseId": "en:lesson-15:session-14:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-14:i12",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-14:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-14:i13",
+    "correctText": "en:lesson-15:session-14:i13:p1=dew\nen:lesson-15:session-14:i13:p2=rainbow\nen:lesson-15:session-14:i13:p3=sunbeam\nen:lesson-15:session-14:i13:p4=treetop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-14:i14",
+    "correctText": "The sun is going to come out.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-14:i15",
+    "correctText": "The tree is going to fall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-14:i16",
+    "correctText": "There is going to be a rainbow here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-14:i17",
+    "correctText": "The treetop is going to touch the roof.",
+    "correctResponseId": null
+  }
+]

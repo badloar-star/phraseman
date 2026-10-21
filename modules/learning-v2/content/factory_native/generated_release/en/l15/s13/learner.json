@@ -1,0 +1,1129 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-13",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-13:word:downpour",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — downpour",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-13:word:downpour:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — downpour",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-13:word:downpour:audio",
+          "transcript": "downpour"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-13:word:downpour:r1",
+            "targetText": "downpour",
+            "meaningByLocale": {
+              "ru": "сильный ливень.",
+              "uk": "сильна злива."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "downpour",
+          "definitionByLocale": {
+            "ru": "сильный ливень.",
+            "uk": "сильна злива."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-13:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Небо почти чёрное; уже падают первые крупные капли. Скажите: «Сейчас будет ливень»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Небо почти чёрное; уже падают первые крупные капли. Скажите: «Сейчас будет ливень»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is going to be a downpour.",
+        "localizedMeaning": {
+          "ru": "Небо почти чёрное; уже падают первые крупные капли. Скажите: «Сейчас будет ливень»",
+          "uk": "Небо майже чорне; уже падають перші великі краплі. Скажіть: «Зараз буде злива»"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "going",
+          "to",
+          "be",
+          "a",
+          "downpour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-13:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-13:i02:r1",
+          "text": "There is going to be a downpour."
+        },
+        {
+          "responseId": "en:lesson-15:session-13:i02:r2",
+          "text": "There is going be a downpour."
+        },
+        {
+          "responseId": "en:lesson-15:session-13:i02:r3",
+          "text": "There are going to be a downpour."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-13:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-13:i02:audio",
+          "transcript": "There is going to be a downpour."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-13:i02:r1",
+            "targetText": "There is going to be a downpour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i02:r2",
+            "targetText": "There is going be a downpour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i02:r3",
+            "targetText": "There are going to be a downpour.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-13:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is going to be a downpour.",
+              "uk": "У записі звучить There is going to be a downpour."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is going to be a downpour.",
+              "uk": "У записі звучить There is going to be a downpour."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-13:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Прогноз по видимому признаку. Выберите is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-13:i03:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-13:i03:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-13:i03:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Прогноз по видимому признаку. Выберите is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Прогноз по видимому признаку. Выберите is или are",
+          "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+        },
+        "gappedTargetPhrase": "There ___ going to be a downpour.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-13:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i03:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-13:i03:r2",
+            "correct": false,
+            "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма is.",
+              "uk": "З цим підметом потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i03:r3",
+            "correct": false,
+            "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна is.",
+              "uk": "Для цього підмета потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-13:word:gale",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — gale",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-13:word:gale:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — gale",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-13:word:gale:audio",
+          "transcript": "gale"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-13:word:gale:r1",
+            "targetText": "gale",
+            "meaningByLocale": {
+              "ru": "очень сильный ветер.",
+              "uk": "дуже сильний вітер."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gale",
+          "definitionByLocale": {
+            "ru": "очень сильный ветер.",
+            "uk": "дуже сильний вітер."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-13:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ветер быстро усиливается; большие ветви уже сильно качаются. Скажите: «Похоже, будет очень сильный ветер»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ветер быстро усиливается; большие ветви уже сильно качаются. Скажите: «Похоже, будет очень сильный ветер»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is going to be a gale.",
+        "localizedMeaning": {
+          "ru": "Ветер быстро усиливается; большие ветви уже сильно качаются. Скажите: «Похоже, будет очень сильный ветер»",
+          "uk": "Вітер швидко посилюється; великі гілки вже сильно гойдаються. Скажіть: «Схоже, буде дуже сильний вітер»"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "going",
+          "to",
+          "be",
+          "a",
+          "gale"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-13:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-13:i05:r1",
+          "text": "There is going to be a gale."
+        },
+        {
+          "responseId": "en:lesson-15:session-13:i05:r2",
+          "text": "There is going be a gale."
+        },
+        {
+          "responseId": "en:lesson-15:session-13:i05:r3",
+          "text": "There are going to be a gale."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-13:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-13:i05:audio",
+          "transcript": "There is going to be a gale."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-13:i05:r1",
+            "targetText": "There is going to be a gale.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i05:r2",
+            "targetText": "There is going be a gale.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i05:r3",
+            "targetText": "There are going to be a gale.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-13:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is going to be a gale.",
+              "uk": "У записі звучить There is going to be a gale."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is going to be a gale.",
+              "uk": "У записі звучить There is going to be a gale."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-13:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Прогноз по видимому признаку. Выберите is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-13:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-13:i06:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-13:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Прогноз по видимому признаку. Выберите is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Прогноз по видимому признаку. Выберите is или are",
+          "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+        },
+        "gappedTargetPhrase": "There ___ going to be a gale.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-13:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-13:i06:r2",
+            "correct": false,
+            "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма is.",
+              "uk": "З цим підметом потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i06:r3",
+            "correct": false,
+            "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна is.",
+              "uk": "Для цього підмета потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-13:word:gust",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — gust",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-13:word:gust:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — gust",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-13:word:gust:audio",
+          "transcript": "gust"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-13:word:gust:r1",
+            "targetText": "gust",
+            "meaningByLocale": {
+              "ru": "внезапный порыв ветра.",
+              "uk": "раптовий порив вітру."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gust",
+          "definitionByLocale": {
+            "ru": "внезапный порыв ветра.",
+            "uk": "раптовий порив вітру."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-13:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "За домом видно, как порыв ветра несёт листья прямо к вашему окну. Скажите: «Ещё один порыв ветра сейчас ударит в окно»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "За домом видно, как порыв ветра несёт листья прямо к вашему окну. Скажите: «Ещё один порыв ветра сейчас ударит в окно»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Another gust is going to hit the window.",
+        "localizedMeaning": {
+          "ru": "За домом видно, как порыв ветра несёт листья прямо к вашему окну. Скажите: «Ещё один порыв ветра сейчас ударит в окно»",
+          "uk": "За будинком видно, як порив вітру несе листя просто до вашого вікна. Скажіть: «Ще один порив вітру зараз ударить у вікно»"
+        },
+        "orderedTokens": [
+          "Another",
+          "gust",
+          "is",
+          "going",
+          "to",
+          "hit",
+          "the",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-13:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-13:i08:r1",
+          "text": "Another gust is going to hit the window."
+        },
+        {
+          "responseId": "en:lesson-15:session-13:i08:r2",
+          "text": "Another gust is going hit the window."
+        },
+        {
+          "responseId": "en:lesson-15:session-13:i08:r3",
+          "text": "Another gust are going to hit the window."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-13:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-13:i08:audio",
+          "transcript": "Another gust is going to hit the window."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-13:i08:r1",
+            "targetText": "Another gust is going to hit the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i08:r2",
+            "targetText": "Another gust is going hit the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i08:r3",
+            "targetText": "Another gust are going to hit the window.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-13:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Another gust is going to hit the window.",
+              "uk": "У записі звучить Another gust is going to hit the window."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Another gust is going to hit the window.",
+              "uk": "У записі звучить Another gust is going to hit the window."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-13:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Прогноз по видимому признаку. Выберите is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-13:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-13:i09:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-13:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Прогноз по видимому признаку. Выберите is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Прогноз по видимому признаку. Выберите is или are",
+          "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+        },
+        "gappedTargetPhrase": "Another gust ___ going to hit the window.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-13:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-13:i09:r2",
+            "correct": false,
+            "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма is.",
+              "uk": "З цим підметом потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i09:r3",
+            "correct": false,
+            "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна is.",
+              "uk": "Для цього підмета потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-13:word:slush",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — slush",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-13:word:slush:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — slush",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-13:word:slush:audio",
+          "transcript": "slush"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-13:word:slush:r1",
+            "targetText": "slush",
+            "meaningByLocale": {
+              "ru": "мокрая снежная каша.",
+              "uk": "мокра снігова каша."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "slush",
+          "definitionByLocale": {
+            "ru": "мокрая снежная каша.",
+            "uk": "мокра снігова каша."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-13:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Снег на дороге уже тает; воздух становится теплее. Скажите: «На дороге будет снежная каша»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Снег на дороге уже тает; воздух становится теплее. Скажите: «На дороге будет снежная каша»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "There is going to be slush on the road.",
+        "localizedMeaning": {
+          "ru": "Снег на дороге уже тает; воздух становится теплее. Скажите: «На дороге будет снежная каша»",
+          "uk": "Сніг на дорозі вже тане; повітря стає теплішим. Скажіть: «На дорозі буде снігова каша»"
+        },
+        "orderedTokens": [
+          "There",
+          "is",
+          "going",
+          "to",
+          "be",
+          "slush",
+          "on",
+          "the",
+          "road"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-13:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-13:i11:r1",
+          "text": "There is going to be slush on the road."
+        },
+        {
+          "responseId": "en:lesson-15:session-13:i11:r2",
+          "text": "There is going be slush on the road."
+        },
+        {
+          "responseId": "en:lesson-15:session-13:i11:r3",
+          "text": "There are going to be slush on the road."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-13:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-13:i11:audio",
+          "transcript": "There is going to be slush on the road."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-13:i11:r1",
+            "targetText": "There is going to be slush on the road.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i11:r2",
+            "targetText": "There is going be slush on the road.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i11:r3",
+            "targetText": "There are going to be slush on the road.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-13:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is going to be slush on the road.",
+              "uk": "У записі звучить There is going to be slush on the road."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is going to be slush on the road.",
+              "uk": "У записі звучить There is going to be slush on the road."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-13:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Прогноз по видимому признаку. Выберите is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-13:i12:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-13:i12:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-13:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Прогноз по видимому признаку. Выберите is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Прогноз по видимому признаку. Выберите is или are",
+          "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+        },
+        "gappedTargetPhrase": "There ___ going to be slush on the road.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-13:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-13:i12:r2",
+            "correct": false,
+            "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма is.",
+              "uk": "З цим підметом потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-13:i12:r3",
+            "correct": false,
+            "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна is.",
+              "uk": "Для цього підмета потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-13:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-13:i13:p1",
+            "target": "downpour",
+            "meaningByLocale": {
+              "ru": "сильный ливень",
+              "uk": "сильна злива"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-13:i13:p2",
+            "target": "gale",
+            "meaningByLocale": {
+              "ru": "очень сильный ветер",
+              "uk": "дуже сильний вітер"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-13:i13:p3",
+            "target": "gust",
+            "meaningByLocale": {
+              "ru": "внезапный порыв ветра",
+              "uk": "раптовий порив вітру"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-13:i13:p4",
+            "target": "slush",
+            "meaningByLocale": {
+              "ru": "мокрая снежная каша",
+              "uk": "мокра снігова каша"
+            }
+          }
+        ],
+        "leftColumn": [
+          "downpour",
+          "gale",
+          "gust",
+          "slush"
+        ],
+        "rightColumn": [
+          "сильный ливень",
+          "очень сильный ветер",
+          "внезапный порыв ветра",
+          "мокрая снежная каша"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-13:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-13:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-13:i14:audio",
+          "transcript": "The wind is going to get stronger."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The wind is going to get stronger.",
+        "orderedTokens": [
+          "The",
+          "wind",
+          "is",
+          "going",
+          "to",
+          "get",
+          "stronger"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-13:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-13:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-13:i15:audio",
+          "transcript": "The snow is going to melt."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The snow is going to melt.",
+        "orderedTokens": [
+          "The",
+          "snow",
+          "is",
+          "going",
+          "to",
+          "melt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-13:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Впереди чёрная туча и крупные капли. Скажите: здесь сейчас будет ливень",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-13:i16:audio"
+      ],
+      "accessibilityLabel": "Впереди чёрная туча и крупные капли. Скажите: здесь сейчас будет ливень",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-13:i16:audio",
+          "transcript": "There is going to be a downpour here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is going to be a downpour here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-13:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Снег на дорожке уже превращается в воду. Скажите: здесь будет снежная каша",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-13:i17:audio"
+      ],
+      "accessibilityLabel": "Снег на дорожке уже превращается в воду. Скажите: здесь будет снежная каша",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-13:i17:audio",
+          "transcript": "There is going to be slush here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is going to be slush here.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "26f6bd320597ef5361e00977c53759c965313bbea9c892fbb6101bc4dfcd48db"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-18:word:gardener",
+    "correctText": "gardener",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-18:i01",
+    "correctText": "I am meeting the gardener tomorrow morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-18:i02",
+    "correctText": "I am meeting the gardener tomorrow morning.",
+    "correctResponseId": "en:lesson-15:session-18:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-18:i03",
+    "correctText": "am",
+    "correctResponseId": "en:lesson-15:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-18:word:decorator",
+    "correctText": "decorator",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-18:i04",
+    "correctText": "We are meeting the decorator on Monday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-18:i05",
+    "correctText": "We are meeting the decorator on Monday.",
+    "correctResponseId": "en:lesson-15:session-18:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-18:i06",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-18:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-18:word:locksmith",
+    "correctText": "locksmith",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-18:i07",
+    "correctText": "She is meeting the locksmith at two tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-18:i08",
+    "correctText": "She is meeting the locksmith at two tomorrow.",
+    "correctResponseId": "en:lesson-15:session-18:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-18:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-18:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-18:word:roofer",
+    "correctText": "roofer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-18:i10",
+    "correctText": "They are meeting the roofer on Tuesday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-18:i11",
+    "correctText": "They are meeting the roofer on Tuesday.",
+    "correctResponseId": "en:lesson-15:session-18:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-18:i12",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-15:session-18:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-18:i13",
+    "correctText": "en:lesson-15:session-18:i13:p1=gardener\nen:lesson-15:session-18:i13:p2=decorator\nen:lesson-15:session-18:i13:p3=locksmith\nen:lesson-15:session-18:i13:p4=roofer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-18:i14",
+    "correctText": "We are painting the room on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-18:i15",
+    "correctText": "She is coming at two tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-18:i16",
+    "correctText": "I am meeting the locksmith at three tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-18:i17",
+    "correctText": "We are meeting the gardener on Saturday.",
+    "correctResponseId": null
+  }
+]

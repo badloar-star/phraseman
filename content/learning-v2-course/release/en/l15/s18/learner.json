@@ -1,0 +1,1127 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-18",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-18:word:gardener",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — gardener",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-18:word:gardener:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — gardener",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-18:word:gardener:audio",
+          "transcript": "gardener"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-18:word:gardener:r1",
+            "targetText": "gardener",
+            "meaningByLocale": {
+              "ru": "садовник, человек, который ухаживает за садом.",
+              "uk": "садівник, людина, яка доглядає сад."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gardener",
+          "definitionByLocale": {
+            "ru": "садовник, человек, который ухаживает за садом.",
+            "uk": "садівник, людина, яка доглядає сад."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-18:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы и садовник согласовали визит на завтрашнее утро. Скажите: «Я встречаюсь с садовником завтра утром»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы и садовник согласовали визит на завтрашнее утро. Скажите: «Я встречаюсь с садовником завтра утром»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am meeting the gardener tomorrow morning.",
+        "localizedMeaning": {
+          "ru": "Вы и садовник согласовали визит на завтрашнее утро. Скажите: «Я встречаюсь с садовником завтра утром»",
+          "uk": "Ви й садівник узгодили візит на завтрашній ранок. Скажіть: «Я зустрічаюся із садівником завтра вранці»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "meeting",
+          "the",
+          "gardener",
+          "tomorrow",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-18:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-18:i02:r1",
+          "text": "I am meeting the gardener tomorrow morning."
+        },
+        {
+          "responseId": "en:lesson-15:session-18:i02:r2",
+          "text": "I is meeting the gardener tomorrow morning."
+        },
+        {
+          "responseId": "en:lesson-15:session-18:i02:r3",
+          "text": "I are meeting the gardener tomorrow morning."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-18:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-18:i02:audio",
+          "transcript": "I am meeting the gardener tomorrow morning."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-18:i02:r1",
+            "targetText": "I am meeting the gardener tomorrow morning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i02:r2",
+            "targetText": "I is meeting the gardener tomorrow morning.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i02:r3",
+            "targetText": "I are meeting the gardener tomorrow morning.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-18:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am meeting the gardener tomorrow morning.",
+              "uk": "У записі звучить I am meeting the gardener tomorrow morning."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am meeting the gardener tomorrow morning.",
+              "uk": "У записі звучить I am meeting the gardener tomorrow morning."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-18:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Будущая договорённость. Выберите am, is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-18:i03:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-18:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-18:i03:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Будущая договорённость. Выберите am, is или are",
+          "uk": "Майбутня домовленість. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "I ___ meeting the gardener tomorrow morning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-18:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i03:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Будущая договорённость. Выберите am, is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-18:i03:r2",
+            "correct": false,
+            "testedDimension": "Будущая договорённость. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма am.",
+              "uk": "З цим підметом потрібна форма am."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i03:r3",
+            "correct": false,
+            "testedDimension": "Будущая договорённость. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна am.",
+              "uk": "Для цього підмета потрібна am."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-18:word:decorator",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — decorator",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-18:word:decorator:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — decorator",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-18:word:decorator:audio",
+          "transcript": "decorator"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-18:word:decorator:r1",
+            "targetText": "decorator",
+            "meaningByLocale": {
+              "ru": "мастер по покраске стен и отделке комнат.",
+              "uk": "майстер із фарбування стін та оздоблення кімнат."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "decorator",
+          "definitionByLocale": {
+            "ru": "мастер по покраске стен и отделке комнат.",
+            "uk": "майстер із фарбування стін та оздоблення кімнат."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-18:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Мастер по отделке подтвердил встречу с вами и супругом в понедельник. Скажите: «Мы встречаемся с мастером по отделке в понедельник»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мастер по отделке подтвердил встречу с вами и супругом в понедельник. Скажите: «Мы встречаемся с мастером по отделке в понедельник»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are meeting the decorator on Monday.",
+        "localizedMeaning": {
+          "ru": "Мастер по отделке подтвердил встречу с вами и супругом в понедельник. Скажите: «Мы встречаемся с мастером по отделке в понедельник»",
+          "uk": "Майстер з оздоблення підтвердив зустріч із вами й чоловіком у понеділок. Скажіть: «Ми зустрічаємося з майстром з оздоблення в понеділок»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "the",
+          "decorator",
+          "on",
+          "Monday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-18:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-18:i05:r1",
+          "text": "We are meeting the decorator on Monday."
+        },
+        {
+          "responseId": "en:lesson-15:session-18:i05:r2",
+          "text": "We am meeting the decorator on Monday."
+        },
+        {
+          "responseId": "en:lesson-15:session-18:i05:r3",
+          "text": "We is meeting the decorator on Monday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-18:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-18:i05:audio",
+          "transcript": "We are meeting the decorator on Monday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-18:i05:r1",
+            "targetText": "We are meeting the decorator on Monday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i05:r2",
+            "targetText": "We am meeting the decorator on Monday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i05:r3",
+            "targetText": "We is meeting the decorator on Monday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-18:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are meeting the decorator on Monday.",
+              "uk": "У записі звучить We are meeting the decorator on Monday."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are meeting the decorator on Monday.",
+              "uk": "У записі звучить We are meeting the decorator on Monday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-18:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Будущая договорённость. Выберите am, is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-18:i06:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-18:i06:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-18:i06:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Будущая договорённость. Выберите am, is или are",
+          "uk": "Майбутня домовленість. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "We ___ meeting the decorator on Monday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-18:i06:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i06:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i06:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Будущая договорённость. Выберите am, is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-18:i06:r2",
+            "correct": false,
+            "testedDimension": "Будущая договорённость. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма are.",
+              "uk": "З цим підметом потрібна форма are."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i06:r3",
+            "correct": false,
+            "testedDimension": "Будущая договорённость. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна are.",
+              "uk": "Для цього підмета потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-18:word:locksmith",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — locksmith",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-18:word:locksmith:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — locksmith",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-18:word:locksmith:audio",
+          "transcript": "locksmith"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-18:word:locksmith:r1",
+            "targetText": "locksmith",
+            "meaningByLocale": {
+              "ru": "мастер по замкам и ключам.",
+              "uk": "майстер із замків і ключів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "locksmith",
+          "definitionByLocale": {
+            "ru": "мастер по замкам и ключам.",
+            "uk": "майстер із замків і ключів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-18:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваша мама договорилась встретить мастера по замкам завтра в два. Скажите: «Она встречается с мастером по замкам завтра в два»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша мама договорилась встретить мастера по замкам завтра в два. Скажите: «Она встречается с мастером по замкам завтра в два»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is meeting the locksmith at two tomorrow.",
+        "localizedMeaning": {
+          "ru": "Ваша мама договорилась встретить мастера по замкам завтра в два. Скажите: «Она встречается с мастером по замкам завтра в два»",
+          "uk": "Ваша мама домовилася зустріти майстра із замків завтра о другій. Скажіть: «Вона зустрічається з майстром із замків завтра о другій»"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "meeting",
+          "the",
+          "locksmith",
+          "at",
+          "two",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-18:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-18:i08:r1",
+          "text": "She is meeting the locksmith at two tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-18:i08:r2",
+          "text": "She am meeting the locksmith at two tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-18:i08:r3",
+          "text": "She are meeting the locksmith at two tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-18:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-18:i08:audio",
+          "transcript": "She is meeting the locksmith at two tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-18:i08:r1",
+            "targetText": "She is meeting the locksmith at two tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i08:r2",
+            "targetText": "She am meeting the locksmith at two tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i08:r3",
+            "targetText": "She are meeting the locksmith at two tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-18:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is meeting the locksmith at two tomorrow.",
+              "uk": "У записі звучить She is meeting the locksmith at two tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is meeting the locksmith at two tomorrow.",
+              "uk": "У записі звучить She is meeting the locksmith at two tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-18:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Будущая договорённость. Выберите am, is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-18:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-18:i09:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-18:i09:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Будущая договорённость. Выберите am, is или are",
+          "uk": "Майбутня домовленість. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "She ___ meeting the locksmith at two tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-18:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i09:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Будущая договорённость. Выберите am, is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-18:i09:r2",
+            "correct": false,
+            "testedDimension": "Будущая договорённость. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма is.",
+              "uk": "З цим підметом потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i09:r3",
+            "correct": false,
+            "testedDimension": "Будущая договорённость. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна is.",
+              "uk": "Для цього підмета потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-18:word:roofer",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — roofer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-18:word:roofer:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — roofer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-18:word:roofer:audio",
+          "transcript": "roofer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-18:word:roofer:r1",
+            "targetText": "roofer",
+            "meaningByLocale": {
+              "ru": "мастер по устройству и ремонту крыш.",
+              "uk": "майстер з улаштування та ремонту дахів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "roofer",
+          "definitionByLocale": {
+            "ru": "мастер по устройству и ремонту крыш.",
+            "uk": "майстер з улаштування та ремонту дахів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-18:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваши соседи уже согласовали встречу с мастером по крышам на вторник. Скажите: «Они встречаются с мастером по крышам во вторник»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваши соседи уже согласовали встречу с мастером по крышам на вторник. Скажите: «Они встречаются с мастером по крышам во вторник»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are meeting the roofer on Tuesday.",
+        "localizedMeaning": {
+          "ru": "Ваши соседи уже согласовали встречу с мастером по крышам на вторник. Скажите: «Они встречаются с мастером по крышам во вторник»",
+          "uk": "Ваші сусіди вже узгодили зустріч із майстром із дахів на вівторок. Скажіть: «Вони зустрічаються з майстром із дахів у вівторок»"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "meeting",
+          "the",
+          "roofer",
+          "on",
+          "Tuesday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-18:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-18:i11:r1",
+          "text": "They are meeting the roofer on Tuesday."
+        },
+        {
+          "responseId": "en:lesson-15:session-18:i11:r2",
+          "text": "They am meeting the roofer on Tuesday."
+        },
+        {
+          "responseId": "en:lesson-15:session-18:i11:r3",
+          "text": "They is meeting the roofer on Tuesday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-18:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-18:i11:audio",
+          "transcript": "They are meeting the roofer on Tuesday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-18:i11:r1",
+            "targetText": "They are meeting the roofer on Tuesday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i11:r2",
+            "targetText": "They am meeting the roofer on Tuesday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i11:r3",
+            "targetText": "They is meeting the roofer on Tuesday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-18:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are meeting the roofer on Tuesday.",
+              "uk": "У записі звучить They are meeting the roofer on Tuesday."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are meeting the roofer on Tuesday.",
+              "uk": "У записі звучить They are meeting the roofer on Tuesday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-18:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Будущая договорённость. Выберите am, is или are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-18:i12:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-18:i12:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-18:i12:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Будущая договорённость. Выберите am, is или are",
+          "uk": "Майбутня домовленість. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "They ___ meeting the roofer on Tuesday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-18:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i12:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Будущая договорённость. Выберите am, is или are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-18:i12:r2",
+            "correct": false,
+            "testedDimension": "Будущая договорённость. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма are.",
+              "uk": "З цим підметом потрібна форма are."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-18:i12:r3",
+            "correct": false,
+            "testedDimension": "Будущая договорённость. Выберите am, is или are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна are.",
+              "uk": "Для цього підмета потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-18:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-18:i13:p1",
+            "target": "gardener",
+            "meaningByLocale": {
+              "ru": "садовник, человек, который ухаживает за садом",
+              "uk": "садівник, людина, яка доглядає сад"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-18:i13:p2",
+            "target": "decorator",
+            "meaningByLocale": {
+              "ru": "мастер по покраске стен и отделке комнат",
+              "uk": "майстер із фарбування стін та оздоблення кімнат"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-18:i13:p3",
+            "target": "locksmith",
+            "meaningByLocale": {
+              "ru": "мастер по замкам и ключам",
+              "uk": "майстер із замків і ключів"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-18:i13:p4",
+            "target": "roofer",
+            "meaningByLocale": {
+              "ru": "мастер по устройству и ремонту крыш",
+              "uk": "майстер з улаштування та ремонту дахів"
+            }
+          }
+        ],
+        "leftColumn": [
+          "gardener",
+          "decorator",
+          "locksmith",
+          "roofer"
+        ],
+        "rightColumn": [
+          "садовник, человек, который ухаживает за садом",
+          "мастер по покраске стен и отделке комнат",
+          "мастер по замкам и ключам",
+          "мастер по устройству и ремонту крыш"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-18:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-18:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-18:i14:audio",
+          "transcript": "We are painting the room on Saturday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are painting the room on Saturday.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "painting",
+          "the",
+          "room",
+          "on",
+          "Saturday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-18:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-18:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-18:i15:audio",
+          "transcript": "She is coming at two tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is coming at two tomorrow.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "coming",
+          "at",
+          "two",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-18:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы назначили встречу мастеру по замкам на завтра в три. Скажите это",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-18:i16:audio"
+      ],
+      "accessibilityLabel": "Вы назначили встречу мастеру по замкам на завтра в три. Скажите это",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-18:i16:audio",
+          "transcript": "I am meeting the locksmith at three tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am meeting the locksmith at three tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-18:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы с супругом согласовали встречу с садовником на субботу. Скажите это",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-18:i17:audio"
+      ],
+      "accessibilityLabel": "Вы с супругом согласовали встречу с садовником на субботу. Скажите это",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-18:i17:audio",
+          "transcript": "We are meeting the gardener on Saturday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are meeting the gardener on Saturday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "aa130a97c93100d4ba0cbfdb8416602b385db0b51d06ee9d6a6bb2d87425bb5a"
+}

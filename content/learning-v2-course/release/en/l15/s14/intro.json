@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "review: going to predictions from present evidence",
+    "uk": "review: going to predictions from present evidence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Признак уже виден",
+        "uk": "Ознаку вже видно"
+      },
+      "bodyByLocale": {
+        "ru": "dew — роса. Вечер ясный, трава быстро остывает, на ней появляются первые капли. There is going to be dew on the grass. — На траве будет роса. По видимому признаку делаем прогноз: be going to + начальная форма глагола.",
+        "uk": "dew — роса. Вечір ясний, трава швидко холоне, на ній з’являються перші краплі. There is going to be dew on the grass. — На траві буде роса. За видимою ознакою робимо прогноз: be going to + початкова форма дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-14:intro1:r1",
+              "text": "There is going to be dew on the grass."
+            },
+            {
+              "responseId": "en:lesson-15:session-14:intro1:r2",
+              "text": "There is going be dew on the grass."
+            },
+            {
+              "responseId": "en:lesson-15:session-14:intro1:r3",
+              "text": "There are going to be dew on the grass."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-14:intro1:r1",
+              "text": "There is going to be dew on the grass."
+            },
+            {
+              "responseId": "en:lesson-15:session-14:intro1:r2",
+              "text": "There is going be dew on the grass."
+            },
+            {
+              "responseId": "en:lesson-15:session-14:intro1:r3",
+              "text": "There are going to be dew on the grass."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ещё два изменения",
+        "uk": "Ще дві зміни"
+      },
+      "bodyByLocale": {
+        "ru": "rainbow — радуга; sunbeam — луч солнечного света. Дождь ещё идёт, но за вашей спиной из-за туч выходит солнце. There is going to be a rainbow. — Похоже, сейчас появится радуга. Выберите прогноз.",
+        "uk": "rainbow — веселка; sunbeam — промінь сонячного світла. Дощ іще йде, але за вашою спиною з-за хмар виходить сонце. There is going to be a rainbow. — Схоже, зараз з’явиться веселка. Виберіть прогноз."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-14:intro2:r1",
+              "text": "There is going to be a rainbow."
+            },
+            {
+              "responseId": "en:lesson-15:session-14:intro2:r2",
+              "text": "There is going be a rainbow."
+            },
+            {
+              "responseId": "en:lesson-15:session-14:intro2:r3",
+              "text": "There are going to be a rainbow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-14:intro2:r1",
+              "text": "There is going to be a rainbow."
+            },
+            {
+              "responseId": "en:lesson-15:session-14:intro2:r2",
+              "text": "There is going be a rainbow."
+            },
+            {
+              "responseId": "en:lesson-15:session-14:intro2:r3",
+              "text": "There are going to be a rainbow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Основание для прогноза",
+        "uk": "Підстава для прогнозу"
+      },
+      "bodyByLocale": {
+        "ru": "treetop — верхушка дерева. Ветер пригибает высокое дерево к окну; верхушка уже совсем близко. The treetop is going to touch the window. — Верхушка дерева сейчас коснётся окна. После going to форма глагола не меняется.",
+        "uk": "treetop — верхівка дерева. Вітер пригинає високе дерево до вікна; верхівка вже зовсім близько. The treetop is going to touch the window. — Верхівка дерева зараз торкнеться вікна. Після going to форма дієслова не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-14:intro3:r1",
+              "text": "The treetop is going to touch the window."
+            },
+            {
+              "responseId": "en:lesson-15:session-14:intro3:r2",
+              "text": "The treetop is going touch the window."
+            },
+            {
+              "responseId": "en:lesson-15:session-14:intro3:r3",
+              "text": "The treetop are going to touch the window."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-14:intro3:r1",
+              "text": "The treetop is going to touch the window."
+            },
+            {
+              "responseId": "en:lesson-15:session-14:intro3:r2",
+              "text": "The treetop is going touch the window."
+            },
+            {
+              "responseId": "en:lesson-15:session-14:intro3:r3",
+              "text": "The treetop are going to touch the window."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d725dc8742b96e0c7ce62dde069e157e3b02bae1710174b9e25c776e583410e1"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "review: going to predictions from present evidence",
+    "uk": "review: going to predictions from present evidence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Признак уже виден",
+        "uk": "Ознаку вже видно"
+      },
+      "bodyByLocale": {
+        "ru": "skylight — окно в крыше. В стекле окна на крыше трещина, и дождь уже начинается. The skylight is going to leak. — Окно в крыше сейчас начнёт протекать. По видимому признаку делаем прогноз: be going to + начальная форма глагола.",
+        "uk": "skylight — вікно в даху. У склі вікна на даху тріщина, і дощ уже починається. The skylight is going to leak. — Вікно в даху зараз почне протікати. За видимою ознакою робимо прогноз: be going to + початкова форма дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-15:intro1:r1",
+              "text": "The skylight is going to leak."
+            },
+            {
+              "responseId": "en:lesson-15:session-15:intro1:r2",
+              "text": "The skylight is going leak."
+            },
+            {
+              "responseId": "en:lesson-15:session-15:intro1:r3",
+              "text": "The skylight are going to leak."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-15:intro1:r1",
+              "text": "The skylight is going to leak."
+            },
+            {
+              "responseId": "en:lesson-15:session-15:intro1:r2",
+              "text": "The skylight is going leak."
+            },
+            {
+              "responseId": "en:lesson-15:session-15:intro1:r3",
+              "text": "The skylight are going to leak."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ещё два изменения",
+        "uk": "Ще дві зміни"
+      },
+      "bodyByLocale": {
+        "ru": "veranda — крытая открытая пристройка вдоль стены дома; conservatory — застеклённая пристройка к дому. Ветер гонит дождь под крышу открытой веранды. The veranda is going to get wet. — Веранда сейчас намокнет. Выберите прогноз.",
+        "uk": "veranda — крита відкрита прибудова вздовж стіни будинку; conservatory — засклена прибудова до будинку. Вітер жене дощ під дах відкритої веранди. The veranda is going to get wet. — Веранда зараз намокне. Виберіть прогноз."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-15:intro2:r1",
+              "text": "The veranda is going to get wet."
+            },
+            {
+              "responseId": "en:lesson-15:session-15:intro2:r2",
+              "text": "The veranda is going get wet."
+            },
+            {
+              "responseId": "en:lesson-15:session-15:intro2:r3",
+              "text": "The veranda are going to get wet."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-15:intro2:r1",
+              "text": "The veranda is going to get wet."
+            },
+            {
+              "responseId": "en:lesson-15:session-15:intro2:r2",
+              "text": "The veranda is going get wet."
+            },
+            {
+              "responseId": "en:lesson-15:session-15:intro2:r3",
+              "text": "The veranda are going to get wet."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Основание для прогноза",
+        "uk": "Підстава для прогнозу"
+      },
+      "bodyByLocale": {
+        "ru": "doorstop — предмет, который удерживает дверь открытой. Гладкий упор стоит на мокром полу; дверь уже толкает его. The doorstop is going to slide. — Дверной упор сейчас сдвинется. После going to форма глагола не меняется.",
+        "uk": "doorstop — предмет, який утримує двері відчиненими. Гладкий упор стоїть на мокрій підлозі; двері вже штовхають його. The doorstop is going to slide. — Дверний упор зараз зсунеться. Після going to форма дієслова не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-15:intro3:r1",
+              "text": "The doorstop is going to slide."
+            },
+            {
+              "responseId": "en:lesson-15:session-15:intro3:r2",
+              "text": "The doorstop is going slide."
+            },
+            {
+              "responseId": "en:lesson-15:session-15:intro3:r3",
+              "text": "The doorstop are going to slide."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-15:intro3:r1",
+              "text": "The doorstop is going to slide."
+            },
+            {
+              "responseId": "en:lesson-15:session-15:intro3:r2",
+              "text": "The doorstop is going slide."
+            },
+            {
+              "responseId": "en:lesson-15:session-15:intro3:r3",
+              "text": "The doorstop are going to slide."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2421a9dd7e93828d6227d913db30028342001d01fe2199873a434f7bc343280f"
+}

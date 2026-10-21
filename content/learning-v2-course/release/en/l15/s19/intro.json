@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "review: Present Continuous for agreed future arrangements",
+    "uk": "review: Present Continuous for agreed future arrangements"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Время уже согласовано",
+        "uk": "Час уже узгоджено"
+      },
+      "bodyByLocale": {
+        "ru": "removal van — фургон для перевозки вещей при переезде. Вы с супругом получили подтверждение брони фургона на субботу. We are hiring a removal van on Saturday. — Мы берём напрокат фургон для переезда в субботу. Здесь Present Continuous обозначает уже согласованное будущее дело.",
+        "uk": "removal van — фургон для перевезення речей під час переїзду. Ви з чоловіком отримали підтвердження бронювання фургона на суботу. We are hiring a removal van on Saturday. — Ми беремо напрокат фургон для переїзду в суботу. Тут Present Continuous означає вже узгоджену майбутню справу."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-19:intro1:r1",
+              "text": "We are hiring a removal van on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-19:intro1:r2",
+              "text": "We am hiring a removal van on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-19:intro1:r3",
+              "text": "We is hiring a removal van on Saturday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-19:intro1:r1",
+              "text": "We are hiring a removal van on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-19:intro1:r2",
+              "text": "We am hiring a removal van on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-19:intro1:r3",
+              "text": "We is hiring a removal van on Saturday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "О чём договорились",
+        "uk": "Про що домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "housewarming — праздник по случаю новоселья; viewing — осмотр жилья перед решением о покупке или аренде. Гости уже приняли приглашение на ваше новоселье в пятницу. I am having a housewarming on Friday. — Я устраиваю новоселье в пятницу. Выберите правильную форму be.",
+        "uk": "housewarming — свято з нагоди новосілля; viewing — огляд житла перед рішенням про купівлю або оренду. Гості вже прийняли запрошення на ваше новосілля в п’ятницю. I am having a housewarming on Friday. — Я влаштовую новосілля в п’ятницю. Виберіть правильну форму be."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-19:intro2:r1",
+              "text": "I am having a housewarming on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-19:intro2:r2",
+              "text": "I is having a housewarming on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-19:intro2:r3",
+              "text": "I are having a housewarming on Friday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-19:intro2:r1",
+              "text": "I am having a housewarming on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-19:intro2:r2",
+              "text": "I is having a housewarming on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-19:intro2:r3",
+              "text": "I are having a housewarming on Friday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Договорённость на конкретное время",
+        "uk": "Домовленість на конкретний час"
+      },
+      "bodyByLocale": {
+        "ru": "tenant — человек, который снимает жильё. Ваши родители договорились передать ключи новому жильцу завтра в десять. They are meeting the tenant at ten tomorrow. — Они встречаются с жильцом-арендатором завтра в десять. Слова времени показывают: речь о будущем, а не о действии сейчас.",
+        "uk": "tenant — людина, яка винаймає житло. Ваші батьки домовилися передати ключі новому мешканцеві завтра о десятій. They are meeting the tenant at ten tomorrow. — Вони зустрічаються з мешканцем-орендарем завтра о десятій. Слова часу показують: ідеться про майбутнє, а не про дію зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-19:intro3:r1",
+              "text": "They are meeting the tenant at ten tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-19:intro3:r2",
+              "text": "They am meeting the tenant at ten tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-19:intro3:r3",
+              "text": "They is meeting the tenant at ten tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-19:intro3:r1",
+              "text": "They are meeting the tenant at ten tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-19:intro3:r2",
+              "text": "They am meeting the tenant at ten tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-19:intro3:r3",
+              "text": "They is meeting the tenant at ten tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c1066288c6a918073fce64bd39958f9278dc102ce9b2ff37361c77729a2fd86f"
+}

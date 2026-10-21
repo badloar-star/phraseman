@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "review: going to predictions from present evidence",
+    "uk": "review: going to predictions from present evidence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Признак уже виден",
+        "uk": "Ознаку вже видно"
+      },
+      "bodyByLocale": {
+        "ru": "stumble — споткнуться и потерять равновесие. Его нога зацепилась за край ковра; он ещё пытается удержать равновесие. He is going to stumble. — Похоже, он сейчас споткнётся. По видимому признаку делаем прогноз: be going to + начальная форма глагола.",
+        "uk": "stumble — спіткнутися й втратити рівновагу. Його нога зачепилася за край килима; він іще намагається втримати рівновагу. He is going to stumble. — Схоже, він зараз спіткнеться. За видимою ознакою робимо прогноз: be going to + початкова форма дієслова."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-16:intro1:r1",
+              "text": "He is going to stumble."
+            },
+            {
+              "responseId": "en:lesson-15:session-16:intro1:r2",
+              "text": "He is going stumble."
+            },
+            {
+              "responseId": "en:lesson-15:session-16:intro1:r3",
+              "text": "He are going to stumble."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-16:intro1:r1",
+              "text": "He is going to stumble."
+            },
+            {
+              "responseId": "en:lesson-15:session-16:intro1:r2",
+              "text": "He is going stumble."
+            },
+            {
+              "responseId": "en:lesson-15:session-16:intro1:r3",
+              "text": "He are going to stumble."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ещё два изменения",
+        "uk": "Ще дві зміни"
+      },
+      "bodyByLocale": {
+        "ru": "doze — задремать, ненадолго уснуть; blush — покраснеть от смущения. Она сидит в кресле, веки закрываются, голова клонится вперёд. She is going to doze. — Похоже, она сейчас задремлет. Выберите прогноз.",
+        "uk": "doze — задрімати, ненадовго заснути; blush — почервоніти від збентеження. Вона сидить у кріслі, повіки заплющуються, голова хилиться вперед. She is going to doze. — Схоже, вона зараз задрімає. Виберіть прогноз."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-16:intro2:r1",
+              "text": "She is going to doze."
+            },
+            {
+              "responseId": "en:lesson-15:session-16:intro2:r2",
+              "text": "She is going doze."
+            },
+            {
+              "responseId": "en:lesson-15:session-16:intro2:r3",
+              "text": "She are going to doze."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-16:intro2:r1",
+              "text": "She is going to doze."
+            },
+            {
+              "responseId": "en:lesson-15:session-16:intro2:r2",
+              "text": "She is going doze."
+            },
+            {
+              "responseId": "en:lesson-15:session-16:intro2:r3",
+              "text": "She are going to doze."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Основание для прогноза",
+        "uk": "Підстава для прогнозу"
+      },
+      "bodyByLocale": {
+        "ru": "hiccup — икнуть, икать. Она уже несколько раз икнула и снова резко втягивает воздух. She is going to hiccup again. — Похоже, она сейчас снова икнёт. После going to форма глагола не меняется.",
+        "uk": "hiccup — гикнути, гикати. Вона вже кілька разів гикнула й знову різко втягує повітря. She is going to hiccup again. — Схоже, вона зараз знову гикне. Після going to форма дієслова не змінюється."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-16:intro3:r1",
+              "text": "She is going to hiccup again."
+            },
+            {
+              "responseId": "en:lesson-15:session-16:intro3:r2",
+              "text": "She is going hiccup again."
+            },
+            {
+              "responseId": "en:lesson-15:session-16:intro3:r3",
+              "text": "She are going to hiccup again."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-16:intro3:r1",
+              "text": "She is going to hiccup again."
+            },
+            {
+              "responseId": "en:lesson-15:session-16:intro3:r2",
+              "text": "She is going hiccup again."
+            },
+            {
+              "responseId": "en:lesson-15:session-16:intro3:r3",
+              "text": "She are going to hiccup again."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "19b66eb2985373eb5b9cbed77acc83c189061c82f543e17b9673fd2bad440cfd"
+}

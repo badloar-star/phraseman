@@ -1,0 +1,1129 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-20",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-20:word:car-boot-sale",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — car boot sale",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-20:word:car-boot-sale:audio"
+      ],
+      "accessibilityLabel": "Картка слова — car boot sale",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-20:word:car-boot-sale:audio",
+          "transcript": "car boot sale"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-20:word:car-boot-sale:r1",
+            "targetText": "car boot sale",
+            "meaningByLocale": {
+              "ru": "распродажа подержанных вещей, часто из багажников автомобилей.",
+              "uk": "розпродаж уживаних речей, часто з багажників автомобілів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "car boot sale",
+          "definitionByLocale": {
+            "ru": "распродажа подержанных вещей, часто из багажников автомобилей.",
+            "uk": "розпродаж уживаних речей, часто з багажників автомобілів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-20:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви з друзями домовилися зустрітися біля входу на розпродаж у неділю. Скажіть: «Ми йдемо на розпродаж уживаних речей у неділю»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви з друзями домовилися зустрітися біля входу на розпродаж у неділю. Скажіть: «Ми йдемо на розпродаж уживаних речей у неділю»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are visiting a car boot sale on Sunday.",
+        "localizedMeaning": {
+          "ru": "Вы с друзьями договорились встретиться у входа на распродажу в воскресенье. Скажите: «Мы идём на распродажу подержанных вещей в воскресенье»",
+          "uk": "Ви з друзями домовилися зустрітися біля входу на розпродаж у неділю. Скажіть: «Ми йдемо на розпродаж уживаних речей у неділю»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "visiting",
+          "a",
+          "car",
+          "boot",
+          "sale",
+          "on",
+          "Sunday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-20:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-20:i02:r1",
+          "text": "We are visiting a car boot sale on Sunday."
+        },
+        {
+          "responseId": "en:lesson-15:session-20:i02:r2",
+          "text": "We am visiting a car boot sale on Sunday."
+        },
+        {
+          "responseId": "en:lesson-15:session-20:i02:r3",
+          "text": "We is visiting a car boot sale on Sunday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-20:i02:audio",
+          "transcript": "We are visiting a car boot sale on Sunday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-20:i02:r1",
+            "targetText": "We are visiting a car boot sale on Sunday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i02:r2",
+            "targetText": "We am visiting a car boot sale on Sunday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i02:r3",
+            "targetText": "We is visiting a car boot sale on Sunday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-20:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are visiting a car boot sale on Sunday.",
+              "uk": "У записі звучить We are visiting a car boot sale on Sunday."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are visiting a car boot sale on Sunday.",
+              "uk": "У записі звучить We are visiting a car boot sale on Sunday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-20:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Майбутня домовленість. Виберіть am, is або are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-20:i03:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-20:i03:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-20:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Майбутня домовленість. Виберіть am, is або are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Будущая договорённость. Выберите am, is или are",
+          "uk": "Майбутня домовленість. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "We ___ visiting a car boot sale on Sunday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-20:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-20:i03:r2",
+            "correct": false,
+            "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма are.",
+              "uk": "З цим підметом потрібна форма are."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i03:r3",
+            "correct": false,
+            "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна are.",
+              "uk": "Для цього підмета потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-20:word:craft-fair",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — craft fair",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-20:word:craft-fair:audio"
+      ],
+      "accessibilityLabel": "Картка слова — craft fair",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-20:word:craft-fair:audio",
+          "transcript": "craft fair"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-20:word:craft-fair:r1",
+            "targetText": "craft fair",
+            "meaningByLocale": {
+              "ru": "ярмарка изделий ручной работы.",
+              "uk": "ярмарок виробів ручної роботи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "craft fair",
+          "definitionByLocale": {
+            "ru": "ярмарка изделий ручной работы.",
+            "uk": "ярмарок виробів ручної роботи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-20:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви вже домовилися із сестрою разом піти на ярмарок у суботу. Скажіть: «Я йду на ярмарок виробів ручної роботи в суботу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вже домовилися із сестрою разом піти на ярмарок у суботу. Скажіть: «Я йду на ярмарок виробів ручної роботи в суботу»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am visiting a craft fair on Saturday.",
+        "localizedMeaning": {
+          "ru": "Вы уже договорились с сестрой вместе пойти на ярмарку в субботу. Скажите: «Я иду на ярмарку изделий ручной работы в субботу»",
+          "uk": "Ви вже домовилися із сестрою разом піти на ярмарок у суботу. Скажіть: «Я йду на ярмарок виробів ручної роботи в суботу»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "visiting",
+          "a",
+          "craft",
+          "fair",
+          "on",
+          "Saturday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-20:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-20:i05:r1",
+          "text": "I am visiting a craft fair on Saturday."
+        },
+        {
+          "responseId": "en:lesson-15:session-20:i05:r2",
+          "text": "I is visiting a craft fair on Saturday."
+        },
+        {
+          "responseId": "en:lesson-15:session-20:i05:r3",
+          "text": "I are visiting a craft fair on Saturday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-20:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-20:i05:audio",
+          "transcript": "I am visiting a craft fair on Saturday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-20:i05:r1",
+            "targetText": "I am visiting a craft fair on Saturday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i05:r2",
+            "targetText": "I is visiting a craft fair on Saturday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i05:r3",
+            "targetText": "I are visiting a craft fair on Saturday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-20:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am visiting a craft fair on Saturday.",
+              "uk": "У записі звучить I am visiting a craft fair on Saturday."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am visiting a craft fair on Saturday.",
+              "uk": "У записі звучить I am visiting a craft fair on Saturday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-20:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Майбутня домовленість. Виберіть am, is або are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-20:i06:r1",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-20:i06:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-20:i06:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Майбутня домовленість. Виберіть am, is або are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Будущая договорённость. Выберите am, is или are",
+          "uk": "Майбутня домовленість. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "I ___ visiting a craft fair on Saturday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-20:i06:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i06:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-20:i06:r2",
+            "correct": false,
+            "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма am.",
+              "uk": "З цим підметом потрібна форма am."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i06:r3",
+            "correct": false,
+            "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна am.",
+              "uk": "Для цього підмета потрібна am."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-20:word:fun-run",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fun run",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-20:word:fun-run:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fun run",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-20:word:fun-run:audio",
+          "transcript": "fun run"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-20:word:fun-run:r1",
+            "targetText": "fun run",
+            "meaningByLocale": {
+              "ru": "любительский забег для удовольствия, часто благотворительный.",
+              "uk": "аматорський забіг для задоволення, часто благодійний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fun run",
+          "definitionByLocale": {
+            "ru": "любительский забег для удовольствия, часто благотворительный.",
+            "uk": "аматорський забіг для задоволення, часто благодійний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-20:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваша подруга зареєструвалася на забіг і узгодила зустріч із командою на завтра. Скажіть: «Вона бере участь в аматорському забігу завтра»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша подруга зареєструвалася на забіг і узгодила зустріч із командою на завтра. Скажіть: «Вона бере участь в аматорському забігу завтра»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is taking part in a fun run tomorrow.",
+        "localizedMeaning": {
+          "ru": "Ваша подруга зарегистрировалась на забег и согласовала встречу с командой на завтра. Скажите: «Она участвует в любительском забеге завтра»",
+          "uk": "Ваша подруга зареєструвалася на забіг і узгодила зустріч із командою на завтра. Скажіть: «Вона бере участь в аматорському забігу завтра»"
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "taking",
+          "part",
+          "in",
+          "a",
+          "fun",
+          "run",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-20:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-20:i08:r1",
+          "text": "She is taking part in a fun run tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-20:i08:r2",
+          "text": "She am taking part in a fun run tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-20:i08:r3",
+          "text": "She are taking part in a fun run tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-20:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-20:i08:audio",
+          "transcript": "She is taking part in a fun run tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-20:i08:r1",
+            "targetText": "She is taking part in a fun run tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i08:r2",
+            "targetText": "She am taking part in a fun run tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i08:r3",
+            "targetText": "She are taking part in a fun run tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-20:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is taking part in a fun run tomorrow.",
+              "uk": "У записі звучить She is taking part in a fun run tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is taking part in a fun run tomorrow.",
+              "uk": "У записі звучить She is taking part in a fun run tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-20:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Майбутня домовленість. Виберіть am, is або are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-20:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-20:i09:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-20:i09:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Майбутня домовленість. Виберіть am, is або are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Будущая договорённость. Выберите am, is или are",
+          "uk": "Майбутня домовленість. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "She ___ taking part in a fun run tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-20:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i09:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-20:i09:r2",
+            "correct": false,
+            "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма is.",
+              "uk": "З цим підметом потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i09:r3",
+            "correct": false,
+            "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна is.",
+              "uk": "Для цього підмета потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-20:word:book-club",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — book club",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-20:word:book-club:audio"
+      ],
+      "accessibilityLabel": "Картка слова — book club",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-20:word:book-club:audio",
+          "transcript": "book club"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-20:word:book-club:r1",
+            "targetText": "book club",
+            "meaningByLocale": {
+              "ru": "клуб, в котором обсуждают прочитанные книги.",
+              "uk": "клуб, у якому обговорюють прочитані книжки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "book club",
+          "definitionByLocale": {
+            "ru": "клуб, в котором обсуждают прочитанные книги.",
+            "uk": "клуб, у якому обговорюють прочитані книжки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-20:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваші батьки підтвердили участь у зустрічі книжкового клубу сьогодні ввечері. Скажіть: «Вони зустрічаються в книжковому клубі сьогодні ввечері»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваші батьки підтвердили участь у зустрічі книжкового клубу сьогодні ввечері. Скажіть: «Вони зустрічаються в книжковому клубі сьогодні ввечері»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are meeting at the book club tonight.",
+        "localizedMeaning": {
+          "ru": "Ваши родители подтвердили участие во встрече книжного клуба сегодня вечером. Скажите: «Они встречаются в книжном клубе сегодня вечером»",
+          "uk": "Ваші батьки підтвердили участь у зустрічі книжкового клубу сьогодні ввечері. Скажіть: «Вони зустрічаються в книжковому клубі сьогодні ввечері»"
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "meeting",
+          "at",
+          "the",
+          "book",
+          "club",
+          "tonight"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-20:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-20:i11:r1",
+          "text": "They are meeting at the book club tonight."
+        },
+        {
+          "responseId": "en:lesson-15:session-20:i11:r2",
+          "text": "They am meeting at the book club tonight."
+        },
+        {
+          "responseId": "en:lesson-15:session-20:i11:r3",
+          "text": "They is meeting at the book club tonight."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-20:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-20:i11:audio",
+          "transcript": "They are meeting at the book club tonight."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-20:i11:r1",
+            "targetText": "They are meeting at the book club tonight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i11:r2",
+            "targetText": "They am meeting at the book club tonight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i11:r3",
+            "targetText": "They is meeting at the book club tonight.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-20:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are meeting at the book club tonight.",
+              "uk": "У записі звучить They are meeting at the book club tonight."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are meeting at the book club tonight.",
+              "uk": "У записі звучить They are meeting at the book club tonight."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-20:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Майбутня домовленість. Виберіть am, is або are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-20:i12:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-20:i12:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-15:session-20:i12:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Майбутня домовленість. Виберіть am, is або are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Будущая договорённость. Выберите am, is или are",
+          "uk": "Майбутня домовленість. Виберіть am, is або are"
+        },
+        "gappedTargetPhrase": "They ___ meeting at the book club tonight.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-20:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i12:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-20:i12:r2",
+            "correct": false,
+            "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма are.",
+              "uk": "З цим підметом потрібна форма are."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-20:i12:r3",
+            "correct": false,
+            "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна are.",
+              "uk": "Для цього підмета потрібна are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-20:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-20:i13:p1",
+            "target": "car boot sale",
+            "meaningByLocale": {
+              "ru": "распродажа подержанных вещей, часто из багажников автомобилей",
+              "uk": "розпродаж уживаних речей, часто з багажників автомобілів"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-20:i13:p2",
+            "target": "craft fair",
+            "meaningByLocale": {
+              "ru": "ярмарка изделий ручной работы",
+              "uk": "ярмарок виробів ручної роботи"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-20:i13:p3",
+            "target": "fun run",
+            "meaningByLocale": {
+              "ru": "любительский забег для удовольствия, часто благотворительный",
+              "uk": "аматорський забіг для задоволення, часто благодійний"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-20:i13:p4",
+            "target": "book club",
+            "meaningByLocale": {
+              "ru": "клуб, в котором обсуждают прочитанные книги",
+              "uk": "клуб, у якому обговорюють прочитані книжки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "car boot sale",
+          "craft fair",
+          "fun run",
+          "book club"
+        ],
+        "rightColumn": [
+          "розпродаж уживаних речей, часто з багажників автомобілів",
+          "ярмарок виробів ручної роботи",
+          "аматорський забіг для задоволення, часто благодійний",
+          "клуб, у якому обговорюють прочитані книжки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-20:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-20:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-20:i14:audio",
+          "transcript": "We are meeting on Sunday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting on Sunday.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "on",
+          "Sunday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-20:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-20:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-20:i15:audio",
+          "transcript": "She is running tomorrow morning."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She is running tomorrow morning.",
+        "orderedTokens": [
+          "She",
+          "is",
+          "running",
+          "tomorrow",
+          "morning"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-20:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви з другом домовилися про спільну поїздку на ярмарок у неділю. Скажіть: ми йдемо на ярмарок у неділю",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-20:i16:audio"
+      ],
+      "accessibilityLabel": "Ви з другом домовилися про спільну поїздку на ярмарок у неділю. Скажіть: ми йдемо на ярмарок у неділю",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-20:i16:audio",
+          "transcript": "We are visiting a craft fair on Sunday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are visiting a craft fair on Sunday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-20:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви зареєструвалися на аматорський забіг у суботу. Скажіть про участь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-20:i17:audio"
+      ],
+      "accessibilityLabel": "Ви зареєструвалися на аматорський забіг у суботу. Скажіть про участь",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-20:i17:audio",
+          "transcript": "I am taking part in a fun run on Saturday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am taking part in a fun run on Saturday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "691dd5a07876de725d61b57d6e05a9ff124a27a44f36475dc9f5711ae34359a7"
+}

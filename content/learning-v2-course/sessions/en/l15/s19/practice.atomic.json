@@ -1,0 +1,2337 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-15:session-19",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-15:session-19:word:removal-van",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — removal van",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:word:removal-van:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — removal van",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:word:removal-van:audio",
+            "transcript": "removal van"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-19:word:removal-van:r1",
+              "targetText": "removal van",
+              "meaningByLocale": {
+                "ru": "фургон для перевозки вещей при переезде.",
+                "uk": "фургон для перевезення речей під час переїзду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "removal van",
+            "definitionByLocale": {
+              "ru": "фургон для перевозки вещей при переезде.",
+              "uk": "фургон для перевезення речей під час переїзду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы с супругом получили подтверждение брони фургона на субботу. Скажите: «Мы берём напрокат фургон для переезда в субботу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы с супругом получили подтверждение брони фургона на субботу. Скажите: «Мы берём напрокат фургон для переезда в субботу»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are hiring a removal van on Saturday.",
+          "localizedMeaning": {
+            "ru": "Вы с супругом получили подтверждение брони фургона на субботу. Скажите: «Мы берём напрокат фургон для переезда в субботу»",
+            "uk": "Ви з чоловіком отримали підтвердження бронювання фургона на суботу. Скажіть: «Ми беремо напрокат фургон для переїзду в суботу»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "hiring",
+            "a",
+            "removal",
+            "van",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-19:i02:r1",
+            "text": "We are hiring a removal van on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i02:r2",
+            "text": "We am hiring a removal van on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i02:r3",
+            "text": "We is hiring a removal van on Saturday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:i02:audio",
+            "transcript": "We are hiring a removal van on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-19:i02:r1",
+              "targetText": "We are hiring a removal van on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i02:r2",
+              "targetText": "We am hiring a removal van on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i02:r3",
+              "targetText": "We is hiring a removal van on Saturday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-19:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are hiring a removal van on Saturday.",
+                "uk": "У записі звучить We are hiring a removal van on Saturday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are hiring a removal van on Saturday.",
+                "uk": "У записі звучить We are hiring a removal van on Saturday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Будущая договорённость. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-19:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "We ___ hiring a removal van on Saturday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-19:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Будущая договорённость. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-19:i03:r2",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i03:r3",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:word:housewarming",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — housewarming",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:word:housewarming:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — housewarming",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:word:housewarming:audio",
+            "transcript": "housewarming"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-19:word:housewarming:r1",
+              "targetText": "housewarming",
+              "meaningByLocale": {
+                "ru": "праздник по случаю новоселья.",
+                "uk": "свято з нагоди новосілля."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "housewarming",
+            "definitionByLocale": {
+              "ru": "праздник по случаю новоселья.",
+              "uk": "свято з нагоди новосілля."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гости уже приняли приглашение на ваше новоселье в пятницу. Скажите: «Я устраиваю новоселье в пятницу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гости уже приняли приглашение на ваше новоселье в пятницу. Скажите: «Я устраиваю новоселье в пятницу»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am having a housewarming on Friday.",
+          "localizedMeaning": {
+            "ru": "Гости уже приняли приглашение на ваше новоселье в пятницу. Скажите: «Я устраиваю новоселье в пятницу»",
+            "uk": "Гості вже прийняли запрошення на ваше новосілля в п’ятницю. Скажіть: «Я влаштовую новосілля в п’ятницю»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "having",
+            "a",
+            "housewarming",
+            "on",
+            "Friday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-19:i05:r1",
+            "text": "I am having a housewarming on Friday."
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i05:r2",
+            "text": "I is having a housewarming on Friday."
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i05:r3",
+            "text": "I are having a housewarming on Friday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:i05:audio",
+            "transcript": "I am having a housewarming on Friday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-19:i05:r1",
+              "targetText": "I am having a housewarming on Friday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i05:r2",
+              "targetText": "I is having a housewarming on Friday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i05:r3",
+              "targetText": "I are having a housewarming on Friday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-19:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am having a housewarming on Friday.",
+                "uk": "У записі звучить I am having a housewarming on Friday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am having a housewarming on Friday.",
+                "uk": "У записі звучить I am having a housewarming on Friday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Будущая договорённость. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-19:i06:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "I ___ having a housewarming on Friday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-19:i06:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i06:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Будущая договорённость. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-19:i06:r2",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма am.",
+                "uk": "З цим підметом потрібна форма am."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i06:r3",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна am.",
+                "uk": "Для цього підмета потрібна am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:word:viewing",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — viewing",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:word:viewing:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — viewing",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:word:viewing:audio",
+            "transcript": "viewing"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-19:word:viewing:r1",
+              "targetText": "viewing",
+              "meaningByLocale": {
+                "ru": "осмотр жилья перед решением о покупке или аренде.",
+                "uk": "огляд житла перед рішенням про купівлю або оренду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "viewing",
+            "definitionByLocale": {
+              "ru": "осмотр жилья перед решением о покупке или аренде.",
+              "uk": "огляд житла перед рішенням про купівлю або оренду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра согласовала с хозяином просмотр квартиры на завтра. Скажите: «Она идёт на просмотр жилья завтра»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра согласовала с хозяином просмотр квартиры на завтра. Скажите: «Она идёт на просмотр жилья завтра»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is attending a viewing tomorrow.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра согласовала с хозяином просмотр квартиры на завтра. Скажите: «Она идёт на просмотр жилья завтра»",
+            "uk": "Ваша сестра узгодила з господарем огляд квартири на завтра. Скажіть: «Вона йде на огляд житла завтра»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "attending",
+            "a",
+            "viewing",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-19:i08:r1",
+            "text": "She is attending a viewing tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i08:r2",
+            "text": "She am attending a viewing tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i08:r3",
+            "text": "She are attending a viewing tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:i08:audio",
+            "transcript": "She is attending a viewing tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-19:i08:r1",
+              "targetText": "She is attending a viewing tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i08:r2",
+              "targetText": "She am attending a viewing tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i08:r3",
+              "targetText": "She are attending a viewing tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-19:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is attending a viewing tomorrow.",
+                "uk": "У записі звучить She is attending a viewing tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is attending a viewing tomorrow.",
+                "uk": "У записі звучить She is attending a viewing tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Будущая договорённость. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-19:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "She ___ attending a viewing tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-19:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i09:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Будущая договорённость. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-19:i09:r2",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i09:r3",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:word:tenant",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tenant",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:word:tenant:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tenant",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:word:tenant:audio",
+            "transcript": "tenant"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-19:word:tenant:r1",
+              "targetText": "tenant",
+              "meaningByLocale": {
+                "ru": "человек, который снимает жильё.",
+                "uk": "людина, яка винаймає житло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tenant",
+            "definitionByLocale": {
+              "ru": "человек, который снимает жильё.",
+              "uk": "людина, яка винаймає житло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваши родители договорились передать ключи новому жильцу завтра в десять. Скажите: «Они встречаются с жильцом-арендатором завтра в десять»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши родители договорились передать ключи новому жильцу завтра в десять. Скажите: «Они встречаются с жильцом-арендатором завтра в десять»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are meeting the tenant at ten tomorrow.",
+          "localizedMeaning": {
+            "ru": "Ваши родители договорились передать ключи новому жильцу завтра в десять. Скажите: «Они встречаются с жильцом-арендатором завтра в десять»",
+            "uk": "Ваші батьки домовилися передати ключі новому мешканцеві завтра о десятій. Скажіть: «Вони зустрічаються з мешканцем-орендарем завтра о десятій»"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "meeting",
+            "the",
+            "tenant",
+            "at",
+            "ten",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-19:i11:r1",
+            "text": "They are meeting the tenant at ten tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i11:r2",
+            "text": "They am meeting the tenant at ten tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i11:r3",
+            "text": "They is meeting the tenant at ten tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:i11:audio",
+            "transcript": "They are meeting the tenant at ten tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-19:i11:r1",
+              "targetText": "They are meeting the tenant at ten tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i11:r2",
+              "targetText": "They am meeting the tenant at ten tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i11:r3",
+              "targetText": "They is meeting the tenant at ten tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-19:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting the tenant at ten tomorrow.",
+                "uk": "У записі звучить They are meeting the tenant at ten tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting the tenant at ten tomorrow.",
+                "uk": "У записі звучить They are meeting the tenant at ten tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Будущая договорённость. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-19:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i12:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "They ___ meeting the tenant at ten tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-19:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i12:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i12:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Будущая договорённость. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-19:i12:r2",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i12:r3",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-19:i13:p1",
+              "target": "removal van",
+              "meaningByLocale": {
+                "ru": "фургон для перевозки вещей при переезде",
+                "uk": "фургон для перевезення речей під час переїзду"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-19:i13:p2",
+              "target": "housewarming",
+              "meaningByLocale": {
+                "ru": "праздник по случаю новоселья",
+                "uk": "свято з нагоди новосілля"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-19:i13:p3",
+              "target": "viewing",
+              "meaningByLocale": {
+                "ru": "осмотр жилья перед решением о покупке или аренде",
+                "uk": "огляд житла перед рішенням про купівлю або оренду"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-19:i13:p4",
+              "target": "tenant",
+              "meaningByLocale": {
+                "ru": "человек, который снимает жильё",
+                "uk": "людина, яка винаймає житло"
+              }
+            }
+          ],
+          "leftColumn": [
+            "removal van",
+            "housewarming",
+            "viewing",
+            "tenant"
+          ],
+          "rightColumn": [
+            "фургон для перевозки вещей при переезде",
+            "праздник по случаю новоселья",
+            "осмотр жилья перед решением о покупке или аренде",
+            "человек, который снимает жильё"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:i14:audio",
+            "transcript": "We are moving on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are moving on Saturday.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "moving",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:i15:audio",
+            "transcript": "She is coming tomorrow morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She is coming tomorrow morning.",
+          "orderedTokens": [
+            "She",
+            "is",
+            "coming",
+            "tomorrow",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Бронь машины для вашего переезда подтверждена на понедельник. Скажите: мы берём фургон напрокат в понедельник",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:i16:audio"
+        ],
+        "accessibilityLabel": "Бронь машины для вашего переезда подтверждена на понедельник. Скажите: мы берём фургон напрокат в понедельник",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:i16:audio",
+            "transcript": "We are hiring a removal van on Monday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are hiring a removal van on Monday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы пригласили друзей на новоселье в воскресенье; они согласились. Скажите это",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:i17:audio"
+        ],
+        "accessibilityLabel": "Вы пригласили друзей на новоселье в воскресенье; они согласились. Скажите это",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:i17:audio",
+            "transcript": "I am having a housewarming on Sunday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am having a housewarming on Sunday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-15:session-19:word:removal-van",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — removal van",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:word:removal-van:audio"
+        ],
+        "accessibilityLabel": "Картка слова — removal van",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:word:removal-van:audio",
+            "transcript": "removal van"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-19:word:removal-van:r1",
+              "targetText": "removal van",
+              "meaningByLocale": {
+                "ru": "фургон для перевозки вещей при переезде.",
+                "uk": "фургон для перевезення речей під час переїзду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "removal van",
+            "definitionByLocale": {
+              "ru": "фургон для перевозки вещей при переезде.",
+              "uk": "фургон для перевезення речей під час переїзду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви з чоловіком отримали підтвердження бронювання фургона на суботу. Скажіть: «Ми беремо напрокат фургон для переїзду в суботу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви з чоловіком отримали підтвердження бронювання фургона на суботу. Скажіть: «Ми беремо напрокат фургон для переїзду в суботу»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are hiring a removal van on Saturday.",
+          "localizedMeaning": {
+            "ru": "Вы с супругом получили подтверждение брони фургона на субботу. Скажите: «Мы берём напрокат фургон для переезда в субботу»",
+            "uk": "Ви з чоловіком отримали підтвердження бронювання фургона на суботу. Скажіть: «Ми беремо напрокат фургон для переїзду в суботу»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "hiring",
+            "a",
+            "removal",
+            "van",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-19:i02:r1",
+            "text": "We are hiring a removal van on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i02:r2",
+            "text": "We am hiring a removal van on Saturday."
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i02:r3",
+            "text": "We is hiring a removal van on Saturday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:i02:audio",
+            "transcript": "We are hiring a removal van on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-19:i02:r1",
+              "targetText": "We are hiring a removal van on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i02:r2",
+              "targetText": "We am hiring a removal van on Saturday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i02:r3",
+              "targetText": "We is hiring a removal van on Saturday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-19:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are hiring a removal van on Saturday.",
+                "uk": "У записі звучить We are hiring a removal van on Saturday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are hiring a removal van on Saturday.",
+                "uk": "У записі звучить We are hiring a removal van on Saturday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Майбутня домовленість. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-19:i03:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i03:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i03:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Майбутня домовленість. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "We ___ hiring a removal van on Saturday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-19:i03:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i03:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i03:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-19:i03:r2",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i03:r3",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:word:housewarming",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — housewarming",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:word:housewarming:audio"
+        ],
+        "accessibilityLabel": "Картка слова — housewarming",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:word:housewarming:audio",
+            "transcript": "housewarming"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-19:word:housewarming:r1",
+              "targetText": "housewarming",
+              "meaningByLocale": {
+                "ru": "праздник по случаю новоселья.",
+                "uk": "свято з нагоди новосілля."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "housewarming",
+            "definitionByLocale": {
+              "ru": "праздник по случаю новоселья.",
+              "uk": "свято з нагоди новосілля."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Гості вже прийняли запрошення на ваше новосілля в п’ятницю. Скажіть: «Я влаштовую новосілля в п’ятницю»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Гості вже прийняли запрошення на ваше новосілля в п’ятницю. Скажіть: «Я влаштовую новосілля в п’ятницю»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am having a housewarming on Friday.",
+          "localizedMeaning": {
+            "ru": "Гости уже приняли приглашение на ваше новоселье в пятницу. Скажите: «Я устраиваю новоселье в пятницу»",
+            "uk": "Гості вже прийняли запрошення на ваше новосілля в п’ятницю. Скажіть: «Я влаштовую новосілля в п’ятницю»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "having",
+            "a",
+            "housewarming",
+            "on",
+            "Friday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-19:i05:r1",
+            "text": "I am having a housewarming on Friday."
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i05:r2",
+            "text": "I is having a housewarming on Friday."
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i05:r3",
+            "text": "I are having a housewarming on Friday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:i05:audio",
+            "transcript": "I am having a housewarming on Friday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-19:i05:r1",
+              "targetText": "I am having a housewarming on Friday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i05:r2",
+              "targetText": "I is having a housewarming on Friday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i05:r3",
+              "targetText": "I are having a housewarming on Friday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-19:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am having a housewarming on Friday.",
+                "uk": "У записі звучить I am having a housewarming on Friday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am having a housewarming on Friday.",
+                "uk": "У записі звучить I am having a housewarming on Friday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Майбутня домовленість. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-19:i06:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i06:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i06:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Майбутня домовленість. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "I ___ having a housewarming on Friday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-19:i06:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i06:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i06:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-19:i06:r2",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма am.",
+                "uk": "З цим підметом потрібна форма am."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i06:r3",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна am.",
+                "uk": "Для цього підмета потрібна am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:word:viewing",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — viewing",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:word:viewing:audio"
+        ],
+        "accessibilityLabel": "Картка слова — viewing",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:word:viewing:audio",
+            "transcript": "viewing"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-19:word:viewing:r1",
+              "targetText": "viewing",
+              "meaningByLocale": {
+                "ru": "осмотр жилья перед решением о покупке или аренде.",
+                "uk": "огляд житла перед рішенням про купівлю або оренду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "viewing",
+            "definitionByLocale": {
+              "ru": "осмотр жилья перед решением о покупке или аренде.",
+              "uk": "огляд житла перед рішенням про купівлю або оренду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра узгодила з господарем огляд квартири на завтра. Скажіть: «Вона йде на огляд житла завтра»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра узгодила з господарем огляд квартири на завтра. Скажіть: «Вона йде на огляд житла завтра»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is attending a viewing tomorrow.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра согласовала с хозяином просмотр квартиры на завтра. Скажите: «Она идёт на просмотр жилья завтра»",
+            "uk": "Ваша сестра узгодила з господарем огляд квартири на завтра. Скажіть: «Вона йде на огляд житла завтра»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "attending",
+            "a",
+            "viewing",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-19:i08:r1",
+            "text": "She is attending a viewing tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i08:r2",
+            "text": "She am attending a viewing tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i08:r3",
+            "text": "She are attending a viewing tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:i08:audio",
+            "transcript": "She is attending a viewing tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-19:i08:r1",
+              "targetText": "She is attending a viewing tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i08:r2",
+              "targetText": "She am attending a viewing tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i08:r3",
+              "targetText": "She are attending a viewing tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-19:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is attending a viewing tomorrow.",
+                "uk": "У записі звучить She is attending a viewing tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is attending a viewing tomorrow.",
+                "uk": "У записі звучить She is attending a viewing tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Майбутня домовленість. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-19:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Майбутня домовленість. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "She ___ attending a viewing tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-19:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i09:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-19:i09:r2",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i09:r3",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:word:tenant",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tenant",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:word:tenant:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tenant",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:word:tenant:audio",
+            "transcript": "tenant"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-19:word:tenant:r1",
+              "targetText": "tenant",
+              "meaningByLocale": {
+                "ru": "человек, который снимает жильё.",
+                "uk": "людина, яка винаймає житло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tenant",
+            "definitionByLocale": {
+              "ru": "человек, который снимает жильё.",
+              "uk": "людина, яка винаймає житло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваші батьки домовилися передати ключі новому мешканцеві завтра о десятій. Скажіть: «Вони зустрічаються з мешканцем-орендарем завтра о десятій»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші батьки домовилися передати ключі новому мешканцеві завтра о десятій. Скажіть: «Вони зустрічаються з мешканцем-орендарем завтра о десятій»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are meeting the tenant at ten tomorrow.",
+          "localizedMeaning": {
+            "ru": "Ваши родители договорились передать ключи новому жильцу завтра в десять. Скажите: «Они встречаются с жильцом-арендатором завтра в десять»",
+            "uk": "Ваші батьки домовилися передати ключі новому мешканцеві завтра о десятій. Скажіть: «Вони зустрічаються з мешканцем-орендарем завтра о десятій»"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "meeting",
+            "the",
+            "tenant",
+            "at",
+            "ten",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-19:i11:r1",
+            "text": "They are meeting the tenant at ten tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i11:r2",
+            "text": "They am meeting the tenant at ten tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i11:r3",
+            "text": "They is meeting the tenant at ten tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:i11:audio",
+            "transcript": "They are meeting the tenant at ten tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-19:i11:r1",
+              "targetText": "They are meeting the tenant at ten tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i11:r2",
+              "targetText": "They am meeting the tenant at ten tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i11:r3",
+              "targetText": "They is meeting the tenant at ten tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-19:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting the tenant at ten tomorrow.",
+                "uk": "У записі звучить They are meeting the tenant at ten tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting the tenant at ten tomorrow.",
+                "uk": "У записі звучить They are meeting the tenant at ten tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Майбутня домовленість. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-19:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-19:i12:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Майбутня домовленість. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "They ___ meeting the tenant at ten tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-19:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i12:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i12:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-19:i12:r2",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-19:i12:r3",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-19:i13:p1",
+              "target": "removal van",
+              "meaningByLocale": {
+                "ru": "фургон для перевозки вещей при переезде",
+                "uk": "фургон для перевезення речей під час переїзду"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-19:i13:p2",
+              "target": "housewarming",
+              "meaningByLocale": {
+                "ru": "праздник по случаю новоселья",
+                "uk": "свято з нагоди новосілля"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-19:i13:p3",
+              "target": "viewing",
+              "meaningByLocale": {
+                "ru": "осмотр жилья перед решением о покупке или аренде",
+                "uk": "огляд житла перед рішенням про купівлю або оренду"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-19:i13:p4",
+              "target": "tenant",
+              "meaningByLocale": {
+                "ru": "человек, который снимает жильё",
+                "uk": "людина, яка винаймає житло"
+              }
+            }
+          ],
+          "leftColumn": [
+            "removal van",
+            "housewarming",
+            "viewing",
+            "tenant"
+          ],
+          "rightColumn": [
+            "фургон для перевезення речей під час переїзду",
+            "свято з нагоди новосілля",
+            "огляд житла перед рішенням про купівлю або оренду",
+            "людина, яка винаймає житло"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:i14:audio",
+            "transcript": "We are moving on Saturday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are moving on Saturday.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "moving",
+            "on",
+            "Saturday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:i15:audio",
+            "transcript": "She is coming tomorrow morning."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She is coming tomorrow morning.",
+          "orderedTokens": [
+            "She",
+            "is",
+            "coming",
+            "tomorrow",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Бронювання машини для вашого переїзду підтверджено на понеділок. Скажіть: ми беремо фургон напрокат у понеділок",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:i16:audio"
+        ],
+        "accessibilityLabel": "Бронювання машини для вашого переїзду підтверджено на понеділок. Скажіть: ми беремо фургон напрокат у понеділок",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:i16:audio",
+            "transcript": "We are hiring a removal van on Monday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are hiring a removal van on Monday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-19:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви запросили друзів на новосілля в неділю; вони погодилися. Скажіть це",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-19:i17:audio"
+        ],
+        "accessibilityLabel": "Ви запросили друзів на новосілля в неділю; вони погодилися. Скажіть це",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-19:i17:audio",
+            "transcript": "I am having a housewarming on Sunday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am having a housewarming on Sunday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-15:session-19:word:removal-van",
+      "correctText": "removal van",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-19:i01",
+      "correctText": "We are hiring a removal van on Saturday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-19:i02",
+      "correctText": "We are hiring a removal van on Saturday.",
+      "correctResponseId": "en:lesson-15:session-19:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-19:i03",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-15:session-19:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-19:word:housewarming",
+      "correctText": "housewarming",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-19:i04",
+      "correctText": "I am having a housewarming on Friday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-19:i05",
+      "correctText": "I am having a housewarming on Friday.",
+      "correctResponseId": "en:lesson-15:session-19:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-19:i06",
+      "correctText": "am",
+      "correctResponseId": "en:lesson-15:session-19:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-19:word:viewing",
+      "correctText": "viewing",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-19:i07",
+      "correctText": "She is attending a viewing tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-19:i08",
+      "correctText": "She is attending a viewing tomorrow.",
+      "correctResponseId": "en:lesson-15:session-19:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-19:i09",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-15:session-19:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-19:word:tenant",
+      "correctText": "tenant",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-19:i10",
+      "correctText": "They are meeting the tenant at ten tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-19:i11",
+      "correctText": "They are meeting the tenant at ten tomorrow.",
+      "correctResponseId": "en:lesson-15:session-19:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-19:i12",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-15:session-19:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-19:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-19:i14",
+      "correctText": "We are moving on Saturday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-19:i15",
+      "correctText": "She is coming tomorrow morning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-19:i16",
+      "correctText": "We are hiring a removal van on Monday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-19:i17",
+      "correctText": "I am having a housewarming on Sunday.",
+      "correctResponseId": null
+    }
+  ]
+}

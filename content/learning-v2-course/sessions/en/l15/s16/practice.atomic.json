@@ -1,0 +1,2321 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-15:session-16",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-15:session-16:word:stumble",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — stumble",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:word:stumble:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — stumble",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:word:stumble:audio",
+            "transcript": "stumble"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-16:word:stumble:r1",
+              "targetText": "stumble",
+              "meaningByLocale": {
+                "ru": "споткнуться и потерять равновесие.",
+                "uk": "спіткнутися й втратити рівновагу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stumble",
+            "definitionByLocale": {
+              "ru": "споткнуться и потерять равновесие.",
+              "uk": "спіткнутися й втратити рівновагу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Его нога зацепилась за край ковра; он ещё пытается удержать равновесие. Скажите: «Похоже, он сейчас споткнётся»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Его нога зацепилась за край ковра; он ещё пытается удержать равновесие. Скажите: «Похоже, он сейчас споткнётся»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is going to stumble.",
+          "localizedMeaning": {
+            "ru": "Его нога зацепилась за край ковра; он ещё пытается удержать равновесие. Скажите: «Похоже, он сейчас споткнётся»",
+            "uk": "Його нога зачепилася за край килима; він іще намагається втримати рівновагу. Скажіть: «Схоже, він зараз спіткнеться»"
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "going",
+            "to",
+            "stumble"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-16:i02:r1",
+            "text": "He is going to stumble."
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i02:r2",
+            "text": "He is going stumble."
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i02:r3",
+            "text": "He are going to stumble."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:i02:audio",
+            "transcript": "He is going to stumble."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-16:i02:r1",
+              "targetText": "He is going to stumble.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i02:r2",
+              "targetText": "He is going stumble.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i02:r3",
+              "targetText": "He are going to stumble.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-16:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He is going to stumble.",
+                "uk": "У записі звучить He is going to stumble."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He is going to stumble.",
+                "uk": "У записі звучить He is going to stumble."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прогноз по видимому признаку. Выберите is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-16:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прогноз по видимому признаку. Выберите is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прогноз по видимому признаку. Выберите is или are",
+            "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+          },
+          "gappedTargetPhrase": "He ___ going to stumble.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-16:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-16:i03:r2",
+              "correct": false,
+              "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i03:r3",
+              "correct": false,
+              "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:word:doze",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — doze",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:word:doze:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — doze",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:word:doze:audio",
+            "transcript": "doze"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-16:word:doze:r1",
+              "targetText": "doze",
+              "meaningByLocale": {
+                "ru": "задремать, ненадолго уснуть.",
+                "uk": "задрімати, ненадовго заснути."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "doze",
+            "definitionByLocale": {
+              "ru": "задремать, ненадолго уснуть.",
+              "uk": "задрімати, ненадовго заснути."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Она сидит в кресле, веки закрываются, голова клонится вперёд. Скажите: «Похоже, она сейчас задремлет»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Она сидит в кресле, веки закрываются, голова клонится вперёд. Скажите: «Похоже, она сейчас задремлет»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to doze.",
+          "localizedMeaning": {
+            "ru": "Она сидит в кресле, веки закрываются, голова клонится вперёд. Скажите: «Похоже, она сейчас задремлет»",
+            "uk": "Вона сидить у кріслі, повіки заплющуються, голова хилиться вперед. Скажіть: «Схоже, вона зараз задрімає»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "doze"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-16:i05:r1",
+            "text": "She is going to doze."
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i05:r2",
+            "text": "She is going doze."
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i05:r3",
+            "text": "She are going to doze."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:i05:audio",
+            "transcript": "She is going to doze."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-16:i05:r1",
+              "targetText": "She is going to doze.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i05:r2",
+              "targetText": "She is going doze.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i05:r3",
+              "targetText": "She are going to doze.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-16:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to doze.",
+                "uk": "У записі звучить She is going to doze."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to doze.",
+                "uk": "У записі звучить She is going to doze."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прогноз по видимому признаку. Выберите is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-16:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i06:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прогноз по видимому признаку. Выберите is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прогноз по видимому признаку. Выберите is или are",
+            "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+          },
+          "gappedTargetPhrase": "She ___ going to doze.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-16:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i06:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i06:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-16:i06:r2",
+              "correct": false,
+              "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i06:r3",
+              "correct": false,
+              "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:word:blush",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — blush",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:word:blush:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — blush",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:word:blush:audio",
+            "transcript": "blush"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-16:word:blush:r1",
+              "targetText": "blush",
+              "meaningByLocale": {
+                "ru": "покраснеть от смущения.",
+                "uk": "почервоніти від збентеження."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "blush",
+            "definitionByLocale": {
+              "ru": "покраснеть от смущения.",
+              "uk": "почервоніти від збентеження."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Его хвалят при друзьях; он смущённо улыбается и прячет лицо. Скажите: «Похоже, он сейчас покраснеет от смущения»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Его хвалят при друзьях; он смущённо улыбается и прячет лицо. Скажите: «Похоже, он сейчас покраснеет от смущения»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is going to blush.",
+          "localizedMeaning": {
+            "ru": "Его хвалят при друзьях; он смущённо улыбается и прячет лицо. Скажите: «Похоже, он сейчас покраснеет от смущения»",
+            "uk": "Його хвалять при друзях; він ніяково усміхається й ховає обличчя. Скажіть: «Схоже, він зараз почервоніє від збентеження»"
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "going",
+            "to",
+            "blush"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-16:i08:r1",
+            "text": "He is going to blush."
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i08:r2",
+            "text": "He is going blush."
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i08:r3",
+            "text": "He are going to blush."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:i08:audio",
+            "transcript": "He is going to blush."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-16:i08:r1",
+              "targetText": "He is going to blush.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i08:r2",
+              "targetText": "He is going blush.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i08:r3",
+              "targetText": "He are going to blush.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-16:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He is going to blush.",
+                "uk": "У записі звучить He is going to blush."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He is going to blush.",
+                "uk": "У записі звучить He is going to blush."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прогноз по видимому признаку. Выберите is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-16:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прогноз по видимому признаку. Выберите is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прогноз по видимому признаку. Выберите is или are",
+            "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+          },
+          "gappedTargetPhrase": "He ___ going to blush.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-16:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i09:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-16:i09:r2",
+              "correct": false,
+              "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i09:r3",
+              "correct": false,
+              "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:word:hiccup",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hiccup",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:word:hiccup:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hiccup",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:word:hiccup:audio",
+            "transcript": "hiccup"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-16:word:hiccup:r1",
+              "targetText": "hiccup",
+              "meaningByLocale": {
+                "ru": "икнуть, икать.",
+                "uk": "гикнути, гикати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hiccup",
+            "definitionByLocale": {
+              "ru": "икнуть, икать.",
+              "uk": "гикнути, гикати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Она уже несколько раз икнула и снова резко втягивает воздух. Скажите: «Похоже, она сейчас снова икнёт»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Она уже несколько раз икнула и снова резко втягивает воздух. Скажите: «Похоже, она сейчас снова икнёт»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to hiccup again.",
+          "localizedMeaning": {
+            "ru": "Она уже несколько раз икнула и снова резко втягивает воздух. Скажите: «Похоже, она сейчас снова икнёт»",
+            "uk": "Вона вже кілька разів гикнула й знову різко втягує повітря. Скажіть: «Схоже, вона зараз знову гикне»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "hiccup",
+            "again"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-16:i11:r1",
+            "text": "She is going to hiccup again."
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i11:r2",
+            "text": "She is going hiccup again."
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i11:r3",
+            "text": "She are going to hiccup again."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:i11:audio",
+            "transcript": "She is going to hiccup again."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-16:i11:r1",
+              "targetText": "She is going to hiccup again.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i11:r2",
+              "targetText": "She is going hiccup again.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i11:r3",
+              "targetText": "She are going to hiccup again.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-16:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to hiccup again.",
+                "uk": "У записі звучить She is going to hiccup again."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to hiccup again.",
+                "uk": "У записі звучить She is going to hiccup again."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прогноз по видимому признаку. Выберите is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-16:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i12:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прогноз по видимому признаку. Выберите is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прогноз по видимому признаку. Выберите is или are",
+            "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+          },
+          "gappedTargetPhrase": "She ___ going to hiccup again.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-16:i12:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i12:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i12:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-16:i12:r2",
+              "correct": false,
+              "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i12:r3",
+              "correct": false,
+              "testedDimension": "Прогноз по видимому признаку. Выберите is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-16:i13:p1",
+              "target": "stumble",
+              "meaningByLocale": {
+                "ru": "споткнуться и потерять равновесие",
+                "uk": "спіткнутися й втратити рівновагу"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-16:i13:p2",
+              "target": "doze",
+              "meaningByLocale": {
+                "ru": "задремать, ненадолго уснуть",
+                "uk": "задрімати, ненадовго заснути"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-16:i13:p3",
+              "target": "blush",
+              "meaningByLocale": {
+                "ru": "покраснеть от смущения",
+                "uk": "почервоніти від збентеження"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-16:i13:p4",
+              "target": "hiccup",
+              "meaningByLocale": {
+                "ru": "икнуть, икать",
+                "uk": "гикнути, гикати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stumble",
+            "doze",
+            "blush",
+            "hiccup"
+          ],
+          "rightColumn": [
+            "споткнуться и потерять равновесие",
+            "задремать, ненадолго уснуть",
+            "покраснеть от смущения",
+            "икнуть, икать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:i14:audio",
+            "transcript": "He is going to fall."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He is going to fall.",
+          "orderedTokens": [
+            "He",
+            "is",
+            "going",
+            "to",
+            "fall"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:i15:audio",
+            "transcript": "She is going to sleep."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She is going to sleep.",
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "sleep"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ваш папа устал и закрывает глаза в кресле. Скажите: он, похоже, сейчас задремлет",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:i16:audio"
+        ],
+        "accessibilityLabel": "Ваш папа устал и закрывает глаза в кресле. Скажите: он, похоже, сейчас задремлет",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:i16:audio",
+            "transcript": "He is going to doze."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He is going to doze.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ваша мама зацепилась ногой за ковёр. Скажите: она, похоже, сейчас споткнётся",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:i17:audio"
+        ],
+        "accessibilityLabel": "Ваша мама зацепилась ногой за ковёр. Скажите: она, похоже, сейчас споткнётся",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:i17:audio",
+            "transcript": "She is going to stumble."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is going to stumble.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-15:session-16:word:stumble",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — stumble",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:word:stumble:audio"
+        ],
+        "accessibilityLabel": "Картка слова — stumble",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:word:stumble:audio",
+            "transcript": "stumble"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-16:word:stumble:r1",
+              "targetText": "stumble",
+              "meaningByLocale": {
+                "ru": "споткнуться и потерять равновесие.",
+                "uk": "спіткнутися й втратити рівновагу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "stumble",
+            "definitionByLocale": {
+              "ru": "споткнуться и потерять равновесие.",
+              "uk": "спіткнутися й втратити рівновагу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Його нога зачепилася за край килима; він іще намагається втримати рівновагу. Скажіть: «Схоже, він зараз спіткнеться»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Його нога зачепилася за край килима; він іще намагається втримати рівновагу. Скажіть: «Схоже, він зараз спіткнеться»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is going to stumble.",
+          "localizedMeaning": {
+            "ru": "Его нога зацепилась за край ковра; он ещё пытается удержать равновесие. Скажите: «Похоже, он сейчас споткнётся»",
+            "uk": "Його нога зачепилася за край килима; він іще намагається втримати рівновагу. Скажіть: «Схоже, він зараз спіткнеться»"
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "going",
+            "to",
+            "stumble"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-16:i02:r1",
+            "text": "He is going to stumble."
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i02:r2",
+            "text": "He is going stumble."
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i02:r3",
+            "text": "He are going to stumble."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:i02:audio",
+            "transcript": "He is going to stumble."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-16:i02:r1",
+              "targetText": "He is going to stumble.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i02:r2",
+              "targetText": "He is going stumble.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i02:r3",
+              "targetText": "He are going to stumble.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-16:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He is going to stumble.",
+                "uk": "У записі звучить He is going to stumble."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He is going to stumble.",
+                "uk": "У записі звучить He is going to stumble."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прогноз за видимою ознакою. Виберіть is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-16:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i03:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прогноз за видимою ознакою. Виберіть is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прогноз по видимому признаку. Выберите is или are",
+            "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+          },
+          "gappedTargetPhrase": "He ___ going to stumble.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-16:i03:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i03:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i03:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-16:i03:r2",
+              "correct": false,
+              "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i03:r3",
+              "correct": false,
+              "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:word:doze",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — doze",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:word:doze:audio"
+        ],
+        "accessibilityLabel": "Картка слова — doze",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:word:doze:audio",
+            "transcript": "doze"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-16:word:doze:r1",
+              "targetText": "doze",
+              "meaningByLocale": {
+                "ru": "задремать, ненадолго уснуть.",
+                "uk": "задрімати, ненадовго заснути."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "doze",
+            "definitionByLocale": {
+              "ru": "задремать, ненадолго уснуть.",
+              "uk": "задрімати, ненадовго заснути."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вона сидить у кріслі, повіки заплющуються, голова хилиться вперед. Скажіть: «Схоже, вона зараз задрімає»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вона сидить у кріслі, повіки заплющуються, голова хилиться вперед. Скажіть: «Схоже, вона зараз задрімає»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to doze.",
+          "localizedMeaning": {
+            "ru": "Она сидит в кресле, веки закрываются, голова клонится вперёд. Скажите: «Похоже, она сейчас задремлет»",
+            "uk": "Вона сидить у кріслі, повіки заплющуються, голова хилиться вперед. Скажіть: «Схоже, вона зараз задрімає»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "doze"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-16:i05:r1",
+            "text": "She is going to doze."
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i05:r2",
+            "text": "She is going doze."
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i05:r3",
+            "text": "She are going to doze."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:i05:audio",
+            "transcript": "She is going to doze."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-16:i05:r1",
+              "targetText": "She is going to doze.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i05:r2",
+              "targetText": "She is going doze.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i05:r3",
+              "targetText": "She are going to doze.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-16:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to doze.",
+                "uk": "У записі звучить She is going to doze."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to doze.",
+                "uk": "У записі звучить She is going to doze."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прогноз за видимою ознакою. Виберіть is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-16:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i06:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прогноз за видимою ознакою. Виберіть is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прогноз по видимому признаку. Выберите is или are",
+            "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+          },
+          "gappedTargetPhrase": "She ___ going to doze.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-16:i06:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i06:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i06:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-16:i06:r2",
+              "correct": false,
+              "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i06:r3",
+              "correct": false,
+              "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:word:blush",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — blush",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:word:blush:audio"
+        ],
+        "accessibilityLabel": "Картка слова — blush",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:word:blush:audio",
+            "transcript": "blush"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-16:word:blush:r1",
+              "targetText": "blush",
+              "meaningByLocale": {
+                "ru": "покраснеть от смущения.",
+                "uk": "почервоніти від збентеження."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "blush",
+            "definitionByLocale": {
+              "ru": "покраснеть от смущения.",
+              "uk": "почервоніти від збентеження."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Його хвалять при друзях; він ніяково усміхається й ховає обличчя. Скажіть: «Схоже, він зараз почервоніє від збентеження»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Його хвалять при друзях; він ніяково усміхається й ховає обличчя. Скажіть: «Схоже, він зараз почервоніє від збентеження»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He is going to blush.",
+          "localizedMeaning": {
+            "ru": "Его хвалят при друзьях; он смущённо улыбается и прячет лицо. Скажите: «Похоже, он сейчас покраснеет от смущения»",
+            "uk": "Його хвалять при друзях; він ніяково усміхається й ховає обличчя. Скажіть: «Схоже, він зараз почервоніє від збентеження»"
+          },
+          "orderedTokens": [
+            "He",
+            "is",
+            "going",
+            "to",
+            "blush"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-16:i08:r1",
+            "text": "He is going to blush."
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i08:r2",
+            "text": "He is going blush."
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i08:r3",
+            "text": "He are going to blush."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:i08:audio",
+            "transcript": "He is going to blush."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-16:i08:r1",
+              "targetText": "He is going to blush.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i08:r2",
+              "targetText": "He is going blush.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i08:r3",
+              "targetText": "He are going to blush.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-16:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He is going to blush.",
+                "uk": "У записі звучить He is going to blush."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He is going to blush.",
+                "uk": "У записі звучить He is going to blush."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прогноз за видимою ознакою. Виберіть is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-16:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i09:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прогноз за видимою ознакою. Виберіть is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прогноз по видимому признаку. Выберите is или are",
+            "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+          },
+          "gappedTargetPhrase": "He ___ going to blush.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-16:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i09:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i09:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-16:i09:r2",
+              "correct": false,
+              "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i09:r3",
+              "correct": false,
+              "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:word:hiccup",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hiccup",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:word:hiccup:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hiccup",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:word:hiccup:audio",
+            "transcript": "hiccup"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-16:word:hiccup:r1",
+              "targetText": "hiccup",
+              "meaningByLocale": {
+                "ru": "икнуть, икать.",
+                "uk": "гикнути, гикати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hiccup",
+            "definitionByLocale": {
+              "ru": "икнуть, икать.",
+              "uk": "гикнути, гикати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вона вже кілька разів гикнула й знову різко втягує повітря. Скажіть: «Схоже, вона зараз знову гикне»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вона вже кілька разів гикнула й знову різко втягує повітря. Скажіть: «Схоже, вона зараз знову гикне»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is going to hiccup again.",
+          "localizedMeaning": {
+            "ru": "Она уже несколько раз икнула и снова резко втягивает воздух. Скажите: «Похоже, она сейчас снова икнёт»",
+            "uk": "Вона вже кілька разів гикнула й знову різко втягує повітря. Скажіть: «Схоже, вона зараз знову гикне»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "hiccup",
+            "again"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-16:i11:r1",
+            "text": "She is going to hiccup again."
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i11:r2",
+            "text": "She is going hiccup again."
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i11:r3",
+            "text": "She are going to hiccup again."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:i11:audio",
+            "transcript": "She is going to hiccup again."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-16:i11:r1",
+              "targetText": "She is going to hiccup again.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i11:r2",
+              "targetText": "She is going hiccup again.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i11:r3",
+              "targetText": "She are going to hiccup again.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-16:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to hiccup again.",
+                "uk": "У записі звучить She is going to hiccup again."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is going to hiccup again.",
+                "uk": "У записі звучить She is going to hiccup again."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прогноз за видимою ознакою. Виберіть is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-16:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-16:i12:r3",
+            "text": "am"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прогноз за видимою ознакою. Виберіть is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прогноз по видимому признаку. Выберите is или are",
+            "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+          },
+          "gappedTargetPhrase": "She ___ going to hiccup again.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-16:i12:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i12:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i12:r3",
+              "text": "am"
+            }
+          ],
+          "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-16:i12:r2",
+              "correct": false,
+              "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-16:i12:r3",
+              "correct": false,
+              "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-16:i13:p1",
+              "target": "stumble",
+              "meaningByLocale": {
+                "ru": "споткнуться и потерять равновесие",
+                "uk": "спіткнутися й втратити рівновагу"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-16:i13:p2",
+              "target": "doze",
+              "meaningByLocale": {
+                "ru": "задремать, ненадолго уснуть",
+                "uk": "задрімати, ненадовго заснути"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-16:i13:p3",
+              "target": "blush",
+              "meaningByLocale": {
+                "ru": "покраснеть от смущения",
+                "uk": "почервоніти від збентеження"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-16:i13:p4",
+              "target": "hiccup",
+              "meaningByLocale": {
+                "ru": "икнуть, икать",
+                "uk": "гикнути, гикати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "stumble",
+            "doze",
+            "blush",
+            "hiccup"
+          ],
+          "rightColumn": [
+            "спіткнутися й втратити рівновагу",
+            "задрімати, ненадовго заснути",
+            "почервоніти від збентеження",
+            "гикнути, гикати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:i14:audio",
+            "transcript": "He is going to fall."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "He is going to fall.",
+          "orderedTokens": [
+            "He",
+            "is",
+            "going",
+            "to",
+            "fall"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:i15:audio",
+            "transcript": "She is going to sleep."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She is going to sleep.",
+          "orderedTokens": [
+            "She",
+            "is",
+            "going",
+            "to",
+            "sleep"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ваш тато втомився й заплющує очі в кріслі. Скажіть: він, схоже, зараз задрімає",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:i16:audio"
+        ],
+        "accessibilityLabel": "Ваш тато втомився й заплющує очі в кріслі. Скажіть: він, схоже, зараз задрімає",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:i16:audio",
+            "transcript": "He is going to doze."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "He is going to doze.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-16:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ваша мама зачепилася ногою за килим. Скажіть: вона, схоже, зараз спіткнеться",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-16:i17:audio"
+        ],
+        "accessibilityLabel": "Ваша мама зачепилася ногою за килим. Скажіть: вона, схоже, зараз спіткнеться",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-16:i17:audio",
+            "transcript": "She is going to stumble."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She is going to stumble.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-15:session-16:word:stumble",
+      "correctText": "stumble",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-16:i01",
+      "correctText": "He is going to stumble.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-16:i02",
+      "correctText": "He is going to stumble.",
+      "correctResponseId": "en:lesson-15:session-16:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-16:i03",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-15:session-16:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-16:word:doze",
+      "correctText": "doze",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-16:i04",
+      "correctText": "She is going to doze.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-16:i05",
+      "correctText": "She is going to doze.",
+      "correctResponseId": "en:lesson-15:session-16:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-16:i06",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-15:session-16:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-16:word:blush",
+      "correctText": "blush",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-16:i07",
+      "correctText": "He is going to blush.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-16:i08",
+      "correctText": "He is going to blush.",
+      "correctResponseId": "en:lesson-15:session-16:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-16:i09",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-15:session-16:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-16:word:hiccup",
+      "correctText": "hiccup",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-16:i10",
+      "correctText": "She is going to hiccup again.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-16:i11",
+      "correctText": "She is going to hiccup again.",
+      "correctResponseId": "en:lesson-15:session-16:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-16:i12",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-15:session-16:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-16:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-16:i14",
+      "correctText": "He is going to fall.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-16:i15",
+      "correctText": "She is going to sleep.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-16:i16",
+      "correctText": "He is going to doze.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-16:i17",
+      "correctText": "She is going to stumble.",
+      "correctResponseId": null
+    }
+  ]
+}

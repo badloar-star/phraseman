@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-15:word:skylight",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — skylight",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-15:word:skylight:audio"
+      ],
+      "accessibilityLabel": "Картка слова — skylight",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-15:word:skylight:audio",
+          "transcript": "skylight"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-15:word:skylight:r1",
+            "targetText": "skylight",
+            "meaningByLocale": {
+              "ru": "окно в крыше.",
+              "uk": "вікно в даху."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "skylight",
+          "definitionByLocale": {
+            "ru": "окно в крыше.",
+            "uk": "вікно в даху."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-15:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "У склі вікна на даху тріщина, і дощ уже починається. Скажіть: «Вікно в даху зараз почне протікати»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "У склі вікна на даху тріщина, і дощ уже починається. Скажіть: «Вікно в даху зараз почне протікати»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The skylight is going to leak.",
+        "localizedMeaning": {
+          "ru": "В стекле окна на крыше трещина, и дождь уже начинается. Скажите: «Окно в крыше сейчас начнёт протекать»",
+          "uk": "У склі вікна на даху тріщина, і дощ уже починається. Скажіть: «Вікно в даху зараз почне протікати»"
+        },
+        "orderedTokens": [
+          "The",
+          "skylight",
+          "is",
+          "going",
+          "to",
+          "leak"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-15:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-15:i02:r1",
+          "text": "The skylight is going to leak."
+        },
+        {
+          "responseId": "en:lesson-15:session-15:i02:r2",
+          "text": "The skylight is going leak."
+        },
+        {
+          "responseId": "en:lesson-15:session-15:i02:r3",
+          "text": "The skylight are going to leak."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-15:i02:audio",
+          "transcript": "The skylight is going to leak."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-15:i02:r1",
+            "targetText": "The skylight is going to leak.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i02:r2",
+            "targetText": "The skylight is going leak.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i02:r3",
+            "targetText": "The skylight are going to leak.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The skylight is going to leak.",
+              "uk": "У записі звучить The skylight is going to leak."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The skylight is going to leak.",
+              "uk": "У записі звучить The skylight is going to leak."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-15:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Прогноз за видимою ознакою. Виберіть is або are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-15:i03:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-15:i03:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-15:i03:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Прогноз за видимою ознакою. Виберіть is або are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Прогноз по видимому признаку. Выберите is или are",
+          "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+        },
+        "gappedTargetPhrase": "The skylight ___ going to leak.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-15:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i03:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-15:i03:r2",
+            "correct": false,
+            "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма is.",
+              "uk": "З цим підметом потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i03:r3",
+            "correct": false,
+            "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна is.",
+              "uk": "Для цього підмета потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-15:word:veranda",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — veranda",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-15:word:veranda:audio"
+      ],
+      "accessibilityLabel": "Картка слова — veranda",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-15:word:veranda:audio",
+          "transcript": "veranda"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-15:word:veranda:r1",
+            "targetText": "veranda",
+            "meaningByLocale": {
+              "ru": "крытая открытая пристройка вдоль стены дома.",
+              "uk": "крита відкрита прибудова вздовж стіни будинку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "veranda",
+          "definitionByLocale": {
+            "ru": "крытая открытая пристройка вдоль стены дома.",
+            "uk": "крита відкрита прибудова вздовж стіни будинку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-15:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вітер жене дощ під дах відкритої веранди. Скажіть: «Веранда зараз намокне»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вітер жене дощ під дах відкритої веранди. Скажіть: «Веранда зараз намокне»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The veranda is going to get wet.",
+        "localizedMeaning": {
+          "ru": "Ветер гонит дождь под крышу открытой веранды. Скажите: «Веранда сейчас намокнет»",
+          "uk": "Вітер жене дощ під дах відкритої веранди. Скажіть: «Веранда зараз намокне»"
+        },
+        "orderedTokens": [
+          "The",
+          "veranda",
+          "is",
+          "going",
+          "to",
+          "get",
+          "wet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-15:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-15:i05:r1",
+          "text": "The veranda is going to get wet."
+        },
+        {
+          "responseId": "en:lesson-15:session-15:i05:r2",
+          "text": "The veranda is going get wet."
+        },
+        {
+          "responseId": "en:lesson-15:session-15:i05:r3",
+          "text": "The veranda are going to get wet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-15:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-15:i05:audio",
+          "transcript": "The veranda is going to get wet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-15:i05:r1",
+            "targetText": "The veranda is going to get wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i05:r2",
+            "targetText": "The veranda is going get wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i05:r3",
+            "targetText": "The veranda are going to get wet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-15:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The veranda is going to get wet.",
+              "uk": "У записі звучить The veranda is going to get wet."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The veranda is going to get wet.",
+              "uk": "У записі звучить The veranda is going to get wet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-15:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Прогноз за видимою ознакою. Виберіть is або are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-15:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-15:i06:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-15:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Прогноз за видимою ознакою. Виберіть is або are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Прогноз по видимому признаку. Выберите is или are",
+          "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+        },
+        "gappedTargetPhrase": "The veranda ___ going to get wet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-15:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-15:i06:r2",
+            "correct": false,
+            "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма is.",
+              "uk": "З цим підметом потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i06:r3",
+            "correct": false,
+            "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна is.",
+              "uk": "Для цього підмета потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-15:word:conservatory",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — conservatory",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-15:word:conservatory:audio"
+      ],
+      "accessibilityLabel": "Картка слова — conservatory",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-15:word:conservatory:audio",
+          "transcript": "conservatory"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-15:word:conservatory:r1",
+            "targetText": "conservatory",
+            "meaningByLocale": {
+              "ru": "застеклённая пристройка к дому.",
+              "uk": "засклена прибудова до будинку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "conservatory",
+          "definitionByLocale": {
+            "ru": "застеклённая пристройка к дому.",
+            "uk": "засклена прибудова до будинку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-15:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сонце світить крізь скляний дах; усередині вже стає тепліше. Скажіть: «У заскленій прибудові скоро стане спекотно»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сонце світить крізь скляний дах; усередині вже стає тепліше. Скажіть: «У заскленій прибудові скоро стане спекотно»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The conservatory is going to get hot.",
+        "localizedMeaning": {
+          "ru": "Солнце светит через стеклянную крышу; внутри уже становится теплее. Скажите: «В застеклённой пристройке скоро станет жарко»",
+          "uk": "Сонце світить крізь скляний дах; усередині вже стає тепліше. Скажіть: «У заскленій прибудові скоро стане спекотно»"
+        },
+        "orderedTokens": [
+          "The",
+          "conservatory",
+          "is",
+          "going",
+          "to",
+          "get",
+          "hot"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-15:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-15:i08:r1",
+          "text": "The conservatory is going to get hot."
+        },
+        {
+          "responseId": "en:lesson-15:session-15:i08:r2",
+          "text": "The conservatory is going get hot."
+        },
+        {
+          "responseId": "en:lesson-15:session-15:i08:r3",
+          "text": "The conservatory are going to get hot."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-15:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-15:i08:audio",
+          "transcript": "The conservatory is going to get hot."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-15:i08:r1",
+            "targetText": "The conservatory is going to get hot.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i08:r2",
+            "targetText": "The conservatory is going get hot.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i08:r3",
+            "targetText": "The conservatory are going to get hot.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The conservatory is going to get hot.",
+              "uk": "У записі звучить The conservatory is going to get hot."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The conservatory is going to get hot.",
+              "uk": "У записі звучить The conservatory is going to get hot."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-15:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Прогноз за видимою ознакою. Виберіть is або are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-15:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-15:i09:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-15:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Прогноз за видимою ознакою. Виберіть is або are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Прогноз по видимому признаку. Выберите is или are",
+          "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+        },
+        "gappedTargetPhrase": "The conservatory ___ going to get hot.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-15:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-15:i09:r2",
+            "correct": false,
+            "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма is.",
+              "uk": "З цим підметом потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i09:r3",
+            "correct": false,
+            "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна is.",
+              "uk": "Для цього підмета потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-15:word:doorstop",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — doorstop",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-15:word:doorstop:audio"
+      ],
+      "accessibilityLabel": "Картка слова — doorstop",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-15:word:doorstop:audio",
+          "transcript": "doorstop"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-15:word:doorstop:r1",
+            "targetText": "doorstop",
+            "meaningByLocale": {
+              "ru": "предмет, который удерживает дверь открытой.",
+              "uk": "предмет, який утримує двері відчиненими."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "doorstop",
+          "definitionByLocale": {
+            "ru": "предмет, который удерживает дверь открытой.",
+            "uk": "предмет, який утримує двері відчиненими."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-15:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Гладкий упор стоїть на мокрій підлозі; двері вже штовхають його. Скажіть: «Дверний упор зараз зсунеться»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Гладкий упор стоїть на мокрій підлозі; двері вже штовхають його. Скажіть: «Дверний упор зараз зсунеться»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The doorstop is going to slide.",
+        "localizedMeaning": {
+          "ru": "Гладкий упор стоит на мокром полу; дверь уже толкает его. Скажите: «Дверной упор сейчас сдвинется»",
+          "uk": "Гладкий упор стоїть на мокрій підлозі; двері вже штовхають його. Скажіть: «Дверний упор зараз зсунеться»"
+        },
+        "orderedTokens": [
+          "The",
+          "doorstop",
+          "is",
+          "going",
+          "to",
+          "slide"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-15:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-15:i11:r1",
+          "text": "The doorstop is going to slide."
+        },
+        {
+          "responseId": "en:lesson-15:session-15:i11:r2",
+          "text": "The doorstop is going slide."
+        },
+        {
+          "responseId": "en:lesson-15:session-15:i11:r3",
+          "text": "The doorstop are going to slide."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-15:i11:audio",
+          "transcript": "The doorstop is going to slide."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-15:i11:r1",
+            "targetText": "The doorstop is going to slide.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i11:r2",
+            "targetText": "The doorstop is going slide.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i11:r3",
+            "targetText": "The doorstop are going to slide.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-15:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The doorstop is going to slide.",
+              "uk": "У записі звучить The doorstop is going to slide."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The doorstop is going to slide.",
+              "uk": "У записі звучить The doorstop is going to slide."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-15:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Прогноз за видимою ознакою. Виберіть is або are",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-15:i12:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-15:session-15:i12:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-15:session-15:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Прогноз за видимою ознакою. Виберіть is або are",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Прогноз по видимому признаку. Выберите is или are",
+          "uk": "Прогноз за видимою ознакою. Виберіть is або are"
+        },
+        "gappedTargetPhrase": "The doorstop ___ going to slide.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-15:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-15:i12:r2",
+            "correct": false,
+            "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+            "feedbackByLocale": {
+              "ru": "С этим подлежащим нужна форма is.",
+              "uk": "З цим підметом потрібна форма is."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-15:i12:r3",
+            "correct": false,
+            "testedDimension": "Прогноз за видимою ознакою. Виберіть is або are",
+            "feedbackByLocale": {
+              "ru": "Для этого подлежащего нужна is.",
+              "uk": "Для цього підмета потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-15:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-15:i13:p1",
+            "target": "skylight",
+            "meaningByLocale": {
+              "ru": "окно в крыше",
+              "uk": "вікно в даху"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-15:i13:p2",
+            "target": "veranda",
+            "meaningByLocale": {
+              "ru": "крытая открытая пристройка вдоль стены дома",
+              "uk": "крита відкрита прибудова вздовж стіни будинку"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-15:i13:p3",
+            "target": "conservatory",
+            "meaningByLocale": {
+              "ru": "застеклённая пристройка к дому",
+              "uk": "засклена прибудова до будинку"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-15:i13:p4",
+            "target": "doorstop",
+            "meaningByLocale": {
+              "ru": "предмет, который удерживает дверь открытой",
+              "uk": "предмет, який утримує двері відчиненими"
+            }
+          }
+        ],
+        "leftColumn": [
+          "skylight",
+          "veranda",
+          "conservatory",
+          "doorstop"
+        ],
+        "rightColumn": [
+          "вікно в даху",
+          "крита відкрита прибудова вздовж стіни будинку",
+          "засклена прибудова до будинку",
+          "предмет, який утримує двері відчиненими"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-15:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-15:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-15:i14:audio",
+          "transcript": "The window is going to break."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The window is going to break.",
+        "orderedTokens": [
+          "The",
+          "window",
+          "is",
+          "going",
+          "to",
+          "break"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-15:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-15:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-15:i15:audio",
+          "transcript": "The door is going to close."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The door is going to close.",
+        "orderedTokens": [
+          "The",
+          "door",
+          "is",
+          "going",
+          "to",
+          "close"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-15:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Тріщина є і в другому вікні в даху, дощ посилюється. Скажіть: це вікно теж протікатиме",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-15:i16:audio"
+      ],
+      "accessibilityLabel": "Тріщина є і в другому вікні в даху, дощ посилюється. Скажіть: це вікно теж протікатиме",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-15:i16:audio",
+          "transcript": "This skylight is going to leak too."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This skylight is going to leak too.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-15:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Дощ задуває на веранду, де стоїть стілець. Скажіть: стілець на веранді намокне",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-15:i17:audio"
+      ],
+      "accessibilityLabel": "Дощ задуває на веранду, де стоїть стілець. Скажіть: стілець на веранді намокне",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-15:i17:audio",
+          "transcript": "The chair on the veranda is going to get wet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The chair on the veranda is going to get wet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2c9bc04d732d7167365bf2683b32233bbbb2debb3709ed528fb8ac04c152358a"
+}

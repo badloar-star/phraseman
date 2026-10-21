@@ -1,0 +1,2337 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-15:session-17",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-15:session-17:word:carer",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — carer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:word:carer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — carer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:word:carer:audio",
+            "transcript": "carer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-17:word:carer:r1",
+              "targetText": "carer",
+              "meaningByLocale": {
+                "ru": "помощник по уходу за человеком, которому нужна поддержка.",
+                "uk": "помічник із догляду за людиною, якій потрібна підтримка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "carer",
+            "definitionByLocale": {
+              "ru": "помощник по уходу за человеком, которому нужна поддержка.",
+              "uk": "помічник із догляду за людиною, якій потрібна підтримка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Помощник по уходу за вашим папой подтвердил встречу на завтра. Скажите: «Я встречаюсь с помощником по уходу завтра»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Помощник по уходу за вашим папой подтвердил встречу на завтра. Скажите: «Я встречаюсь с помощником по уходу завтра»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am meeting the carer tomorrow.",
+          "localizedMeaning": {
+            "ru": "Помощник по уходу за вашим папой подтвердил встречу на завтра. Скажите: «Я встречаюсь с помощником по уходу завтра»",
+            "uk": "Помічник із догляду за вашим татом підтвердив зустріч на завтра. Скажіть: «Я зустрічаюся з помічником із догляду завтра»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "meeting",
+            "the",
+            "carer",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-17:i02:r1",
+            "text": "I am meeting the carer tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i02:r2",
+            "text": "I is meeting the carer tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i02:r3",
+            "text": "I are meeting the carer tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:i02:audio",
+            "transcript": "I am meeting the carer tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-17:i02:r1",
+              "targetText": "I am meeting the carer tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i02:r2",
+              "targetText": "I is meeting the carer tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i02:r3",
+              "targetText": "I are meeting the carer tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-17:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am meeting the carer tomorrow.",
+                "uk": "У записі звучить I am meeting the carer tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am meeting the carer tomorrow.",
+                "uk": "У записі звучить I am meeting the carer tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Будущая договорённость. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-17:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "I ___ meeting the carer tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-17:i03:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Будущая договорённость. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-17:i03:r2",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма am.",
+                "uk": "З цим підметом потрібна форма am."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i03:r3",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна am.",
+                "uk": "Для цього підмета потрібна am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:word:babysitter",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — babysitter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:word:babysitter:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — babysitter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:word:babysitter:audio",
+            "transcript": "babysitter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-17:word:babysitter:r1",
+              "targetText": "babysitter",
+              "meaningByLocale": {
+                "ru": "человек, который присматривает за ребёнком в отсутствие родителей.",
+                "uk": "людина, яка доглядає дитину за відсутності батьків."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "babysitter",
+            "definitionByLocale": {
+              "ru": "человек, который присматривает за ребёнком в отсутствие родителей.",
+              "uk": "людина, яка доглядає дитину за відсутності батьків."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы вместе с супругом договорились познакомиться с няней завтра в шесть. Скажите: «Мы встречаемся с няней завтра в шесть»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы вместе с супругом договорились познакомиться с няней завтра в шесть. Скажите: «Мы встречаемся с няней завтра в шесть»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are meeting the babysitter at six tomorrow.",
+          "localizedMeaning": {
+            "ru": "Вы вместе с супругом договорились познакомиться с няней завтра в шесть. Скажите: «Мы встречаемся с няней завтра в шесть»",
+            "uk": "Ви разом із чоловіком домовилися познайомитися з нянею завтра о шостій. Скажіть: «Ми зустрічаємося з нянею завтра о шостій»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "the",
+            "babysitter",
+            "at",
+            "six",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-17:i05:r1",
+            "text": "We are meeting the babysitter at six tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i05:r2",
+            "text": "We am meeting the babysitter at six tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i05:r3",
+            "text": "We is meeting the babysitter at six tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:i05:audio",
+            "transcript": "We are meeting the babysitter at six tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-17:i05:r1",
+              "targetText": "We are meeting the babysitter at six tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i05:r2",
+              "targetText": "We am meeting the babysitter at six tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i05:r3",
+              "targetText": "We is meeting the babysitter at six tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-17:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are meeting the babysitter at six tomorrow.",
+                "uk": "У записі звучить We are meeting the babysitter at six tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are meeting the babysitter at six tomorrow.",
+                "uk": "У записі звучить We are meeting the babysitter at six tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Будущая договорённость. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-17:i06:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i06:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i06:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "We ___ meeting the babysitter at six tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-17:i06:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i06:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i06:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Будущая договорённость. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-17:i06:r2",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i06:r3",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:word:dog-walker",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dog walker",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:word:dog-walker:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dog walker",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:word:dog-walker:audio",
+            "transcript": "dog walker"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-17:word:dog-walker:r1",
+              "targetText": "dog walker",
+              "meaningByLocale": {
+                "ru": "человек, который выгуливает чужих собак.",
+                "uk": "людина, яка вигулює чужих собак."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dog walker",
+            "definitionByLocale": {
+              "ru": "человек, который выгуливает чужих собак.",
+              "uk": "людина, яка вигулює чужих собак."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра согласовала встречу с помощником по выгулу собаки на пятницу. Скажите: «Она встречается с человеком, который выгуливает собак, в пятницу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра согласовала встречу с помощником по выгулу собаки на пятницу. Скажите: «Она встречается с человеком, который выгуливает собак, в пятницу»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is meeting the dog walker on Friday.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра согласовала встречу с помощником по выгулу собаки на пятницу. Скажите: «Она встречается с человеком, который выгуливает собак, в пятницу»",
+            "uk": "Ваша сестра узгодила зустріч із помічником із вигулу собаки на п’ятницю. Скажіть: «Вона зустрічається з людиною, яка вигулює собак, у п’ятницю»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "meeting",
+            "the",
+            "dog",
+            "walker",
+            "on",
+            "Friday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-17:i08:r1",
+            "text": "She is meeting the dog walker on Friday."
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i08:r2",
+            "text": "She am meeting the dog walker on Friday."
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i08:r3",
+            "text": "She are meeting the dog walker on Friday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:i08:audio",
+            "transcript": "She is meeting the dog walker on Friday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-17:i08:r1",
+              "targetText": "She is meeting the dog walker on Friday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i08:r2",
+              "targetText": "She am meeting the dog walker on Friday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i08:r3",
+              "targetText": "She are meeting the dog walker on Friday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-17:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is meeting the dog walker on Friday.",
+                "uk": "У записі звучить She is meeting the dog walker on Friday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is meeting the dog walker on Friday.",
+                "uk": "У записі звучить She is meeting the dog walker on Friday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Будущая договорённость. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-17:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "She ___ meeting the dog walker on Friday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-17:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i09:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Будущая договорённость. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-17:i09:r2",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i09:r3",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:word:cleaner",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cleaner",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:word:cleaner:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cleaner",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:word:cleaner:audio",
+            "transcript": "cleaner"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-17:word:cleaner:r1",
+              "targetText": "cleaner",
+              "meaningByLocale": {
+                "ru": "человек, который убирает помещения.",
+                "uk": "людина, яка прибирає приміщення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cleaner",
+            "definitionByLocale": {
+              "ru": "человек, который убирает помещения.",
+              "uk": "людина, яка прибирає приміщення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваши родители договорились встретить помощника по уборке завтра утром. Скажите: «Они встречаются с помощником по уборке завтра утром»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваши родители договорились встретить помощника по уборке завтра утром. Скажите: «Они встречаются с помощником по уборке завтра утром»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are meeting the cleaner tomorrow morning.",
+          "localizedMeaning": {
+            "ru": "Ваши родители договорились встретить помощника по уборке завтра утром. Скажите: «Они встречаются с помощником по уборке завтра утром»",
+            "uk": "Ваші батьки домовилися зустріти помічника із прибирання завтра вранці. Скажіть: «Вони зустрічаються з помічником із прибирання завтра вранці»"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "meeting",
+            "the",
+            "cleaner",
+            "tomorrow",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-17:i11:r1",
+            "text": "They are meeting the cleaner tomorrow morning."
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i11:r2",
+            "text": "They am meeting the cleaner tomorrow morning."
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i11:r3",
+            "text": "They is meeting the cleaner tomorrow morning."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:i11:audio",
+            "transcript": "They are meeting the cleaner tomorrow morning."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-17:i11:r1",
+              "targetText": "They are meeting the cleaner tomorrow morning.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i11:r2",
+              "targetText": "They am meeting the cleaner tomorrow morning.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i11:r3",
+              "targetText": "They is meeting the cleaner tomorrow morning.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-17:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting the cleaner tomorrow morning.",
+                "uk": "У записі звучить They are meeting the cleaner tomorrow morning."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting the cleaner tomorrow morning.",
+                "uk": "У записі звучить They are meeting the cleaner tomorrow morning."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Будущая договорённость. Выберите am, is или are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-17:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i12:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Будущая договорённость. Выберите am, is или are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "They ___ meeting the cleaner tomorrow morning.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-17:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i12:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i12:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Будущая договорённость. Выберите am, is или are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-17:i12:r2",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i12:r3",
+              "correct": false,
+              "testedDimension": "Будущая договорённость. Выберите am, is или are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-17:i13:p1",
+              "target": "carer",
+              "meaningByLocale": {
+                "ru": "помощник по уходу за человеком, которому нужна поддержка",
+                "uk": "помічник із догляду за людиною, якій потрібна підтримка"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-17:i13:p2",
+              "target": "babysitter",
+              "meaningByLocale": {
+                "ru": "человек, который присматривает за ребёнком в отсутствие родителей",
+                "uk": "людина, яка доглядає дитину за відсутності батьків"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-17:i13:p3",
+              "target": "dog walker",
+              "meaningByLocale": {
+                "ru": "человек, который выгуливает чужих собак",
+                "uk": "людина, яка вигулює чужих собак"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-17:i13:p4",
+              "target": "cleaner",
+              "meaningByLocale": {
+                "ru": "человек, который убирает помещения",
+                "uk": "людина, яка прибирає приміщення"
+              }
+            }
+          ],
+          "leftColumn": [
+            "carer",
+            "babysitter",
+            "dog walker",
+            "cleaner"
+          ],
+          "rightColumn": [
+            "помощник по уходу за человеком, которому нужна поддержка",
+            "человек, который присматривает за ребёнком в отсутствие родителей",
+            "человек, который выгуливает чужих собак",
+            "человек, который убирает помещения"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:i14:audio",
+            "transcript": "I am meeting her tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am meeting her tomorrow.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "meeting",
+            "her",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:i15:audio",
+            "transcript": "We are coming at six."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are coming at six.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "coming",
+            "at",
+            "six"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Встреча с помощником по уходу согласована на пятницу. Скажите: я встречаюсь с ним в пятницу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:i16:audio"
+        ],
+        "accessibilityLabel": "Встреча с помощником по уходу согласована на пятницу. Скажите: я встречаюсь с ним в пятницу",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:i16:audio",
+            "transcript": "I am meeting the carer on Friday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am meeting the carer on Friday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы с супругом согласовали встречу с няней на завтра в семь. Скажите это",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:i17:audio"
+        ],
+        "accessibilityLabel": "Вы с супругом согласовали встречу с няней на завтра в семь. Скажите это",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:i17:audio",
+            "transcript": "We are meeting the babysitter at seven tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are meeting the babysitter at seven tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-15:session-17:word:carer",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — carer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:word:carer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — carer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:word:carer:audio",
+            "transcript": "carer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-17:word:carer:r1",
+              "targetText": "carer",
+              "meaningByLocale": {
+                "ru": "помощник по уходу за человеком, которому нужна поддержка.",
+                "uk": "помічник із догляду за людиною, якій потрібна підтримка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "carer",
+            "definitionByLocale": {
+              "ru": "помощник по уходу за человеком, которому нужна поддержка.",
+              "uk": "помічник із догляду за людиною, якій потрібна підтримка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Помічник із догляду за вашим татом підтвердив зустріч на завтра. Скажіть: «Я зустрічаюся з помічником із догляду завтра»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Помічник із догляду за вашим татом підтвердив зустріч на завтра. Скажіть: «Я зустрічаюся з помічником із догляду завтра»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I am meeting the carer tomorrow.",
+          "localizedMeaning": {
+            "ru": "Помощник по уходу за вашим папой подтвердил встречу на завтра. Скажите: «Я встречаюсь с помощником по уходу завтра»",
+            "uk": "Помічник із догляду за вашим татом підтвердив зустріч на завтра. Скажіть: «Я зустрічаюся з помічником із догляду завтра»"
+          },
+          "orderedTokens": [
+            "I",
+            "am",
+            "meeting",
+            "the",
+            "carer",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-17:i02:r1",
+            "text": "I am meeting the carer tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i02:r2",
+            "text": "I is meeting the carer tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i02:r3",
+            "text": "I are meeting the carer tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:i02:audio",
+            "transcript": "I am meeting the carer tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-17:i02:r1",
+              "targetText": "I am meeting the carer tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i02:r2",
+              "targetText": "I is meeting the carer tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i02:r3",
+              "targetText": "I are meeting the carer tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-17:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am meeting the carer tomorrow.",
+                "uk": "У записі звучить I am meeting the carer tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I am meeting the carer tomorrow.",
+                "uk": "У записі звучить I am meeting the carer tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Майбутня домовленість. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-17:i03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i03:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Майбутня домовленість. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "I ___ meeting the carer tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-17:i03:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i03:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-17:i03:r2",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма am.",
+                "uk": "З цим підметом потрібна форма am."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i03:r3",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна am.",
+                "uk": "Для цього підмета потрібна am."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:word:babysitter",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — babysitter",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:word:babysitter:audio"
+        ],
+        "accessibilityLabel": "Картка слова — babysitter",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:word:babysitter:audio",
+            "transcript": "babysitter"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-17:word:babysitter:r1",
+              "targetText": "babysitter",
+              "meaningByLocale": {
+                "ru": "человек, который присматривает за ребёнком в отсутствие родителей.",
+                "uk": "людина, яка доглядає дитину за відсутності батьків."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "babysitter",
+            "definitionByLocale": {
+              "ru": "человек, который присматривает за ребёнком в отсутствие родителей.",
+              "uk": "людина, яка доглядає дитину за відсутності батьків."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви разом із чоловіком домовилися познайомитися з нянею завтра о шостій. Скажіть: «Ми зустрічаємося з нянею завтра о шостій»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви разом із чоловіком домовилися познайомитися з нянею завтра о шостій. Скажіть: «Ми зустрічаємося з нянею завтра о шостій»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We are meeting the babysitter at six tomorrow.",
+          "localizedMeaning": {
+            "ru": "Вы вместе с супругом договорились познакомиться с няней завтра в шесть. Скажите: «Мы встречаемся с няней завтра в шесть»",
+            "uk": "Ви разом із чоловіком домовилися познайомитися з нянею завтра о шостій. Скажіть: «Ми зустрічаємося з нянею завтра о шостій»"
+          },
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "the",
+            "babysitter",
+            "at",
+            "six",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-17:i05:r1",
+            "text": "We are meeting the babysitter at six tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i05:r2",
+            "text": "We am meeting the babysitter at six tomorrow."
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i05:r3",
+            "text": "We is meeting the babysitter at six tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:i05:audio",
+            "transcript": "We are meeting the babysitter at six tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-17:i05:r1",
+              "targetText": "We are meeting the babysitter at six tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i05:r2",
+              "targetText": "We am meeting the babysitter at six tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i05:r3",
+              "targetText": "We is meeting the babysitter at six tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-17:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are meeting the babysitter at six tomorrow.",
+                "uk": "У записі звучить We are meeting the babysitter at six tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We are meeting the babysitter at six tomorrow.",
+                "uk": "У записі звучить We are meeting the babysitter at six tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Майбутня домовленість. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-17:i06:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i06:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i06:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Майбутня домовленість. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "We ___ meeting the babysitter at six tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-17:i06:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i06:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i06:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-17:i06:r2",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i06:r3",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:word:dog-walker",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dog walker",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:word:dog-walker:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dog walker",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:word:dog-walker:audio",
+            "transcript": "dog walker"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-17:word:dog-walker:r1",
+              "targetText": "dog walker",
+              "meaningByLocale": {
+                "ru": "человек, который выгуливает чужих собак.",
+                "uk": "людина, яка вигулює чужих собак."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dog walker",
+            "definitionByLocale": {
+              "ru": "человек, который выгуливает чужих собак.",
+              "uk": "людина, яка вигулює чужих собак."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваша сестра узгодила зустріч із помічником із вигулу собаки на п’ятницю. Скажіть: «Вона зустрічається з людиною, яка вигулює собак, у п’ятницю»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваша сестра узгодила зустріч із помічником із вигулу собаки на п’ятницю. Скажіть: «Вона зустрічається з людиною, яка вигулює собак, у п’ятницю»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She is meeting the dog walker on Friday.",
+          "localizedMeaning": {
+            "ru": "Ваша сестра согласовала встречу с помощником по выгулу собаки на пятницу. Скажите: «Она встречается с человеком, который выгуливает собак, в пятницу»",
+            "uk": "Ваша сестра узгодила зустріч із помічником із вигулу собаки на п’ятницю. Скажіть: «Вона зустрічається з людиною, яка вигулює собак, у п’ятницю»"
+          },
+          "orderedTokens": [
+            "She",
+            "is",
+            "meeting",
+            "the",
+            "dog",
+            "walker",
+            "on",
+            "Friday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-17:i08:r1",
+            "text": "She is meeting the dog walker on Friday."
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i08:r2",
+            "text": "She am meeting the dog walker on Friday."
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i08:r3",
+            "text": "She are meeting the dog walker on Friday."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:i08:audio",
+            "transcript": "She is meeting the dog walker on Friday."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-17:i08:r1",
+              "targetText": "She is meeting the dog walker on Friday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i08:r2",
+              "targetText": "She am meeting the dog walker on Friday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i08:r3",
+              "targetText": "She are meeting the dog walker on Friday.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-17:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is meeting the dog walker on Friday.",
+                "uk": "У записі звучить She is meeting the dog walker on Friday."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит She is meeting the dog walker on Friday.",
+                "uk": "У записі звучить She is meeting the dog walker on Friday."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Майбутня домовленість. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-17:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i09:r3",
+            "text": "are"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Майбутня домовленість. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "She ___ meeting the dog walker on Friday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-17:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i09:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i09:r3",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-17:i09:r2",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма is.",
+                "uk": "З цим підметом потрібна форма is."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i09:r3",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна is.",
+                "uk": "Для цього підмета потрібна is."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:word:cleaner",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cleaner",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:word:cleaner:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cleaner",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:word:cleaner:audio",
+            "transcript": "cleaner"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-17:word:cleaner:r1",
+              "targetText": "cleaner",
+              "meaningByLocale": {
+                "ru": "человек, который убирает помещения.",
+                "uk": "людина, яка прибирає приміщення."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cleaner",
+            "definitionByLocale": {
+              "ru": "человек, который убирает помещения.",
+              "uk": "людина, яка прибирає приміщення."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ваші батьки домовилися зустріти помічника із прибирання завтра вранці. Скажіть: «Вони зустрічаються з помічником із прибирання завтра вранці»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ваші батьки домовилися зустріти помічника із прибирання завтра вранці. Скажіть: «Вони зустрічаються з помічником із прибирання завтра вранці»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They are meeting the cleaner tomorrow morning.",
+          "localizedMeaning": {
+            "ru": "Ваши родители договорились встретить помощника по уборке завтра утром. Скажите: «Они встречаются с помощником по уборке завтра утром»",
+            "uk": "Ваші батьки домовилися зустріти помічника із прибирання завтра вранці. Скажіть: «Вони зустрічаються з помічником із прибирання завтра вранці»"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "meeting",
+            "the",
+            "cleaner",
+            "tomorrow",
+            "morning"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-17:i11:r1",
+            "text": "They are meeting the cleaner tomorrow morning."
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i11:r2",
+            "text": "They am meeting the cleaner tomorrow morning."
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i11:r3",
+            "text": "They is meeting the cleaner tomorrow morning."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:i11:audio",
+            "transcript": "They are meeting the cleaner tomorrow morning."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-15:session-17:i11:r1",
+              "targetText": "They are meeting the cleaner tomorrow morning.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i11:r2",
+              "targetText": "They am meeting the cleaner tomorrow morning.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i11:r3",
+              "targetText": "They is meeting the cleaner tomorrow morning.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-17:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting the cleaner tomorrow morning.",
+                "uk": "У записі звучить They are meeting the cleaner tomorrow morning."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит They are meeting the cleaner tomorrow morning.",
+                "uk": "У записі звучить They are meeting the cleaner tomorrow morning."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Майбутня домовленість. Виберіть am, is або are",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-15:session-17:i12:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i12:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-15:session-17:i12:r3",
+            "text": "is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Майбутня домовленість. Виберіть am, is або are",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Будущая договорённость. Выберите am, is или are",
+            "uk": "Майбутня домовленість. Виберіть am, is або are"
+          },
+          "gappedTargetPhrase": "They ___ meeting the cleaner tomorrow morning.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-15:session-17:i12:r1",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i12:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i12:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-15:session-17:i12:r2",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "С этим подлежащим нужна форма are.",
+                "uk": "З цим підметом потрібна форма are."
+              }
+            },
+            {
+              "responseId": "en:lesson-15:session-17:i12:r3",
+              "correct": false,
+              "testedDimension": "Майбутня домовленість. Виберіть am, is або are",
+              "feedbackByLocale": {
+                "ru": "Для этого подлежащего нужна are.",
+                "uk": "Для цього підмета потрібна are."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-15:session-17:i13:p1",
+              "target": "carer",
+              "meaningByLocale": {
+                "ru": "помощник по уходу за человеком, которому нужна поддержка",
+                "uk": "помічник із догляду за людиною, якій потрібна підтримка"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-17:i13:p2",
+              "target": "babysitter",
+              "meaningByLocale": {
+                "ru": "человек, который присматривает за ребёнком в отсутствие родителей",
+                "uk": "людина, яка доглядає дитину за відсутності батьків"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-17:i13:p3",
+              "target": "dog walker",
+              "meaningByLocale": {
+                "ru": "человек, который выгуливает чужих собак",
+                "uk": "людина, яка вигулює чужих собак"
+              }
+            },
+            {
+              "pairId": "en:lesson-15:session-17:i13:p4",
+              "target": "cleaner",
+              "meaningByLocale": {
+                "ru": "человек, который убирает помещения",
+                "uk": "людина, яка прибирає приміщення"
+              }
+            }
+          ],
+          "leftColumn": [
+            "carer",
+            "babysitter",
+            "dog walker",
+            "cleaner"
+          ],
+          "rightColumn": [
+            "помічник із догляду за людиною, якій потрібна підтримка",
+            "людина, яка доглядає дитину за відсутності батьків",
+            "людина, яка вигулює чужих собак",
+            "людина, яка прибирає приміщення"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:i14:audio",
+            "transcript": "I am meeting her tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am meeting her tomorrow.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "meeting",
+            "her",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:i15:audio",
+            "transcript": "We are coming at six."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are coming at six.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "coming",
+            "at",
+            "six"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Зустріч із помічником із догляду узгоджена на п’ятницю. Скажіть: я зустрічаюся з ним у п’ятницю",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:i16:audio"
+        ],
+        "accessibilityLabel": "Зустріч із помічником із догляду узгоджена на п’ятницю. Скажіть: я зустрічаюся з ним у п’ятницю",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:i16:audio",
+            "transcript": "I am meeting the carer on Friday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I am meeting the carer on Friday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-15:session-17:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви з чоловіком узгодили зустріч із нянею на завтра о сьомій. Скажіть це",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-15:session-17:i17:audio"
+        ],
+        "accessibilityLabel": "Ви з чоловіком узгодили зустріч із нянею на завтра о сьомій. Скажіть це",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-15:session-17:i17:audio",
+            "transcript": "We are meeting the babysitter at seven tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "We are meeting the babysitter at seven tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-15:session-17:word:carer",
+      "correctText": "carer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-17:i01",
+      "correctText": "I am meeting the carer tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-17:i02",
+      "correctText": "I am meeting the carer tomorrow.",
+      "correctResponseId": "en:lesson-15:session-17:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-17:i03",
+      "correctText": "am",
+      "correctResponseId": "en:lesson-15:session-17:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-17:word:babysitter",
+      "correctText": "babysitter",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-17:i04",
+      "correctText": "We are meeting the babysitter at six tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-17:i05",
+      "correctText": "We are meeting the babysitter at six tomorrow.",
+      "correctResponseId": "en:lesson-15:session-17:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-17:i06",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-15:session-17:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-17:word:dog-walker",
+      "correctText": "dog walker",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-17:i07",
+      "correctText": "She is meeting the dog walker on Friday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-17:i08",
+      "correctText": "She is meeting the dog walker on Friday.",
+      "correctResponseId": "en:lesson-15:session-17:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-17:i09",
+      "correctText": "is",
+      "correctResponseId": "en:lesson-15:session-17:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-17:word:cleaner",
+      "correctText": "cleaner",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-17:i10",
+      "correctText": "They are meeting the cleaner tomorrow morning.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-17:i11",
+      "correctText": "They are meeting the cleaner tomorrow morning.",
+      "correctResponseId": "en:lesson-15:session-17:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-17:i12",
+      "correctText": "are",
+      "correctResponseId": "en:lesson-15:session-17:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-15:session-17:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-17:i14",
+      "correctText": "I am meeting her tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-17:i15",
+      "correctText": "We are coming at six.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-17:i16",
+      "correctText": "I am meeting the carer on Friday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-17:i17",
+      "correctText": "We are meeting the babysitter at seven tomorrow.",
+      "correctResponseId": null
+    }
+  ]
+}

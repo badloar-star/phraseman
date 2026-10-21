@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-15:word:skylight",
+    "correctText": "skylight",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-15:i01",
+    "correctText": "The skylight is going to leak.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-15:i02",
+    "correctText": "The skylight is going to leak.",
+    "correctResponseId": "en:lesson-15:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-15:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-15:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-15:word:veranda",
+    "correctText": "veranda",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-15:i04",
+    "correctText": "The veranda is going to get wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-15:i05",
+    "correctText": "The veranda is going to get wet.",
+    "correctResponseId": "en:lesson-15:session-15:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-15:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-15:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-15:word:conservatory",
+    "correctText": "conservatory",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-15:i07",
+    "correctText": "The conservatory is going to get hot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-15:i08",
+    "correctText": "The conservatory is going to get hot.",
+    "correctResponseId": "en:lesson-15:session-15:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-15:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-15:word:doorstop",
+    "correctText": "doorstop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-15:i10",
+    "correctText": "The doorstop is going to slide.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-15:i11",
+    "correctText": "The doorstop is going to slide.",
+    "correctResponseId": "en:lesson-15:session-15:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-15:i12",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-15:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-15:i13",
+    "correctText": "en:lesson-15:session-15:i13:p1=skylight\nen:lesson-15:session-15:i13:p2=veranda\nen:lesson-15:session-15:i13:p3=conservatory\nen:lesson-15:session-15:i13:p4=doorstop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-15:i14",
+    "correctText": "The window is going to break.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-15:i15",
+    "correctText": "The door is going to close.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-15:i16",
+    "correctText": "This skylight is going to leak too.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-15:i17",
+    "correctText": "The chair on the veranda is going to get wet.",
+    "correctResponseId": null
+  }
+]

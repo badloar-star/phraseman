@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-16:word:stumble",
+    "correctText": "stumble",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-16:i01",
+    "correctText": "He is going to stumble.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-16:i02",
+    "correctText": "He is going to stumble.",
+    "correctResponseId": "en:lesson-15:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-16:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-16:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-16:word:doze",
+    "correctText": "doze",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-16:i04",
+    "correctText": "She is going to doze.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-16:i05",
+    "correctText": "She is going to doze.",
+    "correctResponseId": "en:lesson-15:session-16:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-16:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-16:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-16:word:blush",
+    "correctText": "blush",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-16:i07",
+    "correctText": "He is going to blush.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-16:i08",
+    "correctText": "He is going to blush.",
+    "correctResponseId": "en:lesson-15:session-16:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-16:i09",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-16:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-16:word:hiccup",
+    "correctText": "hiccup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-16:i10",
+    "correctText": "She is going to hiccup again.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-16:i11",
+    "correctText": "She is going to hiccup again.",
+    "correctResponseId": "en:lesson-15:session-16:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-16:i12",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-15:session-16:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-16:i13",
+    "correctText": "en:lesson-15:session-16:i13:p1=stumble\nen:lesson-15:session-16:i13:p2=doze\nen:lesson-15:session-16:i13:p3=blush\nen:lesson-15:session-16:i13:p4=hiccup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-16:i14",
+    "correctText": "He is going to fall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-16:i15",
+    "correctText": "She is going to sleep.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-16:i16",
+    "correctText": "He is going to doze.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-16:i17",
+    "correctText": "She is going to stumble.",
+    "correctResponseId": null
+  }
+]

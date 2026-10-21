@@ -7,7 +7,7 @@
 // Компонент — чистая вёрстка и движение: данные курса (названия, фразы, сцены, слова) приходят пропсами от родителя, чтобы экран не привязывался
 // к файлам контента, которые ведёт Codex; прогресс — готовая колода (season_course_model) из уже посчитанного снимка, новых чтений Firebase нет.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { memo, useCallback, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
@@ -41,6 +41,12 @@ export type SeasonEpisodeInfo = Readonly<{
   progress: number | null;
   /** «задание 6 из 20» (для текущего) или «20 заданий» (для остальных) — готовая строка. */
   taskLine: string | null;
+  /** Перевод ключевой фразы (раскрытая карта); null — нет. */
+  translation: string | null;
+  /** Слова эпизода чипами (раскрытая карта). */
+  words: readonly string[];
+  /** Число заданий (раскрытая карта: «20 заданий»); null — неизвестно. */
+  tasksCount: number | null;
 }>;
 
 export type SeasonChapterInfo = Readonly<{ scene: string; icon: IonName }>;
@@ -65,6 +71,10 @@ export type SeasonCourseViewProps = Readonly<{
   onPrimary: (card: SeasonEpisodeCard) => void;
   onNotFromStart?: () => void;
   onCardOpen: (index: number) => void;
+  /** Карусель встала на карту (после свайпа/тапа) — родителю нужно для «Вся глава». */
+  onSelectedChange?: (index: number) => void;
+  /** Поставить карусель на карту: родитель меняет seq, чтобы вернуться на ту же карту повторно («К эпизоду N», возврат из веера). */
+  focus?: Readonly<{ index: number; seq: number }>;
   onLessonPicker: () => void;
   onChapterPicker: () => void;
   onWholeChapter: () => void;
@@ -76,7 +86,17 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
   const { lang, theme, deck, lessonOrdinal } = props;
   const g = useLv2Glass();
   const dark = theme === 'dark';
-  const [selected, setSelected] = useState(deck.currentIndex);
+  const startIndex = props.focus ? props.focus.index : deck.currentIndex;
+  const [selected, setSelected] = useState(startIndex);
+  const { onSelectedChange } = props;
+  const settle = useCallback((index: number) => {
+    setSelected(index);
+    onSelectedChange?.(index);
+  }, [onSelectedChange]);
+  // фокус пришёл снаружи — подпись и выбор главы следуют за картой (сама карусель встаёт на неё через recenterKey)
+  useEffect(() => {
+    if (props.focus) setSelected(props.focus.index);
+  }, [props.focus]);
   const currentCard = deck.cards[deck.currentIndex];
   const currentEpisode = currentCard && currentCard.kind === 'episode' ? currentCard : (deck.cards.find((c): c is SeasonEpisodeCard => c.kind === 'episode') ?? null);
   const heroChapter = currentCard ? currentCard.chapterOrdinal : 1;
@@ -170,9 +190,10 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
 
       <SeasonCarousel
         count={deck.cards.length}
-        initialIndex={deck.currentIndex}
+        initialIndex={startIndex}
+        recenterKey={props.focus ? props.focus.seq : 0}
         renderCard={renderCard}
-        onIndexSettled={setSelected}
+        onIndexSettled={settle}
         onCenterPress={props.onCardOpen}
         reducedMotion={props.reducedMotion}
         accessibilityLabelForIndex={labelFor}

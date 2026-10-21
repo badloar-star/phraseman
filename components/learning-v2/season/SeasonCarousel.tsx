@@ -24,6 +24,8 @@ export type SeasonCarouselProps = Readonly<{
   count: number;
   /** Стартовая карта (в центре с первого кадра). */
   initialIndex: number;
+  /** Смена значения заново ставит карусель на initialIndex (без анимации), даже если сам индекс не менялся: «К эпизоду N» из раскрытой карты. */
+  recenterKey?: number;
   /** Рисует лицо карты с индексом `index` (вызывается только для карт окна). */
   renderCard: (index: number) => React.ReactNode;
   /** Карусель остановилась на карте (после свайпа или тапа по соседней). */
@@ -68,7 +70,7 @@ function CarouselCard({ index, position, children, onPress, label }: Readonly<{
   );
 }
 
-function SeasonCarousel({ count, initialIndex, renderCard, onIndexSettled, onCenterPress, reducedMotion, accessibilityLabelForIndex, testID }: SeasonCarouselProps) {
+function SeasonCarousel({ count, initialIndex, recenterKey, renderCard, onIndexSettled, onCenterPress, reducedMotion, accessibilityLabelForIndex, testID }: SeasonCarouselProps) {
   const safeInitial = seasonNearestIndex(initialIndex, count);
   const position = useSharedValue(safeInitial);
   const dragStart = useSharedValue(safeInitial);
@@ -87,7 +89,7 @@ function SeasonCarousel({ count, initialIndex, renderCard, onIndexSettled, onCen
   useEffect(() => {
     position.value = seasonNearestIndex(initialIndex, count);
     setCenter(seasonNearestIndex(initialIndex, count));
-  }, [count, initialIndex, position]);
+  }, [count, initialIndex, position, recenterKey]);
 
   const settle = useCallback((index: number) => {
     onIndexSettled(index);

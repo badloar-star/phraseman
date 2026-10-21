@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Экзамен главы — полный макет</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+/* ───────── PhraseMan 2.0 · иконки уроков и глав курса V2 + узор плашки главы ─────────
+   зачем (владелец 17.10, через координатора): у каждого урока и каждой главы на карте V2 — своя пиктограмма по смыслу, «не генерация, а именно
+   создание, как в диалогах»; плашка главы — со своим узором по теме, «чтобы они не были все одинаковые, а было интересно».
+   Система иконок — та же, что у нарисованных иконок макетов Диалогов (kit.js / dialogs.html): холст 24, линия 1,8, концы и стыки скруглены,
+   заливки нет, цвет — currentColor. Плитка — как плитка главы в коде (LearningV2ChaptersCourse.tsx: 55×55, радиус 16), значок 26.
+   Узор — SVG-pattern тонкой линией 1,2 по теме главы, низкий контраст, тает к тексту (маска слева направо): текст плашки ≥ 4,5:1.
+   У каждой главы свой оттенок акцента в пределах палитры темы (OKLCH: та же светлота и насыщенность, сдвиг тона ±50°).
+   Состояния: открыта — полным цветом; закрыта — приглушена + замок в углу плитки; пройдена — галочка в углу. Без обводок, стиль «Тень».
+   Темы по умолчанию: «Сумерки» (ink) и «Океан» (marine), токены liquidGlass. Урок 1 — первая партия; уроки 2–8 — следующими партиями. */
+.ph.th-ink, .pane.th-ink { --bg: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); --tx: #17181E; --sec: #595A63; --card: #FCFCFF; --ctl: #E6E7F4;
+  --sh: 0 10px 26px -14px rgba(51, 51, 87, .30), inset 0 1px 0 rgba(255, 255, 255, .9); --sb: #111; --L: .52; --C: .14; --Lt: .93; --Ct: .045; --pa: .22; --pal: .09; --badge-bg: #FFFFFF; }
+.ph.th-marine, .pane.th-marine { --bg: linear-gradient(180deg, #002936 0%, #000F16 55%, #001B17 100%); --tx: #F6FBFD; --sec: #B8CFD6; --card: #002027; --ctl: #123037;
+  --sh: 0 12px 28px -14px rgba(0, 0, 0, .7), inset 0 1px 0 rgba(255, 255, 255, .06); --sb: #fff; --L: .82; --C: .11; --Lt: .33; --Ct: .06; --pa: .22; --pal: .08; --badge-bg: #02242B; }
+.ph.th-ink, .ph.th-marine { background: var(--bg) !important; color: var(--tx); }
+.ph.th-ink .sb, .ph.th-marine .sb { color: var(--sb); background: none; }
+.ph.th-ink .sb .bat, .ph.th-marine .sb .bat { border-color: currentColor; }
+.ph.th-ink .sb .bat::after, .ph.th-marine .sb .bat::after { background: currentColor; }
+.ph.th-ink .sb .sys svg { filter: brightness(0); }
+.ph.th-marine .sb svg { filter: none; }
+
+/* оттенок главы: --h задаётся на элементе; акцент, тон плитки и узор — из него */
+.hue { --ac: oklch(var(--L) var(--C) var(--h)); --tint: oklch(var(--Lt) var(--Ct) var(--h)); }
+.ico { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.itile { position: relative; flex: none; width: 55px; height: 55px; border-radius: 16px; background: var(--tint); color: var(--ac); display: flex; align-items: center; justify-content: center; }
+.itile.ism { width: 48px; height: 48px; border-radius: 14px; }
+.itile.ism .ico { width: 24px; height: 24px; }
+/* закрыта: значок приглушён (тон текста, низкая непрозрачность), плитка — нейтральная; замок в углу */
+.st-locked .itile { background: var(--ctl); color: var(--sec); }
+.st-locked .itile .ico { opacity: .55; }
+.bdg { position: absolute; right: -4px; bottom: -4px; width: 22px; height: 22px; border-radius: 11px; background: var(--badge-bg); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; }
+.bdg svg { width: 13px; height: 13px; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.st-done .bdg svg { stroke: var(--ac); }
+.st-locked .bdg svg { stroke: var(--sec); }
+
+/* плашка главы — как в коде: карточка r22, плитка 55, «Глава N» 19/700, «Занятия a–b», счёт n/8, шеврон, дорожка прогресса */
+.chap { position: relative; overflow: hidden; border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px 16px 14px 14px; margin-top: 12px; isolation: isolate; }
+.chap .pat { position: absolute; inset: 0; z-index: -1; color: var(--ac); opacity: var(--pa);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 36%, #000 60%, #000 70%, rgba(0,0,0,.25) 100%); mask-image: linear-gradient(90deg, transparent 0%, transparent 36%, #000 60%, #000 70%, rgba(0,0,0,.25) 100%); }
+.st-locked .pat { color: var(--sec); opacity: var(--pal); }
+.chap .crow { display: flex; align-items: center; gap: 14px; }
+.chap .cp { flex: 1; min-width: 0; }
+.chap .tl { font-size: 19px; line-height: 24px; font-weight: 700; }
+.chap .csub { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 2px; }
+.chap .cfr { font-size: 15px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
+.chap .cfr b { color: var(--tx); }
+.chap .chev { width: 20px; height: 20px; fill: none; stroke: var(--sec); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.chap .ctrk { height: 6px; border-radius: 3px; background: var(--ctl); margin-top: 12px; overflow: hidden; }
+.chap .ctrk i { display: block; height: 100%; border-radius: 3px; background: var(--ac); }
+.st-locked .tl { color: var(--sec); }
+
+/* шапка карты (код: строка «Урок N» + «Классический курс», ниже тема 22/700); иконка урока — слева от темы */
+.mh { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+.mrb { width: 44px; height: 44px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; color: var(--tx); }
+.mrb svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.lh { margin-top: 14px; }
+.lh .kr { display: flex; align-items: center; justify-content: space-between; min-height: 36px; }
+.lh .lk { font-size: 13px; letter-spacing: 1.6px; font-weight: 700; color: var(--sec); text-transform: uppercase; }
+.lh .clc { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px; border-radius: 18px; background: var(--ctl); font-size: 13px; font-weight: 700; }
+.lh .clc svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.lh .tr { display: flex; align-items: center; gap: 12px; margin-top: 6px; }
+.lh .ltt { font-size: 22px; line-height: 27px; font-weight: 700; text-wrap: balance; }
+
+/* сетка иконок вне телефона — на панели темы */
+.pane { border-radius: 28px; padding: 22px; background: var(--bg); color: var(--tx); max-width: 980px; flex: 1 1 520px; }
+.pane h3 { margin: 0 0 4px; font-size: 16px; font-weight: 700; }
+.pane .pnote { font-size: 13px; color: var(--sec); margin-bottom: 14px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(176px, 1fr)); gap: 12px; }
+.cell { border-radius: 18px; background: var(--card); box-shadow: var(--sh); padding: 14px 10px 12px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
+.cell .cn { font-size: 12px; font-weight: 700; color: var(--sec); }
+.cell .nm { font-size: 13px; line-height: 17px; font-weight: 600; }
+.states { display: flex; gap: 14px; }
+.panes { display: flex; flex-wrap: wrap; gap: 24px; }
+.lrow2 { margin-top: 18px; }
+.lhd2 { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.lk2 { font-size: 13px; letter-spacing: 1.4px; font-weight: 700; color: var(--sec); text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+.lt2 { font-size: 17px; font-weight: 700; margin-top: 2px; }
+.arcflag { text-transform: none; letter-spacing: 0; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 8px; background: var(--ctl); color: var(--sec); }
+.pane.narrow { flex: 0 1 420px; }
+.pl2 { color: #A6A6A8; font-size: 14px; margin: -6px 0 14px; }
+.blk2 { margin-top: 48px; }
+.blk2 h2 { font-size: 20px; margin: 0 0 14px; }
+.ph .t { transition: transform 160ms cubic-bezier(.23, 1, .32, 1); }
+.ph .t:active { transform: scale(.97); }
+@media (prefers-reduced-motion: reduce) { .ph .t { transition: none; } }
+/* ───────── РЕШЕНИЕ ВЛАДЕЛЬЦА 18.10 (эталон) ─────────
+   зачем: плашки глав без узора и без оттенков; иконка главы — как в Диалогах: плитка 55×55, радиус 14, фон — цвет текста 9 %,
+   значок Ionicons 26 цветом текста; у каждой главы свой значок; замков и значков-уголков нет. Закрытая глава — тот же значок вторым цветом.
+   Плитка урока у заголовка — 46×46, радиус 12, значок 22. Дорожка прогресса — акцент темы. */
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+.ph.th-ink, .pane.th-ink { --acc: oklch(.52 .14 282); }
+.ph.th-marine, .pane.th-marine { --acc: oklch(.82 .11 215); }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: block; }
+.ich { flex: none; width: 55px; height: 55px; border-radius: 14px; background: color-mix(in srgb, var(--tx) 9%, transparent); color: var(--tx); display: flex; align-items: center; justify-content: center; }
+.ich .io { font-size: 26px; }
+.ich.les { width: 46px; height: 46px; border-radius: 12px; }
+.ich.les .io { font-size: 22px; }
+.st-locked .ich { color: var(--sec); }
+.chap2 { border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px 16px 14px 14px; margin-top: 12px; }
+.chap2 .crow { display: flex; align-items: center; gap: 14px; }
+.chap2 .cp { flex: 1; min-width: 0; }
+.chap2 .tl { font-size: 19px; line-height: 24px; font-weight: 700; }
+.chap2 .csub { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 2px; }
+.chap2 .cfr { font-size: 15px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
+.chap2 .cfr b { color: var(--tx); }
+.chap2 .chev { width: 20px; height: 20px; fill: none; stroke: var(--sec); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.chap2 .ctrk { height: 6px; border-radius: 3px; background: var(--ctl); margin-top: 12px; overflow: hidden; }
+.chap2 .ctrk i { display: block; height: 100%; border-radius: 3px; background: var(--acc); }
+.chap2.st-locked .tl { color: var(--sec); }
+.cell .inm { font-size: 11px; line-height: 14px; color: var(--sec); font-family: ui-monospace, Consolas, monospace; }
+.old-tag { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 8px; background: rgba(242,118,107,.16); color: #F2766B; font-size: 12px; font-weight: 700; vertical-align: middle; letter-spacing: 0; text-transform: none; }
+.new-tag { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 8px; background: rgba(110,200,140,.16); color: #4FB97A; font-size: 12px; font-weight: 700; vertical-align: middle; }
+</style>
+<style>
+/* зачем (владелец 21.10, реестр №8): экзамен внизу главы из 8 эпизодов; сдать можно сразу — откроется следующая глава.
+   Развёрнутая глава — как в коде LearningV2ChaptersCourse: узлы 64 в сетке 4×2, номер 13/700, подпись 13/17 под узлом. */
+.ses { display: flex; flex-wrap: wrap; row-gap: 18px; padding: 14px 6px 6px; }
+.s { width: 25%; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.nd { position: relative; width: 64px; height: 64px; border-radius: 50%; background: color-mix(in srgb, var(--tx) 9%, transparent); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; color: var(--tx); }
+.nd .io { font-size: 24px; }
+.nd b { font-size: 13px; line-height: 16px; font-weight: 700; }
+.nd.cur { background: var(--tx); color: var(--card); box-shadow: 0 0 0 5px color-mix(in srgb, var(--tx) 14%, transparent); }
+.nd.lock { color: var(--sec); }
+.nd .stars { position: absolute; bottom: -10px; min-height: 20px; padding: 0 6px; border-radius: 10px; background: var(--ctl); display: flex; align-items: center; gap: 1px; }
+.nd .stars .io { font-size: 11px; }
+.s .lb2 { width: 82px; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); text-align: center; }
+.s .lb2.on { color: var(--tx); font-weight: 800; }
+.exb { margin-top: 16px; height: 52px; border-radius: 26px; background: var(--tx); color: var(--card); display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 700; }
+.exb .io { font-size: 20px; }
+.exb.wait { background: var(--ctl); color: var(--sec); }
+.exn { text-align: center; font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 8px; }
+.exrow { display: flex; gap: 12px; }
+.exrow > div { flex: 1; }
+.exsec { margin-top: 16px; height: 52px; border-radius: 26px; background: var(--ctl); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700; }
+.exdone { margin-top: 16px; height: 48px; border-radius: 24px; background: var(--ctl); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700; }
+.exdone .io { color: var(--acc); font-size: 20px; }
+.ph.th-ink .exdone .io { color: #4A47A8; }
+.note { margin: 30px 0 0; max-width: 900px; font-size: 15px; line-height: 23px; color: #A6A6AE; }
+.note b { color: #F2F2F4; }
+.tb { border-collapse: collapse; margin-top: 12px; font-size: 14px; line-height: 20px; max-width: 900px; width: 100%; color: #C9C9CF; }
+.tb td, .tb th { text-align: left; padding: 9px 12px 9px 0; border-bottom: 1px solid rgba(255,255,255,.08); vertical-align: top; }
+.tb th { color: #8E8E96; font-size: 13px; font-weight: 600; }
+/* шторки перед экзаменом и после провала — как окна 2.0 */
+.xsh { position: absolute; left: 0; right: 0; bottom: 0; z-index: 30; border-radius: 30px 30px 0 0; padding: 12px 22px 40px; background: var(--card); box-shadow: 0 -18px 40px -18px rgba(0,0,0,.5); }
+.xdim { position: absolute; inset: 0; z-index: 25; background: rgba(0,0,0,.45); }
+.ph.th-ink .xdim { background: rgba(23,24,30,.38); }
+.xsh .grab { width: 42px; height: 5px; border-radius: 3px; background: var(--ctl); margin: 0 auto; }
+.xsh .ic { width: 64px; height: 64px; border-radius: 18px; margin: 22px auto 0; background: color-mix(in srgb, var(--acc) 22%, transparent); display: flex; align-items: center; justify-content: center; font-size: 30px; color: var(--acc); }
+.ph.th-ink .xsh .ic { color: #4A47A8; }
+.xsh .t { font-size: 25px; line-height: 31px; font-weight: 700; text-align: center; margin-top: 16px; }
+.facts { display: flex; gap: 10px; margin-top: 18px; }
+.facts div { flex: 1; border-radius: 16px; background: var(--ctl); padding: 12px 6px; text-align: center; }
+.facts b { display: block; font-size: 22px; line-height: 26px; }
+.facts small { font-size: 13px; line-height: 17px; color: var(--sec); }
+.xsh .p { font-size: 16px; line-height: 22px; color: var(--sec); text-align: center; margin-top: 16px; }
+.xsh .c1 { margin-top: 20px; height: 54px; border-radius: 27px; background: var(--tx); color: var(--card); display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 17px; font-weight: 700; }
+.xsh .c1 .en { display: inline-flex; align-items: center; gap: 3px; height: 28px; padding: 0 10px; border-radius: 14px; background: color-mix(in srgb, var(--card) 18%, transparent); font-size: 15px; }
+.xsh .c2 { margin-top: 12px; height: 50px; border-radius: 25px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; }
+.xsh .free { margin-top: 10px; text-align: center; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--acc); }
+.ph.th-ink .xsh .free { color: #4A47A8; }
+.score { display: flex; justify-content: center; gap: 6px; margin-top: 16px; }
+.score i { width: 14px; height: 14px; border-radius: 50%; background: var(--acc); }
+.score i.x { background: var(--ctl); }
+</style>
+<style>
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+.ph.th-ink { --good: #2B8A5E; --bad: #C2413B; --amber: rgba(190,118,28,.12); --edge: rgba(23,24,30,.10); --solid: #EEEFFA; }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+/* ── оболочка плеера (код: верхняя панель 64, подвал из трёх действий) ── */
+.tvtop { display: flex; align-items: center; gap: 12px; min-height: 54px; margin-top: 2px; }
+.tvx { width: 44px; height: 44px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; font-size: 22px; flex: none; }
+.tvp { flex: 1; min-width: 0; }
+.tvtrk { height: 6px; border-radius: 3px; background: var(--ctl); overflow: hidden; } .tvtrk i { display: block; height: 100%; background: var(--acc); border-radius: 3px; }
+.tvn { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); margin-top: 5px; }
+.hud { display: flex; gap: 6px; flex: none; }
+.hp { height: 34px; padding: 0 10px; border-radius: 17px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; gap: 4px; font-size: 15px; font-weight: 700; }
+.hp .io { font-size: 15px; } .hp img { width: 18px; height: 18px; border-radius: 50%; }
+.tvb { padding-top: 8px; }
+.foot { position: absolute; left: 0; right: 0; bottom: 0; z-index: 10; padding: 8px 10px 34px; display: flex; background: var(--solid); }
+.foot div { flex: 1; min-height: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 13px; line-height: 17px; font-weight: 600; color: var(--sec); }
+.foot .io { font-size: 26px; color: var(--tx); } .foot .off { opacity: .3; }
+/* ── блоки заданий (код: Lv2Chip, Lv2Option, Lv2Cta, Lv2Explain, лента отклика) ── */
+.lab { font-size: 16px; line-height: 22px; font-weight: 600; color: var(--sec); }
+.scene { font-size: 16px; line-height: 22px; color: var(--sec); margin-top: 10px; }
+.thero { font-size: 28px; line-height: 34px; font-weight: 700; letter-spacing: -.3px; }
+.ans { min-height: 64px; margin-top: 22px; box-shadow: inset 0 -1px 0 var(--edge); display: flex; flex-wrap: wrap; gap: 8px; padding: 10px 12px; align-items: center; }
+.ans .ph2 { font-size: 16px; color: var(--sec); opacity: .8; }
+.bank { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.chip { min-height: 46px; padding: 0 18px; border-radius: 14px; background: var(--ctl); display: inline-flex; align-items: center; font-size: 16px; font-weight: 600; box-shadow: 0 3px 0 rgba(23,24,30,.12); }
+.chip.gh { opacity: .22; }
+.opts { display: flex; flex-direction: column; gap: 13px; margin-top: 26px; }
+.opt { min-height: 58px; border-radius: 14px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; padding: 0 48px; position: relative; text-align: center; }
+.opt.sel { background: color-mix(in srgb, var(--acc) 14%, var(--card)); transform: translateY(-2px); }
+.opt.ok { background: rgba(43,138,94,.12); color: var(--good); box-shadow: inset 0 0 0 1px rgba(43,138,94,.45); }
+.opt .mk { position: absolute; right: 16px; font-size: 20px; }
+.tcta { margin-top: 22px; height: 52px; border-radius: 26px; background: var(--tx); color: var(--card); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700; }
+.tcta.off { background: var(--ctl); color: var(--sec); }
+.play { width: 128px; height: 128px; border-radius: 50%; background: var(--card); box-shadow: var(--sh); margin: 26px auto 0; display: flex; align-items: center; justify-content: center; font-size: 44px; position: relative; }
+.play svg { position: absolute; inset: -2px; }
+.play.s { width: 96px; height: 96px; font-size: 36px; margin-top: 18px; }
+.psub { text-align: center; font-size: 16px; line-height: 22px; font-weight: 600; color: var(--sec); margin-top: 14px; }
+.gap { display: inline-flex; padding: 0 4px; border-radius: 8px; background: var(--ctl); color: var(--sec); margin: 0 2px; }
+.gtext { font-size: 28px; line-height: 44px; font-weight: 700; margin-top: 18px; }
+.spk { width: 38px; height: 38px; border-radius: 50%; background: var(--ctl); display: inline-flex; align-items: center; justify-content: center; font-size: 18px; vertical-align: middle; margin-left: 10px; }
+.sm-h { display: flex; justify-content: space-between; align-items: center; }
+.timer { min-height: 34px; padding: 0 14px; border-radius: 17px; background: var(--ctl); display: flex; align-items: center; gap: 6px; font-size: 16px; font-weight: 700; }
+.pairs { display: flex; gap: 10px; margin-top: 4px; } .pairs > div { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+.pairs .opt { min-height: 72px; font-weight: 600; padding: 0 10px; }
+.mic { width: 76px; height: 76px; border-radius: 50%; background: var(--tx); color: var(--card); margin: 26px auto 0; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: 0 0 0 11px color-mix(in srgb, var(--tx) 10%, transparent); }
+.micl { text-align: center; font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 18px; }
+.tphr { font-size: 30px; line-height: 36px; font-weight: 700; text-align: center; margin-top: 24px; }
+.tins { font-size: 16px; line-height: 22px; text-align: center; color: var(--sec); margin-top: 10px; }
+/* интро (код: learning_v2_session_intro.tsx) */
+.ihd { display: flex; align-items: center; gap: 10px; min-height: 42px; }
+.ihd .x { width: 42px; height: 42px; border-radius: 50%; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 20px; flex: none; }
+.ihd .st { font-size: 13px; line-height: 17px; font-weight: 700; letter-spacing: 1px; } .ihd .st small { display: block; font-size: 13px; line-height: 18px; color: var(--sec); letter-spacing: 0; }
+.seg { display: flex; gap: 6px; margin-top: 12px; } .seg i { flex: 1; height: 4px; border-radius: 4px; background: var(--ctl); } .seg i.on { background: var(--acc); }
+.ititle { font-size: 26px; line-height: 32px; font-weight: 700; letter-spacing: -.4px; margin-top: 22px; }
+.know { border-radius: 16px; background: var(--card); box-shadow: var(--sh); padding: 18px 18px 20px; margin-top: 20px; font-size: 16px; line-height: 23px; }
+.know b { font-size: 17px; font-weight: 700; }
+.qeb { display: flex; justify-content: space-between; font-size: 13px; line-height: 18px; font-weight: 700; letter-spacing: 1.6px; margin-top: 24px; }
+.qp { font-size: 19px; line-height: 25px; font-weight: 700; margin-top: 10px; }
+.qa { display: flex; flex-direction: column; gap: 9px; margin-top: 14px; }
+.qa div { min-height: 58px; border-radius: 14px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 16px; font-weight: 600; }
+.qa b { width: 30px; height: 30px; border-radius: 9px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 13px; flex: none; }
+.ifoot { position: absolute; left: 0; right: 0; bottom: 0; z-index: 10; padding: 12px 20px 34px; background: var(--solid); }
+/* оверлей нового слова (код: LearningV2NewWordEncounterOverlay) */
+.nwdim { position: absolute; inset: 0; z-index: 20; background: rgba(0,0,0,.6); }
+.nw { position: absolute; z-index: 21; left: 50%; top: 50%; width: 330px; margin-left: -165px; transform: translateY(-50%); border-radius: 22px; background: var(--card); padding: 12px 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+.nw .h { display: flex; justify-content: space-between; align-items: baseline; padding: 4px 4px 0; } .nw .h b { font-size: 20px; line-height: 26px; } .nw .h span { font-size: 16px; font-weight: 600; color: var(--sec); }
+.nw .fc { height: 245px; border-radius: 33px; background: linear-gradient(160deg, #2A2B45, #17182A); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; position: relative; }
+.nw .fc .w { font-size: 40px; font-weight: 800; } .nw .fc .ipa { font-size: 16px; opacity: .7; }
+.nw .hint { text-align: center; font-size: 13px; line-height: 19px; font-weight: 600; color: var(--sec); }
+.nw .tcta { margin-top: 0; }
+
+/* ── ПРЕДЛАГАЕМ: «что сделать» отдельно, ситуация отдельно ── */
+.todo { display: flex; align-items: center; gap: 12px; margin-top: 6px; }
+.todo .ti { width: 40px; height: 40px; border-radius: 12px; background: color-mix(in srgb, var(--tx) 9%, transparent); display: flex; align-items: center; justify-content: center; font-size: 21px; flex: none; }
+.todo .tt { font-size: 22px; line-height: 27px; font-weight: 800; letter-spacing: -.3px; }
+.sit { margin-top: 14px; border-radius: 18px; background: color-mix(in srgb, var(--acc) 9%, var(--card)); box-shadow: var(--sh); padding: 13px 16px 14px; }
+.sit .k { display: flex; align-items: center; gap: 6px; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); }
+.sit .k .io { font-size: 15px; }
+.sit .v { font-size: 17px; line-height: 24px; margin-top: 5px; }
+.goal { margin-top: 18px; text-align: center; } .goal .k { font-size: 13px; font-weight: 700; color: var(--sec); }
+.goal .v { font-size: 30px; line-height: 36px; font-weight: 800; letter-spacing: -.4px; margin-top: 4px; }
+.say { margin-top: 16px; border-radius: 18px; background: var(--card); box-shadow: var(--sh); padding: 16px; text-align: center; }
+.say .en { font-size: 30px; line-height: 36px; font-weight: 800; } .say .ru { font-size: 17px; line-height: 23px; color: var(--sec); margin-top: 4px; }
+.parts { display: flex; justify-content: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.parts span { border-radius: 12px; background: var(--ctl); padding: 6px 12px; font-size: 15px; font-weight: 700; } .parts span small { font-weight: 500; color: var(--sec); margin-left: 6px; }
+.why { font-size: 16px; line-height: 22px; color: var(--sec); margin-top: 12px; text-align: center; }
+.cmp { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 28px; margin-top: 14px; max-width: 1000px; }
+.cmp div { font-size: 14px; line-height: 21px; color: #A6A6AE; } .cmp b { color: #F2F2F4; }
+.tb { border-collapse: collapse; margin-top: 12px; font-size: 14px; line-height: 20px; max-width: 1000px; width: 100%; color: #C9C9CF; }
+.tb td, .tb th { text-align: left; padding: 9px 12px 9px 0; border-bottom: 1px solid rgba(255,255,255,.08); vertical-align: top; } .tb th { color: #8E8E96; font-size: 13px; font-weight: 600; }
+</style>
+<style>
+/* зачем (владелец 21.10): полный путь экзамена и входного теста. Тема «Океан» получает те же токены, что «Сумерки» в странице заданий. */
+.ph.th-marine { --good: #4CC98C; --amber: rgba(230,160,60,.14); --edge: rgba(255,255,255,.10); --solid: #00141B; }
+.extop { display: flex; align-items: center; gap: 12px; min-height: 54px; margin-top: 2px; }
+.exfoot { position: absolute; left: 0; right: 0; bottom: 0; z-index: 10; padding: 12px 20px 34px; background: var(--solid); }
+.exfoot .tcta { margin-top: 0; }
+.lane { margin-top: 18px; border-radius: 18px; padding: 14px 16px; } .lane.ok { background: rgba(43,138,94,.12); } .lane.no { background: var(--amber); }
+.lane b { font-size: 16px; line-height: 22px; } .lane p { font-size: 15px; line-height: 21px; color: var(--sec); margin: 4px 0 0; }
+.lane.ok b { color: var(--good); }
+.opt.no { background: var(--amber); box-shadow: inset 0 0 0 1px rgba(190,118,28,.45); } .opt.dimo { opacity: .45; }
+.res { text-align: center; padding-top: 26px; }
+.res .tro { width: 88px; height: 88px; border-radius: 26px; margin: 0 auto; background: color-mix(in srgb, var(--acc) 22%, transparent); display: flex; align-items: center; justify-content: center; font-size: 42px; color: var(--acc); }
+.ph.th-ink .res .tro { color: #4A47A8; }
+.res .big { font-size: 46px; line-height: 52px; font-weight: 800; letter-spacing: -1px; margin-top: 16px; }
+.res .t { font-size: 22px; line-height: 28px; font-weight: 700; margin-top: 4px; }
+.res .p { font-size: 16px; line-height: 22px; color: var(--sec); margin-top: 10px; }
+.unl { margin-top: 22px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px; display: flex; align-items: center; gap: 14px; text-align: left; }
+.unl .tl { font-size: 17px; font-weight: 700; } .unl .cs { font-size: 14px; color: var(--sec); margin-top: 2px; }
+.rew { display: inline-flex; align-items: center; gap: 6px; height: 40px; padding: 0 16px; border-radius: 20px; background: var(--ctl); font-size: 17px; font-weight: 800; margin-top: 16px; } .rew img { width: 22px; height: 22px; border-radius: 50%; }
+.rv { border-radius: 20px; background: var(--card); box-shadow: var(--sh); padding: 14px 16px; margin-top: 12px; }
+.rv .hd { display: flex; align-items: center; gap: 8px; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); }
+.rv .q { font-size: 15px; line-height: 21px; color: var(--sec); margin-top: 6px; }
+.rv .you { font-size: 16px; line-height: 22px; margin-top: 10px; } .rv .you s { color: #B5651D; text-decoration-thickness: 1.5px; }
+.rv .ok { font-size: 17px; line-height: 23px; font-weight: 700; margin-top: 4px; color: var(--good); }
+.rv .rwhy { text-align: left; font-size: 15px; line-height: 21px; color: var(--sec); margin-top: 6px; }
+.rv .rep { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; border-radius: 20px; background: var(--ctl); font-size: 15px; font-weight: 700; margin-top: 12px; }
+.exmini { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); } .exmini .io { font-size: 16px; color: var(--acc); } .ph.th-ink .exmini .io { color: #4A47A8; }
+.topic { display: flex; align-items: center; gap: 12px; margin-top: 10px; border-radius: 18px; background: var(--card); box-shadow: var(--sh); padding: 10px 12px; }
+.topic .k { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); } .topic .v { font-size: 16px; line-height: 21px; font-weight: 700; margin-top: 2px; }
+.tries { display: flex; gap: 5px; margin-left: auto; } .tries i { width: 10px; height: 10px; border-radius: 5px; background: var(--ctl); } .tries i.ok { background: var(--good); } .tries i.no { background: #D99A4E; } .tries i.cur { background: var(--tx); }
+.extra { margin-top: 12px; border-radius: 16px; background: var(--amber); padding: 10px 14px; font-size: 15px; line-height: 21px; font-weight: 600; display: flex; gap: 8px; align-items: center; }
+.tstart { padding-top: 18px; }
+.tstart .h { font-size: 28px; line-height: 34px; font-weight: 800; letter-spacing: -.4px; margin-top: 18px; }
+.tstart .p { font-size: 16px; line-height: 23px; color: var(--sec); margin-top: 10px; }
+.rules { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+.rules div { display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 22px; } .rules .n { width: 28px; height: 28px; border-radius: 14px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; flex: none; }
+.lrow3 { display: flex; align-items: center; gap: 12px; padding: 10px 0; box-shadow: inset 0 -1px 0 var(--edge); } .lrow3 .t { flex: 1; font-size: 16px; line-height: 21px; font-weight: 600; } .lrow3 .s { white-space: nowrap; display: inline-flex; align-items: center; gap: 4px; flex: none; font-size: 14px; font-weight: 700; color: var(--good); } .lrow3 .s.here { color: var(--tx); }
+.entry { margin-top: 12px; border-radius: 22px; background: color-mix(in srgb, var(--acc) 12%, var(--card)); box-shadow: var(--sh); padding: 14px; display: flex; align-items: center; gap: 14px; }
+.entry .tl { font-size: 17px; font-weight: 700; } .entry .cs { font-size: 14px; color: var(--sec); margin-top: 2px; }
+.thm { position: sticky; top: 0; z-index: 60; background: rgba(8,8,10,.92); backdrop-filter: blur(14px); padding: 14px 0; margin-top: 12px; display: flex; gap: 8px; align-items: center; }
+.chp { height: 38px; padding: 0 14px; border-radius: 19px; background: #1C1C1F; color: #C9C9CF; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; cursor: pointer; } .chp.on { background: #F2F1F6; color: #0B0C0E; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Экзамен главы и входной тест — полный макет</h1>
+  <p class="page-lead">Реестр владельца №8 и №10, один механизм. Экзамен: 12 вопросов по эпизодам 1–7, сдать — от 10, без сердечек; Free — 1 энергия, Plus — бесплатно; не сдал — разбор ошибок и повтор через час; сдал — следующая глава, пропущенные эпизоды просто открыты. Входной тест: бесплатно, 1 вопрос на тему каждого урока по порядку, ошибся — ещё 2 по теме, тема засчитана при 2 из 3, стоп на первой незасчитанной. Вопросы — по одобренной схеме заданий №23. Тексты — из курса.</p>
+  <div class="thm"><span style="font-size:13px;color:#8E8E96;font-weight:700;margin-right:6px">Тема</span><span class="chp" data-t="ink">Сумерки</span><span class="chp" data-t="marine">Океан</span></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { phone, block, col, coin } = K;
+const ION = [["briefcase-outline",["business-outline","cafe-outline","people-outline","home-outline","restaurant-outline","chatbubbles-outline","calendar-outline"]],["help-circle-outline",["bed-outline","eye-outline","navigate-outline","pricetag-outline","balloon-outline","cloudy-outline","ribbon-outline"]],["cube-outline",["archive-outline","storefront-outline","car-outline","bulb-outline","bag-handle-outline","receipt-outline","leaf-outline"]],["map-outline",["trail-sign-outline","search-outline","nutrition-outline","compass-outline","key-outline","mail-outline","gift-outline"]],["id-card-outline",["people-circle-outline","bag-outline","happy-outline","folder-open-outline","shirt-outline","images-outline","git-network-outline"]],["sunny-outline",["alarm-outline","bus-outline","laptop-outline","fast-food-outline","barbell-outline","cart-outline","moon-outline"]],["repeat-outline",["color-palette-outline","football-outline","book-outline","hourglass-outline","pizza-outline","airplane-outline","call-outline"]],["school-outline",["star-outline","bicycle-outline","hand-left-outline","list-outline","flame-outline","egg-outline","heart-outline"]]];
+const ICODE = {"briefcase-outline":61874,"business-outline":61895,"cafe-outline":61898,"people-outline":62627,"home-outline":62339,"restaurant-outline":62774,"chatbubbles-outline":61976,"calendar-outline":61910,"help-circle-outline":62334,"bed-outline":61841,"eye-outline":62186,"navigate-outline":62576,"pricetag-outline":62699,"balloon-outline":61799,"cloudy-outline":62054,"ribbon-outline":62789,"cube-outline":62105,"archive-outline":61733,"storefront-outline":62888,"car-outline":61922,"bulb-outline":61889,"bag-handle-outline":61791,"receipt-outline":62735,"leaf-outline":62387,"map-outline":62531,"trail-sign-outline":62954,"search-outline":62819,"nutrition-outline":62597,"compass-outline":62084,"key-outline":62372,"mail-outline":62516,"gift-outline":62264,"id-card-outline":62348,"people-circle-outline":62625,"bag-outline":61793,"happy-outline":62306,"folder-open-outline":62247,"shirt-outline":62849,"images-outline":62354,"git-network-outline":62279,"sunny-outline":62894,"alarm-outline":61709,"bus-outline":61892,"laptop-outline":62381,"fast-food-outline":62192,"barbell-outline":61811,"cart-outline":61955,"moon-outline":62561,"repeat-outline":62768,"color-palette-outline":62078,"football-outline":62252,"book-outline":61862,"hourglass-outline":62342,"pizza-outline":62657,"airplane-outline":61706,"call-outline":61913,"school-outline":62813,"star-outline":62873,"bicycle-outline":61847,"hand-left-outline":62300,"list-outline":62399,"flame-outline":62228,"egg-outline":62153,"heart-outline":62327};
+const io = (name) => `<i class="io" aria-hidden="true">&#x${ICODE[name].toString(16)};</i>`;
+const ich = (name, cls = '') => `<span class="ich ${cls}">${io(name)}</span>`;
+const back = '<svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
+const bookI = '<svg viewBox="0 0 24 24"><path d="M4 5.5c2.6-1 5.2-1 8 .8 2.8-1.8 5.4-1.8 8-.8v13c-2.6-1-5.2-1-8 .8-2.8-1.8-5.4-1.8-8-.8z"/><path d="M12 6.3v13"/></svg>';
+const libI = '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="4" height="16" rx="1"/><rect x="9.5" y="6" width="4" height="14" rx="1"/><path d="M15.2 7.2l3.6-1 3 13.4-3.6 1z"/></svg>';
+const thc = (th) => th === 'ink' ? 'th-ink' : 'th-marine';
+const IC = { check: 'f21d', play: 'f4c6', lock: 'f3c7', trophy: 'f601', star: 'f595', ok: 'f21e', chevU: 'f241', chevD: 'f232', time: 'f5de', flash: 'f316', close: 'f24a', vol: 'f613', chat: 'f213', puzzle: 'f2e4', create: 'f293', ear: 'f2c0', headset: 'f368', school: 'f55d', arrow: 'f133', refresh: 'f518', fwd: 'f23b', play2: 'f4c6' };
+const gi = (k, st = '') => `<i class="io" aria-hidden="true" style="${st}">&#x${IC[k]};</i>`;
+let TH = 'ink';
+const T = (h) => h.replace('class="ph"', `class="ph ${thc(TH)}"`);
+/* ── карта ── */
+const head = () => `<div class="mh"><span class="mrb">${back}</span><span class="mrb">${bookI}</span></div><div class="lh"><div class="kr"><span class="lk">Урок 1</span><span class="clc">${libI}Классический курс</span></div><div class="tr">${ich(ION[0][0], 'les')}<div class="ltt">Present be: утверждение + not</div></div></div>`;
+const node = (n, st, o = {}) => { const ic = { done: 'check', cur: 'play', open: 'play', lock: 'lock', chk: 'trophy' }[st]; const cls = { done: '', cur: ' cur', open: '', lock: ' lock', chk: o.chkOpen ? '' : ' lock' }[st];
+  const stars = o.stars ? `<span class="stars">${[0, 1, 2].map((i) => gi('star', `opacity:${i < o.stars ? 1 : .25}`)).join('')}</span>` : '';
+  return `<div class="s"><div class="nd${cls}">${gi(ic)}<b>${n}</b>${stars}</div><div class="lb2${st === 'cur' ? ' on' : ''}">${o.label || `Эпизод ${n}`}</div></div>`; };
+const ep = (from, st) => st.map(([s, o], i) => node(from + i, s, o || {})).join('');
+const plate = (ci, title, sub, done, opts = {}) => `<div class="chap2${opts.locked ? ' st-locked' : ''}"><div class="crow">${ich(ION[0][1][ci])}<div class="cp"><div class="tl">${title}</div><div class="csub">${sub}</div></div><span class="cfr"><b>${done}</b>/8</span>${opts.open ? gi('chevU', 'font-size:20px;color:var(--sec)') : ''}</div>${opts.open ? `<div class="ses">${opts.nodes}</div>${opts.after || ''}` : `<div class="ctrk">${done ? `<i style="width:${done / 8 * 100}%"></i>` : ''}</div>${opts.mini || ''}`}</div>`;
+const NODES2 = (st) => ep(9, st);
+const mapAvail = () => T(phone(`${head()}
+  ${plate(0, 'Глава 1', 'Эпизоды 1–8', 8, { mini: `<div class="exmini">${gi('trophy')}Экзамен сдан · 11 из 12</div>` })}
+  ${plate(1, 'Глава 2', 'Эпизоды 9–16', 2, { open: true, nodes: NODES2([['done', { stars: 3 }], ['done', { stars: 2 }], ['cur'], ['lock'], ['lock'], ['lock'], ['lock'], ['chk', { label: 'Проверка главы' }]]), after: `<div class="exb">${gi('trophy')}Экзамен главы</div><div class="exn">Сдашь — откроется глава 3</div>` })}
+  ${plate(2, 'Глава 3', 'Эпизоды 17–24', 0, { locked: true })}<div style="height:30px"></div>`, { time: '9:41' }));
+const mapPaused = () => T(phone(`${head()}
+  ${plate(0, 'Глава 1', 'Эпизоды 1–8', 8, { mini: `<div class="exmini">${gi('trophy')}Экзамен сдан · 11 из 12</div>` })}
+  ${plate(1, 'Глава 2', 'Эпизоды 9–16', 2, { open: true, nodes: NODES2([['done', { stars: 3 }], ['done', { stars: 2 }], ['cur'], ['lock'], ['lock'], ['lock'], ['lock'], ['chk', { label: 'Проверка главы' }]]), after: `<div class="exrow"><div class="exsec">Разбор ошибок</div><div class="exb wait">${gi('time')}Через 59 мин</div></div><div class="exn">Пересдать можно через час</div>` })}
+  ${plate(2, 'Глава 3', 'Эпизоды 17–24', 0, { locked: true })}<div style="height:30px"></div>`, { time: '9:41' }));
+const mapPassed = () => T(phone(`${head()}
+  ${plate(0, 'Глава 1', 'Эпизоды 1–8', 8, { mini: `<div class="exmini">${gi('trophy')}Экзамен сдан · 11 из 12</div>` })}
+  ${plate(1, 'Глава 2', 'Эпизоды 9–16', 2, { open: true, nodes: NODES2([['done', { stars: 3 }], ['done', { stars: 2 }], ['open'], ['open'], ['open'], ['open'], ['open'], ['chk', { label: 'Проверка главы', chkOpen: true }]]), after: `<div class="exdone">${gi('ok')}Экзамен сдан · 10 из 12</div>` })}
+  ${plate(2, 'Глава 3', 'Эпизоды 17–24', 0, {})}<div style="height:30px"></div>`, { time: '9:41' }));
+/* ── окно перед экзаменом ── */
+const sheet = (plus) => T(phone(`${head()}${plate(1, 'Глава 2', 'Эпизоды 9–16', 2, { open: true, nodes: NODES2([['done', { stars: 3 }], ['done', { stars: 2 }], ['cur'], ['lock'], ['lock'], ['lock'], ['lock'], ['chk', { label: 'Проверка главы' }]]) })}`, { time: '9:41',
+  overlay: `<div class="xdim"></div><div class="xsh"><div class="grab"></div><div class="ic">${gi('trophy')}</div><div class="t">Экзамен главы 2</div>
+  <div class="facts"><div><b>12</b><small>вопросов</small></div><div><b>10</b><small>чтобы сдать</small></div><div><b>~7</b><small>минут</small></div></div>
+  <div class="p">По эпизодам 9–15. Сдашь — сразу откроется глава 3.</div><div class="c1">Начать экзамен${plus ? '' : `<span class="en">${gi('flash', 'font-size:14px')}1</span>`}</div>${plus ? '<div class="free">С Plus экзамен бесплатный</div>' : ''}<div class="c2">Позже</div></div>` }));
+/* ── экзамен: вопросы по схеме №23 ── */
+const exTop = (n) => `<div class="extop"><span class="tvx">${gi('close')}</span><div class="tvp"><div class="tvtrk"><i style="width:${Math.round(n / 12 * 100)}%"></i></div><div class="tvn">Экзамен · ${n} / 12</div></div></div>`;
+const todo = (ic, t) => `<div class="todo"><span class="ti">${gi(ic)}</span><div class="tt">${t}</div></div>`;
+const sit = (v) => `<div class="sit"><div class="k">${gi('chat')}Ситуация</div><div class="v">${v}</div></div>`;
+const chips = (arr) => arr.map(([w, g]) => `<span class="chip${g ? ' gh' : ''}">${w}</span>`).join('');
+const EX = (n, body, cta) => T(phone(`${exTop(n)}<div style="padding-top:8px">${body}</div><div style="height:130px"></div>`, { time: '9:41', fixed: `<div class="exfoot">${cta}</div>` }));
+const q1 = () => EX(1, `${todo('puzzle', 'Собери фразу')}${sit('Коллега ищет вас, а вы уже в комнате.')}<div class="goal"><div class="k">Скажите по-английски</div><div class="v">Я здесь.</div></div><div class="ans">${chips([['I'], ['am']])}</div><div class="bank">${chips([['I', 1], ['am', 1], ['here'], ['ready']])}</div>`, '<div class="tcta" style="opacity:.35">Проверить</div>');
+const q4 = () => EX(4, `${todo('create', 'Вставь слово')}${sit('Начальница звонит и спрашивает, добрались ли вы до офиса.')}<div class="goal"><div class="k">Ответьте</div><div class="v" style="font-size:22px;line-height:28px">«Я уже здесь»</div></div><div class="gtext" style="text-align:center">I am <span class="gap" style="background:rgba(43,138,94,.14);color:var(--good)">here</span>.</div>
+  <div class="opts" style="margin-top:16px"><div class="opt ok">here<span class="mk">${gi('check')}</span></div><div class="opt dimo">ready</div><div class="opt dimo">fine</div></div><div class="lane ok"><b>Верно.</b><p>here — «здесь»: вы сообщаете, где находитесь.</p></div>`, '<div class="tcta">Дальше</div>');
+const q7 = () => EX(7, `${todo('ear', 'Послушай и выбери')}${sit('Коллега перед началом встречи.')}<div class="play s" style="margin-top:14px">${gi('vol')}</div>
+  <div class="opts" style="margin-top:18px"><div class="opt no">I am fine.</div><div class="opt ok">I am ready.<span class="mk">${gi('check')}</span></div><div class="opt dimo">I am here.</div></div><div class="lane no"><b>Правильно: I am ready.</b><p>Коллега сообщает, что готов к встрече, — ready, а не fine.</p></div>`, '<div class="tcta">Дальше</div>');
+/* ── итоги ── */
+const R = (body, cta) => T(phone(`<div class="extop"><span class="tvx">${gi('close')}</span></div>${body}<div style="height:150px"></div>`, { time: '9:41', fixed: `<div class="exfoot">${cta}</div>` }));
+const dots = (ok) => `<div class="score">${Array.from({ length: 12 }, (_, i) => `<i${i >= ok ? ' class="x"' : ''}></i>`).join('')}</div>`;
+const passed = () => R(`<div class="res"><div class="tro">${gi('trophy')}</div><div class="big">11 из 12</div><div class="t">Экзамен сдан</div>${dots(11)}<span class="rew"><img src="${coin(5)}" alt="">+40</span>
+  <div class="unl">${ich(ION[0][1][2])}<div><div class="tl">Глава 3 открыта</div><div class="cs">Эпизоды 11–15 главы 2 тоже открыты — можно пройти, когда захочешь</div></div></div></div>`, '<div class="tcta">К главе 3</div><div class="c2" style="margin-top:10px;height:50px;border-radius:25px;background:var(--ctl);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700">Разбор ошибки · 1</div>');
+const failed = () => R(`<div class="res"><div class="big" style="margin-top:20px">9 из 12</div><div class="t">Почти получилось</div>${dots(9)}<div class="p">Чтобы сдать, нужно 10. Разберём три ошибки — и через час можно пересдать.</div></div>`, '<div class="tcta">Разбор ошибок</div><div style="margin-top:10px;height:50px;border-radius:25px;background:var(--ctl);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700">На карту</div>');
+/* ── разбор ошибок ── */
+const RV = [
+  ['puzzle', 'Вопрос 3 · Собери фразу', 'Коллега ищет вас, а вы уже в комнате. «Я здесь.»', 'I here.', 'I am here.', 'Без am фраза неполная: I am + где вы.', 'Эпизод 9'],
+  ['ear', 'Вопрос 7 · Послушай и выбери', 'Коллега перед началом встречи.', 'I am fine.', 'I am ready.', 'Коллега сообщает, что готов к встрече, — ready.', 'Эпизод 11'],
+  ['create', 'Вопрос 10 · Вставь слово', 'Вас обоих не устраивает репетиция.', 'We is not satisfied.', 'We are not satisfied.', 'С we всегда are.', 'Эпизод 13'],
+];
+const review = () => T(phone(`<div class="mh"><span class="mrb">${back}</span></div><div style="font-size:30px;line-height:36px;font-weight:700;margin-top:10px">Разбор ошибок</div><div style="font-size:15px;color:var(--sec);margin-top:4px">Экзамен главы 2 · 3 ошибки</div>
+  ${RV.map(([ic, h, q, you, ok, why, epi]) => `<div class="rv"><div class="hd">${gi(ic, 'font-size:15px')}${h}</div><div class="q">${q}</div><div class="you">Ты ответил: <s>${you}</s></div><div class="ok">${ok}</div><div class="rwhy">${why}</div><span class="rep">${gi('refresh', 'font-size:15px')}Повторить ${epi.toLowerCase()}</span></div>`).join('')}<div style="height:40px"></div>`, { time: '9:41' }));
+/* ── входной тест ── */
+const mapEntry = () => T(phone(`${head()}<div class="entry"><span class="ich">${gi('school')}</span><div style="flex:1"><div class="tl">Не хочу с начала</div><div class="cs">Короткий тест — откроем всё, что ты уже знаешь</div></div>${gi('fwd', 'font-size:18px;color:var(--sec)')}</div>
+  ${plate(0, 'Глава 1', 'Эпизоды 1–8', 0, { open: true, nodes: ep(1, [['cur'], ['lock'], ['lock'], ['lock'], ['lock'], ['lock'], ['lock'], ['chk', { label: 'Проверка главы' }]]) })}`, { time: '9:41' }));
+const tStart = () => T(phone(`<div class="extop"><span class="tvx">${gi('close')}</span></div><div class="tstart"><span class="ich">${gi('school')}</span><div class="h">Проверим, что ты уже знаешь</div><div class="p">Откроем все уроки до темы, которая пока даётся труднее, — начнёшь с неё.</div>
+  <div class="rules"><div><span class="n">1</span>Один вопрос на тему каждого урока, по порядку.</div><div><span class="n">2</span>Ошибся — ещё два вопроса по этой теме. Засчитаем при двух верных из трёх.</div><div><span class="n">3</span>Тест бесплатный, около 5 минут.</div></div></div><div style="height:150px"></div>`, { time: '9:41', fixed: '<div class="exfoot"><div class="tcta">Начать тест</div><div style="margin-top:10px;height:50px;border-radius:25px;background:var(--ctl);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700">Начну с начала</div></div>' }));
+const tTop = (n, of) => `<div class="extop"><span class="tvx">${gi('close')}</span><div class="tvp"><div class="tvtrk"><i style="width:${Math.round(n / of * 100)}%"></i></div><div class="tvn">Тест · урок ${n} из ${of}</div></div></div>`;
+const topic = (li, title, tries) => `<div class="topic">${ich(ION[li][0], 'les')}<div><div class="k">Урок ${li + 1}</div><div class="v">${title}</div></div><span class="tries">${tries.map((t) => `<i class="${t}"></i>`).join('')}</span></div>`;
+const tQ = () => T(phone(`${tTop(2, 32)}${topic(1, 'Present be: вопросы', ['cur'])}<div style="margin-top:14px">${todo('create', 'Вставь слово')}</div>${sit('Вас обоих не устраивает репетиция.')}<div class="gtext" style="text-align:center">We <span class="gap">····</span> not satisfied.</div><div class="opts" style="margin-top:16px"><div class="opt">is</div><div class="opt">are</div><div class="opt">am</div></div><div style="height:120px"></div>`, { time: '9:41' }));
+const tExtra = () => T(phone(`${tTop(4, 32)}${topic(3, 'There is / are, предлоги места', ['no', 'cur', ''])}<div class="extra">${gi('refresh', 'font-size:16px')}Ещё 2 вопроса по этой теме</div><div style="margin-top:14px">${todo('create', 'Вставь слово')}</div>${sit('Вы видите на карте несколько библиотек рядом с садом.')}<div class="gtext" style="text-align:center">There <span class="gap">····</span> libraries near the garden.</div><div class="opts" style="margin-top:16px"><div class="opt">is</div><div class="opt">are</div><div class="opt">am</div></div><div style="height:120px"></div>`, { time: '9:41' }));
+const tDone = () => R(`<div class="res" style="text-align:left"><span class="ich" style="margin:0 auto;display:flex">${gi('school')}</span><div class="big" style="text-align:center;font-size:34px;line-height:40px">Открыто до урока 4</div><div class="p" style="text-align:center">Темы уроков 1–3 ты знаешь. Урок 4 «There is / are» начнём вместе — он пока даётся труднее.</div>
+  <div style="margin-top:18px">${['Present be: утверждение + not', 'Present be: вопросы', 'Существительные, a/an/the'].map((t, i) => `<div class="lrow3">${ich(ION[i][0], 'les')}<div class="t">${t}</div><span class="s">${gi('check', 'font-size:16px')} открыт</span></div>`).join('')}<div class="lrow3">${ich(ION[3][0], 'les')}<div class="t">There is / are, предлоги места</div><span class="s here">начнём здесь</span></div></div></div>`, '<div class="tcta">Начать урок 4</div>');
+
+const render = () => {
+  document.getElementById('root').innerHTML =
+    block('map', '1 · Карта курса с экзаменами', 'Глава 1 — экзамен сдан (строка под дорожкой). Глава 2 — три состояния: доступен, на паузе после провала, сдан (эпизоды 11–15 «просто открыты»: без звёзд, не пройдены). Глава 3 закрыта, пока экзамен главы 2 не сдан.', [col('Экзамен доступен', mapAvail()), col('Не сдал — пауза', mapPaused()), col('Сдал — глава 3 открыта', mapPassed())]) +
+    block('sheet', '2 · Окно перед экзаменом', 'Free видит цену на кнопке — 1 энергия; Plus — «С Plus экзамен бесплатный». Сердечек нет.', [col('Free', sheet(false)), col('Plus', sheet(true))]) +
+    block('ex', '3 · Сам экзамен', 'Прогресс «Экзамен · N / 12», без сердечек и энергии. Вопросы — разные типы из эпизодов главы по одобренной схеме: что сделать, ситуация, цель. Ответ сразу: верно — зелёная строка с «почему», неверно — правильный ответ и «почему»; дальше — следующий вопрос.', [col('Вопрос 1 · Собери фразу', q1()), col('Вопрос 4 · верно', q4()), col('Вопрос 7 · неверно', q7())]) +
+    block('res', '4 · Итог', 'Сдал — «11 из 12», награда, следующая глава открыта. Не сдал — «9 из 12», «Разбор ошибок» и пересдача через час.', [col('Сдал', passed()), col('Не сдал', failed())]) +
+    block('rev', '5 · Разбор ошибок', 'Каждая ошибка: вопрос, что ответил, как правильно, короткое «почему» и кнопка «Повторить эпизод N» — к той теме, где ошибка.', [col('Разбор', review())]) +
+    block('test', '6 · Входной тест (№10)', 'Старт — «Не хочу с начала» на карте. 1 вопрос на тему урока по порядку; ошибка — «Ещё 2 вопроса по этой теме»; итог — «Открыто до урока N».', [col('Карта · вход в тест', mapEntry()), col('Старт теста', tStart()), col('Вопрос по теме урока', tQ()), col('Ошибка → ещё 2', tExtra()), col('Итог', tDone())]);
+  document.querySelectorAll('.thm .chp').forEach((c) => c.classList.toggle('on', c.dataset.t === TH));
+  K.init();
+};
+document.querySelector('.thm').addEventListener('click', (e) => { const c = e.target.closest('.chp'); if (c) { TH = c.dataset.t; render(); } });
+if (new URLSearchParams(location.search).get('t') === 'marine') TH = 'marine';
+render();
+})();
+</script>
+</body>
+</html>

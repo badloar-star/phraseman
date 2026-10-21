@@ -150,6 +150,20 @@ function fileInputForEntry(entry: FactoryProductionAudioEntryV1): LearningV2Cour
  * Есть ли слышимая запись с этим хешем (тихие из learning_v2_factory_silent_audio_v1.json сюда не входят).
  * зачем (Ревизор 3.42, R125): прогрев урока заранее отсеивает незнакомые хеши и пишет причину, а не падает целиком.
  */
+/**
+ * Подогрев таблиц озвучки (4 МБ generated-файлов: require + Maps) ВНЕ входа в занятие.
+ * зачем (Сверка 21.10, Galaxy A04, «виснет в уроках»): таблицы строились лениво при ПЕРВОМ обращении, т. е. прямо при входе в
+ * эпизод, и замирали на слабом железе. Теперь их можно построить заранее — после первого кадра карты курса. Данные и результат
+ * те же (тот же lazyContent), побочный эффект один — разовая сборка; лог [CONTENT-LAZY] пишет сам загрузчик.
+ */
+export function warmLearningV2FactoryAudioTablesV1(): void {
+  try {
+    factoryAudioTables();
+  } catch (error) {
+    console.warn("[AUDIO-TABLES-WARM] failed", error instanceof Error ? error.message : String(error));
+  }
+}
+
 export function learningV2FactoryHasAudibleAudioForContentHashV1(contentHash: string): boolean {
   return factoryAudioTables().entryByContentHash.has(contentHash);
 }

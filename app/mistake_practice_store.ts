@@ -8,7 +8,7 @@ import type {
 import {
   mergeMistakeEventJournals,
   parseMistakeEventJournal,
-  chunkMistakeEventJournal,
+  planMistakeEventJournalChunks,
   type MistakeEventJournal,
 } from './mistake_practice_cloud_merge';
 import {
@@ -176,6 +176,39 @@ async function withJournalLock<T>(key: string, work: () => Promise<T>): Promise<
   }
 }
 
+// зачем (замер Сверки 21.10, Galaxy A04, «работа над ошибками тормозит»): каждый ответ перечитывал и перехешировал ВЕСЬ журнал,
+// перезаписывал ВСЕ куски и делал getAllKeys по всему хранилищу. Кусок и страница адресуются хешем содержимого и неизменяемы,
+// а жадное разбиение префикс-устойчиво — при дописывании «позже всех» меняется только хвостовой кусок. Поэтому помним граф,
+// который сами записали/прочитали (по значению корня), и дальше: читаем граф только при смене корня, пишем только новое,
+// чистим только то, что перестало быть достижимым. Корень в хранилище не совпал с запомненным (стирание аккаунта, чужая запись,
+// ошибка) — кэш выбрасывается и работает прежний полный путь. Формат на диске НЕ менялся. Откат: флаг ниже.
+export const MISTAKE_JOURNAL_GRAPH_CACHE_ENABLED = true;
+
+type JournalGraphState = {
+  rootRaw: string;
+  /** Журнал из графа БЕЗ слияния с phone-state (его сливаем заново при каждом чтении). */
+  base: MistakeEventJournal;
+  /** Ключи кусков и страниц, достижимых из rootRaw (все они физически лежат в хранилище). */
+  reachable: ReadonlySet<string>;
+  /** Канонический текст кусков по порядку и их id — чтобы не хешировать неизменившееся. */
+  chunks: readonly Readonly<{ encoded: string; id: string }>[];
+};
+
+const graphCaches = new WeakMap<object, Map<string, JournalGraphState>>();
+const graphCacheOf = (storage: MistakePracticeStorage): Map<string, JournalGraphState> => {
+  let cache = graphCaches.get(storage);
+  if (!cache) {
+    cache = new Map();
+    graphCaches.set(storage, cache);
+  }
+  return cache;
+};
+
+/** Только для тестов. */
+export function resetMistakeJournalGraphCacheForTests(storage: MistakePracticeStorage): void {
+  graphCaches.delete(storage);
+}
+
 async function persistMistakeEventJournal(input: Readonly<{
   accountScope: string;
   studyTarget: MistakeStudyTarget;
@@ -184,15 +217,41 @@ async function persistMistakeEventJournal(input: Readonly<{
   journal: MistakeEventJournal;
   assertCurrentOwner: () => void;
 }>): Promise<void> {
+  const cache = graphCacheOf(input.storage);
+  const useCache = MISTAKE_JOURNAL_GRAPH_CACHE_ENABLED;
+  let previousState = useCache ? cache.get(input.key) : undefined;
+  if (previousState) {
+    // корень в хранилище обязан совпасть с запомненным, иначе граф могли стереть/заменить — тогда пишем всё и чистим полностью
+    let storedRoot: string | null = null;
+    try { storedRoot = await input.storage.getItem(input.key); }
+    catch (e) {
+      DebugLogger.error('mistake_practice_store:persistRootCheck', e instanceof Error ? e : new Error(String(e)), 'warning');
+    }
+    if (storedRoot !== previousState.rootRaw) {
+      console.warn('[MISTAKE-JOURNAL] graph_cache_dropped', JSON.stringify({ studyTarget: input.studyTarget, reason: 'root_changed' }));
+      previousState = undefined;
+    }
+  }
+  cache.delete(input.key); // на время записи кэш недействителен: при любой ошибке остаётся пустым
+  const previousIds = new Map<string, string>();
+  previousState?.chunks.forEach((chunk) => previousIds.set(chunk.encoded, chunk.id));
+  const knownKeys = previousState?.reachable;
+
   const chunkIds: string[] = [];
+  const plannedChunks: { encoded: string; id: string }[] = [];
   const reachableGraphKeys = new Set<string>();
-  for (const chunk of chunkMistakeEventJournal(input.journal)) {
-    const encoded = canonicalJsonV1(chunk);
-    const chunkId = sha256Utf8(encoded);
+  let written = 0;
+  for (const planned of planMistakeEventJournalChunks(input.journal)) {
+    const encoded = planned.encoded;
+    const chunkId = previousIds.get(encoded) ?? sha256Utf8(encoded);
     const chunkKey = mistakePracticeEventChunkKey(input.accountScope, input.studyTarget, chunkId);
-    await input.storage.setItem(chunkKey, encoded);
+    if (!knownKeys?.has(chunkKey)) {
+      await input.storage.setItem(chunkKey, encoded);
+      written += 1;
+    }
     reachableGraphKeys.add(chunkKey);
     chunkIds.push(chunkId);
+    plannedChunks.push({ encoded, id: chunkId });
   }
   let previousPageId: string | null = null;
   for (let offset = 0; offset < chunkIds.length; offset += MANIFEST_PAGE_CHUNKS) {
@@ -206,7 +265,10 @@ async function persistMistakeEventJournal(input: Readonly<{
     const encoded = canonicalJsonV1(page);
     const pageId = sha256Utf8(encoded);
     const pageKey = mistakePracticeManifestPageKey(input.accountScope, input.studyTarget, pageId);
-    await input.storage.setItem(pageKey, encoded);
+    if (!knownKeys?.has(pageKey)) {
+      await input.storage.setItem(pageKey, encoded);
+      written += 1;
+    }
     reachableGraphKeys.add(pageKey);
     previousPageId = pageId;
   }
@@ -217,16 +279,37 @@ async function persistMistakeEventJournal(input: Readonly<{
     headPageId: previousPageId,
     eventCount: input.journal.events.length,
   });
+  const rootRaw = canonicalJsonV1(root);
   input.assertCurrentOwner();
-  await input.storage.setItem(input.key, canonicalJsonV1(root));
+  await input.storage.setItem(input.key, rootRaw);
   input.assertCurrentOwner();
-  await sweepUnreachableMistakePracticeGraph({
-    storage: input.storage,
-    accountScope: input.accountScope,
-    studyTarget: input.studyTarget,
-    reachable: reachableGraphKeys,
-    assertCurrentOwner: input.assertCurrentOwner,
-  });
+  if (previousState) {
+    // точечная чистка: удаляем только ключи, что были достижимы раньше и перестали быть (без getAllKeys по всему хранилищу)
+    for (const oldKey of previousState.reachable) {
+      if (reachableGraphKeys.has(oldKey)) continue;
+      input.assertCurrentOwner();
+      try { await input.storage.removeItem(oldKey); }
+      catch (e) {
+        DebugLogger.error('mistake_practice_store:targetedSweep', e instanceof Error ? e : new Error(String(e)), 'warning');
+      }
+    }
+    input.assertCurrentOwner();
+  } else {
+    await sweepUnreachableMistakePracticeGraph({
+      storage: input.storage,
+      accountScope: input.accountScope,
+      studyTarget: input.studyTarget,
+      reachable: reachableGraphKeys,
+      assertCurrentOwner: input.assertCurrentOwner,
+    });
+  }
+  console.log('[MISTAKE-JOURNAL] persisted', JSON.stringify({
+    studyTarget: input.studyTarget, events: input.journal.events.length, chunks: plannedChunks.length,
+    written, incremental: Boolean(previousState),
+  }));
+  if (useCache) {
+    cache.set(input.key, { rootRaw, base: input.journal, reachable: reachableGraphKeys, chunks: plannedChunks });
+  }
 }
 
 async function loadMistakeEventJournalFresh(
@@ -269,6 +352,13 @@ async function loadMistakeEventJournalFresh(
         eventCount: root.eventCount ?? null, headPage: short(root.headPageId),
       });
     }
+    // граф с этим корнем мы уже читали/писали — страницы и куски неизменяемы, перечитывать и хешировать их заново не нужно
+    const graphCache = MISTAKE_JOURNAL_GRAPH_CACHE_ENABLED ? graphCacheOf(storage) : null;
+    const cacheKey = mistakePracticeEventsKey(accountScope, input.studyTarget);
+    const cachedGraph = graphCache?.get(cacheKey);
+    if (cachedGraph && cachedGraph.rootRaw === raw) {
+      return mergePhoneStateJournal(cachedGraph.base);
+    }
     const reversedPages: JournalManifestPageV1[] = [];
     const visited = new Set<string>();
     let pageId = root.headPageId;
@@ -294,17 +384,25 @@ async function loadMistakeEventJournalFresh(
       pageId = page.previousPageId;
     }
     let journal = emptyJournal(accountScope, input.studyTarget);
+    const graphKeys = new Set<string>();
+    const graphChunks: { encoded: string; id: string }[] = [];
+    for (const pageId of visited) graphKeys.add(mistakePracticeManifestPageKey(accountScope, input.studyTarget, pageId));
     for (const page of reversedPages.reverse()) {
       for (const chunkId of page.chunkIds) {
-        const chunkRaw = await getRaw(mistakePracticeEventChunkKey(accountScope, input.studyTarget, chunkId));
+        const chunkKey = mistakePracticeEventChunkKey(accountScope, input.studyTarget, chunkId);
+        const chunkRaw = await getRaw(chunkKey);
         if (!chunkRaw) corruptJournal('chunk_missing', { chunk: short(chunkId), page: short(page.previousPageId) });
         if (sha256Utf8(chunkRaw as string) !== chunkId) corruptJournal('chunk_hash', { chunk: short(chunkId), length: (chunkRaw as string).length });
         journal = mergeMistakeEventJournals(journal, parseMistakeEventJournal(chunkRaw));
+        graphKeys.add(chunkKey);
+        graphChunks.push({ encoded: chunkRaw as string, id: chunkId });
       }
     }
     if (journal.events.length !== root.eventCount) {
       corruptJournal('event_count_mismatch', { expected: root.eventCount, actual: journal.events.length, pages: reversedPages.length });
     }
+    // кэш графа кладём только для боевого/явного хранилища и только после полной проверки хешей и счёта событий
+    graphCache?.set(cacheKey, { rootRaw: raw, base: journal, reachable: graphKeys, chunks: graphChunks });
     return mergePhoneStateJournal(journal);
   }
   const parsed = parseMistakeEventJournal(raw);

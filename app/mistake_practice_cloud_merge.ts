@@ -75,47 +75,94 @@ const eventSort = (left: MistakeEvent, right: MistakeEvent): number =>
   left.occurredAtMs - right.occurredAtMs
   || left.eventId.localeCompare(right.eventId);
 
-export function chunkMistakeEventJournal(
+/** Один кусок журнала вместе с его каноническим текстом: id куска = SHA-256 `encoded`, повторно не сериализуем. */
+export type PlannedMistakeJournalChunk = Readonly<{
+  chunk: MistakeEventJournal;
+  /** Ровно `canonicalJsonV1(chunk)`. */
+  encoded: string;
+  /** Канонический текст каждого события куска (для дописывания в хвост без пересериализации). */
+  encodedEvents: readonly string[];
+}>;
+
+const isSortedByEvent = (events: readonly MistakeEvent[]): boolean => {
+  for (let index = 1; index < events.length; index += 1) {
+    if (eventSort(events[index - 1], events[index]) > 0) return false;
+  }
+  return true;
+};
+
+/**
+ * Разбиение журнала на куски за ОДИН проход.
+ *
+ * зачем (замер Сверки 21.10, слабый Android, «работа над ошибками тормозит»): прежний алгоритм для КАЖДОГО события заново
+ * сериализовал весь растущий кусок целиком (до 100 событий → ~5 000 сериализаций на кусок, квадратично), и так на каждый ответ.
+ * Теперь длина кандидата считается из длин канонических текстов событий: у канонического JSON ключи отсортированы, запятых
+ * между событиями на одну меньше числа событий, а пустой журнал даёт длину каркаса. Границы кусков и их тексты побайтово те
+ * же, что у прежнего алгоритма (иначе поменялись бы id кусков, а они адресуются хешем), — это проверяет tests/mistake_journal_chunk_linear.test.ts
+ * против копии прежнего алгоритма на случайных журналах.
+ */
+export function planMistakeEventJournalChunks(
   journal: MistakeEventJournal,
-): readonly MistakeEventJournal[] {
-  const chunks: MistakeEventJournal[] = [];
+): readonly PlannedMistakeJournalChunk[] {
+  const skeleton = canonicalJsonV1({
+    version: 1 as const,
+    accountScope: journal.accountScope,
+    studyTarget: journal.studyTarget,
+    events: [],
+  });
+  const marker = '"events":[]';
+  const at = skeleton.indexOf(marker);
+  if (at < 0) throw new Error('mistake_practice_chunk_skeleton_invalid');
+  const head = skeleton.slice(0, at + marker.length - 1); // до открывающей «[» включительно
+  const tail = skeleton.slice(at + marker.length - 1); // от закрывающей «]»
+  const skeletonLength = skeleton.length;
+
+  const planned: PlannedMistakeJournalChunk[] = [];
   let events: MistakeEvent[] = [];
+  let encodedEvents: string[] = [];
+  let sum = 0;
   const flush = () => {
     if (events.length === 0) return;
-    chunks.push(Object.freeze({
-      version: 1,
-      accountScope: journal.accountScope,
-      studyTarget: journal.studyTarget,
-      events: Object.freeze([...events]),
+    planned.push(Object.freeze({
+      chunk: Object.freeze({
+        version: 1 as const,
+        accountScope: journal.accountScope,
+        studyTarget: journal.studyTarget,
+        events: Object.freeze([...events]),
+      }),
+      encoded: `${head}${encodedEvents.join(',')}${tail}`,
+      encodedEvents: Object.freeze([...encodedEvents]),
     }));
     events = [];
+    encodedEvents = [];
+    sum = 0;
   };
-  for (const event of [...journal.events].sort(eventSort)) {
-    const candidate = Object.freeze({
-      version: 1 as const,
-      accountScope: journal.accountScope,
-      studyTarget: journal.studyTarget,
-      events: Object.freeze([...events, event]),
-    });
+  const ordered = isSortedByEvent(journal.events) ? journal.events : [...journal.events].sort(eventSort);
+  for (const event of ordered) {
+    const encodedEvent = canonicalJsonV1(event);
+    // длина кандидата из events+[event]: каркас + тексты событий + запятые (их events.length: событий станет events.length+1)
+    const candidateLength = skeletonLength + sum + encodedEvent.length + events.length;
     if (
       events.length >= MISTAKE_EVENT_JOURNAL_CHUNK_MAX_EVENTS
-      || canonicalJsonV1(candidate).length > MISTAKE_EVENT_JOURNAL_CHUNK_MAX_SERIALIZED_CHARS
+      || candidateLength > MISTAKE_EVENT_JOURNAL_CHUNK_MAX_SERIALIZED_CHARS
     ) {
       flush();
     }
-    const single = Object.freeze({
-      version: 1 as const,
-      accountScope: journal.accountScope,
-      studyTarget: journal.studyTarget,
-      events: Object.freeze([event]),
-    });
-    if (canonicalJsonV1(single).length > MISTAKE_EVENT_JOURNAL_CHUNK_MAX_SERIALIZED_CHARS) {
+    if (skeletonLength + encodedEvent.length > MISTAKE_EVENT_JOURNAL_CHUNK_MAX_SERIALIZED_CHARS) {
       throw new Error('mistake_practice_event_too_large');
     }
     events.push(event);
+    encodedEvents.push(encodedEvent);
+    sum += encodedEvent.length;
   }
   flush();
-  return Object.freeze(chunks);
+  return Object.freeze(planned);
+}
+
+export function chunkMistakeEventJournal(
+  journal: MistakeEventJournal,
+): readonly MistakeEventJournal[] {
+  return Object.freeze(planMistakeEventJournalChunks(journal).map((planned) => planned.chunk));
 }
 
 export function mergeMistakeEventJournals(

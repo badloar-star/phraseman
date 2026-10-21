@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ScrollView, StyleSheet, Text, View, type LayoutChangeEvent, type StyleProp, type ViewStyle } from "react-native";
+import { InteractionManager, ScrollView, StyleSheet, Text, View, type LayoutChangeEvent, type StyleProp, type ViewStyle } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withDelay, withTiming } from "react-native-reanimated";
 import { lv2Alpha, lv2CardStyle, lv2NodePaint, useLv2Glass } from "./LearningV2Glass";
@@ -176,6 +176,21 @@ export default function LearningV2ChaptersCourse(props: Props) {
       return preferredLessonOrdinal;
     });
   }, [preferredLessonOrdinal]);
+  // зачем (Сверка 21.10, Galaxy A04, «виснет в уроках»): таблицы озвучки (4 МБ) строились при ВХОДЕ в занятие и замирали UI.
+  // Строим их заранее, после первого кадра карты и тишины взаимодействий; повтор бесплатен (lazyContent). Сбой не мешает карте.
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      InteractionManager.runAfterInteractions(() => {
+        try {
+          // eslint-disable-next-line @typescript-eslint/no-require-imports
+          (require("../../app/learning_v2_lesson_audio_pack_v1") as typeof import("../../app/learning_v2_lesson_audio_pack_v1")).warmLearningV2AudioTablesV1();
+        } catch (error) {
+          console.warn("[AUDIO-TABLES-WARM] map_failed", error instanceof Error ? error.message : String(error));
+        }
+      });
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
   const { onSessionPress, isSessionMaterialAvailable } = props;
   // зачем (владелец 11.10: «ТАМ ДОЛЖНО ПОКАЗЫВАТЬСЯ СТОЛЬКО СКОЛЬКО ДОСТУПНО»): занятия, которые не открываются, НЕ
   // рисуются вовсе (раньше — серый узел со «стройкой» и тупик «Сессия недоступна»). Урок без единого видимого занятия

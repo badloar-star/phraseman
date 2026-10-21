@@ -7,6 +7,7 @@ import {
   learningV2FactorySessionClipHashesV1,
   learningV2FactoryWordAudioFileV1,
   learningV2FactoryRemoteAudioFilesForContentHashesV1,
+  warmLearningV2FactoryAudioTablesV1,
 } from "./learning_v2_factory_production_audio_v1";
 import { fetchLearningV2RemoteAudioBytesV1, LearningV2RemoteAudioErrorV1 } from "./learning_v2_remote_audio_v1";
 import { lazyContent } from "./content_lazy";
@@ -32,6 +33,19 @@ const factoryLessonAudioIndex = lazyContent("learning_v2_factory_lesson_audio_in
   return (require("./learning_v2_factory_lesson_audio_index_v1.generated") as FactoryLessonAudioIndexModuleV1)
     .LEARNING_V2_FACTORY_LESSON_AUDIO_INDEX_V1;
 });
+
+/**
+ * Строит обе таблицы озвучки (записи + индекс «урок → озвучка») заранее, чтобы вход в занятие не замирал на их разовой сборке.
+ * зачем (Сверка 21.10, пункт №39): вызывается после первого кадра карты курса; повторные вызовы бесплатны (lazyContent).
+ */
+export function warmLearningV2AudioTablesV1(): void {
+  warmLearningV2FactoryAudioTablesV1();
+  try {
+    factoryLessonAudioIndex();
+  } catch (error) {
+    console.warn("[AUDIO-TABLES-WARM] index_failed", error instanceof Error ? error.message : String(error));
+  }
+}
 
 export const LEARNING_V2_LESSON_AUDIO_PACK_SCHEMA_V1 =
   "learning-v2-lesson-audio-pack.v1" as const;

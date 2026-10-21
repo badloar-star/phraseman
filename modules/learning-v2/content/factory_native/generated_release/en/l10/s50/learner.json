@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-50",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-50:word:period",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — period",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-50:word:period:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — period",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-50:word:period:audio",
+          "transcript": "period"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-50:word:period:r1",
+            "targetText": "period",
+            "meaningByLocale": {
+              "ru": "«период». The trial period lasts a month. — «Пробный период длится месяц». Здесь отрезок времени для пробного использования программы.",
+              "uk": "«період». The trial period lasts a month. — «Пробний період триває місяць». Тут відрізок часу для пробного користування програмою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "period",
+          "definitionByLocale": {
+            "ru": "«период». The trial period lasts a month. — «Пробный период длится месяц». Здесь отрезок времени для пробного использования программы.",
+            "uk": "«період». The trial period lasts a month. — «Пробний період триває місяць». Тут відрізок часу для пробного користування програмою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Объясните условие использования программы: «Пробный период длится месяц»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Объясните условие использования программы: «Пробный период длится месяц»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The trial period lasts a month.",
+        "localizedMeaning": {
+          "ru": "Объясните условие использования программы: «Пробный период длится месяц»",
+          "uk": "Поясніть умову користування програмою: «Пробний період триває місяць»"
+        },
+        "orderedTokens": [
+          "The",
+          "trial",
+          "period",
+          "lasts",
+          "a",
+          "month"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-50:i02:r1",
+          "text": "The trial period is over."
+        },
+        {
+          "responseId": "en:lesson-10:session-50:i02:r2",
+          "text": "The trial period is short."
+        },
+        {
+          "responseId": "en:lesson-10:session-50:i02:r3",
+          "text": "The meeting is over."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-50:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-50:i02:audio",
+          "transcript": "The trial period is over."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-50:i02:r1",
+            "targetText": "The trial period is over.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i02:r2",
+            "targetText": "The trial period is short.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i02:r3",
+            "targetText": "The meeting is over.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The trial period is over.",
+              "uk": "У записі звучить The trial period is over."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The trial period is over.",
+              "uk": "У записі звучить The trial period is over."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Это установленное условие. Выберите форму last",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-50:i03:r1",
+          "text": "lasts"
+        },
+        {
+          "responseId": "en:lesson-10:session-50:i03:r2",
+          "text": "last"
+        },
+        {
+          "responseId": "en:lesson-10:session-50:i03:r3",
+          "text": "lasting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Это установленное условие. Выберите форму last",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Это установленное условие. Выберите форму last",
+          "uk": "Це встановлена умова. Виберіть форму last"
+        },
+        "gappedTargetPhrase": "The trial period ___ a month.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-50:i03:r1",
+            "text": "lasts"
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i03:r2",
+            "text": "last"
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i03:r3",
+            "text": "lasting"
+          }
+        ],
+        "testedDimension": "Это установленное условие. Выберите форму last",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-50:i03:r2",
+            "correct": false,
+            "testedDimension": "Это установленное условие. Выберите форму last",
+            "feedbackByLocale": {
+              "ru": "Один период: lasts с s.",
+              "uk": "Один період: lasts із s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i03:r3",
+            "correct": false,
+            "testedDimension": "Это установленное условие. Выберите форму last",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна личная форма lasts.",
+              "uk": "Тут потрібна особова форма lasts."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:word:interval",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — interval",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-50:word:interval:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — interval",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-50:word:interval:audio",
+          "transcript": "interval"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-50:word:interval:r1",
+            "targetText": "interval",
+            "meaningByLocale": {
+              "ru": "«интервал». The interval is ten minutes. — «Интервал составляет десять минут». Здесь промежуток времени между двумя проверками.",
+              "uk": "«інтервал». The interval is ten minutes. — «Інтервал становить десять хвилин». Тут проміжок часу між двома перевірками."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "interval",
+          "definitionByLocale": {
+            "ru": "«интервал». The interval is ten minutes. — «Интервал составляет десять минут». Здесь промежуток времени между двумя проверками.",
+            "uk": "«інтервал». The interval is ten minutes. — «Інтервал становить десять хвилин». Тут проміжок часу між двома перевірками."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Между двумя проверками проходит десять минут. Скажите: «Интервал составляет десять минут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Между двумя проверками проходит десять минут. Скажите: «Интервал составляет десять минут»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The interval is ten minutes.",
+        "localizedMeaning": {
+          "ru": "Между двумя проверками проходит десять минут. Скажите: «Интервал составляет десять минут»",
+          "uk": "Між двома перевірками минає десять хвилин. Скажіть: «Інтервал становить десять хвилин»"
+        },
+        "orderedTokens": [
+          "The",
+          "interval",
+          "is",
+          "ten",
+          "minutes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-50:i05:r1",
+          "text": "The interval is five minutes."
+        },
+        {
+          "responseId": "en:lesson-10:session-50:i05:r2",
+          "text": "The interval is ten minutes."
+        },
+        {
+          "responseId": "en:lesson-10:session-50:i05:r3",
+          "text": "The meeting is five minutes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-50:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-50:i05:audio",
+          "transcript": "The interval is five minutes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-50:i05:r1",
+            "targetText": "The interval is five minutes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i05:r2",
+            "targetText": "The interval is ten minutes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i05:r3",
+            "targetText": "The meeting is five minutes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-50:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The interval is five minutes.",
+              "uk": "У записі звучить The interval is five minutes."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The interval is five minutes.",
+              "uk": "У записі звучить The interval is five minutes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь об одном интервале. Выберите связку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-50:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-50:i06:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-50:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь об одном интервале. Выберите связку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь об одном интервале. Выберите связку",
+          "uk": "Ідеться про один інтервал. Виберіть зв’язку"
+        },
+        "gappedTargetPhrase": "The interval ___ ten minutes.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-50:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Речь об одном интервале. Выберите связку",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-50:i06:r2",
+            "correct": false,
+            "testedDimension": "Речь об одном интервале. Выберите связку",
+            "feedbackByLocale": {
+              "ru": "Один интервал: is.",
+              "uk": "Один інтервал: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i06:r3",
+            "correct": false,
+            "testedDimension": "Речь об одном интервале. Выберите связку",
+            "feedbackByLocale": {
+              "ru": "Am используется с I.",
+              "uk": "Am уживається з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:word:duration",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — duration",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-50:word:duration:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — duration",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-50:word:duration:audio",
+          "transcript": "duration"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-50:word:duration:r1",
+            "targetText": "duration",
+            "meaningByLocale": {
+              "ru": "«длительность». We record the duration every day. — «Мы записываем длительность каждый день». Здесь количество времени, которое занимает процедура.",
+              "uk": "«тривалість». We record the duration every day. — «Ми записуємо тривалість щодня». Тут кількість часу, яку займає процедура."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "duration",
+          "definitionByLocale": {
+            "ru": "«длительность». We record the duration every day. — «Мы записываем длительность каждый день». Здесь количество времени, которое занимает процедура.",
+            "uk": "«тривалість». We record the duration every day. — «Ми записуємо тривалість щодня». Тут кількість часу, яку займає процедура."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Команда ежедневно записывает, сколько длится процедура. Скажите: «Мы записываем длительность каждый день». Поставьте every day в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Команда ежедневно записывает, сколько длится процедура. Скажите: «Мы записываем длительность каждый день». Поставьте every day в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We record the duration every day.",
+        "localizedMeaning": {
+          "ru": "Команда ежедневно записывает, сколько длится процедура. Скажите: «Мы записываем длительность каждый день». Поставьте every day в конце",
+          "uk": "Команда щодня записує, скільки триває процедура. Скажіть: «Ми записуємо тривалість щодня». Поставте every day у кінці"
+        },
+        "orderedTokens": [
+          "We",
+          "record",
+          "the",
+          "duration",
+          "every",
+          "day"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-50:i08:r1",
+          "text": "The duration is two hours."
+        },
+        {
+          "responseId": "en:lesson-10:session-50:i08:r2",
+          "text": "The duration is three hours."
+        },
+        {
+          "responseId": "en:lesson-10:session-50:i08:r3",
+          "text": "The interval is two hours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-50:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-50:i08:audio",
+          "transcript": "The duration is two hours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-50:i08:r1",
+            "targetText": "The duration is two hours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i08:r2",
+            "targetText": "The duration is three hours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i08:r3",
+            "targetText": "The interval is two hours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-50:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The duration is two hours.",
+              "uk": "У записі звучить The duration is two hours."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The duration is two hours.",
+              "uk": "У записі звучить The duration is two hours."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Это ежедневная работа. Выберите форму record",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-50:i09:r1",
+          "text": "record"
+        },
+        {
+          "responseId": "en:lesson-10:session-50:i09:r2",
+          "text": "records"
+        },
+        {
+          "responseId": "en:lesson-10:session-50:i09:r3",
+          "text": "recording"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Это ежедневная работа. Выберите форму record",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Это ежедневная работа. Выберите форму record",
+          "uk": "Це щоденна робота. Виберіть форму record"
+        },
+        "gappedTargetPhrase": "We ___ the duration every day.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-50:i09:r1",
+            "text": "record"
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i09:r2",
+            "text": "records"
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i09:r3",
+            "text": "recording"
+          }
+        ],
+        "testedDimension": "Это ежедневная работа. Выберите форму record",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-50:i09:r2",
+            "correct": false,
+            "testedDimension": "Это ежедневная работа. Выберите форму record",
+            "feedbackByLocale": {
+              "ru": "С we нужна record без s.",
+              "uk": "З we потрібна record без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i09:r3",
+            "correct": false,
+            "testedDimension": "Это ежедневная работа. Выберите форму record",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна record.",
+              "uk": "Тут потрібна record."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:word:timeline",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — timeline",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-50:word:timeline:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — timeline",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-50:word:timeline:audio",
+          "transcript": "timeline"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-50:word:timeline:r1",
+            "targetText": "timeline",
+            "meaningByLocale": {
+              "ru": "«временной график». We are updating the timeline. — «Мы обновляем временной график». Последовательность этапов с датами.",
+              "uk": "«часовий графік». We are updating the timeline. — «Ми оновлюємо часовий графік». Послідовність етапів із датами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "timeline",
+          "definitionByLocale": {
+            "ru": "«временной график». We are updating the timeline. — «Мы обновляем временной график». Последовательность этапов с датами.",
+            "uk": "«часовий графік». We are updating the timeline. — «Ми оновлюємо часовий графік». Послідовність етапів із датами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы сейчас меняете даты этапов проекта. Скажите: «Мы обновляем временной график»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы сейчас меняете даты этапов проекта. Скажите: «Мы обновляем временной график»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are updating the timeline.",
+        "localizedMeaning": {
+          "ru": "Вы сейчас меняете даты этапов проекта. Скажите: «Мы обновляем временной график»",
+          "uk": "Ви зараз змінюєте дати етапів проєкту. Скажіть: «Ми оновлюємо часовий графік»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "updating",
+          "the",
+          "timeline"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-50:i11:r1",
+          "text": "The timeline is on the wall."
+        },
+        {
+          "responseId": "en:lesson-10:session-50:i11:r2",
+          "text": "The timeline is on the website."
+        },
+        {
+          "responseId": "en:lesson-10:session-50:i11:r3",
+          "text": "The barometer is on the wall."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-50:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-50:i11:audio",
+          "transcript": "The timeline is on the wall."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-50:i11:r1",
+            "targetText": "The timeline is on the wall.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i11:r2",
+            "targetText": "The timeline is on the website.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i11:r3",
+            "targetText": "The barometer is on the wall.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-50:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The timeline is on the wall.",
+              "uk": "У записі звучить The timeline is on the wall."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The timeline is on the wall.",
+              "uk": "У записі звучить The timeline is on the wall."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите правильное написание формы update",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-50:i12:r1",
+          "text": "updating"
+        },
+        {
+          "responseId": "en:lesson-10:session-50:i12:r2",
+          "text": "updateing"
+        },
+        {
+          "responseId": "en:lesson-10:session-50:i12:r3",
+          "text": "update"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите правильное написание формы update",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильное написание формы update",
+          "uk": "Виберіть правильне написання форми update"
+        },
+        "gappedTargetPhrase": "We are ___ the timeline.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-50:i12:r1",
+            "text": "updating"
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i12:r2",
+            "text": "updateing"
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i12:r3",
+            "text": "update"
+          }
+        ],
+        "testedDimension": "Выберите правильное написание формы update",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-50:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите правильное написание формы update",
+            "feedbackByLocale": {
+              "ru": "Перед ing убираем e: updating.",
+              "uk": "Перед ing прибираємо e: updating."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-50:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите правильное написание формы update",
+            "feedbackByLocale": {
+              "ru": "После are для текущего действия нужна updating.",
+              "uk": "Після are для поточної дії потрібна updating."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-50:i13:p1",
+            "target": "period",
+            "meaningByLocale": {
+              "ru": "период",
+              "uk": "період"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-50:i13:p2",
+            "target": "interval",
+            "meaningByLocale": {
+              "ru": "интервал",
+              "uk": "інтервал"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-50:i13:p3",
+            "target": "duration",
+            "meaningByLocale": {
+              "ru": "длительность",
+              "uk": "тривалість"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-50:i13:p4",
+            "target": "timeline",
+            "meaningByLocale": {
+              "ru": "временной график",
+              "uk": "часовий графік"
+            }
+          }
+        ],
+        "leftColumn": [
+          "period",
+          "interval",
+          "duration",
+          "timeline"
+        ],
+        "rightColumn": [
+          "период",
+          "интервал",
+          "длительность",
+          "временной график"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-50:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-50:i14:audio",
+          "transcript": "We are updating the timeline."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are updating the timeline.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "updating",
+          "the",
+          "timeline"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Пользователь спрашивает, сколько длится пробное использование. Скажите: «Пробный период длится месяц»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-50:i15:audio"
+      ],
+      "accessibilityLabel": "Пользователь спрашивает, сколько длится пробное использование. Скажите: «Пробный период длится месяц»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-50:i15:audio",
+          "transcript": "The trial period lasts a month."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The trial period lasts a month.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Коллега спрашивает, сколько времени проходит между проверками. Скажите: «Интервал составляет десять минут»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коллега спрашивает, сколько времени проходит между проверками. Скажите: «Интервал составляет десять минут»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The interval is ten minutes.",
+        "localizedMeaning": {
+          "ru": "Коллега спрашивает, сколько времени проходит между проверками. Скажите: «Интервал составляет десять минут»",
+          "uk": "Колега запитує, скільки часу минає між перевірками. Скажіть: «Інтервал становить десять хвилин»"
+        },
+        "orderedTokens": [
+          "The",
+          "interval",
+          "is",
+          "ten",
+          "minutes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы с коллегами вносите новые даты этапов проекта. Руководитель спрашивает, чем вы заняты сейчас. Скажите: «Мы обновляем временной график»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-50:i17:audio"
+      ],
+      "accessibilityLabel": "Вы с коллегами вносите новые даты этапов проекта. Руководитель спрашивает, чем вы заняты сейчас. Скажите: «Мы обновляем временной график»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-50:i17:audio",
+          "transcript": "We are updating the timeline."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are updating the timeline.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0b621ba84c3804dc8aaf48557d4a552cb88c3ad562c16ab16841f3a7de5f7ec2"
+}

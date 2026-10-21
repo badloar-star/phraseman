@@ -3878,4 +3878,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"We check the forecast every morning; The humidity is rising; We are checking the barometer","uk":"We check the forecast every morning; The humidity is rising; We are checking the barometer"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 10, sessionOrdinal: 50,
+    sourceFingerprint: "264d165940dae612df0c2ca84b6f44dc21400a264ab7d04508fb4dd7c1bfaa77",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"The trial period lasts a month; We record the duration every day; We are updating the timeline","uk":"The trial period lasts a month; We record the duration every day; We are updating the timeline"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
+  }),
 ]);

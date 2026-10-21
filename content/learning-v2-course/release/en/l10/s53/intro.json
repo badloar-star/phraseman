@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "This is a special occasion; The festivities start at six; We are arranging the centrepiece",
+    "uk": "This is a special occasion; The festivities start at six; We are arranging the centrepiece"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Почему мы собрались",
+        "uk": "Чому ми зібралися"
+      },
+      "bodyByLocale": {
+        "ru": "Occasion — «повод; случай». Сегодня семья отмечает важное событие: This is a special occasion — «Это особый повод». Описываем событие с помощью is. Перед исчисляемым occasion в единственном числе здесь нужен a.",
+        "uk": "Occasion — «нагода; випадок». Сьогодні родина відзначає важливу подію: This is a special occasion — «Це особлива нагода». Описуємо подію за допомогою is. Перед злічуваним occasion в однині тут потрібен a."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-53:intro1:r1",
+              "text": "This is a special occasion."
+            },
+            {
+              "responseId": "en:lesson-10:session-53:intro1:r2",
+              "text": "This are a special occasion."
+            },
+            {
+              "responseId": "en:lesson-10:session-53:intro1:r3",
+              "text": "This is special occasion."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-53:intro1:r1",
+              "text": "This is a special occasion."
+            },
+            {
+              "responseId": "en:lesson-10:session-53:intro1:r2",
+              "text": "This are a special occasion."
+            },
+            {
+              "responseId": "en:lesson-10:session-53:intro1:r3",
+              "text": "This is special occasion."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Начало программы",
+        "uk": "Початок програми"
+      },
+      "bodyByLocale": {
+        "ru": "Festivities — «празднества», праздничные мероприятия. По программе они начинаются в шесть: The festivities start at six — «Празднества начинаются в шесть». Для установленного расписания подходит Present Simple. Festivities — множественное число, поэтому start без s.",
+        "uk": "Festivities — «святкування», святкові заходи. За програмою вони починаються о шостій: The festivities start at six — «Святкування починаються о шостій». Для встановленого розкладу підходить Present Simple. Festivities — множина, тому start без s."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-53:intro2:r1",
+              "text": "The festivities start at six."
+            },
+            {
+              "responseId": "en:lesson-10:session-53:intro2:r2",
+              "text": "The festivities starts at six."
+            },
+            {
+              "responseId": "en:lesson-10:session-53:intro2:r3",
+              "text": "The festivities starting at six."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-53:intro2:r1",
+              "text": "The festivities start at six."
+            },
+            {
+              "responseId": "en:lesson-10:session-53:intro2:r2",
+              "text": "The festivities starts at six."
+            },
+            {
+              "responseId": "en:lesson-10:session-53:intro2:r3",
+              "text": "The festivities starting at six."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Украшаем стол сейчас",
+        "uk": "Прикрашаємо стіл зараз"
+      },
+      "bodyByLocale": {
+        "ru": "Centrepiece — «центральное украшение стола», например композиция из цветов. Вы с другом сейчас её оформляете: We are arranging the centrepiece — «Мы оформляем центральное украшение стола». Текущая работа: are + arranging. У arrange перед ing убираем e. Centrepiece — британское написание; в США пишут centerpiece.",
+        "uk": "Centrepiece — «центральна прикраса столу», наприклад композиція з квітів. Ви з другом зараз її оформлюєте: We are arranging the centrepiece — «Ми оформлюємо центральну прикрасу столу». Поточна робота: are + arranging. У arrange перед ing прибираємо e. Centrepiece — британське написання; у США пишуть centerpiece."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-53:intro3:r1",
+              "text": "We are arranging the centrepiece."
+            },
+            {
+              "responseId": "en:lesson-10:session-53:intro3:r2",
+              "text": "We arranging the centrepiece."
+            },
+            {
+              "responseId": "en:lesson-10:session-53:intro3:r3",
+              "text": "We are arrangeing the centrepiece."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-53:intro3:r1",
+              "text": "We are arranging the centrepiece."
+            },
+            {
+              "responseId": "en:lesson-10:session-53:intro3:r2",
+              "text": "We arranging the centrepiece."
+            },
+            {
+              "responseId": "en:lesson-10:session-53:intro3:r3",
+              "text": "We are arrangeing the centrepiece."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "27babe6a2ff02a56da92007ba2ec4d5cf31e99d0596f4c538486c66c0c22956b"
+}

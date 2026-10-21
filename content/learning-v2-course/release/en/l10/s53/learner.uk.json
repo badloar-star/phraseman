@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-53:word:occasion",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — occasion",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-53:word:occasion:audio"
+      ],
+      "accessibilityLabel": "Картка слова — occasion",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-53:word:occasion:audio",
+          "transcript": "occasion"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-53:word:occasion:r1",
+            "targetText": "occasion",
+            "meaningByLocale": {
+              "ru": "«повод». This is a special occasion. — «Это особый повод». Здесь важное событие, ради которого собралась семья.",
+              "uk": "«нагода». This is a special occasion. — «Це особлива нагода». Тут важлива подія, заради якої зібралася родина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "occasion",
+          "definitionByLocale": {
+            "ru": "«повод». This is a special occasion. — «Это особый повод». Здесь важное событие, ради которого собралась семья.",
+            "uk": "«нагода». This is a special occasion. — «Це особлива нагода». Тут важлива подія, заради якої зібралася родина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Родина зібралася відзначити важливу подію. Скажіть: «Це особлива нагода»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Родина зібралася відзначити важливу подію. Скажіть: «Це особлива нагода»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a special occasion.",
+        "localizedMeaning": {
+          "ru": "Семья собралась отметить важное событие. Скажите: «Это особый повод»",
+          "uk": "Родина зібралася відзначити важливу подію. Скажіть: «Це особлива нагода»"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "special",
+          "occasion"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-53:i02:r1",
+          "text": "This is a happy occasion."
+        },
+        {
+          "responseId": "en:lesson-10:session-53:i02:r2",
+          "text": "This is a sad occasion."
+        },
+        {
+          "responseId": "en:lesson-10:session-53:i02:r3",
+          "text": "This is a happy day."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-53:i02:audio",
+          "transcript": "This is a happy occasion."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-53:i02:r1",
+            "targetText": "This is a happy occasion.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i02:r2",
+            "targetText": "This is a sad occasion.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i02:r3",
+            "targetText": "This is a happy day.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is a happy occasion.",
+              "uk": "У записі звучить This is a happy occasion."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This is a happy occasion.",
+              "uk": "У записі звучить This is a happy occasion."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть зв’язку після this",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-53:i03:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-53:i03:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-53:i03:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть зв’язку після this",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите связку после this",
+          "uk": "Виберіть зв’язку після this"
+        },
+        "gappedTargetPhrase": "This ___ a special occasion.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-53:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i03:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Виберіть зв’язку після this",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть зв’язку після this",
+            "feedbackByLocale": {
+              "ru": "С this нужна is.",
+              "uk": "З this потрібна is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть зв’язку після this",
+            "feedbackByLocale": {
+              "ru": "Am используется с I.",
+              "uk": "Am уживається з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:word:festivities",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — festivities",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-53:word:festivities:audio"
+      ],
+      "accessibilityLabel": "Картка слова — festivities",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-53:word:festivities:audio",
+          "transcript": "festivities"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-53:word:festivities:r1",
+            "targetText": "festivities",
+            "meaningByLocale": {
+              "ru": "«празднества». The festivities start at six. — «Празднества начинаются в шесть». Праздничные мероприятия, множественное число.",
+              "uk": "«святкування». The festivities start at six. — «Святкування починаються о шостій». Святкові заходи, множина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "festivities",
+          "definitionByLocale": {
+            "ru": "«празднества». The festivities start at six. — «Празднества начинаются в шесть». Праздничные мероприятия, множественное число.",
+            "uk": "«святкування». The festivities start at six. — «Святкування починаються о шостій». Святкові заходи, множина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поясніть час за програмою: «Святкування починаються о шостій»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поясніть час за програмою: «Святкування починаються о шостій»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The festivities start at six.",
+        "localizedMeaning": {
+          "ru": "Объясните время по программе: «Празднества начинаются в шесть»",
+          "uk": "Поясніть час за програмою: «Святкування починаються о шостій»"
+        },
+        "orderedTokens": [
+          "The",
+          "festivities",
+          "start",
+          "at",
+          "six"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-53:i05:r1",
+          "text": "The festivities are outside."
+        },
+        {
+          "responseId": "en:lesson-10:session-53:i05:r2",
+          "text": "The festivities are inside."
+        },
+        {
+          "responseId": "en:lesson-10:session-53:i05:r3",
+          "text": "The guests are outside."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-53:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-53:i05:audio",
+          "transcript": "The festivities are outside."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-53:i05:r1",
+            "targetText": "The festivities are outside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i05:r2",
+            "targetText": "The festivities are inside.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i05:r3",
+            "targetText": "The guests are outside.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-53:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The festivities are outside.",
+              "uk": "У записі звучить The festivities are outside."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The festivities are outside.",
+              "uk": "У записі звучить The festivities are outside."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Це розклад. Виберіть форму start",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-53:i06:r1",
+          "text": "start"
+        },
+        {
+          "responseId": "en:lesson-10:session-53:i06:r2",
+          "text": "starts"
+        },
+        {
+          "responseId": "en:lesson-10:session-53:i06:r3",
+          "text": "starting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Це розклад. Виберіть форму start",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Это расписание. Выберите форму start",
+          "uk": "Це розклад. Виберіть форму start"
+        },
+        "gappedTargetPhrase": "The festivities ___ at six.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-53:i06:r1",
+            "text": "start"
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i06:r2",
+            "text": "starts"
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i06:r3",
+            "text": "starting"
+          }
+        ],
+        "testedDimension": "Це розклад. Виберіть форму start",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-53:i06:r2",
+            "correct": false,
+            "testedDimension": "Це розклад. Виберіть форму start",
+            "feedbackByLocale": {
+              "ru": "Festivities — множественное число: start.",
+              "uk": "Festivities — множина: start."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i06:r3",
+            "correct": false,
+            "testedDimension": "Це розклад. Виберіть форму start",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна личная форма start.",
+              "uk": "Тут потрібна особова форма start."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:word:centrepiece",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — centrepiece",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-53:word:centrepiece:audio"
+      ],
+      "accessibilityLabel": "Картка слова — centrepiece",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-53:word:centrepiece:audio",
+          "transcript": "centrepiece"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-53:word:centrepiece:r1",
+            "targetText": "centrepiece",
+            "meaningByLocale": {
+              "ru": "«центральное украшение стола». We are arranging the centrepiece. — «Мы оформляем центральное украшение стола». Здесь композиция из цветов.",
+              "uk": "«центральна прикраса столу». We are arranging the centrepiece. — «Ми оформлюємо центральну прикрасу столу». Тут композиція з квітів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "centrepiece",
+          "definitionByLocale": {
+            "ru": "«центральное украшение стола». We are arranging the centrepiece. — «Мы оформляем центральное украшение стола». Здесь композиция из цветов.",
+            "uk": "«центральна прикраса столу». We are arranging the centrepiece. — «Ми оформлюємо центральну прикрасу столу». Тут композиція з квітів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви зараз складаєте композицію для центру столу. Скажіть: «Ми оформлюємо центральну прикрасу столу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви зараз складаєте композицію для центру столу. Скажіть: «Ми оформлюємо центральну прикрасу столу»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are arranging the centrepiece.",
+        "localizedMeaning": {
+          "ru": "Вы сейчас составляете композицию для центра стола. Скажите: «Мы оформляем центральное украшение стола»",
+          "uk": "Ви зараз складаєте композицію для центру столу. Скажіть: «Ми оформлюємо центральну прикрасу столу»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "arranging",
+          "the",
+          "centrepiece"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-53:i08:r1",
+          "text": "The centrepiece is beautiful."
+        },
+        {
+          "responseId": "en:lesson-10:session-53:i08:r2",
+          "text": "The centrepiece is small."
+        },
+        {
+          "responseId": "en:lesson-10:session-53:i08:r3",
+          "text": "The garden is beautiful."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-53:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-53:i08:audio",
+          "transcript": "The centrepiece is beautiful."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-53:i08:r1",
+            "targetText": "The centrepiece is beautiful.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i08:r2",
+            "targetText": "The centrepiece is small.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i08:r3",
+            "targetText": "The garden is beautiful.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The centrepiece is beautiful.",
+              "uk": "У записі звучить The centrepiece is beautiful."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The centrepiece is beautiful.",
+              "uk": "У записі звучить The centrepiece is beautiful."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть правильне написання форми arrange",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-53:i09:r1",
+          "text": "arranging"
+        },
+        {
+          "responseId": "en:lesson-10:session-53:i09:r2",
+          "text": "arrangeing"
+        },
+        {
+          "responseId": "en:lesson-10:session-53:i09:r3",
+          "text": "arrange"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть правильне написання форми arrange",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильное написание формы arrange",
+          "uk": "Виберіть правильне написання форми arrange"
+        },
+        "gappedTargetPhrase": "We are ___ the centrepiece.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-53:i09:r1",
+            "text": "arranging"
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i09:r2",
+            "text": "arrangeing"
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i09:r3",
+            "text": "arrange"
+          }
+        ],
+        "testedDimension": "Виберіть правильне написання форми arrange",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-53:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть правильне написання форми arrange",
+            "feedbackByLocale": {
+              "ru": "Перед ing убираем e: arranging.",
+              "uk": "Перед ing прибираємо e: arranging."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть правильне написання форми arrange",
+            "feedbackByLocale": {
+              "ru": "После are для текущего действия нужна arranging.",
+              "uk": "Після are для поточної дії потрібна arranging."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:word:place-card",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — place card",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-53:word:place-card:audio"
+      ],
+      "accessibilityLabel": "Картка слова — place card",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-53:word:place-card:audio",
+          "transcript": "place card"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-53:word:place-card:r1",
+            "targetText": "place card",
+            "meaningByLocale": {
+              "ru": "«карточка с именем гостя». Your name is on the place card. — «Ваше имя на карточке с именем гостя». Place card указывает место гостя за столом; пишется двумя словами.",
+              "uk": "«картка з іменем гостя». Your name is on the place card. — «Ваше ім’я на картці з іменем гостя». Place card указує місце гостя за столом; пишеться двома словами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "place card",
+          "definitionByLocale": {
+            "ru": "«карточка с именем гостя». Your name is on the place card. — «Ваше имя на карточке с именем гостя». Place card указывает место гостя за столом; пишется двумя словами.",
+            "uk": "«картка з іменем гостя». Your name is on the place card. — «Ваше ім’я на картці з іменем гостя». Place card указує місце гостя за столом; пишеться двома словами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Гість шукає своє місце. Скажіть: «Ваше ім’я на картці з іменем гостя»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Гість шукає своє місце. Скажіть: «Ваше ім’я на картці з іменем гостя»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Your name is on the place card.",
+        "localizedMeaning": {
+          "ru": "Гость ищет своё место. Скажите: «Ваше имя на карточке с именем гостя»",
+          "uk": "Гість шукає своє місце. Скажіть: «Ваше ім’я на картці з іменем гостя»"
+        },
+        "orderedTokens": [
+          "Your",
+          "name",
+          "is",
+          "on",
+          "the",
+          "place",
+          "card"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-53:i11:r1",
+          "text": "The place card is beside the plate."
+        },
+        {
+          "responseId": "en:lesson-10:session-53:i11:r2",
+          "text": "The place card is under the plate."
+        },
+        {
+          "responseId": "en:lesson-10:session-53:i11:r3",
+          "text": "The glass is beside the plate."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-53:i11:audio",
+          "transcript": "The place card is beside the plate."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-53:i11:r1",
+            "targetText": "The place card is beside the plate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i11:r2",
+            "targetText": "The place card is under the plate.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i11:r3",
+            "targetText": "The glass is beside the plate.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-53:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The place card is beside the plate.",
+              "uk": "У записі звучить The place card is beside the plate."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The place card is beside the plate.",
+              "uk": "У записі звучить The place card is beside the plate."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ідеться про одне ім’я. Виберіть зв’язку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-53:i12:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-53:i12:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-53:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ідеться про одне ім’я. Виберіть зв’язку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь об одном имени. Выберите связку",
+          "uk": "Ідеться про одне ім’я. Виберіть зв’язку"
+        },
+        "gappedTargetPhrase": "Your name ___ on the place card.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-53:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Ідеться про одне ім’я. Виберіть зв’язку",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-53:i12:r2",
+            "correct": false,
+            "testedDimension": "Ідеться про одне ім’я. Виберіть зв’язку",
+            "feedbackByLocale": {
+              "ru": "Одно имя: is.",
+              "uk": "Одне ім’я: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-53:i12:r3",
+            "correct": false,
+            "testedDimension": "Ідеться про одне ім’я. Виберіть зв’язку",
+            "feedbackByLocale": {
+              "ru": "Am используется с I.",
+              "uk": "Am уживається з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "З’єднайте слова зі значеннями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-53:i13:p1",
+            "target": "occasion",
+            "meaningByLocale": {
+              "ru": "повод",
+              "uk": "нагода"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-53:i13:p2",
+            "target": "festivities",
+            "meaningByLocale": {
+              "ru": "празднества",
+              "uk": "святкування"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-53:i13:p3",
+            "target": "centrepiece",
+            "meaningByLocale": {
+              "ru": "центральное украшение стола",
+              "uk": "центральна прикраса столу"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-53:i13:p4",
+            "target": "place card",
+            "meaningByLocale": {
+              "ru": "карточка с именем гостя",
+              "uk": "картка з іменем гостя"
+            }
+          }
+        ],
+        "leftColumn": [
+          "occasion",
+          "festivities",
+          "centrepiece",
+          "place card"
+        ],
+        "rightColumn": [
+          "нагода",
+          "святкування",
+          "центральна прикраса столу",
+          "картка з іменем гостя"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й складіть фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-53:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-53:i14:audio",
+          "transcript": "We are arranging the centrepiece."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are arranging the centrepiece.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "arranging",
+          "the",
+          "centrepiece"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг запитує, коли починається святкова програма. Скажіть: «Святкування починаються о шостій»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-53:i15:audio"
+      ],
+      "accessibilityLabel": "Друг запитує, коли починається святкова програма. Скажіть: «Святкування починаються о шостій»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-53:i15:audio",
+          "transcript": "The festivities start at six."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The festivities start at six.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви пояснюєте, чому вся родина зібралася разом. Скажіть: «Це особлива нагода»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви пояснюєте, чому вся родина зібралася разом. Скажіть: «Це особлива нагода»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a special occasion.",
+        "localizedMeaning": {
+          "ru": "Вы объясняете, почему вся семья собралась вместе. Скажите: «Это особый повод»",
+          "uk": "Ви пояснюєте, чому вся родина зібралася разом. Скажіть: «Це особлива нагода»"
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "special",
+          "occasion"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви з другом оформлюєте квіткову композицію в центрі столу. Господар запитує, чим ви зайняті зараз. Скажіть: «Ми оформлюємо центральну прикрасу столу»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-53:i17:audio"
+      ],
+      "accessibilityLabel": "Ви з другом оформлюєте квіткову композицію в центрі столу. Господар запитує, чим ви зайняті зараз. Скажіть: «Ми оформлюємо центральну прикрасу столу»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-53:i17:audio",
+          "transcript": "We are arranging the centrepiece."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are arranging the centrepiece.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d033356c90368f8aef025eca3286abf64bd830f416bf912efd7aa30279d07ac2"
+}

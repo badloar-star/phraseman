@@ -113,8 +113,9 @@ export default function AiDialogConsentGate({ children, onDeclined }: {
         <Ionicons name="sparkles-outline" size={30} color={glass.lightTint} />
       </View>
       <Text accessibilityRole="header" style={[styles.declinedTitle, { color: glass.text }]}>
+        {/* зачем (владелец 21.10, дословно «Включите разговоры с ИИ»): заголовок зовёт к действию, а не констатирует отказ; переводы — 10 · ПЕРЕВОДЧИК. */}
         {triLang(lang, {
-          ru: 'AI-диалоги выключены', uk: 'AI-діалоги вимкнено', en: 'AI dialogues are off', es: 'Diálogos con IA desactivados', 'pt-BR': 'Diálogos com IA desativados', vi: 'Đã tắt hội thoại AI', id: 'Dialog AI dimatikan', tr: 'Yapay zeka diyalogları kapalı', pl: 'Dialogi AI wyłączone',
+          ru: 'Включите разговоры с ИИ', uk: 'Увімкни розмови з ШІ', en: 'Turn on AI conversations', es: 'Activa las conversaciones con IA', 'pt-BR': 'Ative as conversas com IA', vi: 'Bật trò chuyện với AI', id: 'Nyalakan percakapan dengan AI', tr: 'Yapay zeka sohbetlerini aç', pl: 'Włącz rozmowy z AI',
         })}
       </Text>
       <Text style={[styles.declinedBody, { color: glass.secondary }]}>

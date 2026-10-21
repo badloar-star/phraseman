@@ -1,0 +1,1120 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-46",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-46:word:launch",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — launch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-46:word:launch:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — launch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-46:word:launch:audio",
+          "transcript": "launch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-46:word:launch:r1",
+            "targetText": "launch",
+            "meaningByLocale": {
+              "ru": "«запуск продукта». The launch is tomorrow. — «Запуск завтра». Здесь официальное представление продукта и его выход на рынок.",
+              "uk": "«запуск продукту». The launch is tomorrow. — «Запуск завтра». Тут офіційне представлення продукту та його вихід на ринок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "launch",
+          "definitionByLocale": {
+            "ru": "«запуск продукта». The launch is tomorrow. — «Запуск завтра». Здесь официальное представление продукта и его выход на рынок.",
+            "uk": "«запуск продукту». The launch is tomorrow. — «Запуск завтра». Тут офіційне представлення продукту та його вихід на ринок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-46:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Новый продукт официально представят завтра. Сообщите: «Запуск завтра»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Новый продукт официально представят завтра. Сообщите: «Запуск завтра»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The launch is tomorrow.",
+        "localizedMeaning": {
+          "ru": "Новый продукт официально представят завтра. Сообщите: «Запуск завтра»",
+          "uk": "Новий продукт офіційно представлять завтра. Повідомте: «Запуск завтра»"
+        },
+        "orderedTokens": [
+          "The",
+          "launch",
+          "is",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-46:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-46:i02:r1",
+          "text": "The launch is in June."
+        },
+        {
+          "responseId": "en:lesson-10:session-46:i02:r2",
+          "text": "The launch is in July."
+        },
+        {
+          "responseId": "en:lesson-10:session-46:i02:r3",
+          "text": "The conference is in June."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-46:i02:audio",
+          "transcript": "The launch is in June."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-46:i02:r1",
+            "targetText": "The launch is in June.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i02:r2",
+            "targetText": "The launch is in July.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i02:r3",
+            "targetText": "The conference is in June.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The launch is in June.",
+              "uk": "У записі звучить The launch is in June."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The launch is in June.",
+              "uk": "У записі звучить The launch is in June."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-46:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь об одном событии. Выберите связку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-46:i03:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-46:i03:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-46:i03:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь об одном событии. Выберите связку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь об одном событии. Выберите связку",
+          "uk": "Ідеться про одну подію. Виберіть зв’язку"
+        },
+        "gappedTargetPhrase": "The launch ___ tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-46:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i03:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Речь об одном событии. Выберите связку",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-46:i03:r2",
+            "correct": false,
+            "testedDimension": "Речь об одном событии. Выберите связку",
+            "feedbackByLocale": {
+              "ru": "Одно событие: is.",
+              "uk": "Одна подія: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i03:r3",
+            "correct": false,
+            "testedDimension": "Речь об одном событии. Выберите связку",
+            "feedbackByLocale": {
+              "ru": "Am используется с I; здесь нужна is.",
+              "uk": "Am уживається з I; тут потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-46:word:rollout",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rollout",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-46:word:rollout:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rollout",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-46:word:rollout:audio",
+          "transcript": "rollout"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-46:word:rollout:r1",
+            "targetText": "rollout",
+            "meaningByLocale": {
+              "ru": "«поэтапное внедрение». We review the rollout every week. — «Мы анализируем поэтапное внедрение каждую неделю». Здесь постепенное расширение доступности продукта.",
+              "uk": "«поетапне впровадження». We review the rollout every week. — «Ми аналізуємо поетапне впровадження щотижня». Тут поступове розширення доступності продукту."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rollout",
+          "definitionByLocale": {
+            "ru": "«поэтапное внедрение». We review the rollout every week. — «Мы анализируем поэтапное внедрение каждую неделю». Здесь постепенное расширение доступности продукта.",
+            "uk": "«поетапне впровадження». We review the rollout every week. — «Ми аналізуємо поетапне впровадження щотижня». Тут поступове розширення доступності продукту."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-46:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Команда еженедельно обсуждает внедрение продукта в новых городах. Скажите: «Мы анализируем поэтапное внедрение каждую неделю». Поставьте every week в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Команда еженедельно обсуждает внедрение продукта в новых городах. Скажите: «Мы анализируем поэтапное внедрение каждую неделю». Поставьте every week в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We review the rollout every week.",
+        "localizedMeaning": {
+          "ru": "Команда еженедельно обсуждает внедрение продукта в новых городах. Скажите: «Мы анализируем поэтапное внедрение каждую неделю». Поставьте every week в конце",
+          "uk": "Команда щотижня обговорює впровадження продукту в нових містах. Скажіть: «Ми аналізуємо поетапне впровадження щотижня». Поставте every week у кінці"
+        },
+        "orderedTokens": [
+          "We",
+          "review",
+          "the",
+          "rollout",
+          "every",
+          "week"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-46:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-46:i05:r1",
+          "text": "The rollout is going well."
+        },
+        {
+          "responseId": "en:lesson-10:session-46:i05:r2",
+          "text": "The rollout is going slowly."
+        },
+        {
+          "responseId": "en:lesson-10:session-46:i05:r3",
+          "text": "The project is going well."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-46:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-46:i05:audio",
+          "transcript": "The rollout is going well."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-46:i05:r1",
+            "targetText": "The rollout is going well.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i05:r2",
+            "targetText": "The rollout is going slowly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i05:r3",
+            "targetText": "The project is going well.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-46:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The rollout is going well.",
+              "uk": "У записі звучить The rollout is going well."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The rollout is going well.",
+              "uk": "У записі звучить The rollout is going well."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-46:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Это еженедельный анализ. Выберите форму review",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-46:i06:r1",
+          "text": "review"
+        },
+        {
+          "responseId": "en:lesson-10:session-46:i06:r2",
+          "text": "reviews"
+        },
+        {
+          "responseId": "en:lesson-10:session-46:i06:r3",
+          "text": "reviewing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Это еженедельный анализ. Выберите форму review",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Это еженедельный анализ. Выберите форму review",
+          "uk": "Це щотижневий аналіз. Виберіть форму review"
+        },
+        "gappedTargetPhrase": "We ___ the rollout every week.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-46:i06:r1",
+            "text": "review"
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i06:r2",
+            "text": "reviews"
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i06:r3",
+            "text": "reviewing"
+          }
+        ],
+        "testedDimension": "Это еженедельный анализ. Выберите форму review",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-46:i06:r2",
+            "correct": false,
+            "testedDimension": "Это еженедельный анализ. Выберите форму review",
+            "feedbackByLocale": {
+              "ru": "С we нужна review без s.",
+              "uk": "З we потрібна review без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i06:r3",
+            "correct": false,
+            "testedDimension": "Это еженедельный анализ. Выберите форму review",
+            "feedbackByLocale": {
+              "ru": "Для регулярного действия нужна review.",
+              "uk": "Для регулярної дії потрібна review."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-46:word:flagship",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — flagship",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-46:word:flagship:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — flagship",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-46:word:flagship:audio",
+          "transcript": "flagship"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-46:word:flagship:r1",
+            "targetText": "flagship",
+            "meaningByLocale": {
+              "ru": "«флагманский продукт». This model is our flagship. — «Эта модель — наш флагманский продукт». Здесь главная, наиболее представительная модель компании, не корабль.",
+              "uk": "«флагманський продукт». This model is our flagship. — «Ця модель — наш флагманський продукт». Тут головна, найпоказовіша модель компанії, не корабель."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flagship",
+          "definitionByLocale": {
+            "ru": "«флагманский продукт». This model is our flagship. — «Эта модель — наш флагманский продукт». Здесь главная, наиболее представительная модель компании, не корабль.",
+            "uk": "«флагманський продукт». This model is our flagship. — «Ця модель — наш флагманський продукт». Тут головна, найпоказовіша модель компанії, не корабель."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-46:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы показываете главную модель новой линейки. Скажите: «Эта модель — наш флагманский продукт»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы показываете главную модель новой линейки. Скажите: «Эта модель — наш флагманский продукт»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This model is our flagship.",
+        "localizedMeaning": {
+          "ru": "Вы показываете главную модель новой линейки. Скажите: «Эта модель — наш флагманский продукт»",
+          "uk": "Ви показуєте головну модель нової лінійки. Скажіть: «Ця модель — наш флагманський продукт»"
+        },
+        "orderedTokens": [
+          "This",
+          "model",
+          "is",
+          "our",
+          "flagship"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-46:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-46:i08:r1",
+          "text": "Our flagship is on display."
+        },
+        {
+          "responseId": "en:lesson-10:session-46:i08:r2",
+          "text": "Our flagship is in storage."
+        },
+        {
+          "responseId": "en:lesson-10:session-46:i08:r3",
+          "text": "Our prototype is on display."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-46:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-46:i08:audio",
+          "transcript": "Our flagship is on display."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-46:i08:r1",
+            "targetText": "Our flagship is on display.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i08:r2",
+            "targetText": "Our flagship is in storage.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i08:r3",
+            "targetText": "Our prototype is on display.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-46:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Our flagship is on display.",
+              "uk": "У записі звучить Our flagship is on display."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Our flagship is on display.",
+              "uk": "У записі звучить Our flagship is on display."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-46:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь об одной модели. Выберите связку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-46:i09:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-46:i09:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-46:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь об одной модели. Выберите связку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь об одной модели. Выберите связку",
+          "uk": "Ідеться про одну модель. Виберіть зв’язку"
+        },
+        "gappedTargetPhrase": "This model ___ our flagship.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-46:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Речь об одной модели. Выберите связку",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-46:i09:r2",
+            "correct": false,
+            "testedDimension": "Речь об одной модели. Выберите связку",
+            "feedbackByLocale": {
+              "ru": "Одна модель: is.",
+              "uk": "Одна модель: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i09:r3",
+            "correct": false,
+            "testedDimension": "Речь об одной модели. Выберите связку",
+            "feedbackByLocale": {
+              "ru": "Am используется с I; здесь нужна is.",
+              "uk": "Am уживається з I; тут потрібна is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-46:word:showroom",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — showroom",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-46:word:showroom:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — showroom",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-46:word:showroom:audio",
+          "transcript": "showroom"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-46:word:showroom:r1",
+            "targetText": "showroom",
+            "meaningByLocale": {
+              "ru": "«демонстрационный зал». We are preparing the showroom. — «Мы готовим демонстрационный зал». Место, где покупателям показывают товары.",
+              "uk": "«демонстраційний зал». We are preparing the showroom. — «Ми готуємо демонстраційний зал». Місце, де покупцям показують товари."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "showroom",
+          "definitionByLocale": {
+            "ru": "«демонстрационный зал». We are preparing the showroom. — «Мы готовим демонстрационный зал». Место, где покупателям показывают товары.",
+            "uk": "«демонстраційний зал». We are preparing the showroom. — «Ми готуємо демонстраційний зал». Місце, де покупцям показують товари."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-46:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы сейчас расставляете модели перед приходом покупателей. Скажите: «Мы готовим демонстрационный зал»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы сейчас расставляете модели перед приходом покупателей. Скажите: «Мы готовим демонстрационный зал»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are preparing the showroom.",
+        "localizedMeaning": {
+          "ru": "Вы сейчас расставляете модели перед приходом покупателей. Скажите: «Мы готовим демонстрационный зал»",
+          "uk": "Ви зараз розставляєте моделі перед приходом покупців. Скажіть: «Ми готуємо демонстраційний зал»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "preparing",
+          "the",
+          "showroom"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-46:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-46:i11:r1",
+          "text": "The showroom is on the ground floor."
+        },
+        {
+          "responseId": "en:lesson-10:session-46:i11:r2",
+          "text": "The showroom is on the first floor."
+        },
+        {
+          "responseId": "en:lesson-10:session-46:i11:r3",
+          "text": "The office is on the ground floor."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-46:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-46:i11:audio",
+          "transcript": "The showroom is on the ground floor."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-46:i11:r1",
+            "targetText": "The showroom is on the ground floor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i11:r2",
+            "targetText": "The showroom is on the first floor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i11:r3",
+            "targetText": "The office is on the ground floor.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-46:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The showroom is on the ground floor.",
+              "uk": "У записі звучить The showroom is on the ground floor."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The showroom is on the ground floor.",
+              "uk": "У записі звучить The showroom is on the ground floor."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-46:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите правильное написание формы prepare",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-46:i12:r1",
+          "text": "preparing"
+        },
+        {
+          "responseId": "en:lesson-10:session-46:i12:r2",
+          "text": "prepareing"
+        },
+        {
+          "responseId": "en:lesson-10:session-46:i12:r3",
+          "text": "prepare"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите правильное написание формы prepare",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильное написание формы prepare",
+          "uk": "Виберіть правильне написання форми prepare"
+        },
+        "gappedTargetPhrase": "We are ___ the showroom.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-46:i12:r1",
+            "text": "preparing"
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i12:r2",
+            "text": "prepareing"
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i12:r3",
+            "text": "prepare"
+          }
+        ],
+        "testedDimension": "Выберите правильное написание формы prepare",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-46:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите правильное написание формы prepare",
+            "feedbackByLocale": {
+              "ru": "Перед ing убираем e: preparing.",
+              "uk": "Перед ing прибираємо e: preparing."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-46:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите правильное написание формы prepare",
+            "feedbackByLocale": {
+              "ru": "После are для текущего действия нужна preparing.",
+              "uk": "Після are для поточної дії потрібна preparing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-46:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-46:i13:p1",
+            "target": "launch",
+            "meaningByLocale": {
+              "ru": "запуск продукта",
+              "uk": "запуск продукту"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-46:i13:p2",
+            "target": "rollout",
+            "meaningByLocale": {
+              "ru": "поэтапное внедрение",
+              "uk": "поетапне впровадження"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-46:i13:p3",
+            "target": "flagship",
+            "meaningByLocale": {
+              "ru": "флагманский продукт",
+              "uk": "флагманський продукт"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-46:i13:p4",
+            "target": "showroom",
+            "meaningByLocale": {
+              "ru": "демонстрационный зал",
+              "uk": "демонстраційний зал"
+            }
+          }
+        ],
+        "leftColumn": [
+          "launch",
+          "rollout",
+          "flagship",
+          "showroom"
+        ],
+        "rightColumn": [
+          "запуск продукта",
+          "поэтапное внедрение",
+          "флагманский продукт",
+          "демонстрационный зал"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-46:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-46:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-46:i14:audio",
+          "transcript": "We are preparing the showroom."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are preparing the showroom.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "preparing",
+          "the",
+          "showroom"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-46:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коллега спрашивает, как часто команда анализирует внедрение продукта. Скажите: «Мы анализируем поэтапное внедрение каждую неделю»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-46:i15:audio"
+      ],
+      "accessibilityLabel": "Коллега спрашивает, как часто команда анализирует внедрение продукта. Скажите: «Мы анализируем поэтапное внедрение каждую неделю»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-46:i15:audio",
+          "transcript": "We review the rollout every week."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We review the rollout every week.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-46:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покупатель спрашивает о главной модели компании. Скажите: «Эта модель — наш флагманский продукт»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покупатель спрашивает о главной модели компании. Скажите: «Эта модель — наш флагманский продукт»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This model is our flagship.",
+        "localizedMeaning": {
+          "ru": "Покупатель спрашивает о главной модели компании. Скажите: «Эта модель — наш флагманский продукт»",
+          "uk": "Покупець запитує про головну модель компанії. Скажіть: «Ця модель — наш флагманський продукт»"
+        },
+        "orderedTokens": [
+          "This",
+          "model",
+          "is",
+          "our",
+          "flagship"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-46:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы с коллегами расставляете товары в зале перед запуском. Руководитель звонит и спрашивает, чем вы заняты. Скажите: «Мы готовим демонстрационный зал»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-46:i17:audio"
+      ],
+      "accessibilityLabel": "Вы с коллегами расставляете товары в зале перед запуском. Руководитель звонит и спрашивает, чем вы заняты. Скажите: «Мы готовим демонстрационный зал»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-46:i17:audio",
+          "transcript": "We are preparing the showroom."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are preparing the showroom.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2aa7921bd233b8ab92d6d38dd6d3c995b816aff822fd4bec11c14a0cf253e1cf"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-46",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-46:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-46:intro1:r2": {
+          "ru": "Одно событие: is.",
+          "uk": "Одна подія: is."
+        },
+        "en:lesson-10:session-46:intro1:r3": {
+          "ru": "Нужна связка is.",
+          "uk": "Потрібна зв’язка is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-46:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-46:intro2:r2": {
+          "ru": "С we нужна review без s.",
+          "uk": "З we потрібна review без s."
+        },
+        "en:lesson-10:session-46:intro2:r3": {
+          "ru": "Для регулярного действия здесь нужна review.",
+          "uk": "Для регулярної дії тут потрібна review."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-46:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-46:intro3:r2": {
+          "ru": "Правильно preparing, без e.",
+          "uk": "Правильно preparing, без e."
+        },
+        "en:lesson-10:session-46:intro3:r3": {
+          "ru": "Перед preparing нужна are.",
+          "uk": "Перед preparing потрібна are."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "fff4d780a02d08439bd65afa9d2b9235bf866c86aa91eea97cee5f387c5a8fc0"
+}

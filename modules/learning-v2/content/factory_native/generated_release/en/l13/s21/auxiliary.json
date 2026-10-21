@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-21",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-21:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-21:intro1:r2": {
+          "ru": "После did нужна drive.",
+          "uk": "Після did потрібна drive."
+        },
+        "en:lesson-13:session-21:intro1:r3": {
+          "ru": "Это сообщение, а нужен вопрос.",
+          "uk": "Це повідомлення, а потрібне запитання."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-21:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-21:intro2:r2": {
+          "ru": "Loudly — громко.",
+          "uk": "Loudly — голосно."
+        },
+        "en:lesson-13:session-21:intro2:r3": {
+          "ru": "После did нужна speak.",
+          "uk": "Після did потрібна speak."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-21:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-21:intro3:r2": {
+          "ru": "Early — рано, а не благополучно.",
+          "uk": "Early — рано, а не благополучно."
+        },
+        "en:lesson-13:session-21:intro3:r3": {
+          "ru": "После did нужна arrive.",
+          "uk": "Після did потрібна arrive."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6d1a4a98e140b2acada7f83716a08606e5c1366982ecfda8833a73b9d850c356"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-19",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-19:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-19:intro1:r2": {
+          "ru": "Здесь кухню убрали.",
+          "uk": "Тут кухню прибрали."
+        },
+        "en:lesson-13:session-19:intro1:r3": {
+          "ru": "После didn't нужна clean.",
+          "uk": "Після didn't потрібна clean."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-19:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-19:intro2:r2": {
+          "ru": "Это о кухне.",
+          "uk": "Це про кухню."
+        },
+        "en:lesson-13:session-19:intro2:r3": {
+          "ru": "После didn't нужна tidy.",
+          "uk": "Після didn't потрібна tidy."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-19:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-19:intro3:r2": {
+          "ru": "Это о полотенце.",
+          "uk": "Це про рушник."
+        },
+        "en:lesson-13:session-19:intro3:r3": {
+          "ru": "После didn't нужна wash.",
+          "uk": "Після didn't потрібна wash."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "66019c366b6b075e97fa4dd4442c7e5e26c5039cb24263228e942892f85652b8"
+}

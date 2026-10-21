@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-15:word:look-after",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — look after",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-15:word:look-after:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — look after",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-15:word:look-after:audio",
+          "transcript": "look after"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-15:word:look-after:r1",
+            "targetText": "look after",
+            "meaningByLocale": {
+              "ru": "присматривать за кем-то.",
+              "uk": "приглядати за кимось."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "look after",
+          "definitionByLocale": {
+            "ru": "присматривать за кем-то.",
+            "uk": "приглядати за кимось."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-15:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я не присматривал за племянником",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я не присматривал за племянником",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't look after my nephew.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не присматривал за племянником",
+          "uk": "Скажіть: Я не приглядав за племінником"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "look",
+          "after",
+          "my",
+          "nephew"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-15:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-15:i02:r1",
+          "text": "She didn't look after my nephew."
+        },
+        {
+          "responseId": "en:lesson-13:session-15:i02:r2",
+          "text": "I didn't look after my nephew."
+        },
+        {
+          "responseId": "en:lesson-13:session-15:i02:r3",
+          "text": "She doesn't look after my nephew."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-15:i02:audio",
+          "transcript": "She didn't look after my nephew."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-15:i02:r1",
+            "targetText": "She didn't look after my nephew.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i02:r2",
+            "targetText": "I didn't look after my nephew.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i02:r3",
+            "targetText": "She doesn't look after my nephew.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't look after my nephew.",
+              "uk": "У записі звучить She didn't look after my nephew."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't look after my nephew.",
+              "uk": "У записі звучить She didn't look after my nephew."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-15:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Этого не было вчера. Выберите отрицание",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-15:i03:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-15:i03:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-15:i03:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Этого не было вчера. Выберите отрицание",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ look after my nephew.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-15:i03:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i03:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i03:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Этого не было вчера. Выберите отрицание",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-15:i03:r2",
+            "correct": false,
+            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i03:r3",
+            "correct": false,
+            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-15:word:help-out",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — help out",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-15:word:help-out:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — help out",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-15:word:help-out:audio",
+          "transcript": "help out"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-15:word:help-out:r1",
+            "targetText": "help out",
+            "meaningByLocale": {
+              "ru": "помочь с делами, выручить.",
+              "uk": "допомогти зі справами, виручити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "help out",
+          "definitionByLocale": {
+            "ru": "помочь с делами, выручить.",
+            "uk": "допомогти зі справами, виручити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-15:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я не помог с делами дома",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я не помог с делами дома",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't help out at home.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не помог с делами дома",
+          "uk": "Скажіть: Я не допоміг зі справами вдома"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "help",
+          "out",
+          "at",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-15:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-15:i05:r1",
+          "text": "She didn't help out at home."
+        },
+        {
+          "responseId": "en:lesson-13:session-15:i05:r2",
+          "text": "I didn't help out at home."
+        },
+        {
+          "responseId": "en:lesson-13:session-15:i05:r3",
+          "text": "She doesn't help out at home."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-15:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-15:i05:audio",
+          "transcript": "She didn't help out at home."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-15:i05:r1",
+            "targetText": "She didn't help out at home.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i05:r2",
+            "targetText": "I didn't help out at home.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i05:r3",
+            "targetText": "She doesn't help out at home.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-15:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't help out at home.",
+              "uk": "У записі звучить She didn't help out at home."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't help out at home.",
+              "uk": "У записі звучить She didn't help out at home."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-15:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Этого не было вчера. Выберите отрицание",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-15:i06:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-15:i06:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-15:i06:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Этого не было вчера. Выберите отрицание",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ help out at home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-15:i06:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i06:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i06:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Этого не было вчера. Выберите отрицание",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-15:i06:r2",
+            "correct": false,
+            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i06:r3",
+            "correct": false,
+            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-15:word:fill-in",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — fill in",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-15:word:fill-in:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — fill in",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-15:word:fill-in:audio",
+          "transcript": "fill in"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-15:word:fill-in:r1",
+            "targetText": "fill in",
+            "meaningByLocale": {
+              "ru": "заполнить анкету или бланк.",
+              "uk": "заповнити анкету чи бланк."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fill in",
+          "definitionByLocale": {
+            "ru": "заполнить анкету или бланк.",
+            "uk": "заповнити анкету чи бланк."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-15:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я не заполнил анкету",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я не заполнил анкету",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't fill in the form.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не заполнил анкету",
+          "uk": "Скажіть: Я не заповнив анкету"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "fill",
+          "in",
+          "the",
+          "form"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-15:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-15:i08:r1",
+          "text": "She didn't fill in the form."
+        },
+        {
+          "responseId": "en:lesson-13:session-15:i08:r2",
+          "text": "I didn't fill in the form."
+        },
+        {
+          "responseId": "en:lesson-13:session-15:i08:r3",
+          "text": "She doesn't fill in the form."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-15:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-15:i08:audio",
+          "transcript": "She didn't fill in the form."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-15:i08:r1",
+            "targetText": "She didn't fill in the form.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i08:r2",
+            "targetText": "I didn't fill in the form.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i08:r3",
+            "targetText": "She doesn't fill in the form.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't fill in the form.",
+              "uk": "У записі звучить She didn't fill in the form."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't fill in the form.",
+              "uk": "У записі звучить She didn't fill in the form."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-15:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Этого не было вчера. Выберите отрицание",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-15:i09:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-15:i09:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-15:i09:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Этого не было вчера. Выберите отрицание",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ fill in the form.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-15:i09:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i09:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i09:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Этого не было вчера. Выберите отрицание",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-15:i09:r2",
+            "correct": false,
+            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i09:r3",
+            "correct": false,
+            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-15:word:find-out",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — find out",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-15:word:find-out:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — find out",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-15:word:find-out:audio",
+          "transcript": "find out"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-15:word:find-out:r1",
+            "targetText": "find out",
+            "meaningByLocale": {
+              "ru": "узнать, выяснить.",
+              "uk": "дізнатися, з’ясувати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "find out",
+          "definitionByLocale": {
+            "ru": "узнать, выяснить.",
+            "uk": "дізнатися, з’ясувати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-15:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я не узнал цену",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я не узнал цену",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't find out the price.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не узнал цену",
+          "uk": "Скажіть: Я не дізнався ціну"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "find",
+          "out",
+          "the",
+          "price"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-15:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-15:i11:r1",
+          "text": "She didn't find out the price."
+        },
+        {
+          "responseId": "en:lesson-13:session-15:i11:r2",
+          "text": "I didn't find out the price."
+        },
+        {
+          "responseId": "en:lesson-13:session-15:i11:r3",
+          "text": "She doesn't find out the price."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-15:i11:audio",
+          "transcript": "She didn't find out the price."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-15:i11:r1",
+            "targetText": "She didn't find out the price.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i11:r2",
+            "targetText": "I didn't find out the price.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i11:r3",
+            "targetText": "She doesn't find out the price.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-15:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't find out the price.",
+              "uk": "У записі звучить She didn't find out the price."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't find out the price.",
+              "uk": "У записі звучить She didn't find out the price."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-15:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Этого не было вчера. Выберите отрицание",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-15:i12:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-15:i12:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-15:i12:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Этого не было вчера. Выберите отрицание",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ find out the price.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-15:i12:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i12:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i12:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Этого не было вчера. Выберите отрицание",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-15:i12:r2",
+            "correct": false,
+            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-15:i12:r3",
+            "correct": false,
+            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-15:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-15:i13:p1",
+            "target": "look after",
+            "meaningByLocale": {
+              "ru": "присматривать за кем-то",
+              "uk": "приглядати за кимось"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-15:i13:p2",
+            "target": "help out",
+            "meaningByLocale": {
+              "ru": "помочь с делами, выручить",
+              "uk": "допомогти зі справами, виручити"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-15:i13:p3",
+            "target": "fill in",
+            "meaningByLocale": {
+              "ru": "заполнить анкету или бланк",
+              "uk": "заповнити анкету чи бланк"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-15:i13:p4",
+            "target": "find out",
+            "meaningByLocale": {
+              "ru": "узнать, выяснить",
+              "uk": "дізнатися, з’ясувати"
+            }
+          }
+        ],
+        "leftColumn": [
+          "look after",
+          "help out",
+          "fill in",
+          "find out"
+        ],
+        "rightColumn": [
+          "присматривать за кем-то",
+          "помочь с делами, выручить",
+          "заполнить анкету или бланк",
+          "узнать, выяснить"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-15:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-15:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-15:i14:audio",
+          "transcript": "We didn't visit my sister."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We didn't visit my sister.",
+        "orderedTokens": [
+          "We",
+          "didn't",
+          "visit",
+          "my",
+          "sister"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-15:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-15:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-15:i15:audio",
+          "transcript": "He didn't read the form."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He didn't read the form.",
+        "orderedTokens": [
+          "He",
+          "didn't",
+          "read",
+          "the",
+          "form"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-15:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера я не заполнил анкету",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-15:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера я не заполнил анкету",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-15:i16:audio",
+          "transcript": "I didn't fill in the form yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I didn't fill in the form yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-15:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера она не узнала цену",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-15:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера она не узнала цену",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-15:i17:audio",
+          "transcript": "She didn't find out the price yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She didn't find out the price yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "646e5419af52b40cc30dba3a7c11e6c8c5dd7bb5e572312b0e126f46d8f83c52"
+}

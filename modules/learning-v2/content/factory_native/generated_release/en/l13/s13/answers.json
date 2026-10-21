@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-13:word:get-up",
+    "correctText": "get up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-13:i01",
+    "correctText": "I didn't get up early.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-13:i02",
+    "correctText": "She didn't get up early.",
+    "correctResponseId": "en:lesson-13:session-13:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-13:i03",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-13:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-13:word:sit-down",
+    "correctText": "sit down",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-13:i04",
+    "correctText": "I didn't sit down.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-13:i05",
+    "correctText": "She didn't sit down.",
+    "correctResponseId": "en:lesson-13:session-13:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-13:i06",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-13:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-13:word:stand-up",
+    "correctText": "stand up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-13:i07",
+    "correctText": "I didn't stand up.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-13:i08",
+    "correctText": "She didn't stand up.",
+    "correctResponseId": "en:lesson-13:session-13:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-13:i09",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-13:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-13:word:dress-up",
+    "correctText": "dress up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-13:i10",
+    "correctText": "I didn't dress up for the party.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-13:i11",
+    "correctText": "She didn't dress up for the party.",
+    "correctResponseId": "en:lesson-13:session-13:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-13:i12",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-13:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-13:i13",
+    "correctText": "en:lesson-13:session-13:i13:p1=get up\nen:lesson-13:session-13:i13:p2=sit down\nen:lesson-13:session-13:i13:p3=stand up\nen:lesson-13:session-13:i13:p4=dress up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-13:i14",
+    "correctText": "We didn't have breakfast early.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-13:i15",
+    "correctText": "He didn't leave at eight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-13:i16",
+    "correctText": "I didn't get up early yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-13:i17",
+    "correctText": "She didn't dress up for the party yesterday.",
+    "correctResponseId": null
+  }
+]

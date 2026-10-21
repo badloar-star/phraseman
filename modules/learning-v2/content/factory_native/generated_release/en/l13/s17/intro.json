@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "new focus: base form after did/did not; review: questions and negatives",
+    "uk": "new focus: base form after did/did not; review: questions and negatives"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "После did возвращаем начальную форму",
+        "uk": "Після did повертаємо початкову форму"
+      },
+      "bodyByLocale": {
+        "ru": "Slow down — замедлиться. Сравните: I slowed down. Did you slow down? I didn't slow down. В вопросе и отрицании прошлое уже выражено через did, поэтому снова slow, без -ed. Выберите вопрос.",
+        "uk": "Slow down — уповільнитися. Порівняйте: I slowed down. Did you slow down? I didn't slow down. У запитанні й запереченні минуле вже виражене через did, тому знову slow, без -ed. Виберіть запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-17:intro1:r1",
+              "text": "Did you slow down?"
+            },
+            {
+              "responseId": "en:lesson-13:session-17:intro1:r2",
+              "text": "Did you slowed down?"
+            },
+            {
+              "responseId": "en:lesson-13:session-17:intro1:r3",
+              "text": "You slowed down."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-17:intro1:r1",
+              "text": "Did you slow down?"
+            },
+            {
+              "responseId": "en:lesson-13:session-17:intro1:r2",
+              "text": "Did you slowed down?"
+            },
+            {
+              "responseId": "en:lesson-13:session-17:intro1:r3",
+              "text": "You slowed down."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ускориться",
+        "uk": "Прискоритися"
+      },
+      "bodyByLocale": {
+        "ru": "Speed up — ускориться, начать двигаться или работать быстрее. I didn't speed up — я не ускорился. Не переносите форму прошлого к основному глаголу после didn't. Выберите правильное отрицание.",
+        "uk": "Speed up — прискоритися, почати рухатися чи працювати швидше. I didn't speed up — я не прискорився. Не переносіть форму минулого до основного дієслова після didn't. Виберіть правильне заперечення."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-17:intro2:r1",
+              "text": "I didn't speed up."
+            },
+            {
+              "responseId": "en:lesson-13:session-17:intro2:r2",
+              "text": "I didn't sped up."
+            },
+            {
+              "responseId": "en:lesson-13:session-17:intro2:r3",
+              "text": "I sped up."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-17:intro2:r1",
+              "text": "I didn't speed up."
+            },
+            {
+              "responseId": "en:lesson-13:session-17:intro2:r2",
+              "text": "I didn't sped up."
+            },
+            {
+              "responseId": "en:lesson-13:session-17:intro2:r3",
+              "text": "I sped up."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Успокоиться и повеселеть",
+        "uk": "Заспокоїтися й повеселішати"
+      },
+      "bodyByLocale": {
+        "ru": "Calm down — успокоиться; cheer up — повеселеть, стать менее грустным. I didn't calm down quickly — я не успокоился быстро. Выберите успокоение, не улучшение настроения.",
+        "uk": "Calm down — заспокоїтися; cheer up — повеселішати, стати менш сумним. I didn't calm down quickly — я не заспокоївся швидко. Виберіть заспокоєння, не поліпшення настрою."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-17:intro3:r1",
+              "text": "I didn't calm down quickly."
+            },
+            {
+              "responseId": "en:lesson-13:session-17:intro3:r2",
+              "text": "I didn't cheer up quickly."
+            },
+            {
+              "responseId": "en:lesson-13:session-17:intro3:r3",
+              "text": "I didn't calmed down quickly."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-17:intro3:r1",
+              "text": "I didn't calm down quickly."
+            },
+            {
+              "responseId": "en:lesson-13:session-17:intro3:r2",
+              "text": "I didn't cheer up quickly."
+            },
+            {
+              "responseId": "en:lesson-13:session-17:intro3:r3",
+              "text": "I didn't calmed down quickly."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b2f6bb9925bdf2fbfcfa5d6b47c96cea9aa2cfb5a5bae0a2ba7c6fc5070ad31c"
+}

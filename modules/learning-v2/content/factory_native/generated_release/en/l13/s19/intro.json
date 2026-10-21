@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "review: base form after did/did not",
+    "uk": "review: base form after did/did not"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Убрать грязь",
+        "uk": "Прибрати бруд"
+      },
+      "bodyByLocale": {
+        "ru": "Clean up — убрать грязь или беспорядок после чего-то. I didn't clean up the kitchen — я не убрал кухню. Выберите отрицание о прошлом.",
+        "uk": "Clean up — прибрати бруд чи безлад після чогось. I didn't clean up the kitchen — я не прибрав кухню. Виберіть заперечення про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-19:intro1:r1",
+              "text": "I didn't clean up the kitchen."
+            },
+            {
+              "responseId": "en:lesson-13:session-19:intro1:r2",
+              "text": "I cleaned up the kitchen."
+            },
+            {
+              "responseId": "en:lesson-13:session-19:intro1:r3",
+              "text": "I didn't cleaned up the kitchen."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-19:intro1:r1",
+              "text": "I didn't clean up the kitchen."
+            },
+            {
+              "responseId": "en:lesson-13:session-19:intro1:r2",
+              "text": "I cleaned up the kitchen."
+            },
+            {
+              "responseId": "en:lesson-13:session-19:intro1:r3",
+              "text": "I didn't cleaned up the kitchen."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Навести порядок",
+        "uk": "Навести лад"
+      },
+      "bodyByLocale": {
+        "ru": "Tidy up — навести порядок, разложить вещи по местам. I didn't tidy up my room — я не навёл порядок в своей комнате. Выберите сообщение о комнате.",
+        "uk": "Tidy up — навести лад, розкласти речі по місцях. I didn't tidy up my room — я не навів лад у своїй кімнаті. Виберіть повідомлення про кімнату."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-19:intro2:r1",
+              "text": "I didn't tidy up my room."
+            },
+            {
+              "responseId": "en:lesson-13:session-19:intro2:r2",
+              "text": "I didn't clean up the kitchen."
+            },
+            {
+              "responseId": "en:lesson-13:session-19:intro2:r3",
+              "text": "I didn't tidied up my room."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-19:intro2:r1",
+              "text": "I didn't tidy up my room."
+            },
+            {
+              "responseId": "en:lesson-13:session-19:intro2:r2",
+              "text": "I didn't clean up the kitchen."
+            },
+            {
+              "responseId": "en:lesson-13:session-19:intro2:r3",
+              "text": "I didn't tidied up my room."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Посуда и полотенце",
+        "uk": "Посуд і рушник"
+      },
+      "bodyByLocale": {
+        "ru": "Wash up в британском английском — помыть посуду. Dry off — вытереться после воды. I didn't wash up after dinner — я не помыл посуду после ужина. Выберите посуду, не вытирание полотенцем.",
+        "uk": "Wash up у британській англійській — помити посуд. Dry off — витертися після води. I didn't wash up after dinner — я не помив посуд після вечері. Виберіть посуд, не витирання рушником."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-19:intro3:r1",
+              "text": "I didn't wash up after dinner."
+            },
+            {
+              "responseId": "en:lesson-13:session-19:intro3:r2",
+              "text": "I didn't dry off with a towel."
+            },
+            {
+              "responseId": "en:lesson-13:session-19:intro3:r3",
+              "text": "I didn't washed up after dinner."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-19:intro3:r1",
+              "text": "I didn't wash up after dinner."
+            },
+            {
+              "responseId": "en:lesson-13:session-19:intro3:r2",
+              "text": "I didn't dry off with a towel."
+            },
+            {
+              "responseId": "en:lesson-13:session-19:intro3:r3",
+              "text": "I didn't washed up after dinner."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f34fa7a9c9643e03714979fc1a45e0d6a0b751a070f1e6989998bd6a9dccee02"
+}

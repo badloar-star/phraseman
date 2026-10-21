@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-16:word:put-on",
+    "correctText": "put on",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-16:i01",
+    "correctText": "I didn't put on my coat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-16:i02",
+    "correctText": "She didn't put on my coat.",
+    "correctResponseId": "en:lesson-13:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-16:i03",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-16:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-16:word:take-off",
+    "correctText": "take off",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-16:i04",
+    "correctText": "I didn't take off my scarf.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-16:i05",
+    "correctText": "She didn't take off my scarf.",
+    "correctResponseId": "en:lesson-13:session-16:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-16:i06",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-16:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-16:word:get-on",
+    "correctText": "get on",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-16:i07",
+    "correctText": "I didn't get on the bus.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-16:i08",
+    "correctText": "She didn't get on the bus.",
+    "correctResponseId": "en:lesson-13:session-16:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-16:i09",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-16:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-16:word:get-off",
+    "correctText": "get off",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-16:i10",
+    "correctText": "I didn't get off at the station.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-16:i11",
+    "correctText": "She didn't get off at the station.",
+    "correctResponseId": "en:lesson-13:session-16:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-16:i12",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-16:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-16:i13",
+    "correctText": "en:lesson-13:session-16:i13:p1=put on\nen:lesson-13:session-16:i13:p2=take off\nen:lesson-13:session-16:i13:p3=get on\nen:lesson-13:session-16:i13:p4=get off",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-16:i14",
+    "correctText": "We didn't travel by train.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-16:i15",
+    "correctText": "He didn't buy a ticket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-16:i16",
+    "correctText": "I didn't get on the bus yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-16:i17",
+    "correctText": "She didn't put on her coat yesterday.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "review: base form after did",
+    "uk": "review: base form after did"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мягко, без резкого движения",
+        "uk": "М’яко, без різкого руху"
+      },
+      "bodyByLocale": {
+        "ru": "Gently — мягко, бережно. Did you close the door gently? — Ты закрыл дверь мягко, не хлопая? Выберите вопрос о бережном движении.",
+        "uk": "Gently — м’яко, дбайливо. Did you close the door gently? — Ти зачинив двері м’яко, не грюкаючи? Виберіть запитання про дбайливий рух."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-23:intro1:r1",
+              "text": "Did you close the door gently?"
+            },
+            {
+              "responseId": "en:lesson-13:session-23:intro1:r2",
+              "text": "Did you close the door quickly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-23:intro1:r3",
+              "text": "Did you closed the door gently?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-23:intro1:r1",
+              "text": "Did you close the door gently?"
+            },
+            {
+              "responseId": "en:lesson-13:session-23:intro1:r2",
+              "text": "Did you close the door quickly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-23:intro1:r3",
+              "text": "Did you closed the door gently?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Легко",
+        "uk": "Легко"
+      },
+      "bodyByLocale": {
+        "ru": "Easily — легко, без труда. Did she open the jar easily? — Она легко открыла банку? Выберите открывание, не мытьё.",
+        "uk": "Easily — легко, без зусиль. Did she open the jar easily? — Вона легко відкрила банку? Виберіть відкривання, не миття."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-23:intro2:r1",
+              "text": "Did she open the jar easily?"
+            },
+            {
+              "responseId": "en:lesson-13:session-23:intro2:r2",
+              "text": "Did she wash the jar?"
+            },
+            {
+              "responseId": "en:lesson-13:session-23:intro2:r3",
+              "text": "Did she opened the jar easily?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-23:intro2:r1",
+              "text": "Did she open the jar easily?"
+            },
+            {
+              "responseId": "en:lesson-13:session-23:intro2:r2",
+              "text": "Did she wash the jar?"
+            },
+            {
+              "responseId": "en:lesson-13:session-23:intro2:r3",
+              "text": "Did she opened the jar easily?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чётко и плохо",
+        "uk": "Чітко й погано"
+      },
+      "bodyByLocale": {
+        "ru": "Clearly — ясно, чётко; badly — плохо. Did you speak clearly? — Ты говорил чётко? Выберите чёткую речь, не плохой сон.",
+        "uk": "Clearly — ясно, чітко; badly — погано. Did you speak clearly? — Ти говорив чітко? Виберіть чітке мовлення, не поганий сон."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-23:intro3:r1",
+              "text": "Did you speak clearly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-23:intro3:r2",
+              "text": "Did you sleep badly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-23:intro3:r3",
+              "text": "Did you spoke clearly?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-23:intro3:r1",
+              "text": "Did you speak clearly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-23:intro3:r2",
+              "text": "Did you sleep badly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-23:intro3:r3",
+              "text": "Did you spoke clearly?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1d7ee87bebd154b9cb95713055a26b41b1faf2ce3d20973ed078ca01fd05b08a"
+}

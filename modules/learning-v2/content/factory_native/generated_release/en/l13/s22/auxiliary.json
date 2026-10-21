@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-22",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-22:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-22:intro1:r2": {
+          "ru": "Do — настоящее время.",
+          "uk": "Do — теперішній час."
+        },
+        "en:lesson-13:session-22:intro1:r3": {
+          "ru": "После did нужна ask.",
+          "uk": "Після did потрібна ask."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-22:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-22:intro2:r2": {
+          "ru": "Это вопрос о просьбе.",
+          "uk": "Це запитання про прохання."
+        },
+        "en:lesson-13:session-22:intro2:r3": {
+          "ru": "После did нужна wait.",
+          "uk": "Після did потрібна wait."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-22:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-22:intro3:r2": {
+          "ru": "Это сердитый ответ.",
+          "uk": "Це сердита відповідь."
+        },
+        "en:lesson-13:session-22:intro3:r3": {
+          "ru": "После did нужна smile.",
+          "uk": "Після did потрібна smile."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "051dd5d09224ddebecc13e4a53844d68b890432420afa32b3235c1b677bee866"
+}

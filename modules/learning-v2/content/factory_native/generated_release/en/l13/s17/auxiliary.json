@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-17:intro1:r2": {
+          "ru": "После did нужна slow.",
+          "uk": "Після did потрібна slow."
+        },
+        "en:lesson-13:session-17:intro1:r3": {
+          "ru": "Это сообщение, а нужен вопрос.",
+          "uk": "Це повідомлення, а потрібне запитання."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-17:intro2:r2": {
+          "ru": "После didn't нужна speed.",
+          "uk": "Після didn't потрібна speed."
+        },
+        "en:lesson-13:session-17:intro2:r3": {
+          "ru": "Здесь человек ускорился.",
+          "uk": "Тут людина прискорилася."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-17:intro3:r2": {
+          "ru": "Cheer up — повеселеть.",
+          "uk": "Cheer up — повеселішати."
+        },
+        "en:lesson-13:session-17:intro3:r3": {
+          "ru": "После didn't нужна calm.",
+          "uk": "Після didn't потрібна calm."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0943978200190522d90d4f35af782e52f5f23d78c2f0c081719ec805cceba6e0"
+}

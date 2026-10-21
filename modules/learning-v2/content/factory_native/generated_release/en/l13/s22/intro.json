@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "review: base form after did",
+    "uk": "review: base form after did"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вежливо",
+        "uk": "Ввічливо"
+      },
+      "bodyByLocale": {
+        "ru": "Politely — вежливо. Did you ask politely? — Ты попросил вежливо? Выберите вопрос о прошлом.",
+        "uk": "Politely — ввічливо. Did you ask politely? — Ти попросив ввічливо? Виберіть запитання про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-22:intro1:r1",
+              "text": "Did you ask politely?"
+            },
+            {
+              "responseId": "en:lesson-13:session-22:intro1:r2",
+              "text": "Do you ask politely?"
+            },
+            {
+              "responseId": "en:lesson-13:session-22:intro1:r3",
+              "text": "Did you asked politely?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-22:intro1:r1",
+              "text": "Did you ask politely?"
+            },
+            {
+              "responseId": "en:lesson-13:session-22:intro1:r2",
+              "text": "Do you ask politely?"
+            },
+            {
+              "responseId": "en:lesson-13:session-22:intro1:r3",
+              "text": "Did you asked politely?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Терпеливо",
+        "uk": "Терпляче"
+      },
+      "bodyByLocale": {
+        "ru": "Patiently — терпеливо. Did she wait patiently? — Она ждала терпеливо? Выберите ожидание, не просьбу.",
+        "uk": "Patiently — терпляче. Did she wait patiently? — Вона чекала терпляче? Виберіть очікування, не прохання."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-22:intro2:r1",
+              "text": "Did she wait patiently?"
+            },
+            {
+              "responseId": "en:lesson-13:session-22:intro2:r2",
+              "text": "Did she ask politely?"
+            },
+            {
+              "responseId": "en:lesson-13:session-22:intro2:r3",
+              "text": "Did she waited patiently?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-22:intro2:r1",
+              "text": "Did she wait patiently?"
+            },
+            {
+              "responseId": "en:lesson-13:session-22:intro2:r2",
+              "text": "Did she ask politely?"
+            },
+            {
+              "responseId": "en:lesson-13:session-22:intro2:r3",
+              "text": "Did she waited patiently?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сердито или радостно",
+        "uk": "Сердито чи радісно"
+      },
+      "bodyByLocale": {
+        "ru": "Angrily — сердито; happily — радостно. Did you smile happily? — Ты радостно улыбнулся? Выберите радостную улыбку.",
+        "uk": "Angrily — сердито; happily — радісно. Did you smile happily? — Ти радісно усміхнувся? Виберіть радісну усмішку."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-22:intro3:r1",
+              "text": "Did you smile happily?"
+            },
+            {
+              "responseId": "en:lesson-13:session-22:intro3:r2",
+              "text": "Did you answer angrily?"
+            },
+            {
+              "responseId": "en:lesson-13:session-22:intro3:r3",
+              "text": "Did you smiled happily?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-22:intro3:r1",
+              "text": "Did you smile happily?"
+            },
+            {
+              "responseId": "en:lesson-13:session-22:intro3:r2",
+              "text": "Did you answer angrily?"
+            },
+            {
+              "responseId": "en:lesson-13:session-22:intro3:r3",
+              "text": "Did you smiled happily?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5133f7cda95b0edd4324ae9a5d77000b481a367fe5a2cf6e9eed59949b00a9b2"
+}

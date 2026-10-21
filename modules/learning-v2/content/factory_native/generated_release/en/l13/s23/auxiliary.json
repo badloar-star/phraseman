@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-23",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-23:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-23:intro1:r2": {
+          "ru": "Quickly — быстро, не обязательно мягко.",
+          "uk": "Quickly — швидко, не обов’язково м’яко."
+        },
+        "en:lesson-13:session-23:intro1:r3": {
+          "ru": "После did нужна close.",
+          "uk": "Після did потрібна close."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-23:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-23:intro2:r2": {
+          "ru": "Wash — мыть.",
+          "uk": "Wash — мити."
+        },
+        "en:lesson-13:session-23:intro2:r3": {
+          "ru": "После did нужна open.",
+          "uk": "Після did потрібна open."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-23:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-23:intro3:r2": {
+          "ru": "Это о сне.",
+          "uk": "Це про сон."
+        },
+        "en:lesson-13:session-23:intro3:r3": {
+          "ru": "После did нужна speak.",
+          "uk": "Після did потрібна speak."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b8fc26ce4ab7b4c4919761afaf41c1337a2bf949d79bfd6fbf8efda3a42a60bf"
+}

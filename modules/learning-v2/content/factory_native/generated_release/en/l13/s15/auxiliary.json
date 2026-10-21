@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-15",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-15:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-15:intro1:r2": {
+          "ru": "Здесь человек присматривал за племянником.",
+          "uk": "Тут людина приглядала за племінником."
+        },
+        "en:lesson-13:session-15:intro1:r3": {
+          "ru": "После didn't нужна look.",
+          "uk": "Після didn't потрібна look."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-15:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-15:intro2:r2": {
+          "ru": "Здесь помощь была.",
+          "uk": "Тут допомога була."
+        },
+        "en:lesson-13:session-15:intro2:r3": {
+          "ru": "После didn't нужна help.",
+          "uk": "Після didn't потрібна help."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-15:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-15:intro3:r2": {
+          "ru": "Здесь не узнали цену.",
+          "uk": "Тут не дізналися ціну."
+        },
+        "en:lesson-13:session-15:intro3:r3": {
+          "ru": "После didn't нужна fill.",
+          "uk": "Після didn't потрібна fill."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8fac6aaf63d9da880713ec5178f8895768278a13b42f3b763a048deed3127c4b"
+}

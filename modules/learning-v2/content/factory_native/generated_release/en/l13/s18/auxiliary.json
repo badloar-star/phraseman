@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-18:intro1:r2": {
+          "ru": "Здесь книгу положили обратно.",
+          "uk": "Тут книжку поклали назад."
+        },
+        "en:lesson-13:session-18:intro1:r3": {
+          "ru": "Для прошлого нужна didn't.",
+          "uk": "Для минулого потрібна didn't."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-18:intro2:r2": {
+          "ru": "Это про книгу.",
+          "uk": "Це про книжку."
+        },
+        "en:lesson-13:session-18:intro2:r3": {
+          "ru": "Для прошлого нужна didn't.",
+          "uk": "Для минулого потрібна didn't."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-18:intro3:r2": {
+          "ru": "Pick out — выбрать.",
+          "uk": "Pick out — вибрати."
+        },
+        "en:lesson-13:session-18:intro3:r3": {
+          "ru": "После didn't нужна try.",
+          "uk": "Після didn't потрібна try."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "27b7afab9901bcefe92f291bc9f46276728a9111d0853d24cbf72ff07bcf3f82"
+}

@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-19",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-19:word:clean-up",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — clean up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-19:word:clean-up:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — clean up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-19:word:clean-up:audio",
+          "transcript": "clean up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-19:word:clean-up:r1",
+            "targetText": "clean up",
+            "meaningByLocale": {
+              "ru": "убрать грязь или беспорядок.",
+              "uk": "прибрати бруд чи безлад."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "clean up",
+          "definitionByLocale": {
+            "ru": "убрать грязь или беспорядок.",
+            "uk": "прибрати бруд чи безлад."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-19:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я не убрал кухню",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я не убрал кухню",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't clean up the kitchen.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не убрал кухню",
+          "uk": "Скажіть: Я не прибрав кухню"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "clean",
+          "up",
+          "the",
+          "kitchen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-19:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-19:i02:r1",
+          "text": "She didn't clean up the kitchen."
+        },
+        {
+          "responseId": "en:lesson-13:session-19:i02:r2",
+          "text": "I didn't clean up the kitchen."
+        },
+        {
+          "responseId": "en:lesson-13:session-19:i02:r3",
+          "text": "She doesn't clean up the kitchen."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-19:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-19:i02:audio",
+          "transcript": "She didn't clean up the kitchen."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-19:i02:r1",
+            "targetText": "She didn't clean up the kitchen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i02:r2",
+            "targetText": "I didn't clean up the kitchen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i02:r3",
+            "targetText": "She doesn't clean up the kitchen.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-19:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't clean up the kitchen.",
+              "uk": "У записі звучить She didn't clean up the kitchen."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't clean up the kitchen.",
+              "uk": "У записі звучить She didn't clean up the kitchen."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-19:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Этого не было вчера. Выберите отрицание",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-19:i03:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-19:i03:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-19:i03:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Этого не было вчера. Выберите отрицание",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ clean up the kitchen.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-19:i03:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i03:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i03:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Этого не было вчера. Выберите отрицание",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-19:i03:r2",
+            "correct": false,
+            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i03:r3",
+            "correct": false,
+            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-19:word:tidy-up",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tidy up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-19:word:tidy-up:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tidy up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-19:word:tidy-up:audio",
+          "transcript": "tidy up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-19:word:tidy-up:r1",
+            "targetText": "tidy up",
+            "meaningByLocale": {
+              "ru": "навести порядок, разложить вещи.",
+              "uk": "навести лад, розкласти речі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tidy up",
+          "definitionByLocale": {
+            "ru": "навести порядок, разложить вещи.",
+            "uk": "навести лад, розкласти речі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-19:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я не навёл порядок в своей комнате",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я не навёл порядок в своей комнате",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't tidy up my room.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не навёл порядок в своей комнате",
+          "uk": "Скажіть: Я не навів лад у своїй кімнаті"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "tidy",
+          "up",
+          "my",
+          "room"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-19:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-19:i05:r1",
+          "text": "She didn't tidy up my room."
+        },
+        {
+          "responseId": "en:lesson-13:session-19:i05:r2",
+          "text": "I didn't tidy up my room."
+        },
+        {
+          "responseId": "en:lesson-13:session-19:i05:r3",
+          "text": "She doesn't tidy up my room."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-19:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-19:i05:audio",
+          "transcript": "She didn't tidy up my room."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-19:i05:r1",
+            "targetText": "She didn't tidy up my room.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i05:r2",
+            "targetText": "I didn't tidy up my room.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i05:r3",
+            "targetText": "She doesn't tidy up my room.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-19:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't tidy up my room.",
+              "uk": "У записі звучить She didn't tidy up my room."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't tidy up my room.",
+              "uk": "У записі звучить She didn't tidy up my room."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-19:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Этого не было вчера. Выберите отрицание",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-19:i06:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-19:i06:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-19:i06:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Этого не было вчера. Выберите отрицание",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ tidy up my room.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-19:i06:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i06:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i06:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Этого не было вчера. Выберите отрицание",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-19:i06:r2",
+            "correct": false,
+            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i06:r3",
+            "correct": false,
+            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-19:word:wash-up",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — wash up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-19:word:wash-up:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — wash up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-19:word:wash-up:audio",
+          "transcript": "wash up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-19:word:wash-up:r1",
+            "targetText": "wash up",
+            "meaningByLocale": {
+              "ru": "помыть посуду.",
+              "uk": "помити посуд."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wash up",
+          "definitionByLocale": {
+            "ru": "помыть посуду.",
+            "uk": "помити посуд."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-19:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я не помыл посуду после ужина",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я не помыл посуду после ужина",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't wash up after dinner.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не помыл посуду после ужина",
+          "uk": "Скажіть: Я не помив посуд після вечері"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "wash",
+          "up",
+          "after",
+          "dinner"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-19:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-19:i08:r1",
+          "text": "She didn't wash up after dinner."
+        },
+        {
+          "responseId": "en:lesson-13:session-19:i08:r2",
+          "text": "I didn't wash up after dinner."
+        },
+        {
+          "responseId": "en:lesson-13:session-19:i08:r3",
+          "text": "She doesn't wash up after dinner."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-19:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-19:i08:audio",
+          "transcript": "She didn't wash up after dinner."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-19:i08:r1",
+            "targetText": "She didn't wash up after dinner.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i08:r2",
+            "targetText": "I didn't wash up after dinner.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i08:r3",
+            "targetText": "She doesn't wash up after dinner.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-19:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't wash up after dinner.",
+              "uk": "У записі звучить She didn't wash up after dinner."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't wash up after dinner.",
+              "uk": "У записі звучить She didn't wash up after dinner."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-19:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Этого не было вчера. Выберите отрицание",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-19:i09:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-19:i09:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-19:i09:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Этого не было вчера. Выберите отрицание",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ wash up after dinner.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-19:i09:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i09:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i09:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Этого не было вчера. Выберите отрицание",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-19:i09:r2",
+            "correct": false,
+            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i09:r3",
+            "correct": false,
+            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-19:word:dry-off",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dry off",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-19:word:dry-off:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dry off",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-19:word:dry-off:audio",
+          "transcript": "dry off"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-19:word:dry-off:r1",
+            "targetText": "dry off",
+            "meaningByLocale": {
+              "ru": "вытереться после воды.",
+              "uk": "витертися після води."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dry off",
+          "definitionByLocale": {
+            "ru": "вытереться после воды.",
+            "uk": "витертися після води."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-19:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Я не вытерся полотенцем",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Я не вытерся полотенцем",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I didn't dry off with a towel.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я не вытерся полотенцем",
+          "uk": "Скажіть: Я не витерся рушником"
+        },
+        "orderedTokens": [
+          "I",
+          "didn't",
+          "dry",
+          "off",
+          "with",
+          "a",
+          "towel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-19:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-19:i11:r1",
+          "text": "She didn't dry off with a towel."
+        },
+        {
+          "responseId": "en:lesson-13:session-19:i11:r2",
+          "text": "I didn't dry off with a towel."
+        },
+        {
+          "responseId": "en:lesson-13:session-19:i11:r3",
+          "text": "She doesn't dry off with a towel."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-19:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-19:i11:audio",
+          "transcript": "She didn't dry off with a towel."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-19:i11:r1",
+            "targetText": "She didn't dry off with a towel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i11:r2",
+            "targetText": "I didn't dry off with a towel.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i11:r3",
+            "targetText": "She doesn't dry off with a towel.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-19:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't dry off with a towel.",
+              "uk": "У записі звучить She didn't dry off with a towel."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She didn't dry off with a towel.",
+              "uk": "У записі звучить She didn't dry off with a towel."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-19:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Этого не было вчера. Выберите отрицание",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-19:i12:r1",
+          "text": "didn't"
+        },
+        {
+          "responseId": "en:lesson-13:session-19:i12:r2",
+          "text": "don't"
+        },
+        {
+          "responseId": "en:lesson-13:session-19:i12:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Этого не было вчера. Выберите отрицание",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Этого не было вчера. Выберите отрицание",
+          "uk": "Цього не було вчора. Виберіть заперечення"
+        },
+        "gappedTargetPhrase": "I ___ dry off with a towel.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-19:i12:r1",
+            "text": "didn't"
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i12:r2",
+            "text": "don't"
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i12:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Этого не было вчера. Выберите отрицание",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-19:i12:r2",
+            "correct": false,
+            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма didn't.",
+              "uk": "Для минулого потрібна форма didn't."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-19:i12:r3",
+            "correct": false,
+            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна didn't.",
+              "uk": "Це не форма минулого. Потрібна didn't."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-19:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-19:i13:p1",
+            "target": "clean up",
+            "meaningByLocale": {
+              "ru": "убрать грязь или беспорядок",
+              "uk": "прибрати бруд чи безлад"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-19:i13:p2",
+            "target": "tidy up",
+            "meaningByLocale": {
+              "ru": "навести порядок, разложить вещи",
+              "uk": "навести лад, розкласти речі"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-19:i13:p3",
+            "target": "wash up",
+            "meaningByLocale": {
+              "ru": "помыть посуду",
+              "uk": "помити посуд"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-19:i13:p4",
+            "target": "dry off",
+            "meaningByLocale": {
+              "ru": "вытереться после воды",
+              "uk": "витертися після води"
+            }
+          }
+        ],
+        "leftColumn": [
+          "clean up",
+          "tidy up",
+          "wash up",
+          "dry off"
+        ],
+        "rightColumn": [
+          "убрать грязь или беспорядок",
+          "навести порядок, разложить вещи",
+          "помыть посуду",
+          "вытереться после воды"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-19:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-19:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-19:i14:audio",
+          "transcript": "Did they clean up the room?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Did they clean up the room?",
+        "orderedTokens": [
+          "Did",
+          "they",
+          "clean",
+          "up",
+          "the",
+          "room"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-19:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-19:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-19:i15:audio",
+          "transcript": "He didn't wash up yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He didn't wash up yesterday.",
+        "orderedTokens": [
+          "He",
+          "didn't",
+          "wash",
+          "up",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-19:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите друга: ты вчера навёл порядок в своей комнате?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-19:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите друга: ты вчера навёл порядок в своей комнате?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-19:i16:audio",
+          "transcript": "Did you tidy up your room yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you tidy up your room yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-19:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера она не вытерлась полотенцем",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-19:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера она не вытерлась полотенцем",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-19:i17:audio",
+          "transcript": "She didn't dry off with a towel yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She didn't dry off with a towel yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5e7d36c6038ccc9c0abf4c1493e780bb627f13f52093fe88f5a5fc61398dae91"
+}

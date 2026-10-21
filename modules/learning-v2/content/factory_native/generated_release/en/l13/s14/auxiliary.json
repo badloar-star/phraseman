@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-14",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-14:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-14:intro1:r2": {
+          "ru": "Здесь лампу включили.",
+          "uk": "Тут лампу увімкнули."
+        },
+        "en:lesson-13:session-14:intro1:r3": {
+          "ru": "После didn't нужна switch.",
+          "uk": "Після didn't потрібна switch."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-14:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-14:intro2:r2": {
+          "ru": "Switch on — включить.",
+          "uk": "Switch on — увімкнути."
+        },
+        "en:lesson-13:session-14:intro2:r3": {
+          "ru": "После didn't нужна switch.",
+          "uk": "Після didn't потрібна switch."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-14:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-14:intro3:r2": {
+          "ru": "Это сообщение о звонке.",
+          "uk": "Це повідомлення про дзвінок."
+        },
+        "en:lesson-13:session-14:intro3:r3": {
+          "ru": "После didn't нужна write.",
+          "uk": "Після didn't потрібна write."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b34f65d23c788b289cedfa40af07b98bc3d7106bd64d60910d519a70a223d47b"
+}

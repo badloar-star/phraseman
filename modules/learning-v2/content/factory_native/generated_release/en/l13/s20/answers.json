@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-20:word:fall-over",
+    "correctText": "fall over",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-20:i01",
+    "correctText": "I didn't fall over.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-20:i02",
+    "correctText": "She didn't fall over.",
+    "correctResponseId": "en:lesson-13:session-20:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-20:i03",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-20:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-20:word:trip-over",
+    "correctText": "trip over",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-20:i04",
+    "correctText": "I didn't trip over the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-20:i05",
+    "correctText": "She didn't trip over the bag.",
+    "correctResponseId": "en:lesson-13:session-20:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-20:i06",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-20:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-20:word:bump-into",
+    "correctText": "bump into",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-20:i07",
+    "correctText": "I didn't bump into the table.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-20:i08",
+    "correctText": "She didn't bump into the table.",
+    "correctResponseId": "en:lesson-13:session-20:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-20:i09",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-20:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-20:word:knock-over",
+    "correctText": "knock over",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-20:i10",
+    "correctText": "I didn't knock over the cup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-20:i11",
+    "correctText": "She didn't knock over the cup.",
+    "correctResponseId": "en:lesson-13:session-20:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-20:i12",
+    "correctText": "didn't",
+    "correctResponseId": "en:lesson-13:session-20:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-20:i13",
+    "correctText": "en:lesson-13:session-20:i13:p1=fall over\nen:lesson-13:session-20:i13:p2=trip over\nen:lesson-13:session-20:i13:p3=bump into\nen:lesson-13:session-20:i13:p4=knock over",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-20:i14",
+    "correctText": "Did they trip over the box?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-20:i15",
+    "correctText": "He didn't fall over yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-20:i16",
+    "correctText": "Did you bump into the table yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-20:i17",
+    "correctText": "She didn't knock over the cup yesterday.",
+    "correctResponseId": null
+  }
+]

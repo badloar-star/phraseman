@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-21:word:carefully",
+    "correctText": "carefully",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-21:i01",
+    "correctText": "Did you drive carefully?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-21:i02",
+    "correctText": "Did she drive carefully?",
+    "correctResponseId": "en:lesson-13:session-21:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-21:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-21:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-21:word:quietly",
+    "correctText": "quietly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-21:i04",
+    "correctText": "Did you speak quietly?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-21:i05",
+    "correctText": "Did she speak quietly?",
+    "correctResponseId": "en:lesson-13:session-21:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-21:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-21:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-21:word:loudly",
+    "correctText": "loudly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-21:i07",
+    "correctText": "Did you speak loudly?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-21:i08",
+    "correctText": "Did she speak loudly?",
+    "correctResponseId": "en:lesson-13:session-21:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-21:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-21:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-21:word:safely",
+    "correctText": "safely",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-21:i10",
+    "correctText": "Did you arrive safely?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-21:i11",
+    "correctText": "Did she arrive safely?",
+    "correctResponseId": "en:lesson-13:session-21:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-21:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-21:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-21:i13",
+    "correctText": "en:lesson-13:session-21:i13:p1=carefully\nen:lesson-13:session-21:i13:p2=quietly\nen:lesson-13:session-21:i13:p3=loudly\nen:lesson-13:session-21:i13:p4=safely",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-21:i14",
+    "correctText": "We didn't drive fast.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-21:i15",
+    "correctText": "Did he arrive at six?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-21:i16",
+    "correctText": "Did you speak quietly yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-21:i17",
+    "correctText": "She didn't drive carefully yesterday.",
+    "correctResponseId": null
+  }
+]

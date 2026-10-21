@@ -1,5 +1,7 @@
 {
   "schemaVersion": "learning_v2_transfer_pending_v1",
   "note": "Занятия, чей выпуск переписан раньше переноса в приложение. Добавляет сессия переписывания в коммите выпуска без переноса, убирает в коммите переноса. Ворота learning_v2_release_parity_gate: расхождение по ним — справка; запись без расхождения — stale_pin.",
-  "sessions": {}
+  "sessions": {
+    "en/l10/s50": "Authored; device TTS accepted; awaiting app transfer"
+  }
 }

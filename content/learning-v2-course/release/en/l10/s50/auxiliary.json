@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-50",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-50:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-50:intro1:r2": {
+          "ru": "Один период: lasts с s.",
+          "uk": "Один період: lasts із s."
+        },
+        "en:lesson-10:session-50:intro1:r3": {
+          "ru": "Здесь нужна личная форма lasts.",
+          "uk": "Тут потрібна особова форма lasts."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-50:intro2:r2": {
+          "ru": "С we нужна record без s.",
+          "uk": "З we потрібна record без s."
+        },
+        "en:lesson-10:session-50:intro2:r3": {
+          "ru": "Здесь нужна record.",
+          "uk": "Тут потрібна record."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-50:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-50:intro3:r2": {
+          "ru": "Перед updating нужна are.",
+          "uk": "Перед updating потрібна are."
+        },
+        "en:lesson-10:session-50:intro3:r3": {
+          "ru": "Правильно updating, без e.",
+          "uk": "Правильно updating, без e."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ce7b99a3c7d6691cb070eca2364a1639bd052879ffdccf76dad869bb7106b8ec"
+}

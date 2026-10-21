@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-10:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "The trial period lasts a month; We record the duration every day; We are updating the timeline",
+    "uk": "The trial period lasts a month; We record the duration every day; We are updating the timeline"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-10:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сколько длится проба",
+        "uk": "Скільки триває проба"
+      },
+      "bodyByLocale": {
+        "ru": "Period — «период», отрезок времени. Вы объясняете условия пробного использования программы: The trial period lasts a month — «Пробный период длится месяц». Это установленное условие, поэтому Present Simple. После the trial period используем lasts с s.",
+        "uk": "Period — «період», відрізок часу. Ви пояснюєте умови пробного користування програмою: The trial period lasts a month — «Пробний період триває місяць». Це встановлена умова, тому Present Simple. Після the trial period використовуємо lasts із s."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-50:intro1:r1",
+              "text": "The trial period lasts a month."
+            },
+            {
+              "responseId": "en:lesson-10:session-50:intro1:r2",
+              "text": "The trial period last a month."
+            },
+            {
+              "responseId": "en:lesson-10:session-50:intro1:r3",
+              "text": "The trial period lasting a month."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-50:intro1:r1",
+              "text": "The trial period lasts a month."
+            },
+            {
+              "responseId": "en:lesson-10:session-50:intro1:r2",
+              "text": "The trial period last a month."
+            },
+            {
+              "responseId": "en:lesson-10:session-50:intro1:r3",
+              "text": "The trial period lasting a month."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-10:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Записываем длительность",
+        "uk": "Записуємо тривалість"
+      },
+      "bodyByLocale": {
+        "ru": "Duration — «длительность». Команда каждый день записывает, сколько занимает одна и та же процедура: We record the duration every day — «Мы записываем длительность каждый день». Регулярная работа выражается через Present Simple: record.",
+        "uk": "Duration — «тривалість». Команда щодня записує, скільки займає та сама процедура: We record the duration every day — «Ми записуємо тривалість щодня». Регулярну роботу виражаємо через Present Simple: record."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-50:intro2:r1",
+              "text": "We record the duration every day."
+            },
+            {
+              "responseId": "en:lesson-10:session-50:intro2:r2",
+              "text": "We records the duration every day."
+            },
+            {
+              "responseId": "en:lesson-10:session-50:intro2:r3",
+              "text": "We recording the duration every day."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-50:intro2:r1",
+              "text": "We record the duration every day."
+            },
+            {
+              "responseId": "en:lesson-10:session-50:intro2:r2",
+              "text": "We records the duration every day."
+            },
+            {
+              "responseId": "en:lesson-10:session-50:intro2:r3",
+              "text": "We recording the duration every day."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-10:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Меняем график сейчас",
+        "uk": "Змінюємо графік зараз"
+      },
+      "bodyByLocale": {
+        "ru": "Timeline здесь — «временной график»: последовательность этапов с датами. Команда сейчас вносит новые сроки: We are updating the timeline — «Мы обновляем временной график». Для текущей работы: are + updating. У update перед ing убираем e.",
+        "uk": "Timeline тут — «часовий графік»: послідовність етапів із датами. Команда зараз вносить нові строки: We are updating the timeline — «Ми оновлюємо часовий графік». Для поточної роботи: are + updating. У update перед ing прибираємо e."
+      },
+      "question": {
+        "interactionId": "en:lesson-10:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-10:session-50:intro3:r1",
+              "text": "We are updating the timeline."
+            },
+            {
+              "responseId": "en:lesson-10:session-50:intro3:r2",
+              "text": "We updating the timeline."
+            },
+            {
+              "responseId": "en:lesson-10:session-50:intro3:r3",
+              "text": "We are updateing the timeline."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-10:session-50:intro3:r1",
+              "text": "We are updating the timeline."
+            },
+            {
+              "responseId": "en:lesson-10:session-50:intro3:r2",
+              "text": "We updating the timeline."
+            },
+            {
+              "responseId": "en:lesson-10:session-50:intro3:r3",
+              "text": "We are updateing the timeline."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "af7993ff2a736fd9fce9cd1a4461d438e4d8fd58231eb31f006dba71273fdab5"
+}

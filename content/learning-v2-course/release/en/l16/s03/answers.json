@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-03:word:mist",
+    "correctText": "mist",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-03:i01",
+    "correctText": "I think the mist will clear soon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-03:i02",
+    "correctText": "I think the mist will clear soon.",
+    "correctResponseId": "en:lesson-16:session-03:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-03:i03",
+    "correctText": "will clear",
+    "correctResponseId": "en:lesson-16:session-03:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-03:word:overcast",
+    "correctText": "overcast",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-03:i04",
+    "correctText": "I think it will be overcast tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-03:i05",
+    "correctText": "I think it will be overcast tomorrow.",
+    "correctResponseId": "en:lesson-16:session-03:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-03:i06",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-03:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-03:word:muggy",
+    "correctText": "muggy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-03:i07",
+    "correctText": "I think it will be muggy tonight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-03:i08",
+    "correctText": "I think it will be muggy tonight.",
+    "correctResponseId": "en:lesson-16:session-03:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-03:i09",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-03:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-03:word:breezy",
+    "correctText": "breezy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-03:i10",
+    "correctText": "I think it will be breezy on Sunday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-03:i11",
+    "correctText": "I think it will be breezy on Sunday.",
+    "correctResponseId": "en:lesson-16:session-03:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-03:i12",
+    "correctText": "will be",
+    "correctResponseId": "en:lesson-16:session-03:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-03:i13",
+    "correctText": "en:lesson-16:session-03:i13:p1=mist\nen:lesson-16:session-03:i13:p2=overcast\nen:lesson-16:session-03:i13:p3=muggy\nen:lesson-16:session-03:i13:p4=breezy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-03:i14",
+    "correctText": "I think the mist will clear soon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-03:i15",
+    "correctText": "I think it will be muggy tonight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-03:i16",
+    "correctText": "I think it will be overcast tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-03:i17",
+    "correctText": "I think it will be breezy on Sunday.",
+    "correctResponseId": null
+  }
+]

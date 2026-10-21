@@ -1,0 +1,2335 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-16:session-01",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-16:session-01:word:humidity",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — humidity",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:word:humidity:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — humidity",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:word:humidity:audio",
+            "transcript": "humidity"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-01:word:humidity:r1",
+              "targetText": "humidity",
+              "meaningByLocale": {
+                "ru": "влажность воздуха.",
+                "uk": "вологість повітря."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "humidity",
+            "definitionByLocale": {
+              "ru": "влажность воздуха.",
+              "uk": "вологість повітря."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своё предположение: «Думаю, влажность воздуха повысится».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своё предположение: «Думаю, влажность воздуха повысится».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think the humidity will rise.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, влажность воздуха повысится».",
+            "uk": "Передайте своє припущення: «Думаю, вологість повітря підвищиться»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "humidity",
+            "will",
+            "rise"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-01:i02:r1",
+            "text": "I think the humidity will rise."
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i02:r2",
+            "text": "I think the humidity will to rise."
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i02:r3",
+            "text": "I think the humidity will rises."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:i02:audio",
+            "transcript": "I think the humidity will rise."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-01:i02:r1",
+              "targetText": "I think the humidity will rise.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i02:r2",
+              "targetText": "I think the humidity will to rise.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i02:r3",
+              "targetText": "I think the humidity will rises.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-01:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the humidity will rise.",
+                "uk": "У записі звучить I think the humidity will rise."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the humidity will rise.",
+                "uk": "У записі звучить I think the humidity will rise."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните прогноз с will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-01:i03:r1",
+            "text": "will rise"
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i03:r2",
+            "text": "will to rise"
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i03:r3",
+            "text": "will rises"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните прогноз с will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think the humidity ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-01:i03:r1",
+              "text": "will rise"
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i03:r2",
+              "text": "will to rise"
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i03:r3",
+              "text": "will rises"
+            }
+          ],
+          "testedDimension": "Дополните прогноз с will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-01:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:word:visibility",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — visibility",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:word:visibility:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — visibility",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:word:visibility:audio",
+            "transcript": "visibility"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-01:word:visibility:r1",
+              "targetText": "visibility",
+              "meaningByLocale": {
+                "ru": "видимость.",
+                "uk": "видимість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "visibility",
+            "definitionByLocale": {
+              "ru": "видимость.",
+              "uk": "видимість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своё предположение: «Думаю, видимость улучшится».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своё предположение: «Думаю, видимость улучшится».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think visibility will improve.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, видимость улучшится».",
+            "uk": "Передайте своє припущення: «Думаю, видимість покращиться»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "visibility",
+            "will",
+            "improve"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-01:i05:r1",
+            "text": "I think visibility will improve."
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i05:r2",
+            "text": "I think visibility will to improve."
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i05:r3",
+            "text": "I think visibility will improves."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:i05:audio",
+            "transcript": "I think visibility will improve."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-01:i05:r1",
+              "targetText": "I think visibility will improve.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i05:r2",
+              "targetText": "I think visibility will to improve.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i05:r3",
+              "targetText": "I think visibility will improves.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-01:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think visibility will improve.",
+                "uk": "У записі звучить I think visibility will improve."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think visibility will improve.",
+                "uk": "У записі звучить I think visibility will improve."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните прогноз с will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-01:i06:r1",
+            "text": "will improve"
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i06:r2",
+            "text": "will to improve"
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i06:r3",
+            "text": "will improves"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните прогноз с will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think visibility ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-01:i06:r1",
+              "text": "will improve"
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i06:r2",
+              "text": "will to improve"
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i06:r3",
+              "text": "will improves"
+            }
+          ],
+          "testedDimension": "Дополните прогноз с will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-01:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:word:daylight",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — daylight",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:word:daylight:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — daylight",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:word:daylight:audio",
+            "transcript": "daylight"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-01:word:daylight:r1",
+              "targetText": "daylight",
+              "meaningByLocale": {
+                "ru": "дневной свет.",
+                "uk": "денне світло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "daylight",
+            "definitionByLocale": {
+              "ru": "дневной свет.",
+              "uk": "денне світло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своё предположение: «Думаю, мы приедем засветло».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своё предположение: «Думаю, мы приедем засветло».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think we will arrive in daylight.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, мы приедем засветло».",
+            "uk": "Передайте своє припущення: «Думаю, ми приїдемо завидна»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "we",
+            "will",
+            "arrive",
+            "in",
+            "daylight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-01:i08:r1",
+            "text": "I think we will arrive in daylight."
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i08:r2",
+            "text": "I think we will to arrive in daylight."
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i08:r3",
+            "text": "I think we will arrives in daylight."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:i08:audio",
+            "transcript": "I think we will arrive in daylight."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-01:i08:r1",
+              "targetText": "I think we will arrive in daylight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i08:r2",
+              "targetText": "I think we will to arrive in daylight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i08:r3",
+              "targetText": "I think we will arrives in daylight.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-01:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think we will arrive in daylight.",
+                "uk": "У записі звучить I think we will arrive in daylight."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think we will arrive in daylight.",
+                "uk": "У записі звучить I think we will arrive in daylight."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните прогноз с will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-01:i09:r1",
+            "text": "will arrive"
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i09:r2",
+            "text": "will to arrive"
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i09:r3",
+            "text": "will arrives"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните прогноз с will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think we ___ in daylight.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-01:i09:r1",
+              "text": "will arrive"
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i09:r2",
+              "text": "will to arrive"
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i09:r3",
+              "text": "will arrives"
+            }
+          ],
+          "testedDimension": "Дополните прогноз с will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-01:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:word:heatwave",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — heatwave",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:word:heatwave:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — heatwave",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:word:heatwave:audio",
+            "transcript": "heatwave"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-01:word:heatwave:r1",
+              "targetText": "heatwave",
+              "meaningByLocale": {
+                "ru": "период сильной жары.",
+                "uk": "період сильної спеки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "heatwave",
+            "definitionByLocale": {
+              "ru": "период сильной жары.",
+              "uk": "період сильної спеки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своё предположение: «Думаю, сильная жара закончится завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своё предположение: «Думаю, сильная жара закончится завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think the heatwave will end tomorrow.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, сильная жара закончится завтра».",
+            "uk": "Передайте своє припущення: «Думаю, сильна спека закінчиться завтра»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "heatwave",
+            "will",
+            "end",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-01:i11:r1",
+            "text": "I think the heatwave will end tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i11:r2",
+            "text": "I think the heatwave will to end tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i11:r3",
+            "text": "I think the heatwave will ends tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:i11:audio",
+            "transcript": "I think the heatwave will end tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-01:i11:r1",
+              "targetText": "I think the heatwave will end tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i11:r2",
+              "targetText": "I think the heatwave will to end tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i11:r3",
+              "targetText": "I think the heatwave will ends tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-01:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the heatwave will end tomorrow.",
+                "uk": "У записі звучить I think the heatwave will end tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the heatwave will end tomorrow.",
+                "uk": "У записі звучить I think the heatwave will end tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните прогноз с will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-01:i12:r1",
+            "text": "will end"
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i12:r2",
+            "text": "will to end"
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i12:r3",
+            "text": "will ends"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните прогноз с will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think the heatwave ___ tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-01:i12:r1",
+              "text": "will end"
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i12:r2",
+              "text": "will to end"
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i12:r3",
+              "text": "will ends"
+            }
+          ],
+          "testedDimension": "Дополните прогноз с will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-01:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-01:i13:p1",
+              "target": "humidity",
+              "meaningByLocale": {
+                "ru": "влажность воздуха",
+                "uk": "вологість повітря"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-01:i13:p2",
+              "target": "visibility",
+              "meaningByLocale": {
+                "ru": "видимость",
+                "uk": "видимість"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-01:i13:p3",
+              "target": "daylight",
+              "meaningByLocale": {
+                "ru": "дневной свет",
+                "uk": "денне світло"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-01:i13:p4",
+              "target": "heatwave",
+              "meaningByLocale": {
+                "ru": "период сильной жары",
+                "uk": "період сильної спеки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "humidity",
+            "visibility",
+            "daylight",
+            "heatwave"
+          ],
+          "rightColumn": [
+            "влажность воздуха",
+            "видимость",
+            "дневной свет",
+            "период сильной жары"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:i14:audio",
+            "transcript": "I think the humidity will rise."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think the humidity will rise.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "humidity",
+            "will",
+            "rise"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:i15:audio",
+            "transcript": "I think we will arrive in daylight."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think we will arrive in daylight.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "we",
+            "will",
+            "arrive",
+            "in",
+            "daylight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Произнесите своё предположение о будущем",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:i16:audio"
+        ],
+        "accessibilityLabel": "Произнесите своё предположение о будущем",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:i16:audio",
+            "transcript": "I think visibility will improve."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think visibility will improve.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Произнесите прогноз для друга",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:i17:audio"
+        ],
+        "accessibilityLabel": "Произнесите прогноз для друга",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:i17:audio",
+            "transcript": "I think the heatwave will end tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think the heatwave will end tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-16:session-01:word:humidity",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — humidity",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:word:humidity:audio"
+        ],
+        "accessibilityLabel": "Картка слова — humidity",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:word:humidity:audio",
+            "transcript": "humidity"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-01:word:humidity:r1",
+              "targetText": "humidity",
+              "meaningByLocale": {
+                "ru": "влажность воздуха.",
+                "uk": "вологість повітря."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "humidity",
+            "definitionByLocale": {
+              "ru": "влажность воздуха.",
+              "uk": "вологість повітря."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своє припущення: «Думаю, вологість повітря підвищиться».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своє припущення: «Думаю, вологість повітря підвищиться».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think the humidity will rise.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, влажность воздуха повысится».",
+            "uk": "Передайте своє припущення: «Думаю, вологість повітря підвищиться»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "humidity",
+            "will",
+            "rise"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-01:i02:r1",
+            "text": "I think the humidity will rise."
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i02:r2",
+            "text": "I think the humidity will to rise."
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i02:r3",
+            "text": "I think the humidity will rises."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:i02:audio",
+            "transcript": "I think the humidity will rise."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-01:i02:r1",
+              "targetText": "I think the humidity will rise.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i02:r2",
+              "targetText": "I think the humidity will to rise.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i02:r3",
+              "targetText": "I think the humidity will rises.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-01:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the humidity will rise.",
+                "uk": "У записі звучить I think the humidity will rise."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the humidity will rise.",
+                "uk": "У записі звучить I think the humidity will rise."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть прогноз із will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-01:i03:r1",
+            "text": "will rise"
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i03:r2",
+            "text": "will to rise"
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i03:r3",
+            "text": "will rises"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть прогноз із will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think the humidity ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-01:i03:r1",
+              "text": "will rise"
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i03:r2",
+              "text": "will to rise"
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i03:r3",
+              "text": "will rises"
+            }
+          ],
+          "testedDimension": "Доповніть прогноз із will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-01:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:word:visibility",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — visibility",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:word:visibility:audio"
+        ],
+        "accessibilityLabel": "Картка слова — visibility",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:word:visibility:audio",
+            "transcript": "visibility"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-01:word:visibility:r1",
+              "targetText": "visibility",
+              "meaningByLocale": {
+                "ru": "видимость.",
+                "uk": "видимість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "visibility",
+            "definitionByLocale": {
+              "ru": "видимость.",
+              "uk": "видимість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своє припущення: «Думаю, видимість покращиться».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своє припущення: «Думаю, видимість покращиться».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think visibility will improve.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, видимость улучшится».",
+            "uk": "Передайте своє припущення: «Думаю, видимість покращиться»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "visibility",
+            "will",
+            "improve"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-01:i05:r1",
+            "text": "I think visibility will improve."
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i05:r2",
+            "text": "I think visibility will to improve."
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i05:r3",
+            "text": "I think visibility will improves."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:i05:audio",
+            "transcript": "I think visibility will improve."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-01:i05:r1",
+              "targetText": "I think visibility will improve.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i05:r2",
+              "targetText": "I think visibility will to improve.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i05:r3",
+              "targetText": "I think visibility will improves.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-01:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think visibility will improve.",
+                "uk": "У записі звучить I think visibility will improve."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think visibility will improve.",
+                "uk": "У записі звучить I think visibility will improve."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть прогноз із will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-01:i06:r1",
+            "text": "will improve"
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i06:r2",
+            "text": "will to improve"
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i06:r3",
+            "text": "will improves"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть прогноз із will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think visibility ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-01:i06:r1",
+              "text": "will improve"
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i06:r2",
+              "text": "will to improve"
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i06:r3",
+              "text": "will improves"
+            }
+          ],
+          "testedDimension": "Доповніть прогноз із will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-01:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:word:daylight",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — daylight",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:word:daylight:audio"
+        ],
+        "accessibilityLabel": "Картка слова — daylight",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:word:daylight:audio",
+            "transcript": "daylight"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-01:word:daylight:r1",
+              "targetText": "daylight",
+              "meaningByLocale": {
+                "ru": "дневной свет.",
+                "uk": "денне світло."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "daylight",
+            "definitionByLocale": {
+              "ru": "дневной свет.",
+              "uk": "денне світло."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своє припущення: «Думаю, ми приїдемо завидна».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своє припущення: «Думаю, ми приїдемо завидна».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think we will arrive in daylight.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, мы приедем засветло».",
+            "uk": "Передайте своє припущення: «Думаю, ми приїдемо завидна»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "we",
+            "will",
+            "arrive",
+            "in",
+            "daylight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-01:i08:r1",
+            "text": "I think we will arrive in daylight."
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i08:r2",
+            "text": "I think we will to arrive in daylight."
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i08:r3",
+            "text": "I think we will arrives in daylight."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:i08:audio",
+            "transcript": "I think we will arrive in daylight."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-01:i08:r1",
+              "targetText": "I think we will arrive in daylight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i08:r2",
+              "targetText": "I think we will to arrive in daylight.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i08:r3",
+              "targetText": "I think we will arrives in daylight.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-01:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think we will arrive in daylight.",
+                "uk": "У записі звучить I think we will arrive in daylight."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think we will arrive in daylight.",
+                "uk": "У записі звучить I think we will arrive in daylight."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть прогноз із will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-01:i09:r1",
+            "text": "will arrive"
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i09:r2",
+            "text": "will to arrive"
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i09:r3",
+            "text": "will arrives"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть прогноз із will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think we ___ in daylight.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-01:i09:r1",
+              "text": "will arrive"
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i09:r2",
+              "text": "will to arrive"
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i09:r3",
+              "text": "will arrives"
+            }
+          ],
+          "testedDimension": "Доповніть прогноз із will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-01:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:word:heatwave",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — heatwave",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:word:heatwave:audio"
+        ],
+        "accessibilityLabel": "Картка слова — heatwave",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:word:heatwave:audio",
+            "transcript": "heatwave"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-01:word:heatwave:r1",
+              "targetText": "heatwave",
+              "meaningByLocale": {
+                "ru": "период сильной жары.",
+                "uk": "період сильної спеки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "heatwave",
+            "definitionByLocale": {
+              "ru": "период сильной жары.",
+              "uk": "період сильної спеки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своє припущення: «Думаю, сильна спека закінчиться завтра».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своє припущення: «Думаю, сильна спека закінчиться завтра».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think the heatwave will end tomorrow.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, сильная жара закончится завтра».",
+            "uk": "Передайте своє припущення: «Думаю, сильна спека закінчиться завтра»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "heatwave",
+            "will",
+            "end",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-01:i11:r1",
+            "text": "I think the heatwave will end tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i11:r2",
+            "text": "I think the heatwave will to end tomorrow."
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i11:r3",
+            "text": "I think the heatwave will ends tomorrow."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:i11:audio",
+            "transcript": "I think the heatwave will end tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-01:i11:r1",
+              "targetText": "I think the heatwave will end tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i11:r2",
+              "targetText": "I think the heatwave will to end tomorrow.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i11:r3",
+              "targetText": "I think the heatwave will ends tomorrow.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-01:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the heatwave will end tomorrow.",
+                "uk": "У записі звучить I think the heatwave will end tomorrow."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the heatwave will end tomorrow.",
+                "uk": "У записі звучить I think the heatwave will end tomorrow."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть прогноз із will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-01:i12:r1",
+            "text": "will end"
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i12:r2",
+            "text": "will to end"
+          },
+          {
+            "responseId": "en:lesson-16:session-01:i12:r3",
+            "text": "will ends"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть прогноз із will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think the heatwave ___ tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-01:i12:r1",
+              "text": "will end"
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i12:r2",
+              "text": "will to end"
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i12:r3",
+              "text": "will ends"
+            }
+          ],
+          "testedDimension": "Доповніть прогноз із will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-01:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-01:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-01:i13:p1",
+              "target": "humidity",
+              "meaningByLocale": {
+                "ru": "влажность воздуха",
+                "uk": "вологість повітря"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-01:i13:p2",
+              "target": "visibility",
+              "meaningByLocale": {
+                "ru": "видимость",
+                "uk": "видимість"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-01:i13:p3",
+              "target": "daylight",
+              "meaningByLocale": {
+                "ru": "дневной свет",
+                "uk": "денне світло"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-01:i13:p4",
+              "target": "heatwave",
+              "meaningByLocale": {
+                "ru": "период сильной жары",
+                "uk": "період сильної спеки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "humidity",
+            "visibility",
+            "daylight",
+            "heatwave"
+          ],
+          "rightColumn": [
+            "вологість повітря",
+            "видимість",
+            "денне світло",
+            "період сильної спеки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почутий прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почутий прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:i14:audio",
+            "transcript": "I think the humidity will rise."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think the humidity will rise.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "humidity",
+            "will",
+            "rise"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почутий прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почутий прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:i15:audio",
+            "transcript": "I think we will arrive in daylight."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think we will arrive in daylight.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "we",
+            "will",
+            "arrive",
+            "in",
+            "daylight"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Промовте своє припущення про майбутнє",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:i16:audio"
+        ],
+        "accessibilityLabel": "Промовте своє припущення про майбутнє",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:i16:audio",
+            "transcript": "I think visibility will improve."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think visibility will improve.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-01:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Промовте прогноз для друга",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-01:i17:audio"
+        ],
+        "accessibilityLabel": "Промовте прогноз для друга",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-01:i17:audio",
+            "transcript": "I think the heatwave will end tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think the heatwave will end tomorrow.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-16:session-01:word:humidity",
+      "correctText": "humidity",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-01:i01",
+      "correctText": "I think the humidity will rise.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-01:i02",
+      "correctText": "I think the humidity will rise.",
+      "correctResponseId": "en:lesson-16:session-01:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-01:i03",
+      "correctText": "will rise",
+      "correctResponseId": "en:lesson-16:session-01:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-01:word:visibility",
+      "correctText": "visibility",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-01:i04",
+      "correctText": "I think visibility will improve.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-01:i05",
+      "correctText": "I think visibility will improve.",
+      "correctResponseId": "en:lesson-16:session-01:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-01:i06",
+      "correctText": "will improve",
+      "correctResponseId": "en:lesson-16:session-01:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-01:word:daylight",
+      "correctText": "daylight",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-01:i07",
+      "correctText": "I think we will arrive in daylight.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-01:i08",
+      "correctText": "I think we will arrive in daylight.",
+      "correctResponseId": "en:lesson-16:session-01:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-01:i09",
+      "correctText": "will arrive",
+      "correctResponseId": "en:lesson-16:session-01:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-01:word:heatwave",
+      "correctText": "heatwave",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-01:i10",
+      "correctText": "I think the heatwave will end tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-01:i11",
+      "correctText": "I think the heatwave will end tomorrow.",
+      "correctResponseId": "en:lesson-16:session-01:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-01:i12",
+      "correctText": "will end",
+      "correctResponseId": "en:lesson-16:session-01:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-01:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-01:i14",
+      "correctText": "I think the humidity will rise.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-01:i15",
+      "correctText": "I think we will arrive in daylight.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-01:i16",
+      "correctText": "I think visibility will improve.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-01:i17",
+      "correctText": "I think the heatwave will end tomorrow.",
+      "correctResponseId": null
+    }
+  ]
+}

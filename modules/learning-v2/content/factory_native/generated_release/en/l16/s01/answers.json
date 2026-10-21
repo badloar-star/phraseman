@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-01:word:humidity",
+    "correctText": "humidity",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-01:i01",
+    "correctText": "I think the humidity will rise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-01:i02",
+    "correctText": "I think the humidity will rise.",
+    "correctResponseId": "en:lesson-16:session-01:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-01:i03",
+    "correctText": "will rise",
+    "correctResponseId": "en:lesson-16:session-01:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-01:word:visibility",
+    "correctText": "visibility",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-01:i04",
+    "correctText": "I think visibility will improve.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-01:i05",
+    "correctText": "I think visibility will improve.",
+    "correctResponseId": "en:lesson-16:session-01:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-01:i06",
+    "correctText": "will improve",
+    "correctResponseId": "en:lesson-16:session-01:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-01:word:daylight",
+    "correctText": "daylight",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-01:i07",
+    "correctText": "I think we will arrive in daylight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-01:i08",
+    "correctText": "I think we will arrive in daylight.",
+    "correctResponseId": "en:lesson-16:session-01:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-01:i09",
+    "correctText": "will arrive",
+    "correctResponseId": "en:lesson-16:session-01:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-01:word:heatwave",
+    "correctText": "heatwave",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-01:i10",
+    "correctText": "I think the heatwave will end tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-01:i11",
+    "correctText": "I think the heatwave will end tomorrow.",
+    "correctResponseId": "en:lesson-16:session-01:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-01:i12",
+    "correctText": "will end",
+    "correctResponseId": "en:lesson-16:session-01:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-01:i13",
+    "correctText": "en:lesson-16:session-01:i13:p1=humidity\nen:lesson-16:session-01:i13:p2=visibility\nen:lesson-16:session-01:i13:p3=daylight\nen:lesson-16:session-01:i13:p4=heatwave",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-01:i14",
+    "correctText": "I think the humidity will rise.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-01:i15",
+    "correctText": "I think we will arrive in daylight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-01:i16",
+    "correctText": "I think visibility will improve.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-01:i17",
+    "correctText": "I think the heatwave will end tomorrow.",
+    "correctResponseId": null
+  }
+]

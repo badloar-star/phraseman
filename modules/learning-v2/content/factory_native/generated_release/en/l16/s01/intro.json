@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "will + base verb: prediction",
+    "uk": "will + base verb: prediction"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш прогноз",
+        "uk": "Ваш прогноз"
+      },
+      "bodyByLocale": {
+        "ru": "Для предположения о будущем используем will + глагол в начальной форме. Will одинаково для всех лиц. I think — «думаю»: это мнение о будущем, а не обещание или решение что-то сделать. humidity — влажность воздуха. I think the humidity will rise. — Думаю, влажность воздуха повысится. Выберите прогноз с will.",
+        "uk": "Для припущення про майбутнє використовуємо will + дієслово в початковій формі. Will однакове для всіх осіб. I think — «думаю»: це думка про майбутнє, а не обіцянка чи рішення щось зробити. humidity — вологість повітря. I think the humidity will rise. — Думаю, вологість повітря підвищиться. Виберіть прогноз із will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-01:intro1:r1",
+              "text": "I think the humidity will rise."
+            },
+            {
+              "responseId": "en:lesson-16:session-01:intro1:r2",
+              "text": "I think the humidity will to rise."
+            },
+            {
+              "responseId": "en:lesson-16:session-01:intro1:r3",
+              "text": "I think the humidity will rises."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-01:intro1:r1",
+              "text": "I think the humidity will rise."
+            },
+            {
+              "responseId": "en:lesson-16:session-01:intro1:r2",
+              "text": "I think the humidity will to rise."
+            },
+            {
+              "responseId": "en:lesson-16:session-01:intro1:r3",
+              "text": "I think the humidity will rises."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "После will — начальная форма",
+        "uk": "Після will — початкова форма"
+      },
+      "bodyByLocale": {
+        "ru": "visibility — видимость. I think visibility will improve. — Думаю, видимость улучшится. Выберите прогноз с will.",
+        "uk": "visibility — видимість. I think visibility will improve. — Думаю, видимість покращиться. Виберіть прогноз із will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-01:intro2:r1",
+              "text": "I think visibility will improve."
+            },
+            {
+              "responseId": "en:lesson-16:session-01:intro2:r2",
+              "text": "I think visibility will to improve."
+            },
+            {
+              "responseId": "en:lesson-16:session-01:intro2:r3",
+              "text": "I think visibility will improves."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-01:intro2:r1",
+              "text": "I think visibility will improve."
+            },
+            {
+              "responseId": "en:lesson-16:session-01:intro2:r2",
+              "text": "I think visibility will to improve."
+            },
+            {
+              "responseId": "en:lesson-16:session-01:intro2:r3",
+              "text": "I think visibility will improves."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Предположение о будущем",
+        "uk": "Припущення про майбутнє"
+      },
+      "bodyByLocale": {
+        "ru": "daylight — дневной свет. heatwave — период сильной жары. I think the heatwave will end tomorrow. — Думаю, сильная жара закончится завтра. Выберите прогноз с will.",
+        "uk": "daylight — денне світло. heatwave — період сильної спеки. I think the heatwave will end tomorrow. — Думаю, сильна спека закінчиться завтра. Виберіть прогноз із will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-01:intro3:r1",
+              "text": "I think the heatwave will end tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-01:intro3:r2",
+              "text": "I think the heatwave will to end tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-01:intro3:r3",
+              "text": "I think the heatwave will ends tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-01:intro3:r1",
+              "text": "I think the heatwave will end tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-01:intro3:r2",
+              "text": "I think the heatwave will to end tomorrow."
+            },
+            {
+              "responseId": "en:lesson-16:session-01:intro3:r3",
+              "text": "I think the heatwave will ends tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f1971660f8fc0998d190dc37778543c0a82142986ed18003114f4060aa320cb7"
+}

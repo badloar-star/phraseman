@@ -1,0 +1,1128 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-16:session-03",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-16:session-03:word:mist",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — mist",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-03:word:mist:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — mist",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-03:word:mist:audio",
+          "transcript": "mist"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-03:word:mist:r1",
+            "targetText": "mist",
+            "meaningByLocale": {
+              "ru": "лёгкий туман.",
+              "uk": "легкий туман."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mist",
+          "definitionByLocale": {
+            "ru": "лёгкий туман.",
+            "uk": "легкий туман."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-03:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте своё предположение: «Думаю, лёгкий туман скоро рассеется».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте своё предположение: «Думаю, лёгкий туман скоро рассеется».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think the mist will clear soon.",
+        "localizedMeaning": {
+          "ru": "Передайте своё предположение: «Думаю, лёгкий туман скоро рассеется».",
+          "uk": "Передайте своє припущення: «Думаю, легкий туман скоро розсіється»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "mist",
+          "will",
+          "clear",
+          "soon"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-03:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-03:i02:r1",
+          "text": "I think the mist will clear soon."
+        },
+        {
+          "responseId": "en:lesson-16:session-03:i02:r2",
+          "text": "I think the mist will to clear soon."
+        },
+        {
+          "responseId": "en:lesson-16:session-03:i02:r3",
+          "text": "I think the mist will clears soon."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-03:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-03:i02:audio",
+          "transcript": "I think the mist will clear soon."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-03:i02:r1",
+            "targetText": "I think the mist will clear soon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i02:r2",
+            "targetText": "I think the mist will to clear soon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i02:r3",
+            "targetText": "I think the mist will clears soon.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the mist will clear soon.",
+              "uk": "У записі звучить I think the mist will clear soon."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think the mist will clear soon.",
+              "uk": "У записі звучить I think the mist will clear soon."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-03:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните прогноз с will",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-03:i03:r1",
+          "text": "will clear"
+        },
+        {
+          "responseId": "en:lesson-16:session-03:i03:r2",
+          "text": "will to clear"
+        },
+        {
+          "responseId": "en:lesson-16:session-03:i03:r3",
+          "text": "will clears"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните прогноз с will",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните прогноз с will",
+          "uk": "Доповніть прогноз із will"
+        },
+        "gappedTargetPhrase": "I think the mist ___ soon.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-03:i03:r1",
+            "text": "will clear"
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i03:r2",
+            "text": "will to clear"
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i03:r3",
+            "text": "will clears"
+          }
+        ],
+        "testedDimension": "Дополните прогноз с will",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-03:i03:r2",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will не нужно to.",
+              "uk": "Після will не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i03:r3",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will нужна начальная форма глагола.",
+              "uk": "Після will потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-03:word:overcast",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — overcast",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-03:word:overcast:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — overcast",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-03:word:overcast:audio",
+          "transcript": "overcast"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-03:word:overcast:r1",
+            "targetText": "overcast",
+            "meaningByLocale": {
+              "ru": "пасмурный, с полностью затянутым облаками небом.",
+              "uk": "похмурий, із повністю затягнутим хмарами небом."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overcast",
+          "definitionByLocale": {
+            "ru": "пасмурный, с полностью затянутым облаками небом.",
+            "uk": "похмурий, із повністю затягнутим хмарами небом."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-03:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте своё предположение: «Думаю, завтра будет пасмурно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте своё предположение: «Думаю, завтра будет пасмурно».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think it will be overcast tomorrow.",
+        "localizedMeaning": {
+          "ru": "Передайте своё предположение: «Думаю, завтра будет пасмурно».",
+          "uk": "Передайте своє припущення: «Думаю, завтра буде похмуро»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "it",
+          "will",
+          "be",
+          "overcast",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-03:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-03:i05:r1",
+          "text": "I think it will be overcast tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-03:i05:r2",
+          "text": "I think it will to be overcast tomorrow."
+        },
+        {
+          "responseId": "en:lesson-16:session-03:i05:r3",
+          "text": "I think it will is overcast tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-03:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-03:i05:audio",
+          "transcript": "I think it will be overcast tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-03:i05:r1",
+            "targetText": "I think it will be overcast tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i05:r2",
+            "targetText": "I think it will to be overcast tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i05:r3",
+            "targetText": "I think it will is overcast tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-03:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think it will be overcast tomorrow.",
+              "uk": "У записі звучить I think it will be overcast tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think it will be overcast tomorrow.",
+              "uk": "У записі звучить I think it will be overcast tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-03:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните прогноз с will",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-03:i06:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-03:i06:r2",
+          "text": "will to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-03:i06:r3",
+          "text": "will is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните прогноз с will",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните прогноз с will",
+          "uk": "Доповніть прогноз із will"
+        },
+        "gappedTargetPhrase": "I think it ___ overcast tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-03:i06:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i06:r2",
+            "text": "will to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i06:r3",
+            "text": "will is"
+          }
+        ],
+        "testedDimension": "Дополните прогноз с will",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-03:i06:r2",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will не нужно to.",
+              "uk": "Після will не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i06:r3",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will нужна начальная форма глагола.",
+              "uk": "Після will потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-03:word:muggy",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — muggy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-03:word:muggy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — muggy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-03:word:muggy:audio",
+          "transcript": "muggy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-03:word:muggy:r1",
+            "targetText": "muggy",
+            "meaningByLocale": {
+              "ru": "душный и влажный — о погоде.",
+              "uk": "задушливий і вологий — про погоду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "muggy",
+          "definitionByLocale": {
+            "ru": "душный и влажный — о погоде.",
+            "uk": "задушливий і вологий — про погоду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-03:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте своё предположение: «Думаю, сегодня вечером будет душно и влажно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте своё предположение: «Думаю, сегодня вечером будет душно и влажно».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think it will be muggy tonight.",
+        "localizedMeaning": {
+          "ru": "Передайте своё предположение: «Думаю, сегодня вечером будет душно и влажно».",
+          "uk": "Передайте своє припущення: «Думаю, сьогодні ввечері буде задушливо й волого»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "it",
+          "will",
+          "be",
+          "muggy",
+          "tonight"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-03:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-03:i08:r1",
+          "text": "I think it will be muggy tonight."
+        },
+        {
+          "responseId": "en:lesson-16:session-03:i08:r2",
+          "text": "I think it will to be muggy tonight."
+        },
+        {
+          "responseId": "en:lesson-16:session-03:i08:r3",
+          "text": "I think it will is muggy tonight."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-03:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-03:i08:audio",
+          "transcript": "I think it will be muggy tonight."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-03:i08:r1",
+            "targetText": "I think it will be muggy tonight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i08:r2",
+            "targetText": "I think it will to be muggy tonight.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i08:r3",
+            "targetText": "I think it will is muggy tonight.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-03:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think it will be muggy tonight.",
+              "uk": "У записі звучить I think it will be muggy tonight."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think it will be muggy tonight.",
+              "uk": "У записі звучить I think it will be muggy tonight."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-03:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните прогноз с will",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-03:i09:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-03:i09:r2",
+          "text": "will to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-03:i09:r3",
+          "text": "will is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните прогноз с will",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните прогноз с will",
+          "uk": "Доповніть прогноз із will"
+        },
+        "gappedTargetPhrase": "I think it ___ muggy tonight.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-03:i09:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i09:r2",
+            "text": "will to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i09:r3",
+            "text": "will is"
+          }
+        ],
+        "testedDimension": "Дополните прогноз с will",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-03:i09:r2",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will не нужно to.",
+              "uk": "Після will не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i09:r3",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will нужна начальная форма глагола.",
+              "uk": "Після will потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-03:word:breezy",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — breezy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-03:word:breezy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — breezy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-03:word:breezy:audio",
+          "transcript": "breezy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-03:word:breezy:r1",
+            "targetText": "breezy",
+            "meaningByLocale": {
+              "ru": "с лёгким или умеренным ветром.",
+              "uk": "із легким або помірним вітром."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "breezy",
+          "definitionByLocale": {
+            "ru": "с лёгким или умеренным ветром.",
+            "uk": "із легким або помірним вітром."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-03:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Передайте своё предположение: «Думаю, в воскресенье будет небольшой ветер».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Передайте своё предположение: «Думаю, в воскресенье будет небольшой ветер».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I think it will be breezy on Sunday.",
+        "localizedMeaning": {
+          "ru": "Передайте своё предположение: «Думаю, в воскресенье будет небольшой ветер».",
+          "uk": "Передайте своє припущення: «Думаю, у неділю буде невеликий вітер»."
+        },
+        "orderedTokens": [
+          "I",
+          "think",
+          "it",
+          "will",
+          "be",
+          "breezy",
+          "on",
+          "Sunday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-03:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-03:i11:r1",
+          "text": "I think it will be breezy on Sunday."
+        },
+        {
+          "responseId": "en:lesson-16:session-03:i11:r2",
+          "text": "I think it will to be breezy on Sunday."
+        },
+        {
+          "responseId": "en:lesson-16:session-03:i11:r3",
+          "text": "I think it will is breezy on Sunday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-03:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-03:i11:audio",
+          "transcript": "I think it will be breezy on Sunday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-16:session-03:i11:r1",
+            "targetText": "I think it will be breezy on Sunday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i11:r2",
+            "targetText": "I think it will to be breezy on Sunday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i11:r3",
+            "targetText": "I think it will is breezy on Sunday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-03:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think it will be breezy on Sunday.",
+              "uk": "У записі звучить I think it will be breezy on Sunday."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think it will be breezy on Sunday.",
+              "uk": "У записі звучить I think it will be breezy on Sunday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-03:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дополните прогноз с will",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-16:session-03:i12:r1",
+          "text": "will be"
+        },
+        {
+          "responseId": "en:lesson-16:session-03:i12:r2",
+          "text": "will to be"
+        },
+        {
+          "responseId": "en:lesson-16:session-03:i12:r3",
+          "text": "will is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дополните прогноз с will",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дополните прогноз с will",
+          "uk": "Доповніть прогноз із will"
+        },
+        "gappedTargetPhrase": "I think it ___ breezy on Sunday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-16:session-03:i12:r1",
+            "text": "will be"
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i12:r2",
+            "text": "will to be"
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i12:r3",
+            "text": "will is"
+          }
+        ],
+        "testedDimension": "Дополните прогноз с will",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-16:session-03:i12:r2",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will не нужно to.",
+              "uk": "Після will не потрібне to."
+            }
+          },
+          {
+            "responseId": "en:lesson-16:session-03:i12:r3",
+            "correct": false,
+            "testedDimension": "Дополните прогноз с will",
+            "feedbackByLocale": {
+              "ru": "После will нужна начальная форма глагола.",
+              "uk": "Після will потрібна початкова форма дієслова."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-03:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-16:session-03:i13:p1",
+            "target": "mist",
+            "meaningByLocale": {
+              "ru": "лёгкий туман",
+              "uk": "легкий туман"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-03:i13:p2",
+            "target": "overcast",
+            "meaningByLocale": {
+              "ru": "пасмурный, с полностью затянутым облаками небом",
+              "uk": "похмурий, із повністю затягнутим хмарами небом"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-03:i13:p3",
+            "target": "muggy",
+            "meaningByLocale": {
+              "ru": "душный и влажный",
+              "uk": "задушливий і вологий"
+            }
+          },
+          {
+            "pairId": "en:lesson-16:session-03:i13:p4",
+            "target": "breezy",
+            "meaningByLocale": {
+              "ru": "с лёгким или умеренным ветром",
+              "uk": "із легким або помірним вітром"
+            }
+          }
+        ],
+        "leftColumn": [
+          "mist",
+          "overcast",
+          "muggy",
+          "breezy"
+        ],
+        "rightColumn": [
+          "лёгкий туман",
+          "пасмурный, с полностью затянутым облаками небом",
+          "душный и влажный",
+          "с лёгким или умеренным ветром"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-03:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный прогноз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-03:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный прогноз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-03:i14:audio",
+          "transcript": "I think the mist will clear soon."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I think the mist will clear soon.",
+        "orderedTokens": [
+          "I",
+          "think",
+          "the",
+          "mist",
+          "will",
+          "clear",
+          "soon"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-03:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанный прогноз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-03:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанный прогноз",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-03:i15:audio",
+          "transcript": "I think it will be muggy tonight."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I think it will be muggy tonight.",
+        "orderedTokens": [
+          "I",
+          "think",
+          "it",
+          "will",
+          "be",
+          "muggy",
+          "tonight"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-03:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите своё предположение о будущем",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-03:i16:audio"
+      ],
+      "accessibilityLabel": "Произнесите своё предположение о будущем",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-03:i16:audio",
+          "transcript": "I think it will be overcast tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I think it will be overcast tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-03:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите прогноз для друга",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-16:session-03:i17:audio"
+      ],
+      "accessibilityLabel": "Произнесите прогноз для друга",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-16:session-03:i17:audio",
+          "transcript": "I think it will be breezy on Sunday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I think it will be breezy on Sunday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "eebaaf27be8a62080d3574ba9dde0709213898965da9dc6bed3534c0551d2189"
+}

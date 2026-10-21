@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-16:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "will + base verb: prediction",
+    "uk": "will + base verb: prediction"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-16:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ваш прогноз",
+        "uk": "Ваш прогноз"
+      },
+      "bodyByLocale": {
+        "ru": "Для предположения о будущем используем will + глагол в начальной форме. Will одинаково для всех лиц. I think — «думаю»: это мнение о будущем, а не обещание или решение что-то сделать. dawn — рассвет. I think we will wake up at dawn. — Думаю, мы проснёмся на рассвете. Выберите прогноз с will.",
+        "uk": "Для припущення про майбутнє використовуємо will + дієслово в початковій формі. Will однакове для всіх осіб. I think — «думаю»: це думка про майбутнє, а не обіцянка чи рішення щось зробити. dawn — світанок. I think we will wake up at dawn. — Думаю, ми прокинемося на світанку. Виберіть прогноз із will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-02:intro1:r1",
+              "text": "I think we will wake up at dawn."
+            },
+            {
+              "responseId": "en:lesson-16:session-02:intro1:r2",
+              "text": "I think we will to wake up at dawn."
+            },
+            {
+              "responseId": "en:lesson-16:session-02:intro1:r3",
+              "text": "I think we will wakes up at dawn."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-02:intro1:r1",
+              "text": "I think we will wake up at dawn."
+            },
+            {
+              "responseId": "en:lesson-16:session-02:intro1:r2",
+              "text": "I think we will to wake up at dawn."
+            },
+            {
+              "responseId": "en:lesson-16:session-02:intro1:r3",
+              "text": "I think we will wakes up at dawn."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-16:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "После will — начальная форма",
+        "uk": "Після will — початкова форма"
+      },
+      "bodyByLocale": {
+        "ru": "dusk — сумерки перед наступлением ночи. I think we will get home at dusk. — Думаю, мы доберёмся домой в сумерках. Выберите прогноз с will.",
+        "uk": "dusk — сутінки перед настанням ночі. I think we will get home at dusk. — Думаю, ми дістанемося додому в сутінках. Виберіть прогноз із will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-02:intro2:r1",
+              "text": "I think we will get home at dusk."
+            },
+            {
+              "responseId": "en:lesson-16:session-02:intro2:r2",
+              "text": "I think we will to get home at dusk."
+            },
+            {
+              "responseId": "en:lesson-16:session-02:intro2:r3",
+              "text": "I think we will gets home at dusk."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-02:intro2:r1",
+              "text": "I think we will get home at dusk."
+            },
+            {
+              "responseId": "en:lesson-16:session-02:intro2:r2",
+              "text": "I think we will to get home at dusk."
+            },
+            {
+              "responseId": "en:lesson-16:session-02:intro2:r3",
+              "text": "I think we will gets home at dusk."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-16:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Предположение о будущем",
+        "uk": "Припущення про майбутнє"
+      },
+      "bodyByLocale": {
+        "ru": "cold spell — период холодной погоды. chance — шанс, возможность. I think we will have a chance to swim. — Думаю, у нас будет возможность поплавать. Выберите прогноз с will.",
+        "uk": "cold spell — період холодної погоди. chance — шанс, можливість. I think we will have a chance to swim. — Думаю, у нас буде можливість поплавати. Виберіть прогноз із will."
+      },
+      "question": {
+        "interactionId": "en:lesson-16:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-16:session-02:intro3:r1",
+              "text": "I think we will have a chance to swim."
+            },
+            {
+              "responseId": "en:lesson-16:session-02:intro3:r2",
+              "text": "I think we will to have a chance to swim."
+            },
+            {
+              "responseId": "en:lesson-16:session-02:intro3:r3",
+              "text": "I think we will haves a chance to swim."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-16:session-02:intro3:r1",
+              "text": "I think we will have a chance to swim."
+            },
+            {
+              "responseId": "en:lesson-16:session-02:intro3:r2",
+              "text": "I think we will to have a chance to swim."
+            },
+            {
+              "responseId": "en:lesson-16:session-02:intro3:r3",
+              "text": "I think we will haves a chance to swim."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5a39922d1a703745817c637729a69a3c772736802b2e45a0ed78b075eb9f86e0"
+}

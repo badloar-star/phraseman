@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-16:session-02:word:dawn",
+    "correctText": "dawn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-02:i01",
+    "correctText": "I think we will wake up at dawn.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-02:i02",
+    "correctText": "I think we will wake up at dawn.",
+    "correctResponseId": "en:lesson-16:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-02:i03",
+    "correctText": "will wake",
+    "correctResponseId": "en:lesson-16:session-02:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-02:word:dusk",
+    "correctText": "dusk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-02:i04",
+    "correctText": "I think we will get home at dusk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-02:i05",
+    "correctText": "I think we will get home at dusk.",
+    "correctResponseId": "en:lesson-16:session-02:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-02:i06",
+    "correctText": "will get",
+    "correctResponseId": "en:lesson-16:session-02:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-02:word:cold-spell",
+    "correctText": "cold spell",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-02:i07",
+    "correctText": "I think the cold spell will last a week.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-02:i08",
+    "correctText": "I think the cold spell will last a week.",
+    "correctResponseId": "en:lesson-16:session-02:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-02:i09",
+    "correctText": "will last",
+    "correctResponseId": "en:lesson-16:session-02:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-02:word:chance",
+    "correctText": "chance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-02:i10",
+    "correctText": "I think we will have a chance to swim.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-02:i11",
+    "correctText": "I think we will have a chance to swim.",
+    "correctResponseId": "en:lesson-16:session-02:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-02:i12",
+    "correctText": "will have",
+    "correctResponseId": "en:lesson-16:session-02:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-16:session-02:i13",
+    "correctText": "en:lesson-16:session-02:i13:p1=dawn\nen:lesson-16:session-02:i13:p2=dusk\nen:lesson-16:session-02:i13:p3=cold spell\nen:lesson-16:session-02:i13:p4=chance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-02:i14",
+    "correctText": "I think we will wake up at dawn.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-02:i15",
+    "correctText": "I think the cold spell will last a week.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-02:i16",
+    "correctText": "I think we will get home at dusk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-16:session-02:i17",
+    "correctText": "I think we will have a chance to swim.",
+    "correctResponseId": null
+  }
+]

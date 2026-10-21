@@ -5887,4 +5887,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"going to / Present Continuous: intention and arrangement","uk":"going to / Present Continuous: intention and arrangement"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 15","uk":"Англійська · Урок 15"}),
   }),
+  Object.freeze({
+    lessonOrdinal: 16, sessionOrdinal: 1,
+    sourceFingerprint: "c17e1114e45efb0c41192c4f11a5544d7a2090eea2dbe0bc9bcba66598a88d7d",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"will + base verb: prediction","uk":"will + base verb: prediction"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 16","uk":"Англійська · Урок 16"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 16, sessionOrdinal: 2,
+    sourceFingerprint: "a483ff06ee506a7fc6301dc5b37826012a724d5004275c1fd3ccc083c03cdc5f",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"will + base verb: prediction","uk":"will + base verb: prediction"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 16","uk":"Англійська · Урок 16"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 16, sessionOrdinal: 3,
+    sourceFingerprint: "0de0644435a8de35b345f998e74654e32696e569695ffa02df0b68cd3861f614",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"will + base verb: prediction","uk":"will + base verb: prediction"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 16","uk":"Англійська · Урок 16"}),
+  }),
 ]);

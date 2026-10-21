@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-16:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-16:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-03:intro1:r2": {
+          "ru": "После will не ставим to.",
+          "uk": "Після will не ставимо to."
+        },
+        "en:lesson-16:session-03:intro1:r3": {
+          "ru": "После will нужна начальная форма: clear.",
+          "uk": "Після will потрібна початкова форма: clear."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-16:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-03:intro2:r2": {
+          "ru": "После will не ставим to.",
+          "uk": "Після will не ставимо to."
+        },
+        "en:lesson-16:session-03:intro2:r3": {
+          "ru": "После will нужна начальная форма: be.",
+          "uk": "Після will потрібна початкова форма: be."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-16:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-16:session-03:intro3:r2": {
+          "ru": "После will не ставим to.",
+          "uk": "Після will не ставимо to."
+        },
+        "en:lesson-16:session-03:intro3:r3": {
+          "ru": "После will нужна начальная форма: be.",
+          "uk": "Після will потрібна початкова форма: be."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7adea4d4c7421ef561b7941083c54d9fdf9cbf8c072e01d03ee8548017cf81f7"
+}

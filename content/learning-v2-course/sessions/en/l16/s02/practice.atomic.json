@@ -1,0 +1,2361 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-16:session-02",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-16:session-02:word:dawn",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dawn",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:word:dawn:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dawn",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:word:dawn:audio",
+            "transcript": "dawn"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-02:word:dawn:r1",
+              "targetText": "dawn",
+              "meaningByLocale": {
+                "ru": "рассвет.",
+                "uk": "світанок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dawn",
+            "definitionByLocale": {
+              "ru": "рассвет.",
+              "uk": "світанок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своё предположение: «Думаю, мы проснёмся на рассвете».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своё предположение: «Думаю, мы проснёмся на рассвете».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think we will wake up at dawn.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, мы проснёмся на рассвете».",
+            "uk": "Передайте своє припущення: «Думаю, ми прокинемося на світанку»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "we",
+            "will",
+            "wake",
+            "up",
+            "at",
+            "dawn"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-02:i02:r1",
+            "text": "I think we will wake up at dawn."
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i02:r2",
+            "text": "I think we will to wake up at dawn."
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i02:r3",
+            "text": "I think we will wakes up at dawn."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:i02:audio",
+            "transcript": "I think we will wake up at dawn."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-02:i02:r1",
+              "targetText": "I think we will wake up at dawn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i02:r2",
+              "targetText": "I think we will to wake up at dawn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i02:r3",
+              "targetText": "I think we will wakes up at dawn.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-02:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think we will wake up at dawn.",
+                "uk": "У записі звучить I think we will wake up at dawn."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think we will wake up at dawn.",
+                "uk": "У записі звучить I think we will wake up at dawn."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните прогноз с will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-02:i03:r1",
+            "text": "will wake"
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i03:r2",
+            "text": "will to wake"
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i03:r3",
+            "text": "will wakes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните прогноз с will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think we ___ up at dawn.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-02:i03:r1",
+              "text": "will wake"
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i03:r2",
+              "text": "will to wake"
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i03:r3",
+              "text": "will wakes"
+            }
+          ],
+          "testedDimension": "Дополните прогноз с will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-02:i03:r2",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i03:r3",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:word:dusk",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dusk",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:word:dusk:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dusk",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:word:dusk:audio",
+            "transcript": "dusk"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-02:word:dusk:r1",
+              "targetText": "dusk",
+              "meaningByLocale": {
+                "ru": "сумерки перед наступлением ночи.",
+                "uk": "сутінки перед настанням ночі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dusk",
+            "definitionByLocale": {
+              "ru": "сумерки перед наступлением ночи.",
+              "uk": "сутінки перед настанням ночі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своё предположение: «Думаю, мы доберёмся домой в сумерках».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своё предположение: «Думаю, мы доберёмся домой в сумерках».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think we will get home at dusk.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, мы доберёмся домой в сумерках».",
+            "uk": "Передайте своє припущення: «Думаю, ми дістанемося додому в сутінках»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "we",
+            "will",
+            "get",
+            "home",
+            "at",
+            "dusk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-02:i05:r1",
+            "text": "I think we will get home at dusk."
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i05:r2",
+            "text": "I think we will to get home at dusk."
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i05:r3",
+            "text": "I think we will gets home at dusk."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:i05:audio",
+            "transcript": "I think we will get home at dusk."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-02:i05:r1",
+              "targetText": "I think we will get home at dusk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i05:r2",
+              "targetText": "I think we will to get home at dusk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i05:r3",
+              "targetText": "I think we will gets home at dusk.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-02:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think we will get home at dusk.",
+                "uk": "У записі звучить I think we will get home at dusk."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think we will get home at dusk.",
+                "uk": "У записі звучить I think we will get home at dusk."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните прогноз с will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-02:i06:r1",
+            "text": "will get"
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i06:r2",
+            "text": "will to get"
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i06:r3",
+            "text": "will gets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните прогноз с will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think we ___ home at dusk.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-02:i06:r1",
+              "text": "will get"
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i06:r2",
+              "text": "will to get"
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i06:r3",
+              "text": "will gets"
+            }
+          ],
+          "testedDimension": "Дополните прогноз с will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-02:i06:r2",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i06:r3",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:word:cold-spell",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cold spell",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:word:cold-spell:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cold spell",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:word:cold-spell:audio",
+            "transcript": "cold spell"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-02:word:cold-spell:r1",
+              "targetText": "cold spell",
+              "meaningByLocale": {
+                "ru": "период холодной погоды.",
+                "uk": "період холодної погоди."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cold spell",
+            "definitionByLocale": {
+              "ru": "период холодной погоды.",
+              "uk": "період холодної погоди."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своё предположение: «Думаю, холодная погода продержится неделю».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своё предположение: «Думаю, холодная погода продержится неделю».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think the cold spell will last a week.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, холодная погода продержится неделю».",
+            "uk": "Передайте своє припущення: «Думаю, холодна погода протримається тиждень»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "cold",
+            "spell",
+            "will",
+            "last",
+            "a",
+            "week"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-02:i08:r1",
+            "text": "I think the cold spell will last a week."
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i08:r2",
+            "text": "I think the cold spell will to last a week."
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i08:r3",
+            "text": "I think the cold spell will lasts a week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:i08:audio",
+            "transcript": "I think the cold spell will last a week."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-02:i08:r1",
+              "targetText": "I think the cold spell will last a week.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i08:r2",
+              "targetText": "I think the cold spell will to last a week.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i08:r3",
+              "targetText": "I think the cold spell will lasts a week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-02:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the cold spell will last a week.",
+                "uk": "У записі звучить I think the cold spell will last a week."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the cold spell will last a week.",
+                "uk": "У записі звучить I think the cold spell will last a week."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните прогноз с will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-02:i09:r1",
+            "text": "will last"
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i09:r2",
+            "text": "will to last"
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i09:r3",
+            "text": "will lasts"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните прогноз с will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think the cold spell ___ a week.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-02:i09:r1",
+              "text": "will last"
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i09:r2",
+              "text": "will to last"
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i09:r3",
+              "text": "will lasts"
+            }
+          ],
+          "testedDimension": "Дополните прогноз с will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-02:i09:r2",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i09:r3",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:word:chance",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — chance",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:word:chance:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — chance",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:word:chance:audio",
+            "transcript": "chance"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-02:word:chance:r1",
+              "targetText": "chance",
+              "meaningByLocale": {
+                "ru": "шанс, возможность.",
+                "uk": "шанс, можливість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "chance",
+            "definitionByLocale": {
+              "ru": "шанс, возможность.",
+              "uk": "шанс, можливість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своё предположение: «Думаю, у нас будет возможность поплавать».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своё предположение: «Думаю, у нас будет возможность поплавать».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think we will have a chance to swim.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, у нас будет возможность поплавать».",
+            "uk": "Передайте своє припущення: «Думаю, у нас буде можливість поплавати»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "we",
+            "will",
+            "have",
+            "a",
+            "chance",
+            "to",
+            "swim"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-02:i11:r1",
+            "text": "I think we will have a chance to swim."
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i11:r2",
+            "text": "I think we will to have a chance to swim."
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i11:r3",
+            "text": "I think we will haves a chance to swim."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:i11:audio",
+            "transcript": "I think we will have a chance to swim."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-02:i11:r1",
+              "targetText": "I think we will have a chance to swim.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i11:r2",
+              "targetText": "I think we will to have a chance to swim.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i11:r3",
+              "targetText": "I think we will haves a chance to swim.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-02:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think we will have a chance to swim.",
+                "uk": "У записі звучить I think we will have a chance to swim."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think we will have a chance to swim.",
+                "uk": "У записі звучить I think we will have a chance to swim."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Дополните прогноз с will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-02:i12:r1",
+            "text": "will have"
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i12:r2",
+            "text": "will to have"
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i12:r3",
+            "text": "will haves"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дополните прогноз с will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think we ___ a chance to swim.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-02:i12:r1",
+              "text": "will have"
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i12:r2",
+              "text": "will to have"
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i12:r3",
+              "text": "will haves"
+            }
+          ],
+          "testedDimension": "Дополните прогноз с will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-02:i12:r2",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i12:r3",
+              "correct": false,
+              "testedDimension": "Дополните прогноз с will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-02:i13:p1",
+              "target": "dawn",
+              "meaningByLocale": {
+                "ru": "рассвет",
+                "uk": "світанок"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-02:i13:p2",
+              "target": "dusk",
+              "meaningByLocale": {
+                "ru": "сумерки перед наступлением ночи",
+                "uk": "сутінки перед настанням ночі"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-02:i13:p3",
+              "target": "cold spell",
+              "meaningByLocale": {
+                "ru": "период холодной погоды",
+                "uk": "період холодної погоди"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-02:i13:p4",
+              "target": "chance",
+              "meaningByLocale": {
+                "ru": "шанс, возможность",
+                "uk": "шанс, можливість"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dawn",
+            "dusk",
+            "cold spell",
+            "chance"
+          ],
+          "rightColumn": [
+            "рассвет",
+            "сумерки перед наступлением ночи",
+            "период холодной погоды",
+            "шанс, возможность"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:i14:audio",
+            "transcript": "I think we will wake up at dawn."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think we will wake up at dawn.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "we",
+            "will",
+            "wake",
+            "up",
+            "at",
+            "dawn"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанный прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанный прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:i15:audio",
+            "transcript": "I think the cold spell will last a week."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think the cold spell will last a week.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "cold",
+            "spell",
+            "will",
+            "last",
+            "a",
+            "week"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Произнесите своё предположение о будущем",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:i16:audio"
+        ],
+        "accessibilityLabel": "Произнесите своё предположение о будущем",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:i16:audio",
+            "transcript": "I think we will get home at dusk."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think we will get home at dusk.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Произнесите прогноз для друга",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:i17:audio"
+        ],
+        "accessibilityLabel": "Произнесите прогноз для друга",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:i17:audio",
+            "transcript": "I think we will have a chance to swim."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think we will have a chance to swim.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-16:session-02:word:dawn",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dawn",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:word:dawn:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dawn",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:word:dawn:audio",
+            "transcript": "dawn"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-02:word:dawn:r1",
+              "targetText": "dawn",
+              "meaningByLocale": {
+                "ru": "рассвет.",
+                "uk": "світанок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dawn",
+            "definitionByLocale": {
+              "ru": "рассвет.",
+              "uk": "світанок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своє припущення: «Думаю, ми прокинемося на світанку».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своє припущення: «Думаю, ми прокинемося на світанку».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think we will wake up at dawn.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, мы проснёмся на рассвете».",
+            "uk": "Передайте своє припущення: «Думаю, ми прокинемося на світанку»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "we",
+            "will",
+            "wake",
+            "up",
+            "at",
+            "dawn"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-02:i02:r1",
+            "text": "I think we will wake up at dawn."
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i02:r2",
+            "text": "I think we will to wake up at dawn."
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i02:r3",
+            "text": "I think we will wakes up at dawn."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:i02:audio",
+            "transcript": "I think we will wake up at dawn."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-02:i02:r1",
+              "targetText": "I think we will wake up at dawn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i02:r2",
+              "targetText": "I think we will to wake up at dawn.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i02:r3",
+              "targetText": "I think we will wakes up at dawn.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-02:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think we will wake up at dawn.",
+                "uk": "У записі звучить I think we will wake up at dawn."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think we will wake up at dawn.",
+                "uk": "У записі звучить I think we will wake up at dawn."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть прогноз із will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-02:i03:r1",
+            "text": "will wake"
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i03:r2",
+            "text": "will to wake"
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i03:r3",
+            "text": "will wakes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть прогноз із will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think we ___ up at dawn.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-02:i03:r1",
+              "text": "will wake"
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i03:r2",
+              "text": "will to wake"
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i03:r3",
+              "text": "will wakes"
+            }
+          ],
+          "testedDimension": "Доповніть прогноз із will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-02:i03:r2",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i03:r3",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:word:dusk",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dusk",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:word:dusk:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dusk",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:word:dusk:audio",
+            "transcript": "dusk"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-02:word:dusk:r1",
+              "targetText": "dusk",
+              "meaningByLocale": {
+                "ru": "сумерки перед наступлением ночи.",
+                "uk": "сутінки перед настанням ночі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dusk",
+            "definitionByLocale": {
+              "ru": "сумерки перед наступлением ночи.",
+              "uk": "сутінки перед настанням ночі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своє припущення: «Думаю, ми дістанемося додому в сутінках».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своє припущення: «Думаю, ми дістанемося додому в сутінках».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think we will get home at dusk.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, мы доберёмся домой в сумерках».",
+            "uk": "Передайте своє припущення: «Думаю, ми дістанемося додому в сутінках»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "we",
+            "will",
+            "get",
+            "home",
+            "at",
+            "dusk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-02:i05:r1",
+            "text": "I think we will get home at dusk."
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i05:r2",
+            "text": "I think we will to get home at dusk."
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i05:r3",
+            "text": "I think we will gets home at dusk."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:i05:audio",
+            "transcript": "I think we will get home at dusk."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-02:i05:r1",
+              "targetText": "I think we will get home at dusk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i05:r2",
+              "targetText": "I think we will to get home at dusk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i05:r3",
+              "targetText": "I think we will gets home at dusk.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-02:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think we will get home at dusk.",
+                "uk": "У записі звучить I think we will get home at dusk."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think we will get home at dusk.",
+                "uk": "У записі звучить I think we will get home at dusk."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть прогноз із will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-02:i06:r1",
+            "text": "will get"
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i06:r2",
+            "text": "will to get"
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i06:r3",
+            "text": "will gets"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть прогноз із will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think we ___ home at dusk.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-02:i06:r1",
+              "text": "will get"
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i06:r2",
+              "text": "will to get"
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i06:r3",
+              "text": "will gets"
+            }
+          ],
+          "testedDimension": "Доповніть прогноз із will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-02:i06:r2",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i06:r3",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:word:cold-spell",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cold spell",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:word:cold-spell:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cold spell",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:word:cold-spell:audio",
+            "transcript": "cold spell"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-02:word:cold-spell:r1",
+              "targetText": "cold spell",
+              "meaningByLocale": {
+                "ru": "период холодной погоды.",
+                "uk": "період холодної погоди."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cold spell",
+            "definitionByLocale": {
+              "ru": "период холодной погоды.",
+              "uk": "період холодної погоди."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своє припущення: «Думаю, холодна погода протримається тиждень».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своє припущення: «Думаю, холодна погода протримається тиждень».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think the cold spell will last a week.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, холодная погода продержится неделю».",
+            "uk": "Передайте своє припущення: «Думаю, холодна погода протримається тиждень»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "cold",
+            "spell",
+            "will",
+            "last",
+            "a",
+            "week"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-02:i08:r1",
+            "text": "I think the cold spell will last a week."
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i08:r2",
+            "text": "I think the cold spell will to last a week."
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i08:r3",
+            "text": "I think the cold spell will lasts a week."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:i08:audio",
+            "transcript": "I think the cold spell will last a week."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-02:i08:r1",
+              "targetText": "I think the cold spell will last a week.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i08:r2",
+              "targetText": "I think the cold spell will to last a week.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i08:r3",
+              "targetText": "I think the cold spell will lasts a week.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-02:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the cold spell will last a week.",
+                "uk": "У записі звучить I think the cold spell will last a week."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think the cold spell will last a week.",
+                "uk": "У записі звучить I think the cold spell will last a week."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть прогноз із will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-02:i09:r1",
+            "text": "will last"
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i09:r2",
+            "text": "will to last"
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i09:r3",
+            "text": "will lasts"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть прогноз із will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think the cold spell ___ a week.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-02:i09:r1",
+              "text": "will last"
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i09:r2",
+              "text": "will to last"
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i09:r3",
+              "text": "will lasts"
+            }
+          ],
+          "testedDimension": "Доповніть прогноз із will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-02:i09:r2",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i09:r3",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:word:chance",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — chance",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:word:chance:audio"
+        ],
+        "accessibilityLabel": "Картка слова — chance",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:word:chance:audio",
+            "transcript": "chance"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-02:word:chance:r1",
+              "targetText": "chance",
+              "meaningByLocale": {
+                "ru": "шанс, возможность.",
+                "uk": "шанс, можливість."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "chance",
+            "definitionByLocale": {
+              "ru": "шанс, возможность.",
+              "uk": "шанс, можливість."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Передайте своє припущення: «Думаю, у нас буде можливість поплавати».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Передайте своє припущення: «Думаю, у нас буде можливість поплавати».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I think we will have a chance to swim.",
+          "localizedMeaning": {
+            "ru": "Передайте своё предположение: «Думаю, у нас будет возможность поплавать».",
+            "uk": "Передайте своє припущення: «Думаю, у нас буде можливість поплавати»."
+          },
+          "orderedTokens": [
+            "I",
+            "think",
+            "we",
+            "will",
+            "have",
+            "a",
+            "chance",
+            "to",
+            "swim"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-02:i11:r1",
+            "text": "I think we will have a chance to swim."
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i11:r2",
+            "text": "I think we will to have a chance to swim."
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i11:r3",
+            "text": "I think we will haves a chance to swim."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:i11:audio",
+            "transcript": "I think we will have a chance to swim."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-16:session-02:i11:r1",
+              "targetText": "I think we will have a chance to swim.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i11:r2",
+              "targetText": "I think we will to have a chance to swim.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i11:r3",
+              "targetText": "I think we will haves a chance to swim.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-02:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think we will have a chance to swim.",
+                "uk": "У записі звучить I think we will have a chance to swim."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I think we will have a chance to swim.",
+                "uk": "У записі звучить I think we will have a chance to swim."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Доповніть прогноз із will",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-16:session-02:i12:r1",
+            "text": "will have"
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i12:r2",
+            "text": "will to have"
+          },
+          {
+            "responseId": "en:lesson-16:session-02:i12:r3",
+            "text": "will haves"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Доповніть прогноз із will",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Дополните прогноз с will",
+            "uk": "Доповніть прогноз із will"
+          },
+          "gappedTargetPhrase": "I think we ___ a chance to swim.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-16:session-02:i12:r1",
+              "text": "will have"
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i12:r2",
+              "text": "will to have"
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i12:r3",
+              "text": "will haves"
+            }
+          ],
+          "testedDimension": "Доповніть прогноз із will",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-16:session-02:i12:r2",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will не нужно to.",
+                "uk": "Після will не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-16:session-02:i12:r3",
+              "correct": false,
+              "testedDimension": "Доповніть прогноз із will",
+              "feedbackByLocale": {
+                "ru": "После will нужна начальная форма глагола.",
+                "uk": "Після will потрібна початкова форма дієслова."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-16:session-02:i13:p1",
+              "target": "dawn",
+              "meaningByLocale": {
+                "ru": "рассвет",
+                "uk": "світанок"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-02:i13:p2",
+              "target": "dusk",
+              "meaningByLocale": {
+                "ru": "сумерки перед наступлением ночи",
+                "uk": "сутінки перед настанням ночі"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-02:i13:p3",
+              "target": "cold spell",
+              "meaningByLocale": {
+                "ru": "период холодной погоды",
+                "uk": "період холодної погоди"
+              }
+            },
+            {
+              "pairId": "en:lesson-16:session-02:i13:p4",
+              "target": "chance",
+              "meaningByLocale": {
+                "ru": "шанс, возможность",
+                "uk": "шанс, можливість"
+              }
+            }
+          ],
+          "leftColumn": [
+            "dawn",
+            "dusk",
+            "cold spell",
+            "chance"
+          ],
+          "rightColumn": [
+            "світанок",
+            "сутінки перед настанням ночі",
+            "період холодної погоди",
+            "шанс, можливість"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почутий прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почутий прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:i14:audio",
+            "transcript": "I think we will wake up at dawn."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think we will wake up at dawn.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "we",
+            "will",
+            "wake",
+            "up",
+            "at",
+            "dawn"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почутий прогноз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почутий прогноз",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:i15:audio",
+            "transcript": "I think the cold spell will last a week."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I think the cold spell will last a week.",
+          "orderedTokens": [
+            "I",
+            "think",
+            "the",
+            "cold",
+            "spell",
+            "will",
+            "last",
+            "a",
+            "week"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Промовте своє припущення про майбутнє",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:i16:audio"
+        ],
+        "accessibilityLabel": "Промовте своє припущення про майбутнє",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:i16:audio",
+            "transcript": "I think we will get home at dusk."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think we will get home at dusk.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-16:session-02:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Промовте прогноз для друга",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-16:session-02:i17:audio"
+        ],
+        "accessibilityLabel": "Промовте прогноз для друга",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-16:session-02:i17:audio",
+            "transcript": "I think we will have a chance to swim."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I think we will have a chance to swim.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-16:session-02:word:dawn",
+      "correctText": "dawn",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-02:i01",
+      "correctText": "I think we will wake up at dawn.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-02:i02",
+      "correctText": "I think we will wake up at dawn.",
+      "correctResponseId": "en:lesson-16:session-02:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-02:i03",
+      "correctText": "will wake",
+      "correctResponseId": "en:lesson-16:session-02:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-02:word:dusk",
+      "correctText": "dusk",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-02:i04",
+      "correctText": "I think we will get home at dusk.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-02:i05",
+      "correctText": "I think we will get home at dusk.",
+      "correctResponseId": "en:lesson-16:session-02:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-02:i06",
+      "correctText": "will get",
+      "correctResponseId": "en:lesson-16:session-02:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-02:word:cold-spell",
+      "correctText": "cold spell",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-02:i07",
+      "correctText": "I think the cold spell will last a week.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-02:i08",
+      "correctText": "I think the cold spell will last a week.",
+      "correctResponseId": "en:lesson-16:session-02:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-02:i09",
+      "correctText": "will last",
+      "correctResponseId": "en:lesson-16:session-02:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-02:word:chance",
+      "correctText": "chance",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-02:i10",
+      "correctText": "I think we will have a chance to swim.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-02:i11",
+      "correctText": "I think we will have a chance to swim.",
+      "correctResponseId": "en:lesson-16:session-02:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-02:i12",
+      "correctText": "will have",
+      "correctResponseId": "en:lesson-16:session-02:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-16:session-02:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-02:i14",
+      "correctText": "I think we will wake up at dawn.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-02:i15",
+      "correctText": "I think the cold spell will last a week.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-02:i16",
+      "correctText": "I think we will get home at dusk.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-16:session-02:i17",
+      "correctText": "I think we will have a chance to swim.",
+      "correctResponseId": null
+    }
+  ]
+}

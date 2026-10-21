@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-47:word:release",
+    "correctText": "release",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-47:i01",
+    "correctText": "The release is ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-47:i02",
+    "correctText": "The release is tomorrow.",
+    "correctResponseId": "en:lesson-10:session-47:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-47:i03",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-47:word:changelog",
+    "correctText": "changelog",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-47:i04",
+    "correctText": "We always read the changelog.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-47:i05",
+    "correctText": "The changelog is on the website.",
+    "correctResponseId": "en:lesson-10:session-47:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-47:i06",
+    "correctText": "read",
+    "correctResponseId": "en:lesson-10:session-47:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-47:word:hotfix",
+    "correctText": "hotfix",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-47:i07",
+    "correctText": "We are testing a hotfix.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-47:i08",
+    "correctText": "The hotfix is ready.",
+    "correctResponseId": "en:lesson-10:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-47:i09",
+    "correctText": "are",
+    "correctResponseId": "en:lesson-10:session-47:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-47:word:firmware",
+    "correctText": "firmware",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-47:i10",
+    "correctText": "We are updating the firmware.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-47:i11",
+    "correctText": "The firmware is up to date.",
+    "correctResponseId": "en:lesson-10:session-47:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-47:i12",
+    "correctText": "updating",
+    "correctResponseId": "en:lesson-10:session-47:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-47:i13",
+    "correctText": "en:lesson-10:session-47:i13:p1=release\nen:lesson-10:session-47:i13:p2=changelog\nen:lesson-10:session-47:i13:p3=hotfix\nen:lesson-10:session-47:i13:p4=firmware",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-47:i14",
+    "correctText": "We are testing a hotfix.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-47:i15",
+    "correctText": "We always read the changelog.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-47:i16",
+    "correctText": "The release is ready.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-47:i17",
+    "correctText": "We are updating the firmware.",
+    "correctResponseId": null
+  }
+]

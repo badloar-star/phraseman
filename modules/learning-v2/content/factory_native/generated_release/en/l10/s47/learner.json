@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-47",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-47:word:release",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — release",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-47:word:release:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — release",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-47:word:release:audio",
+          "transcript": "release"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-47:word:release:r1",
+            "targetText": "release",
+            "meaningByLocale": {
+              "ru": "«выпуск программы». The release is ready. — «Выпуск готов». Здесь новая версия программы.",
+              "uk": "«випуск програми». The release is ready. — «Випуск готовий». Тут нова версія програми."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "release",
+          "definitionByLocale": {
+            "ru": "«выпуск программы». The release is ready. — «Выпуск готов». Здесь новая версия программы.",
+            "uk": "«випуск програми». The release is ready. — «Випуск готовий». Тут нова версія програми."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-47:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Команда закончила подготовку новой версии. Скажите: «Выпуск готов»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Команда закончила подготовку новой версии. Скажите: «Выпуск готов»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The release is ready.",
+        "localizedMeaning": {
+          "ru": "Команда закончила подготовку новой версии. Скажите: «Выпуск готов»",
+          "uk": "Команда завершила підготовку нової версії. Скажіть: «Випуск готовий»"
+        },
+        "orderedTokens": [
+          "The",
+          "release",
+          "is",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-47:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-47:i02:r1",
+          "text": "The release is tomorrow."
+        },
+        {
+          "responseId": "en:lesson-10:session-47:i02:r2",
+          "text": "The release is today."
+        },
+        {
+          "responseId": "en:lesson-10:session-47:i02:r3",
+          "text": "The launch is tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-47:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-47:i02:audio",
+          "transcript": "The release is tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-47:i02:r1",
+            "targetText": "The release is tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i02:r2",
+            "targetText": "The release is today.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i02:r3",
+            "targetText": "The launch is tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-47:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The release is tomorrow.",
+              "uk": "У записі звучить The release is tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The release is tomorrow.",
+              "uk": "У записі звучить The release is tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-47:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь об одном выпуске. Выберите связку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-47:i03:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-47:i03:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-47:i03:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь об одном выпуске. Выберите связку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь об одном выпуске. Выберите связку",
+          "uk": "Ідеться про один випуск. Виберіть зв’язку"
+        },
+        "gappedTargetPhrase": "The release ___ ready.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-47:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i03:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Речь об одном выпуске. Выберите связку",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-47:i03:r2",
+            "correct": false,
+            "testedDimension": "Речь об одном выпуске. Выберите связку",
+            "feedbackByLocale": {
+              "ru": "Один выпуск: is.",
+              "uk": "Один випуск: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i03:r3",
+            "correct": false,
+            "testedDimension": "Речь об одном выпуске. Выберите связку",
+            "feedbackByLocale": {
+              "ru": "Am используется с I.",
+              "uk": "Am уживається з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-47:word:changelog",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — changelog",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-47:word:changelog:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — changelog",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-47:word:changelog:audio",
+          "transcript": "changelog"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-47:word:changelog:r1",
+            "targetText": "changelog",
+            "meaningByLocale": {
+              "ru": "«список изменений». We always read the changelog. — «Мы всегда читаем список изменений». В нём перечислены изменения в программе.",
+              "uk": "«список змін». We always read the changelog. — «Ми завжди читаємо список змін». У ньому перелічено зміни в програмі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "changelog",
+          "definitionByLocale": {
+            "ru": "«список изменений». We always read the changelog. — «Мы всегда читаем список изменений». В нём перечислены изменения в программе.",
+            "uk": "«список змін». We always read the changelog. — «Ми завжди читаємо список змін». У ньому перелічено зміни в програмі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-47:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Перед установкой команда всегда читает, что изменилось. Скажите: «Мы всегда читаем список изменений». Поставьте always перед read",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перед установкой команда всегда читает, что изменилось. Скажите: «Мы всегда читаем список изменений». Поставьте always перед read",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We always read the changelog.",
+        "localizedMeaning": {
+          "ru": "Перед установкой команда всегда читает, что изменилось. Скажите: «Мы всегда читаем список изменений». Поставьте always перед read",
+          "uk": "Перед установленням команда завжди читає, що змінилося. Скажіть: «Ми завжди читаємо список змін». Поставте always перед read"
+        },
+        "orderedTokens": [
+          "We",
+          "always",
+          "read",
+          "the",
+          "changelog"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-47:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-47:i05:r1",
+          "text": "The changelog is on the website."
+        },
+        {
+          "responseId": "en:lesson-10:session-47:i05:r2",
+          "text": "The changelog is in the email."
+        },
+        {
+          "responseId": "en:lesson-10:session-47:i05:r3",
+          "text": "The tutorial is on the website."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-47:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-47:i05:audio",
+          "transcript": "The changelog is on the website."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-47:i05:r1",
+            "targetText": "The changelog is on the website.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i05:r2",
+            "targetText": "The changelog is in the email.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i05:r3",
+            "targetText": "The tutorial is on the website.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-47:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The changelog is on the website.",
+              "uk": "У записі звучить The changelog is on the website."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The changelog is on the website.",
+              "uk": "У записі звучить The changelog is on the website."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-47:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Это привычка команды. Выберите форму read",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-47:i06:r1",
+          "text": "read"
+        },
+        {
+          "responseId": "en:lesson-10:session-47:i06:r2",
+          "text": "reads"
+        },
+        {
+          "responseId": "en:lesson-10:session-47:i06:r3",
+          "text": "reading"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Это привычка команды. Выберите форму read",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Это привычка команды. Выберите форму read",
+          "uk": "Це звичка команди. Виберіть форму read"
+        },
+        "gappedTargetPhrase": "We always ___ the changelog.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-47:i06:r1",
+            "text": "read"
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i06:r2",
+            "text": "reads"
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i06:r3",
+            "text": "reading"
+          }
+        ],
+        "testedDimension": "Это привычка команды. Выберите форму read",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-47:i06:r2",
+            "correct": false,
+            "testedDimension": "Это привычка команды. Выберите форму read",
+            "feedbackByLocale": {
+              "ru": "С we нужна read без s.",
+              "uk": "З we потрібна read без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i06:r3",
+            "correct": false,
+            "testedDimension": "Это привычка команды. Выберите форму read",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна read, не причастие reading.",
+              "uk": "Тут потрібна read, не дієприкметник reading."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-47:word:hotfix",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hotfix",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-47:word:hotfix:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hotfix",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-47:word:hotfix:audio",
+          "transcript": "hotfix"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-47:word:hotfix:r1",
+            "targetText": "hotfix",
+            "meaningByLocale": {
+              "ru": "«срочное исправление». We are testing a hotfix. — «Мы тестируем срочное исправление». Отдельное исправление ошибки в программе.",
+              "uk": "«термінове виправлення». We are testing a hotfix. — «Ми тестуємо термінове виправлення». Окреме виправлення помилки в програмі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hotfix",
+          "definitionByLocale": {
+            "ru": "«срочное исправление». We are testing a hotfix. — «Мы тестируем срочное исправление». Отдельное исправление ошибки в программе.",
+            "uk": "«термінове виправлення». We are testing a hotfix. — «Ми тестуємо термінове виправлення». Окреме виправлення помилки в програмі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-47:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сейчас вы проверяете срочное исправление ошибки. Скажите: «Мы тестируем срочное исправление»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сейчас вы проверяете срочное исправление ошибки. Скажите: «Мы тестируем срочное исправление»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are testing a hotfix.",
+        "localizedMeaning": {
+          "ru": "Сейчас вы проверяете срочное исправление ошибки. Скажите: «Мы тестируем срочное исправление»",
+          "uk": "Зараз ви перевіряєте термінове виправлення помилки. Скажіть: «Ми тестуємо термінове виправлення»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "testing",
+          "a",
+          "hotfix"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-47:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-47:i08:r1",
+          "text": "The hotfix is ready."
+        },
+        {
+          "responseId": "en:lesson-10:session-47:i08:r2",
+          "text": "The hotfix is late."
+        },
+        {
+          "responseId": "en:lesson-10:session-47:i08:r3",
+          "text": "The release is ready."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-47:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-47:i08:audio",
+          "transcript": "The hotfix is ready."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-47:i08:r1",
+            "targetText": "The hotfix is ready.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i08:r2",
+            "targetText": "The hotfix is late.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i08:r3",
+            "targetText": "The release is ready.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-47:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The hotfix is ready.",
+              "uk": "У записі звучить The hotfix is ready."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The hotfix is ready.",
+              "uk": "У записі звучить The hotfix is ready."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-47:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Проверка идёт сейчас. Выберите вспомогательный глагол",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-47:i09:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-47:i09:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-47:i09:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Проверка идёт сейчас. Выберите вспомогательный глагол",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Проверка идёт сейчас. Выберите вспомогательный глагол",
+          "uk": "Перевірка триває зараз. Виберіть допоміжне дієслово"
+        },
+        "gappedTargetPhrase": "We ___ testing a hotfix.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-47:i09:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i09:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i09:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Проверка идёт сейчас. Выберите вспомогательный глагол",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-47:i09:r2",
+            "correct": false,
+            "testedDimension": "Проверка идёт сейчас. Выберите вспомогательный глагол",
+            "feedbackByLocale": {
+              "ru": "С we нужна are.",
+              "uk": "З we потрібна are."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i09:r3",
+            "correct": false,
+            "testedDimension": "Проверка идёт сейчас. Выберите вспомогательный глагол",
+            "feedbackByLocale": {
+              "ru": "Am используется с I.",
+              "uk": "Am уживається з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-47:word:firmware",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — firmware",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-47:word:firmware:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — firmware",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-47:word:firmware:audio",
+          "transcript": "firmware"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-47:word:firmware:r1",
+            "targetText": "firmware",
+            "meaningByLocale": {
+              "ru": "«прошивка». We are updating the firmware. — «Мы обновляем прошивку». Встроенное программное обеспечение устройства.",
+              "uk": "«прошивка». We are updating the firmware. — «Ми оновлюємо прошивку». Вбудоване програмне забезпечення пристрою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "firmware",
+          "definitionByLocale": {
+            "ru": "«прошивка». We are updating the firmware. — «Мы обновляем прошивку». Встроенное программное обеспечение устройства.",
+            "uk": "«прошивка». We are updating the firmware. — «Ми оновлюємо прошивку». Вбудоване програмне забезпечення пристрою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-47:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сейчас вы устанавливаете новую прошивку устройства. Скажите: «Мы обновляем прошивку»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сейчас вы устанавливаете новую прошивку устройства. Скажите: «Мы обновляем прошивку»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are updating the firmware.",
+        "localizedMeaning": {
+          "ru": "Сейчас вы устанавливаете новую прошивку устройства. Скажите: «Мы обновляем прошивку»",
+          "uk": "Зараз ви встановлюєте нову прошивку пристрою. Скажіть: «Ми оновлюємо прошивку»"
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "updating",
+          "the",
+          "firmware"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-47:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-47:i11:r1",
+          "text": "The firmware is up to date."
+        },
+        {
+          "responseId": "en:lesson-10:session-47:i11:r2",
+          "text": "The firmware is out of date."
+        },
+        {
+          "responseId": "en:lesson-10:session-47:i11:r3",
+          "text": "The website is up to date."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-47:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-47:i11:audio",
+          "transcript": "The firmware is up to date."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-47:i11:r1",
+            "targetText": "The firmware is up to date.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i11:r2",
+            "targetText": "The firmware is out of date.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i11:r3",
+            "targetText": "The website is up to date.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-47:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The firmware is up to date.",
+              "uk": "У записі звучить The firmware is up to date."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The firmware is up to date.",
+              "uk": "У записі звучить The firmware is up to date."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-47:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите правильное написание формы update",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-47:i12:r1",
+          "text": "updating"
+        },
+        {
+          "responseId": "en:lesson-10:session-47:i12:r2",
+          "text": "updateing"
+        },
+        {
+          "responseId": "en:lesson-10:session-47:i12:r3",
+          "text": "update"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите правильное написание формы update",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильное написание формы update",
+          "uk": "Виберіть правильне написання форми update"
+        },
+        "gappedTargetPhrase": "We are ___ the firmware.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-47:i12:r1",
+            "text": "updating"
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i12:r2",
+            "text": "updateing"
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i12:r3",
+            "text": "update"
+          }
+        ],
+        "testedDimension": "Выберите правильное написание формы update",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-47:i12:r2",
+            "correct": false,
+            "testedDimension": "Выберите правильное написание формы update",
+            "feedbackByLocale": {
+              "ru": "Перед ing убираем e: updating.",
+              "uk": "Перед ing прибираємо e: updating."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-47:i12:r3",
+            "correct": false,
+            "testedDimension": "Выберите правильное написание формы update",
+            "feedbackByLocale": {
+              "ru": "После are для текущего действия нужна updating.",
+              "uk": "Після are для поточної дії потрібна updating."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-47:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-47:i13:p1",
+            "target": "release",
+            "meaningByLocale": {
+              "ru": "выпуск программы",
+              "uk": "випуск програми"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-47:i13:p2",
+            "target": "changelog",
+            "meaningByLocale": {
+              "ru": "список изменений",
+              "uk": "список змін"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-47:i13:p3",
+            "target": "hotfix",
+            "meaningByLocale": {
+              "ru": "срочное исправление",
+              "uk": "термінове виправлення"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-47:i13:p4",
+            "target": "firmware",
+            "meaningByLocale": {
+              "ru": "прошивка",
+              "uk": "прошивка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "release",
+          "changelog",
+          "hotfix",
+          "firmware"
+        ],
+        "rightColumn": [
+          "выпуск программы",
+          "список изменений",
+          "срочное исправление",
+          "прошивка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-47:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-47:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-47:i14:audio",
+          "transcript": "We are testing a hotfix."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are testing a hotfix.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "testing",
+          "a",
+          "hotfix"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-47:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Коллега спрашивает, читаете ли вы список изменений перед установкой. Скажите: «Мы всегда читаем список изменений»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-47:i15:audio"
+      ],
+      "accessibilityLabel": "Коллега спрашивает, читаете ли вы список изменений перед установкой. Скажите: «Мы всегда читаем список изменений»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-47:i15:audio",
+          "transcript": "We always read the changelog."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We always read the changelog.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-47:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Коллега спрашивает, готова ли новая версия. Скажите: «Выпуск готов»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коллега спрашивает, готова ли новая версия. Скажите: «Выпуск готов»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The release is ready.",
+        "localizedMeaning": {
+          "ru": "Коллега спрашивает, готова ли новая версия. Скажите: «Выпуск готов»",
+          "uk": "Колега запитує, чи готова нова версія. Скажіть: «Випуск готовий»"
+        },
+        "orderedTokens": [
+          "The",
+          "release",
+          "is",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-47:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы с коллегой устанавливаете прошивку устройства. Руководитель спрашивает, чем вы сейчас заняты. Скажите: «Мы обновляем прошивку»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-47:i17:audio"
+      ],
+      "accessibilityLabel": "Вы с коллегой устанавливаете прошивку устройства. Руководитель спрашивает, чем вы сейчас заняты. Скажите: «Мы обновляем прошивку»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-47:i17:audio",
+          "transcript": "We are updating the firmware."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are updating the firmware.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "83d47834ec12f87597ee14090ca99d529d89e4270d9a4b4587cbe4d2a44274de"
+}

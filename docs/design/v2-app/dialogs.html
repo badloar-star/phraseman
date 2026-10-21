@@ -413,7 +413,7 @@ const consentSheet = () => sheet('c', `
   <div class="quiet t" data-close>Не сейчас</div><!-- зачем (владелец 13.10 «кнопки не сливаются»): вторичная «Не сейчас» — пилюля-поверхность слоя kit.css; в коде пока текст без подложки (dialogs-009) — догоняют Темы, №35 -->`, true);
 const gateOff = () => phone(`
   <div class="flex"><span class="rb l t">${icon('back', 's20')}</span></div>
-  <div class="gate"><div class="big">${li('sparkOff')}</div><div class="ti">AI-диалоги выключены</div><div class="p">AI-диалоги выключены в настройках приватности. Их можно включить в любой момент.</div>
+  <div class="gate"><div class="big">${li('sparkOff')}</div><div class="ti">Включите разговоры с ИИ</div><div class="p">AI-диалоги выключены в настройках приватности. Их можно включить в любой момент.</div>
     <div class="cta t">Включить</div><div class="cta gh t">Настройки приватности</div><div class="quiet t" style="margin-top:18px">Назад</div></div>`, { time: '13:01' });
 const noEnergy = () => `<div class="dim on"></div><div class="modal on"><div class="h center"><span class="big">${icon('boltF')}</span>Недостаточно энергии</div><div class="p center">Для разговора нужно 1 <span style="display:inline-flex;vertical-align:-2px">${icon('boltF', 's16')}</span>. У тебя: 0. Plus открывает безлимит.</div><div class="btns"><div class="cta gh t">Позже</div><div class="cta t">Получить Plus</div></div></div>`;
 

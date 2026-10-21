@@ -734,6 +734,12 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   'custom_card_milestone_outbox_v1:',
   'learning_v2_owner_repository:v1:',
   'learning_v2_coin_exchange_outbox:v1:',
+  // зачем (Ревизор к 69aeaff8d): сохранённый эпизод «продолжить с задания N из M» (до 7 дней), колоды словаря для
+  // тренировки и срок режима «Не могу говорить» — данные этого человека: стираются и переносятся вместе с аккаунтом,
+  // иначе после удаления аккаунта эпизод жил бы на телефоне до 7 дней и достался следующему.
+  'learning_v2_episode_resume_v1:',
+  'learning_v2_dictionary_training_decks_v1',
+  'learning_v2_cant_speak_until_v1',
   // Client-authoritative pearl journal and its crash/sync bookkeeping.
   'client_shard_operation_v1:',
   'client_shard_ledger_state_v1:',

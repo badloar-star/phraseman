@@ -49,6 +49,10 @@ const SERVICE_KEYS: ReadonlySet<string> = new Set([
   // ключей хранилища с префиксом cloud_ ровно три — cloud_migration_v1, cloud_last_sync_snapshot_v1 и этот.
   'cloud_created_at_synced_v1',
   'friends_push_v1',
+  // зачем (Ревизор к 69aeaff8d): срок режима «Не могу говорить» и временные колоды словаря для тренировки — служебные
+  // следы, не прогресс. Сохранённый эпизод (learning_v2_episode_resume_v1:*) намеренно НЕ здесь — это прогресс.
+  'learning_v2_cant_speak_until_v1',
+  'learning_v2_dictionary_training_decks_v1',
 ]);
 
 /** Дни активности { anchor, bits }: не больше одного дня (сегодня) — след установки, не прогресс. */

@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-03:word:collector",
+      "interactionId": "en:lesson-10:session-03:word:suburb",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — collector",
+      "prompt": "Картка слова — suburb",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-03:word:collector:audio"
+        "en:lesson-10:session-03:word:suburb:audio"
       ],
-      "accessibilityLabel": "Картка слова — collector",
+      "accessibilityLabel": "Картка слова — suburb",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-03:word:collector:audio",
-          "transcript": "collector"
+          "audioTargetId": "en:lesson-10:session-03:word:suburb:audio",
+          "transcript": "suburb"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-03:word:collector:r1",
-            "targetText": "collector",
+            "responseId": "en:lesson-10:session-03:word:suburb:r1",
+            "targetText": "suburb",
             "meaningByLocale": {
-              "ru": "«коллекционер». I am a collector. — «Я коллекционер». Человек, который собирает определённые предметы как хобби.",
-              "uk": "«колекціонер». I am a collector. — «Я колекціонер». Людина, яка збирає певні предмети як хобі."
+              "ru": "«пригород». He lives in a suburb. — «Он живёт в пригороде».",
+              "uk": "«передмістя». He lives in a suburb. — «Він живе в передмісті»."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "collector",
+          "word": "suburb",
           "definitionByLocale": {
-            "ru": "«коллекционер». I am a collector. — «Я коллекционер». Человек, который собирает определённые предметы как хобби.",
-            "uk": "«колекціонер». I am a collector. — «Я колекціонер». Людина, яка збирає певні предмети як хобі."
+            "ru": "«пригород». He lives in a suburb. — «Он живёт в пригороде».",
+            "uk": "«передмістя». He lives in a suburb. — «Він живе в передмісті»."
           }
         }
       },
@@ -52,23 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Новий знайомий запитує, чому у вас стільки марок. Представтеся: «Я колекціонер»",
+      "prompt": "Розкажіть, де живе друг: «Він живе в передмісті»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Новий знайомий запитує, чому у вас стільки марок. Представтеся: «Я колекціонер»",
+      "accessibilityLabel": "Розкажіть, де живе друг: «Він живе в передмісті»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am a collector.",
+        "targetPhrase": "He lives in a suburb.",
         "localizedMeaning": {
-          "ru": "Новый знакомый спрашивает, почему у вас столько марок. Представьтесь: «Я коллекционер»",
-          "uk": "Новий знайомий запитує, чому у вас стільки марок. Представтеся: «Я колекціонер»"
+          "ru": "Расскажите, где живёт друг: «Он живёт в пригороде»",
+          "uk": "Розкажіть, де живе друг: «Він живе в передмісті»"
         },
         "orderedTokens": [
-          "I",
-          "am",
+          "He",
+          "lives",
+          "in",
           "a",
-          "collector"
+          "suburb"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -89,15 +90,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-03:i02:r1",
-          "text": "I collect stamps."
+          "text": "She lives in a quiet suburb."
         },
         {
           "responseId": "en:lesson-10:session-03:i02:r2",
-          "text": "I collect coins."
+          "text": "He lives in a quiet suburb."
         },
         {
           "responseId": "en:lesson-10:session-03:i02:r3",
-          "text": "She collects stamps."
+          "text": "She works in a quiet suburb."
         }
       ],
       "mediaIds": [],
@@ -109,23 +110,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-03:i02:audio",
-          "transcript": "I collect stamps."
+          "transcript": "She lives in a quiet suburb."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-03:i02:r1",
-            "targetText": "I collect stamps.",
+            "targetText": "She lives in a quiet suburb.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-03:i02:r2",
-            "targetText": "I collect coins.",
+            "targetText": "He lives in a quiet suburb.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-03:i02:r3",
-            "targetText": "She collects stamps.",
+            "targetText": "She works in a quiet suburb.",
             "meaningByLocale": null
           }
         ],
@@ -136,8 +137,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I collect stamps.",
-              "uk": "У записі звучить I collect stamps."
+              "ru": "В записи звучит She lives in a quiet suburb.",
+              "uk": "У записі звучить She lives in a quiet suburb."
             }
           },
           {
@@ -145,8 +146,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I collect stamps.",
-              "uk": "У записі звучить I collect stamps."
+              "ru": "В записи звучит She lives in a quiet suburb.",
+              "uk": "У записі звучить She lives in a quiet suburb."
             }
           }
         ],
@@ -161,63 +162,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму collect для хобі з I",
+      "prompt": "Виберіть форму live після he",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-03:i03:r1",
-          "text": "collect"
+          "text": "lives"
         },
         {
           "responseId": "en:lesson-10:session-03:i03:r2",
-          "text": "collects"
+          "text": "live"
         },
         {
           "responseId": "en:lesson-10:session-03:i03:r3",
-          "text": "collecting"
+          "text": "living"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму collect для хобі з I",
+      "accessibilityLabel": "Виберіть форму live після he",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму collect для хобби с I",
-          "uk": "Виберіть форму collect для хобі з I"
+          "ru": "Выберите форму live после he",
+          "uk": "Виберіть форму live після he"
         },
-        "gappedTargetPhrase": "I ___ stamps.",
+        "gappedTargetPhrase": "He ___ in a suburb.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-03:i03:r1",
-            "text": "collect"
+            "text": "lives"
           },
           {
             "responseId": "en:lesson-10:session-03:i03:r2",
-            "text": "collects"
+            "text": "live"
           },
           {
             "responseId": "en:lesson-10:session-03:i03:r3",
-            "text": "collecting"
+            "text": "living"
           }
         ],
-        "testedDimension": "Виберіть форму collect для хобі з I",
+        "testedDimension": "Виберіть форму live після he",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-03:i03:r2",
             "correct": false,
-            "testedDimension": "Виберіть форму collect для хобі з I",
+            "testedDimension": "Виберіть форму live після he",
             "feedbackByLocale": {
-              "ru": "С I не добавляем -s.",
-              "uk": "З I не додаємо -s."
+              "ru": "После he нужна lives с s.",
+              "uk": "Після he потрібна lives із s."
             }
           },
           {
             "responseId": "en:lesson-10:session-03:i03:r3",
             "correct": false,
-            "testedDimension": "Виберіть форму collect для хобі з I",
+            "testedDimension": "Виберіть форму live після he",
             "feedbackByLocale": {
-              "ru": "Для хобби здесь нужна collect.",
-              "uk": "Для хобі тут потрібна collect."
+              "ru": "О месте жительства здесь говорим lives.",
+              "uk": "Про місце проживання тут говоримо lives."
             }
           }
         ]
@@ -225,32 +226,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-03:word:stamp-album",
+      "interactionId": "en:lesson-10:session-03:word:downtown",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — stamp album",
+      "prompt": "Картка слова — downtown",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-03:word:stamp-album:audio"
+        "en:lesson-10:session-03:word:downtown:audio"
       ],
-      "accessibilityLabel": "Картка слова — stamp album",
+      "accessibilityLabel": "Картка слова — downtown",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-03:word:stamp-album:audio",
-          "transcript": "stamp album"
+          "audioTargetId": "en:lesson-10:session-03:word:downtown:audio",
+          "transcript": "downtown"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-03:word:stamp-album:r1",
-            "targetText": "stamp album",
+            "responseId": "en:lesson-10:session-03:word:downtown:r1",
+            "targetText": "downtown",
             "meaningByLocale": {
-              "ru": "«альбом для марок». I am opening the stamp album. — «Я открываю альбом для марок». Альбом для хранения и показа коллекции.",
-              "uk": "«альбом для марок». I am opening the stamp album. — «Я відкриваю альбом для марок». Альбом для зберігання й показу колекції."
+              "ru": "«в центре города». I work downtown. — «Я работаю в центре города».",
+              "uk": "«у центрі міста». I work downtown. — «Я працюю в центрі міста»."
             }
           }
         ],
@@ -258,10 +259,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "stamp album",
+          "word": "downtown",
           "definitionByLocale": {
-            "ru": "«альбом для марок». I am opening the stamp album. — «Я открываю альбом для марок». Альбом для хранения и показа коллекции.",
-            "uk": "«альбом для марок». I am opening the stamp album. — «Я відкриваю альбом для марок». Альбом для зберігання й показу колекції."
+            "ru": "«в центре города». I work downtown. — «Я работаю в центре города».",
+            "uk": "«у центрі міста». I work downtown. — «Я працюю в центрі міста»."
           }
         }
       },
@@ -273,25 +274,22 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг чекає, коли ви покажете колекцію. Скажіть: «Я відкриваю альбом для марок»",
+      "prompt": "Розкажіть про місце своєї роботи: «Я працюю в центрі міста»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг чекає, коли ви покажете колекцію. Скажіть: «Я відкриваю альбом для марок»",
+      "accessibilityLabel": "Розкажіть про місце своєї роботи: «Я працюю в центрі міста»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am opening the stamp album.",
+        "targetPhrase": "I work downtown.",
         "localizedMeaning": {
-          "ru": "Друг ждёт, когда вы покажете коллекцию. Скажите: «Я открываю альбом для марок»",
-          "uk": "Друг чекає, коли ви покажете колекцію. Скажіть: «Я відкриваю альбом для марок»"
+          "ru": "Расскажите о месте своей работы: «Я работаю в центре города»",
+          "uk": "Розкажіть про місце своєї роботи: «Я працюю в центрі міста»"
         },
         "orderedTokens": [
           "I",
-          "am",
-          "opening",
-          "the",
-          "stamp",
-          "album"
+          "work",
+          "downtown"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -312,15 +310,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-03:i05:r1",
-          "text": "The stamp album is on the shelf."
+          "text": "They work downtown."
         },
         {
           "responseId": "en:lesson-10:session-03:i05:r2",
-          "text": "The stamp album is under the shelf."
+          "text": "We work downtown."
         },
         {
           "responseId": "en:lesson-10:session-03:i05:r3",
-          "text": "The notebook is on the shelf."
+          "text": "They live downtown."
         }
       ],
       "mediaIds": [],
@@ -332,23 +330,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-03:i05:audio",
-          "transcript": "The stamp album is on the shelf."
+          "transcript": "They work downtown."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-03:i05:r1",
-            "targetText": "The stamp album is on the shelf.",
+            "targetText": "They work downtown.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-03:i05:r2",
-            "targetText": "The stamp album is under the shelf.",
+            "targetText": "We work downtown.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-03:i05:r3",
-            "targetText": "The notebook is on the shelf.",
+            "targetText": "They live downtown.",
             "meaningByLocale": null
           }
         ],
@@ -359,8 +357,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The stamp album is on the shelf.",
-              "uk": "У записі звучить The stamp album is on the shelf."
+              "ru": "В записи звучит They work downtown.",
+              "uk": "У записі звучить They work downtown."
             }
           },
           {
@@ -368,8 +366,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The stamp album is on the shelf.",
-              "uk": "У записі звучить The stamp album is on the shelf."
+              "ru": "В записи звучит They work downtown.",
+              "uk": "У записі звучить They work downtown."
             }
           }
         ],
@@ -384,63 +382,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму open після am",
+      "prompt": "Виберіть форму work після I",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-03:i06:r1",
-          "text": "opening"
+          "text": "work"
         },
         {
           "responseId": "en:lesson-10:session-03:i06:r2",
-          "text": "open"
+          "text": "works"
         },
         {
           "responseId": "en:lesson-10:session-03:i06:r3",
-          "text": "opens"
+          "text": "working"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму open після am",
+      "accessibilityLabel": "Виберіть форму work після I",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму open после am",
-          "uk": "Виберіть форму open після am"
+          "ru": "Выберите форму work после I",
+          "uk": "Виберіть форму work після I"
         },
-        "gappedTargetPhrase": "I am ___ the stamp album.",
+        "gappedTargetPhrase": "I ___ downtown.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-03:i06:r1",
-            "text": "opening"
+            "text": "work"
           },
           {
             "responseId": "en:lesson-10:session-03:i06:r2",
-            "text": "open"
+            "text": "works"
           },
           {
             "responseId": "en:lesson-10:session-03:i06:r3",
-            "text": "opens"
+            "text": "working"
           }
         ],
-        "testedDimension": "Виберіть форму open після am",
+        "testedDimension": "Виберіть форму work після I",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-03:i06:r2",
             "correct": false,
-            "testedDimension": "Виберіть форму open після am",
+            "testedDimension": "Виберіть форму work після I",
             "feedbackByLocale": {
-              "ru": "После am нужна opening.",
-              "uk": "Після am потрібна opening."
+              "ru": "После I нужна work без s.",
+              "uk": "Після I потрібна work без s."
             }
           },
           {
             "responseId": "en:lesson-10:session-03:i06:r3",
             "correct": false,
-            "testedDimension": "Виберіть форму open після am",
+            "testedDimension": "Виберіть форму work після I",
             "feedbackByLocale": {
-              "ru": "Opens не употребляется после am.",
-              "uk": "Opens не вживається після am."
+              "ru": "О постоянной работе здесь говорим work.",
+              "uk": "Про постійну роботу тут говоримо work."
             }
           }
         ]
@@ -448,32 +446,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-03:word:postmark",
+      "interactionId": "en:lesson-10:session-03:word:outskirts",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — postmark",
+      "prompt": "Картка слова — outskirts",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-03:word:postmark:audio"
+        "en:lesson-10:session-03:word:outskirts:audio"
       ],
-      "accessibilityLabel": "Картка слова — postmark",
+      "accessibilityLabel": "Картка слова — outskirts",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-03:word:postmark:audio",
-          "transcript": "postmark"
+          "audioTargetId": "en:lesson-10:session-03:word:outskirts:audio",
+          "transcript": "outskirts"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-03:word:postmark:r1",
-            "targetText": "postmark",
+            "responseId": "en:lesson-10:session-03:word:outskirts:r1",
+            "targetText": "outskirts",
             "meaningByLocale": {
-              "ru": "«почтовый штемпель». I am looking at the postmark. — «Я рассматриваю почтовый штемпель». Отметка почты на отправлении, часто с датой.",
-              "uk": "«поштовий штемпель». I am looking at the postmark. — «Я розглядаю поштовий штемпель». Позначка пошти на відправленні, часто з датою."
+              "ru": "«окраина». on the outskirts — «на окраине».",
+              "uk": "«околиця». on the outskirts — «на околиці»."
             }
           }
         ],
@@ -481,10 +479,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "postmark",
+          "word": "outskirts",
           "definitionByLocale": {
-            "ru": "«почтовый штемпель». I am looking at the postmark. — «Я рассматриваю почтовый штемпель». Отметка почты на отправлении, часто с датой.",
-            "uk": "«поштовий штемпель». I am looking at the postmark. — «Я розглядаю поштовий штемпель». Позначка пошти на відправленні, часто з датою."
+            "ru": "«окраина». on the outskirts — «на окраине».",
+            "uk": "«околиця». on the outskirts — «на околиці»."
           }
         }
       },
@@ -496,25 +494,25 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг запитує, що ви розглядаєте на конверті. Скажіть: «Я розглядаю поштовий штемпель»",
+      "prompt": "Магазин біля краю міста. Скажіть: «Магазин на околиці»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг запитує, що ви розглядаєте на конверті. Скажіть: «Я розглядаю поштовий штемпель»",
+      "accessibilityLabel": "Магазин біля краю міста. Скажіть: «Магазин на околиці»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I am looking at the postmark.",
+        "targetPhrase": "The shop is on the outskirts.",
         "localizedMeaning": {
-          "ru": "Друг спрашивает, что вы рассматриваете на конверте. Скажите: «Я рассматриваю почтовый штемпель»",
-          "uk": "Друг запитує, що ви розглядаєте на конверті. Скажіть: «Я розглядаю поштовий штемпель»"
+          "ru": "Магазин у края города. Скажите: «Магазин на окраине»",
+          "uk": "Магазин біля краю міста. Скажіть: «Магазин на околиці»"
         },
         "orderedTokens": [
-          "I",
-          "am",
-          "looking",
-          "at",
+          "The",
+          "shop",
+          "is",
+          "on",
           "the",
-          "postmark"
+          "outskirts"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -535,15 +533,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-03:i08:r1",
-          "text": "The postmark is clear."
+          "text": "The hotel is on the outskirts."
         },
         {
           "responseId": "en:lesson-10:session-03:i08:r2",
-          "text": "The postmark is small."
+          "text": "The shop is on the outskirts."
         },
         {
           "responseId": "en:lesson-10:session-03:i08:r3",
-          "text": "The address is clear."
+          "text": "The hotel is downtown."
         }
       ],
       "mediaIds": [],
@@ -555,23 +553,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-03:i08:audio",
-          "transcript": "The postmark is clear."
+          "transcript": "The hotel is on the outskirts."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-03:i08:r1",
-            "targetText": "The postmark is clear.",
+            "targetText": "The hotel is on the outskirts.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-03:i08:r2",
-            "targetText": "The postmark is small.",
+            "targetText": "The shop is on the outskirts.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-03:i08:r3",
-            "targetText": "The address is clear.",
+            "targetText": "The hotel is downtown.",
             "meaningByLocale": null
           }
         ],
@@ -582,8 +580,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The postmark is clear.",
-              "uk": "У записі звучить The postmark is clear."
+              "ru": "В записи звучит The hotel is on the outskirts.",
+              "uk": "У записі звучить The hotel is on the outskirts."
             }
           },
           {
@@ -591,8 +589,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The postmark is clear.",
-              "uk": "У записі звучить The postmark is clear."
+              "ru": "В записи звучит The hotel is on the outskirts.",
+              "uk": "У записі звучить The hotel is on the outskirts."
             }
           }
         ],
@@ -607,11 +605,11 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть прийменник у look at — дивитися на",
+      "prompt": "Пригадайте сполучення «на околиці»",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-03:i09:r1",
-          "text": "at"
+          "text": "on"
         },
         {
           "responseId": "en:lesson-10:session-03:i09:r2",
@@ -619,23 +617,23 @@
         },
         {
           "responseId": "en:lesson-10:session-03:i09:r3",
-          "text": "to"
+          "text": "under"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть прийменник у look at — дивитися на",
+      "accessibilityLabel": "Пригадайте сполучення «на околиці»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите предлог в look at — смотреть на",
-          "uk": "Виберіть прийменник у look at — дивитися на"
+          "ru": "Вспомните сочетание «на окраине»",
+          "uk": "Пригадайте сполучення «на околиці»"
         },
-        "gappedTargetPhrase": "I am looking ___ the postmark.",
+        "gappedTargetPhrase": "The shop is ___ the outskirts.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-03:i09:r1",
-            "text": "at"
+            "text": "on"
           },
           {
             "responseId": "en:lesson-10:session-03:i09:r2",
@@ -643,27 +641,27 @@
           },
           {
             "responseId": "en:lesson-10:session-03:i09:r3",
-            "text": "to"
+            "text": "under"
           }
         ],
-        "testedDimension": "Виберіть прийменник у look at — дивитися на",
+        "testedDimension": "Пригадайте сполучення «на околиці»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-03:i09:r2",
             "correct": false,
-            "testedDimension": "Виберіть прийменник у look at — дивитися на",
+            "testedDimension": "Пригадайте сполучення «на околиці»",
             "feedbackByLocale": {
-              "ru": "В выражении look at нужен at.",
-              "uk": "У виразі look at потрібний at."
+              "ru": "В изученном сочетании нужна on: on the outskirts.",
+              "uk": "У вивченому сполученні потрібне on: on the outskirts."
             }
           },
           {
             "responseId": "en:lesson-10:session-03:i09:r3",
             "correct": false,
-            "testedDimension": "Виберіть прийменник у look at — дивитися на",
+            "testedDimension": "Пригадайте сполучення «на околиці»",
             "feedbackByLocale": {
-              "ru": "Здесь смотрят на отметку: look at.",
-              "uk": "Тут дивляться на позначку: look at."
+              "ru": "Under значит «под», здесь нужна on.",
+              "uk": "Under означає «під», тут потрібне on."
             }
           }
         ]
@@ -671,32 +669,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-03:word:watermark",
+      "interactionId": "en:lesson-10:session-03:word:shore",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — watermark",
+      "prompt": "Картка слова — shore",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-03:word:watermark:audio"
+        "en:lesson-10:session-03:word:shore:audio"
       ],
-      "accessibilityLabel": "Картка слова — watermark",
+      "accessibilityLabel": "Картка слова — shore",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-03:word:watermark:audio",
-          "transcript": "watermark"
+          "audioTargetId": "en:lesson-10:session-03:word:shore:audio",
+          "transcript": "shore"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-03:word:watermark:r1",
-            "targetText": "watermark",
+            "responseId": "en:lesson-10:session-03:word:shore:r1",
+            "targetText": "shore",
             "meaningByLocale": {
-              "ru": "«водяной знак». I can see a watermark. — «Я вижу водяной знак». Здесь рисунок в бумаге, заметный на просвет.",
-              "uk": "«водяний знак». I can see a watermark. — «Я бачу водяний знак». Тут малюнок у папері, помітний на просвіт."
+              "ru": "«берег» моря или озера. along the shore — «вдоль берега».",
+              "uk": "«берег» моря або озера. along the shore — «вздовж берега»."
             }
           }
         ],
@@ -704,10 +702,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "watermark",
+          "word": "shore",
           "definitionByLocale": {
-            "ru": "«водяной знак». I can see a watermark. — «Я вижу водяной знак». Здесь рисунок в бумаге, заметный на просвет.",
-            "uk": "«водяний знак». I can see a watermark. — «Я бачу водяний знак». Тут малюнок у папері, помітний на просвіт."
+            "ru": "«берег» моря или озера. along the shore — «вдоль берега».",
+            "uk": "«берег» моря або озера. along the shore — «вздовж берега»."
           }
         }
       },
@@ -719,24 +717,25 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви тримаєте папір перед світлом і бачите малюнок усередині нього. Повідомте другові: «Я бачу водяний знак»",
+      "prompt": "Ви гуляєте вздовж озера зараз. Скажіть: «Ми гуляємо вздовж берега»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви тримаєте папір перед світлом і бачите малюнок усередині нього. Повідомте другові: «Я бачу водяний знак»",
+      "accessibilityLabel": "Ви гуляєте вздовж озера зараз. Скажіть: «Ми гуляємо вздовж берега»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I can see a watermark.",
+        "targetPhrase": "We are walking along the shore.",
         "localizedMeaning": {
-          "ru": "Вы держите бумагу перед светом и видите рисунок внутри неё. Сообщите другу: «Я вижу водяной знак»",
-          "uk": "Ви тримаєте папір перед світлом і бачите малюнок усередині нього. Повідомте другові: «Я бачу водяний знак»"
+          "ru": "Вы гуляете вдоль озера сейчас. Скажите: «Мы гуляем вдоль берега»",
+          "uk": "Ви гуляєте вздовж озера зараз. Скажіть: «Ми гуляємо вздовж берега»"
         },
         "orderedTokens": [
-          "I",
-          "can",
-          "see",
-          "a",
-          "watermark"
+          "We",
+          "are",
+          "walking",
+          "along",
+          "the",
+          "shore"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -757,15 +756,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-03:i11:r1",
-          "text": "The watermark is small."
+          "text": "She is sitting on the shore."
         },
         {
           "responseId": "en:lesson-10:session-03:i11:r2",
-          "text": "The watermark is large."
+          "text": "He is sitting on the shore."
         },
         {
           "responseId": "en:lesson-10:session-03:i11:r3",
-          "text": "The postmark is small."
+          "text": "She is walking along the shore."
         }
       ],
       "mediaIds": [],
@@ -777,23 +776,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-03:i11:audio",
-          "transcript": "The watermark is small."
+          "transcript": "She is sitting on the shore."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-03:i11:r1",
-            "targetText": "The watermark is small.",
+            "targetText": "She is sitting on the shore.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-03:i11:r2",
-            "targetText": "The watermark is large.",
+            "targetText": "He is sitting on the shore.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-03:i11:r3",
-            "targetText": "The postmark is small.",
+            "targetText": "She is walking along the shore.",
             "meaningByLocale": null
           }
         ],
@@ -804,8 +803,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The watermark is small.",
-              "uk": "У записі звучить The watermark is small."
+              "ru": "В записи звучит She is sitting on the shore.",
+              "uk": "У записі звучить She is sitting on the shore."
             }
           },
           {
@@ -813,8 +812,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The watermark is small.",
-              "uk": "У записі звучить The watermark is small."
+              "ru": "В записи звучит She is sitting on the shore.",
+              "uk": "У записі звучить She is sitting on the shore."
             }
           }
         ],
@@ -829,63 +828,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть артикль перед одним watermark",
+      "prompt": "Прогулянка триває зараз. Виберіть форму walk",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-03:i12:r1",
-          "text": "a"
+          "text": "walking"
         },
         {
           "responseId": "en:lesson-10:session-03:i12:r2",
-          "text": "an"
+          "text": "walk"
         },
         {
           "responseId": "en:lesson-10:session-03:i12:r3",
-          "text": "am"
+          "text": "walks"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть артикль перед одним watermark",
+      "accessibilityLabel": "Прогулянка триває зараз. Виберіть форму walk",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите артикль перед одним watermark",
-          "uk": "Виберіть артикль перед одним watermark"
+          "ru": "Прогулка идёт сейчас. Выберите форму walk",
+          "uk": "Прогулянка триває зараз. Виберіть форму walk"
         },
-        "gappedTargetPhrase": "I can see ___ watermark.",
+        "gappedTargetPhrase": "We are ___ along the shore.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-03:i12:r1",
-            "text": "a"
+            "text": "walking"
           },
           {
             "responseId": "en:lesson-10:session-03:i12:r2",
-            "text": "an"
+            "text": "walk"
           },
           {
             "responseId": "en:lesson-10:session-03:i12:r3",
-            "text": "am"
+            "text": "walks"
           }
         ],
-        "testedDimension": "Виберіть артикль перед одним watermark",
+        "testedDimension": "Прогулянка триває зараз. Виберіть форму walk",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-03:i12:r2",
             "correct": false,
-            "testedDimension": "Виберіть артикль перед одним watermark",
+            "testedDimension": "Прогулянка триває зараз. Виберіть форму walk",
             "feedbackByLocale": {
-              "ru": "Watermark начинается с согласного звука: a.",
-              "uk": "Watermark починається з приголосного звука: a."
+              "ru": "После are нужна walking.",
+              "uk": "Після are потрібна walking."
             }
           },
           {
             "responseId": "en:lesson-10:session-03:i12:r3",
             "correct": false,
-            "testedDimension": "Виберіть артикль перед одним watermark",
+            "testedDimension": "Прогулянка триває зараз. Виберіть форму walk",
             "feedbackByLocale": {
-              "ru": "Am не артикль; нужен a.",
-              "uk": "Am не артикль; потрібний a."
+              "ru": "После are нужна walking, не walks.",
+              "uk": "Після are потрібна walking, не walks."
             }
           }
         ]
@@ -898,58 +897,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте нові слова зі значеннями",
+      "prompt": "Поєднайте слова з перекладом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "accessibilityLabel": "Поєднайте слова з перекладом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-03:i13:p1",
-            "target": "collector",
+            "target": "suburb",
             "meaningByLocale": {
-              "ru": "коллекционер",
-              "uk": "колекціонер"
+              "ru": "пригород",
+              "uk": "передмістя"
             }
           },
           {
             "pairId": "en:lesson-10:session-03:i13:p2",
-            "target": "stamp album",
+            "target": "downtown",
             "meaningByLocale": {
-              "ru": "альбом для марок",
-              "uk": "альбом для марок"
+              "ru": "в центре города",
+              "uk": "у центрі міста"
             }
           },
           {
             "pairId": "en:lesson-10:session-03:i13:p3",
-            "target": "postmark",
+            "target": "outskirts",
             "meaningByLocale": {
-              "ru": "почтовый штемпель",
-              "uk": "поштовий штемпель"
+              "ru": "окраина",
+              "uk": "околиця"
             }
           },
           {
             "pairId": "en:lesson-10:session-03:i13:p4",
-            "target": "watermark",
+            "target": "shore",
             "meaningByLocale": {
-              "ru": "водяной знак",
-              "uk": "водяний знак"
+              "ru": "берег озера",
+              "uk": "берег озера"
             }
           }
         ],
         "leftColumn": [
-          "collector",
-          "stamp album",
-          "postmark",
-          "watermark"
+          "suburb",
+          "downtown",
+          "outskirts",
+          "shore"
         ],
         "rightColumn": [
-          "колекціонер",
-          "альбом для марок",
-          "поштовий штемпель",
-          "водяний знак"
+          "передмістя",
+          "у центрі міста",
+          "околиця",
+          "берег озера"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -971,28 +970,25 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання про дію зараз",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-03:i14:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання про дію зараз",
+      "accessibilityLabel": "Складіть почуту фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-03:i14:audio",
-          "transcript": "Are you opening the stamp album?"
+          "transcript": "I work downtown."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Are you opening the stamp album?",
+        "hiddenTargetPhrase": "I work downtown.",
         "orderedTokens": [
-          "Are",
-          "you",
-          "opening",
-          "the",
-          "stamp",
-          "album"
+          "I",
+          "work",
+          "downtown"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1006,24 +1002,62 @@
     {
       "interactionId": "en:lesson-10:session-03:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Знайомий запитує про ваше хобі. Скажіть: «Я колекціоную марки»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-03:i15:audio"
       ],
-      "accessibilityLabel": "Знайомий запитує про ваше хобі. Скажіть: «Я колекціоную марки»",
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-03:i15:audio",
+          "transcript": "We are walking along the shore."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are walking along the shore.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "walking",
+          "along",
+          "the",
+          "shore"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-03:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Колега запитує, де ваша робота. Скажіть: «Я працюю в центрі міста»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-03:i16:audio"
+      ],
+      "accessibilityLabel": "Колега запитує, де ваша робота. Скажіть: «Я працюю в центрі міста»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-03:i15:audio",
-          "transcript": "I collect stamps."
+          "audioTargetId": "en:lesson-10:session-03:i16:audio",
+          "transcript": "I work downtown."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I collect stamps.",
+        "targetPhrase": "I work downtown.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1037,73 +1071,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-03:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Друг думає, що ви прибираєте альбом, але ви продовжуєте показ. Скажіть: «Я не закриваю альбом для марок»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Друг думає, що ви прибираєте альбом, але ви продовжуєте показ. Скажіть: «Я не закриваю альбом для марок»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am not closing the stamp album.",
-        "localizedMeaning": {
-          "ru": "Друг думает, что вы убираете альбом, но вы продолжаете показ. Скажите: «Я не закрываю альбом для марок»",
-          "uk": "Друг думає, що ви прибираєте альбом, але ви продовжуєте показ. Скажіть: «Я не закриваю альбом для марок»"
-        },
-        "orderedTokens": [
-          "I",
-          "am",
-          "not",
-          "closing",
-          "the",
-          "stamp",
-          "album"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-03:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви колекціонуєте марки, а зараз розглядаєте позначку пошти на старому конверті. Друг запитує: «Що ти робиш?» Дайте відповідь: «Я розглядаю поштовий штемпель»",
+      "prompt": "Друг телефонує під час прогулянки біля озера. Скажіть: «Ми гуляємо вздовж берега»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-03:i17:audio"
       ],
-      "accessibilityLabel": "Ви колекціонуєте марки, а зараз розглядаєте позначку пошти на старому конверті. Друг запитує: «Що ти робиш?» Дайте відповідь: «Я розглядаю поштовий штемпель»",
+      "accessibilityLabel": "Друг телефонує під час прогулянки біля озера. Скажіть: «Ми гуляємо вздовж берега»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-03:i17:audio",
-          "transcript": "I am looking at the postmark."
+          "transcript": "We are walking along the shore."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I am looking at the postmark.",
+        "targetPhrase": "We are walking along the shore.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1120,5 +1110,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "956ccdb5d50c7c3165941e975c9f0a1ad43ce9f873966cfd8265fb697db106df"
+  "learnerFingerprint": "f914541faafcae4cfc16885dafe2a69c98295c93fe836d8867462f5254ed2bf8"
 }

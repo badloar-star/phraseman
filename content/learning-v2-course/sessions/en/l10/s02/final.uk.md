@@ -1,152 +1,151 @@
-# Англійська · Урок 10 · Заняття 2 — Риболовля: звичка й сьогоднішні плани
+# Англійська · Урок 10 · Заняття 2 — На вокзалі й в аеропорту
 
-**Ситуація.** Розповісти про звичну риболовлю й пояснити, що ви робите зі спорядженням зараз.
+**Ситуація.** Вибрати потяг без пересадок, купити квиток і показати документи під час посадки.
 
-**Що ви опануєте:** I usually fish here; I am cleaning the reel; I am sitting by the river
-**Нові слова:** reel, tackle, waders, landing net
-**Повторення:** fish (6.41), usually, sit → sitting
+**Що ви опануєте:** I need a direct train; I am showing my boarding pass; This is my hand luggage
+**Нові слова:** direct, single ticket, boarding pass, hand luggage
 
 ## Інтро 1
 
-### Зазвичай ловлю, зараз чищу
+### Без пересадок, в один бік
 
-Сусід зустрічає вас біля річки. Зазвичай ви тут ловите рибу: I usually fish here — «Я зазвичай рибалю тут». Usually ставимо перед fish. Але зараз вудка лежить на березі: ви чистите котушку, на яку намотується волосінь. Reel — «риболовна котушка». I am cleaning the reel — «Я чищу котушку». Звичне заняття — fish, дія зараз — am cleaning.
+У касі ви шукаєте потяг без пересадок. Direct — «прямий, без пересадок»: I need a direct train — «Мені потрібен прямий потяг». Назад ви поїдете пізніше іншим маршрутом. Single ticket — «квиток в один бік»: I need a single ticket. Need описує потребу, тому без am. Раніше ви вчили return ticket — квиток туди й назад; single ticket включає лише один бік.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I am cleaning the reel.**
-- ❌ I cleaning the reel. — *Перед cleaning з I потрібне am.*
-- ❌ I am clean the reel. — *Після am потрібна форма cleaning.*
+- ✅ **I need a direct train.**
+- ❌ I needs a direct train. — *Після I потрібна need.*
+- ❌ I am need a direct train. — *Тут потрібна need без am.*
 
 ---
 
 ## Інтро 2
 
-### Зібрати снасті
+### Перед посадкою в літак
 
-Друг запитує, чому ви ще вдома. Ви перевіряєте рибальське спорядження — tackle: гачки, волосінь та інше приладдя. I am checking the tackle — «Я перевіряю снасті». Tackle у цьому значенні незлічуване: не кажемо a tackle про набір снастей. Зазвичай ви тримаєте їх у коробці: I keep my tackle in a box. Звичне місце зберігання — keep; перевірка зараз — am checking.
+Біля виходу на посадку працівник перевіряє документ із вашим місцем і рейсом. Boarding pass — «посадковий талон»: I am showing my boarding pass — «Я показую свій посадковий талон». Ви тримаєте його перед працівником саме зараз: am showing. Це не паспорт і не просто підтвердження купівлі квитка.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I am checking the tackle.**
-- ❌ I am checking a tackle. — *Про снасті tackle незлічуване, a не потрібний.*
-- ❌ I checking the tackle. — *З I перед checking потрібне am.*
+- ✅ **I am showing my boarding pass.**
+- ❌ I showing my boarding pass. — *Перед showing потрібна am.*
+- ❌ I am show my boarding pass. — *Після am потрібна showing.*
 
 ---
 
 ## Інтро 3
 
-### Не кожен візит — риболовля
+### Сумка із собою в салон
 
-Сьогодні ви прийшли до річки без вудки й відпочиваєте на березі. Друг телефонує й запитує, чи ловите ви рибу. I am not fishing. I am sitting by the river — «Я не рибалю. Я сиджу біля річки». Зазвичай ви тут рибалите, але зараз просто сидите. У sitting подвоюємо t. Заперечення not ставимо після am.
+Працівник показує на невелику сумку, яку ви берете в салон. Hand luggage — «ручна поклажа»: This is my hand luggage — «Це моя ручна поклажа». Hand luggage — одна назва з двох слів. У цьому реченні luggage не ставимо в множину й використовуємо is.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I am sitting by the river.**
-- ❌ I am siting by the river. — *У формі sit з -ing дві t: sitting.*
-- ❌ I sitting by the river. — *З I перед sitting потрібне am.*
+- ✅ **This is my hand luggage.**
+- ❌ This are my hand luggage. — *Після this потрібна is.*
+- ❌ This my hand luggage. — *Після this потрібна зв’язка is.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — reel**
-<!-- interaction_id: en:lesson-10:session-02:word:reel; family: word_card -->
-> **reel** — «риболовна котушка». I am cleaning the reel. — «Я чищу котушку». На неї намотується волосінь.
+**1 · Картка слова — direct**
+<!-- interaction_id: en:lesson-10:session-02:word:direct; family: word_card -->
+> **direct** — «прямий, без пересадок». a direct train — «прямий потяг».
 
-**2 · Сусід бачить котушку у вас у руках. Скажіть: «Я чищу котушку»**
+**2 · Вам потрібен потяг без пересадок. Скажіть про це в касі**
 <!-- interaction_id: en:lesson-10:session-02:i01; family: phrase_builder -->
-Плитки: `reel` `the` `cleaning` `am` `I` → **I am cleaning the reel.**
+Плитки: `train` `direct` `a` `need` `I` → **I need a direct train.**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-02:i02; family: listen_choose -->
-🔊 *I usually fish here.* → **I usually fish here.** · I usually swim here. · She usually fishes here.
-- I usually swim here. — *У записі звучить I usually fish here.*
-- She usually fishes here. — *У записі звучить I usually fish here.*
+🔊 *This is a direct flight.* → **This is a direct flight.** · This is a direct train. · That is a direct flight.
+- This is a direct train. — *У записі звучить This is a direct flight.*
+- That is a direct flight. — *У записі звучить This is a direct flight.*
 
-**4 · Виберіть форму fish для звички з I**
+**4 · Виберіть форму need після I**
 <!-- interaction_id: en:lesson-10:session-02:i03; family: context_gap_grammar -->
-I usually ___ here. → **fish** · fishes · fishing
-- fishes — *З I не додаємо -es.*
-- fishing — *Для цієї звички потрібна fish, не fishing.*
+I ___ a direct train. → **need** · needs · needing
+- needs — *Після I потрібна need.*
+- needing — *Потребу виражаємо формою need.*
 
-**5 · Картка слова — tackle**
-<!-- interaction_id: en:lesson-10:session-02:word:tackle; family: word_card -->
-> **tackle** — «рибальські снасті». I am checking the tackle. — «Я перевіряю снасті». Гачки, волосінь та інше приладдя; незлічуване слово.
+**5 · Картка слова — single ticket**
+<!-- interaction_id: en:lesson-10:session-02:word:single-ticket; family: word_card -->
+> **single ticket** — «квиток в один бік». I need a single ticket. — «Мені потрібен квиток в один бік».
 
-**6 · Друг запитує, що ви перевіряєте перед риболовлею. Скажіть: «Я перевіряю снасті»**
+**6 · Зворотна поїздка поки не потрібна. Скажіть: «Мені потрібен квиток в один бік»**
 <!-- interaction_id: en:lesson-10:session-02:i04; family: phrase_builder -->
-Плитки: `tackle` `the` `checking` `am` `I` → **I am checking the tackle.**
+Плитки: `ticket` `single` `a` `need` `I` → **I need a single ticket.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-02:i05; family: listen_choose -->
-🔊 *My tackle is in the box.* → **My tackle is in the box.** · My tackle is under the box. · My lunch is in the box.
-- My tackle is under the box. — *У записі звучить My tackle is in the box.*
-- My lunch is in the box. — *У записі звучить My tackle is in the box.*
+🔊 *She needs a single ticket.* → **She needs a single ticket.** · She needs a return ticket. · He needs a single ticket.
+- She needs a return ticket. — *У записі звучить She needs a single ticket.*
+- He needs a single ticket. — *У записі звучить She needs a single ticket.*
 
-**8 · Виберіть зв’язку для незлічуваного tackle**
+**8 · Виберіть форму need після she**
 <!-- interaction_id: en:lesson-10:session-02:i06; family: context_gap_grammar -->
-My tackle ___ in the box. → **is** · are · am
-- are — *Tackle — незлічуване; тут is.*
-- am — *Am уживається з I.*
+She ___ a single ticket. → **needs** · need · needing
+- need — *Після she потрібна needs із s.*
+- needing — *Тут потрібна особова форма needs.*
 
-**9 · Картка слова — waders**
-<!-- interaction_id: en:lesson-10:session-02:word:waders; family: word_card -->
-> **waders** — «забродні штани з чоботами». My waders are wet. — «Мої забродні штани мокрі». Водонепроникний одяг для заходу у воду; слово у множині.
+**9 · Картка слова — boarding pass**
+<!-- interaction_id: en:lesson-10:session-02:word:boarding-pass; family: word_card -->
+> **boarding pass** — «посадковий талон». my boarding pass — «мій посадковий талон».
 
-**10 · Ви вийшли з води; забродні штани мокрі зовні. Скажіть: «Мої забродні штани мокрі»**
+**10 · Працівник дивиться на документ у вас у руці. Скажіть: «Я показую свій посадковий талон»**
 <!-- interaction_id: en:lesson-10:session-02:i07; family: phrase_builder -->
-Плитки: `wet` `are` `waders` `My` → **My waders are wet.**
+Плитки: `pass` `boarding` `my` `showing` `am` `I` → **I am showing my boarding pass.**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-02:i08; family: listen_choose -->
-🔊 *He is wearing waders.* → **He is wearing waders.** · He is not wearing waders. · She is wearing waders.
-- He is not wearing waders. — *У записі звучить He is wearing waders.*
-- She is wearing waders. — *У записі звучить He is wearing waders.*
+🔊 *He is showing his boarding pass.* → **He is showing his boarding pass.** · He is showing his passport. · She is showing her boarding pass.
+- He is showing his passport. — *У записі звучить He is showing his boarding pass.*
+- She is showing her boarding pass. — *У записі звучить He is showing his boarding pass.*
 
-**12 · Виберіть зв’язку для waders**
+**12 · Дія триває зараз. Виберіть форму show**
 <!-- interaction_id: en:lesson-10:session-02:i09; family: context_gap_grammar -->
-My waders ___ wet. → **are** · is · am
-- is — *Waders у множині: are.*
-- am — *Am уживається з I.*
+I am ___ my boarding pass. → **showing** · show · shows
+- show — *Після am потрібна showing.*
+- shows — *Після am потрібна showing, не shows.*
 
-**13 · Картка слова — landing net**
-<!-- interaction_id: en:lesson-10:session-02:word:landing-net; family: word_card -->
-> **landing net** — «підсак». The landing net is by the river. — «Підсак біля річки». Сітка на обручі з ручкою, якою підхоплюють спійману рибу.
+**13 · Картка слова — hand luggage**
+<!-- interaction_id: en:lesson-10:session-02:word:hand-luggage; family: word_card -->
+> **hand luggage** — «ручна поклажа». This is my hand luggage. — «Це моя ручна поклажа».
 
-**14 · Друг шукає підсак. Скажіть: «Підсак біля річки»**
+**14 · Покажіть на сумку для салону: «Це моя ручна поклажа»**
 <!-- interaction_id: en:lesson-10:session-02:i10; family: phrase_builder -->
-Плитки: `river` `the` `by` `is` `net` `landing` `The` → **The landing net is by the river.**
+Плитки: `luggage` `hand` `my` `is` `This` → **This is my hand luggage.**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-02:i11; family: listen_choose -->
-🔊 *I am carrying the landing net.* → **I am carrying the landing net.** · I am cleaning the landing net. · She is carrying the landing net.
-- I am cleaning the landing net. — *У записі звучить I am carrying the landing net.*
-- She is carrying the landing net. — *У записі звучить I am carrying the landing net.*
+🔊 *My hand luggage is light.* → **My hand luggage is light.** · My hand luggage is heavy. · Your hand luggage is light.
+- My hand luggage is heavy. — *У записі звучить My hand luggage is light.*
+- Your hand luggage is light. — *У записі звучить My hand luggage is light.*
 
-**16 · Виберіть написання sit з -ing**
+**16 · Виберіть зв’язку після this**
 <!-- interaction_id: en:lesson-10:session-02:i12; family: context_gap_grammar -->
-I am ___ by the river. → **sitting** · siting · sit
-- siting — *Для sit подвоюємо t: sitting.*
-- sit — *Після am потрібна форма sitting.*
+This ___ my hand luggage. → **is** · are · am
+- are — *Після this потрібна is.*
+- am — *Am уживається з I.*
 
-**17 · З’єднайте нові слова зі значеннями**
+**17 · Поєднайте назви з перекладом**
 <!-- interaction_id: en:lesson-10:session-02:i13; family: speed_match -->
-reel — риболовна котушка · tackle — рибальські снасті · waders — забродні штани з чоботами · landing net — підсак
+direct — без пересадок · single ticket — квиток в один бік · boarding pass — посадковий талон · hand luggage — ручна поклажа
 
-**18 · Послухайте й складіть запитання про дію зараз**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-02:i14; family: listen_build_dictation -->
-🔊 *Are you cleaning the reel?* Плитки: `reel` `the` `cleaning` `you` `Are` → **Are you cleaning the reel?**
+🔊 *I need a single ticket.* Плитки: `ticket` `single` `a` `need` `I` → **I need a single ticket.**
 
-**19 · Сусід запитує, чи часто ви рибалите в цьому місці. Скажіть: «Я зазвичай рибалю тут»**
-<!-- interaction_id: en:lesson-10:session-02:i15; family: scripted_repeat_compare -->
-🎙 **I usually fish here.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-02:i15; family: listen_build_dictation -->
+🔊 *This is my hand luggage.* Плитки: `luggage` `hand` `my` `is` `This` → **This is my hand luggage.**
 
-**20 · Ви сидите на березі без вудки. Друг думає, що ви ловите рибу. Скажіть: «Я не рибалю»**
-<!-- interaction_id: en:lesson-10:session-02:i16; family: phrase_builder -->
-Плитки: `fishing` `not` `am` `I` → **I am not fishing.**
+**20 · Касир запитує, який маршрут вам потрібен. Скажіть: «Мені потрібен прямий потяг»**
+<!-- interaction_id: en:lesson-10:session-02:i16; family: scripted_repeat_compare -->
+🎙 **I need a direct train.**
 
-**21 · Зазвичай ви рибалите на річці, але сьогодні сидите на березі без снастей. Друг телефонує: «Що ти робиш?» Дайте відповідь: «Я сиджу біля річки»**
-<!-- interaction_id: en:lesson-10:session-02:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I am sitting by the river.**
+**21 · Працівник запитує про сумку для салону. Скажіть: «Це моя ручна поклажа»**
+<!-- interaction_id: en:lesson-10:session-02:i17; family: scripted_repeat_compare -->
+🎙 **This is my hand luggage.**
 

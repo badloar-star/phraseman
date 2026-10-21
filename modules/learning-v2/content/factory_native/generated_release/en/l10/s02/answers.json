@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-02:word:reel",
-    "correctText": "reel",
+    "interactionId": "en:lesson-10:session-02:word:direct",
+    "correctText": "direct",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-02:i01",
-    "correctText": "I am cleaning the reel.",
+    "correctText": "I need a direct train.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-02:i02",
-    "correctText": "I usually fish here.",
+    "correctText": "This is a direct flight.",
     "correctResponseId": "en:lesson-10:session-02:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-02:i03",
-    "correctText": "fish",
+    "correctText": "need",
     "correctResponseId": "en:lesson-10:session-02:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-02:word:tackle",
-    "correctText": "tackle",
+    "interactionId": "en:lesson-10:session-02:word:single-ticket",
+    "correctText": "single ticket",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-02:i04",
-    "correctText": "I am checking the tackle.",
+    "correctText": "I need a single ticket.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-02:i05",
-    "correctText": "My tackle is in the box.",
+    "correctText": "She needs a single ticket.",
     "correctResponseId": "en:lesson-10:session-02:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-02:i06",
-    "correctText": "is",
+    "correctText": "needs",
     "correctResponseId": "en:lesson-10:session-02:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-02:word:waders",
-    "correctText": "waders",
+    "interactionId": "en:lesson-10:session-02:word:boarding-pass",
+    "correctText": "boarding pass",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-02:i07",
-    "correctText": "My waders are wet.",
+    "correctText": "I am showing my boarding pass.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-02:i08",
-    "correctText": "He is wearing waders.",
+    "correctText": "He is showing his boarding pass.",
     "correctResponseId": "en:lesson-10:session-02:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-02:i09",
-    "correctText": "are",
+    "correctText": "showing",
     "correctResponseId": "en:lesson-10:session-02:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-02:word:landing-net",
-    "correctText": "landing net",
+    "interactionId": "en:lesson-10:session-02:word:hand-luggage",
+    "correctText": "hand luggage",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-02:i10",
-    "correctText": "The landing net is by the river.",
+    "correctText": "This is my hand luggage.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-02:i11",
-    "correctText": "I am carrying the landing net.",
+    "correctText": "My hand luggage is light.",
     "correctResponseId": "en:lesson-10:session-02:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-02:i12",
-    "correctText": "sitting",
+    "correctText": "is",
     "correctResponseId": "en:lesson-10:session-02:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-02:i13",
-    "correctText": "en:lesson-10:session-02:i13:p1=reel\nen:lesson-10:session-02:i13:p2=tackle\nen:lesson-10:session-02:i13:p3=waders\nen:lesson-10:session-02:i13:p4=landing net",
+    "correctText": "en:lesson-10:session-02:i13:p1=direct\nen:lesson-10:session-02:i13:p2=single ticket\nen:lesson-10:session-02:i13:p3=boarding pass\nen:lesson-10:session-02:i13:p4=hand luggage",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-02:i14",
-    "correctText": "Are you cleaning the reel?",
+    "correctText": "I need a single ticket.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-02:i15",
-    "correctText": "I usually fish here.",
+    "correctText": "This is my hand luggage.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-02:i16",
-    "correctText": "I am not fishing.",
+    "correctText": "I need a direct train.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-02:i17",
-    "correctText": "I am sitting by the river.",
+    "correctText": "This is my hand luggage.",
     "correctResponseId": null
   }
 ]

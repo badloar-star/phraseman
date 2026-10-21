@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-03:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-03:intro1:r2": {
-          "ru": "С I употребляем collect без -s.",
-          "uk": "З I вживаємо collect без -s."
+          "ru": "После he нужна lives с s.",
+          "uk": "Після he потрібна lives із s."
         },
         "en:lesson-10:session-03:intro1:r3": {
-          "ru": "Для хобби здесь нужна I collect; am collect неверно.",
-          "uk": "Для хобі тут потрібне I collect; am collect неправильно."
+          "ru": "Для места жительства здесь нужна lives.",
+          "uk": "Для місця проживання тут потрібна lives."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-03:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-03:intro2:r2": {
-          "ru": "С I перед opening нужно am.",
-          "uk": "З I перед opening потрібне am."
+          "ru": "После I нужна work без s.",
+          "uk": "Після I потрібна work без s."
         },
         "en:lesson-10:session-03:intro2:r3": {
-          "ru": "После am нужна форма opening.",
-          "uk": "Після am потрібна форма opening."
+          "ru": "О постоянной работе здесь говорим work без am.",
+          "uk": "Про постійну роботу тут говоримо work без am."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-03:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-03:intro3:r2": {
-          "ru": "После am нужна форма looking.",
-          "uk": "Після am потрібна форма looking."
+          "ru": "Перед walking нужна are.",
+          "uk": "Перед walking потрібна are."
         },
         "en:lesson-10:session-03:intro3:r3": {
-          "ru": "Перед looking с I нужно am.",
-          "uk": "Перед looking з I потрібне am."
+          "ru": "После are нужна walking.",
+          "uk": "Після are потрібна walking."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "6e6aef1e5caa97ca66c2c15d0da0bd07b0d0e80a461a9e841c93234513aa227f"
+  "auxiliaryFingerprint": "78fa781cc973bc4d0500ceb432cbbcc4cbbe84dd27c0c1969e051489c8336cf1"
 }

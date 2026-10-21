@@ -3544,16 +3544,16 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 2,
-    sourceFingerprint: "1bbae32a6ecb3c4ce60b17d9137797b638f096006451b7bded676ae1821350d8",
+    sourceFingerprint: "eb1c7eca8f40b6d3b74ebe0d70ced2b31213ca92d0967494ce725d08c04f79f8",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I usually fish here; I am cleaning the reel; I am sitting by the river","uk":"I usually fish here; I am cleaning the reel; I am sitting by the river"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I need a direct train; I am showing my boarding pass; This is my hand luggage","uk":"I need a direct train; I am showing my boarding pass; This is my hand luggage"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 3,
-    sourceFingerprint: "ea2c36b793347a9f068922c6e9c656ee4c066809767583d5b0a6323b0f85f1b9",
+    sourceFingerprint: "a44f12351e07edd6385b1c7b790790e6658ee87611c7662cfefcbb3b59750602",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I collect stamps; I am looking at the postmark","uk":"I collect stamps; I am looking at the postmark"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"He lives in a suburb; I work downtown; We are walking along the shore","uk":"He lives in a suburb; I work downtown; We are walking along the shore"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({

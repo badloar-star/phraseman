@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-02:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-02:intro1:r2": {
-          "ru": "Перед cleaning с I нужно am.",
-          "uk": "Перед cleaning з I потрібне am."
+          "ru": "После I нужна need.",
+          "uk": "Після I потрібна need."
         },
         "en:lesson-10:session-02:intro1:r3": {
-          "ru": "После am нужна форма cleaning.",
-          "uk": "Після am потрібна форма cleaning."
+          "ru": "Здесь нужна need без am.",
+          "uk": "Тут потрібна need без am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-02:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-02:intro2:r2": {
-          "ru": "О снастях tackle неисчисляемое, a не нужен.",
-          "uk": "Про снасті tackle незлічуване, a не потрібний."
+          "ru": "Перед showing нужна am.",
+          "uk": "Перед showing потрібна am."
         },
         "en:lesson-10:session-02:intro2:r3": {
-          "ru": "С I перед checking нужно am.",
-          "uk": "З I перед checking потрібне am."
+          "ru": "После am нужна showing.",
+          "uk": "Після am потрібна showing."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-02:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-02:intro3:r2": {
-          "ru": "В форме sit с -ing две t: sitting.",
-          "uk": "У формі sit з -ing дві t: sitting."
+          "ru": "После this нужна is.",
+          "uk": "Після this потрібна is."
         },
         "en:lesson-10:session-02:intro3:r3": {
-          "ru": "С I перед sitting нужно am.",
-          "uk": "З I перед sitting потрібне am."
+          "ru": "После this нужна связка is.",
+          "uk": "Після this потрібна зв’язка is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "85b1764f5644d6df778d05d7d53ed264647f764c10d641ccd1a2802b2588e908"
+  "auxiliaryFingerprint": "a09722432d6c940002d4b3177124df6933beddbe4ca787237e1ab177a08f367c"
 }

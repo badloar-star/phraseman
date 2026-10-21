@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-03",
   "learningOutcomeByLocale": {
-    "ru": "I collect stamps; I am looking at the postmark",
-    "uk": "I collect stamps; I am looking at the postmark"
+    "ru": "He lives in a suburb; I work downtown; We are walking along the shore",
+    "uk": "He lives in a suburb; I work downtown; We are walking along the shore"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-03:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Рассказать о хобби",
-        "uk": "Розповісти про хобі"
+        "ru": "Живёт в пригороде",
+        "uk": "Живе в передмісті"
       },
       "bodyByLocale": {
-        "ru": "На встрече любителей марок сосед спрашивает о вашем увлечении. I collect stamps — «Я коллекционирую марки». Раньше collect означало «забирать», например посылку; здесь — собирать коллекцию. Это хобби, а не действие в эту секунду, поэтому I collect. Collector — «коллекционер». I am a collector — «Я коллекционер»: называете себя, am здесь не обозначает действие с -ing.",
-        "uk": "На зустрічі любителів марок сусід запитує про ваше захоплення. I collect stamps — «Я колекціоную марки». Раніше collect означало «забирати», наприклад посилку; тут — збирати колекцію. Це хобі, а не дія цієї секунди, тому I collect. Collector — «колекціонер». I am a collector — «Я колекціонер»: називаєте себе, am тут не позначає дію з -ing."
+        "ru": "Друг живёт в жилом районе за пределами центра, рядом с большим городом. Suburb — «пригород»: He lives in a suburb — «Он живёт в пригороде». Это его постоянное место жительства, поэтому lives. После he добавляем s. Один пригород — a suburb.",
+        "uk": "Друг живе в житловому районі поза центром, поруч із великим містом. Suburb — «передмістя»: He lives in a suburb — «Він живе в передмісті». Це його постійне місце проживання, тому lives. Після he додаємо s. Одне передмістя — a suburb."
       },
       "question": {
         "interactionId": "en:lesson-10:session-03:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-03:intro1:r1",
-              "text": "I collect stamps."
+              "text": "He lives in a suburb."
             },
             {
               "responseId": "en:lesson-10:session-03:intro1:r2",
-              "text": "I collects stamps."
+              "text": "He live in a suburb."
             },
             {
               "responseId": "en:lesson-10:session-03:intro1:r3",
-              "text": "I am collect stamps."
+              "text": "He living in a suburb."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-03:intro1:r1",
-              "text": "I collect stamps."
+              "text": "He lives in a suburb."
             },
             {
               "responseId": "en:lesson-10:session-03:intro1:r2",
-              "text": "I collects stamps."
+              "text": "He live in a suburb."
             },
             {
               "responseId": "en:lesson-10:session-03:intro1:r3",
-              "text": "I am collect stamps."
+              "text": "He living in a suburb."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-03:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Альбом открывают сейчас",
-        "uk": "Альбом відкривають зараз"
+        "ru": "Работа в центре, магазин на окраине",
+        "uk": "Робота в центрі, магазин на околиці"
       },
       "bodyByLocale": {
-        "ru": "Stamp album — «альбом для марок». Обычно вы храните в нём коллекцию: I keep my stamps in a stamp album. Сегодня вы показываете её другу. Он спрашивает, что вы делаете: I am opening the stamp album — «Я открываю альбом для марок». Keep описывает привычный способ хранения, am opening — действие сейчас.",
-        "uk": "Stamp album — «альбом для марок». Зазвичай ви зберігаєте в ньому колекцію: I keep my stamps in a stamp album. Сьогодні ви показуєте її другові. Він запитує, що ви робите: I am opening the stamp album — «Я відкриваю альбом для марок». Keep описує звичний спосіб зберігання, am opening — дію зараз."
+        "ru": "Вы рассказываете о работе: I work downtown — «Я работаю в центре города». Downtown — «в центре города», особенно в американском английском. Перед downtown здесь не нужна in. За крупными покупками вы ездите на край города. Outskirts — «окраина»: The shop is on the outskirts — «Магазин на окраине». Запомните сочетание on the outskirts; у outskirts всегда окончание s.",
+        "uk": "Ви розповідаєте про роботу: I work downtown — «Я працюю в центрі міста». Downtown — «у центрі міста», особливо в американській англійській. Перед downtown тут не потрібне in. За великими покупками ви їздите на край міста. Outskirts — «околиця»: The shop is on the outskirts — «Магазин на околиці». Запам’ятайте сполучення on the outskirts; outskirts завжди має закінчення s."
       },
       "question": {
         "interactionId": "en:lesson-10:session-03:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-03:intro2:r1",
-              "text": "I am opening the stamp album."
+              "text": "I work downtown."
             },
             {
               "responseId": "en:lesson-10:session-03:intro2:r2",
-              "text": "I opening the stamp album."
+              "text": "I works downtown."
             },
             {
               "responseId": "en:lesson-10:session-03:intro2:r3",
-              "text": "I am open the stamp album."
+              "text": "I am work downtown."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-03:intro2:r1",
-              "text": "I am opening the stamp album."
+              "text": "I work downtown."
             },
             {
               "responseId": "en:lesson-10:session-03:intro2:r2",
-              "text": "I opening the stamp album."
+              "text": "I works downtown."
             },
             {
               "responseId": "en:lesson-10:session-03:intro2:r3",
-              "text": "I am open the stamp album."
+              "text": "I am work downtown."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-03:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Отметка на конверте",
-        "uk": "Позначка на конверті"
+        "ru": "Гуляем у озера",
+        "uk": "Гуляємо біля озера"
       },
       "bodyByLocale": {
-        "ru": "Друг приносит старый конверт. На нём почтовый штемпель — postmark: отметка почты, часто с местом и датой отправки. Сейчас вы рассматриваете именно его. I am looking at the postmark — «Я рассматриваю почтовый штемпель». В этой фразе look at значит «смотреть на». Для действия сейчас — am looking, а at связывает действие с тем, на что вы смотрите.",
-        "uk": "Друг приносить старий конверт. На ньому поштовий штемпель — postmark: позначка пошти, часто з місцем і датою відправлення. Зараз ви розглядаєте саме його. I am looking at the postmark — «Я розглядаю поштовий штемпель». У цій фразі look at означає «дивитися на». Для дії зараз — am looking, а at пов’язує дію з тим, на що ви дивитеся."
+        "ru": "В выходной вы с другом идёте вдоль озера. Shore — «берег» моря или озера: We are walking along the shore — «Мы гуляем вдоль берега». Вы описываете прогулку сейчас, поэтому are walking. Along the shore сообщает, что вы идёте вдоль края воды.",
+        "uk": "У вихідний ви з другом ідете вздовж озера. Shore — «берег» моря або озера: We are walking along the shore — «Ми гуляємо вздовж берега». Ви описуєте прогулянку зараз, тому are walking. Along the shore повідомляє, що ви йдете вздовж краю води."
       },
       "question": {
         "interactionId": "en:lesson-10:session-03:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-03:intro3:r1",
-              "text": "I am looking at the postmark."
+              "text": "We are walking along the shore."
             },
             {
               "responseId": "en:lesson-10:session-03:intro3:r2",
-              "text": "I am look at the postmark."
+              "text": "We walking along the shore."
             },
             {
               "responseId": "en:lesson-10:session-03:intro3:r3",
-              "text": "I looking at the postmark."
+              "text": "We are walk along the shore."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-03:intro3:r1",
-              "text": "I am looking at the postmark."
+              "text": "We are walking along the shore."
             },
             {
               "responseId": "en:lesson-10:session-03:intro3:r2",
-              "text": "I am look at the postmark."
+              "text": "We walking along the shore."
             },
             {
               "responseId": "en:lesson-10:session-03:intro3:r3",
-              "text": "I looking at the postmark."
+              "text": "We are walk along the shore."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c91c355d93c6aa760550f47b2bb97f76351a529dbe8cba1700007135d0e0db30"
+  "introFingerprint": "54ed661efe2886e60d9e5cab2dce029f2b5f6fa6d3f80eac908ecec01086bca3"
 }

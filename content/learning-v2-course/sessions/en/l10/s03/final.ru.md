@@ -1,152 +1,151 @@
-# Английский · Урок 10 · Занятие 3 — Коллекция марок
+# Английский · Урок 10 · Занятие 3 — В городе и рядом
 
-**Ситуация.** Рассказать о хобби и о том, что вы рассматриваете сейчас.
+**Ситуация.** Объяснить, где живёт друг, где вы работаете и где гуляете сейчас.
 
-**Что вы освоите:** I collect stamps; I am looking at the postmark
-**Новые слова:** collector, stamp album, postmark, watermark
-**Повторение:** collect (7.30; здесь новое значение «коллекционировать», не новая карточка)
+**Что вы освоите:** He lives in a suburb; I work downtown; We are walking along the shore
+**Новые слова:** suburb, downtown, outskirts, shore
 
 ## Интро 1
 
-### Рассказать о хобби
+### Живёт в пригороде
 
-На встрече любителей марок сосед спрашивает о вашем увлечении. I collect stamps — «Я коллекционирую марки». Раньше collect означало «забирать», например посылку; здесь — собирать коллекцию. Это хобби, а не действие в эту секунду, поэтому I collect. Collector — «коллекционер». I am a collector — «Я коллекционер»: называете себя, am здесь не обозначает действие с -ing.
+Друг живёт в жилом районе за пределами центра, рядом с большим городом. Suburb — «пригород»: He lives in a suburb — «Он живёт в пригороде». Это его постоянное место жительства, поэтому lives. После he добавляем s. Один пригород — a suburb.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I collect stamps.**
-- ❌ I collects stamps. — *С I употребляем collect без -s.*
-- ❌ I am collect stamps. — *Для хобби здесь нужна I collect; am collect неверно.*
+- ✅ **He lives in a suburb.**
+- ❌ He live in a suburb. — *После he нужна lives с s.*
+- ❌ He living in a suburb. — *Для места жительства здесь нужна lives.*
 
 ---
 
 ## Интро 2
 
-### Альбом открывают сейчас
+### Работа в центре, магазин на окраине
 
-Stamp album — «альбом для марок». Обычно вы храните в нём коллекцию: I keep my stamps in a stamp album. Сегодня вы показываете её другу. Он спрашивает, что вы делаете: I am opening the stamp album — «Я открываю альбом для марок». Keep описывает привычный способ хранения, am opening — действие сейчас.
+Вы рассказываете о работе: I work downtown — «Я работаю в центре города». Downtown — «в центре города», особенно в американском английском. Перед downtown здесь не нужна in. За крупными покупками вы ездите на край города. Outskirts — «окраина»: The shop is on the outskirts — «Магазин на окраине». Запомните сочетание on the outskirts; у outskirts всегда окончание s.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I am opening the stamp album.**
-- ❌ I opening the stamp album. — *С I перед opening нужно am.*
-- ❌ I am open the stamp album. — *После am нужна форма opening.*
+- ✅ **I work downtown.**
+- ❌ I works downtown. — *После I нужна work без s.*
+- ❌ I am work downtown. — *О постоянной работе здесь говорим work без am.*
 
 ---
 
 ## Интро 3
 
-### Отметка на конверте
+### Гуляем у озера
 
-Друг приносит старый конверт. На нём почтовый штемпель — postmark: отметка почты, часто с местом и датой отправки. Сейчас вы рассматриваете именно его. I am looking at the postmark — «Я рассматриваю почтовый штемпель». В этой фразе look at значит «смотреть на». Для действия сейчас — am looking, а at связывает действие с тем, на что вы смотрите.
+В выходной вы с другом идёте вдоль озера. Shore — «берег» моря или озера: We are walking along the shore — «Мы гуляем вдоль берега». Вы описываете прогулку сейчас, поэтому are walking. Along the shore сообщает, что вы идёте вдоль края воды.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I am looking at the postmark.**
-- ❌ I am look at the postmark. — *После am нужна форма looking.*
-- ❌ I looking at the postmark. — *Перед looking с I нужно am.*
+- ✅ **We are walking along the shore.**
+- ❌ We walking along the shore. — *Перед walking нужна are.*
+- ❌ We are walk along the shore. — *После are нужна walking.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — collector**
-<!-- interaction_id: en:lesson-10:session-03:word:collector; family: word_card -->
-> **collector** — «коллекционер». I am a collector. — «Я коллекционер». Человек, который собирает определённые предметы как хобби.
+**1 · Карточка слова — suburb**
+<!-- interaction_id: en:lesson-10:session-03:word:suburb; family: word_card -->
+> **suburb** — «пригород». He lives in a suburb. — «Он живёт в пригороде».
 
-**2 · Новый знакомый спрашивает, почему у вас столько марок. Представьтесь: «Я коллекционер»**
+**2 · Расскажите, где живёт друг: «Он живёт в пригороде»**
 <!-- interaction_id: en:lesson-10:session-03:i01; family: phrase_builder -->
-Плитки: `collector` `a` `am` `I` → **I am a collector.**
+Плитки: `suburb` `a` `in` `lives` `He` → **He lives in a suburb.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-03:i02; family: listen_choose -->
-🔊 *I collect stamps.* → **I collect stamps.** · I collect coins. · She collects stamps.
-- I collect coins. — *В записи звучит I collect stamps.*
-- She collects stamps. — *В записи звучит I collect stamps.*
+🔊 *She lives in a quiet suburb.* → **She lives in a quiet suburb.** · He lives in a quiet suburb. · She works in a quiet suburb.
+- He lives in a quiet suburb. — *В записи звучит She lives in a quiet suburb.*
+- She works in a quiet suburb. — *В записи звучит She lives in a quiet suburb.*
 
-**4 · Выберите форму collect для хобби с I**
+**4 · Выберите форму live после he**
 <!-- interaction_id: en:lesson-10:session-03:i03; family: context_gap_grammar -->
-I ___ stamps. → **collect** · collects · collecting
-- collects — *С I не добавляем -s.*
-- collecting — *Для хобби здесь нужна collect.*
+He ___ in a suburb. → **lives** · live · living
+- live — *После he нужна lives с s.*
+- living — *О месте жительства здесь говорим lives.*
 
-**5 · Карточка слова — stamp album**
-<!-- interaction_id: en:lesson-10:session-03:word:stamp-album; family: word_card -->
-> **stamp album** — «альбом для марок». I am opening the stamp album. — «Я открываю альбом для марок». Альбом для хранения и показа коллекции.
+**5 · Карточка слова — downtown**
+<!-- interaction_id: en:lesson-10:session-03:word:downtown; family: word_card -->
+> **downtown** — «в центре города». I work downtown. — «Я работаю в центре города».
 
-**6 · Друг ждёт, когда вы покажете коллекцию. Скажите: «Я открываю альбом для марок»**
+**6 · Расскажите о месте своей работы: «Я работаю в центре города»**
 <!-- interaction_id: en:lesson-10:session-03:i04; family: phrase_builder -->
-Плитки: `album` `stamp` `the` `opening` `am` `I` → **I am opening the stamp album.**
+Плитки: `downtown` `work` `I` → **I work downtown.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-03:i05; family: listen_choose -->
-🔊 *The stamp album is on the shelf.* → **The stamp album is on the shelf.** · The stamp album is under the shelf. · The notebook is on the shelf.
-- The stamp album is under the shelf. — *В записи звучит The stamp album is on the shelf.*
-- The notebook is on the shelf. — *В записи звучит The stamp album is on the shelf.*
+🔊 *They work downtown.* → **They work downtown.** · We work downtown. · They live downtown.
+- We work downtown. — *В записи звучит They work downtown.*
+- They live downtown. — *В записи звучит They work downtown.*
 
-**8 · Выберите форму open после am**
+**8 · Выберите форму work после I**
 <!-- interaction_id: en:lesson-10:session-03:i06; family: context_gap_grammar -->
-I am ___ the stamp album. → **opening** · open · opens
-- open — *После am нужна opening.*
-- opens — *Opens не употребляется после am.*
+I ___ downtown. → **work** · works · working
+- works — *После I нужна work без s.*
+- working — *О постоянной работе здесь говорим work.*
 
-**9 · Карточка слова — postmark**
-<!-- interaction_id: en:lesson-10:session-03:word:postmark; family: word_card -->
-> **postmark** — «почтовый штемпель». I am looking at the postmark. — «Я рассматриваю почтовый штемпель». Отметка почты на отправлении, часто с датой.
+**9 · Карточка слова — outskirts**
+<!-- interaction_id: en:lesson-10:session-03:word:outskirts; family: word_card -->
+> **outskirts** — «окраина». on the outskirts — «на окраине».
 
-**10 · Друг спрашивает, что вы рассматриваете на конверте. Скажите: «Я рассматриваю почтовый штемпель»**
+**10 · Магазин у края города. Скажите: «Магазин на окраине»**
 <!-- interaction_id: en:lesson-10:session-03:i07; family: phrase_builder -->
-Плитки: `postmark` `the` `at` `looking` `am` `I` → **I am looking at the postmark.**
+Плитки: `outskirts` `the` `on` `is` `shop` `The` → **The shop is on the outskirts.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-03:i08; family: listen_choose -->
-🔊 *The postmark is clear.* → **The postmark is clear.** · The postmark is small. · The address is clear.
-- The postmark is small. — *В записи звучит The postmark is clear.*
-- The address is clear. — *В записи звучит The postmark is clear.*
+🔊 *The hotel is on the outskirts.* → **The hotel is on the outskirts.** · The shop is on the outskirts. · The hotel is downtown.
+- The shop is on the outskirts. — *В записи звучит The hotel is on the outskirts.*
+- The hotel is downtown. — *В записи звучит The hotel is on the outskirts.*
 
-**12 · Выберите предлог в look at — смотреть на**
+**12 · Вспомните сочетание «на окраине»**
 <!-- interaction_id: en:lesson-10:session-03:i09; family: context_gap_grammar -->
-I am looking ___ the postmark. → **at** · of · to
-- of — *В выражении look at нужен at.*
-- to — *Здесь смотрят на отметку: look at.*
+The shop is ___ the outskirts. → **on** · of · under
+- of — *В изученном сочетании нужна on: on the outskirts.*
+- under — *Under значит «под», здесь нужна on.*
 
-**13 · Карточка слова — watermark**
-<!-- interaction_id: en:lesson-10:session-03:word:watermark; family: word_card -->
-> **watermark** — «водяной знак». I can see a watermark. — «Я вижу водяной знак». Здесь рисунок в бумаге, заметный на просвет.
+**13 · Карточка слова — shore**
+<!-- interaction_id: en:lesson-10:session-03:word:shore; family: word_card -->
+> **shore** — «берег» моря или озера. along the shore — «вдоль берега».
 
-**14 · Вы держите бумагу перед светом и видите рисунок внутри неё. Сообщите другу: «Я вижу водяной знак»**
+**14 · Вы гуляете вдоль озера сейчас. Скажите: «Мы гуляем вдоль берега»**
 <!-- interaction_id: en:lesson-10:session-03:i10; family: phrase_builder -->
-Плитки: `watermark` `a` `see` `can` `I` → **I can see a watermark.**
+Плитки: `shore` `the` `along` `walking` `are` `We` → **We are walking along the shore.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-03:i11; family: listen_choose -->
-🔊 *The watermark is small.* → **The watermark is small.** · The watermark is large. · The postmark is small.
-- The watermark is large. — *В записи звучит The watermark is small.*
-- The postmark is small. — *В записи звучит The watermark is small.*
+🔊 *She is sitting on the shore.* → **She is sitting on the shore.** · He is sitting on the shore. · She is walking along the shore.
+- He is sitting on the shore. — *В записи звучит She is sitting on the shore.*
+- She is walking along the shore. — *В записи звучит She is sitting on the shore.*
 
-**16 · Выберите артикль перед одним watermark**
+**16 · Прогулка идёт сейчас. Выберите форму walk**
 <!-- interaction_id: en:lesson-10:session-03:i12; family: context_gap_grammar -->
-I can see ___ watermark. → **a** · an · am
-- an — *Watermark начинается с согласного звука: a.*
-- am — *Am не артикль; нужен a.*
+We are ___ along the shore. → **walking** · walk · walks
+- walk — *После are нужна walking.*
+- walks — *После are нужна walking, не walks.*
 
-**17 · Соедините новые слова со значениями**
+**17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-10:session-03:i13; family: speed_match -->
-collector — коллекционер · stamp album — альбом для марок · postmark — почтовый штемпель · watermark — водяной знак
+suburb — пригород · downtown — в центре города · outskirts — окраина · shore — берег озера
 
-**18 · Послушайте и соберите вопрос о действии сейчас**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-03:i14; family: listen_build_dictation -->
-🔊 *Are you opening the stamp album?* Плитки: `album` `stamp` `the` `opening` `you` `Are` → **Are you opening the stamp album?**
+🔊 *I work downtown.* Плитки: `downtown` `work` `I` → **I work downtown.**
 
-**19 · Знакомый спрашивает о вашем хобби. Скажите: «Я коллекционирую марки»**
-<!-- interaction_id: en:lesson-10:session-03:i15; family: scripted_repeat_compare -->
-🎙 **I collect stamps.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-03:i15; family: listen_build_dictation -->
+🔊 *We are walking along the shore.* Плитки: `shore` `the` `along` `walking` `are` `We` → **We are walking along the shore.**
 
-**20 · Друг думает, что вы убираете альбом, но вы продолжаете показ. Скажите: «Я не закрываю альбом для марок»**
-<!-- interaction_id: en:lesson-10:session-03:i16; family: phrase_builder -->
-Плитки: `album` `stamp` `the` `closing` `not` `am` `I` → **I am not closing the stamp album.**
+**20 · Коллега спрашивает, где ваша работа. Скажите: «Я работаю в центре города»**
+<!-- interaction_id: en:lesson-10:session-03:i16; family: scripted_repeat_compare -->
+🎙 **I work downtown.**
 
-**21 · Вы коллекционируете марки, а сейчас рассматриваете отметку почты на старом конверте. Друг спрашивает: «Что ты делаешь?» Ответьте: «Я рассматриваю почтовый штемпель»**
-<!-- interaction_id: en:lesson-10:session-03:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I am looking at the postmark.**
+**21 · Друг звонит во время прогулки у озера. Скажите: «Мы гуляем вдоль берега»**
+<!-- interaction_id: en:lesson-10:session-03:i17; family: scripted_repeat_compare -->
+🎙 **We are walking along the shore.**
 

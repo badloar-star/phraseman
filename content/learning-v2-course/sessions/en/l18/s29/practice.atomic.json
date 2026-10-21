@@ -1,0 +1,2335 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-18:session-29",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-18:session-29:word:passport-photo",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — passport photo",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:word:passport-photo:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — passport photo",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:word:passport-photo:audio",
+            "transcript": "passport photo"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-29:word:passport-photo:r1",
+              "targetText": "passport photo",
+              "meaningByLocale": {
+                "ru": "фотография для паспорта.",
+                "uk": "фотографія для паспорта."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "passport photo",
+            "definitionByLocale": {
+              "ru": "фотография для паспорта.",
+              "uk": "фотографія для паспорта."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вас попросили принести свежую фотографию вместо этой. Скажите: «Эта фотография для паспорта слишком старая».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вас попросили принести свежую фотографию вместо этой. Скажите: «Эта фотография для паспорта слишком старая».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This passport photo is too old.",
+          "localizedMeaning": {
+            "ru": "Вас попросили принести свежую фотографию вместо этой. Скажите: «Эта фотография для паспорта слишком старая».",
+            "uk": "Вас попросили принести свіжу фотографію замість цієї. Скажіть: «Ця фотографія для паспорта застаріла»."
+          },
+          "orderedTokens": [
+            "This",
+            "passport",
+            "photo",
+            "is",
+            "too",
+            "old"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-29:i02:r1",
+            "text": "This passport photo is too old."
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i02:r2",
+            "text": "This passport photo is old too."
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i02:r3",
+            "text": "This passport photo is old enough."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:i02:audio",
+            "transcript": "This passport photo is too old."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-29:i02:r1",
+              "targetText": "This passport photo is too old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i02:r2",
+              "targetText": "This passport photo is old too.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i02:r3",
+              "targetText": "This passport photo is old enough.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-29:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This passport photo is too old.",
+                "uk": "У записі звучить This passport photo is too old."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This passport photo is too old.",
+                "uk": "У записі звучить This passport photo is too old."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вас попросили принести свежую фотографию вместо этой.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-29:i03:r1",
+            "text": "too old"
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i03:r2",
+            "text": "old too"
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i03:r3",
+            "text": "old enough"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вас попросили принести свежую фотографию вместо этой.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вас попросили принести свежую фотографию вместо этой.",
+            "uk": "Вас попросили принести свіжу фотографію замість цієї."
+          },
+          "gappedTargetPhrase": "This passport photo is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-29:i03:r1",
+              "text": "too old"
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i03:r2",
+              "text": "old too"
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i03:r3",
+              "text": "old enough"
+            }
+          ],
+          "testedDimension": "Вас попросили принести свежую фотографию вместо этой.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-29:i03:r2",
+              "correct": false,
+              "testedDimension": "Вас попросили принести свежую фотографию вместо этой.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: too old.",
+                "uk": "Порядок слів: too old."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i03:r3",
+              "correct": false,
+              "testedDimension": "Вас попросили принести свежую фотографию вместо этой.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно too old.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно too old."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:word:middle-seat",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — middle seat",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:word:middle-seat:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — middle seat",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:word:middle-seat:audio",
+            "transcript": "middle seat"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-29:word:middle-seat:r1",
+              "targetText": "middle seat",
+              "meaningByLocale": {
+                "ru": "среднее место в ряду.",
+                "uk": "середнє місце в ряду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "middle seat",
+            "definitionByLocale": {
+              "ru": "среднее место в ряду.",
+              "uk": "середнє місце в ряду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На выбранном месте вам удобно сидеть, ширины хватает. Скажите: «Это среднее место достаточно широкое».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На выбранном месте вам удобно сидеть, ширины хватает. Скажите: «Это среднее место достаточно широкое».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This middle seat is wide enough.",
+          "localizedMeaning": {
+            "ru": "На выбранном месте вам удобно сидеть, ширины хватает. Скажите: «Это среднее место достаточно широкое».",
+            "uk": "На вибраному місці вам зручно сидіти, ширини вистачає. Скажіть: «Це середнє місце достатньо широке»."
+          },
+          "orderedTokens": [
+            "This",
+            "middle",
+            "seat",
+            "is",
+            "wide",
+            "enough"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-29:i05:r1",
+            "text": "This middle seat is wide enough."
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i05:r2",
+            "text": "This middle seat is enough wide."
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i05:r3",
+            "text": "This middle seat is too wide."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:i05:audio",
+            "transcript": "This middle seat is wide enough."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-29:i05:r1",
+              "targetText": "This middle seat is wide enough.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i05:r2",
+              "targetText": "This middle seat is enough wide.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i05:r3",
+              "targetText": "This middle seat is too wide.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-29:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This middle seat is wide enough.",
+                "uk": "У записі звучить This middle seat is wide enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This middle seat is wide enough.",
+                "uk": "У записі звучить This middle seat is wide enough."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На выбранном месте вам удобно сидеть, ширины хватает.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-29:i06:r1",
+            "text": "wide enough"
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i06:r2",
+            "text": "enough wide"
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i06:r3",
+            "text": "too wide"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На выбранном месте вам удобно сидеть, ширины хватает.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На выбранном месте вам удобно сидеть, ширины хватает.",
+            "uk": "На вибраному місці вам зручно сидіти, ширини вистачає."
+          },
+          "gappedTargetPhrase": "This middle seat is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-29:i06:r1",
+              "text": "wide enough"
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i06:r2",
+              "text": "enough wide"
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i06:r3",
+              "text": "too wide"
+            }
+          ],
+          "testedDimension": "На выбранном месте вам удобно сидеть, ширины хватает.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-29:i06:r2",
+              "correct": false,
+              "testedDimension": "На выбранном месте вам удобно сидеть, ширины хватает.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: wide enough.",
+                "uk": "Порядок слів: wide enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i06:r3",
+              "correct": false,
+              "testedDimension": "На выбранном месте вам удобно сидеть, ширины хватает.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно wide enough.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно wide enough."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:word:exit-row",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — exit row",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:word:exit-row:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — exit row",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:word:exit-row:audio",
+            "transcript": "exit row"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-29:word:exit-row:r1",
+              "targetText": "exit row",
+              "meaningByLocale": {
+                "ru": "ряд у аварийного выхода.",
+                "uk": "ряд біля аварійного виходу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "exit row",
+            "definitionByLocale": {
+              "ru": "ряд у аварийного выхода.",
+              "uk": "ряд біля аварійного виходу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы обсуждаете только ширину ряда; места хватает. Скажите: «Этот ряд у аварийного выхода достаточно широкий».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы обсуждаете только ширину ряда; места хватает. Скажите: «Этот ряд у аварийного выхода достаточно широкий».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This exit row is wide enough.",
+          "localizedMeaning": {
+            "ru": "Вы обсуждаете только ширину ряда; места хватает. Скажите: «Этот ряд у аварийного выхода достаточно широкий».",
+            "uk": "Ви обговорюєте лише ширину ряду; місця вистачає. Скажіть: «Цей ряд біля аварійного виходу достатньо широкий»."
+          },
+          "orderedTokens": [
+            "This",
+            "exit",
+            "row",
+            "is",
+            "wide",
+            "enough"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-29:i08:r1",
+            "text": "This exit row is wide enough."
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i08:r2",
+            "text": "This exit row is enough wide."
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i08:r3",
+            "text": "This exit row is too wide."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:i08:audio",
+            "transcript": "This exit row is wide enough."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-29:i08:r1",
+              "targetText": "This exit row is wide enough.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i08:r2",
+              "targetText": "This exit row is enough wide.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i08:r3",
+              "targetText": "This exit row is too wide.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-29:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This exit row is wide enough.",
+                "uk": "У записі звучить This exit row is wide enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This exit row is wide enough.",
+                "uk": "У записі звучить This exit row is wide enough."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы обсуждаете только ширину ряда; места хватает.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-29:i09:r1",
+            "text": "wide enough"
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i09:r2",
+            "text": "enough wide"
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i09:r3",
+            "text": "too wide"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы обсуждаете только ширину ряда; места хватает.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы обсуждаете только ширину ряда; места хватает.",
+            "uk": "Ви обговорюєте лише ширину ряду; місця вистачає."
+          },
+          "gappedTargetPhrase": "This exit row is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-29:i09:r1",
+              "text": "wide enough"
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i09:r2",
+              "text": "enough wide"
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i09:r3",
+              "text": "too wide"
+            }
+          ],
+          "testedDimension": "Вы обсуждаете только ширину ряда; места хватает.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-29:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы обсуждаете только ширину ряда; места хватает.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: wide enough.",
+                "uk": "Порядок слів: wide enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы обсуждаете только ширину ряда; места хватает.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно wide enough.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно wide enough."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:word:boarding-time",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — boarding time",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:word:boarding-time:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — boarding time",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:word:boarding-time:audio",
+            "transcript": "boarding time"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-29:word:boarding-time:r1",
+              "targetText": "boarding time",
+              "meaningByLocale": {
+                "ru": "время начала посадки.",
+                "uk": "час початку посадки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "boarding time",
+            "definitionByLocale": {
+              "ru": "время начала посадки.",
+              "uk": "час початку посадки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы не успеваете приехать к этому времени. Скажите: «Это время посадки слишком раннее».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не успеваете приехать к этому времени. Скажите: «Это время посадки слишком раннее».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This boarding time is too early.",
+          "localizedMeaning": {
+            "ru": "Вы не успеваете приехать к этому времени. Скажите: «Это время посадки слишком раннее».",
+            "uk": "Ви не встигаєте приїхати на цей час. Скажіть: «Цей час посадки зараній»."
+          },
+          "orderedTokens": [
+            "This",
+            "boarding",
+            "time",
+            "is",
+            "too",
+            "early"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-29:i11:r1",
+            "text": "This boarding time is too early."
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i11:r2",
+            "text": "This boarding time is early too."
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i11:r3",
+            "text": "This boarding time is early enough."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:i11:audio",
+            "transcript": "This boarding time is too early."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-29:i11:r1",
+              "targetText": "This boarding time is too early.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i11:r2",
+              "targetText": "This boarding time is early too.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i11:r3",
+              "targetText": "This boarding time is early enough.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-29:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This boarding time is too early.",
+                "uk": "У записі звучить This boarding time is too early."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This boarding time is too early.",
+                "uk": "У записі звучить This boarding time is too early."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы не успеваете приехать к этому времени.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-29:i12:r1",
+            "text": "too early"
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i12:r2",
+            "text": "early too"
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i12:r3",
+            "text": "early enough"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не успеваете приехать к этому времени.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не успеваете приехать к этому времени.",
+            "uk": "Ви не встигаєте приїхати на цей час."
+          },
+          "gappedTargetPhrase": "This boarding time is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-29:i12:r1",
+              "text": "too early"
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i12:r2",
+              "text": "early too"
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i12:r3",
+              "text": "early enough"
+            }
+          ],
+          "testedDimension": "Вы не успеваете приехать к этому времени.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-29:i12:r2",
+              "correct": false,
+              "testedDimension": "Вы не успеваете приехать к этому времени.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: too early.",
+                "uk": "Порядок слів: too early."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i12:r3",
+              "correct": false,
+              "testedDimension": "Вы не успеваете приехать к этому времени.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно too early.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно too early."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-29:i13:p1",
+              "target": "passport photo",
+              "meaningByLocale": {
+                "ru": "фотография для паспорта",
+                "uk": "фотографія для паспорта"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-29:i13:p2",
+              "target": "middle seat",
+              "meaningByLocale": {
+                "ru": "среднее место в ряду",
+                "uk": "середнє місце в ряду"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-29:i13:p3",
+              "target": "exit row",
+              "meaningByLocale": {
+                "ru": "ряд у аварийного выхода",
+                "uk": "ряд біля аварійного виходу"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-29:i13:p4",
+              "target": "boarding time",
+              "meaningByLocale": {
+                "ru": "время начала посадки",
+                "uk": "час початку посадки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "passport photo",
+            "middle seat",
+            "exit row",
+            "boarding time"
+          ],
+          "rightColumn": [
+            "фотография для паспорта",
+            "среднее место в ряду",
+            "ряд у аварийного выхода",
+            "время начала посадки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное намерение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное намерение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:i14:audio",
+            "transcript": "We are going to choose a middle seat."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to choose a middle seat.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "choose",
+            "a",
+            "middle",
+            "seat"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанный согласованный план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанный согласованный план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:i15:audio",
+            "transcript": "We are flying at seven tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are flying at seven tomorrow.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "flying",
+            "at",
+            "seven",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: сравните два варианта",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:i16:audio"
+        ],
+        "accessibilityLabel": "Повторение: сравните два варианта",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:i16:audio",
+            "transcript": "This middle seat is wider than mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This middle seat is wider than mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: одинаковое качество",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:i17:audio"
+        ],
+        "accessibilityLabel": "Повторение: одинаковое качество",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:i17:audio",
+            "transcript": "This passport photo is as old as yours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This passport photo is as old as yours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-18:session-29:word:passport-photo",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — passport photo",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:word:passport-photo:audio"
+        ],
+        "accessibilityLabel": "Картка слова — passport photo",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:word:passport-photo:audio",
+            "transcript": "passport photo"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-29:word:passport-photo:r1",
+              "targetText": "passport photo",
+              "meaningByLocale": {
+                "ru": "фотография для паспорта.",
+                "uk": "фотографія для паспорта."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "passport photo",
+            "definitionByLocale": {
+              "ru": "фотография для паспорта.",
+              "uk": "фотографія для паспорта."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вас попросили принести свіжу фотографію замість цієї. Скажіть: «Ця фотографія для паспорта застаріла».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вас попросили принести свіжу фотографію замість цієї. Скажіть: «Ця фотографія для паспорта застаріла».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This passport photo is too old.",
+          "localizedMeaning": {
+            "ru": "Вас попросили принести свежую фотографию вместо этой. Скажите: «Эта фотография для паспорта слишком старая».",
+            "uk": "Вас попросили принести свіжу фотографію замість цієї. Скажіть: «Ця фотографія для паспорта застаріла»."
+          },
+          "orderedTokens": [
+            "This",
+            "passport",
+            "photo",
+            "is",
+            "too",
+            "old"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-29:i02:r1",
+            "text": "This passport photo is too old."
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i02:r2",
+            "text": "This passport photo is old too."
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i02:r3",
+            "text": "This passport photo is old enough."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:i02:audio",
+            "transcript": "This passport photo is too old."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-29:i02:r1",
+              "targetText": "This passport photo is too old.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i02:r2",
+              "targetText": "This passport photo is old too.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i02:r3",
+              "targetText": "This passport photo is old enough.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-29:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This passport photo is too old.",
+                "uk": "У записі звучить This passport photo is too old."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This passport photo is too old.",
+                "uk": "У записі звучить This passport photo is too old."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вас попросили принести свіжу фотографію замість цієї.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-29:i03:r1",
+            "text": "too old"
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i03:r2",
+            "text": "old too"
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i03:r3",
+            "text": "old enough"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вас попросили принести свіжу фотографію замість цієї.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вас попросили принести свежую фотографию вместо этой.",
+            "uk": "Вас попросили принести свіжу фотографію замість цієї."
+          },
+          "gappedTargetPhrase": "This passport photo is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-29:i03:r1",
+              "text": "too old"
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i03:r2",
+              "text": "old too"
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i03:r3",
+              "text": "old enough"
+            }
+          ],
+          "testedDimension": "Вас попросили принести свіжу фотографію замість цієї.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-29:i03:r2",
+              "correct": false,
+              "testedDimension": "Вас попросили принести свіжу фотографію замість цієї.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: too old.",
+                "uk": "Порядок слів: too old."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i03:r3",
+              "correct": false,
+              "testedDimension": "Вас попросили принести свіжу фотографію замість цієї.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно too old.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно too old."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:word:middle-seat",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — middle seat",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:word:middle-seat:audio"
+        ],
+        "accessibilityLabel": "Картка слова — middle seat",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:word:middle-seat:audio",
+            "transcript": "middle seat"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-29:word:middle-seat:r1",
+              "targetText": "middle seat",
+              "meaningByLocale": {
+                "ru": "среднее место в ряду.",
+                "uk": "середнє місце в ряду."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "middle seat",
+            "definitionByLocale": {
+              "ru": "среднее место в ряду.",
+              "uk": "середнє місце в ряду."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "На вибраному місці вам зручно сидіти, ширини вистачає. Скажіть: «Це середнє місце достатньо широке».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На вибраному місці вам зручно сидіти, ширини вистачає. Скажіть: «Це середнє місце достатньо широке».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This middle seat is wide enough.",
+          "localizedMeaning": {
+            "ru": "На выбранном месте вам удобно сидеть, ширины хватает. Скажите: «Это среднее место достаточно широкое».",
+            "uk": "На вибраному місці вам зручно сидіти, ширини вистачає. Скажіть: «Це середнє місце достатньо широке»."
+          },
+          "orderedTokens": [
+            "This",
+            "middle",
+            "seat",
+            "is",
+            "wide",
+            "enough"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-29:i05:r1",
+            "text": "This middle seat is wide enough."
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i05:r2",
+            "text": "This middle seat is enough wide."
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i05:r3",
+            "text": "This middle seat is too wide."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:i05:audio",
+            "transcript": "This middle seat is wide enough."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-29:i05:r1",
+              "targetText": "This middle seat is wide enough.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i05:r2",
+              "targetText": "This middle seat is enough wide.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i05:r3",
+              "targetText": "This middle seat is too wide.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-29:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This middle seat is wide enough.",
+                "uk": "У записі звучить This middle seat is wide enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This middle seat is wide enough.",
+                "uk": "У записі звучить This middle seat is wide enough."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На вибраному місці вам зручно сидіти, ширини вистачає.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-29:i06:r1",
+            "text": "wide enough"
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i06:r2",
+            "text": "enough wide"
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i06:r3",
+            "text": "too wide"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На вибраному місці вам зручно сидіти, ширини вистачає.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На выбранном месте вам удобно сидеть, ширины хватает.",
+            "uk": "На вибраному місці вам зручно сидіти, ширини вистачає."
+          },
+          "gappedTargetPhrase": "This middle seat is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-29:i06:r1",
+              "text": "wide enough"
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i06:r2",
+              "text": "enough wide"
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i06:r3",
+              "text": "too wide"
+            }
+          ],
+          "testedDimension": "На вибраному місці вам зручно сидіти, ширини вистачає.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-29:i06:r2",
+              "correct": false,
+              "testedDimension": "На вибраному місці вам зручно сидіти, ширини вистачає.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: wide enough.",
+                "uk": "Порядок слів: wide enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i06:r3",
+              "correct": false,
+              "testedDimension": "На вибраному місці вам зручно сидіти, ширини вистачає.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно wide enough.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно wide enough."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:word:exit-row",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — exit row",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:word:exit-row:audio"
+        ],
+        "accessibilityLabel": "Картка слова — exit row",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:word:exit-row:audio",
+            "transcript": "exit row"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-29:word:exit-row:r1",
+              "targetText": "exit row",
+              "meaningByLocale": {
+                "ru": "ряд у аварийного выхода.",
+                "uk": "ряд біля аварійного виходу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "exit row",
+            "definitionByLocale": {
+              "ru": "ряд у аварийного выхода.",
+              "uk": "ряд біля аварійного виходу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви обговорюєте лише ширину ряду; місця вистачає. Скажіть: «Цей ряд біля аварійного виходу достатньо широкий».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви обговорюєте лише ширину ряду; місця вистачає. Скажіть: «Цей ряд біля аварійного виходу достатньо широкий».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This exit row is wide enough.",
+          "localizedMeaning": {
+            "ru": "Вы обсуждаете только ширину ряда; места хватает. Скажите: «Этот ряд у аварийного выхода достаточно широкий».",
+            "uk": "Ви обговорюєте лише ширину ряду; місця вистачає. Скажіть: «Цей ряд біля аварійного виходу достатньо широкий»."
+          },
+          "orderedTokens": [
+            "This",
+            "exit",
+            "row",
+            "is",
+            "wide",
+            "enough"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-29:i08:r1",
+            "text": "This exit row is wide enough."
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i08:r2",
+            "text": "This exit row is enough wide."
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i08:r3",
+            "text": "This exit row is too wide."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:i08:audio",
+            "transcript": "This exit row is wide enough."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-29:i08:r1",
+              "targetText": "This exit row is wide enough.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i08:r2",
+              "targetText": "This exit row is enough wide.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i08:r3",
+              "targetText": "This exit row is too wide.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-29:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This exit row is wide enough.",
+                "uk": "У записі звучить This exit row is wide enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This exit row is wide enough.",
+                "uk": "У записі звучить This exit row is wide enough."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви обговорюєте лише ширину ряду; місця вистачає.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-29:i09:r1",
+            "text": "wide enough"
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i09:r2",
+            "text": "enough wide"
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i09:r3",
+            "text": "too wide"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви обговорюєте лише ширину ряду; місця вистачає.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы обсуждаете только ширину ряда; места хватает.",
+            "uk": "Ви обговорюєте лише ширину ряду; місця вистачає."
+          },
+          "gappedTargetPhrase": "This exit row is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-29:i09:r1",
+              "text": "wide enough"
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i09:r2",
+              "text": "enough wide"
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i09:r3",
+              "text": "too wide"
+            }
+          ],
+          "testedDimension": "Ви обговорюєте лише ширину ряду; місця вистачає.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-29:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви обговорюєте лише ширину ряду; місця вистачає.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: wide enough.",
+                "uk": "Порядок слів: wide enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви обговорюєте лише ширину ряду; місця вистачає.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно wide enough.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно wide enough."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:word:boarding-time",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — boarding time",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:word:boarding-time:audio"
+        ],
+        "accessibilityLabel": "Картка слова — boarding time",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:word:boarding-time:audio",
+            "transcript": "boarding time"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-29:word:boarding-time:r1",
+              "targetText": "boarding time",
+              "meaningByLocale": {
+                "ru": "время начала посадки.",
+                "uk": "час початку посадки."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "boarding time",
+            "definitionByLocale": {
+              "ru": "время начала посадки.",
+              "uk": "час початку посадки."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви не встигаєте приїхати на цей час. Скажіть: «Цей час посадки зараній».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не встигаєте приїхати на цей час. Скажіть: «Цей час посадки зараній».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This boarding time is too early.",
+          "localizedMeaning": {
+            "ru": "Вы не успеваете приехать к этому времени. Скажите: «Это время посадки слишком раннее».",
+            "uk": "Ви не встигаєте приїхати на цей час. Скажіть: «Цей час посадки зараній»."
+          },
+          "orderedTokens": [
+            "This",
+            "boarding",
+            "time",
+            "is",
+            "too",
+            "early"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-29:i11:r1",
+            "text": "This boarding time is too early."
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i11:r2",
+            "text": "This boarding time is early too."
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i11:r3",
+            "text": "This boarding time is early enough."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:i11:audio",
+            "transcript": "This boarding time is too early."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-29:i11:r1",
+              "targetText": "This boarding time is too early.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i11:r2",
+              "targetText": "This boarding time is early too.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i11:r3",
+              "targetText": "This boarding time is early enough.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-29:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This boarding time is too early.",
+                "uk": "У записі звучить This boarding time is too early."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This boarding time is too early.",
+                "uk": "У записі звучить This boarding time is too early."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви не встигаєте приїхати на цей час.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-29:i12:r1",
+            "text": "too early"
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i12:r2",
+            "text": "early too"
+          },
+          {
+            "responseId": "en:lesson-18:session-29:i12:r3",
+            "text": "early enough"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не встигаєте приїхати на цей час.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не успеваете приехать к этому времени.",
+            "uk": "Ви не встигаєте приїхати на цей час."
+          },
+          "gappedTargetPhrase": "This boarding time is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-29:i12:r1",
+              "text": "too early"
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i12:r2",
+              "text": "early too"
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i12:r3",
+              "text": "early enough"
+            }
+          ],
+          "testedDimension": "Ви не встигаєте приїхати на цей час.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-29:i12:r2",
+              "correct": false,
+              "testedDimension": "Ви не встигаєте приїхати на цей час.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: too early.",
+                "uk": "Порядок слів: too early."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-29:i12:r3",
+              "correct": false,
+              "testedDimension": "Ви не встигаєте приїхати на цей час.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно too early.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно too early."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-29:i13:p1",
+              "target": "passport photo",
+              "meaningByLocale": {
+                "ru": "фотография для паспорта",
+                "uk": "фотографія для паспорта"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-29:i13:p2",
+              "target": "middle seat",
+              "meaningByLocale": {
+                "ru": "среднее место в ряду",
+                "uk": "середнє місце в ряду"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-29:i13:p3",
+              "target": "exit row",
+              "meaningByLocale": {
+                "ru": "ряд у аварийного выхода",
+                "uk": "ряд біля аварійного виходу"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-29:i13:p4",
+              "target": "boarding time",
+              "meaningByLocale": {
+                "ru": "время начала посадки",
+                "uk": "час початку посадки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "passport photo",
+            "middle seat",
+            "exit row",
+            "boarding time"
+          ],
+          "rightColumn": [
+            "фотографія для паспорта",
+            "середнє місце в ряду",
+            "ряд біля аварійного виходу",
+            "час початку посадки"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий намір",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий намір",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:i14:audio",
+            "transcript": "We are going to choose a middle seat."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to choose a middle seat.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "choose",
+            "a",
+            "middle",
+            "seat"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий узгоджений план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий узгоджений план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:i15:audio",
+            "transcript": "We are flying at seven tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are flying at seven tomorrow.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "flying",
+            "at",
+            "seven",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: порівняйте два варіанти",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:i16:audio"
+        ],
+        "accessibilityLabel": "Повторення: порівняйте два варіанти",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:i16:audio",
+            "transcript": "This middle seat is wider than mine."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This middle seat is wider than mine.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-29:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: однакова якість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-29:i17:audio"
+        ],
+        "accessibilityLabel": "Повторення: однакова якість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-29:i17:audio",
+            "transcript": "This passport photo is as old as yours."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This passport photo is as old as yours.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-18:session-29:word:passport-photo",
+      "correctText": "passport photo",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-29:i01",
+      "correctText": "This passport photo is too old.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-29:i02",
+      "correctText": "This passport photo is too old.",
+      "correctResponseId": "en:lesson-18:session-29:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-29:i03",
+      "correctText": "too old",
+      "correctResponseId": "en:lesson-18:session-29:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-29:word:middle-seat",
+      "correctText": "middle seat",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-29:i04",
+      "correctText": "This middle seat is wide enough.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-29:i05",
+      "correctText": "This middle seat is wide enough.",
+      "correctResponseId": "en:lesson-18:session-29:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-29:i06",
+      "correctText": "wide enough",
+      "correctResponseId": "en:lesson-18:session-29:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-29:word:exit-row",
+      "correctText": "exit row",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-29:i07",
+      "correctText": "This exit row is wide enough.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-29:i08",
+      "correctText": "This exit row is wide enough.",
+      "correctResponseId": "en:lesson-18:session-29:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-29:i09",
+      "correctText": "wide enough",
+      "correctResponseId": "en:lesson-18:session-29:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-29:word:boarding-time",
+      "correctText": "boarding time",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-29:i10",
+      "correctText": "This boarding time is too early.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-29:i11",
+      "correctText": "This boarding time is too early.",
+      "correctResponseId": "en:lesson-18:session-29:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-29:i12",
+      "correctText": "too early",
+      "correctResponseId": "en:lesson-18:session-29:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-29:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-29:i14",
+      "correctText": "We are going to choose a middle seat.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-29:i15",
+      "correctText": "We are flying at seven tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-29:i16",
+      "correctText": "This middle seat is wider than mine.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-29:i17",
+      "correctText": "This passport photo is as old as yours.",
+      "correctResponseId": null
+    }
+  ]
+}

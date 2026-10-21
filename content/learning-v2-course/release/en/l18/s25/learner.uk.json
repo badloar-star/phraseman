@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-25",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-25:word:cabin-bag",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cabin bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-25:word:cabin-bag:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cabin bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-25:word:cabin-bag:audio",
+          "transcript": "cabin bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-25:word:cabin-bag:r1",
+            "targetText": "cabin bag",
+            "meaningByLocale": {
+              "ru": "сумка для ручной клади.",
+              "uk": "сумка для ручної поклажі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cabin bag",
+          "definitionByLocale": {
+            "ru": "сумка для ручной клади.",
+            "uk": "сумка для ручної поклажі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-25:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сумка не вміщується в мірку для цієї поїздки. Скажіть: «Ця сумка для ручної поклажі завелика».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сумка не вміщується в мірку для цієї поїздки. Скажіть: «Ця сумка для ручної поклажі завелика».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This cabin bag is too big.",
+        "localizedMeaning": {
+          "ru": "Сумка не помещается в мерку для этой поездки. Скажите: «Эта сумка для ручной клади слишком большая».",
+          "uk": "Сумка не вміщується в мірку для цієї поїздки. Скажіть: «Ця сумка для ручної поклажі завелика»."
+        },
+        "orderedTokens": [
+          "This",
+          "cabin",
+          "bag",
+          "is",
+          "too",
+          "big"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-25:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-25:i02:r1",
+          "text": "This cabin bag is too big."
+        },
+        {
+          "responseId": "en:lesson-18:session-25:i02:r2",
+          "text": "This cabin bag is big too."
+        },
+        {
+          "responseId": "en:lesson-18:session-25:i02:r3",
+          "text": "This cabin bag is big enough."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-25:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-25:i02:audio",
+          "transcript": "This cabin bag is too big."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-25:i02:r1",
+            "targetText": "This cabin bag is too big.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i02:r2",
+            "targetText": "This cabin bag is big too.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i02:r3",
+            "targetText": "This cabin bag is big enough.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-25:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This cabin bag is too big.",
+              "uk": "У записі звучить This cabin bag is too big."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This cabin bag is too big.",
+              "uk": "У записі звучить This cabin bag is too big."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-25:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сумка не вміщується в мірку для цієї поїздки.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-25:i03:r1",
+          "text": "too big"
+        },
+        {
+          "responseId": "en:lesson-18:session-25:i03:r2",
+          "text": "big too"
+        },
+        {
+          "responseId": "en:lesson-18:session-25:i03:r3",
+          "text": "big enough"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сумка не вміщується в мірку для цієї поїздки.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сумка не помещается в мерку для этой поездки.",
+          "uk": "Сумка не вміщується в мірку для цієї поїздки."
+        },
+        "gappedTargetPhrase": "This cabin bag is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-25:i03:r1",
+            "text": "too big"
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i03:r2",
+            "text": "big too"
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i03:r3",
+            "text": "big enough"
+          }
+        ],
+        "testedDimension": "Сумка не вміщується в мірку для цієї поїздки.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-25:i03:r2",
+            "correct": false,
+            "testedDimension": "Сумка не вміщується в мірку для цієї поїздки.",
+            "feedbackByLocale": {
+              "ru": "Порядок слов: too big.",
+              "uk": "Порядок слів: too big."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i03:r3",
+            "correct": false,
+            "testedDimension": "Сумка не вміщується в мірку для цієї поїздки.",
+            "feedbackByLocale": {
+              "ru": "Этот вариант меняет смысл; по ситуации нужно too big.",
+              "uk": "Цей варіант змінює зміст; за ситуацією потрібно too big."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-25:word:checked-bag",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — checked bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-25:word:checked-bag:audio"
+      ],
+      "accessibilityLabel": "Картка слова — checked bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-25:word:checked-bag:audio",
+          "transcript": "checked bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-25:word:checked-bag:r1",
+            "targetText": "checked bag",
+            "meaningByLocale": {
+              "ru": "сумка или чемодан, сдаваемые в багаж.",
+              "uk": "сумка або валіза, яку здають у багаж."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "checked bag",
+          "definitionByLocale": {
+            "ru": "сумка или чемодан, сдаваемые в багаж.",
+            "uk": "сумка або валіза, яку здають у багаж."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-25:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви можете нести валізу, вага вам підходить. Скажіть: «Ця валіза для здавання в багаж достатньо легка».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви можете нести валізу, вага вам підходить. Скажіть: «Ця валіза для здавання в багаж достатньо легка».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This checked bag is light enough.",
+        "localizedMeaning": {
+          "ru": "Вы можете нести чемодан, вес вам подходит. Скажите: «Этот чемодан для сдачи в багаж достаточно лёгкий».",
+          "uk": "Ви можете нести валізу, вага вам підходить. Скажіть: «Ця валіза для здавання в багаж достатньо легка»."
+        },
+        "orderedTokens": [
+          "This",
+          "checked",
+          "bag",
+          "is",
+          "light",
+          "enough"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-25:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-25:i05:r1",
+          "text": "This checked bag is light enough."
+        },
+        {
+          "responseId": "en:lesson-18:session-25:i05:r2",
+          "text": "This checked bag is enough light."
+        },
+        {
+          "responseId": "en:lesson-18:session-25:i05:r3",
+          "text": "This checked bag is too light."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-25:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-25:i05:audio",
+          "transcript": "This checked bag is light enough."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-25:i05:r1",
+            "targetText": "This checked bag is light enough.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i05:r2",
+            "targetText": "This checked bag is enough light.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i05:r3",
+            "targetText": "This checked bag is too light.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-25:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This checked bag is light enough.",
+              "uk": "У записі звучить This checked bag is light enough."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This checked bag is light enough.",
+              "uk": "У записі звучить This checked bag is light enough."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-25:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви можете нести валізу, вага вам підходить.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-25:i06:r1",
+          "text": "light enough"
+        },
+        {
+          "responseId": "en:lesson-18:session-25:i06:r2",
+          "text": "enough light"
+        },
+        {
+          "responseId": "en:lesson-18:session-25:i06:r3",
+          "text": "too light"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви можете нести валізу, вага вам підходить.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы можете нести чемодан, вес вам подходит.",
+          "uk": "Ви можете нести валізу, вага вам підходить."
+        },
+        "gappedTargetPhrase": "This checked bag is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-25:i06:r1",
+            "text": "light enough"
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i06:r2",
+            "text": "enough light"
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i06:r3",
+            "text": "too light"
+          }
+        ],
+        "testedDimension": "Ви можете нести валізу, вага вам підходить.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-25:i06:r2",
+            "correct": false,
+            "testedDimension": "Ви можете нести валізу, вага вам підходить.",
+            "feedbackByLocale": {
+              "ru": "Порядок слов: light enough.",
+              "uk": "Порядок слів: light enough."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i06:r3",
+            "correct": false,
+            "testedDimension": "Ви можете нести валізу, вага вам підходить.",
+            "feedbackByLocale": {
+              "ru": "Этот вариант меняет смысл; по ситуации нужно light enough.",
+              "uk": "Цей варіант змінює зміст; за ситуацією потрібно light enough."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-25:word:luggage-allowance",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — luggage allowance",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-25:word:luggage-allowance:audio"
+      ],
+      "accessibilityLabel": "Картка слова — luggage allowance",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-25:word:luggage-allowance:audio",
+          "transcript": "luggage allowance"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-25:word:luggage-allowance:r1",
+            "targetText": "luggage allowance",
+            "meaningByLocale": {
+              "ru": "разрешённое количество или вес багажа.",
+              "uk": "дозволена кількість або вага багажу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "luggage allowance",
+          "definitionByLocale": {
+            "ru": "разрешённое количество или вес багажа.",
+            "uk": "дозволена кількість або вага багажу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-25:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дозволеної кількості вистачає на ваші речі. Скажіть: «Нам достатньо дозволеної кількості багажу».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дозволеної кількості вистачає на ваші речі. Скажіть: «Нам достатньо дозволеної кількості багажу».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Our luggage allowance is large enough.",
+        "localizedMeaning": {
+          "ru": "Разрешённого количества хватает на ваши вещи. Скажите: «Нам достаточно разрешённого количества багажа».",
+          "uk": "Дозволеної кількості вистачає на ваші речі. Скажіть: «Нам достатньо дозволеної кількості багажу»."
+        },
+        "orderedTokens": [
+          "Our",
+          "luggage",
+          "allowance",
+          "is",
+          "large",
+          "enough"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-25:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-25:i08:r1",
+          "text": "Our luggage allowance is large enough."
+        },
+        {
+          "responseId": "en:lesson-18:session-25:i08:r2",
+          "text": "Our luggage allowance is enough large."
+        },
+        {
+          "responseId": "en:lesson-18:session-25:i08:r3",
+          "text": "Our luggage allowance is too large."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-25:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-25:i08:audio",
+          "transcript": "Our luggage allowance is large enough."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-25:i08:r1",
+            "targetText": "Our luggage allowance is large enough.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i08:r2",
+            "targetText": "Our luggage allowance is enough large.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i08:r3",
+            "targetText": "Our luggage allowance is too large.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-25:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Our luggage allowance is large enough.",
+              "uk": "У записі звучить Our luggage allowance is large enough."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Our luggage allowance is large enough.",
+              "uk": "У записі звучить Our luggage allowance is large enough."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-25:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дозволеної кількості вистачає на ваші речі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-25:i09:r1",
+          "text": "large enough"
+        },
+        {
+          "responseId": "en:lesson-18:session-25:i09:r2",
+          "text": "enough large"
+        },
+        {
+          "responseId": "en:lesson-18:session-25:i09:r3",
+          "text": "too large"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дозволеної кількості вистачає на ваші речі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Разрешённого количества хватает на ваши вещи.",
+          "uk": "Дозволеної кількості вистачає на ваші речі."
+        },
+        "gappedTargetPhrase": "Our luggage allowance is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-25:i09:r1",
+            "text": "large enough"
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i09:r2",
+            "text": "enough large"
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i09:r3",
+            "text": "too large"
+          }
+        ],
+        "testedDimension": "Дозволеної кількості вистачає на ваші речі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-25:i09:r2",
+            "correct": false,
+            "testedDimension": "Дозволеної кількості вистачає на ваші речі.",
+            "feedbackByLocale": {
+              "ru": "Порядок слов: large enough.",
+              "uk": "Порядок слів: large enough."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i09:r3",
+            "correct": false,
+            "testedDimension": "Дозволеної кількості вистачає на ваші речі.",
+            "feedbackByLocale": {
+              "ru": "Этот вариант меняет смысл; по ситуации нужно large enough.",
+              "uk": "Цей варіант змінює зміст; за ситуацією потрібно large enough."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-25:word:overhead-locker",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — overhead locker",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-25:word:overhead-locker:audio"
+      ],
+      "accessibilityLabel": "Картка слова — overhead locker",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-25:word:overhead-locker:audio",
+          "transcript": "overhead locker"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-25:word:overhead-locker:r1",
+            "targetText": "overhead locker",
+            "meaningByLocale": {
+              "ru": "багажная полка над сиденьями.",
+              "uk": "багажна полиця над сидіннями."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overhead locker",
+          "definitionByLocale": {
+            "ru": "багажная полка над сиденьями.",
+            "uk": "багажна полиця над сидіннями."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-25:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви не можете дотягнутися до полиці. Скажіть: «Багажна полиця над сидіннями зависоко».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви не можете дотягнутися до полиці. Скажіть: «Багажна полиця над сидіннями зависоко».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The overhead locker is too high.",
+        "localizedMeaning": {
+          "ru": "Вы не можете дотянуться до полки. Скажите: «Багажная полка над сиденьями слишком высоко».",
+          "uk": "Ви не можете дотягнутися до полиці. Скажіть: «Багажна полиця над сидіннями зависоко»."
+        },
+        "orderedTokens": [
+          "The",
+          "overhead",
+          "locker",
+          "is",
+          "too",
+          "high"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-25:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-25:i11:r1",
+          "text": "The overhead locker is too high."
+        },
+        {
+          "responseId": "en:lesson-18:session-25:i11:r2",
+          "text": "The overhead locker is high too."
+        },
+        {
+          "responseId": "en:lesson-18:session-25:i11:r3",
+          "text": "The overhead locker is high enough."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-25:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-25:i11:audio",
+          "transcript": "The overhead locker is too high."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-25:i11:r1",
+            "targetText": "The overhead locker is too high.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i11:r2",
+            "targetText": "The overhead locker is high too.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i11:r3",
+            "targetText": "The overhead locker is high enough.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-25:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The overhead locker is too high.",
+              "uk": "У записі звучить The overhead locker is too high."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The overhead locker is too high.",
+              "uk": "У записі звучить The overhead locker is too high."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-25:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви не можете дотягнутися до полиці.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-25:i12:r1",
+          "text": "too high"
+        },
+        {
+          "responseId": "en:lesson-18:session-25:i12:r2",
+          "text": "high too"
+        },
+        {
+          "responseId": "en:lesson-18:session-25:i12:r3",
+          "text": "high enough"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви не можете дотягнутися до полиці.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы не можете дотянуться до полки.",
+          "uk": "Ви не можете дотягнутися до полиці."
+        },
+        "gappedTargetPhrase": "The overhead locker is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-25:i12:r1",
+            "text": "too high"
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i12:r2",
+            "text": "high too"
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i12:r3",
+            "text": "high enough"
+          }
+        ],
+        "testedDimension": "Ви не можете дотягнутися до полиці.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-25:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви не можете дотягнутися до полиці.",
+            "feedbackByLocale": {
+              "ru": "Порядок слов: too high.",
+              "uk": "Порядок слів: too high."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-25:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви не можете дотягнутися до полиці.",
+            "feedbackByLocale": {
+              "ru": "Этот вариант меняет смысл; по ситуации нужно too high.",
+              "uk": "Цей варіант змінює зміст; за ситуацією потрібно too high."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-25:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-25:i13:p1",
+            "target": "cabin bag",
+            "meaningByLocale": {
+              "ru": "сумка для ручной клади",
+              "uk": "сумка для ручної поклажі"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-25:i13:p2",
+            "target": "checked bag",
+            "meaningByLocale": {
+              "ru": "сумка или чемодан, сдаваемые в багаж",
+              "uk": "сумка або валіза, яку здають у багаж"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-25:i13:p3",
+            "target": "luggage allowance",
+            "meaningByLocale": {
+              "ru": "разрешённое количество или вес багажа",
+              "uk": "дозволена кількість або вага багажу"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-25:i13:p4",
+            "target": "overhead locker",
+            "meaningByLocale": {
+              "ru": "багажная полка над сиденьями",
+              "uk": "багажна полиця над сидіннями"
+            }
+          }
+        ],
+        "leftColumn": [
+          "cabin bag",
+          "checked bag",
+          "luggage allowance",
+          "overhead locker"
+        ],
+        "rightColumn": [
+          "сумка для ручної поклажі",
+          "сумка або валіза, яку здають у багаж",
+          "дозволена кількість або вага багажу",
+          "багажна полиця над сидіннями"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-25:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте з too",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-25:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте з too",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-25:i14:audio",
+          "transcript": "This cabin bag is too big."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This cabin bag is too big.",
+        "orderedTokens": [
+          "This",
+          "cabin",
+          "bag",
+          "is",
+          "too",
+          "big"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-25:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте з enough",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-25:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте з enough",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-25:i15:audio",
+          "transcript": "This checked bag is light enough."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This checked bag is light enough.",
+        "orderedTokens": [
+          "This",
+          "checked",
+          "bag",
+          "is",
+          "light",
+          "enough"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-25:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що умову виконано",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-25:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що умову виконано",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-25:i16:audio",
+          "transcript": "Our luggage allowance is large enough."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Our luggage allowance is large enough.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-25:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що якість заважає",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-25:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що якість заважає",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-25:i17:audio",
+          "transcript": "The overhead locker is too high."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The overhead locker is too high.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e5b68ab71cb2fa8eedfbca6e58100d5524d708bafe1694083359fbd0d9f41c23"
+}

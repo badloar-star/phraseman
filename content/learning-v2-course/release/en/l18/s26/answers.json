@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-26:word:door-lock",
+    "correctText": "door lock",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-26:i01",
+    "correctText": "This door lock is too large.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-26:i02",
+    "correctText": "This door lock is too large.",
+    "correctResponseId": "en:lesson-18:session-26:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-26:i03",
+    "correctText": "too large",
+    "correctResponseId": "en:lesson-18:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-26:word:window-lock",
+    "correctText": "window lock",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-26:i04",
+    "correctText": "This window lock is strong enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-26:i05",
+    "correctText": "This window lock is strong enough.",
+    "correctResponseId": "en:lesson-18:session-26:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-26:i06",
+    "correctText": "strong enough",
+    "correctResponseId": "en:lesson-18:session-26:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-26:word:window-handle",
+    "correctText": "window handle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-26:i07",
+    "correctText": "This window handle is long enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-26:i08",
+    "correctText": "This window handle is long enough.",
+    "correctResponseId": "en:lesson-18:session-26:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-26:i09",
+    "correctText": "long enough",
+    "correctResponseId": "en:lesson-18:session-26:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-26:word:spare-part",
+    "correctText": "spare part",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-26:i10",
+    "correctText": "This spare part is too short.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-26:i11",
+    "correctText": "This spare part is too short.",
+    "correctResponseId": "en:lesson-18:session-26:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-26:i12",
+    "correctText": "too short",
+    "correctResponseId": "en:lesson-18:session-26:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-26:i13",
+    "correctText": "en:lesson-18:session-26:i13:p1=door lock\nen:lesson-18:session-26:i13:p2=window lock\nen:lesson-18:session-26:i13:p3=window handle\nen:lesson-18:session-26:i13:p4=spare part",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-26:i14",
+    "correctText": "This door lock is too large.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-26:i15",
+    "correctText": "This window lock is strong enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-26:i16",
+    "correctText": "This window handle is long enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-26:i17",
+    "correctText": "This spare part is too short.",
+    "correctResponseId": null
+  }
+]

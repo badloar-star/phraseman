@@ -1,0 +1,2331 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-18:session-28",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-18:session-28:word:oven-dish",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — oven dish",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:word:oven-dish:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — oven dish",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:word:oven-dish:audio",
+            "transcript": "oven dish"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-28:word:oven-dish:r1",
+              "targetText": "oven dish",
+              "meaningByLocale": {
+                "ru": "форма для запекания.",
+                "uk": "форма для запікання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "oven dish",
+            "definitionByLocale": {
+              "ru": "форма для запекания.",
+              "uk": "форма для запікання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Форма не входит в духовку. Скажите: «Эта форма для запекания слишком широкая».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Форма не входит в духовку. Скажите: «Эта форма для запекания слишком широкая».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This oven dish is too wide.",
+          "localizedMeaning": {
+            "ru": "Форма не входит в духовку. Скажите: «Эта форма для запекания слишком широкая».",
+            "uk": "Форма не входить у духовку. Скажіть: «Ця форма для запікання заширока»."
+          },
+          "orderedTokens": [
+            "This",
+            "oven",
+            "dish",
+            "is",
+            "too",
+            "wide"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-28:i02:r1",
+            "text": "This oven dish is too wide."
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i02:r2",
+            "text": "This oven dish is wide too."
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i02:r3",
+            "text": "This oven dish is wide enough."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:i02:audio",
+            "transcript": "This oven dish is too wide."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-28:i02:r1",
+              "targetText": "This oven dish is too wide.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i02:r2",
+              "targetText": "This oven dish is wide too.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i02:r3",
+              "targetText": "This oven dish is wide enough.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-28:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This oven dish is too wide.",
+                "uk": "У записі звучить This oven dish is too wide."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This oven dish is too wide.",
+                "uk": "У записі звучить This oven dish is too wide."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Форма не входит в духовку.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-28:i03:r1",
+            "text": "too wide"
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i03:r2",
+            "text": "wide too"
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i03:r3",
+            "text": "wide enough"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Форма не входит в духовку.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Форма не входит в духовку.",
+            "uk": "Форма не входить у духовку."
+          },
+          "gappedTargetPhrase": "This oven dish is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-28:i03:r1",
+              "text": "too wide"
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i03:r2",
+              "text": "wide too"
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i03:r3",
+              "text": "wide enough"
+            }
+          ],
+          "testedDimension": "Форма не входит в духовку.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-28:i03:r2",
+              "correct": false,
+              "testedDimension": "Форма не входит в духовку.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: too wide.",
+                "uk": "Порядок слів: too wide."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i03:r3",
+              "correct": false,
+              "testedDimension": "Форма не входит в духовку.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно too wide.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно too wide."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:word:serving-bowl",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — serving bowl",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:word:serving-bowl:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — serving bowl",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:word:serving-bowl:audio",
+            "transcript": "serving bowl"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-28:word:serving-bowl:r1",
+              "targetText": "serving bowl",
+              "meaningByLocale": {
+                "ru": "большая миска для подачи еды.",
+                "uk": "велика миска для подавання їжі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "serving bowl",
+            "definitionByLocale": {
+              "ru": "большая миска для подачи еды.",
+              "uk": "велика миска для подавання їжі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В миску помещается весь салат. Скажите: «Эта миска для подачи еды достаточно большая».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В миску помещается весь салат. Скажите: «Эта миска для подачи еды достаточно большая».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This serving bowl is large enough.",
+          "localizedMeaning": {
+            "ru": "В миску помещается весь салат. Скажите: «Эта миска для подачи еды достаточно большая».",
+            "uk": "У миску вміщується весь салат. Скажіть: «Ця миска для подавання їжі достатньо велика»."
+          },
+          "orderedTokens": [
+            "This",
+            "serving",
+            "bowl",
+            "is",
+            "large",
+            "enough"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-28:i05:r1",
+            "text": "This serving bowl is large enough."
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i05:r2",
+            "text": "This serving bowl is enough large."
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i05:r3",
+            "text": "This serving bowl is too large."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:i05:audio",
+            "transcript": "This serving bowl is large enough."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-28:i05:r1",
+              "targetText": "This serving bowl is large enough.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i05:r2",
+              "targetText": "This serving bowl is enough large.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i05:r3",
+              "targetText": "This serving bowl is too large.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-28:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This serving bowl is large enough.",
+                "uk": "У записі звучить This serving bowl is large enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This serving bowl is large enough.",
+                "uk": "У записі звучить This serving bowl is large enough."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "В миску помещается весь салат.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-28:i06:r1",
+            "text": "large enough"
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i06:r2",
+            "text": "enough large"
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i06:r3",
+            "text": "too large"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В миску помещается весь салат.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В миску помещается весь салат.",
+            "uk": "У миску вміщується весь салат."
+          },
+          "gappedTargetPhrase": "This serving bowl is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-28:i06:r1",
+              "text": "large enough"
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i06:r2",
+              "text": "enough large"
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i06:r3",
+              "text": "too large"
+            }
+          ],
+          "testedDimension": "В миску помещается весь салат.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-28:i06:r2",
+              "correct": false,
+              "testedDimension": "В миску помещается весь салат.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: large enough.",
+                "uk": "Порядок слів: large enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i06:r3",
+              "correct": false,
+              "testedDimension": "В миску помещается весь салат.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно large enough.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно large enough."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:word:water-glass",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — water glass",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:word:water-glass:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — water glass",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:word:water-glass:audio",
+            "transcript": "water glass"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-28:word:water-glass:r1",
+              "targetText": "water glass",
+              "meaningByLocale": {
+                "ru": "стакан для воды.",
+                "uk": "склянка для води."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "water glass",
+            "definitionByLocale": {
+              "ru": "стакан для воды.",
+              "uk": "склянка для води."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Стакан вымыт, его можно поставить на стол. Скажите: «Этот стакан для воды достаточно чистый».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Стакан вымыт, его можно поставить на стол. Скажите: «Этот стакан для воды достаточно чистый».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This water glass is clean enough.",
+          "localizedMeaning": {
+            "ru": "Стакан вымыт, его можно поставить на стол. Скажите: «Этот стакан для воды достаточно чистый».",
+            "uk": "Склянку вимито, її можна поставити на стіл. Скажіть: «Ця склянка для води достатньо чиста»."
+          },
+          "orderedTokens": [
+            "This",
+            "water",
+            "glass",
+            "is",
+            "clean",
+            "enough"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-28:i08:r1",
+            "text": "This water glass is clean enough."
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i08:r2",
+            "text": "This water glass is enough clean."
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i08:r3",
+            "text": "This water glass is too clean."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:i08:audio",
+            "transcript": "This water glass is clean enough."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-28:i08:r1",
+              "targetText": "This water glass is clean enough.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i08:r2",
+              "targetText": "This water glass is enough clean.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i08:r3",
+              "targetText": "This water glass is too clean.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-28:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This water glass is clean enough.",
+                "uk": "У записі звучить This water glass is clean enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This water glass is clean enough.",
+                "uk": "У записі звучить This water glass is clean enough."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Стакан вымыт, его можно поставить на стол.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-28:i09:r1",
+            "text": "clean enough"
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i09:r2",
+            "text": "enough clean"
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i09:r3",
+            "text": "too clean"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Стакан вымыт, его можно поставить на стол.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Стакан вымыт, его можно поставить на стол.",
+            "uk": "Склянку вимито, її можна поставити на стіл."
+          },
+          "gappedTargetPhrase": "This water glass is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-28:i09:r1",
+              "text": "clean enough"
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i09:r2",
+              "text": "enough clean"
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i09:r3",
+              "text": "too clean"
+            }
+          ],
+          "testedDimension": "Стакан вымыт, его можно поставить на стол.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-28:i09:r2",
+              "correct": false,
+              "testedDimension": "Стакан вымыт, его можно поставить на стол.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: clean enough.",
+                "uk": "Порядок слів: clean enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i09:r3",
+              "correct": false,
+              "testedDimension": "Стакан вымыт, его можно поставить на стол.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно clean enough.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно clean enough."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:word:wine-glass",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — wine glass",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:word:wine-glass:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — wine glass",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:word:wine-glass:audio",
+            "transcript": "wine glass"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-28:word:wine-glass:r1",
+              "targetText": "wine glass",
+              "meaningByLocale": {
+                "ru": "бокал для вина.",
+                "uk": "келих для вина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wine glass",
+            "definitionByLocale": {
+              "ru": "бокал для вина.",
+              "uk": "келих для вина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Бокал не помещается на полке. Скажите: «Этот бокал для вина слишком высокий».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Бокал не помещается на полке. Скажите: «Этот бокал для вина слишком высокий».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This wine glass is too tall.",
+          "localizedMeaning": {
+            "ru": "Бокал не помещается на полке. Скажите: «Этот бокал для вина слишком высокий».",
+            "uk": "Келих не вміщується на полиці. Скажіть: «Цей келих для вина зависокий»."
+          },
+          "orderedTokens": [
+            "This",
+            "wine",
+            "glass",
+            "is",
+            "too",
+            "tall"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-28:i11:r1",
+            "text": "This wine glass is too tall."
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i11:r2",
+            "text": "This wine glass is tall too."
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i11:r3",
+            "text": "This wine glass is tall enough."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:i11:audio",
+            "transcript": "This wine glass is too tall."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-28:i11:r1",
+              "targetText": "This wine glass is too tall.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i11:r2",
+              "targetText": "This wine glass is tall too.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i11:r3",
+              "targetText": "This wine glass is tall enough.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-28:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This wine glass is too tall.",
+                "uk": "У записі звучить This wine glass is too tall."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This wine glass is too tall.",
+                "uk": "У записі звучить This wine glass is too tall."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Бокал не помещается на полке.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-28:i12:r1",
+            "text": "too tall"
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i12:r2",
+            "text": "tall too"
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i12:r3",
+            "text": "tall enough"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Бокал не помещается на полке.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Бокал не помещается на полке.",
+            "uk": "Келих не вміщується на полиці."
+          },
+          "gappedTargetPhrase": "This wine glass is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-28:i12:r1",
+              "text": "too tall"
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i12:r2",
+              "text": "tall too"
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i12:r3",
+              "text": "tall enough"
+            }
+          ],
+          "testedDimension": "Бокал не помещается на полке.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-28:i12:r2",
+              "correct": false,
+              "testedDimension": "Бокал не помещается на полке.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: too tall.",
+                "uk": "Порядок слів: too tall."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i12:r3",
+              "correct": false,
+              "testedDimension": "Бокал не помещается на полке.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно too tall.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно too tall."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-28:i13:p1",
+              "target": "oven dish",
+              "meaningByLocale": {
+                "ru": "форма для запекания",
+                "uk": "форма для запікання"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-28:i13:p2",
+              "target": "serving bowl",
+              "meaningByLocale": {
+                "ru": "большая миска для подачи еды",
+                "uk": "велика миска для подавання їжі"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-28:i13:p3",
+              "target": "water glass",
+              "meaningByLocale": {
+                "ru": "стакан для воды",
+                "uk": "склянка для води"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-28:i13:p4",
+              "target": "wine glass",
+              "meaningByLocale": {
+                "ru": "бокал для вина",
+                "uk": "келих для вина"
+              }
+            }
+          ],
+          "leftColumn": [
+            "oven dish",
+            "serving bowl",
+            "water glass",
+            "wine glass"
+          ],
+          "rightColumn": [
+            "форма для запекания",
+            "большая миска для подачи еды",
+            "стакан для воды",
+            "бокал для вина"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное с too",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное с too",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:i14:audio",
+            "transcript": "This oven dish is too wide."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This oven dish is too wide.",
+          "orderedTokens": [
+            "This",
+            "oven",
+            "dish",
+            "is",
+            "too",
+            "wide"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное с enough",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное с enough",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:i15:audio",
+            "transcript": "This serving bowl is large enough."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This serving bowl is large enough.",
+          "orderedTokens": [
+            "This",
+            "serving",
+            "bowl",
+            "is",
+            "large",
+            "enough"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что условие выполнено",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что условие выполнено",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:i16:audio",
+            "transcript": "This water glass is clean enough."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This water glass is clean enough.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что качество мешает",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что качество мешает",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:i17:audio",
+            "transcript": "This wine glass is too tall."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This wine glass is too tall.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-18:session-28:word:oven-dish",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — oven dish",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:word:oven-dish:audio"
+        ],
+        "accessibilityLabel": "Картка слова — oven dish",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:word:oven-dish:audio",
+            "transcript": "oven dish"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-28:word:oven-dish:r1",
+              "targetText": "oven dish",
+              "meaningByLocale": {
+                "ru": "форма для запекания.",
+                "uk": "форма для запікання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "oven dish",
+            "definitionByLocale": {
+              "ru": "форма для запекания.",
+              "uk": "форма для запікання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Форма не входить у духовку. Скажіть: «Ця форма для запікання заширока».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Форма не входить у духовку. Скажіть: «Ця форма для запікання заширока».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This oven dish is too wide.",
+          "localizedMeaning": {
+            "ru": "Форма не входит в духовку. Скажите: «Эта форма для запекания слишком широкая».",
+            "uk": "Форма не входить у духовку. Скажіть: «Ця форма для запікання заширока»."
+          },
+          "orderedTokens": [
+            "This",
+            "oven",
+            "dish",
+            "is",
+            "too",
+            "wide"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-28:i02:r1",
+            "text": "This oven dish is too wide."
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i02:r2",
+            "text": "This oven dish is wide too."
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i02:r3",
+            "text": "This oven dish is wide enough."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:i02:audio",
+            "transcript": "This oven dish is too wide."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-28:i02:r1",
+              "targetText": "This oven dish is too wide.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i02:r2",
+              "targetText": "This oven dish is wide too.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i02:r3",
+              "targetText": "This oven dish is wide enough.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-28:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This oven dish is too wide.",
+                "uk": "У записі звучить This oven dish is too wide."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This oven dish is too wide.",
+                "uk": "У записі звучить This oven dish is too wide."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Форма не входить у духовку.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-28:i03:r1",
+            "text": "too wide"
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i03:r2",
+            "text": "wide too"
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i03:r3",
+            "text": "wide enough"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Форма не входить у духовку.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Форма не входит в духовку.",
+            "uk": "Форма не входить у духовку."
+          },
+          "gappedTargetPhrase": "This oven dish is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-28:i03:r1",
+              "text": "too wide"
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i03:r2",
+              "text": "wide too"
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i03:r3",
+              "text": "wide enough"
+            }
+          ],
+          "testedDimension": "Форма не входить у духовку.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-28:i03:r2",
+              "correct": false,
+              "testedDimension": "Форма не входить у духовку.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: too wide.",
+                "uk": "Порядок слів: too wide."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i03:r3",
+              "correct": false,
+              "testedDimension": "Форма не входить у духовку.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно too wide.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно too wide."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:word:serving-bowl",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — serving bowl",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:word:serving-bowl:audio"
+        ],
+        "accessibilityLabel": "Картка слова — serving bowl",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:word:serving-bowl:audio",
+            "transcript": "serving bowl"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-28:word:serving-bowl:r1",
+              "targetText": "serving bowl",
+              "meaningByLocale": {
+                "ru": "большая миска для подачи еды.",
+                "uk": "велика миска для подавання їжі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "serving bowl",
+            "definitionByLocale": {
+              "ru": "большая миска для подачи еды.",
+              "uk": "велика миска для подавання їжі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У миску вміщується весь салат. Скажіть: «Ця миска для подавання їжі достатньо велика».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У миску вміщується весь салат. Скажіть: «Ця миска для подавання їжі достатньо велика».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This serving bowl is large enough.",
+          "localizedMeaning": {
+            "ru": "В миску помещается весь салат. Скажите: «Эта миска для подачи еды достаточно большая».",
+            "uk": "У миску вміщується весь салат. Скажіть: «Ця миска для подавання їжі достатньо велика»."
+          },
+          "orderedTokens": [
+            "This",
+            "serving",
+            "bowl",
+            "is",
+            "large",
+            "enough"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-28:i05:r1",
+            "text": "This serving bowl is large enough."
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i05:r2",
+            "text": "This serving bowl is enough large."
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i05:r3",
+            "text": "This serving bowl is too large."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:i05:audio",
+            "transcript": "This serving bowl is large enough."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-28:i05:r1",
+              "targetText": "This serving bowl is large enough.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i05:r2",
+              "targetText": "This serving bowl is enough large.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i05:r3",
+              "targetText": "This serving bowl is too large.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-28:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This serving bowl is large enough.",
+                "uk": "У записі звучить This serving bowl is large enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This serving bowl is large enough.",
+                "uk": "У записі звучить This serving bowl is large enough."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "У миску вміщується весь салат.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-28:i06:r1",
+            "text": "large enough"
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i06:r2",
+            "text": "enough large"
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i06:r3",
+            "text": "too large"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У миску вміщується весь салат.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "В миску помещается весь салат.",
+            "uk": "У миску вміщується весь салат."
+          },
+          "gappedTargetPhrase": "This serving bowl is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-28:i06:r1",
+              "text": "large enough"
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i06:r2",
+              "text": "enough large"
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i06:r3",
+              "text": "too large"
+            }
+          ],
+          "testedDimension": "У миску вміщується весь салат.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-28:i06:r2",
+              "correct": false,
+              "testedDimension": "У миску вміщується весь салат.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: large enough.",
+                "uk": "Порядок слів: large enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i06:r3",
+              "correct": false,
+              "testedDimension": "У миску вміщується весь салат.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно large enough.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно large enough."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:word:water-glass",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — water glass",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:word:water-glass:audio"
+        ],
+        "accessibilityLabel": "Картка слова — water glass",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:word:water-glass:audio",
+            "transcript": "water glass"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-28:word:water-glass:r1",
+              "targetText": "water glass",
+              "meaningByLocale": {
+                "ru": "стакан для воды.",
+                "uk": "склянка для води."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "water glass",
+            "definitionByLocale": {
+              "ru": "стакан для воды.",
+              "uk": "склянка для води."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Склянку вимито, її можна поставити на стіл. Скажіть: «Ця склянка для води достатньо чиста».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Склянку вимито, її можна поставити на стіл. Скажіть: «Ця склянка для води достатньо чиста».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This water glass is clean enough.",
+          "localizedMeaning": {
+            "ru": "Стакан вымыт, его можно поставить на стол. Скажите: «Этот стакан для воды достаточно чистый».",
+            "uk": "Склянку вимито, її можна поставити на стіл. Скажіть: «Ця склянка для води достатньо чиста»."
+          },
+          "orderedTokens": [
+            "This",
+            "water",
+            "glass",
+            "is",
+            "clean",
+            "enough"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-28:i08:r1",
+            "text": "This water glass is clean enough."
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i08:r2",
+            "text": "This water glass is enough clean."
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i08:r3",
+            "text": "This water glass is too clean."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:i08:audio",
+            "transcript": "This water glass is clean enough."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-28:i08:r1",
+              "targetText": "This water glass is clean enough.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i08:r2",
+              "targetText": "This water glass is enough clean.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i08:r3",
+              "targetText": "This water glass is too clean.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-28:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This water glass is clean enough.",
+                "uk": "У записі звучить This water glass is clean enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This water glass is clean enough.",
+                "uk": "У записі звучить This water glass is clean enough."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Склянку вимито, її можна поставити на стіл.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-28:i09:r1",
+            "text": "clean enough"
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i09:r2",
+            "text": "enough clean"
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i09:r3",
+            "text": "too clean"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Склянку вимито, її можна поставити на стіл.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Стакан вымыт, его можно поставить на стол.",
+            "uk": "Склянку вимито, її можна поставити на стіл."
+          },
+          "gappedTargetPhrase": "This water glass is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-28:i09:r1",
+              "text": "clean enough"
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i09:r2",
+              "text": "enough clean"
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i09:r3",
+              "text": "too clean"
+            }
+          ],
+          "testedDimension": "Склянку вимито, її можна поставити на стіл.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-28:i09:r2",
+              "correct": false,
+              "testedDimension": "Склянку вимито, її можна поставити на стіл.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: clean enough.",
+                "uk": "Порядок слів: clean enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i09:r3",
+              "correct": false,
+              "testedDimension": "Склянку вимито, її можна поставити на стіл.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно clean enough.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно clean enough."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:word:wine-glass",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — wine glass",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:word:wine-glass:audio"
+        ],
+        "accessibilityLabel": "Картка слова — wine glass",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:word:wine-glass:audio",
+            "transcript": "wine glass"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-28:word:wine-glass:r1",
+              "targetText": "wine glass",
+              "meaningByLocale": {
+                "ru": "бокал для вина.",
+                "uk": "келих для вина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wine glass",
+            "definitionByLocale": {
+              "ru": "бокал для вина.",
+              "uk": "келих для вина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Келих не вміщується на полиці. Скажіть: «Цей келих для вина зависокий».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Келих не вміщується на полиці. Скажіть: «Цей келих для вина зависокий».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This wine glass is too tall.",
+          "localizedMeaning": {
+            "ru": "Бокал не помещается на полке. Скажите: «Этот бокал для вина слишком высокий».",
+            "uk": "Келих не вміщується на полиці. Скажіть: «Цей келих для вина зависокий»."
+          },
+          "orderedTokens": [
+            "This",
+            "wine",
+            "glass",
+            "is",
+            "too",
+            "tall"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-28:i11:r1",
+            "text": "This wine glass is too tall."
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i11:r2",
+            "text": "This wine glass is tall too."
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i11:r3",
+            "text": "This wine glass is tall enough."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:i11:audio",
+            "transcript": "This wine glass is too tall."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-28:i11:r1",
+              "targetText": "This wine glass is too tall.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i11:r2",
+              "targetText": "This wine glass is tall too.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i11:r3",
+              "targetText": "This wine glass is tall enough.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-28:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This wine glass is too tall.",
+                "uk": "У записі звучить This wine glass is too tall."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This wine glass is too tall.",
+                "uk": "У записі звучить This wine glass is too tall."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Келих не вміщується на полиці.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-28:i12:r1",
+            "text": "too tall"
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i12:r2",
+            "text": "tall too"
+          },
+          {
+            "responseId": "en:lesson-18:session-28:i12:r3",
+            "text": "tall enough"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Келих не вміщується на полиці.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Бокал не помещается на полке.",
+            "uk": "Келих не вміщується на полиці."
+          },
+          "gappedTargetPhrase": "This wine glass is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-28:i12:r1",
+              "text": "too tall"
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i12:r2",
+              "text": "tall too"
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i12:r3",
+              "text": "tall enough"
+            }
+          ],
+          "testedDimension": "Келих не вміщується на полиці.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-28:i12:r2",
+              "correct": false,
+              "testedDimension": "Келих не вміщується на полиці.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: too tall.",
+                "uk": "Порядок слів: too tall."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-28:i12:r3",
+              "correct": false,
+              "testedDimension": "Келих не вміщується на полиці.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно too tall.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно too tall."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-28:i13:p1",
+              "target": "oven dish",
+              "meaningByLocale": {
+                "ru": "форма для запекания",
+                "uk": "форма для запікання"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-28:i13:p2",
+              "target": "serving bowl",
+              "meaningByLocale": {
+                "ru": "большая миска для подачи еды",
+                "uk": "велика миска для подавання їжі"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-28:i13:p3",
+              "target": "water glass",
+              "meaningByLocale": {
+                "ru": "стакан для воды",
+                "uk": "склянка для води"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-28:i13:p4",
+              "target": "wine glass",
+              "meaningByLocale": {
+                "ru": "бокал для вина",
+                "uk": "келих для вина"
+              }
+            }
+          ],
+          "leftColumn": [
+            "oven dish",
+            "serving bowl",
+            "water glass",
+            "wine glass"
+          ],
+          "rightColumn": [
+            "форма для запікання",
+            "велика миска для подавання їжі",
+            "склянка для води",
+            "келих для вина"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте з too",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте з too",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:i14:audio",
+            "transcript": "This oven dish is too wide."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This oven dish is too wide.",
+          "orderedTokens": [
+            "This",
+            "oven",
+            "dish",
+            "is",
+            "too",
+            "wide"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте з enough",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте з enough",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:i15:audio",
+            "transcript": "This serving bowl is large enough."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This serving bowl is large enough.",
+          "orderedTokens": [
+            "This",
+            "serving",
+            "bowl",
+            "is",
+            "large",
+            "enough"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що умову виконано",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що умову виконано",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:i16:audio",
+            "transcript": "This water glass is clean enough."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This water glass is clean enough.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-28:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що якість заважає",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-28:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що якість заважає",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-28:i17:audio",
+            "transcript": "This wine glass is too tall."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This wine glass is too tall.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-18:session-28:word:oven-dish",
+      "correctText": "oven dish",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-28:i01",
+      "correctText": "This oven dish is too wide.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-28:i02",
+      "correctText": "This oven dish is too wide.",
+      "correctResponseId": "en:lesson-18:session-28:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-28:i03",
+      "correctText": "too wide",
+      "correctResponseId": "en:lesson-18:session-28:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-28:word:serving-bowl",
+      "correctText": "serving bowl",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-28:i04",
+      "correctText": "This serving bowl is large enough.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-28:i05",
+      "correctText": "This serving bowl is large enough.",
+      "correctResponseId": "en:lesson-18:session-28:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-28:i06",
+      "correctText": "large enough",
+      "correctResponseId": "en:lesson-18:session-28:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-28:word:water-glass",
+      "correctText": "water glass",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-28:i07",
+      "correctText": "This water glass is clean enough.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-28:i08",
+      "correctText": "This water glass is clean enough.",
+      "correctResponseId": "en:lesson-18:session-28:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-28:i09",
+      "correctText": "clean enough",
+      "correctResponseId": "en:lesson-18:session-28:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-28:word:wine-glass",
+      "correctText": "wine glass",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-28:i10",
+      "correctText": "This wine glass is too tall.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-28:i11",
+      "correctText": "This wine glass is too tall.",
+      "correctResponseId": "en:lesson-18:session-28:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-28:i12",
+      "correctText": "too tall",
+      "correctResponseId": "en:lesson-18:session-28:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-28:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-28:i14",
+      "correctText": "This oven dish is too wide.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-28:i15",
+      "correctText": "This serving bowl is large enough.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-28:i16",
+      "correctText": "This water glass is clean enough.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-28:i17",
+      "correctText": "This wine glass is too tall.",
+      "correctResponseId": null
+    }
+  ]
+}

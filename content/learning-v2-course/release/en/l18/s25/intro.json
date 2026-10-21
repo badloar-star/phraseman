@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-18:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "too + adjective; adjective + enough",
+    "uk": "too + adjective; adjective + enough"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-18:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Когда качество мешает",
+        "uk": "Коли якість заважає"
+      },
+      "bodyByLocale": {
+        "ru": "cabin bag — сумка для ручной клади. Сумка не помещается в мерку для этой поездки. Too ставим перед прилагательным: too big — слишком большой, это мешает. Enough ставим после прилагательного: light enough — достаточно лёгкий, нужное условие выполнено. Too не означает просто «очень».",
+        "uk": "cabin bag — сумка для ручної поклажі. Сумка не вміщується в мірку для цієї поїздки. Too ставимо перед прикметником: too big — завеликий, це заважає. Enough ставимо після прикметника: light enough — достатньо легкий, потрібну умову виконано. Too не означає просто «дуже»."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-25:intro1:r1",
+              "text": "This cabin bag is too big."
+            },
+            {
+              "responseId": "en:lesson-18:session-25:intro1:r2",
+              "text": "This cabin bag is big too."
+            },
+            {
+              "responseId": "en:lesson-18:session-25:intro1:r3",
+              "text": "This cabin bag is big enough."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-25:intro1:r1",
+              "text": "This cabin bag is too big."
+            },
+            {
+              "responseId": "en:lesson-18:session-25:intro1:r2",
+              "text": "This cabin bag is big too."
+            },
+            {
+              "responseId": "en:lesson-18:session-25:intro1:r3",
+              "text": "This cabin bag is big enough."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-18:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Когда достаточно",
+        "uk": "Коли достатньо"
+      },
+      "bodyByLocale": {
+        "ru": "checked bag — сумка или чемодан, сдаваемые в багаж. Вы можете нести чемодан, вес вам подходит. Too ставим перед прилагательным: too big — слишком большой, это мешает. Enough ставим после прилагательного: light enough — достаточно лёгкий, нужное условие выполнено. Too не означает просто «очень».",
+        "uk": "checked bag — сумка або валіза, яку здають у багаж. Ви можете нести валізу, вага вам підходить. Too ставимо перед прикметником: too big — завеликий, це заважає. Enough ставимо після прикметника: light enough — достатньо легкий, потрібну умову виконано. Too не означає просто «дуже»."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-25:intro2:r1",
+              "text": "This checked bag is light enough."
+            },
+            {
+              "responseId": "en:lesson-18:session-25:intro2:r2",
+              "text": "This checked bag is enough light."
+            },
+            {
+              "responseId": "en:lesson-18:session-25:intro2:r3",
+              "text": "This checked bag is too light."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-25:intro2:r1",
+              "text": "This checked bag is light enough."
+            },
+            {
+              "responseId": "en:lesson-18:session-25:intro2:r2",
+              "text": "This checked bag is enough light."
+            },
+            {
+              "responseId": "en:lesson-18:session-25:intro2:r3",
+              "text": "This checked bag is too light."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-18:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проверить порядок слов",
+        "uk": "Перевірити порядок слів"
+      },
+      "bodyByLocale": {
+        "ru": "luggage allowance — разрешённое количество или вес багажа. overhead locker — багажная полка над сиденьями. Разрешённого количества хватает на ваши вещи. Too ставим перед прилагательным: too big — слишком большой, это мешает. Enough ставим после прилагательного: light enough — достаточно лёгкий, нужное условие выполнено. Too не означает просто «очень».",
+        "uk": "luggage allowance — дозволена кількість або вага багажу. overhead locker — багажна полиця над сидіннями. Дозволеної кількості вистачає на ваші речі. Too ставимо перед прикметником: too big — завеликий, це заважає. Enough ставимо після прикметника: light enough — достатньо легкий, потрібну умову виконано. Too не означає просто «дуже»."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-25:intro3:r1",
+              "text": "Our luggage allowance is large enough."
+            },
+            {
+              "responseId": "en:lesson-18:session-25:intro3:r2",
+              "text": "Our luggage allowance is enough large."
+            },
+            {
+              "responseId": "en:lesson-18:session-25:intro3:r3",
+              "text": "Our luggage allowance is too large."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-25:intro3:r1",
+              "text": "Our luggage allowance is large enough."
+            },
+            {
+              "responseId": "en:lesson-18:session-25:intro3:r2",
+              "text": "Our luggage allowance is enough large."
+            },
+            {
+              "responseId": "en:lesson-18:session-25:intro3:r3",
+              "text": "Our luggage allowance is too large."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bfe0b4d3172aea3f4767001f0ecee5b04740a529bd05c789e43a77874ed757e2"
+}

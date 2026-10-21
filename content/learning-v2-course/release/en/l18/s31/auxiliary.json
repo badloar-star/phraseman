@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-18:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-18:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-31:intro1:r2": {
+          "ru": "Правильный порядок: too high.",
+          "uk": "Правильний порядок: too high."
+        },
+        "en:lesson-18:session-31:intro1:r3": {
+          "ru": "По ситуации требуется too high: условие либо мешает, либо выполнено.",
+          "uk": "За ситуацією потрібне too high: умова або заважає, або виконана."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-31:intro2:r2": {
+          "ru": "Правильный порядок: low enough.",
+          "uk": "Правильний порядок: low enough."
+        },
+        "en:lesson-18:session-31:intro2:r3": {
+          "ru": "По ситуации требуется low enough: условие либо мешает, либо выполнено.",
+          "uk": "За ситуацією потрібне low enough: умова або заважає, або виконана."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-31:intro3:r2": {
+          "ru": "Правильный порядок: low enough.",
+          "uk": "Правильний порядок: low enough."
+        },
+        "en:lesson-18:session-31:intro3:r3": {
+          "ru": "По ситуации требуется low enough: условие либо мешает, либо выполнено.",
+          "uk": "За ситуацією потрібне low enough: умова або заважає, або виконана."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "79f062576cee68b6c56192a064d443f33018e41e478ed76c4b11873ea8bde618"
+}

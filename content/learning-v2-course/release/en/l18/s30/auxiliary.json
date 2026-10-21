@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-18:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-18:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-30:intro1:r2": {
+          "ru": "Правильный порядок: too narrow.",
+          "uk": "Правильний порядок: too narrow."
+        },
+        "en:lesson-18:session-30:intro1:r3": {
+          "ru": "По ситуации требуется too narrow: условие либо мешает, либо выполнено.",
+          "uk": "За ситуацією потрібне too narrow: умова або заважає, або виконана."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-30:intro2:r2": {
+          "ru": "Правильный порядок: wide enough.",
+          "uk": "Правильний порядок: wide enough."
+        },
+        "en:lesson-18:session-30:intro2:r3": {
+          "ru": "По ситуации требуется wide enough: условие либо мешает, либо выполнено.",
+          "uk": "За ситуацією потрібне wide enough: умова або заважає, або виконана."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-30:intro3:r2": {
+          "ru": "Правильный порядок: high enough.",
+          "uk": "Правильний порядок: high enough."
+        },
+        "en:lesson-18:session-30:intro3:r3": {
+          "ru": "По ситуации требуется high enough: условие либо мешает, либо выполнено.",
+          "uk": "За ситуацією потрібне high enough: умова або заважає, або виконана."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a35377b1d1d3ef03ae0e47c0bd93691974c3c8baa3fda0c442ca1678929cb1fb"
+}

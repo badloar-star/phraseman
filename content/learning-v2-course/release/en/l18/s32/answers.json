@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-32:word:child-seat",
+    "correctText": "child seat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-32:i01",
+    "correctText": "This child seat is too heavy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-32:i02",
+    "correctText": "This child seat is too heavy.",
+    "correctResponseId": "en:lesson-18:session-32:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-32:i03",
+    "correctText": "too heavy",
+    "correctResponseId": "en:lesson-18:session-32:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-32:word:booster-seat",
+    "correctText": "booster seat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-32:i04",
+    "correctText": "This booster seat is light enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-32:i05",
+    "correctText": "This booster seat is light enough.",
+    "correctResponseId": "en:lesson-18:session-32:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-32:i06",
+    "correctText": "light enough",
+    "correctResponseId": "en:lesson-18:session-32:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-32:word:seat-cover",
+    "correctText": "seat cover",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-32:i07",
+    "correctText": "This seat cover is wide enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-32:i08",
+    "correctText": "This seat cover is wide enough.",
+    "correctResponseId": "en:lesson-18:session-32:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-32:i09",
+    "correctText": "wide enough",
+    "correctResponseId": "en:lesson-18:session-32:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-32:word:headrest",
+    "correctText": "headrest",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-32:i10",
+    "correctText": "This headrest is too low.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-32:i11",
+    "correctText": "This headrest is too low.",
+    "correctResponseId": "en:lesson-18:session-32:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-32:i12",
+    "correctText": "too low",
+    "correctResponseId": "en:lesson-18:session-32:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-32:i13",
+    "correctText": "en:lesson-18:session-32:i13:p1=child seat\nen:lesson-18:session-32:i13:p2=booster seat\nen:lesson-18:session-32:i13:p3=seat cover\nen:lesson-18:session-32:i13:p4=headrest",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-32:i14",
+    "correctText": "We are going to buy a seat cover.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-32:i15",
+    "correctText": "We are collecting the child seat tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-32:i16",
+    "correctText": "This seat cover is wider than ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-32:i17",
+    "correctText": "This booster seat is as light as ours.",
+    "correctResponseId": null
+  }
+]

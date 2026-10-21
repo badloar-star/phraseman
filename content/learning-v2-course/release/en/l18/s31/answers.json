@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-31:word:monthly-rent",
+    "correctText": "monthly rent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-31:i01",
+    "correctText": "The monthly rent is too high.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-31:i02",
+    "correctText": "The monthly rent is too high.",
+    "correctResponseId": "en:lesson-18:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-31:i03",
+    "correctText": "too high",
+    "correctResponseId": "en:lesson-18:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-31:word:rental-deposit",
+    "correctText": "rental deposit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-31:i04",
+    "correctText": "The rental deposit is low enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-31:i05",
+    "correctText": "The rental deposit is low enough.",
+    "correctResponseId": "en:lesson-18:session-31:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-31:i06",
+    "correctText": "low enough",
+    "correctResponseId": "en:lesson-18:session-31:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-31:word:house-price",
+    "correctText": "house price",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-31:i07",
+    "correctText": "This house price is low enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-31:i08",
+    "correctText": "This house price is low enough.",
+    "correctResponseId": "en:lesson-18:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-31:i09",
+    "correctText": "low enough",
+    "correctResponseId": "en:lesson-18:session-31:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-31:word:moving-costs",
+    "correctText": "moving costs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-31:i10",
+    "correctText": "The moving costs are too high.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-31:i11",
+    "correctText": "The moving costs are too high.",
+    "correctResponseId": "en:lesson-18:session-31:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-31:i12",
+    "correctText": "too high",
+    "correctResponseId": "en:lesson-18:session-31:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-31:i13",
+    "correctText": "en:lesson-18:session-31:i13:p1=monthly rent\nen:lesson-18:session-31:i13:p2=rental deposit\nen:lesson-18:session-31:i13:p3=house price\nen:lesson-18:session-31:i13:p4=moving costs",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-31:i14",
+    "correctText": "We are going to check the moving costs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-31:i15",
+    "correctText": "We are viewing the house on Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-31:i16",
+    "correctText": "The monthly rent is higher than before.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-31:i17",
+    "correctText": "This rental deposit is as low as ours.",
+    "correctResponseId": null
+  }
+]

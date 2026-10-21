@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-18:session-27",
+  "entries": [
+    {
+      "interactionId": "en:lesson-18:session-27:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-27:intro1:r2": {
+          "ru": "Правильный порядок: too small.",
+          "uk": "Правильний порядок: too small."
+        },
+        "en:lesson-18:session-27:intro1:r3": {
+          "ru": "По ситуации требуется too small: условие либо мешает, либо выполнено.",
+          "uk": "За ситуацією потрібне too small: умова або заважає, або виконана."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-27:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-27:intro2:r2": {
+          "ru": "Правильный порядок: large enough.",
+          "uk": "Правильний порядок: large enough."
+        },
+        "en:lesson-18:session-27:intro2:r3": {
+          "ru": "По ситуации требуется large enough: условие либо мешает, либо выполнено.",
+          "uk": "За ситуацією потрібне large enough: умова або заважає, або виконана."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-18:session-27:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-18:session-27:intro3:r2": {
+          "ru": "Правильный порядок: long enough.",
+          "uk": "Правильний порядок: long enough."
+        },
+        "en:lesson-18:session-27:intro3:r3": {
+          "ru": "По ситуации требуется long enough: условие либо мешает, либо выполнено.",
+          "uk": "За ситуацією потрібне long enough: умова або заважає, або виконана."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "26970d9fad24d08f8f84274b6b2b94c5a456607e5379c4406701501a6d9f132d"
+}

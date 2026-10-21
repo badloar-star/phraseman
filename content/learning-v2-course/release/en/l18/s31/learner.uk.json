@@ -1,0 +1,1124 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-31",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-31:word:monthly-rent",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — monthly rent",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-31:word:monthly-rent:audio"
+      ],
+      "accessibilityLabel": "Картка слова — monthly rent",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-31:word:monthly-rent:audio",
+          "transcript": "monthly rent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-31:word:monthly-rent:r1",
+            "targetText": "monthly rent",
+            "meaningByLocale": {
+              "ru": "ежемесячная арендная плата.",
+              "uk": "щомісячна орендна плата."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "monthly rent",
+          "definitionByLocale": {
+            "ru": "ежемесячная арендная плата.",
+            "uk": "щомісячна орендна плата."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-31:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ця сума не вкладається у ваш бюджет. Скажіть: «Щомісячна орендна плата зависока».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ця сума не вкладається у ваш бюджет. Скажіть: «Щомісячна орендна плата зависока».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The monthly rent is too high.",
+        "localizedMeaning": {
+          "ru": "Эта сумма не помещается в ваш бюджет. Скажите: «Ежемесячная арендная плата слишком высокая».",
+          "uk": "Ця сума не вкладається у ваш бюджет. Скажіть: «Щомісячна орендна плата зависока»."
+        },
+        "orderedTokens": [
+          "The",
+          "monthly",
+          "rent",
+          "is",
+          "too",
+          "high"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-31:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-31:i02:r1",
+          "text": "The monthly rent is too high."
+        },
+        {
+          "responseId": "en:lesson-18:session-31:i02:r2",
+          "text": "The monthly rent is high too."
+        },
+        {
+          "responseId": "en:lesson-18:session-31:i02:r3",
+          "text": "The monthly rent is high enough."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-31:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-31:i02:audio",
+          "transcript": "The monthly rent is too high."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-31:i02:r1",
+            "targetText": "The monthly rent is too high.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i02:r2",
+            "targetText": "The monthly rent is high too.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i02:r3",
+            "targetText": "The monthly rent is high enough.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-31:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The monthly rent is too high.",
+              "uk": "У записі звучить The monthly rent is too high."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The monthly rent is too high.",
+              "uk": "У записі звучить The monthly rent is too high."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-31:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ця сума не вкладається у ваш бюджет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-31:i03:r1",
+          "text": "too high"
+        },
+        {
+          "responseId": "en:lesson-18:session-31:i03:r2",
+          "text": "high too"
+        },
+        {
+          "responseId": "en:lesson-18:session-31:i03:r3",
+          "text": "high enough"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ця сума не вкладається у ваш бюджет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Эта сумма не помещается в ваш бюджет.",
+          "uk": "Ця сума не вкладається у ваш бюджет."
+        },
+        "gappedTargetPhrase": "The monthly rent is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-31:i03:r1",
+            "text": "too high"
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i03:r2",
+            "text": "high too"
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i03:r3",
+            "text": "high enough"
+          }
+        ],
+        "testedDimension": "Ця сума не вкладається у ваш бюджет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-31:i03:r2",
+            "correct": false,
+            "testedDimension": "Ця сума не вкладається у ваш бюджет.",
+            "feedbackByLocale": {
+              "ru": "Порядок слов: too high.",
+              "uk": "Порядок слів: too high."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i03:r3",
+            "correct": false,
+            "testedDimension": "Ця сума не вкладається у ваш бюджет.",
+            "feedbackByLocale": {
+              "ru": "Этот вариант меняет смысл; по ситуации нужно too high.",
+              "uk": "Цей варіант змінює зміст; за ситуацією потрібно too high."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-31:word:rental-deposit",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rental deposit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-31:word:rental-deposit:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rental deposit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-31:word:rental-deposit:audio",
+          "transcript": "rental deposit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-31:word:rental-deposit:r1",
+            "targetText": "rental deposit",
+            "meaningByLocale": {
+              "ru": "залог при аренде.",
+              "uk": "застава під час оренди."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rental deposit",
+          "definitionByLocale": {
+            "ru": "залог при аренде.",
+            "uk": "застава під час оренди."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-31:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви можете сплатити цю заставу; сума підходить. Скажіть: «Застава під час оренди достатньо низька».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви можете сплатити цю заставу; сума підходить. Скажіть: «Застава під час оренди достатньо низька».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The rental deposit is low enough.",
+        "localizedMeaning": {
+          "ru": "Вы можете заплатить этот залог; сумма подходит. Скажите: «Залог при аренде достаточно низкий».",
+          "uk": "Ви можете сплатити цю заставу; сума підходить. Скажіть: «Застава під час оренди достатньо низька»."
+        },
+        "orderedTokens": [
+          "The",
+          "rental",
+          "deposit",
+          "is",
+          "low",
+          "enough"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-31:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-31:i05:r1",
+          "text": "The rental deposit is low enough."
+        },
+        {
+          "responseId": "en:lesson-18:session-31:i05:r2",
+          "text": "The rental deposit is enough low."
+        },
+        {
+          "responseId": "en:lesson-18:session-31:i05:r3",
+          "text": "The rental deposit is too low."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-31:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-31:i05:audio",
+          "transcript": "The rental deposit is low enough."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-31:i05:r1",
+            "targetText": "The rental deposit is low enough.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i05:r2",
+            "targetText": "The rental deposit is enough low.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i05:r3",
+            "targetText": "The rental deposit is too low.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-31:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The rental deposit is low enough.",
+              "uk": "У записі звучить The rental deposit is low enough."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The rental deposit is low enough.",
+              "uk": "У записі звучить The rental deposit is low enough."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-31:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви можете сплатити цю заставу; сума підходить.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-31:i06:r1",
+          "text": "low enough"
+        },
+        {
+          "responseId": "en:lesson-18:session-31:i06:r2",
+          "text": "enough low"
+        },
+        {
+          "responseId": "en:lesson-18:session-31:i06:r3",
+          "text": "too low"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви можете сплатити цю заставу; сума підходить.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы можете заплатить этот залог; сумма подходит.",
+          "uk": "Ви можете сплатити цю заставу; сума підходить."
+        },
+        "gappedTargetPhrase": "The rental deposit is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-31:i06:r1",
+            "text": "low enough"
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i06:r2",
+            "text": "enough low"
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i06:r3",
+            "text": "too low"
+          }
+        ],
+        "testedDimension": "Ви можете сплатити цю заставу; сума підходить.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-31:i06:r2",
+            "correct": false,
+            "testedDimension": "Ви можете сплатити цю заставу; сума підходить.",
+            "feedbackByLocale": {
+              "ru": "Порядок слов: low enough.",
+              "uk": "Порядок слів: low enough."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i06:r3",
+            "correct": false,
+            "testedDimension": "Ви можете сплатити цю заставу; сума підходить.",
+            "feedbackByLocale": {
+              "ru": "Этот вариант меняет смысл; по ситуации нужно low enough.",
+              "uk": "Цей варіант змінює зміст; за ситуацією потрібно low enough."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-31:word:house-price",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — house price",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-31:word:house-price:audio"
+      ],
+      "accessibilityLabel": "Картка слова — house price",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-31:word:house-price:audio",
+          "transcript": "house price"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-31:word:house-price:r1",
+            "targetText": "house price",
+            "meaningByLocale": {
+              "ru": "цена дома.",
+              "uk": "ціна будинку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "house price",
+          "definitionByLocale": {
+            "ru": "цена дома.",
+            "uk": "ціна будинку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-31:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Названа ціна вкладається у ваш бюджет. Скажіть: «Ця ціна будинку достатньо низька».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Названа ціна вкладається у ваш бюджет. Скажіть: «Ця ціна будинку достатньо низька».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This house price is low enough.",
+        "localizedMeaning": {
+          "ru": "Названная цена укладывается в ваш бюджет. Скажите: «Эта цена дома достаточно низкая».",
+          "uk": "Названа ціна вкладається у ваш бюджет. Скажіть: «Ця ціна будинку достатньо низька»."
+        },
+        "orderedTokens": [
+          "This",
+          "house",
+          "price",
+          "is",
+          "low",
+          "enough"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-31:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-31:i08:r1",
+          "text": "This house price is low enough."
+        },
+        {
+          "responseId": "en:lesson-18:session-31:i08:r2",
+          "text": "This house price is enough low."
+        },
+        {
+          "responseId": "en:lesson-18:session-31:i08:r3",
+          "text": "This house price is too low."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-31:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-31:i08:audio",
+          "transcript": "This house price is low enough."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-31:i08:r1",
+            "targetText": "This house price is low enough.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i08:r2",
+            "targetText": "This house price is enough low.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i08:r3",
+            "targetText": "This house price is too low.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-31:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This house price is low enough.",
+              "uk": "У записі звучить This house price is low enough."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This house price is low enough.",
+              "uk": "У записі звучить This house price is low enough."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-31:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Названа ціна вкладається у ваш бюджет.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-31:i09:r1",
+          "text": "low enough"
+        },
+        {
+          "responseId": "en:lesson-18:session-31:i09:r2",
+          "text": "enough low"
+        },
+        {
+          "responseId": "en:lesson-18:session-31:i09:r3",
+          "text": "too low"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Названа ціна вкладається у ваш бюджет.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Названная цена укладывается в ваш бюджет.",
+          "uk": "Названа ціна вкладається у ваш бюджет."
+        },
+        "gappedTargetPhrase": "This house price is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-31:i09:r1",
+            "text": "low enough"
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i09:r2",
+            "text": "enough low"
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i09:r3",
+            "text": "too low"
+          }
+        ],
+        "testedDimension": "Названа ціна вкладається у ваш бюджет.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-31:i09:r2",
+            "correct": false,
+            "testedDimension": "Названа ціна вкладається у ваш бюджет.",
+            "feedbackByLocale": {
+              "ru": "Порядок слов: low enough.",
+              "uk": "Порядок слів: low enough."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i09:r3",
+            "correct": false,
+            "testedDimension": "Названа ціна вкладається у ваш бюджет.",
+            "feedbackByLocale": {
+              "ru": "Этот вариант меняет смысл; по ситуации нужно low enough.",
+              "uk": "Цей варіант змінює зміст; за ситуацією потрібно low enough."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-31:word:moving-costs",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — moving costs",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-31:word:moving-costs:audio"
+      ],
+      "accessibilityLabel": "Картка слова — moving costs",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-31:word:moving-costs:audio",
+          "transcript": "moving costs"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-31:word:moving-costs:r1",
+            "targetText": "moving costs",
+            "meaningByLocale": {
+              "ru": "расходы на переезд.",
+              "uk": "витрати на переїзд."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "moving costs",
+          "definitionByLocale": {
+            "ru": "расходы на переезд.",
+            "uk": "витрати на переїзд."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-31:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На такий переїзд грошей не вистачає. Скажіть: «Витрати на переїзд зависокі».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На такий переїзд грошей не вистачає. Скажіть: «Витрати на переїзд зависокі».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The moving costs are too high.",
+        "localizedMeaning": {
+          "ru": "На такой переезд денег не хватает. Скажите: «Расходы на переезд слишком высокие».",
+          "uk": "На такий переїзд грошей не вистачає. Скажіть: «Витрати на переїзд зависокі»."
+        },
+        "orderedTokens": [
+          "The",
+          "moving",
+          "costs",
+          "are",
+          "too",
+          "high"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-31:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-31:i11:r1",
+          "text": "The moving costs are too high."
+        },
+        {
+          "responseId": "en:lesson-18:session-31:i11:r2",
+          "text": "The moving costs are high too."
+        },
+        {
+          "responseId": "en:lesson-18:session-31:i11:r3",
+          "text": "The moving costs are high enough."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-31:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-31:i11:audio",
+          "transcript": "The moving costs are too high."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-31:i11:r1",
+            "targetText": "The moving costs are too high.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i11:r2",
+            "targetText": "The moving costs are high too.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i11:r3",
+            "targetText": "The moving costs are high enough.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-31:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The moving costs are too high.",
+              "uk": "У записі звучить The moving costs are too high."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The moving costs are too high.",
+              "uk": "У записі звучить The moving costs are too high."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-31:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На такий переїзд грошей не вистачає.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-31:i12:r1",
+          "text": "too high"
+        },
+        {
+          "responseId": "en:lesson-18:session-31:i12:r2",
+          "text": "high too"
+        },
+        {
+          "responseId": "en:lesson-18:session-31:i12:r3",
+          "text": "high enough"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На такий переїзд грошей не вистачає.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На такой переезд денег не хватает.",
+          "uk": "На такий переїзд грошей не вистачає."
+        },
+        "gappedTargetPhrase": "The moving costs are ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-31:i12:r1",
+            "text": "too high"
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i12:r2",
+            "text": "high too"
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i12:r3",
+            "text": "high enough"
+          }
+        ],
+        "testedDimension": "На такий переїзд грошей не вистачає.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-31:i12:r2",
+            "correct": false,
+            "testedDimension": "На такий переїзд грошей не вистачає.",
+            "feedbackByLocale": {
+              "ru": "Порядок слов: too high.",
+              "uk": "Порядок слів: too high."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-31:i12:r3",
+            "correct": false,
+            "testedDimension": "На такий переїзд грошей не вистачає.",
+            "feedbackByLocale": {
+              "ru": "Этот вариант меняет смысл; по ситуации нужно too high.",
+              "uk": "Цей варіант змінює зміст; за ситуацією потрібно too high."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-31:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-31:i13:p1",
+            "target": "monthly rent",
+            "meaningByLocale": {
+              "ru": "ежемесячная арендная плата",
+              "uk": "щомісячна орендна плата"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-31:i13:p2",
+            "target": "rental deposit",
+            "meaningByLocale": {
+              "ru": "залог при аренде",
+              "uk": "застава під час оренди"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-31:i13:p3",
+            "target": "house price",
+            "meaningByLocale": {
+              "ru": "цена дома",
+              "uk": "ціна будинку"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-31:i13:p4",
+            "target": "moving costs",
+            "meaningByLocale": {
+              "ru": "расходы на переезд",
+              "uk": "витрати на переїзд"
+            }
+          }
+        ],
+        "leftColumn": [
+          "monthly rent",
+          "rental deposit",
+          "house price",
+          "moving costs"
+        ],
+        "rightColumn": [
+          "щомісячна орендна плата",
+          "застава під час оренди",
+          "ціна будинку",
+          "витрати на переїзд"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-31:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-31:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-31:i14:audio",
+          "transcript": "We are going to check the moving costs."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to check the moving costs.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "check",
+          "the",
+          "moving",
+          "costs"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-31:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий узгоджений план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-31:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий узгоджений план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-31:i15:audio",
+          "transcript": "We are viewing the house on Friday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are viewing the house on Friday.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "viewing",
+          "the",
+          "house",
+          "on",
+          "Friday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-31:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: порівняйте два варіанти",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-31:i16:audio"
+      ],
+      "accessibilityLabel": "Повторення: порівняйте два варіанти",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-31:i16:audio",
+          "transcript": "The monthly rent is higher than before."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The monthly rent is higher than before.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-31:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: однакова якість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-31:i17:audio"
+      ],
+      "accessibilityLabel": "Повторення: однакова якість",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-31:i17:audio",
+          "transcript": "This rental deposit is as low as ours."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This rental deposit is as low as ours.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ecca0ea487cc7d5fb6e3e93a9f6bb8048c37d0f9013296daf083a094fa366d12"
+}

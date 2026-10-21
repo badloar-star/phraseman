@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-18:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "too + adjective; adjective + enough",
+    "uk": "too + adjective; adjective + enough"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-18:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Когда качество мешает",
+        "uk": "Коли якість заважає"
+      },
+      "bodyByLocale": {
+        "ru": "door lock — дверной замок. Замок не помещается в отверстие. Too ставим перед прилагательным: too big — слишком большой, это мешает. Enough ставим после прилагательного: light enough — достаточно лёгкий, нужное условие выполнено. Too не означает просто «очень».",
+        "uk": "door lock — дверний замок. Замок не вміщується в отвір. Too ставимо перед прикметником: too big — завеликий, це заважає. Enough ставимо після прикметника: light enough — достатньо легкий, потрібну умову виконано. Too не означає просто «дуже»."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-26:intro1:r1",
+              "text": "This door lock is too large."
+            },
+            {
+              "responseId": "en:lesson-18:session-26:intro1:r2",
+              "text": "This door lock is large too."
+            },
+            {
+              "responseId": "en:lesson-18:session-26:intro1:r3",
+              "text": "This door lock is large enough."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-26:intro1:r1",
+              "text": "This door lock is too large."
+            },
+            {
+              "responseId": "en:lesson-18:session-26:intro1:r2",
+              "text": "This door lock is large too."
+            },
+            {
+              "responseId": "en:lesson-18:session-26:intro1:r3",
+              "text": "This door lock is large enough."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-18:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Когда достаточно",
+        "uk": "Коли достатньо"
+      },
+      "bodyByLocale": {
+        "ru": "window lock — оконный замок. Прочность подходит для вашей задачи. Too ставим перед прилагательным: too big — слишком большой, это мешает. Enough ставим после прилагательного: light enough — достаточно лёгкий, нужное условие выполнено. Too не означает просто «очень».",
+        "uk": "window lock — віконний замок. Міцність підходить для вашого завдання. Too ставимо перед прикметником: too big — завеликий, це заважає. Enough ставимо після прикметника: light enough — достатньо легкий, потрібну умову виконано. Too не означає просто «дуже»."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-26:intro2:r1",
+              "text": "This window lock is strong enough."
+            },
+            {
+              "responseId": "en:lesson-18:session-26:intro2:r2",
+              "text": "This window lock is enough strong."
+            },
+            {
+              "responseId": "en:lesson-18:session-26:intro2:r3",
+              "text": "This window lock is too strong."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-26:intro2:r1",
+              "text": "This window lock is strong enough."
+            },
+            {
+              "responseId": "en:lesson-18:session-26:intro2:r2",
+              "text": "This window lock is enough strong."
+            },
+            {
+              "responseId": "en:lesson-18:session-26:intro2:r3",
+              "text": "This window lock is too strong."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-18:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проверить порядок слов",
+        "uk": "Перевірити порядок слів"
+      },
+      "bodyByLocale": {
+        "ru": "window handle — оконная ручка. spare part — запасная деталь. За ручку удобно держаться; длины хватает. Too ставим перед прилагательным: too big — слишком большой, это мешает. Enough ставим после прилагательного: light enough — достаточно лёгкий, нужное условие выполнено. Too не означает просто «очень».",
+        "uk": "window handle — віконна ручка. spare part — запасна деталь. За ручку зручно триматися; довжини вистачає. Too ставимо перед прикметником: too big — завеликий, це заважає. Enough ставимо після прикметника: light enough — достатньо легкий, потрібну умову виконано. Too не означає просто «дуже»."
+      },
+      "question": {
+        "interactionId": "en:lesson-18:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-18:session-26:intro3:r1",
+              "text": "This window handle is long enough."
+            },
+            {
+              "responseId": "en:lesson-18:session-26:intro3:r2",
+              "text": "This window handle is enough long."
+            },
+            {
+              "responseId": "en:lesson-18:session-26:intro3:r3",
+              "text": "This window handle is too long."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-18:session-26:intro3:r1",
+              "text": "This window handle is long enough."
+            },
+            {
+              "responseId": "en:lesson-18:session-26:intro3:r2",
+              "text": "This window handle is enough long."
+            },
+            {
+              "responseId": "en:lesson-18:session-26:intro3:r3",
+              "text": "This window handle is too long."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5a3d54ff1e73beabdff0e5ec4a9b8f6860006aa6e74d1440c6ab042fda7dbf65"
+}

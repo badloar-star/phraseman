@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-30:word:driveway",
+    "correctText": "driveway",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-30:i01",
+    "correctText": "This driveway is too narrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-30:i02",
+    "correctText": "This driveway is too narrow.",
+    "correctResponseId": "en:lesson-18:session-30:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-30:i03",
+    "correctText": "too narrow",
+    "correctResponseId": "en:lesson-18:session-30:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-30:word:garage-door",
+    "correctText": "garage door",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-30:i04",
+    "correctText": "The garage door is wide enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-30:i05",
+    "correctText": "The garage door is wide enough.",
+    "correctResponseId": "en:lesson-18:session-30:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-30:i06",
+    "correctText": "wide enough",
+    "correctResponseId": "en:lesson-18:session-30:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-30:word:side-gate",
+    "correctText": "side gate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-30:i07",
+    "correctText": "This side gate is high enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-30:i08",
+    "correctText": "This side gate is high enough.",
+    "correctResponseId": "en:lesson-18:session-30:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-30:i09",
+    "correctText": "high enough",
+    "correctResponseId": "en:lesson-18:session-30:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-30:word:garden-wall",
+    "correctText": "garden wall",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-30:i10",
+    "correctText": "This garden wall is too low.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-30:i11",
+    "correctText": "This garden wall is too low.",
+    "correctResponseId": "en:lesson-18:session-30:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-30:i12",
+    "correctText": "too low",
+    "correctResponseId": "en:lesson-18:session-30:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-30:i13",
+    "correctText": "en:lesson-18:session-30:i13:p1=driveway\nen:lesson-18:session-30:i13:p2=garage door\nen:lesson-18:session-30:i13:p3=side gate\nen:lesson-18:session-30:i13:p4=garden wall",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-30:i14",
+    "correctText": "We are going to paint the side gate.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-30:i15",
+    "correctText": "We are meeting by the garage door tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-30:i16",
+    "correctText": "This driveway is wider than ours.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-30:i17",
+    "correctText": "This garden wall is as high as ours.",
+    "correctResponseId": null
+  }
+]

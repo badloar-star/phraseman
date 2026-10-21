@@ -1,0 +1,1124 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-30",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-30:word:driveway",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — driveway",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-30:word:driveway:audio"
+      ],
+      "accessibilityLabel": "Картка слова — driveway",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-30:word:driveway:audio",
+          "transcript": "driveway"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-30:word:driveway:r1",
+            "targetText": "driveway",
+            "meaningByLocale": {
+              "ru": "подъездная дорожка для машины к дому.",
+              "uk": "під’їзна доріжка для машини до будинку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "driveway",
+          "definitionByLocale": {
+            "ru": "подъездная дорожка для машины к дому.",
+            "uk": "під’їзна доріжка для машини до будинку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-30:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Машина не вміщується за шириною. Скажіть: «Ця під’їзна доріжка завузька».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Машина не вміщується за шириною. Скажіть: «Ця під’їзна доріжка завузька».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This driveway is too narrow.",
+        "localizedMeaning": {
+          "ru": "Машина не помещается по ширине. Скажите: «Эта подъездная дорожка слишком узкая».",
+          "uk": "Машина не вміщується за шириною. Скажіть: «Ця під’їзна доріжка завузька»."
+        },
+        "orderedTokens": [
+          "This",
+          "driveway",
+          "is",
+          "too",
+          "narrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-30:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-30:i02:r1",
+          "text": "This driveway is too narrow."
+        },
+        {
+          "responseId": "en:lesson-18:session-30:i02:r2",
+          "text": "This driveway is narrow too."
+        },
+        {
+          "responseId": "en:lesson-18:session-30:i02:r3",
+          "text": "This driveway is narrow enough."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-30:i02:audio",
+          "transcript": "This driveway is too narrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-30:i02:r1",
+            "targetText": "This driveway is too narrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i02:r2",
+            "targetText": "This driveway is narrow too.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i02:r3",
+            "targetText": "This driveway is narrow enough.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-30:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This driveway is too narrow.",
+              "uk": "У записі звучить This driveway is too narrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This driveway is too narrow.",
+              "uk": "У записі звучить This driveway is too narrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-30:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Машина не вміщується за шириною.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-30:i03:r1",
+          "text": "too narrow"
+        },
+        {
+          "responseId": "en:lesson-18:session-30:i03:r2",
+          "text": "narrow too"
+        },
+        {
+          "responseId": "en:lesson-18:session-30:i03:r3",
+          "text": "narrow enough"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Машина не вміщується за шириною.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Машина не помещается по ширине.",
+          "uk": "Машина не вміщується за шириною."
+        },
+        "gappedTargetPhrase": "This driveway is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-30:i03:r1",
+            "text": "too narrow"
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i03:r2",
+            "text": "narrow too"
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i03:r3",
+            "text": "narrow enough"
+          }
+        ],
+        "testedDimension": "Машина не вміщується за шириною.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-30:i03:r2",
+            "correct": false,
+            "testedDimension": "Машина не вміщується за шириною.",
+            "feedbackByLocale": {
+              "ru": "Порядок слов: too narrow.",
+              "uk": "Порядок слів: too narrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i03:r3",
+            "correct": false,
+            "testedDimension": "Машина не вміщується за шириною.",
+            "feedbackByLocale": {
+              "ru": "Этот вариант меняет смысл; по ситуации нужно too narrow.",
+              "uk": "Цей варіант змінює зміст; за ситуацією потрібно too narrow."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-30:word:garage-door",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — garage door",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-30:word:garage-door:audio"
+      ],
+      "accessibilityLabel": "Картка слова — garage door",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-30:word:garage-door:audio",
+          "transcript": "garage door"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-30:word:garage-door:r1",
+            "targetText": "garage door",
+            "meaningByLocale": {
+              "ru": "гаражные ворота.",
+              "uk": "гаражні ворота."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "garage door",
+          "definitionByLocale": {
+            "ru": "гаражные ворота.",
+            "uk": "гаражні ворота."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-30:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Машина вільно проїжджає у ворота. Скажіть: «Гаражні ворота достатньо широкі».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Машина вільно проїжджає у ворота. Скажіть: «Гаражні ворота достатньо широкі».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The garage door is wide enough.",
+        "localizedMeaning": {
+          "ru": "Машина свободно проезжает в ворота. Скажите: «Гаражные ворота достаточно широкие».",
+          "uk": "Машина вільно проїжджає у ворота. Скажіть: «Гаражні ворота достатньо широкі»."
+        },
+        "orderedTokens": [
+          "The",
+          "garage",
+          "door",
+          "is",
+          "wide",
+          "enough"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-30:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-30:i05:r1",
+          "text": "The garage door is wide enough."
+        },
+        {
+          "responseId": "en:lesson-18:session-30:i05:r2",
+          "text": "The garage door is enough wide."
+        },
+        {
+          "responseId": "en:lesson-18:session-30:i05:r3",
+          "text": "The garage door is too wide."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-30:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-30:i05:audio",
+          "transcript": "The garage door is wide enough."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-30:i05:r1",
+            "targetText": "The garage door is wide enough.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i05:r2",
+            "targetText": "The garage door is enough wide.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i05:r3",
+            "targetText": "The garage door is too wide.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-30:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The garage door is wide enough.",
+              "uk": "У записі звучить The garage door is wide enough."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The garage door is wide enough.",
+              "uk": "У записі звучить The garage door is wide enough."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-30:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Машина вільно проїжджає у ворота.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-30:i06:r1",
+          "text": "wide enough"
+        },
+        {
+          "responseId": "en:lesson-18:session-30:i06:r2",
+          "text": "enough wide"
+        },
+        {
+          "responseId": "en:lesson-18:session-30:i06:r3",
+          "text": "too wide"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Машина вільно проїжджає у ворота.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Машина свободно проезжает в ворота.",
+          "uk": "Машина вільно проїжджає у ворота."
+        },
+        "gappedTargetPhrase": "The garage door is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-30:i06:r1",
+            "text": "wide enough"
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i06:r2",
+            "text": "enough wide"
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i06:r3",
+            "text": "too wide"
+          }
+        ],
+        "testedDimension": "Машина вільно проїжджає у ворота.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-30:i06:r2",
+            "correct": false,
+            "testedDimension": "Машина вільно проїжджає у ворота.",
+            "feedbackByLocale": {
+              "ru": "Порядок слов: wide enough.",
+              "uk": "Порядок слів: wide enough."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i06:r3",
+            "correct": false,
+            "testedDimension": "Машина вільно проїжджає у ворота.",
+            "feedbackByLocale": {
+              "ru": "Этот вариант меняет смысл; по ситуации нужно wide enough.",
+              "uk": "Цей варіант змінює зміст; за ситуацією потрібно wide enough."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-30:word:side-gate",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — side gate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-30:word:side-gate:audio"
+      ],
+      "accessibilityLabel": "Картка слова — side gate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-30:word:side-gate:audio",
+          "transcript": "side gate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-30:word:side-gate:r1",
+            "targetText": "side gate",
+            "meaningByLocale": {
+              "ru": "боковая калитка или ворота.",
+              "uk": "бічна хвіртка або ворота."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "side gate",
+          "definitionByLocale": {
+            "ru": "боковая калитка или ворота.",
+            "uk": "бічна хвіртка або ворота."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-30:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Хвіртка сягає вибраної вами висоти. Скажіть: «Ця бічна хвіртка достатньо висока».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Хвіртка сягає вибраної вами висоти. Скажіть: «Ця бічна хвіртка достатньо висока».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This side gate is high enough.",
+        "localizedMeaning": {
+          "ru": "Калитка достигает выбранной вами высоты. Скажите: «Эта боковая калитка достаточно высокая».",
+          "uk": "Хвіртка сягає вибраної вами висоти. Скажіть: «Ця бічна хвіртка достатньо висока»."
+        },
+        "orderedTokens": [
+          "This",
+          "side",
+          "gate",
+          "is",
+          "high",
+          "enough"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-30:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-30:i08:r1",
+          "text": "This side gate is high enough."
+        },
+        {
+          "responseId": "en:lesson-18:session-30:i08:r2",
+          "text": "This side gate is enough high."
+        },
+        {
+          "responseId": "en:lesson-18:session-30:i08:r3",
+          "text": "This side gate is too high."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-30:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-30:i08:audio",
+          "transcript": "This side gate is high enough."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-30:i08:r1",
+            "targetText": "This side gate is high enough.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i08:r2",
+            "targetText": "This side gate is enough high.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i08:r3",
+            "targetText": "This side gate is too high.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-30:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This side gate is high enough.",
+              "uk": "У записі звучить This side gate is high enough."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This side gate is high enough.",
+              "uk": "У записі звучить This side gate is high enough."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-30:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Хвіртка сягає вибраної вами висоти.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-30:i09:r1",
+          "text": "high enough"
+        },
+        {
+          "responseId": "en:lesson-18:session-30:i09:r2",
+          "text": "enough high"
+        },
+        {
+          "responseId": "en:lesson-18:session-30:i09:r3",
+          "text": "too high"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Хвіртка сягає вибраної вами висоти.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Калитка достигает выбранной вами высоты.",
+          "uk": "Хвіртка сягає вибраної вами висоти."
+        },
+        "gappedTargetPhrase": "This side gate is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-30:i09:r1",
+            "text": "high enough"
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i09:r2",
+            "text": "enough high"
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i09:r3",
+            "text": "too high"
+          }
+        ],
+        "testedDimension": "Хвіртка сягає вибраної вами висоти.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-30:i09:r2",
+            "correct": false,
+            "testedDimension": "Хвіртка сягає вибраної вами висоти.",
+            "feedbackByLocale": {
+              "ru": "Порядок слов: high enough.",
+              "uk": "Порядок слів: high enough."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i09:r3",
+            "correct": false,
+            "testedDimension": "Хвіртка сягає вибраної вами висоти.",
+            "feedbackByLocale": {
+              "ru": "Этот вариант меняет смысл; по ситуации нужно high enough.",
+              "uk": "Цей варіант змінює зміст; за ситуацією потрібно high enough."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-30:word:garden-wall",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — garden wall",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-30:word:garden-wall:audio"
+      ],
+      "accessibilityLabel": "Картка слова — garden wall",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-30:word:garden-wall:audio",
+          "transcript": "garden wall"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-30:word:garden-wall:r1",
+            "targetText": "garden wall",
+            "meaningByLocale": {
+              "ru": "стена вокруг сада или участка.",
+              "uk": "стіна навколо саду або ділянки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "garden wall",
+          "definitionByLocale": {
+            "ru": "стена вокруг сада или участка.",
+            "uk": "стіна навколо саду або ділянки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-30:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вам потрібна вища стіна для вашого проєкту. Скажіть: «Ця стіна навколо ділянки занизька».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам потрібна вища стіна для вашого проєкту. Скажіть: «Ця стіна навколо ділянки занизька».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This garden wall is too low.",
+        "localizedMeaning": {
+          "ru": "Вам нужна более высокая стена для вашего проекта. Скажите: «Эта стена вокруг участка слишком низкая».",
+          "uk": "Вам потрібна вища стіна для вашого проєкту. Скажіть: «Ця стіна навколо ділянки занизька»."
+        },
+        "orderedTokens": [
+          "This",
+          "garden",
+          "wall",
+          "is",
+          "too",
+          "low"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-30:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-30:i11:r1",
+          "text": "This garden wall is too low."
+        },
+        {
+          "responseId": "en:lesson-18:session-30:i11:r2",
+          "text": "This garden wall is low too."
+        },
+        {
+          "responseId": "en:lesson-18:session-30:i11:r3",
+          "text": "This garden wall is low enough."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-30:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-30:i11:audio",
+          "transcript": "This garden wall is too low."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-30:i11:r1",
+            "targetText": "This garden wall is too low.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i11:r2",
+            "targetText": "This garden wall is low too.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i11:r3",
+            "targetText": "This garden wall is low enough.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-30:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This garden wall is too low.",
+              "uk": "У записі звучить This garden wall is too low."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This garden wall is too low.",
+              "uk": "У записі звучить This garden wall is too low."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-30:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вам потрібна вища стіна для вашого проєкту.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-30:i12:r1",
+          "text": "too low"
+        },
+        {
+          "responseId": "en:lesson-18:session-30:i12:r2",
+          "text": "low too"
+        },
+        {
+          "responseId": "en:lesson-18:session-30:i12:r3",
+          "text": "low enough"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам потрібна вища стіна для вашого проєкту.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вам нужна более высокая стена для вашего проекта.",
+          "uk": "Вам потрібна вища стіна для вашого проєкту."
+        },
+        "gappedTargetPhrase": "This garden wall is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-30:i12:r1",
+            "text": "too low"
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i12:r2",
+            "text": "low too"
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i12:r3",
+            "text": "low enough"
+          }
+        ],
+        "testedDimension": "Вам потрібна вища стіна для вашого проєкту.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-30:i12:r2",
+            "correct": false,
+            "testedDimension": "Вам потрібна вища стіна для вашого проєкту.",
+            "feedbackByLocale": {
+              "ru": "Порядок слов: too low.",
+              "uk": "Порядок слів: too low."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-30:i12:r3",
+            "correct": false,
+            "testedDimension": "Вам потрібна вища стіна для вашого проєкту.",
+            "feedbackByLocale": {
+              "ru": "Этот вариант меняет смысл; по ситуации нужно too low.",
+              "uk": "Цей варіант змінює зміст; за ситуацією потрібно too low."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-30:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-30:i13:p1",
+            "target": "driveway",
+            "meaningByLocale": {
+              "ru": "подъездная дорожка для машины к дому",
+              "uk": "під’їзна доріжка для машини до будинку"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-30:i13:p2",
+            "target": "garage door",
+            "meaningByLocale": {
+              "ru": "гаражные ворота",
+              "uk": "гаражні ворота"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-30:i13:p3",
+            "target": "side gate",
+            "meaningByLocale": {
+              "ru": "боковая калитка или ворота",
+              "uk": "бічна хвіртка або ворота"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-30:i13:p4",
+            "target": "garden wall",
+            "meaningByLocale": {
+              "ru": "стена вокруг сада или участка",
+              "uk": "стіна навколо саду або ділянки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "driveway",
+          "garage door",
+          "side gate",
+          "garden wall"
+        ],
+        "rightColumn": [
+          "під’їзна доріжка для машини до будинку",
+          "гаражні ворота",
+          "бічна хвіртка або ворота",
+          "стіна навколо саду або ділянки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-30:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-30:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-30:i14:audio",
+          "transcript": "We are going to paint the side gate."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to paint the side gate.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "paint",
+          "the",
+          "side",
+          "gate"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-30:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий узгоджений план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-30:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий узгоджений план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-30:i15:audio",
+          "transcript": "We are meeting by the garage door tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting by the garage door tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "by",
+          "the",
+          "garage",
+          "door",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-30:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: порівняйте два варіанти",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-30:i16:audio"
+      ],
+      "accessibilityLabel": "Повторення: порівняйте два варіанти",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-30:i16:audio",
+          "transcript": "This driveway is wider than ours."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This driveway is wider than ours.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-30:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: однакова якість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-30:i17:audio"
+      ],
+      "accessibilityLabel": "Повторення: однакова якість",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-30:i17:audio",
+          "transcript": "This garden wall is as high as ours."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This garden wall is as high as ours.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8f2937be51db4d88a004d80ac9cb6902c5c9fdc560e93a0fccf8d38ec49e46cd"
+}

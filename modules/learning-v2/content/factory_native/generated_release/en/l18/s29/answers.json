@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-29:word:passport-photo",
+    "correctText": "passport photo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-29:i01",
+    "correctText": "This passport photo is too old.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-29:i02",
+    "correctText": "This passport photo is too old.",
+    "correctResponseId": "en:lesson-18:session-29:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-29:i03",
+    "correctText": "too old",
+    "correctResponseId": "en:lesson-18:session-29:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-29:word:middle-seat",
+    "correctText": "middle seat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-29:i04",
+    "correctText": "This middle seat is wide enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-29:i05",
+    "correctText": "This middle seat is wide enough.",
+    "correctResponseId": "en:lesson-18:session-29:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-29:i06",
+    "correctText": "wide enough",
+    "correctResponseId": "en:lesson-18:session-29:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-29:word:exit-row",
+    "correctText": "exit row",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-29:i07",
+    "correctText": "This exit row is wide enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-29:i08",
+    "correctText": "This exit row is wide enough.",
+    "correctResponseId": "en:lesson-18:session-29:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-29:i09",
+    "correctText": "wide enough",
+    "correctResponseId": "en:lesson-18:session-29:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-29:word:boarding-time",
+    "correctText": "boarding time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-29:i10",
+    "correctText": "This boarding time is too early.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-29:i11",
+    "correctText": "This boarding time is too early.",
+    "correctResponseId": "en:lesson-18:session-29:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-29:i12",
+    "correctText": "too early",
+    "correctResponseId": "en:lesson-18:session-29:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-29:i13",
+    "correctText": "en:lesson-18:session-29:i13:p1=passport photo\nen:lesson-18:session-29:i13:p2=middle seat\nen:lesson-18:session-29:i13:p3=exit row\nen:lesson-18:session-29:i13:p4=boarding time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-29:i14",
+    "correctText": "We are going to choose a middle seat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-29:i15",
+    "correctText": "We are flying at seven tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-29:i16",
+    "correctText": "This middle seat is wider than mine.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-29:i17",
+    "correctText": "This passport photo is as old as yours.",
+    "correctResponseId": null
+  }
+]

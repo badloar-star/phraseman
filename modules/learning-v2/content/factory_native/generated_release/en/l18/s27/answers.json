@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-27:word:waist-size",
+    "correctText": "waist size",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-27:i01",
+    "correctText": "This waist size is too small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-27:i02",
+    "correctText": "This waist size is too small.",
+    "correctResponseId": "en:lesson-18:session-27:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-27:i03",
+    "correctText": "too small",
+    "correctResponseId": "en:lesson-18:session-27:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-27:word:chest-size",
+    "correctText": "chest size",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-27:i04",
+    "correctText": "This chest size is large enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-27:i05",
+    "correctText": "This chest size is large enough.",
+    "correctResponseId": "en:lesson-18:session-27:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-27:i06",
+    "correctText": "large enough",
+    "correctResponseId": "en:lesson-18:session-27:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-27:word:sleeve-length",
+    "correctText": "sleeve length",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-27:i07",
+    "correctText": "This sleeve length is long enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-27:i08",
+    "correctText": "This sleeve length is long enough.",
+    "correctResponseId": "en:lesson-18:session-27:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-27:i09",
+    "correctText": "long enough",
+    "correctResponseId": "en:lesson-18:session-27:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-27:word:leg-length",
+    "correctText": "leg length",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-27:i10",
+    "correctText": "This leg length is too short.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-27:i11",
+    "correctText": "This leg length is too short.",
+    "correctResponseId": "en:lesson-18:session-27:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-27:i12",
+    "correctText": "too short",
+    "correctResponseId": "en:lesson-18:session-27:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-27:i13",
+    "correctText": "en:lesson-18:session-27:i13:p1=waist size\nen:lesson-18:session-27:i13:p2=chest size\nen:lesson-18:session-27:i13:p3=sleeve length\nen:lesson-18:session-27:i13:p4=leg length",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-27:i14",
+    "correctText": "This waist size is too small.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-27:i15",
+    "correctText": "This chest size is large enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-27:i16",
+    "correctText": "This sleeve length is long enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-27:i17",
+    "correctText": "This leg length is too short.",
+    "correctResponseId": null
+  }
+]

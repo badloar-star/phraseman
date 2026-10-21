@@ -1,0 +1,1121 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-18:session-27",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-18:session-27:word:waist-size",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — waist size",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-27:word:waist-size:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — waist size",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-27:word:waist-size:audio",
+          "transcript": "waist size"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-27:word:waist-size:r1",
+            "targetText": "waist size",
+            "meaningByLocale": {
+              "ru": "размер талии.",
+              "uk": "розмір талії."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "waist size",
+          "definitionByLocale": {
+            "ru": "размер талии.",
+            "uk": "розмір талії."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-27:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Брюки не застёгиваются на талии. Скажите: «Этот размер талии слишком мал».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Брюки не застёгиваются на талии. Скажите: «Этот размер талии слишком мал».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This waist size is too small.",
+        "localizedMeaning": {
+          "ru": "Брюки не застёгиваются на талии. Скажите: «Этот размер талии слишком мал».",
+          "uk": "Штани не застібаються на талії. Скажіть: «Цей розмір талії замалий»."
+        },
+        "orderedTokens": [
+          "This",
+          "waist",
+          "size",
+          "is",
+          "too",
+          "small"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-27:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-27:i02:r1",
+          "text": "This waist size is too small."
+        },
+        {
+          "responseId": "en:lesson-18:session-27:i02:r2",
+          "text": "This waist size is small too."
+        },
+        {
+          "responseId": "en:lesson-18:session-27:i02:r3",
+          "text": "This waist size is small enough."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-27:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-27:i02:audio",
+          "transcript": "This waist size is too small."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-27:i02:r1",
+            "targetText": "This waist size is too small.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i02:r2",
+            "targetText": "This waist size is small too.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i02:r3",
+            "targetText": "This waist size is small enough.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-27:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This waist size is too small.",
+              "uk": "У записі звучить This waist size is too small."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This waist size is too small.",
+              "uk": "У записі звучить This waist size is too small."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-27:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Брюки не застёгиваются на талии.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-27:i03:r1",
+          "text": "too small"
+        },
+        {
+          "responseId": "en:lesson-18:session-27:i03:r2",
+          "text": "small too"
+        },
+        {
+          "responseId": "en:lesson-18:session-27:i03:r3",
+          "text": "small enough"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Брюки не застёгиваются на талии.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Брюки не застёгиваются на талии.",
+          "uk": "Штани не застібаються на талії."
+        },
+        "gappedTargetPhrase": "This waist size is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-27:i03:r1",
+            "text": "too small"
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i03:r2",
+            "text": "small too"
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i03:r3",
+            "text": "small enough"
+          }
+        ],
+        "testedDimension": "Брюки не застёгиваются на талии.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-27:i03:r2",
+            "correct": false,
+            "testedDimension": "Брюки не застёгиваются на талии.",
+            "feedbackByLocale": {
+              "ru": "Порядок слов: too small.",
+              "uk": "Порядок слів: too small."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i03:r3",
+            "correct": false,
+            "testedDimension": "Брюки не застёгиваются на талии.",
+            "feedbackByLocale": {
+              "ru": "Этот вариант меняет смысл; по ситуации нужно too small.",
+              "uk": "Цей варіант змінює зміст; за ситуацією потрібно too small."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-27:word:chest-size",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — chest size",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-27:word:chest-size:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — chest size",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-27:word:chest-size:audio",
+          "transcript": "chest size"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-27:word:chest-size:r1",
+            "targetText": "chest size",
+            "meaningByLocale": {
+              "ru": "размер по обхвату груди.",
+              "uk": "розмір за обхватом грудей."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chest size",
+          "definitionByLocale": {
+            "ru": "размер по обхвату груди.",
+            "uk": "розмір за обхватом грудей."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-27:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Куртка свободно застёгивается; размер подходит. Скажите: «Этот размер по обхвату груди достаточно большой».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Куртка свободно застёгивается; размер подходит. Скажите: «Этот размер по обхвату груди достаточно большой».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This chest size is large enough.",
+        "localizedMeaning": {
+          "ru": "Куртка свободно застёгивается; размер подходит. Скажите: «Этот размер по обхвату груди достаточно большой».",
+          "uk": "Куртка вільно застібається; розмір підходить. Скажіть: «Цей розмір за обхватом грудей достатньо великий»."
+        },
+        "orderedTokens": [
+          "This",
+          "chest",
+          "size",
+          "is",
+          "large",
+          "enough"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-27:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-27:i05:r1",
+          "text": "This chest size is large enough."
+        },
+        {
+          "responseId": "en:lesson-18:session-27:i05:r2",
+          "text": "This chest size is enough large."
+        },
+        {
+          "responseId": "en:lesson-18:session-27:i05:r3",
+          "text": "This chest size is too large."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-27:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-27:i05:audio",
+          "transcript": "This chest size is large enough."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-27:i05:r1",
+            "targetText": "This chest size is large enough.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i05:r2",
+            "targetText": "This chest size is enough large.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i05:r3",
+            "targetText": "This chest size is too large.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-27:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This chest size is large enough.",
+              "uk": "У записі звучить This chest size is large enough."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This chest size is large enough.",
+              "uk": "У записі звучить This chest size is large enough."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-27:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Куртка свободно застёгивается; размер подходит.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-27:i06:r1",
+          "text": "large enough"
+        },
+        {
+          "responseId": "en:lesson-18:session-27:i06:r2",
+          "text": "enough large"
+        },
+        {
+          "responseId": "en:lesson-18:session-27:i06:r3",
+          "text": "too large"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Куртка свободно застёгивается; размер подходит.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Куртка свободно застёгивается; размер подходит.",
+          "uk": "Куртка вільно застібається; розмір підходить."
+        },
+        "gappedTargetPhrase": "This chest size is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-27:i06:r1",
+            "text": "large enough"
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i06:r2",
+            "text": "enough large"
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i06:r3",
+            "text": "too large"
+          }
+        ],
+        "testedDimension": "Куртка свободно застёгивается; размер подходит.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-27:i06:r2",
+            "correct": false,
+            "testedDimension": "Куртка свободно застёгивается; размер подходит.",
+            "feedbackByLocale": {
+              "ru": "Порядок слов: large enough.",
+              "uk": "Порядок слів: large enough."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i06:r3",
+            "correct": false,
+            "testedDimension": "Куртка свободно застёгивается; размер подходит.",
+            "feedbackByLocale": {
+              "ru": "Этот вариант меняет смысл; по ситуации нужно large enough.",
+              "uk": "Цей варіант змінює зміст; за ситуацією потрібно large enough."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-27:word:sleeve-length",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sleeve length",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-27:word:sleeve-length:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sleeve length",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-27:word:sleeve-length:audio",
+          "transcript": "sleeve length"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-27:word:sleeve-length:r1",
+            "targetText": "sleeve length",
+            "meaningByLocale": {
+              "ru": "длина рукава.",
+              "uk": "довжина рукава."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sleeve length",
+          "definitionByLocale": {
+            "ru": "длина рукава.",
+            "uk": "довжина рукава."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-27:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Рукав закрывает запястье, длина подходит. Скажите: «Этой длины рукава достаточно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Рукав закрывает запястье, длина подходит. Скажите: «Этой длины рукава достаточно».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This sleeve length is long enough.",
+        "localizedMeaning": {
+          "ru": "Рукав закрывает запястье, длина подходит. Скажите: «Этой длины рукава достаточно».",
+          "uk": "Рукав закриває зап’ястя, довжина підходить. Скажіть: «Цієї довжини рукава достатньо»."
+        },
+        "orderedTokens": [
+          "This",
+          "sleeve",
+          "length",
+          "is",
+          "long",
+          "enough"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-27:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-27:i08:r1",
+          "text": "This sleeve length is long enough."
+        },
+        {
+          "responseId": "en:lesson-18:session-27:i08:r2",
+          "text": "This sleeve length is enough long."
+        },
+        {
+          "responseId": "en:lesson-18:session-27:i08:r3",
+          "text": "This sleeve length is too long."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-27:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-27:i08:audio",
+          "transcript": "This sleeve length is long enough."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-27:i08:r1",
+            "targetText": "This sleeve length is long enough.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i08:r2",
+            "targetText": "This sleeve length is enough long.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i08:r3",
+            "targetText": "This sleeve length is too long.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-27:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This sleeve length is long enough.",
+              "uk": "У записі звучить This sleeve length is long enough."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This sleeve length is long enough.",
+              "uk": "У записі звучить This sleeve length is long enough."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-27:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Рукав закрывает запястье, длина подходит.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-27:i09:r1",
+          "text": "long enough"
+        },
+        {
+          "responseId": "en:lesson-18:session-27:i09:r2",
+          "text": "enough long"
+        },
+        {
+          "responseId": "en:lesson-18:session-27:i09:r3",
+          "text": "too long"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Рукав закрывает запястье, длина подходит.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Рукав закрывает запястье, длина подходит.",
+          "uk": "Рукав закриває зап’ястя, довжина підходить."
+        },
+        "gappedTargetPhrase": "This sleeve length is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-27:i09:r1",
+            "text": "long enough"
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i09:r2",
+            "text": "enough long"
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i09:r3",
+            "text": "too long"
+          }
+        ],
+        "testedDimension": "Рукав закрывает запястье, длина подходит.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-27:i09:r2",
+            "correct": false,
+            "testedDimension": "Рукав закрывает запястье, длина подходит.",
+            "feedbackByLocale": {
+              "ru": "Порядок слов: long enough.",
+              "uk": "Порядок слів: long enough."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i09:r3",
+            "correct": false,
+            "testedDimension": "Рукав закрывает запястье, длина подходит.",
+            "feedbackByLocale": {
+              "ru": "Этот вариант меняет смысл; по ситуации нужно long enough.",
+              "uk": "Цей варіант змінює зміст; за ситуацією потрібно long enough."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-27:word:leg-length",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — leg length",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-27:word:leg-length:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — leg length",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-27:word:leg-length:audio",
+          "transcript": "leg length"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-27:word:leg-length:r1",
+            "targetText": "leg length",
+            "meaningByLocale": {
+              "ru": "длина штанины или ноги.",
+              "uk": "довжина штанини або ноги."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "leg length",
+          "definitionByLocale": {
+            "ru": "длина штанины или ноги.",
+            "uk": "довжина штанини або ноги."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-27:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Штанина заканчивается выше нужного места. Скажите: «Эта длина штанины слишком мала».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Штанина заканчивается выше нужного места. Скажите: «Эта длина штанины слишком мала».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This leg length is too short.",
+        "localizedMeaning": {
+          "ru": "Штанина заканчивается выше нужного места. Скажите: «Эта длина штанины слишком мала».",
+          "uk": "Штанина закінчується вище потрібного місця. Скажіть: «Ця довжина штанини замала»."
+        },
+        "orderedTokens": [
+          "This",
+          "leg",
+          "length",
+          "is",
+          "too",
+          "short"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-27:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-27:i11:r1",
+          "text": "This leg length is too short."
+        },
+        {
+          "responseId": "en:lesson-18:session-27:i11:r2",
+          "text": "This leg length is short too."
+        },
+        {
+          "responseId": "en:lesson-18:session-27:i11:r3",
+          "text": "This leg length is short enough."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-27:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-27:i11:audio",
+          "transcript": "This leg length is too short."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-18:session-27:i11:r1",
+            "targetText": "This leg length is too short.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i11:r2",
+            "targetText": "This leg length is short too.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i11:r3",
+            "targetText": "This leg length is short enough.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-27:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This leg length is too short.",
+              "uk": "У записі звучить This leg length is too short."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This leg length is too short.",
+              "uk": "У записі звучить This leg length is too short."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-27:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Штанина заканчивается выше нужного места.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-18:session-27:i12:r1",
+          "text": "too short"
+        },
+        {
+          "responseId": "en:lesson-18:session-27:i12:r2",
+          "text": "short too"
+        },
+        {
+          "responseId": "en:lesson-18:session-27:i12:r3",
+          "text": "short enough"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Штанина заканчивается выше нужного места.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Штанина заканчивается выше нужного места.",
+          "uk": "Штанина закінчується вище потрібного місця."
+        },
+        "gappedTargetPhrase": "This leg length is ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-18:session-27:i12:r1",
+            "text": "too short"
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i12:r2",
+            "text": "short too"
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i12:r3",
+            "text": "short enough"
+          }
+        ],
+        "testedDimension": "Штанина заканчивается выше нужного места.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-18:session-27:i12:r2",
+            "correct": false,
+            "testedDimension": "Штанина заканчивается выше нужного места.",
+            "feedbackByLocale": {
+              "ru": "Порядок слов: too short.",
+              "uk": "Порядок слів: too short."
+            }
+          },
+          {
+            "responseId": "en:lesson-18:session-27:i12:r3",
+            "correct": false,
+            "testedDimension": "Штанина заканчивается выше нужного места.",
+            "feedbackByLocale": {
+              "ru": "Этот вариант меняет смысл; по ситуации нужно too short.",
+              "uk": "Цей варіант змінює зміст; за ситуацією потрібно too short."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-27:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-18:session-27:i13:p1",
+            "target": "waist size",
+            "meaningByLocale": {
+              "ru": "размер талии",
+              "uk": "розмір талії"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-27:i13:p2",
+            "target": "chest size",
+            "meaningByLocale": {
+              "ru": "размер по обхвату груди",
+              "uk": "розмір за обхватом грудей"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-27:i13:p3",
+            "target": "sleeve length",
+            "meaningByLocale": {
+              "ru": "длина рукава",
+              "uk": "довжина рукава"
+            }
+          },
+          {
+            "pairId": "en:lesson-18:session-27:i13:p4",
+            "target": "leg length",
+            "meaningByLocale": {
+              "ru": "длина штанины или ноги",
+              "uk": "довжина штанини або ноги"
+            }
+          }
+        ],
+        "leftColumn": [
+          "waist size",
+          "chest size",
+          "sleeve length",
+          "leg length"
+        ],
+        "rightColumn": [
+          "размер талии",
+          "размер по обхвату груди",
+          "длина рукава",
+          "длина штанины или ноги"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-27:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное с too",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-27:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное с too",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-27:i14:audio",
+          "transcript": "This waist size is too small."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This waist size is too small.",
+        "orderedTokens": [
+          "This",
+          "waist",
+          "size",
+          "is",
+          "too",
+          "small"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-27:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанное с enough",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-27:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанное с enough",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-27:i15:audio",
+          "transcript": "This chest size is large enough."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This chest size is large enough.",
+        "orderedTokens": [
+          "This",
+          "chest",
+          "size",
+          "is",
+          "large",
+          "enough"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-27:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что условие выполнено",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-27:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите, что условие выполнено",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-27:i16:audio",
+          "transcript": "This sleeve length is long enough."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This sleeve length is long enough.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-27:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что качество мешает",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-18:session-27:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите, что качество мешает",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-18:session-27:i17:audio",
+          "transcript": "This leg length is too short."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This leg length is too short.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e70d874ab6d6204692f551c5583737ad4d84f8e9cf3ab59dcf573a887356751a"
+}

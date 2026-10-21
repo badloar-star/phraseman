@@ -1,0 +1,2331 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-18:session-26",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-18:session-26:word:door-lock",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — door lock",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:word:door-lock:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — door lock",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:word:door-lock:audio",
+            "transcript": "door lock"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-26:word:door-lock:r1",
+              "targetText": "door lock",
+              "meaningByLocale": {
+                "ru": "дверной замок.",
+                "uk": "дверний замок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "door lock",
+            "definitionByLocale": {
+              "ru": "дверной замок.",
+              "uk": "дверний замок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Замок не помещается в отверстие. Скажите: «Этот дверной замок слишком большой».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Замок не помещается в отверстие. Скажите: «Этот дверной замок слишком большой».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This door lock is too large.",
+          "localizedMeaning": {
+            "ru": "Замок не помещается в отверстие. Скажите: «Этот дверной замок слишком большой».",
+            "uk": "Замок не вміщується в отвір. Скажіть: «Цей дверний замок завеликий»."
+          },
+          "orderedTokens": [
+            "This",
+            "door",
+            "lock",
+            "is",
+            "too",
+            "large"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-26:i02:r1",
+            "text": "This door lock is too large."
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i02:r2",
+            "text": "This door lock is large too."
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i02:r3",
+            "text": "This door lock is large enough."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:i02:audio",
+            "transcript": "This door lock is too large."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-26:i02:r1",
+              "targetText": "This door lock is too large.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i02:r2",
+              "targetText": "This door lock is large too.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i02:r3",
+              "targetText": "This door lock is large enough.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-26:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This door lock is too large.",
+                "uk": "У записі звучить This door lock is too large."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This door lock is too large.",
+                "uk": "У записі звучить This door lock is too large."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Замок не помещается в отверстие.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-26:i03:r1",
+            "text": "too large"
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i03:r2",
+            "text": "large too"
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i03:r3",
+            "text": "large enough"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Замок не помещается в отверстие.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Замок не помещается в отверстие.",
+            "uk": "Замок не вміщується в отвір."
+          },
+          "gappedTargetPhrase": "This door lock is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-26:i03:r1",
+              "text": "too large"
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i03:r2",
+              "text": "large too"
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i03:r3",
+              "text": "large enough"
+            }
+          ],
+          "testedDimension": "Замок не помещается в отверстие.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-26:i03:r2",
+              "correct": false,
+              "testedDimension": "Замок не помещается в отверстие.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: too large.",
+                "uk": "Порядок слів: too large."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i03:r3",
+              "correct": false,
+              "testedDimension": "Замок не помещается в отверстие.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно too large.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно too large."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:word:window-lock",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — window lock",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:word:window-lock:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — window lock",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:word:window-lock:audio",
+            "transcript": "window lock"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-26:word:window-lock:r1",
+              "targetText": "window lock",
+              "meaningByLocale": {
+                "ru": "оконный замок.",
+                "uk": "віконний замок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "window lock",
+            "definitionByLocale": {
+              "ru": "оконный замок.",
+              "uk": "віконний замок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Прочность подходит для вашей задачи. Скажите: «Этот оконный замок достаточно прочный».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прочность подходит для вашей задачи. Скажите: «Этот оконный замок достаточно прочный».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This window lock is strong enough.",
+          "localizedMeaning": {
+            "ru": "Прочность подходит для вашей задачи. Скажите: «Этот оконный замок достаточно прочный».",
+            "uk": "Міцність підходить для вашого завдання. Скажіть: «Цей віконний замок достатньо міцний»."
+          },
+          "orderedTokens": [
+            "This",
+            "window",
+            "lock",
+            "is",
+            "strong",
+            "enough"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-26:i05:r1",
+            "text": "This window lock is strong enough."
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i05:r2",
+            "text": "This window lock is enough strong."
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i05:r3",
+            "text": "This window lock is too strong."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:i05:audio",
+            "transcript": "This window lock is strong enough."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-26:i05:r1",
+              "targetText": "This window lock is strong enough.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i05:r2",
+              "targetText": "This window lock is enough strong.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i05:r3",
+              "targetText": "This window lock is too strong.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-26:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This window lock is strong enough.",
+                "uk": "У записі звучить This window lock is strong enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This window lock is strong enough.",
+                "uk": "У записі звучить This window lock is strong enough."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Прочность подходит для вашей задачи.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-26:i06:r1",
+            "text": "strong enough"
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i06:r2",
+            "text": "enough strong"
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i06:r3",
+            "text": "too strong"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Прочность подходит для вашей задачи.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прочность подходит для вашей задачи.",
+            "uk": "Міцність підходить для вашого завдання."
+          },
+          "gappedTargetPhrase": "This window lock is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-26:i06:r1",
+              "text": "strong enough"
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i06:r2",
+              "text": "enough strong"
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i06:r3",
+              "text": "too strong"
+            }
+          ],
+          "testedDimension": "Прочность подходит для вашей задачи.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-26:i06:r2",
+              "correct": false,
+              "testedDimension": "Прочность подходит для вашей задачи.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: strong enough.",
+                "uk": "Порядок слів: strong enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i06:r3",
+              "correct": false,
+              "testedDimension": "Прочность подходит для вашей задачи.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно strong enough.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно strong enough."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:word:window-handle",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — window handle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:word:window-handle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — window handle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:word:window-handle:audio",
+            "transcript": "window handle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-26:word:window-handle:r1",
+              "targetText": "window handle",
+              "meaningByLocale": {
+                "ru": "оконная ручка.",
+                "uk": "віконна ручка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "window handle",
+            "definitionByLocale": {
+              "ru": "оконная ручка.",
+              "uk": "віконна ручка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "За ручку удобно держаться; длины хватает. Скажите: «Эта оконная ручка достаточно длинная».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "За ручку удобно держаться; длины хватает. Скажите: «Эта оконная ручка достаточно длинная».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This window handle is long enough.",
+          "localizedMeaning": {
+            "ru": "За ручку удобно держаться; длины хватает. Скажите: «Эта оконная ручка достаточно длинная».",
+            "uk": "За ручку зручно триматися; довжини вистачає. Скажіть: «Ця віконна ручка достатньо довга»."
+          },
+          "orderedTokens": [
+            "This",
+            "window",
+            "handle",
+            "is",
+            "long",
+            "enough"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-26:i08:r1",
+            "text": "This window handle is long enough."
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i08:r2",
+            "text": "This window handle is enough long."
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i08:r3",
+            "text": "This window handle is too long."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:i08:audio",
+            "transcript": "This window handle is long enough."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-26:i08:r1",
+              "targetText": "This window handle is long enough.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i08:r2",
+              "targetText": "This window handle is enough long.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i08:r3",
+              "targetText": "This window handle is too long.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-26:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This window handle is long enough.",
+                "uk": "У записі звучить This window handle is long enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This window handle is long enough.",
+                "uk": "У записі звучить This window handle is long enough."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "За ручку удобно держаться; длины хватает.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-26:i09:r1",
+            "text": "long enough"
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i09:r2",
+            "text": "enough long"
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i09:r3",
+            "text": "too long"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "За ручку удобно держаться; длины хватает.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "За ручку удобно держаться; длины хватает.",
+            "uk": "За ручку зручно триматися; довжини вистачає."
+          },
+          "gappedTargetPhrase": "This window handle is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-26:i09:r1",
+              "text": "long enough"
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i09:r2",
+              "text": "enough long"
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i09:r3",
+              "text": "too long"
+            }
+          ],
+          "testedDimension": "За ручку удобно держаться; длины хватает.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-26:i09:r2",
+              "correct": false,
+              "testedDimension": "За ручку удобно держаться; длины хватает.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: long enough.",
+                "uk": "Порядок слів: long enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i09:r3",
+              "correct": false,
+              "testedDimension": "За ручку удобно держаться; длины хватает.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно long enough.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно long enough."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:word:spare-part",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — spare part",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:word:spare-part:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — spare part",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:word:spare-part:audio",
+            "transcript": "spare part"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-26:word:spare-part:r1",
+              "targetText": "spare part",
+              "meaningByLocale": {
+                "ru": "запасная деталь.",
+                "uk": "запасна деталь."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "spare part",
+            "definitionByLocale": {
+              "ru": "запасная деталь.",
+              "uk": "запасна деталь."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Деталь не достаёт до нужного места. Скажите: «Эта запасная деталь слишком короткая».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Деталь не достаёт до нужного места. Скажите: «Эта запасная деталь слишком короткая».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This spare part is too short.",
+          "localizedMeaning": {
+            "ru": "Деталь не достаёт до нужного места. Скажите: «Эта запасная деталь слишком короткая».",
+            "uk": "Деталь не дістає до потрібного місця. Скажіть: «Ця запасна деталь закоротка»."
+          },
+          "orderedTokens": [
+            "This",
+            "spare",
+            "part",
+            "is",
+            "too",
+            "short"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-26:i11:r1",
+            "text": "This spare part is too short."
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i11:r2",
+            "text": "This spare part is short too."
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i11:r3",
+            "text": "This spare part is short enough."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:i11:audio",
+            "transcript": "This spare part is too short."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-26:i11:r1",
+              "targetText": "This spare part is too short.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i11:r2",
+              "targetText": "This spare part is short too.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i11:r3",
+              "targetText": "This spare part is short enough.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-26:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This spare part is too short.",
+                "uk": "У записі звучить This spare part is too short."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This spare part is too short.",
+                "uk": "У записі звучить This spare part is too short."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Деталь не достаёт до нужного места.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-26:i12:r1",
+            "text": "too short"
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i12:r2",
+            "text": "short too"
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i12:r3",
+            "text": "short enough"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Деталь не достаёт до нужного места.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Деталь не достаёт до нужного места.",
+            "uk": "Деталь не дістає до потрібного місця."
+          },
+          "gappedTargetPhrase": "This spare part is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-26:i12:r1",
+              "text": "too short"
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i12:r2",
+              "text": "short too"
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i12:r3",
+              "text": "short enough"
+            }
+          ],
+          "testedDimension": "Деталь не достаёт до нужного места.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-26:i12:r2",
+              "correct": false,
+              "testedDimension": "Деталь не достаёт до нужного места.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: too short.",
+                "uk": "Порядок слів: too short."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i12:r3",
+              "correct": false,
+              "testedDimension": "Деталь не достаёт до нужного места.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно too short.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно too short."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-26:i13:p1",
+              "target": "door lock",
+              "meaningByLocale": {
+                "ru": "дверной замок",
+                "uk": "дверний замок"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-26:i13:p2",
+              "target": "window lock",
+              "meaningByLocale": {
+                "ru": "оконный замок",
+                "uk": "віконний замок"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-26:i13:p3",
+              "target": "window handle",
+              "meaningByLocale": {
+                "ru": "оконная ручка",
+                "uk": "віконна ручка"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-26:i13:p4",
+              "target": "spare part",
+              "meaningByLocale": {
+                "ru": "запасная деталь",
+                "uk": "запасна деталь"
+              }
+            }
+          ],
+          "leftColumn": [
+            "door lock",
+            "window lock",
+            "window handle",
+            "spare part"
+          ],
+          "rightColumn": [
+            "дверной замок",
+            "оконный замок",
+            "оконная ручка",
+            "запасная деталь"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное с too",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное с too",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:i14:audio",
+            "transcript": "This door lock is too large."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This door lock is too large.",
+          "orderedTokens": [
+            "This",
+            "door",
+            "lock",
+            "is",
+            "too",
+            "large"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное с enough",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное с enough",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:i15:audio",
+            "transcript": "This window lock is strong enough."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This window lock is strong enough.",
+          "orderedTokens": [
+            "This",
+            "window",
+            "lock",
+            "is",
+            "strong",
+            "enough"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что условие выполнено",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите, что условие выполнено",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:i16:audio",
+            "transcript": "This window handle is long enough."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This window handle is long enough.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите, что качество мешает",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите, что качество мешает",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:i17:audio",
+            "transcript": "This spare part is too short."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This spare part is too short.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-18:session-26:word:door-lock",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — door lock",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:word:door-lock:audio"
+        ],
+        "accessibilityLabel": "Картка слова — door lock",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:word:door-lock:audio",
+            "transcript": "door lock"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-26:word:door-lock:r1",
+              "targetText": "door lock",
+              "meaningByLocale": {
+                "ru": "дверной замок.",
+                "uk": "дверний замок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "door lock",
+            "definitionByLocale": {
+              "ru": "дверной замок.",
+              "uk": "дверний замок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Замок не вміщується в отвір. Скажіть: «Цей дверний замок завеликий».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Замок не вміщується в отвір. Скажіть: «Цей дверний замок завеликий».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This door lock is too large.",
+          "localizedMeaning": {
+            "ru": "Замок не помещается в отверстие. Скажите: «Этот дверной замок слишком большой».",
+            "uk": "Замок не вміщується в отвір. Скажіть: «Цей дверний замок завеликий»."
+          },
+          "orderedTokens": [
+            "This",
+            "door",
+            "lock",
+            "is",
+            "too",
+            "large"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-26:i02:r1",
+            "text": "This door lock is too large."
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i02:r2",
+            "text": "This door lock is large too."
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i02:r3",
+            "text": "This door lock is large enough."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:i02:audio",
+            "transcript": "This door lock is too large."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-26:i02:r1",
+              "targetText": "This door lock is too large.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i02:r2",
+              "targetText": "This door lock is large too.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i02:r3",
+              "targetText": "This door lock is large enough.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-26:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This door lock is too large.",
+                "uk": "У записі звучить This door lock is too large."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This door lock is too large.",
+                "uk": "У записі звучить This door lock is too large."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Замок не вміщується в отвір.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-26:i03:r1",
+            "text": "too large"
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i03:r2",
+            "text": "large too"
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i03:r3",
+            "text": "large enough"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Замок не вміщується в отвір.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Замок не помещается в отверстие.",
+            "uk": "Замок не вміщується в отвір."
+          },
+          "gappedTargetPhrase": "This door lock is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-26:i03:r1",
+              "text": "too large"
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i03:r2",
+              "text": "large too"
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i03:r3",
+              "text": "large enough"
+            }
+          ],
+          "testedDimension": "Замок не вміщується в отвір.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-26:i03:r2",
+              "correct": false,
+              "testedDimension": "Замок не вміщується в отвір.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: too large.",
+                "uk": "Порядок слів: too large."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i03:r3",
+              "correct": false,
+              "testedDimension": "Замок не вміщується в отвір.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно too large.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно too large."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:word:window-lock",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — window lock",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:word:window-lock:audio"
+        ],
+        "accessibilityLabel": "Картка слова — window lock",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:word:window-lock:audio",
+            "transcript": "window lock"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-26:word:window-lock:r1",
+              "targetText": "window lock",
+              "meaningByLocale": {
+                "ru": "оконный замок.",
+                "uk": "віконний замок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "window lock",
+            "definitionByLocale": {
+              "ru": "оконный замок.",
+              "uk": "віконний замок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Міцність підходить для вашого завдання. Скажіть: «Цей віконний замок достатньо міцний».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Міцність підходить для вашого завдання. Скажіть: «Цей віконний замок достатньо міцний».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This window lock is strong enough.",
+          "localizedMeaning": {
+            "ru": "Прочность подходит для вашей задачи. Скажите: «Этот оконный замок достаточно прочный».",
+            "uk": "Міцність підходить для вашого завдання. Скажіть: «Цей віконний замок достатньо міцний»."
+          },
+          "orderedTokens": [
+            "This",
+            "window",
+            "lock",
+            "is",
+            "strong",
+            "enough"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-26:i05:r1",
+            "text": "This window lock is strong enough."
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i05:r2",
+            "text": "This window lock is enough strong."
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i05:r3",
+            "text": "This window lock is too strong."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:i05:audio",
+            "transcript": "This window lock is strong enough."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-26:i05:r1",
+              "targetText": "This window lock is strong enough.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i05:r2",
+              "targetText": "This window lock is enough strong.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i05:r3",
+              "targetText": "This window lock is too strong.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-26:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This window lock is strong enough.",
+                "uk": "У записі звучить This window lock is strong enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This window lock is strong enough.",
+                "uk": "У записі звучить This window lock is strong enough."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Міцність підходить для вашого завдання.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-26:i06:r1",
+            "text": "strong enough"
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i06:r2",
+            "text": "enough strong"
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i06:r3",
+            "text": "too strong"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Міцність підходить для вашого завдання.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Прочность подходит для вашей задачи.",
+            "uk": "Міцність підходить для вашого завдання."
+          },
+          "gappedTargetPhrase": "This window lock is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-26:i06:r1",
+              "text": "strong enough"
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i06:r2",
+              "text": "enough strong"
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i06:r3",
+              "text": "too strong"
+            }
+          ],
+          "testedDimension": "Міцність підходить для вашого завдання.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-26:i06:r2",
+              "correct": false,
+              "testedDimension": "Міцність підходить для вашого завдання.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: strong enough.",
+                "uk": "Порядок слів: strong enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i06:r3",
+              "correct": false,
+              "testedDimension": "Міцність підходить для вашого завдання.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно strong enough.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно strong enough."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:word:window-handle",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — window handle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:word:window-handle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — window handle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:word:window-handle:audio",
+            "transcript": "window handle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-26:word:window-handle:r1",
+              "targetText": "window handle",
+              "meaningByLocale": {
+                "ru": "оконная ручка.",
+                "uk": "віконна ручка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "window handle",
+            "definitionByLocale": {
+              "ru": "оконная ручка.",
+              "uk": "віконна ручка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "За ручку зручно триматися; довжини вистачає. Скажіть: «Ця віконна ручка достатньо довга».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "За ручку зручно триматися; довжини вистачає. Скажіть: «Ця віконна ручка достатньо довга».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This window handle is long enough.",
+          "localizedMeaning": {
+            "ru": "За ручку удобно держаться; длины хватает. Скажите: «Эта оконная ручка достаточно длинная».",
+            "uk": "За ручку зручно триматися; довжини вистачає. Скажіть: «Ця віконна ручка достатньо довга»."
+          },
+          "orderedTokens": [
+            "This",
+            "window",
+            "handle",
+            "is",
+            "long",
+            "enough"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-26:i08:r1",
+            "text": "This window handle is long enough."
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i08:r2",
+            "text": "This window handle is enough long."
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i08:r3",
+            "text": "This window handle is too long."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:i08:audio",
+            "transcript": "This window handle is long enough."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-26:i08:r1",
+              "targetText": "This window handle is long enough.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i08:r2",
+              "targetText": "This window handle is enough long.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i08:r3",
+              "targetText": "This window handle is too long.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-26:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This window handle is long enough.",
+                "uk": "У записі звучить This window handle is long enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This window handle is long enough.",
+                "uk": "У записі звучить This window handle is long enough."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "За ручку зручно триматися; довжини вистачає.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-26:i09:r1",
+            "text": "long enough"
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i09:r2",
+            "text": "enough long"
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i09:r3",
+            "text": "too long"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "За ручку зручно триматися; довжини вистачає.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "За ручку удобно держаться; длины хватает.",
+            "uk": "За ручку зручно триматися; довжини вистачає."
+          },
+          "gappedTargetPhrase": "This window handle is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-26:i09:r1",
+              "text": "long enough"
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i09:r2",
+              "text": "enough long"
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i09:r3",
+              "text": "too long"
+            }
+          ],
+          "testedDimension": "За ручку зручно триматися; довжини вистачає.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-26:i09:r2",
+              "correct": false,
+              "testedDimension": "За ручку зручно триматися; довжини вистачає.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: long enough.",
+                "uk": "Порядок слів: long enough."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i09:r3",
+              "correct": false,
+              "testedDimension": "За ручку зручно триматися; довжини вистачає.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно long enough.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно long enough."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:word:spare-part",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — spare part",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:word:spare-part:audio"
+        ],
+        "accessibilityLabel": "Картка слова — spare part",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:word:spare-part:audio",
+            "transcript": "spare part"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-26:word:spare-part:r1",
+              "targetText": "spare part",
+              "meaningByLocale": {
+                "ru": "запасная деталь.",
+                "uk": "запасна деталь."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "spare part",
+            "definitionByLocale": {
+              "ru": "запасная деталь.",
+              "uk": "запасна деталь."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Деталь не дістає до потрібного місця. Скажіть: «Ця запасна деталь закоротка».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Деталь не дістає до потрібного місця. Скажіть: «Ця запасна деталь закоротка».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "This spare part is too short.",
+          "localizedMeaning": {
+            "ru": "Деталь не достаёт до нужного места. Скажите: «Эта запасная деталь слишком короткая».",
+            "uk": "Деталь не дістає до потрібного місця. Скажіть: «Ця запасна деталь закоротка»."
+          },
+          "orderedTokens": [
+            "This",
+            "spare",
+            "part",
+            "is",
+            "too",
+            "short"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-26:i11:r1",
+            "text": "This spare part is too short."
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i11:r2",
+            "text": "This spare part is short too."
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i11:r3",
+            "text": "This spare part is short enough."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:i11:audio",
+            "transcript": "This spare part is too short."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-18:session-26:i11:r1",
+              "targetText": "This spare part is too short.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i11:r2",
+              "targetText": "This spare part is short too.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i11:r3",
+              "targetText": "This spare part is short enough.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-26:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This spare part is too short.",
+                "uk": "У записі звучить This spare part is too short."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит This spare part is too short.",
+                "uk": "У записі звучить This spare part is too short."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Деталь не дістає до потрібного місця.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-18:session-26:i12:r1",
+            "text": "too short"
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i12:r2",
+            "text": "short too"
+          },
+          {
+            "responseId": "en:lesson-18:session-26:i12:r3",
+            "text": "short enough"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Деталь не дістає до потрібного місця.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Деталь не достаёт до нужного места.",
+            "uk": "Деталь не дістає до потрібного місця."
+          },
+          "gappedTargetPhrase": "This spare part is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-18:session-26:i12:r1",
+              "text": "too short"
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i12:r2",
+              "text": "short too"
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i12:r3",
+              "text": "short enough"
+            }
+          ],
+          "testedDimension": "Деталь не дістає до потрібного місця.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-18:session-26:i12:r2",
+              "correct": false,
+              "testedDimension": "Деталь не дістає до потрібного місця.",
+              "feedbackByLocale": {
+                "ru": "Порядок слов: too short.",
+                "uk": "Порядок слів: too short."
+              }
+            },
+            {
+              "responseId": "en:lesson-18:session-26:i12:r3",
+              "correct": false,
+              "testedDimension": "Деталь не дістає до потрібного місця.",
+              "feedbackByLocale": {
+                "ru": "Этот вариант меняет смысл; по ситуации нужно too short.",
+                "uk": "Цей варіант змінює зміст; за ситуацією потрібно too short."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-18:session-26:i13:p1",
+              "target": "door lock",
+              "meaningByLocale": {
+                "ru": "дверной замок",
+                "uk": "дверний замок"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-26:i13:p2",
+              "target": "window lock",
+              "meaningByLocale": {
+                "ru": "оконный замок",
+                "uk": "віконний замок"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-26:i13:p3",
+              "target": "window handle",
+              "meaningByLocale": {
+                "ru": "оконная ручка",
+                "uk": "віконна ручка"
+              }
+            },
+            {
+              "pairId": "en:lesson-18:session-26:i13:p4",
+              "target": "spare part",
+              "meaningByLocale": {
+                "ru": "запасная деталь",
+                "uk": "запасна деталь"
+              }
+            }
+          ],
+          "leftColumn": [
+            "door lock",
+            "window lock",
+            "window handle",
+            "spare part"
+          ],
+          "rightColumn": [
+            "дверний замок",
+            "віконний замок",
+            "віконна ручка",
+            "запасна деталь"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте з too",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте з too",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:i14:audio",
+            "transcript": "This door lock is too large."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This door lock is too large.",
+          "orderedTokens": [
+            "This",
+            "door",
+            "lock",
+            "is",
+            "too",
+            "large"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте з enough",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте з enough",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:i15:audio",
+            "transcript": "This window lock is strong enough."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This window lock is strong enough.",
+          "orderedTokens": [
+            "This",
+            "window",
+            "lock",
+            "is",
+            "strong",
+            "enough"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що умову виконано",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що умову виконано",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:i16:audio",
+            "transcript": "This window handle is long enough."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This window handle is long enough.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-18:session-26:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть, що якість заважає",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-18:session-26:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть, що якість заважає",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-18:session-26:i17:audio",
+            "transcript": "This spare part is too short."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This spare part is too short.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-18:session-26:word:door-lock",
+      "correctText": "door lock",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-26:i01",
+      "correctText": "This door lock is too large.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-26:i02",
+      "correctText": "This door lock is too large.",
+      "correctResponseId": "en:lesson-18:session-26:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-26:i03",
+      "correctText": "too large",
+      "correctResponseId": "en:lesson-18:session-26:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-26:word:window-lock",
+      "correctText": "window lock",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-26:i04",
+      "correctText": "This window lock is strong enough.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-26:i05",
+      "correctText": "This window lock is strong enough.",
+      "correctResponseId": "en:lesson-18:session-26:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-26:i06",
+      "correctText": "strong enough",
+      "correctResponseId": "en:lesson-18:session-26:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-26:word:window-handle",
+      "correctText": "window handle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-26:i07",
+      "correctText": "This window handle is long enough.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-26:i08",
+      "correctText": "This window handle is long enough.",
+      "correctResponseId": "en:lesson-18:session-26:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-26:i09",
+      "correctText": "long enough",
+      "correctResponseId": "en:lesson-18:session-26:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-26:word:spare-part",
+      "correctText": "spare part",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-26:i10",
+      "correctText": "This spare part is too short.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-26:i11",
+      "correctText": "This spare part is too short.",
+      "correctResponseId": "en:lesson-18:session-26:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-26:i12",
+      "correctText": "too short",
+      "correctResponseId": "en:lesson-18:session-26:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-18:session-26:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-26:i14",
+      "correctText": "This door lock is too large.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-26:i15",
+      "correctText": "This window lock is strong enough.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-26:i16",
+      "correctText": "This window handle is long enough.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-18:session-26:i17",
+      "correctText": "This spare part is too short.",
+      "correctResponseId": null
+    }
+  ]
+}

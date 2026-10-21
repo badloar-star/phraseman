@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-18:session-28:word:oven-dish",
+    "correctText": "oven dish",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-28:i01",
+    "correctText": "This oven dish is too wide.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-28:i02",
+    "correctText": "This oven dish is too wide.",
+    "correctResponseId": "en:lesson-18:session-28:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-28:i03",
+    "correctText": "too wide",
+    "correctResponseId": "en:lesson-18:session-28:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-28:word:serving-bowl",
+    "correctText": "serving bowl",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-28:i04",
+    "correctText": "This serving bowl is large enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-28:i05",
+    "correctText": "This serving bowl is large enough.",
+    "correctResponseId": "en:lesson-18:session-28:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-28:i06",
+    "correctText": "large enough",
+    "correctResponseId": "en:lesson-18:session-28:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-28:word:water-glass",
+    "correctText": "water glass",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-28:i07",
+    "correctText": "This water glass is clean enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-28:i08",
+    "correctText": "This water glass is clean enough.",
+    "correctResponseId": "en:lesson-18:session-28:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-28:i09",
+    "correctText": "clean enough",
+    "correctResponseId": "en:lesson-18:session-28:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-28:word:wine-glass",
+    "correctText": "wine glass",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-28:i10",
+    "correctText": "This wine glass is too tall.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-28:i11",
+    "correctText": "This wine glass is too tall.",
+    "correctResponseId": "en:lesson-18:session-28:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-28:i12",
+    "correctText": "too tall",
+    "correctResponseId": "en:lesson-18:session-28:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-18:session-28:i13",
+    "correctText": "en:lesson-18:session-28:i13:p1=oven dish\nen:lesson-18:session-28:i13:p2=serving bowl\nen:lesson-18:session-28:i13:p3=water glass\nen:lesson-18:session-28:i13:p4=wine glass",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-28:i14",
+    "correctText": "This oven dish is too wide.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-28:i15",
+    "correctText": "This serving bowl is large enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-28:i16",
+    "correctText": "This water glass is clean enough.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-18:session-28:i17",
+    "correctText": "This wine glass is too tall.",
+    "correctResponseId": null
+  }
+]

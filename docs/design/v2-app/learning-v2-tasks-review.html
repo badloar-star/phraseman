@@ -232,7 +232,7 @@
 <script>
 (() => {
 const { phone, block, col, coin } = K;
-const IC = { close: 'f24a', vol: 'f613', heart: 'f36a', flash: 'f316', fwd: 'f4d0', undo: 'f143', flag: 'f311', bulb: 'f1c1', time: 'f5de', chat: 'f213', mic: 'f454', check: 'f21d', albums: 'f110', ear: 'f2c0', arrow: 'f133', play: 'f4c6', okc: 'f21e', puzzle: 'f2e4', compare: 'f341', create: 'f293', swap: 'f5b1', headset: 'f368', school: 'f55d', spark: 'f58d', person: 'f4ac', loc: 'f3c5' };
+const IC = { save: 'f1a9', close: 'f24a', vol: 'f613', heart: 'f36a', flash: 'f316', fwd: 'f4d0', undo: 'f143', flag: 'f311', bulb: 'f1c1', time: 'f5de', chat: 'f213', mic: 'f454', check: 'f21d', albums: 'f110', ear: 'f2c0', arrow: 'f133', play: 'f4c6', okc: 'f21e', puzzle: 'f2e4', compare: 'f341', create: 'f293', swap: 'f5b1', headset: 'f368', school: 'f55d', spark: 'f58d', person: 'f4ac', loc: 'f3c5' };
 const io = (k, st = '') => `<i class="io" aria-hidden="true" style="${st}">&#x${IC[k]};</i>`;
 const top = (n, t) => `<div class="tvtop"><span class="tvx">${io('close')}</span><div class="tvp"><div class="tvtrk"><i style="width:${Math.round(n / t * 100)}%"></i></div><div class="tvn">${n} / ${t}</div></div><div class="hud"><span class="hp">${io('heart', 'color:#C2413B')}3</span><span class="hp">${io('flash')}5</span><span class="hp"><img src="${coin(5)}" alt="">120</span></div></div>`;
 const foot = (ok) => `<div class="foot"><div>${io('undo')}Назад</div><div>${io('albums')}Слова</div><div class="${ok ? '' : 'off'}">${io('fwd')}Дальше</div></div>`;
@@ -263,7 +263,7 @@ const introNew = () => phone(`<div class="ihd"><span class="x">${io('close')}</s
 const wordNow = () => P(`<div class="lab">Новое слово</div><div class="play">${ring(1)}${io('vol')}</div><div class="psub">Прослушать ещё раз</div>`, { n: 4,
   overlay: `<div class="nwdim"></div><div class="nw"><div class="h"><b>Новое слово</b><span>1 из 4</span></div><div class="fc"><div class="w">here</div><div class="ipa">/hɪə/</div></div><div class="hint">Нажмите на карточку, чтобы перевернуть</div><div class="tcta">Продолжить${io('arrow', 'font-size:18px')}</div></div>` });
 const wordNew = () => P(``, { n: 4,
-  overlay: `<div class="nwdim"></div><div class="nw"><div class="h"><b>Новое слово</b><span>1 из 4</span></div><div class="fc"><div class="w">here</div><div class="ipa">/hɪə/ · здесь</div><span class="spk" style="position:absolute;right:14px;bottom:14px;background:rgba(255,255,255,.14);color:#fff;margin:0">${io('vol')}</span></div>
+  overlay: `<div class="nwdim"></div><div class="nw"><div class="h"><b>Новое слово</b><span>1 из 4</span></div><div class="fc"><div class="w">here</div><div class="ipa">/hɪə/ · здесь</div><span class="spk" style="position:absolute;left:14px;bottom:14px;background:rgba(255,255,255,.14);color:#fff;margin:0">${io('vol')}</span><span class="spk" style="position:absolute;right:14px;bottom:14px;width:44px;height:44px;background:rgba(255,255,255,.14);color:#fff;margin:0">${io('save')}</span></div>
   <div style="text-align:center;font-size:17px;line-height:24px;padding:2px 6px"><b>I am here.</b><br><span style="color:var(--sec)">Я здесь.</span></div><div class="tcta">Понятно${io('arrow', 'font-size:18px')}</div></div>` });
 
 /* 3 · Послушай и выбери (l03/s02 i02) */
@@ -305,7 +305,7 @@ const rcNew = () => P(`${todo('mic', 'Скажи вслух')}${sit('Начал�
 const pair = (id, title, lead, now, nw) => block(id, title, lead, [col('Сейчас', now), col('Предлагаем', nw)]);
 document.getElementById('root').innerHTML =
   pair('intro', '1 · Интро занятия (СМЫСЛ / СХЕМА / ЛОВУШКА)', 'Сейчас объяснение — один абзац на 5–6 строк, где ситуация, фраза, перевод и правило перемешаны. Предлагаем: ситуация — отдельной карточкой; «Скажи так» — фраза крупно, перевод, разбор по словам; правило — одна строка «почему». Вопрос короче: ситуация уже выше.', introNow(), introNew()) +
-  pair('word', '2 · Новое слово', 'Сейчас слово на карточке без перевода — надо догадаться перевернуть («Нажмите на карточку, чтобы перевернуть»). Предлагаем: перевод сразу под словом, звук на карточке и живой пример из занятия; кнопка «Понятно».', wordNow(), wordNew()) +
+  pair('word', '2 · Новое слово', 'Сейчас слово на карточке без перевода — надо догадаться перевернуть («Нажмите на карточку, чтобы перевернуть»). Предлагаем: перевод сразу под словом, звук на карточке и живой пример из занятия; кнопка «Понятно». Одобрено владельцем 21.10 с уточнением: закладка на карточке сохраняет её в «Карточки» как обычно — двусторонней (слово ↔ перевод).', wordNow(), wordNew()) +
   pair('lc', '3 · Послушай и выбери (listen_choose)', 'Сейчас инструкция и ситуация — одна строка серым. Предлагаем: «Послушай и выбери» крупно, ситуация отдельно; кнопка звука 96 вместо 128, чтобы варианты ответа поднялись выше.', lcNow(), lcNew()) +
   pair('ld', '4 · Диктант (listen_build_dictation)', 'Сейчас написанная ситуация («Послушайте реплику коллеги перед началом встречи…») на экран не выводится — только общий заголовок. Предлагаем: ситуация видна, чтобы было понятно, кто говорит.', ldNow(), ldNew()) +
   pair('pb', '5 · Собери фразу (phrase_builder)', 'Сейчас смысл фразы скрыт (совпадает с подсказкой), и непонятно, что именно собирать. Предлагаем: «Собери фразу», ситуация, и крупно «Скажите по-английски: Я здесь.»', pbNow(), pbNew()) +

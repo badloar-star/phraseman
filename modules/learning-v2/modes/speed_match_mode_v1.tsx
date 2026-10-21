@@ -244,23 +244,38 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
     [interfaceLocale, payload, playArenaSound],
   );
 
+  // зачем: колбэк истечения таймера запоминается при создании кадрового обратного вызова — свежие собранные пары читаем через ref
+  const matchedRef = useRef(matchedPairIds);
+  matchedRef.current = matchedPairIds;
   const [round, setRound] = useState(() => createLearningV2SpeedMatchRoundStateV1());
   const [timerResetToken, setTimerResetToken] = useState(0);
   const canPick = learningV2SpeedMatchCanPickV1(round);
   const active = !resolved && phase !== "success" && canPick && round.timerEnabled;
   const secondsLeft = useSpeedMatchTimerV1(active, timerResetToken, () => {
+    // зачем (баг сброса пар, журнал [V2-PAIRS]): момент истечения таймера и сколько пар к этому времени было собрано
+    console.warn("[V2-PAIRS] timer: время вышло", JSON.stringify({ matched: [...matchedRef.current], total: payload.pairGrid.length })); // guard-ok: состояние пар на истечении таймера
     setRound((current) => current.expire());
   });
 
-  const restartRound = useCallback((timerEnabled: boolean) => {
+  // зачем (баг «Сверки» 21.10: после «Продолжить без таймера» все собранные пары сбросились в начало; правило «сперва логи»):
+  // «Ещё раунд» начинает раунд заново (пары сбрасываются), а «Продолжить без таймера» ТОЛЬКО снимает таймер — найденные пары остаются.
+  // Журнал [V2-PAIRS]: какая кнопка, состояние пар до и после, какие пары сохранены / сброшены.
+  const restartRound = useCallback((timerEnabled: boolean, keepMatched: boolean) => {
+    const before = { matched: [...matchedPairIds], pickedLeft, pickedRight, wrong: [...wrongPairIds], round: round.phase, timerEnabled: round.timerEnabled };
+    console.warn("[V2-PAIRS] restart: вход", JSON.stringify({ button: keepMatched ? "without_timer" : "again", requestedTimer: timerEnabled, before })); // guard-ok: трассировка бага сброса пар
     clearMismatch();
     setPickedLeft(null);
     setPickedRight(null);
-    setMatchedPairIds(new Set());
+    if (keepMatched) {
+      console.warn("[V2-PAIRS] restart: пары СОХРАНЕНЫ (продолжение без таймера)", JSON.stringify({ kept: before.matched.length, total: payload.pairGrid.length })); // guard-ok: ветка, решившая судьбу пар
+    } else {
+      console.warn("[V2-PAIRS] restart: пары СБРОШЕНЫ (новый раунд)", JSON.stringify({ dropped: before.matched.length })); // guard-ok: ветка, решившая судьбу пар
+      setMatchedPairIds(new Set());
+    }
     setWrongPairIds(new Set());
     setRound((current) => current.restart({ timerEnabled }));
     setTimerResetToken((value) => value + 1);
-  }, [clearMismatch]);
+  }, [clearMismatch, matchedPairIds, payload.pairGrid.length, pickedLeft, pickedRight, round.phase, round.timerEnabled, wrongPairIds]);
 
   const announcedRef = useRef(false);
   useEffect(() => {
@@ -395,7 +410,7 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
           <View style={sx.timeoutActions}>
             <Pressable
               accessibilityRole="button"
-              onPress={() => restartRound(true)}
+              onPress={() => restartRound(true, false)}
               style={({ pressed }) => [
                 sx.timeoutButton,
                 { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g), opacity: pressed ? 0.72 : 1 }, // «Тень» 12.10: контурная кнопка стала плашкой с тенью
@@ -407,7 +422,7 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
             </Pressable>
             <Pressable
               accessibilityRole="button"
-              onPress={() => restartRound(false)}
+              onPress={() => restartRound(false, true)}
               style={({ pressed }) => [
                 sx.timeoutButton,
                 { backgroundColor: g.accent, boxShadow: actionBoxShadow(g), opacity: pressed ? 0.72 : 1 },

@@ -1,0 +1,178 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Экзамен главы</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+/* Блок H вводных владельца 21.10: кнопка «Экзамен» внизу главы из 8 занятий. Экзамен можно сдать ДО прохождения всех занятий —
+   сдал → открывается следующая глава. Карта V2 как в эталоне fd6d10db8 (плашка главы, плитка Ionicons 55/14) и в коде
+   LearningV2ChaptersCourse (развёрнутая глава: 8 узлов 64 в сетке 4×2, подпись 13/17; 8-е занятие сейчас «Проверка главы»). */
+:root {
+  --page: #F4F4F7; --page-ink: #17181E; --page-sec: #5B5C66; --page-chip: rgba(23,24,30,.06);
+  --font: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif; color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --page: #0E0E10; --page-ink: #F2F2F4; --page-sec: #A6A6AE; --page-chip: rgba(255,255,255,.07); color-scheme: dark; } }
+:root[data-theme="dark"] { --page: #0E0E10; --page-ink: #F2F2F4; --page-sec: #A6A6AE; --page-chip: rgba(255,255,255,.07); color-scheme: dark; }
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+body { margin: 0; background: var(--page); color: var(--page-ink); font-family: var(--font); }
+.wrap { max-width: 1280px; margin: 0 auto; padding-block: 28px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1 { font-size: 28px; line-height: 34px; font-weight: 800; letter-spacing: -.5px; margin: 0; text-wrap: balance; }
+h2 { font-size: 21px; line-height: 27px; font-weight: 700; margin: 52px 0 0; text-wrap: balance; }
+.lead { font-size: 15px; line-height: 22px; color: var(--page-sec); margin: 8px 0 0; max-width: 74ch; }
+.rec { display: inline-block; margin-left: 8px; padding: 2px 9px; border-radius: 8px; background: rgba(110,200,140,.16); color: #3FA86A; font-size: 12px; font-weight: 700; vertical-align: middle; }
+.row { display: flex; flex-wrap: wrap; gap: 26px; margin-top: 20px; justify-content: center; }
+.col { display: flex; flex-direction: column; align-items: center; gap: 12px; min-width: 0; }
+.cap { font-size: 14px; font-weight: 600; color: var(--page-sec); }
+.spec { margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px 28px; }
+.spec div { font-size: 14px; line-height: 21px; color: var(--page-sec); }
+.spec b { color: var(--page-ink); font-weight: 600; }
+.verdict { margin-top: 28px; padding: 18px 20px; border-radius: 18px; background: var(--page-chip); max-width: 860px; font-size: 15px; line-height: 23px; color: var(--page-sec); }
+.verdict b { color: var(--page-ink); }
+table { border-collapse: collapse; margin-top: 14px; font-size: 14px; line-height: 20px; max-width: 860px; width: 100%; }
+td, th { text-align: left; padding: 9px 12px 9px 0; border-bottom: 1px solid var(--page-chip); vertical-align: top; }
+th { color: var(--page-sec); font-size: 13px; font-weight: 600; }
+
+/* ── телефон: темы карты V2 «Сумерки» и «Океан» (как learning-v2-icons.html) ── */
+.ph { position: relative; width: 360px; max-width: 100%; aspect-ratio: 360 / 760; border-radius: 48px; overflow: hidden; font-family: var(--font); color: var(--tx); background: var(--bg); }
+.ph.ink { --bg: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); --tx: #17181E; --sec: #595A63; --card: #FCFCFF; --ctl: #E6E7F4; --acc: #5E5BB6; --sb: #111;
+  --sh: 0 10px 26px -14px rgba(51,51,87,.30), inset 0 1px 0 rgba(255,255,255,.9); --face-cur: #17181E; --ink-cur: #FFFFFF; --face: #E9EAF6; --cta: #1D1D2F; --cta-ink: #FFFFFF; --sheet: #FCFCFF; --scrim: rgba(23,24,30,.38);
+  box-shadow: 0 0 0 9px #D9DAE6, 0 30px 60px -30px rgba(51,51,87,.45); }
+.ph.marine { --bg: linear-gradient(180deg, #002936 0%, #000F16 55%, #001B17 100%); --tx: #F6FBFD; --sec: #B8CFD6; --card: #002027; --ctl: #123037; --acc: #63D6F1; --sb: #fff;
+  --sh: 0 12px 28px -14px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.06); --face-cur: #F6FBFD; --ink-cur: #00151C; --face: #0E2A31; --cta: #F6FBFD; --cta-ink: #00151C; --sheet: #032A33; --scrim: rgba(0,0,0,.55);
+  box-shadow: 0 0 0 9px #0B1F25, 0 30px 60px -30px rgba(0,0,0,.6); }
+.sbar { position: absolute; top: 0; left: 0; right: 0; height: 46px; padding: 15px 28px 0; display: flex; justify-content: space-between; font-size: 14px; font-weight: 600; color: var(--sb); z-index: 5; }
+.scr { position: absolute; inset: 46px 0 0; padding: 4px 12px; }
+.hi { position: absolute; left: 50%; bottom: 8px; width: 124px; height: 5px; margin-left: -62px; border-radius: 3px; background: var(--tx); opacity: .9; z-index: 40; }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+.mh { display: flex; justify-content: space-between; }
+.mrb { width: 44px; height: 44px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+.lk { font-size: 13px; letter-spacing: 1.6px; font-weight: 700; color: var(--sec); margin-top: 12px; }
+.tr { display: flex; align-items: center; gap: 12px; margin-top: 6px; }
+.ich { flex: none; width: 55px; height: 55px; border-radius: 14px; background: color-mix(in srgb, var(--tx) 9%, transparent); display: flex; align-items: center; justify-content: center; font-size: 26px; }
+.ich.les { width: 46px; height: 46px; border-radius: 12px; font-size: 22px; }
+.ltt { font-size: 22px; line-height: 27px; font-weight: 700; }
+.chap { border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px 14px 12px; margin-top: 12px; }
+.crow { display: flex; align-items: center; gap: 14px; }
+.crow .tl { font-size: 19px; line-height: 24px; font-weight: 700; }
+.crow .cs { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 2px; }
+.crow .fr { font-size: 15px; font-weight: 700; color: var(--sec); }
+.crow .fr b { color: var(--tx); }
+.grow { flex: 1; min-width: 0; }
+.ses { display: flex; flex-wrap: wrap; row-gap: 14px; padding: 12px 0 2px; }
+.s { width: 25%; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.nd { position: relative; width: 60px; height: 60px; border-radius: 50%; background: var(--face); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; color: var(--tx); }
+.nd .io { font-size: 22px; }
+.nd b { font-size: 12px; line-height: 14px; }
+.nd.cur { background: var(--face-cur); color: var(--ink-cur); box-shadow: 0 0 0 4px color-mix(in srgb, var(--tx) 14%, transparent); }
+.nd.lock { color: var(--sec); opacity: .7; }
+.nd.exam { background: var(--acc); color: var(--cta-ink); box-shadow: 0 0 0 4px color-mix(in srgb, var(--acc) 30%, transparent); }
+.ph.ink .nd.exam { color: #FFFFFF; }
+.nd.passed { background: color-mix(in srgb, var(--acc) 22%, var(--face)); color: var(--tx); }
+.s .lb { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); text-align: center; }
+.s .lb.on { color: var(--tx); }
+.stars { position: absolute; bottom: -8px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--ctl); display: flex; gap: 1px; align-items: center; font-size: 9px; color: var(--tx); }
+/* зачем: правило .nd .io (22px) перебивало звёзды */
+.nd .stars .io { font-size: 10px; }
+.trk { height: 6px; border-radius: 3px; background: var(--ctl); margin-top: 12px; overflow: hidden; }
+.trk i { display: block; height: 100%; background: var(--acc); border-radius: 3px; }
+/* вариант 1 — кнопка под сеткой */
+.exb { margin-top: 14px; height: 52px; border-radius: 26px; background: var(--cta); color: var(--cta-ink); display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 700; }
+.exb .io { font-size: 19px; }
+.exn { text-align: center; font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 8px; }
+.exdone { margin-top: 14px; height: 48px; border-radius: 24px; background: var(--ctl); color: var(--tx); display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 15px; font-weight: 700; }
+.exdone .io { color: var(--acc); font-size: 18px; }
+.minichap { border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px; margin-top: 12px; display: flex; align-items: center; gap: 14px; }
+/* шторка перед экзаменом */
+.scrim { position: absolute; inset: 0; background: var(--scrim); z-index: 20; }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 30; background: var(--sheet); border-radius: 30px 30px 0 0; padding: 10px 20px 32px; box-shadow: 0 -18px 40px -18px rgba(0,0,0,.5); }
+.grab { width: 40px; height: 5px; border-radius: 3px; background: var(--ctl); margin: 0 auto; }
+.sh-ic { width: 60px; height: 60px; border-radius: 18px; background: color-mix(in srgb, var(--acc) 22%, transparent); color: var(--acc); display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 20px auto 0; }
+.ph.ink .sh-ic { color: #4A47A8; }
+.sh-t { font-size: 22px; line-height: 28px; font-weight: 700; text-align: center; margin-top: 14px; }
+.facts { display: flex; gap: 8px; margin-top: 16px; }
+.facts div { flex: 1; border-radius: 14px; background: var(--ctl); padding: 10px 6px; text-align: center; }
+.facts b { display: block; font-size: 18px; line-height: 22px; }
+.facts small { font-size: 12px; line-height: 16px; color: var(--sec); }
+.sh-p { font-size: 15px; line-height: 21px; color: var(--sec); text-align: center; margin-top: 14px; }
+.sh-cta { margin-top: 18px; height: 52px; border-radius: 26px; background: var(--cta); color: var(--cta-ink); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; }
+.sh-sec { margin-top: 10px; height: 48px; border-radius: 24px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; }
+</style>
+
+<div class="wrap">
+  <h1>Экзамен главы — 2 варианта</h1>
+  <p class="lead">Решение владельца 21.10: в главе 8 занятий, внизу — «Экзамен» по этой главе. Его можно сдать сразу, не проходя все занятия: сдал — открывается следующая глава. Это ответ на отзыв «не могу пропустить то, что знаю». Ниже два способа показать экзамен на карте; числа в окне перед экзаменом — предложение для макета, окончательно их решает сессия Learning V2.</p>
+
+  <h2>Вариант 1 · Кнопка «Экзамен главы» под занятиями<span class="rec">рекомендую</span></h2>
+  <div class="row" id="v1"></div>
+  <div class="spec">
+    <div><b>Где.</b> В развёрнутой главе под сеткой из 8 занятий — главная кнопка «Экзамен главы» с кубком, 52/26, и одна короткая строка «Сдашь — откроется глава 2». Восьмое занятие остаётся «Проверкой главы», как сейчас.</div>
+    <div><b>Состояния.</b> Доступна с первого дня главы. Сдан — кнопка становится спокойной строкой «Экзамен сдан · 9 из 10» с галочкой, следующая глава открыта. Пройдены все 8 занятий — кнопка остаётся (пересдать можно), но уже не главная.</div>
+  </div>
+
+  <h2>Вариант 2 · Восьмое занятие становится экзаменом</h2>
+  <div class="row" id="v2"></div>
+  <div class="spec">
+    <div><b>Где.</b> Последний узел главы — «Экзамен» цветом акцента, открыт с самого начала, даже когда занятия 5–7 ещё закрыты. Отдельной кнопки нет — экзамен на своём месте в пути.</div>
+    <div><b>Плюсы и минусы.</b> Компактно и логично («в конце главы — экзамен»), но пропадает нынешняя «Проверка главы», а открытый узел в конце ряда закрытых выглядит как ошибка в порядке — нужен явный акцент.</div>
+  </div>
+
+  <h2>Окно перед экзаменом (общее для обоих)</h2>
+  <div class="row" id="vs"></div>
+
+  <h2>Предложение по правилам — для сессии Learning V2</h2>
+  <table>
+    <tr><th>Вопрос</th><th>Предложение</th></tr>
+    <tr><td>Сколько вопросов</td><td>10 — по 1–2 на каждое занятие главы, задания тех же механик (сборка фразы, выбор, диктант).</td></tr>
+    <tr><td>Порог</td><td>8 из 10.</td></tr>
+    <tr><td>Провал</td><td>Спокойный итог «7 из 10 — почти», какие темы просели, кнопка «Повторить занятия». Пересдать можно сразу, без штрафа.</td></tr>
+    <tr><td>Энергия / сердечки</td><td>Free: 1 энергия, как обычное занятие. Plus: не тратит. Сердечек нет — экзамен не обрывается на ошибках.</td></tr>
+    <tr><td>Награда</td><td>Открывается следующая глава + монеты как за 8 занятий; пройденные экзаменом занятия считаются «пропущенными», их можно пройти позже.</td></tr>
+    <tr><td>Откуда вопросы</td><td>Из банка заданий восьми занятий главы, случайная выборка, без повторов подряд.</td></tr>
+  </table>
+
+  <div class="verdict"><b>Рекомендация: вариант 1.</b> Кнопка видна сразу, не ломает порядок узлов и не убирает «Проверку главы». Главная заливка говорит «можно сразу», а одна строка под ней объясняет выгоду. Вариант 2 компактнее, но открытый узел после закрытых путает.</div>
+</div>
+
+<script>
+const IO = {back:'f127',book:'f1a6',lib:'f3b6',brief:'f1b2',business:'f1c7',cafe:'f1ca',people:'f4a3',chevD:'f232',chevU:'f241',check:'f21d',play:'f4c6',lock:'f3c7',trophy:'f601',star:'f595',ok:'f21e',time:'f5de',home:'f383'};
+const io = (k) => `<i class="io" aria-hidden="true">&#x${IO[k]};</i>`;
+const sbar = '<div class="sbar"><span>9:41</span><span>●●●</span></div>';
+const head = () => `<div class="mh"><span class="mrb">${io('back')}</span><span class="mrb">${io('book')}</span></div>
+  <div class="lk">УРОК 1</div><div class="tr"><span class="ich les">${io('brief')}</span><div class="ltt">Present be: утверждение + not</div></div>`;
+const node = (n, st, o = {}) => {
+  const ic = st === 'done' ? 'check' : st === 'cur' ? 'play' : st === 'exam' ? 'trophy' : st === 'passed' ? 'trophy' : st === 'chk' ? 'trophy' : 'lock';
+  const cls = st === 'done' ? '' : st === 'cur' ? ' cur' : st === 'exam' ? ' exam' : st === 'passed' ? ' passed' : st === 'chk' ? ' lock' : ' lock';
+  const stars = o.stars ? `<span class="stars">${[0, 1, 2].map((i) => `<i class="io" style="opacity:${i < o.stars ? 1 : .25}">&#x${IO.star};</i>`).join('')}</span>` : '';
+  const label = o.label || `Занятие ${n}`;
+  return `<div class="s"><div class="nd${cls}">${io(ic)}<b>${st === 'exam' || st === 'passed' ? '' : n}</b>${stars}</div><div class="lb${st === 'cur' || st === 'exam' ? ' on' : ''}">${label}</div></div>`;
+};
+const chapter = (o) => `<div class="chap"><div class="crow"><span class="ich">${io('business')}</span><div class="grow"><div class="tl">Глава 1</div><div class="cs">Занятия 1–8</div></div><span class="fr"><b>${o.done}</b>/8</span><span class="io" style="font-size:20px;color:var(--sec)">&#x${IO.chevU};</span></div>
+  <div class="ses">${o.nodes}</div>${o.after || ''}</div>`;
+const nodes1 = (passed) => [node(1, 'done', { stars: 3 }), node(2, 'done', { stars: 2 }), node(3, 'done', { stars: 3 }), node(4, passed ? 'done' : 'cur', passed ? { stars: 0 } : {}),
+  node(5, passed ? 'next' : 'lock'), node(6, 'lock'), node(7, 'lock'), node(8, 'chk', { label: 'Проверка главы' })].join('');
+const nextChap = (open) => `<div class="minichap"><span class="ich" style="${open ? '' : 'color:var(--sec)'}">${io('cafe')}</span><div class="grow"><div class="tl" style="font-size:19px;font-weight:700;${open ? '' : 'color:var(--sec)'}">Глава 2</div><div class="cs" style="font-size:14px;color:var(--sec);margin-top:2px">Занятия 9–16</div></div><span class="fr" style="font-weight:700;color:var(--sec)"><b style="color:var(--tx)">0</b>/8</span></div>`;
+
+const v1 = (th, passed) => `<div class="ph ${th}" role="img" aria-label="Вариант 1">${sbar}<div class="scr">${head()}
+  ${chapter({ done: passed ? 4 : 3, nodes: nodes1(passed), after: passed
+    ? `<div class="exdone">${io('ok')}Экзамен сдан · 9 из 10</div>`
+    : `<div class="exb">${io('trophy')}Экзамен главы</div><div class="exn">Сдашь — откроется глава 2</div>` })}
+  ${nextChap(passed)}</div><div class="hi"></div></div>`;
+
+const v2 = (th) => `<div class="ph ${th}" role="img" aria-label="Вариант 2">${sbar}<div class="scr">${head()}
+  ${chapter({ done: 3, nodes: [node(1, 'done', { stars: 3 }), node(2, 'done', { stars: 2 }), node(3, 'done', { stars: 3 }), node(4, 'cur'), node(5, 'lock'), node(6, 'lock'), node(7, 'lock'), node(8, 'exam', { label: 'Экзамен' })].join(''),
+    after: '<div class="trk"><i style="width:37%"></i></div>' })}
+  ${nextChap(false)}</div><div class="hi"></div></div>`;
+
+const sheet = (th) => `<div class="ph ${th}" role="img" aria-label="Окно перед экзаменом">${sbar}<div class="scr">${head()}${chapter({ done: 3, nodes: nodes1(false) })}</div>
+  <div class="scrim"></div><div class="sheet"><div class="grab"></div><div class="sh-ic">${io('trophy')}</div><div class="sh-t">Экзамен главы 1</div>
+  <div class="facts"><div><b>10</b><small>вопросов</small></div><div><b>8</b><small>чтобы сдать</small></div><div><b>~6</b><small>минут</small></div></div>
+  <div class="sh-p">Сдашь — сразу откроется глава 2. Не получится — пересдай когда угодно.</div>
+  <div class="sh-cta">Начать экзамен</div><div class="sh-sec">Позже</div></div><div class="hi"></div></div>`;
+
+const col = (cap, html) => `<div class="col">${html}<div class="cap">${cap}</div></div>`;
+document.getElementById('v1').innerHTML = col('Доступен · «Сумерки»', v1('ink', false)) + col('Доступен · «Океан»', v1('marine', false)) + col('Сдан · «Сумерки»', v1('ink', true));
+document.getElementById('v2').innerHTML = col('«Сумерки»', v2('ink')) + col('«Океан»', v2('marine'));
+document.getElementById('vs').innerHTML = col('«Сумерки»', sheet('ink')) + col('«Океан»', sheet('marine'));
+</script>

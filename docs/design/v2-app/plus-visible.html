@@ -1,0 +1,194 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plus заметно</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+/* Блок D вводных владельца 21.10: как заметно показать, что у человека Plus — чтобы он знал сам и видели другие.
+   Места: профиль/настройки, аватар в шапке, рейтинг этажа Пика, сообщество. Стиль «Тень», графит и «Сумерки».
+   Признак Plus других людей уже приходит в публичной проекции (isPremium) — нужна только отрисовка. Без жёлтого. */
+:root {
+  --page: #F4F4F7; --page-ink: #17181E; --page-sec: #5B5C66; --page-line: rgba(23,24,30,.10); --page-chip: rgba(23,24,30,.06);
+  --font: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif; color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --page: #0E0E10; --page-ink: #F2F2F4; --page-sec: #A6A6AE; --page-line: rgba(255,255,255,.10); --page-chip: rgba(255,255,255,.07); color-scheme: dark; } }
+:root[data-theme="dark"] { --page: #0E0E10; --page-ink: #F2F2F4; --page-sec: #A6A6AE; --page-line: rgba(255,255,255,.10); --page-chip: rgba(255,255,255,.07); color-scheme: dark; }
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+body { margin: 0; background: var(--page); color: var(--page-ink); font-family: var(--font); }
+.wrap { max-width: 1280px; margin: 0 auto; padding-block: 28px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1 { font-size: 28px; line-height: 34px; font-weight: 800; letter-spacing: -.5px; margin: 0; text-wrap: balance; }
+h2 { font-size: 21px; line-height: 27px; font-weight: 700; margin: 52px 0 0; text-wrap: balance; }
+.lead { font-size: 15px; line-height: 22px; color: var(--page-sec); margin: 8px 0 0; max-width: 72ch; }
+.rec { display: inline-block; margin-left: 8px; padding: 2px 9px; border-radius: 8px; background: rgba(110,200,140,.16); color: #3FA86A; font-size: 12px; font-weight: 700; vertical-align: middle; }
+.row { display: flex; flex-wrap: wrap; gap: 26px; margin-top: 20px; justify-content: center; }
+.col { display: flex; flex-direction: column; align-items: center; gap: 12px; min-width: 0; }
+.cap { font-size: 14px; font-weight: 600; color: var(--page-sec); }
+.spec { margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px 28px; }
+.spec div { font-size: 14px; line-height: 21px; color: var(--page-sec); }
+.spec b { color: var(--page-ink); font-weight: 600; }
+.verdict { margin-top: 28px; padding: 18px 20px; border-radius: 18px; background: var(--page-chip); max-width: 820px; font-size: 15px; line-height: 23px; color: var(--page-sec); }
+.verdict b { color: var(--page-ink); }
+
+/* ── телефон ── */
+.ph { --bg: #0C0C0D; --bg-top: #151516; --text: #FFFFFF; --sec: #A6A6A8; --muted: #7C7C80; --card: #161618; --tile: #242426; --line: rgba(255,255,255,.07); --sb: #fff;
+  --card-sh: inset 0 1px 0 rgba(255,255,255,.05), 0 10px 24px -16px rgba(0,0,0,.9); --me: #202024;
+  --plus-ink: #C2B8FF; --plus-tint: rgba(142,124,255,.16);
+  position: relative; width: 360px; max-width: 100%; aspect-ratio: 360 / 760; border-radius: 48px; overflow: hidden;
+  background: radial-gradient(120% 60% at 50% 0%, var(--bg-top), var(--bg) 60%); color: var(--text);
+  box-shadow: 0 0 0 9px #1A1A1C, 0 30px 60px -30px rgba(0,0,0,.6); font-family: var(--font); }
+.ph.lt { --bg: #ECEEF9; --bg-top: #F3F4FD; --text: #17181E; --sec: #595A63; --muted: #7E7F8A; --card: #FFFFFF; --tile: #E4E5F3; --line: rgba(23,24,30,.07); --sb: #111;
+  --card-sh: 0 8px 22px -14px rgba(51,51,87,.40); --me: #F1F0FF; --plus-ink: #5442D8; --plus-tint: rgba(110,92,240,.11);
+  background: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); box-shadow: 0 0 0 9px #D9DAE6, 0 30px 60px -30px rgba(51,51,87,.45); }
+.sbar { position: absolute; top: 0; left: 0; right: 0; height: 46px; padding: 15px 28px 0; display: flex; justify-content: space-between; font-size: 14px; font-weight: 600; color: var(--sb); z-index: 5; }
+.scr { position: absolute; inset: 46px 0 0; padding: 6px 16px; }
+.hi { position: absolute; left: 50%; bottom: 8px; width: 124px; height: 5px; margin-left: -62px; border-radius: 3px; background: var(--text); opacity: .9; }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+.hrow { display: flex; align-items: center; justify-content: space-between; margin-top: 6px; }
+.ttl { font-size: 30px; line-height: 36px; font-weight: 700; letter-spacing: -.5px; }
+.sub { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 2px; }
+.eb { font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--sec); margin: 20px 4px 8px; }
+.card { border-radius: 16px; background: var(--card); box-shadow: var(--card-sh); }
+.pcard { display: flex; align-items: center; gap: 12px; padding: 12px 14px; margin-top: 16px; }
+.pcard .nm { font-size: 17px; line-height: 22px; font-weight: 700; display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+.pcard .ds { font-size: 13px; line-height: 18px; color: var(--sec); margin-top: 2px; }
+.grow { flex: 1; min-width: 0; }
+.chev { color: var(--muted); font-size: 18px; }
+.setrow { display: flex; align-items: center; gap: 12px; padding: 11px 14px; margin-top: 8px; min-height: 40px; }
+.setrow .tl { width: 36px; height: 36px; border-radius: 10px; background: var(--tile); display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--text); flex: none; }
+.setrow .t { font-size: 15px; font-weight: 700; }
+.setrow .v { font-size: 13px; color: var(--sec); }
+
+/* аватар-монета */
+.av { position: relative; flex: none; display: inline-flex; border-radius: 50%; }
+.av img { display: block; border-radius: 50%; }
+/* рейтинг этажа */
+.lb { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+.lr { display: flex; align-items: center; gap: 11px; padding: 8px 12px; min-height: 52px; border-radius: 14px; background: var(--card); box-shadow: var(--card-sh); position: relative; overflow: hidden; }
+.lr.me { background: var(--me); }
+.lr .pl { width: 20px; text-align: center; font-size: 14px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; flex: none; }
+.lr .nm { font-size: 15px; line-height: 20px; font-weight: 700; display: flex; align-items: center; gap: 6px; min-width: 0; }
+.lr .nm span.t { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lr .sc { font-size: 14px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; flex: none; }
+.floor { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; padding: 0 2px; }
+.floor .f { font-size: 13px; font-weight: 700; color: var(--sec); letter-spacing: .3px; }
+/* сообщество */
+.pk { display: flex; gap: 12px; align-items: center; padding: 12px; margin-top: 8px; }
+.pk .cnt { width: 54px; height: 62px; border-radius: 12px; background: var(--tile); display: flex; flex-direction: column; align-items: center; justify-content: center; flex: none; }
+.pk .cnt b { font-size: 19px; line-height: 22px; }
+.pk .cnt small { font-size: 10px; color: var(--sec); }
+.pk .pt { font-size: 15px; line-height: 20px; font-weight: 700; }
+.pk .au { display: flex; align-items: center; gap: 6px; margin-top: 5px; font-size: 13px; color: var(--sec); flex-wrap: wrap; }
+.pk .add { width: 34px; height: 34px; border-radius: 50%; background: var(--tile); display: flex; align-items: center; justify-content: center; font-size: 18px; flex: none; }
+
+/* ── A · метка Plus у имени ── */
+.tagp { display: inline-flex; align-items: center; gap: 4px; height: 20px; padding: 0 7px; border-radius: 10px; background: var(--plus-tint); color: var(--plus-ink); font-size: 12px; font-weight: 800; letter-spacing: .1px; flex: none; }
+.tagp .io { font-size: 10px; }
+.tagp.s { height: 18px; padding: 0 6px; font-size: 11px; }
+/* ── B · сияющее кольцо + значок ── */
+.ring { padding: 3px; background: conic-gradient(from 200deg, #8E7CFF, #6FA8FF, #7FE0D8, #C69BFF, #8E7CFF); }
+.ring img { box-shadow: 0 0 0 2px var(--bg); }
+.pin { position: absolute; right: -2px; bottom: -2px; border-radius: 50%; background: linear-gradient(135deg, #8E7CFF, #6FA8FF); color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 2px var(--card); }
+.pin .io { font-size: 60%; }
+/* ── C · подсветка строки ── */
+.lr.cp::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--plus-tint), transparent 70%); pointer-events: none; }
+.dia { color: var(--plus-ink); font-size: 13px; flex: none; }
+.pluscard { margin-top: 16px; padding: 14px; border-radius: 18px; background: linear-gradient(135deg, rgba(142,124,255,.30), rgba(111,168,255,.16) 55%, rgba(127,224,216,.12)), var(--card); box-shadow: var(--card-sh); display: flex; gap: 12px; align-items: center; }
+.pluscard .k { font-size: 12px; font-weight: 800; letter-spacing: 1.2px; color: var(--plus-ink); text-transform: uppercase; }
+/* ── D · рамка на выбор ── */
+.fr-double { padding: 2px; background: var(--plus-ink); }
+.fr-double img { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--plus-ink); }
+.fr-dash { padding: 3px; background: repeating-conic-gradient(var(--plus-ink) 0 14deg, transparent 14deg 30deg); }
+.fr-dash img { box-shadow: 0 0 0 2px var(--bg); }
+.frames { display: flex; gap: 10px; margin-top: 10px; }
+.frames .o { flex: 1; border-radius: 14px; background: var(--tile); padding: 10px 6px 8px; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--sec); }
+.frames .o.on { background: var(--me); color: var(--text); box-shadow: inset 0 0 0 1.5px var(--plus-ink); }
+</style>
+
+<div class="wrap">
+  <h1>Plus заметно — 4 варианта</h1>
+  <p class="lead">Задача владельца 21.10: человек с Plus должен сам видеть, что у него Plus, а другие — замечать это в профиле, на аватаре, в рейтинге Пика и в сообществе. В каждом варианте одни и те же два экрана: настройки с профилем и аватаром в шапке, и Пик с жителями этажа и наборами сообщества. Plus у Алекса (это вы), Ирины и Марка. Цвет Plus — свой фиолетово-голубой, одинаковый во всех темах, без жёлтого.</p>
+
+  <h2>A · Метка «Plus» у имени</h2>
+  <div class="row" id="vA"></div>
+  <div class="spec"><div><b>Что видно.</b> Маленькая пилюля «◆ Plus» сразу после имени — везде, где есть имя. Читается словом, без догадок.</div><div><b>Плюсы и минусы.</b> Просто и честно, но мелко: на аватаре в шапке и на башне Пика без имени не видно; в узких строках съедает место под имя.</div></div>
+
+  <h2>B · Сияющее кольцо аватара + значок<span class="rec">рекомендую</span></h2>
+  <div class="row" id="vB"></div>
+  <div class="spec"><div><b>Что видно.</b> У аватара Plus — тонкое переливающееся кольцо и круглый значок ◆ в углу. Аватар есть везде — в шапке, на этаже Пика, в строках, у автора набора, — поэтому Plus виден даже там, где имени нет.</div><div><b>В профиле</b> к кольцу добавляется слово «Plus» у имени: человек точно знает, что подписка его.</div></div>
+
+  <h2>C · Подсветка строки и карточка Plus</h2>
+  <div class="row" id="vC"></div>
+  <div class="spec"><div><b>Что видно.</b> Строка Plus в рейтинге мягко подсвечена слева, после имени — ◆. В настройках сверху — цветная карточка «Plus · с 12 августа».</div><div><b>Плюсы и минусы.</b> Очень заметно в списках, но подсветка похожа на «выделенную» строку (как «я»), а у аватара в шапке и на башне признака нет.</div></div>
+
+  <h2>D · Рамка аватара на выбор</h2>
+  <div class="row" id="vD"></div>
+  <div class="spec"><div><b>Что видно.</b> Plus открывает выбор рамки аватара: «Сияние», «Двойная», «Пунктир». Другие видят выбранную рамку везде, где аватар.</div><div><b>Плюсы и минусы.</b> Самый «дорогой» и личный вариант, повод купить Plus. Но рамки нужно рисовать, нужен выбор в настройках и поле в профиле — больше работы.</div></div>
+
+  <h2>Рекомендованный B — светлая тема</h2>
+  <div class="row" id="vBl"></div>
+
+  <div class="verdict"><b>Рекомендация: B.</b> Кольцо работает там, где имени нет (шапка, башня Пика, автор набора), и не спорит с выделением «я» в рейтинге. Данные уже есть: признак Plus приходит в публичном профиле, друзьях, лиге и жителях Пика — сервер не трогаем. Если нужен повод купить — следующим шагом добавить D (выбор рамки) поверх B: «Сияние» станет рамкой по умолчанию.</div>
+</div>
+
+<script>
+const IO = { dia: 'f2a1', chev: 'f23b', heart: 'f377', people: 'f4a3', add: 'f103', person: 'f4ac', book: 'f1a6', star: 'f595' };
+const io = (k, st = '') => `<i class="io" aria-hidden="true" style="${st}">&#x${IO[k]};</i>`;
+const coin = (r) => `assets/coin_rank_${String(r).padStart(2, '0')}.webp`;
+const sbar = '<div class="sbar"><span>9:41</span><span>●●●</span></div>';
+const PEOPLE = [
+  { n: 'Ирина', r: 9, s: 2480, plus: true }, { n: 'Дима', r: 6, s: 2310 }, { n: 'Алекс', r: 5, s: 2140, plus: true, me: true },
+  { n: 'Марк', r: 11, s: 1980, plus: true }, { n: 'Olena', r: 3, s: 1720 }, { n: 'Лидия', r: 7, s: 1505 },
+];
+
+/* аватар по варианту: размер, Plus, рамка */
+const avatar = (v, p, size, o = {}) => {
+  const img = `<img src="${coin(p.r)}" width="${size}" height="${size}" alt="">`;
+  if (!p.plus) return `<span class="av">${img}</span>`;
+  if (v === 'B') { const pin = Math.max(16, Math.round(size * 0.42)); return `<span class="av ring">${img}<span class="pin" style="width:${pin}px;height:${pin}px;font-size:${pin}px">${io('dia')}</span></span>`; }
+  if (v === 'D') { const fr = o.frame || p.frame || 'ring'; return `<span class="av ${fr === 'ring' ? 'ring' : fr === 'double' ? 'fr-double' : 'fr-dash'}">${img}</span>`; }
+  return `<span class="av">${img}</span>`;
+};
+const nameMark = (v, p, small) => {
+  if (!p.plus) return '';
+  if (v === 'A') return `<span class="tagp${small ? ' s' : ''}">${io('dia')}Plus</span>`;
+  if (v === 'C') return `<span class="dia">${io('dia')}</span>`;
+  return '';
+};
+
+const settings = (v, cls = '') => {
+  const me = PEOPLE[2];
+  const plusCard = v === 'C' ? `<div class="pluscard"><div class="grow"><div class="k">${io('dia', 'font-size:11px;margin-right:4px')}Plus</div><div style="font-size:15px;font-weight:700;margin-top:3px">Всё открыто · с 12 августа</div></div><span class="chev">${io('chev')}</span></div>` : '';
+  const frames = v === 'D' ? `<div class="eb">Рамка аватара · Plus</div><div class="frames"><div class="o on">${avatar('D', me, 38, { frame: 'ring' })}Сияние</div><div class="o">${avatar('D', me, 38, { frame: 'double' })}Двойная</div><div class="o">${avatar('D', me, 38, { frame: 'dash' })}Пунктир</div></div>` : '';
+  const profMark = v === 'B' || v === 'D' ? `<span class="tagp">${io('dia')}Plus</span>` : nameMark(v, me);
+  return `<div class="ph ${cls}" role="img" aria-label="Настройки, вариант ${v}">${sbar}<div class="scr">
+    <div class="hrow"><div><div class="ttl">Настройки</div><div class="sub">Профиль и приложение</div></div>${avatar(v, me, 44)}</div>
+    ${plusCard}
+    <div class="card pcard">${avatar(v, me, 46)}<div class="grow"><div class="nm">Алекс${profMark}</div><div class="ds">Лектор · аккаунт привязан</div></div><span class="chev">${io('chev')}</span></div>
+    ${frames}
+    <div class="eb">Профиль</div>
+    <div class="card setrow"><span class="tl">${io('person')}</span><div class="grow"><div class="t">Аккаунт</div></div><span class="v">Google</span></div>
+    <div class="card setrow"><span class="tl">${io('dia')}</span><div class="grow"><div class="t">Подписка Plus</div></div><span class="v">до 12.09</span></div>
+    <div class="card setrow"><span class="tl">${io('book')}</span><div class="grow"><div class="t">Язык изучения</div></div><span class="v">English</span></div>
+  </div><div class="hi"></div></div>`;
+};
+
+const board = (v, cls = '') => `<div class="ph ${cls}" role="img" aria-label="Пик и сообщество, вариант ${v}">${sbar}<div class="scr">
+    <div class="ttl">Пик</div><div class="sub">Оникс · до конца недели 2 д 14 ч</div>
+    <div class="floor"><span class="f">ЭТАЖ 7 · ЖИТЕЛИ</span><span class="f">очки</span></div>
+    <div class="lb">${PEOPLE.map((p, i) => {
+      const d = v === 'D' ? { ...p, frame: p.n === 'Ирина' ? 'double' : p.n === 'Марк' ? 'dash' : 'ring' } : p;
+      return `<div class="lr${p.me ? ' me' : ''}${v === 'C' && p.plus ? ' cp' : ''}"><span class="pl">${i + 1}</span>${avatar(v, d, 34)}<div class="grow"><div class="nm"><span class="t">${p.n}${p.me ? ' · вы' : ''}</span>${nameMark(v, p, true)}</div></div><span class="sc">${p.s.toLocaleString('ru-RU')}</span></div>`;
+    }).join('')}</div>
+    <div class="eb" style="margin-top:18px">Наборы сообщества</div>
+    ${[['B2 глаголы', 49, PEOPLE[0], 10]].map(([t, c, p, h]) => {
+      const d = v === 'D' ? { ...p, frame: p.n === 'Ирина' ? 'double' : 'dash' } : p;
+      return `<div class="card pk"><div class="cnt"><b>${c}</b><small>карточек</small></div><div class="grow"><div class="pt">${t}</div><div class="au">${avatar(v, d, 20)}${p.n}${nameMark(v, p, true)}<span>${io('heart', 'font-size:13px;vertical-align:-2px')} ${h}</span></div></div><span class="add">${io('add')}</span></div>`;
+    }).join('')}
+  </div><div class="hi"></div></div>`;
+
+const col = (cap, html) => `<div class="col">${html}<div class="cap">${cap}</div></div>`;
+for (const v of ['A', 'B', 'C', 'D']) document.getElementById('v' + v).innerHTML = col('Настройки и шапка', settings(v)) + col('Пик и сообщество', board(v));
+document.getElementById('vBl').innerHTML = col('Настройки · светлая', settings('B', 'lt')) + col('Пик и сообщество · светлая', board('B', 'lt'));
+</script>

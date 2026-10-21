@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-10:session-53",
+  "entries": [
+    {
+      "interactionId": "en:lesson-10:session-53:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-53:intro1:r2": {
+          "ru": "С this нужна is.",
+          "uk": "З this потрібна is."
+        },
+        "en:lesson-10:session-53:intro1:r3": {
+          "ru": "Здесь нужен a special occasion.",
+          "uk": "Тут потрібне a special occasion."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-53:intro2:r2": {
+          "ru": "Множественное число: start без s.",
+          "uk": "Множина: start без s."
+        },
+        "en:lesson-10:session-53:intro2:r3": {
+          "ru": "Здесь нужна личная форма start.",
+          "uk": "Тут потрібна особова форма start."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-10:session-53:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-10:session-53:intro3:r2": {
+          "ru": "Перед arranging нужна are.",
+          "uk": "Перед arranging потрібна are."
+        },
+        "en:lesson-10:session-53:intro3:r3": {
+          "ru": "Правильно arranging, без e.",
+          "uk": "Правильно arranging, без e."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9be473e46c25901e5d69ed02f09d8d6719c967e879f90b74a7eeff9ec5dd2702"
+}

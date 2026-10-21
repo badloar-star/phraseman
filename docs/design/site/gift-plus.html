@@ -1,0 +1,320 @@
+<!doctype html><html data-theme="light" data-mode="light" lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Макет · Подарите новый мир · Phraseman</title><meta name="description" content="Phraseman — живой язык для вашей жизни."><link rel="icon" href="../../../knowly-www/assets/approved/brand.png"><link rel="canonical" href="https://knowlyapps.com/gift/" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://knowlyapps.com/gift/" />
+<meta property="og:title" content="Подарочный сертификат Phraseman" />
+<meta property="og:description" content="Месяц или год Plus. Именной сертификат с кодом придёт на почту за минуту. Без автопродления." />
+<meta property="og:image" content="https://knowlyapps.com/assets/og-banner.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://knowlyapps.com/assets/og-banner.png" /><style>
+    /* Живой предпросмотр сертификата — настоящий золотой арт, как в письме
+       получателю. зачем: человек должен увидеть ровно то, что подарит; это
+       главный аргумент страницы, поэтому арт остаётся золотым в обеих темах. */
+    .gift-canvas .cert {
+      --cert-art: url("../../../knowly-www/assets/gift-certificates/gift-certificate-yearly.webp");
+      --cert-panel: rgba(255, 251, 242, .82);
+      --cert-panel-border: rgba(89, 66, 19, .16);
+      --cert-shimmer: rgba(255, 255, 255, .76);
+      --cert-ink: #201c12;
+      --cert-soft: #6f6852;
+      --cert-gold: #b8860f;
+      position: sticky;
+      top: 90px;
+      /* зачем: владелец 2026-08-16 — «сертификат стал квадратным, был
+         прямоугольным». Арты gift-certificates/*.webp имеют размер
+         1536×1024, то есть 3:2. Прежний min-height:360px вытягивал блок в
+         квадрат, и `cover` срезал арт по бокам. Держим ровно 3:2 —
+         сертификат виден целиком, как в письме получателю. */
+      aspect-ratio: 3 / 2;
+      display: flex;
+      flex-direction: column;
+      background-color: #f5efe3;
+      background-image: var(--cert-art);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      border: 1px solid rgba(63, 46, 17, .12);
+      border-radius: 24px;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      isolation: isolate;
+      transition: background-image .2s ease, border-color .2s ease;
+    }
+    .gift-canvas .cert::after {
+      content: "";
+      position: absolute;
+      z-index: 3;
+      top: -45%; bottom: -45%; left: -32%;
+      width: 14%;
+      pointer-events: none;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, .08) 32%, var(--cert-shimmer) 48%, rgba(255, 255, 255, .96) 52%, rgba(255, 255, 255, .12) 68%, transparent 100%);
+      filter: blur(.5px);
+      mix-blend-mode: screen;
+      opacity: 0;
+      transform: translateX(-160%) skewX(-18deg);
+      will-change: transform, opacity;
+      animation: cert-shimmer-pass 6s cubic-bezier(.4, 0, .2, 1) infinite;
+    }
+    @keyframes cert-shimmer-pass {
+      0%, 68% { opacity: 0; transform: translateX(-160%) skewX(-18deg); }
+      74% { opacity: .12; }
+      84% { opacity: .58; }
+      96%, 100% { opacity: 0; transform: translateX(650%) skewX(-18deg); }
+    }
+    .gift-canvas .cert[data-plan="monthly"] {
+      --cert-art: url("../../../knowly-www/assets/gift-certificates/gift-certificate-monthly.webp");
+      --cert-panel: rgba(255, 249, 238, .84);
+      --cert-panel-border: rgba(135, 48, 40, .15);
+    }
+    .gift-canvas .cert[data-plan="yearly"] { --cert-art: url("../../../knowly-www/assets/gift-certificates/gift-certificate-yearly.webp"); }
+    .gift-canvas .cert[data-plan="lifetime"] {
+      --cert-art: url("../../../knowly-www/assets/gift-certificates/gift-certificate-lifetime.webp");
+      --cert-panel: rgba(8, 14, 13, .84);
+      --cert-panel-border: rgba(222, 181, 92, .38);
+      --cert-shimmer: rgba(246, 207, 111, .78);
+      border-color: rgba(222, 181, 92, .48);
+    }
+    .gift-canvas .cert-head { position: relative; z-index: 2; text-align: center; padding: 22px 24px 17px; }
+    .gift-canvas .cert-head small { display: block; font-size: 11.5px; letter-spacing: 3px; font-weight: 700; color: #3a2905; }
+    .gift-canvas .cert-head b { display: block; font-size: 22px; font-weight: 900; color: #201c12; margin-top: 4px; }
+    .gift-canvas .cert-body {
+      position: relative; z-index: 2;
+      /* Панель занимает низ карточки и не растягивает её сверх 3:2 */
+      margin: auto 22px 22px;
+      padding: 20px 24px 18px;
+      background: var(--cert-panel);
+      border: 1px solid var(--cert-panel-border);
+      border-radius: 18px;
+      box-shadow: 0 12px 34px rgba(28, 22, 12, .13);
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+    }
+    .gift-canvas .cert-to { font-size: 20px; font-weight: 900; color: var(--cert-ink); min-height: 1.3em; }
+    .gift-canvas .cert-from { color: var(--cert-soft); font-size: 14.5px; min-height: 1.5em; margin-bottom: 12px; }
+    .gift-canvas .cert-plan { font-weight: 800; color: var(--cert-gold); font-size: 15.5px; }
+    .gift-canvas .cert-catchphrase {
+      display: flex; align-items: flex-end;
+      min-height: 3em; margin-top: 17px;
+      color: #4f4736; font-size: 14.5px; font-weight: 600; line-height: 1.45; text-wrap: balance;
+    }
+    .gift-canvas .cert[data-plan="lifetime"] .cert-head small { color: #ead394; }
+    .gift-canvas .cert[data-plan="lifetime"] .cert-head b,
+    .gift-canvas .cert[data-plan="lifetime"] .cert-to { color: #fff8e8; }
+    .gift-canvas .cert[data-plan="lifetime"] .cert-from { color: #d8ccb0; }
+    .gift-canvas .cert[data-plan="lifetime"] .cert-plan { color: #efca70; }
+    .gift-canvas .cert[data-plan="lifetime"] .cert-catchphrase { color: #f2e5c8; }
+    @media (prefers-reduced-motion: reduce) { .gift-canvas .cert::after { animation: none; opacity: 0; } }
+    @media (max-width: 900px) { .gift-canvas .cert { position: static; } }
+    @media (max-width: 480px) {
+      /* На узком экране пропорция 3:2 оставляет мало места под текст —
+         отпускаем высоту, арт остаётся фоном сверху. */
+      .gift-canvas .cert { aspect-ratio: auto; border-radius: 20px; }
+      .gift-canvas .cert-head { padding: 20px 18px 15px; }
+      .gift-canvas .cert-body { margin: 0 14px 14px; padding: 18px 18px 16px; }
+      .gift-canvas .cert-catchphrase { min-height: 0; margin-top: 12px; }
+    }
+  </style><link rel="stylesheet" href="../../../knowly-www/assets/approved/runtime-components.css"><link rel="stylesheet" href="../../../knowly-www/assets/v2/base.css?v=20261015"><link rel="stylesheet" href="../../../knowly-www/assets/v2/money.css?v=20261015p">
+<style>
+  /* зачем (владелец 21.10): макет страницы подарка — два способа вручения: код на почту и сразу по нику / коду друга. */
+  .mock-bar{position:sticky;top:0;z-index:60;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;padding:10px 16px;
+    background:color-mix(in srgb,var(--card-solid) 88%,transparent);backdrop-filter:blur(12px);box-shadow:var(--shadow-sm);font:600 13px/1.2 system-ui}
+  .mock-bar b{color:var(--sec);font-weight:600;margin-right:4px}
+  .mock-bar button{all:unset;cursor:pointer;padding:7px 12px;border-radius:999px;color:var(--text);background:color-mix(in srgb,var(--fill) 6%,var(--card-solid))}
+  .mock-bar button.on{background:var(--cta);color:var(--cta-ink)}
+  .deliver{display:grid;gap:10px}
+  .deliver h3{margin:0;font-size:15px;font-weight:700;color:var(--text)}
+  .seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:5px;border-radius:16px;background:color-mix(in srgb,var(--fill) 6%,var(--card-solid));box-shadow:var(--shadow-sm)}
+  .seg button{all:unset;cursor:pointer;text-align:center;padding:11px 8px;border-radius:12px;font-size:14px;font-weight:650;color:var(--sec);transition:background .16s ease,color .16s ease}
+  .seg button:active{transform:scale(.98)}
+  .seg button.on{background:var(--card-solid);color:var(--text);box-shadow:var(--shadow-sm),inset 0 0 0 1.5px color-mix(in srgb,var(--fill) 60%,transparent)}
+  .seg small{display:block;font-weight:500;font-size:11.5px;opacity:.8;margin-top:3px}
+  .who{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;background:color-mix(in srgb,var(--fill) 9%,var(--card-solid));box-shadow:var(--shadow-sm)}
+  .who .ava{width:44px;height:44px;border-radius:50%;flex:none;background:radial-gradient(circle at 35% 30%,#ffe6a8,#c98a1c 70%);box-shadow:0 0 0 3px var(--card-solid),0 0 0 5px color-mix(in srgb,var(--fill) 55%,transparent)}
+  .who .meta{min-width:0;flex:1}
+  .who b{display:block;font-size:15px;color:var(--text)}
+  .who span{display:block;font-size:12.5px;color:var(--sec)}
+  /* зачем: стили формы сайта растягивают любой input и label — у галочки «Это она» свои размеры */
+  .runtime-surface .gift-form .who label{display:flex!important;align-items:center;gap:8px;margin:0;font-size:13px;font-weight:700;color:var(--text);cursor:pointer;white-space:nowrap}
+  .runtime-surface .gift-form .who input[type=checkbox]{width:20px!important;height:20px!important;min-height:0!important;padding:0!important;margin:0;flex:none;border-radius:6px;box-shadow:none;accent-color:var(--cta)}
+  .who.miss .ava{background:color-mix(in srgb,var(--fill) 14%,var(--card-solid));box-shadow:none}
+  .hint{margin:0;font-size:13px;line-height:1.45;color:var(--sec)}
+  .btn[disabled]{opacity:.45;pointer-events:none}
+  [hidden]{display:none!important}
+  .done{box-sizing:border-box;width:100%;max-width:760px;margin:56px auto 72px;padding:0 16px;text-align:center;display:grid;gap:18px}
+  .done>*{min-width:0}
+  .done h1{margin:0;font-size:clamp(30px,8.5vw,60px);line-height:1.08;text-wrap:balance}
+  .done .card{padding:22px 24px;border-radius:24px;background:var(--card-solid);box-shadow:var(--shadow);text-align:left;display:grid;gap:12px}
+  .done .row{display:flex;justify-content:space-between;gap:16px;font-size:14.5px;color:var(--text)}
+  .done .row span{color:var(--sec)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:left}
+  .steps div{padding:14px;border-radius:18px;background:var(--card-solid);box-shadow:var(--shadow-sm);font-size:13.5px;color:var(--sec)}
+  .steps b{display:block;color:var(--text);font-size:14.5px;margin-bottom:4px}
+  .app-card{max-width:360px;margin:0 auto;padding:20px;border-radius:28px;background:#101413;color:#f4f1e8;text-align:left;box-shadow:var(--shadow);display:grid;gap:10px}
+  .app-card small{opacity:.6;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+  .app-card b{font-size:20px}
+  .app-card .ring{width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe6a8,#c98a1c 70%);box-shadow:0 0 0 3px #101413,0 0 0 6px #e7c46a}
+  @media (max-width:560px){.steps{grid-template-columns:1fr}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head><body data-approved-studio="20260908" class="cinema edition route-gift inner-cinema"><div class="mock-bar" role="toolbar" aria-label="Макет">
+  <b>МАКЕТ · подарок Plus</b>
+  <button type="button" data-view="form" class="on">Форма</button>
+  <button type="button" data-view="email">После оплаты · код</button>
+  <button type="button" data-view="nick">После оплаты · ник</button>
+  <button type="button" id="themeBtn">Светлая / тёмная</button>
+</div><a class="skip" href="#content" data-i18n="v2.skip">К содержанию</a><header class="site-header"><div class="container nav-row"><a class="brand" href="/" aria-label="Phraseman — главная" data-i18n-aria="v2.aria.home"><img src="../../../knowly-www/assets/approved/brand.png" alt="" width="36" height="36"><span>phrase<span class="brand-tail">man</span></span></a><nav id="main-nav" aria-label="Главная навигация" data-i18n-aria="v2.aria.nav"><a href="/app/" data-i18n="approved.0">Приложение</a><a href="/english-level-test/" data-i18n="approved.1">Тест уровня</a><a href="/guides/" data-i18n="approved.2">Журнал</a><a href="/gift/" data-i18n="approved.3">Подарить</a><a href="/contact/" data-i18n="approved.4">Поддержка</a></nav><div class="nav-actions"><a class="language" href="#site-preferences" aria-label="Язык и оформление" data-i18n-aria="v2.aria.langLook" aria-expanded="false" id="site-language">RU <span aria-hidden="true">⌄</span></a><a class="button small primary" href="/download/" data-i18n="v2.start">Начать бесплатно<span aria-hidden="true">→</span></a><button class="menu-button icon-button" aria-label="Открыть меню" data-i18n-aria="v2.aria.menu" aria-controls="main-nav" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div></div><div id="site-preferences" class="site-language-menu" hidden><button type="button" data-lang-btn="ru">Русский</button><button type="button" data-lang-btn="en">English</button><button type="button" id="theme-toggle" data-i18n="v2.themeToggle">Светлая / тёмная тема</button></div></header><main id="content"><section class="edition-gift-top spatial-scene"><div class="container"><span class="eyebrow" data-i18n="v2.gf.eyebrow">ПОДАРОК, КОТОРЫЙ ОСТАНЕТСЯ С ЧЕЛОВЕКОМ</span><h1 data-i18n="v2.gf.h1">Открой близкому<br><em>новый мир.</em></h1><p data-i18n="v2.gf.lead">Именной сертификат Phraseman.<br>Три варианта подарка. Каждый — со своим характером.</p></div></section><section class="container gift-config"><div class="gift-controls"><h2 data-i18n="v2.gf.choose">Выбери подарок</h2><div class="runtime-surface"><div class="gift-options" role="radiogroup" aria-label="Выбор подарка" data-i18n-aria="v2.gf.aria.choice">
+        <div class="gift-option" data-plan="monthly" role="radio" aria-checked="false" tabindex="0">
+          <div class="opt-info">
+            <div class="opt-title" data-i18n="gf.month.title">Месяц Phraseman Plus</div>
+            <div class="opt-sub" data-i18n="gf.month.sub">Все уроки и темы на 31 день</div>
+          </div>
+          <div class="opt-price">цена</div>
+        </div>
+        <div class="gift-option selected" data-plan="yearly" role="radio" aria-checked="true" tabindex="0">
+          <span class="tag" data-i18n="gf.best">Выгоднее всего</span>
+          <div class="opt-info">
+            <div class="opt-title" data-i18n="gf.year.title">Год Phraseman Plus</div>
+            <div class="opt-sub" data-i18n="gf.year.sub">Все уроки и темы на 366 дней</div>
+          </div>
+          <div class="opt-price">цена</div>
+        </div>
+        
+      </div><form class="gift-form" id="giftForm" novalidate>
+        <div class="deliver"><h3>Как вручить</h3>
+          <div class="seg" role="radiogroup" aria-label="Как вручить">
+            <button type="button" role="radio" data-mode="email" class="on" aria-checked="true">Код на почту<small>перешлёшь сам</small></button>
+            <button type="button" role="radio" data-mode="nick" aria-checked="false">По нику<small>сразу в приложение</small></button>
+          </div>
+        </div>
+        <p class="hint" data-show="email">Пришлём на твою почту сертификат с кодом. Получатель введёт код в приложении: Настройки → Промокоды.</p>
+        <div data-show="nick" hidden style="display:grid;gap:12px">
+          <div class="field"><label for="nick">Ник или код друга в Phraseman</label><input id="nick" type="text" placeholder="Например: masha_k" autocomplete="off" /></div>
+          <div class="who" id="who" hidden><div class="ava"></div><div class="meta"><b id="whoNick">masha_k</b><span id="whoMeta">Ранг «Стажёр» · в Phraseman с июня</span></div><label id="whoConfirm"><input type="checkbox" id="confirmWho" /> Это она</label></div>
+          <p class="hint" id="nickHint">Plus включится сразу после оплаты — получателю ничего вводить не нужно.</p>
+        </div>
+        <div class="field"><label for="giftTo">Кому (имя на сертификате)</label><input type="text" id="giftTo" maxlength="60" placeholder="Например: Маша" autocomplete="off" /></div>
+        <div class="field"><label for="giftFrom">От кого</label><input type="text" id="giftFrom" maxlength="60" placeholder="Например: Саша" autocomplete="off" /></div>
+        <div class="field"><label for="buyerEmail" id="emailLabel">Твой email — на него придёт сертификат</label><input type="email" id="buyerEmail" maxlength="200" placeholder="you@example.com" autocomplete="email" inputmode="email" /></div>
+        <button class="btn btn-primary" type="button" id="payBtn" style="width:100%;"><span>Оплатить картой</span></button>
+        <p class="gift-terms" id="terms">Разовый платёж, автопродления нет · Код действует 365 дней.</p>
+      </form></div></div><div class="gift-canvas runtime-surface"><aside class="cert" data-plan="yearly" id="giftCertificate" aria-label="Предпросмотр сертификата" data-i18n-aria="v2.gf.aria.preview">
+      <div class="cert-head"><small data-i18n="gf.cert.tag">ПОДАРОЧНЫЙ СЕРТИФИКАТ</small><b>Phraseman</b></div>
+      <div class="cert-body">
+        <!-- зачем: владелец 2026-07-26 — без имени заголовок называет
+             КОНКРЕТНЫЙ подарок, а не «вам подарили английский» -->
+        <div class="cert-to" id="pvTo">Год Phraseman Plus</div>
+        <div class="cert-from" id="pvFrom"></div>
+        <div class="cert-plan" id="pvPlan" style="display:none">Год Phraseman Plus</div>
+        <div class="cert-catchphrase" id="pvCatchphrase" aria-live="polite"></div>
+      </div>
+    </aside></div></section><section class="container gift-how"><article><span>01</span><h3 data-i18n="v2.gf.step1">Выбери срок</h3><p data-i18n="v2.gf.step1Text">Месяц — познакомиться. Год — войти в ритм.</p></article><article><span>02</span><h3 data-i18n="v2.gf.step2">Получи сертификат</h3><p data-i18n="v2.gf.step2Text">После оплаты письмо с кодом придёт на email, указанный при оформлении.</p></article><article><span>03</span><h3 data-i18n="v2.gf.step3">Подари возможности</h3><p data-i18n="v2.gf.step3Text">Получатель вводит код в приложении: Настройки → Промокоды. Банковская карта ему не нужна.</p></article></section><section class="container done" id="doneEmail" hidden>
+  <h1>Сертификат у тебя на почте</h1>
+  <p class="hint" style="font-size:16px">Перешли письмо <b class="v-to">Маше</b> или распечатай сертификат. Код действует 365 дней.</p>
+  <div class="card">
+    <div class="row"><span>Подарок</span><b class="v-plan">Год Phraseman Plus</b></div>
+    <div class="row"><span>Кому</span><b class="v-to">Маша</b></div>
+    <div class="row"><span>От кого</span><b class="v-from">Саша</b></div>
+    <div class="row"><span>Письмо с кодом</span><b class="v-mail">на sasha@example.com</b></div>
+  </div>
+  <div class="steps">
+    <div><b>Перешли письмо</b>Или открой сертификат и отправь его картинкой.</div>
+    <div><b>Получатель вводит код</b>Настройки → Промокоды. Карта не нужна.</div>
+    <div><b>Автопродления нет</b>Когда срок закончится, Plus просто выключится.</div>
+  </div>
+</section>
+<section class="container done" id="doneNick" hidden>
+  <h1>Подарок у <span class="v-to">Маши</span> 🎁</h1>
+  <p class="hint" style="font-size:16px"><b class="v-plan">Год Phraseman Plus</b> уже включён у <b class="v-nick">masha_k</b>. Она увидит подарок при следующем открытии приложения.</p>
+  <div class="card">
+    <div class="row"><span>Подарок</span><b class="v-plan">Год Phraseman Plus</b></div>
+    <div class="row"><span>Кому</span><b><span class="v-to">Маша</span> · <span class="v-nick">masha_k</span></b></div>
+    <div class="row"><span>От кого</span><b class="v-from">Саша</b></div>
+    <div class="row"><span>Чек</span><b class="v-mail">на sasha@example.com</b></div>
+  </div>
+  <p class="hint">Так получатель увидит подарок в приложении — один раз, при входе:</p>
+  <div class="app-card"><small>Подарок</small><div class="ring"></div><b><span class="v-from">Саша</span> подарил тебе <span class="v-plan-l">год Plus</span></b><span style="opacity:.75">Все уроки и темы открыты. Автопродления нет.</span></div>
+</section></main><footer class="footer"><div class="container"><div class="footer-top"><div><a class="brand" href="/" aria-label="Phraseman — главная" data-i18n-aria="v2.aria.home"><img src="../../../knowly-www/assets/approved/brand.png" alt="" width="36" height="36"><span>phrase<span class="brand-tail">man</span></span></a><p data-i18n="approved.13">Чуть больше языка.<br>Чуть больше свободы.</p></div><div class="footer-links"><div><b data-i18n="approved.14">Практиковаться</b><a href="/app/" data-i18n="approved.15">О приложении</a><a href="/download/" data-i18n="approved.16">Скачать Phraseman</a><a href="/english-level-test/" data-i18n="approved.17">Определить уровень</a></div><div><b data-i18n="approved.19">Открывать больше</b><a href="/guides/" data-i18n="approved.20">Гайды и истории</a><a href="/premium/" data-i18n="approved.21">Plus и Pro</a><a href="/gift/" data-i18n="approved.22">Подарить доступ</a><a href="/russia/" data-i18n="approved.23">Оплата в России</a></div><div><b data-i18n="approved.24">Мы рядом</b><a href="/contact/" data-i18n="approved.4">Поддержка</a><a href="/faq/" data-i18n="approved.25">Частые вопросы</a><a href="/#reviews" data-i18n="approved.26">Отзывы</a></div></div></div><div class="footer-bottom"><span>© 2026 Knowly · Phraseman</span><div><a href="/legal/privacy/" data-i18n="approved.27">Конфиденциальность</a><a href="/legal/terms/" data-i18n="v2.footer.terms">Условия</a><a href="/legal/data-deletion/" data-i18n="approved.29">Удаление данных</a><a href="#cookie-settings" data-cookie-settings data-i18n="approved.30">Настройки cookies</a></div></div></div></footer>
+
+
+<script>
+(function () {
+  // зачем: макет живой — владелец смотрит его во встроенном браузере, без сети и без оплаты.
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var KNOWN = { masha_k: 'Ранг «Стажёр» · в Phraseman с июня', ivan: 'Ранг «Знаток» · в Phraseman с марта', 'PM-7Q2K': 'Ранг «Новичок» · в Phraseman с октября' };
+  var state = { mode: 'email', plan: 'yearly', confirmed: false, found: null };
+  var PLAN = { monthly: ['Месяц Phraseman Plus', 'месяц Plus'], yearly: ['Год Phraseman Plus', 'год Plus'] };
+
+  function dative(name) { // Маша → Маше (только для макета)
+    if (!name) return '';
+    if (/а$/.test(name)) return name.slice(0, -1) + 'е';
+    if (/я$/.test(name)) return name.slice(0, -1) + 'е';
+    return name;
+  }
+  function gen(name) { // Маша → Маши (только для макета)
+    if (!name) return '';
+    if (/а$/.test(name)) return name.slice(0, -1) + 'и';
+    if (/я$/.test(name)) return name.slice(0, -1) + 'и';
+    return name;
+  }
+  function render() {
+    var to = $('#giftTo').value.trim(), from = $('#giftFrom').value.trim(), mail = $('#buyerEmail').value.trim();
+    $$('[data-show]').forEach(function (el) { el.hidden = el.getAttribute('data-show') !== state.mode; });
+    $$('.seg button').forEach(function (b) { var on = b.dataset.mode === state.mode; b.classList.toggle('on', on); b.setAttribute('aria-checked', on ? 'true' : 'false'); });
+    $('#emailLabel').textContent = state.mode === 'email' ? 'Твой email — на него придёт сертификат' : 'Твой email — пришлём чек';
+    $('#terms').textContent = state.mode === 'email' ? 'Разовый платёж, автопродления нет · Код действует 365 дней.' : 'Разовый платёж, автопродления нет · Plus включится у получателя сразу.';
+    var nick = $('#nick').value.trim();
+    var who = $('#who');
+    if (state.mode === 'nick' && nick.length >= 3) {
+      var meta = KNOWN[nick] || KNOWN[nick.toLowerCase()];
+      who.hidden = false;
+      who.classList.toggle('miss', !meta);
+      $('#whoNick').textContent = meta ? nick : 'Не нашли такого ника';
+      $('#whoMeta').textContent = meta || 'Проверь написание или попроси у друга код из профиля';
+      $('#whoConfirm').hidden = !meta;
+      state.found = meta ? nick : null;
+      if (!meta) { state.confirmed = false; $('#confirmWho').checked = false; }
+    } else { who.hidden = true; state.found = null; }
+    var ready = /.+@.+\..+/.test(mail) && (state.mode === 'email' || (state.found && state.confirmed));
+    $('#payBtn').disabled = !ready;
+    // сертификат
+    $('#pvTo').textContent = to ? dative(to) : PLAN[state.plan][0];
+    $('#pvFrom').textContent = from ? 'от ' + gen(from) : '';
+    var pvPlan = $('#pvPlan'); pvPlan.style.display = to ? '' : 'none'; pvPlan.textContent = PLAN[state.plan][0];
+    $('#giftCertificate').setAttribute('data-plan', state.plan);
+    // итоговые экраны
+    $$('.v-to').forEach(function (e) { e.textContent = to || 'Маша'; });
+    $$('h1 .v-to').forEach(function (e) { e.textContent = gen(to || 'Маша'); });
+    $$('.v-from').forEach(function (e) { e.textContent = from || 'Саша'; });
+    $$('.v-plan').forEach(function (e) { e.textContent = PLAN[state.plan][0]; });
+    $$('.v-plan-l').forEach(function (e) { e.textContent = PLAN[state.plan][1]; });
+    $$('.v-mail').forEach(function (e) { e.textContent = 'на ' + (mail || 'sasha@example.com'); });
+    $$('.v-nick').forEach(function (e) { e.textContent = state.found || 'masha_k'; });
+  }
+  function show(view) {
+    $('main .gift-hero') && ($('main .gift-hero').closest('section').hidden = view !== 'form');
+    $$('main > section').forEach(function (s) { if (s.id !== 'doneEmail' && s.id !== 'doneNick') s.hidden = view !== 'form'; });
+    $('#doneEmail').hidden = view !== 'email';
+    $('#doneNick').hidden = view !== 'nick';
+    $$('.mock-bar [data-view]').forEach(function (b) { b.classList.toggle('on', b.dataset.view === view); });
+    window.scrollTo(0, 0);
+  }
+  $$('.seg button').forEach(function (b) { b.addEventListener('click', function () { state.mode = b.dataset.mode; render(); }); });
+  $$('.gift-option').forEach(function (o) {
+    o.addEventListener('click', function () {
+      state.plan = o.dataset.plan;
+      $$('.gift-option').forEach(function (x) { var on = x === o; x.classList.toggle('selected', on); x.setAttribute('aria-checked', on ? 'true' : 'false'); });
+      render();
+    });
+  });
+  ['#nick', '#giftTo', '#giftFrom', '#buyerEmail'].forEach(function (s) { $(s).addEventListener('input', render); });
+  $('#confirmWho').addEventListener('change', function (e) { state.confirmed = e.target.checked; render(); });
+  $('#payBtn').addEventListener('click', function () { show(state.mode); });
+  $$('.mock-bar [data-view]').forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.view); }); });
+  $('#themeBtn').addEventListener('click', function () {
+    var r = document.documentElement, next = (r.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    r.setAttribute('data-theme', next); r.setAttribute('data-mode', next);
+  });
+  $('#giftTo').value = 'Маша'; $('#giftFrom').value = 'Саша'; $('#buyerEmail').value = 'sasha@example.com';
+  render();
+})();
+</script></body></html>

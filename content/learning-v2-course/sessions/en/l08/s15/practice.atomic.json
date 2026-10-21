@@ -1,0 +1,2329 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-08:session-15",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-08:session-15:word:clothes-airer",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — clothes airer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:word:clothes-airer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — clothes airer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:word:clothes-airer:audio",
+            "transcript": "clothes airer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-15:word:clothes-airer:r1",
+              "targetText": "clothes airer",
+              "meaningByLocale": {
+                "ru": "сушилка-стойка для белья.",
+                "uk": "сушарка-стійка для білизни."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "clothes airer",
+            "definitionByLocale": {
+              "ru": "сушилка-стойка для белья.",
+              "uk": "сушарка-стійка для білизни."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите, что можете найти: сушилка-стойка для белья",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что можете найти: сушилка-стойка для белья",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can find the clothes airer.",
+          "localizedMeaning": {
+            "ru": "Скажите, что можете найти: сушилка-стойка для белья",
+            "uk": "Скажіть, що можете знайти: сушарка-стійка для білизни"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "find",
+            "the",
+            "clothes",
+            "airer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-15:i02:r1",
+            "text": "I can find the clothes airer."
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i02:r2",
+            "text": "I can’t find the clothes airer."
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i02:r3",
+            "text": "We can find the clothes airer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:i02:audio",
+            "transcript": "I can find the clothes airer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-15:i02:r1",
+              "targetText": "I can find the clothes airer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i02:r2",
+              "targetText": "I can’t find the clothes airer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i02:r3",
+              "targetText": "We can find the clothes airer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-15:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can find the clothes airer.",
+                "uk": "У записі звучить I can find the clothes airer."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can find the clothes airer.",
+                "uk": "У записі звучить I can find the clothes airer."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после can",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-15:i03:r1",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i03:r2",
+            "text": "finds"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i03:r3",
+            "text": "to find"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после can",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can",
+            "uk": "Виберіть форму після can"
+          },
+          "gappedTargetPhrase": "I can ___ the clothes airer.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-15:i03:r1",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i03:r2",
+              "text": "finds"
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i03:r3",
+              "text": "to find"
+            }
+          ],
+          "testedDimension": "Выберите форму после can",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-15:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после can",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма глагола.",
+                "uk": "Тут потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после can",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма без to.",
+                "uk": "Тут потрібна початкова форма без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:word:tumble-dryer",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tumble dryer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:word:tumble-dryer:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tumble dryer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:word:tumble-dryer:audio",
+            "transcript": "tumble dryer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-15:word:tumble-dryer:r1",
+              "targetText": "tumble dryer",
+              "meaningByLocale": {
+                "ru": "сушильная машина.",
+                "uk": "сушильна машина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tumble dryer",
+            "definitionByLocale": {
+              "ru": "сушильная машина.",
+              "uk": "сушильна машина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите, что можете найти: сушильная машина",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что можете найти: сушильная машина",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can find the tumble dryer.",
+          "localizedMeaning": {
+            "ru": "Скажите, что можете найти: сушильная машина",
+            "uk": "Скажіть, що можете знайти: сушильна машина"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "find",
+            "the",
+            "tumble",
+            "dryer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-15:i05:r1",
+            "text": "I can find the tumble dryer."
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i05:r2",
+            "text": "I can’t find the tumble dryer."
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i05:r3",
+            "text": "We can find the tumble dryer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:i05:audio",
+            "transcript": "I can find the tumble dryer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-15:i05:r1",
+              "targetText": "I can find the tumble dryer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i05:r2",
+              "targetText": "I can’t find the tumble dryer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i05:r3",
+              "targetText": "We can find the tumble dryer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-15:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can find the tumble dryer.",
+                "uk": "У записі звучить I can find the tumble dryer."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can find the tumble dryer.",
+                "uk": "У записі звучить I can find the tumble dryer."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после can",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-15:i06:r1",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i06:r2",
+            "text": "finds"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i06:r3",
+            "text": "to find"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после can",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can",
+            "uk": "Виберіть форму після can"
+          },
+          "gappedTargetPhrase": "I can ___ the tumble dryer.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-15:i06:r1",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i06:r2",
+              "text": "finds"
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i06:r3",
+              "text": "to find"
+            }
+          ],
+          "testedDimension": "Выберите форму после can",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-15:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после can",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма глагола.",
+                "uk": "Тут потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после can",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма без to.",
+                "uk": "Тут потрібна початкова форма без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:word:laundry-bag",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — laundry bag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:word:laundry-bag:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — laundry bag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:word:laundry-bag:audio",
+            "transcript": "laundry bag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-15:word:laundry-bag:r1",
+              "targetText": "laundry bag",
+              "meaningByLocale": {
+                "ru": "мешок для белья.",
+                "uk": "мішок для білизни."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "laundry bag",
+            "definitionByLocale": {
+              "ru": "мешок для белья.",
+              "uk": "мішок для білизни."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите, что можете найти: мешок для белья",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что можете найти: мешок для белья",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can find the laundry bag.",
+          "localizedMeaning": {
+            "ru": "Скажите, что можете найти: мешок для белья",
+            "uk": "Скажіть, що можете знайти: мішок для білизни"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "find",
+            "the",
+            "laundry",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-15:i08:r1",
+            "text": "I can find the laundry bag."
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i08:r2",
+            "text": "I can’t find the laundry bag."
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i08:r3",
+            "text": "We can find the laundry bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:i08:audio",
+            "transcript": "I can find the laundry bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-15:i08:r1",
+              "targetText": "I can find the laundry bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i08:r2",
+              "targetText": "I can’t find the laundry bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i08:r3",
+              "targetText": "We can find the laundry bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-15:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can find the laundry bag.",
+                "uk": "У записі звучить I can find the laundry bag."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can find the laundry bag.",
+                "uk": "У записі звучить I can find the laundry bag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после can",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-15:i09:r1",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i09:r2",
+            "text": "finds"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i09:r3",
+            "text": "to find"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после can",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can",
+            "uk": "Виберіть форму після can"
+          },
+          "gappedTargetPhrase": "I can ___ the laundry bag.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-15:i09:r1",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i09:r2",
+              "text": "finds"
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i09:r3",
+              "text": "to find"
+            }
+          ],
+          "testedDimension": "Выберите форму после can",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-15:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после can",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма глагола.",
+                "uk": "Тут потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после can",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма без to.",
+                "uk": "Тут потрібна початкова форма без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:word:dishwasher-tablet",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — dishwasher tablet",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:word:dishwasher-tablet:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — dishwasher tablet",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:word:dishwasher-tablet:audio",
+            "transcript": "dishwasher tablet"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-15:word:dishwasher-tablet:r1",
+              "targetText": "dishwasher tablet",
+              "meaningByLocale": {
+                "ru": "таблетка для посудомоечной машины.",
+                "uk": "таблетка для посудомийної машини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dishwasher tablet",
+            "definitionByLocale": {
+              "ru": "таблетка для посудомоечной машины.",
+              "uk": "таблетка для посудомийної машини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите, что можете найти: таблетка для посудомоечной машины",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что можете найти: таблетка для посудомоечной машины",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can find a dishwasher tablet.",
+          "localizedMeaning": {
+            "ru": "Скажите, что можете найти: таблетка для посудомоечной машины",
+            "uk": "Скажіть, що можете знайти: таблетка для посудомийної машини"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "find",
+            "a",
+            "dishwasher",
+            "tablet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-15:i11:r1",
+            "text": "I can find a dishwasher tablet."
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i11:r2",
+            "text": "I can’t find a dishwasher tablet."
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i11:r3",
+            "text": "We can find a dishwasher tablet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:i11:audio",
+            "transcript": "I can find a dishwasher tablet."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-15:i11:r1",
+              "targetText": "I can find a dishwasher tablet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i11:r2",
+              "targetText": "I can’t find a dishwasher tablet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i11:r3",
+              "targetText": "We can find a dishwasher tablet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-15:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can find a dishwasher tablet.",
+                "uk": "У записі звучить I can find a dishwasher tablet."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can find a dishwasher tablet.",
+                "uk": "У записі звучить I can find a dishwasher tablet."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после can",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-15:i12:r1",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i12:r2",
+            "text": "finds"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i12:r3",
+            "text": "to find"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после can",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can",
+            "uk": "Виберіть форму після can"
+          },
+          "gappedTargetPhrase": "I can ___ a dishwasher tablet.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-15:i12:r1",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i12:r2",
+              "text": "finds"
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i12:r3",
+              "text": "to find"
+            }
+          ],
+          "testedDimension": "Выберите форму после can",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-15:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после can",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма глагола.",
+                "uk": "Тут потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после can",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма без to.",
+                "uk": "Тут потрібна початкова форма без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-15:i13:p1",
+              "target": "clothes airer",
+              "meaningByLocale": {
+                "ru": "сушилка-стойка для белья",
+                "uk": "сушарка-стійка для білизни"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-15:i13:p2",
+              "target": "tumble dryer",
+              "meaningByLocale": {
+                "ru": "сушильная машина",
+                "uk": "сушильна машина"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-15:i13:p3",
+              "target": "laundry bag",
+              "meaningByLocale": {
+                "ru": "мешок для белья",
+                "uk": "мішок для білизни"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-15:i13:p4",
+              "target": "dishwasher tablet",
+              "meaningByLocale": {
+                "ru": "таблетка для посудомоечной машины",
+                "uk": "таблетка для посудомийної машини"
+              }
+            }
+          ],
+          "leftColumn": [
+            "clothes airer",
+            "tumble dryer",
+            "laundry bag",
+            "dishwasher tablet"
+          ],
+          "rightColumn": [
+            "сушилка-стойка для белья",
+            "сушильная машина",
+            "мешок для белья",
+            "таблетка для посудомоечной машины"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:i14:audio",
+            "transcript": "Whose laundry bag is this?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Whose laundry bag is this?",
+          "orderedTokens": [
+            "Whose",
+            "laundry",
+            "bag",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:i15:audio",
+            "transcript": "She can use the tumble dryer."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She can use the tumble dryer.",
+          "orderedTokens": [
+            "She",
+            "can",
+            "use",
+            "the",
+            "tumble",
+            "dryer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: это мой мешок для белья",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: это мой мешок для белья",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:i16:audio",
+            "transcript": "This is my laundry bag."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is my laundry bag.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: я могу воспользоваться сушилкой-стойкой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: я могу воспользоваться сушилкой-стойкой",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:i17:audio",
+            "transcript": "I can use the clothes airer."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can use the clothes airer.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-08:session-15:word:clothes-airer",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — clothes airer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:word:clothes-airer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — clothes airer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:word:clothes-airer:audio",
+            "transcript": "clothes airer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-15:word:clothes-airer:r1",
+              "targetText": "clothes airer",
+              "meaningByLocale": {
+                "ru": "сушилка-стойка для белья.",
+                "uk": "сушарка-стійка для білизни."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "clothes airer",
+            "definitionByLocale": {
+              "ru": "сушилка-стойка для белья.",
+              "uk": "сушарка-стійка для білизни."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть, що можете знайти: сушарка-стійка для білизни",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що можете знайти: сушарка-стійка для білизни",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can find the clothes airer.",
+          "localizedMeaning": {
+            "ru": "Скажите, что можете найти: сушилка-стойка для белья",
+            "uk": "Скажіть, що можете знайти: сушарка-стійка для білизни"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "find",
+            "the",
+            "clothes",
+            "airer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-15:i02:r1",
+            "text": "I can find the clothes airer."
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i02:r2",
+            "text": "I can’t find the clothes airer."
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i02:r3",
+            "text": "We can find the clothes airer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:i02:audio",
+            "transcript": "I can find the clothes airer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-15:i02:r1",
+              "targetText": "I can find the clothes airer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i02:r2",
+              "targetText": "I can’t find the clothes airer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i02:r3",
+              "targetText": "We can find the clothes airer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-15:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can find the clothes airer.",
+                "uk": "У записі звучить I can find the clothes airer."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can find the clothes airer.",
+                "uk": "У записі звучить I can find the clothes airer."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після can",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-15:i03:r1",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i03:r2",
+            "text": "finds"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i03:r3",
+            "text": "to find"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після can",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can",
+            "uk": "Виберіть форму після can"
+          },
+          "gappedTargetPhrase": "I can ___ the clothes airer.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-15:i03:r1",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i03:r2",
+              "text": "finds"
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i03:r3",
+              "text": "to find"
+            }
+          ],
+          "testedDimension": "Виберіть форму після can",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-15:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма глагола.",
+                "uk": "Тут потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма без to.",
+                "uk": "Тут потрібна початкова форма без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:word:tumble-dryer",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tumble dryer",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:word:tumble-dryer:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tumble dryer",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:word:tumble-dryer:audio",
+            "transcript": "tumble dryer"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-15:word:tumble-dryer:r1",
+              "targetText": "tumble dryer",
+              "meaningByLocale": {
+                "ru": "сушильная машина.",
+                "uk": "сушильна машина."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tumble dryer",
+            "definitionByLocale": {
+              "ru": "сушильная машина.",
+              "uk": "сушильна машина."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть, що можете знайти: сушильна машина",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що можете знайти: сушильна машина",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can find the tumble dryer.",
+          "localizedMeaning": {
+            "ru": "Скажите, что можете найти: сушильная машина",
+            "uk": "Скажіть, що можете знайти: сушильна машина"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "find",
+            "the",
+            "tumble",
+            "dryer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-15:i05:r1",
+            "text": "I can find the tumble dryer."
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i05:r2",
+            "text": "I can’t find the tumble dryer."
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i05:r3",
+            "text": "We can find the tumble dryer."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:i05:audio",
+            "transcript": "I can find the tumble dryer."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-15:i05:r1",
+              "targetText": "I can find the tumble dryer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i05:r2",
+              "targetText": "I can’t find the tumble dryer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i05:r3",
+              "targetText": "We can find the tumble dryer.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-15:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can find the tumble dryer.",
+                "uk": "У записі звучить I can find the tumble dryer."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can find the tumble dryer.",
+                "uk": "У записі звучить I can find the tumble dryer."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після can",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-15:i06:r1",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i06:r2",
+            "text": "finds"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i06:r3",
+            "text": "to find"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після can",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can",
+            "uk": "Виберіть форму після can"
+          },
+          "gappedTargetPhrase": "I can ___ the tumble dryer.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-15:i06:r1",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i06:r2",
+              "text": "finds"
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i06:r3",
+              "text": "to find"
+            }
+          ],
+          "testedDimension": "Виберіть форму після can",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-15:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма глагола.",
+                "uk": "Тут потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма без to.",
+                "uk": "Тут потрібна початкова форма без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:word:laundry-bag",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — laundry bag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:word:laundry-bag:audio"
+        ],
+        "accessibilityLabel": "Картка слова — laundry bag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:word:laundry-bag:audio",
+            "transcript": "laundry bag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-15:word:laundry-bag:r1",
+              "targetText": "laundry bag",
+              "meaningByLocale": {
+                "ru": "мешок для белья.",
+                "uk": "мішок для білизни."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "laundry bag",
+            "definitionByLocale": {
+              "ru": "мешок для белья.",
+              "uk": "мішок для білизни."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть, що можете знайти: мішок для білизни",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що можете знайти: мішок для білизни",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can find the laundry bag.",
+          "localizedMeaning": {
+            "ru": "Скажите, что можете найти: мешок для белья",
+            "uk": "Скажіть, що можете знайти: мішок для білизни"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "find",
+            "the",
+            "laundry",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-15:i08:r1",
+            "text": "I can find the laundry bag."
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i08:r2",
+            "text": "I can’t find the laundry bag."
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i08:r3",
+            "text": "We can find the laundry bag."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:i08:audio",
+            "transcript": "I can find the laundry bag."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-15:i08:r1",
+              "targetText": "I can find the laundry bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i08:r2",
+              "targetText": "I can’t find the laundry bag.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i08:r3",
+              "targetText": "We can find the laundry bag.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-15:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can find the laundry bag.",
+                "uk": "У записі звучить I can find the laundry bag."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can find the laundry bag.",
+                "uk": "У записі звучить I can find the laundry bag."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після can",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-15:i09:r1",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i09:r2",
+            "text": "finds"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i09:r3",
+            "text": "to find"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після can",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can",
+            "uk": "Виберіть форму після can"
+          },
+          "gappedTargetPhrase": "I can ___ the laundry bag.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-15:i09:r1",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i09:r2",
+              "text": "finds"
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i09:r3",
+              "text": "to find"
+            }
+          ],
+          "testedDimension": "Виберіть форму після can",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-15:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма глагола.",
+                "uk": "Тут потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма без to.",
+                "uk": "Тут потрібна початкова форма без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:word:dishwasher-tablet",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — dishwasher tablet",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:word:dishwasher-tablet:audio"
+        ],
+        "accessibilityLabel": "Картка слова — dishwasher tablet",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:word:dishwasher-tablet:audio",
+            "transcript": "dishwasher tablet"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-15:word:dishwasher-tablet:r1",
+              "targetText": "dishwasher tablet",
+              "meaningByLocale": {
+                "ru": "таблетка для посудомоечной машины.",
+                "uk": "таблетка для посудомийної машини."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "dishwasher tablet",
+            "definitionByLocale": {
+              "ru": "таблетка для посудомоечной машины.",
+              "uk": "таблетка для посудомийної машини."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть, що можете знайти: таблетка для посудомийної машини",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що можете знайти: таблетка для посудомийної машини",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can find a dishwasher tablet.",
+          "localizedMeaning": {
+            "ru": "Скажите, что можете найти: таблетка для посудомоечной машины",
+            "uk": "Скажіть, що можете знайти: таблетка для посудомийної машини"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "find",
+            "a",
+            "dishwasher",
+            "tablet"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-15:i11:r1",
+            "text": "I can find a dishwasher tablet."
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i11:r2",
+            "text": "I can’t find a dishwasher tablet."
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i11:r3",
+            "text": "We can find a dishwasher tablet."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:i11:audio",
+            "transcript": "I can find a dishwasher tablet."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-15:i11:r1",
+              "targetText": "I can find a dishwasher tablet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i11:r2",
+              "targetText": "I can’t find a dishwasher tablet.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i11:r3",
+              "targetText": "We can find a dishwasher tablet.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-15:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can find a dishwasher tablet.",
+                "uk": "У записі звучить I can find a dishwasher tablet."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I can find a dishwasher tablet.",
+                "uk": "У записі звучить I can find a dishwasher tablet."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після can",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-15:i12:r1",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i12:r2",
+            "text": "finds"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i12:r3",
+            "text": "to find"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після can",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can",
+            "uk": "Виберіть форму після can"
+          },
+          "gappedTargetPhrase": "I can ___ a dishwasher tablet.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-15:i12:r1",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i12:r2",
+              "text": "finds"
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i12:r3",
+              "text": "to find"
+            }
+          ],
+          "testedDimension": "Виберіть форму після can",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-15:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма глагола.",
+                "uk": "Тут потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-15:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма без to.",
+                "uk": "Тут потрібна початкова форма без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-15:i13:p1",
+              "target": "clothes airer",
+              "meaningByLocale": {
+                "ru": "сушилка-стойка для белья",
+                "uk": "сушарка-стійка для білизни"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-15:i13:p2",
+              "target": "tumble dryer",
+              "meaningByLocale": {
+                "ru": "сушильная машина",
+                "uk": "сушильна машина"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-15:i13:p3",
+              "target": "laundry bag",
+              "meaningByLocale": {
+                "ru": "мешок для белья",
+                "uk": "мішок для білизни"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-15:i13:p4",
+              "target": "dishwasher tablet",
+              "meaningByLocale": {
+                "ru": "таблетка для посудомоечной машины",
+                "uk": "таблетка для посудомийної машини"
+              }
+            }
+          ],
+          "leftColumn": [
+            "clothes airer",
+            "tumble dryer",
+            "laundry bag",
+            "dishwasher tablet"
+          ],
+          "rightColumn": [
+            "сушарка-стійка для білизни",
+            "сушильна машина",
+            "мішок для білизни",
+            "таблетка для посудомийної машини"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:i14:audio",
+            "transcript": "Whose laundry bag is this?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Whose laundry bag is this?",
+          "orderedTokens": [
+            "Whose",
+            "laundry",
+            "bag",
+            "is",
+            "this"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:i15:audio",
+            "transcript": "She can use the tumble dryer."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She can use the tumble dryer.",
+          "orderedTokens": [
+            "She",
+            "can",
+            "use",
+            "the",
+            "tumble",
+            "dryer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: це мій мішок для білизни",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: це мій мішок для білизни",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:i16:audio",
+            "transcript": "This is my laundry bag."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This is my laundry bag.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-15:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: я можу скористатися сушаркою-стійкою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-15:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: я можу скористатися сушаркою-стійкою",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-15:i17:audio",
+            "transcript": "I can use the clothes airer."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can use the clothes airer.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-08:session-15:word:clothes-airer",
+      "correctText": "clothes airer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i01",
+      "correctText": "I can find the clothes airer.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i02",
+      "correctText": "I can find the clothes airer.",
+      "correctResponseId": "en:lesson-08:session-15:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i03",
+      "correctText": "find",
+      "correctResponseId": "en:lesson-08:session-15:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:word:tumble-dryer",
+      "correctText": "tumble dryer",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i04",
+      "correctText": "I can find the tumble dryer.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i05",
+      "correctText": "I can find the tumble dryer.",
+      "correctResponseId": "en:lesson-08:session-15:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i06",
+      "correctText": "find",
+      "correctResponseId": "en:lesson-08:session-15:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:word:laundry-bag",
+      "correctText": "laundry bag",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i07",
+      "correctText": "I can find the laundry bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i08",
+      "correctText": "I can find the laundry bag.",
+      "correctResponseId": "en:lesson-08:session-15:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i09",
+      "correctText": "find",
+      "correctResponseId": "en:lesson-08:session-15:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:word:dishwasher-tablet",
+      "correctText": "dishwasher tablet",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i10",
+      "correctText": "I can find a dishwasher tablet.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i11",
+      "correctText": "I can find a dishwasher tablet.",
+      "correctResponseId": "en:lesson-08:session-15:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i12",
+      "correctText": "find",
+      "correctResponseId": "en:lesson-08:session-15:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i14",
+      "correctText": "Whose laundry bag is this?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i15",
+      "correctText": "She can use the tumble dryer.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i16",
+      "correctText": "This is my laundry bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i17",
+      "correctText": "I can use the clothes airer.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-08:session-25:intro1:q",
       "responseFeedbackById": {
         "en:lesson-08:session-25:intro1:r2": {
-          "ru": "Для указания начните с `Attach`, без `to`.",
-          "uk": "Для вказівки почніть із `Attach`, без `to`."
+          "ru": "Здесь другой смысл или неверное вопросительное слово. Нужно: Buy low-fat yoghurt.",
+          "uk": "Тут інший зміст або неправильне питальне слово. Потрібно: Buy low-fat yoghurt."
         },
         "en:lesson-08:session-25:intro1:r3": {
-          "ru": "Здесь нужно `Attach`, без окончания `es`.",
-          "uk": "Тут потрібне `Attach`, без закінчення `es`."
+          "ru": "В просьбе нужна Buy, без s.",
+          "uk": "У проханні потрібна Buy, без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-25:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-25:intro2:r2": {
-          "ru": "Для указания нужно Check, без s.",
-          "uk": "Для вказівки потрібне Check, без s."
+          "ru": "Здесь другой смысл или неверное вопросительное слово. Нужно: Buy full-fat yoghurt.",
+          "uk": "Тут інший зміст або неправильне питальне слово. Потрібно: Buy full-fat yoghurt."
         },
         "en:lesson-08:session-25:intro2:r3": {
-          "ru": "Начните с Check, без to.",
-          "uk": "Почніть із Check, без to."
+          "ru": "В просьбе нужна Buy, без s.",
+          "uk": "У проханні потрібна Buy, без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-25:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-25:intro3:r2": {
-          "ru": "Для указания нужно Open, без s.",
-          "uk": "Для вказівки потрібне Open, без s."
+          "ru": "Здесь другой смысл или неверное вопросительное слово. Нужно: Buy semi-skimmed milk.",
+          "uk": "Тут інший зміст або неправильне питальне слово. Потрібно: Buy semi-skimmed milk."
         },
         "en:lesson-08:session-25:intro3:r3": {
-          "ru": "Начните с Open, без to.",
-          "uk": "Почніть із Open, без to."
+          "ru": "В просьбе нужна Buy, без s.",
+          "uk": "У проханні потрібна Buy, без s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "55dbdc10a38d345d676e2cf762f979b9d8a35d24f8777306a714a2eed7f4b77c"
+  "auxiliaryFingerprint": "509ceb362ad63c792401b93e188436e3a46caba160c6f6c5fe7d6599fa29a0f2"
 }

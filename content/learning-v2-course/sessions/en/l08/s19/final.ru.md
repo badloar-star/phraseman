@@ -4,7 +4,7 @@
 
 **Что вы освоите:** закрепить просьбы Can you…? со словом explain
 **Новые слова:** explain, demonstrate, diagram, manual
-**Возвращаются:** draw, code, book, pass
+**Возвращаются:** draw, dance, book, pass
 
 ---
 
@@ -62,9 +62,9 @@
 
 **3 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-08:session-19:i02; family: listen_choose -->
-🔊 *explain* → **explain** · draw · code
+🔊 *explain* → **explain** · draw · dance
 - draw — *В записи первое слово — `explain`, а в этом варианте — `draw`.*
-- code — *В записи первое слово — `explain`, а в этом варианте — `code`.*
+- dance — *В записи первое слово — `explain`, а в этом варианте — `dance`.*
 
 **4 · Выберите форму для просьбы объяснить это**
 <!-- interaction_id: en:lesson-08:session-19:i03; family: context_gap_grammar -->
@@ -74,7 +74,7 @@ Can you ___ it? → **explain** · to explain · explains
 
 **5 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-19:i04; family: speed_match -->
-explain — объяснить · soup — суп · draw — рисовать · code — писать код
+explain — объяснить · soup — суп · draw — рисовать · dance — танцевать
 
 **6 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-08:session-19:i05; family: listen_build_dictation -->

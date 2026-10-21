@@ -1,149 +1,151 @@
-# Английский · Урок 8 · Занятие 25 — Прикрепи файл
+# Английский · Урок 8 · Занятие 25 — Выбрать молочные продукты
 
-**Ситуация.** Прикрепить файл к письму, проверить получателя и открыть документ с инструкциями.
+**Ситуация.** Попросите близкого купить молочные продукты по вашему списку.
 
-**Что вы освоите:** дать короткое указание: начать сразу с действия
-**Новые слова:** attach, recipient, document, filename
-
----
+**Что вы освоите:** короткая просьба: глагол в начале
+**Новые слова:** low-fat, full-fat, skimmed, semi-skimmed
 
 ## Интро 1
 
-### Файл к письму
+### Йогурт по списку
 
-Друг пишет письмо и спрашивает, что делать с готовым файлом. `Attach` — «прикрепить». `Attach it` — «Прикрепи его». Здесь `it` — файл. Для короткого указания начните сразу с действия: `Attach`, без `you` и `to`. Письмо с фразой «файл прикреплён» убедительнее, когда файл действительно прикреплён.
+Low-fat — с пониженным содержанием жира. Buy low-fat yoghurt — купи йогурт с пониженным содержанием жира. Короткую просьбу начинаем с Buy. Выберите эту просьбу.
 
-**Скажите другу прикрепить файл.**
+**Выберите фразу для этой ситуации.**
 
-- ✅ **Attach it.**
-- ❌ To attach it. — *Для указания начните с `Attach`, без `to`.*
-- ❌ Attaches it. — *Здесь нужно `Attach`, без окончания `es`.*
+- ✅ **Buy low-fat yoghurt.**
+- ❌ Don’t buy low-fat yoghurt. — *Здесь другой смысл или неверное вопросительное слово. Нужно: Buy low-fat yoghurt.*
+- ❌ Buys low-fat yoghurt. — *В просьбе нужна Buy, без s.*
 
 ---
 
 ## Интро 2
 
-### Два похожих адреса
+### Обычная жирность
 
-Коллега готов отправить письмо клиенту, но в адресной книге два человека с одинаковой фамилией. Recipient — «получатель», тот, кому отправляют сообщение. `Check the recipient` — «Проверь получателя». Вы даёте короткое указание перед отправкой: сначала убедиться, что выбран нужный человек.
+Full-fat — с обычным, не сниженным содержанием жира. Buy full-fat yoghurt — купи йогурт обычной жирности. Это описание на упаковке, а не оценка пользы. Выберите обычную жирность.
 
-**Скажите коллеге проверить получателя.**
+**Выберите фразу для этой ситуации.**
 
-- ✅ **Check the recipient.**
-- ❌ Checks the recipient. — *Для указания нужно Check, без s.*
-- ❌ To check the recipient. — *Начните с Check, без to.*
+- ✅ **Buy full-fat yoghurt.**
+- ❌ Buy low-fat yoghurt. — *Здесь другой смысл или неверное вопросительное слово. Нужно: Buy full-fat yoghurt.*
+- ❌ Buys full-fat yoghurt. — *В просьбе нужна Buy, без s.*
 
 ---
 
 ## Интро 3
 
-### Инструкции к рабочей встрече
+### Два вида молока
 
-Перед встречей вы отправили коллеге документ с инструкциями. Он нашёл файл и спрашивает, что делать дальше. Document — «документ», здесь электронный текстовый файл. `Open the document` — «Открой документ». Начните с Open; the указывает на уже найденный документ.
+Skimmed milk — обезжиренное молоко; semi-skimmed milk — частично обезжиренное молоко. Buy semi-skimmed milk — купи частично обезжиренное молоко. Выберите именно его.
 
-**Скажите коллеге открыть документ.**
+**Выберите фразу для этой ситуации.**
 
-- ✅ **Open the document.**
-- ❌ Opens the document. — *Для указания нужно Open, без s.*
-- ❌ To open the document. — *Начните с Open, без to.*
+- ✅ **Buy semi-skimmed milk.**
+- ❌ Buy skimmed milk. — *Здесь другой смысл или неверное вопросительное слово. Нужно: Buy semi-skimmed milk.*
+- ❌ Buys semi-skimmed milk. — *В просьбе нужна Buy, без s.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — attach**
-<!-- interaction_id: en:lesson-08:session-25:word:attach; family: word_card -->
-> **attach** — прикрепить. Attach it. — «Прикрепи его». Здесь файл добавляют к письму. Для короткого указания начинаем с действия, без you или to.
+**1 · Карточка слова — low-fat**
+<!-- interaction_id: en:lesson-08:session-25:word:low-fat; family: word_card -->
+> **low-fat** — с пониженным содержанием жира.
 
-**2 · Дайте указание «Прикрепи его»**
+**2 · Попросите купить: с пониженным содержанием жира — йогурт**
 <!-- interaction_id: en:lesson-08:session-25:i01; family: phrase_builder -->
-Плитки: `it` `Attach` → **Attach it.**
+Плитки: `yoghurt` `low-fat` `Buy` → **Buy low-fat yoghurt.**
 
-**3 · Послушайте и выберите слово**
+**3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-08:session-25:i02; family: listen_choose -->
-🔊 *attach* → **attach** · lend · walk
-- lend — *В записи первое слово — `attach`, а в этом варианте — `lend`.*
-- walk — *В записи первое слово — `attach`, а в этом варианте — `walk`.*
+🔊 *Buy low-fat yoghurt.* → **Buy low-fat yoghurt.** · Don’t buy low-fat yoghurt. · Please buy low-fat yoghurt.
+- Don’t buy low-fat yoghurt. — *В записи звучит Buy low-fat yoghurt.*
+- Please buy low-fat yoghurt. — *В записи звучит Buy low-fat yoghurt.*
 
-**4 · Выберите форму для короткого указания прикрепить файл**
+**4 · Выберите начало просьбы**
 <!-- interaction_id: en:lesson-08:session-25:i03; family: context_gap_grammar -->
-___ it. → **Attach** · Attaches · To attach
-- Attaches — *Для указания нужно Attach, без es.*
-- To attach — *Начните с Attach, без to.*
+___ low-fat yoghurt. → **Buy** · Buys · Buying
+- Buys — *Здесь нужна начальная форма глагола.*
+- Buying — *Здесь нужна начальная форма без to.*
 
-**5 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-08:session-25:i04; family: speed_match -->
-attach — прикрепить · file — файл · email — электронное письмо · check — проверить
+**5 · Карточка слова — full-fat**
+<!-- interaction_id: en:lesson-08:session-25:word:full-fat; family: word_card -->
+> **full-fat** — с обычным содержанием жира.
 
-**6 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-08:session-25:i05; family: listen_build_dictation -->
-🔊 *Attach it.* Плитки: `it` `Attach` → **Attach it.**
+**6 · Попросите купить: с обычным содержанием жира — йогурт**
+<!-- interaction_id: en:lesson-08:session-25:i04; family: phrase_builder -->
+Плитки: `yoghurt` `full-fat` `Buy` → **Buy full-fat yoghurt.**
 
-**7 · Карточка слова — recipient**
-<!-- interaction_id: en:lesson-08:session-25:word:recipient; family: word_card -->
-> **recipient** — получатель. Check the recipient. — «Проверь получателя». Человек, которому отправляют письмо или сообщение.
+**7 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-08:session-25:i05; family: listen_choose -->
+🔊 *Buy full-fat yoghurt.* → **Buy full-fat yoghurt.** · Don’t buy full-fat yoghurt. · Please buy full-fat yoghurt.
+- Don’t buy full-fat yoghurt. — *В записи звучит Buy full-fat yoghurt.*
+- Please buy full-fat yoghurt. — *В записи звучит Buy full-fat yoghurt.*
 
-**8 · Дайте короткое указание «Проверь получателя»**
-<!-- interaction_id: en:lesson-08:session-25:i06; family: phrase_builder -->
-Плитки: `recipient` `the` `Check` → **Check the recipient.**
+**8 · Выберите начало просьбы**
+<!-- interaction_id: en:lesson-08:session-25:i06; family: context_gap_grammar -->
+___ full-fat yoghurt. → **Buy** · Buys · Buying
+- Buys — *Здесь нужна начальная форма глагола.*
+- Buying — *Здесь нужна начальная форма без to.*
 
-**9 · Карточка слова — document**
-<!-- interaction_id: en:lesson-08:session-25:word:document; family: word_card -->
-> **document** — документ. Open the document. — «Открой документ». Здесь электронный текстовый файл с инструкциями.
+**9 · Карточка слова — skimmed**
+<!-- interaction_id: en:lesson-08:session-25:word:skimmed; family: word_card -->
+> **skimmed** — обезжиренный — о молоке.
 
-**10 · Коллега нашёл файл с инструкциями. Скажите «Открой документ»**
-<!-- interaction_id: en:lesson-08:session-25:i07; family: scripted_repeat_compare -->
-🎙 **Open the document.**
+**10 · Попросите купить: обезжиренный — о молоке — молоко**
+<!-- interaction_id: en:lesson-08:session-25:i07; family: phrase_builder -->
+Плитки: `milk` `skimmed` `Buy` → **Buy skimmed milk.**
 
-**11 · Выберите форму для короткого указания открыть документ**
-<!-- interaction_id: en:lesson-08:session-25:i08; family: context_gap_grammar -->
-___ the document. → **Open** · Opens · To open
-- Opens — *Для указания нужно Open, без s.*
-- To open — *Начните с Open, без to.*
+**11 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-08:session-25:i08; family: listen_choose -->
+🔊 *Buy skimmed milk.* → **Buy skimmed milk.** · Don’t buy skimmed milk. · Please buy skimmed milk.
+- Don’t buy skimmed milk. — *В записи звучит Buy skimmed milk.*
+- Please buy skimmed milk. — *В записи звучит Buy skimmed milk.*
 
-**12 · Послушайте и выберите фразу**
-<!-- interaction_id: en:lesson-08:session-25:i09; family: listen_choose -->
-🔊 *Attach it.* → **Attach it.** · Attach this. · Attach that.
-- Attach this. — *В записи последнее слово — `it`, а в этом варианте — `this`.*
-- Attach that. — *В записи последнее слово — `it`, а в этом варианте — `that`.*
+**12 · Выберите начало просьбы**
+<!-- interaction_id: en:lesson-08:session-25:i09; family: context_gap_grammar -->
+___ skimmed milk. → **Buy** · Buys · Buying
+- Buys — *Здесь нужна начальная форма глагола.*
+- Buying — *Здесь нужна начальная форма без to.*
 
-**13 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-08:session-25:i10; family: speed_match -->
-attach — прикрепить · recipient — получатель · document — документ · check — проверить
+**13 · Карточка слова — semi-skimmed**
+<!-- interaction_id: en:lesson-08:session-25:word:semi-skimmed; family: word_card -->
+> **semi-skimmed** — частично обезжиренный — о молоке.
 
-**14 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-08:session-25:i11; family: listen_build_dictation -->
-🔊 *Check the recipient.* Плитки: `recipient` `the` `Check` → **Check the recipient.**
+**14 · Попросите купить: частично обезжиренный — о молоке — молоко**
+<!-- interaction_id: en:lesson-08:session-25:i10; family: phrase_builder -->
+Плитки: `milk` `semi-skimmed` `Buy` → **Buy semi-skimmed milk.**
 
-**15 · Карточка слова — filename**
-<!-- interaction_id: en:lesson-08:session-25:word:filename; family: word_card -->
-> **filename** — имя файла. Check the filename. — «Проверь имя файла». Название файла на компьютере, например report.pdf; filename пишется слитно.
+**15 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-08:session-25:i11; family: listen_choose -->
+🔊 *Buy semi-skimmed milk.* → **Buy semi-skimmed milk.** · Don’t buy semi-skimmed milk. · Please buy semi-skimmed milk.
+- Don’t buy semi-skimmed milk. — *В записи звучит Buy semi-skimmed milk.*
+- Please buy semi-skimmed milk. — *В записи звучит Buy semi-skimmed milk.*
 
-**16 · Рядом лежат старая и новая версии файла. Скажите «Проверь имя файла»**
-<!-- interaction_id: en:lesson-08:session-25:i12; family: phrase_builder -->
-Плитки: `filename` `the` `Check` → **Check the filename.**
+**16 · Выберите начало просьбы**
+<!-- interaction_id: en:lesson-08:session-25:i12; family: context_gap_grammar -->
+___ semi-skimmed milk. → **Buy** · Buys · Buying
+- Buys — *Здесь нужна начальная форма глагола.*
+- Buying — *Здесь нужна начальная форма без to.*
 
-**17 · Документ уже открыт. Теперь его нужно отправить вложением. Скажите «Прикрепи документ»**
-<!-- interaction_id: en:lesson-08:session-25:i13; family: scripted_repeat_compare -->
-🎙 **Attach the document.**
+**17 · Соедините слова с переводом**
+<!-- interaction_id: en:lesson-08:session-25:i13; family: speed_match -->
+low-fat — с пониженным содержанием жира · full-fat — с обычным содержанием жира · skimmed — обезжиренный — о молоке · semi-skimmed — частично обезжиренный — о молоке
 
-**18 · Выберите форму для короткого указания проверить имя файла**
-<!-- interaction_id: en:lesson-08:session-25:i14; family: context_gap_grammar -->
-___ the filename. → **Check** · Checks · To check
-- Checks — *Для указания нужно Check, без s.*
-- To check — *Начните с Check, без to.*
+**18 · Соберите услышанное**
+<!-- interaction_id: en:lesson-08:session-25:i14; family: listen_build_dictation -->
+🔊 *Please buy skimmed milk.* Плитки: `milk` `skimmed` `buy` `Please` → **Please buy skimmed milk.**
 
-**19 · Послушайте и выберите фразу**
-<!-- interaction_id: en:lesson-08:session-25:i15; family: listen_choose -->
-🔊 *Check the filename.* → **Check the filename.** · Check the recipient. · Check the document.
-- Check the recipient. — *В записи filename — «имя файла», а не recipient — «получатель».*
-- Check the document. — *В записи filename, а не document — «документ».*
+**19 · Соберите услышанное**
+<!-- interaction_id: en:lesson-08:session-25:i15; family: listen_build_dictation -->
+🔊 *Please buy full-fat yoghurt.* Плитки: `yoghurt` `full-fat` `buy` `Please` → **Please buy full-fat yoghurt.**
 
-**20 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-08:session-25:i16; family: speed_match -->
-attach — прикрепить · recipient — получатель · document — документ · filename — имя файла
+**20 · Попросите: пожалуйста, купи частично обезжиренное молоко**
+<!-- interaction_id: en:lesson-08:session-25:i16; family: scripted_repeat_compare -->
+🎙 **Please buy semi-skimmed milk.**
 
-**21 · Друг готовит письмо с фотографией. Фотография уже выбрана. Дайте короткое указание «Прикрепи её»**
-<!-- interaction_id: en:lesson-08:session-25:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Attach it.**
+**21 · Попросите: пожалуйста, купи йогурт с пониженным содержанием жира**
+<!-- interaction_id: en:lesson-08:session-25:i17; family: scripted_repeat_compare -->
+🎙 **Please buy low-fat yoghurt.**
 

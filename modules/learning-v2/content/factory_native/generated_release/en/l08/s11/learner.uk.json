@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-11:word:code",
+      "interactionId": "en:lesson-08:session-11:word:make-the-bed",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — code",
+      "prompt": "Картка слова — make the bed",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-08:session-11:word:code:audio"
+        "en:lesson-08:session-11:word:make-the-bed:audio"
       ],
-      "accessibilityLabel": "Картка слова — code",
+      "accessibilityLabel": "Картка слова — make the bed",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-11:word:code:audio",
-          "transcript": "code"
+          "audioTargetId": "en:lesson-08:session-11:word:make-the-bed:audio",
+          "transcript": "make the bed"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-08:session-11:word:code:r1",
-            "targetText": "code",
+            "responseId": "en:lesson-08:session-11:word:make-the-bed:r1",
+            "targetText": "make the bed",
             "meaningByLocale": {
-              "ru": "писать код. I can’t code. — «Я не умею писать код». Создавать компьютерные программы.",
-              "uk": "писати код. I can’t code. — «Я не вмію писати код». Створювати комп’ютерні програми."
+              "ru": "заправлять постель.",
+              "uk": "застеляти ліжко."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "code",
+          "word": "make the bed",
           "definitionByLocale": {
-            "ru": "писать код. I can’t code. — «Я не умею писать код». Создавать компьютерные программы.",
-            "uk": "писати код. I can’t code. — «Я не вмію писати код». Створювати комп’ютерні програми."
+            "ru": "заправлять постель.",
+            "uk": "застеляти ліжко."
           }
         }
       },
@@ -52,22 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я не вмію писати код»",
+      "prompt": "Скажіть: Я не вмію застеляти ліжко",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я не вмію писати код»",
+      "accessibilityLabel": "Скажіть: Я не вмію застеляти ліжко",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I can’t code.",
+        "targetPhrase": "I can’t make the bed.",
         "localizedMeaning": {
-          "ru": "Скажите «Я не умею писать код»",
-          "uk": "Скажіть «Я не вмію писати код»"
+          "ru": "Скажите: Я не умею заправлять постель",
+          "uk": "Скажіть: Я не вмію застеляти ліжко"
         },
         "orderedTokens": [
           "I",
           "can’t",
-          "code"
+          "make",
+          "the",
+          "bed"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -84,47 +86,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-11:i02:r1",
-          "text": "code"
+          "text": "I can’t make the bed."
         },
         {
           "responseId": "en:lesson-08:session-11:i02:r2",
-          "text": "type"
+          "text": "I can make the bed."
         },
         {
           "responseId": "en:lesson-08:session-11:i02:r3",
-          "text": "learn"
+          "text": "We can’t make the bed."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-11:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-11:i02:audio",
-          "transcript": "code"
+          "transcript": "I can’t make the bed."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-11:i02:r1",
-            "targetText": "code",
+            "targetText": "I can’t make the bed.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-11:i02:r2",
-            "targetText": "type",
+            "targetText": "I can make the bed.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-11:i02:r3",
-            "targetText": "learn",
+            "targetText": "We can’t make the bed.",
             "meaningByLocale": null
           }
         ],
@@ -133,19 +135,19 @@
           {
             "responseId": "en:lesson-08:session-11:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи code — «писать код», а не type — «печатать».",
-              "uk": "У записі code — «писати код», а не type — «друкувати»."
+              "ru": "В записи звучит I can’t make the bed.",
+              "uk": "У записі звучить I can’t make the bed."
             }
           },
           {
             "responseId": "en:lesson-08:session-11:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи code, а не learn — «учиться».",
-              "uk": "У записі code, а не learn — «вчитися»."
+              "ru": "В записи звучит I can’t make the bed.",
+              "uk": "У записі звучить I can’t make the bed."
             }
           }
         ],
@@ -160,167 +162,136 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово: «Я не вмію писати код»",
+      "prompt": "Виберіть форму після can або can’t",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-11:i03:r1",
-          "text": "code"
+          "text": "make"
         },
         {
           "responseId": "en:lesson-08:session-11:i03:r2",
-          "text": "to code"
+          "text": "makes"
         },
         {
           "responseId": "en:lesson-08:session-11:i03:r3",
-          "text": "codes"
+          "text": "to make"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово: «Я не вмію писати код»",
+      "accessibilityLabel": "Виберіть форму після can або can’t",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово: «Я не умею писать код»",
-          "uk": "Виберіть слово: «Я не вмію писати код»"
+          "ru": "Выберите форму после can или can’t",
+          "uk": "Виберіть форму після can або can’t"
         },
-        "gappedTargetPhrase": "I can’t ___.",
+        "gappedTargetPhrase": "I can’t ___ the bed.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-11:i03:r1",
-            "text": "code"
+            "text": "make"
           },
           {
             "responseId": "en:lesson-08:session-11:i03:r2",
-            "text": "to code"
+            "text": "makes"
           },
           {
             "responseId": "en:lesson-08:session-11:i03:r3",
-            "text": "codes"
+            "text": "to make"
           }
         ],
-        "testedDimension": "Виберіть слово: «Я не вмію писати код»",
+        "testedDimension": "Виберіть форму після can або can’t",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-11:i03:r2",
             "correct": false,
-            "testedDimension": "Виберіть слово: «Я не вмію писати код»",
+            "testedDimension": "Виберіть форму після can або can’t",
             "feedbackByLocale": {
-              "ru": "После `can’t` нужно `code`, без `to`.",
-              "uk": "Після `can’t` потрібне `code`, без `to`."
+              "ru": "После can или can’t глагол без окончания s.",
+              "uk": "Після can або can’t дієслово без закінчення s."
             }
           },
           {
             "responseId": "en:lesson-08:session-11:i03:r3",
             "correct": false,
-            "testedDimension": "Виберіть слово: «Я не вмію писати код»",
+            "testedDimension": "Виберіть форму після can або can’t",
             "feedbackByLocale": {
-              "ru": "После `can’t` нужно `code`, без `s`.",
-              "uk": "Після `can’t` потрібне `code`, без `s`."
+              "ru": "После can или can’t не нужно to.",
+              "uk": "Після can або can’t не потрібне to."
             }
           }
         ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:word:do-the-washing",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — do the washing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-11:word:do-the-washing:audio"
+      ],
+      "accessibilityLabel": "Картка слова — do the washing",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-11:word:do-the-washing:audio",
+          "transcript": "do the washing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-11:word:do-the-washing:r1",
+            "targetText": "do the washing",
+            "meaningByLocale": {
+              "ru": "стирать бельё.",
+              "uk": "прати білизну."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "do the washing",
+          "definitionByLocale": {
+            "ru": "стирать бельё.",
+            "uk": "прати білизну."
+          }
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-08:session-11:i04",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "speed_match",
-      "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я можу випрати білизну",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "Скажіть: Я можу випрати білизну",
       "modePayload": {
-        "family": "speed_match",
-        "pairGrid": [
-          {
-            "pairId": "en:lesson-08:session-11:i04:p1",
-            "target": "code",
-            "meaningByLocale": {
-              "ru": "писать код",
-              "uk": "писати код"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-11:i04:p2",
-            "target": "type",
-            "meaningByLocale": {
-              "ru": "печатать на клавиатуре",
-              "uk": "друкувати на клавіатурі"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-11:i04:p3",
-            "target": "ball",
-            "meaningByLocale": {
-              "ru": "мяч",
-              "uk": "м’яч"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-11:i04:p4",
-            "target": "coat",
-            "meaningByLocale": {
-              "ru": "пальто",
-              "uk": "пальто"
-            }
-          }
-        ],
-        "leftColumn": [
-          "code",
-          "type",
-          "ball",
-          "coat"
-        ],
-        "rightColumn": [
-          "писати код",
-          "друкувати на клавіатурі",
-          "м’яч",
-          "пальто"
-        ],
-        "pairingKey": "pair_id",
-        "timerPolicy": {
-          "enabledByDefault": true,
-          "learnerCanDisable": true,
-          "pausesOnInterruption": true
+        "family": "phrase_builder",
+        "targetPhrase": "I can do the washing.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я могу постирать бельё",
+          "uk": "Скажіть: Я можу випрати білизну"
         },
-        "finishStats": [
-          "speed",
-          "accuracy",
-          "personal_best"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-11:i05",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-11:i05:audio"
-      ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-11:i05:audio",
-          "transcript": "I can’t code."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I can’t code.",
         "orderedTokens": [
           "I",
-          "can’t",
-          "code"
+          "can",
+          "do",
+          "the",
+          "washing"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -332,45 +303,78 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-11:word:debug",
+      "interactionId": "en:lesson-08:session-11:i05",
       "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — debug",
-      "responseOptions": [],
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-11:i05:r1",
+          "text": "I can do the washing."
+        },
+        {
+          "responseId": "en:lesson-08:session-11:i05:r2",
+          "text": "I can’t do the washing."
+        },
+        {
+          "responseId": "en:lesson-08:session-11:i05:r3",
+          "text": "We can do the washing."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-08:session-11:word:debug:audio"
+        "en:lesson-08:session-11:i05:audio"
       ],
-      "accessibilityLabel": "Картка слова — debug",
+      "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-11:word:debug:audio",
-          "transcript": "debug"
+          "audioTargetId": "en:lesson-08:session-11:i05:audio",
+          "transcript": "I can do the washing."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-08:session-11:word:debug:r1",
-            "targetText": "debug",
-            "meaningByLocale": {
-              "ru": "отлаживать программы. She can’t debug. — «Она не умеет отлаживать программы». Находить и исправлять ошибки в коде.",
-              "uk": "налагоджувати програми. She can’t debug. — «Вона не вміє налагоджувати програми». Знаходити й виправляти помилки в коді."
-            }
+            "responseId": "en:lesson-08:session-11:i05:r1",
+            "targetText": "I can do the washing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i05:r2",
+            "targetText": "I can’t do the washing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i05:r3",
+            "targetText": "We can do the washing.",
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "debug",
-          "definitionByLocale": {
-            "ru": "отлаживать программы. She can’t debug. — «Она не умеет отлаживать программы». Находить и исправлять ошибки в коде.",
-            "uk": "налагоджувати програми. She can’t debug. — «Вона не вміє налагоджувати програми». Знаходити й виправляти помилки в коді."
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-11:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can do the washing.",
+              "uk": "У записі звучить I can do the washing."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can do the washing.",
+              "uk": "У записі звучить I can do the washing."
+            }
           }
-        }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -378,61 +382,98 @@
       "interactionId": "en:lesson-08:session-11:i06",
       "ordinal": 11,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажіть про знайому «Вона не вміє налагоджувати програми»",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після can або can’t",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-11:i06:r1",
+          "text": "do"
+        },
+        {
+          "responseId": "en:lesson-08:session-11:i06:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-08:session-11:i06:r3",
+          "text": "to do"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про знайому «Вона не вміє налагоджувати програми»",
+      "accessibilityLabel": "Виберіть форму після can або can’t",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "She can’t debug.",
-        "localizedMeaning": {
-          "ru": "Скажите о знакомой «Она не умеет отлаживать программы»",
-          "uk": "Скажіть про знайому «Вона не вміє налагоджувати програми»"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после can или can’t",
+          "uk": "Виберіть форму після can або can’t"
         },
-        "orderedTokens": [
-          "She",
-          "can’t",
-          "debug"
+        "gappedTargetPhrase": "I can ___ the washing.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-11:i06:r1",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i06:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i06:r3",
+            "text": "to do"
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "testedDimension": "Виберіть форму після can або can’t",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-11:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після can або can’t",
+            "feedbackByLocale": {
+              "ru": "После can или can’t глагол без окончания s.",
+              "uk": "Після can або can’t дієслово без закінчення s."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після can або can’t",
+            "feedbackByLocale": {
+              "ru": "После can или can’t не нужно to.",
+              "uk": "Після can або can’t не потрібне to."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-11:word:webcam",
+      "interactionId": "en:lesson-08:session-11:word:do-the-ironing",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — webcam",
+      "prompt": "Картка слова — do the ironing",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-08:session-11:word:webcam:audio"
+        "en:lesson-08:session-11:word:do-the-ironing:audio"
       ],
-      "accessibilityLabel": "Картка слова — webcam",
+      "accessibilityLabel": "Картка слова — do the ironing",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-11:word:webcam:audio",
-          "transcript": "webcam"
+          "audioTargetId": "en:lesson-08:session-11:word:do-the-ironing:audio",
+          "transcript": "do the ironing"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-08:session-11:word:webcam:r1",
-            "targetText": "webcam",
+            "responseId": "en:lesson-08:session-11:word:do-the-ironing:r1",
+            "targetText": "do the ironing",
             "meaningByLocale": {
-              "ru": "веб-камера. Whose webcam is this? — «Чья это веб-камера?» Камера для передачи видео через компьютер.",
-              "uk": "вебкамера. Whose webcam is this? — «Чия це вебкамера?» Камера для передавання відео через комп’ютер."
+              "ru": "гладить бельё.",
+              "uk": "прасувати білизну."
             }
           }
         ],
@@ -440,10 +481,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "webcam",
+          "word": "do the ironing",
           "definitionByLocale": {
-            "ru": "веб-камера. Whose webcam is this? — «Чья это веб-камера?» Камера для передачи видео через компьютер.",
-            "uk": "вебкамера. Whose webcam is this? — «Чия це вебкамера?» Камера для передавання відео через комп’ютер."
+            "ru": "гладить бельё.",
+            "uk": "прасувати білизну."
           }
         }
       },
@@ -453,32 +494,33 @@
       "interactionId": "en:lesson-08:session-11:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Запитайте колег «Чия це вебкамера?»",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Вона не вміє прасувати білизну",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-11:i07:audio"
-      ],
-      "accessibilityLabel": "Запитайте колег «Чия це вебкамера?»",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Вона не вміє прасувати білизну",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-11:i07:audio",
-          "transcript": "Whose webcam is this?"
+        "family": "phrase_builder",
+        "targetPhrase": "She can’t do the ironing.",
+        "localizedMeaning": {
+          "ru": "Скажите: Она не умеет гладить бельё",
+          "uk": "Скажіть: Вона не вміє прасувати білизну"
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "Whose webcam is this?",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "orderedTokens": [
+          "She",
+          "can’t",
+          "do",
+          "the",
+          "ironing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -486,139 +528,70 @@
       "interactionId": "en:lesson-08:session-11:i08",
       "ordinal": 14,
       "purpose": "guided_practice",
-      "family": "context_gap_grammar",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово: «Вона не вміє налагоджувати програми»",
+      "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-11:i08:r1",
-          "text": "debug"
+          "text": "She can’t do the ironing."
         },
         {
           "responseId": "en:lesson-08:session-11:i08:r2",
-          "text": "debugs"
+          "text": "She can do the ironing."
         },
         {
           "responseId": "en:lesson-08:session-11:i08:r3",
-          "text": "to debug"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово: «Вона не вміє налагоджувати програми»",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Выберите слово: «Она не умеет отлаживать программы»",
-          "uk": "Виберіть слово: «Вона не вміє налагоджувати програми»"
-        },
-        "gappedTargetPhrase": "She can’t ___.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-08:session-11:i08:r1",
-            "text": "debug"
-          },
-          {
-            "responseId": "en:lesson-08:session-11:i08:r2",
-            "text": "debugs"
-          },
-          {
-            "responseId": "en:lesson-08:session-11:i08:r3",
-            "text": "to debug"
-          }
-        ],
-        "testedDimension": "Виберіть слово: «Вона не вміє налагоджувати програми»",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-08:session-11:i08:r2",
-            "correct": false,
-            "testedDimension": "Виберіть слово: «Вона не вміє налагоджувати програми»",
-            "feedbackByLocale": {
-              "ru": "После `can’t` нужно `debug`, без `s`.",
-              "uk": "Після `can’t` потрібне `debug`, без `s`."
-            }
-          },
-          {
-            "responseId": "en:lesson-08:session-11:i08:r3",
-            "correct": false,
-            "testedDimension": "Виберіть слово: «Вона не вміє налагоджувати програми»",
-            "feedbackByLocale": {
-              "ru": "После `can’t` нужно `debug`, без `to`.",
-              "uk": "Після `can’t` потрібне `debug`, без `to`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-11:i09",
-      "ordinal": 15,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-08:session-11:i09:r1",
-          "text": "I can’t code."
-        },
-        {
-          "responseId": "en:lesson-08:session-11:i09:r2",
-          "text": "I can’t debug."
-        },
-        {
-          "responseId": "en:lesson-08:session-11:i09:r3",
-          "text": "I can’t dive."
+          "text": "We can’t do the ironing."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-08:session-11:i09:audio"
+        "en:lesson-08:session-11:i08:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-11:i09:audio",
-          "transcript": "I can’t code."
+          "audioTargetId": "en:lesson-08:session-11:i08:audio",
+          "transcript": "She can’t do the ironing."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-08:session-11:i09:r1",
-            "targetText": "I can’t code.",
+            "responseId": "en:lesson-08:session-11:i08:r1",
+            "targetText": "She can’t do the ironing.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-08:session-11:i09:r2",
-            "targetText": "I can’t debug.",
+            "responseId": "en:lesson-08:session-11:i08:r2",
+            "targetText": "She can do the ironing.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-08:session-11:i09:r3",
-            "targetText": "I can’t dive.",
+            "responseId": "en:lesson-08:session-11:i08:r3",
+            "targetText": "We can’t do the ironing.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-08:session-11:i09:r2",
+            "responseId": "en:lesson-08:session-11:i08:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `code`, а в этом варианте — `debug`.",
-              "uk": "У записі останнє слово — `code`, а в цьому варіанті — `debug`."
+              "ru": "В записи звучит She can’t do the ironing.",
+              "uk": "У записі звучить She can’t do the ironing."
             }
           },
           {
-            "responseId": "en:lesson-08:session-11:i09:r3",
+            "responseId": "en:lesson-08:session-11:i08:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `code`, а в этом варианте — `dive`.",
-              "uk": "У записі останнє слово — `code`, а в цьому варіанті — `dive`."
+              "ru": "В записи звучит She can’t do the ironing.",
+              "uk": "У записі звучить She can’t do the ironing."
             }
           }
         ],
@@ -628,63 +601,354 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-11:i10",
+      "interactionId": "en:lesson-08:session-11:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після can або can’t",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-11:i09:r1",
+          "text": "do"
+        },
+        {
+          "responseId": "en:lesson-08:session-11:i09:r2",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-08:session-11:i09:r3",
+          "text": "to do"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після can або can’t",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после can или can’t",
+          "uk": "Виберіть форму після can або can’t"
+        },
+        "gappedTargetPhrase": "She can’t ___ the ironing.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-11:i09:r1",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i09:r2",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i09:r3",
+            "text": "to do"
+          }
+        ],
+        "testedDimension": "Виберіть форму після can або can’t",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-11:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після can або can’t",
+            "feedbackByLocale": {
+              "ru": "После can или can’t глагол без окончания s.",
+              "uk": "Після can або can’t дієслово без закінчення s."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після can або can’t",
+            "feedbackByLocale": {
+              "ru": "После can или can’t не нужно to.",
+              "uk": "Після can або can’t не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:word:clear-the-table",
       "ordinal": 16,
       "purpose": "guided_practice",
-      "family": "speed_match",
-      "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — clear the table",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-11:word:clear-the-table:audio"
+      ],
+      "accessibilityLabel": "Картка слова — clear the table",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-11:word:clear-the-table:audio",
+          "transcript": "clear the table"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-11:word:clear-the-table:r1",
+            "targetText": "clear the table",
+            "meaningByLocale": {
+              "ru": "убирать со стола посуду.",
+              "uk": "прибирати зі столу посуд."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "clear the table",
+          "definitionByLocale": {
+            "ru": "убирать со стола посуду.",
+            "uk": "прибирати зі столу посуд."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я можу прибрати зі столу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "Скажіть: Я можу прибрати зі столу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can clear the table.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я могу убрать со стола",
+          "uk": "Скажіть: Я можу прибрати зі столу"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "clear",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-11:i11:r1",
+          "text": "I can clear the table."
+        },
+        {
+          "responseId": "en:lesson-08:session-11:i11:r2",
+          "text": "I can’t clear the table."
+        },
+        {
+          "responseId": "en:lesson-08:session-11:i11:r3",
+          "text": "We can clear the table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-11:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-11:i11:audio",
+          "transcript": "I can clear the table."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-11:i11:r1",
+            "targetText": "I can clear the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i11:r2",
+            "targetText": "I can’t clear the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i11:r3",
+            "targetText": "We can clear the table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-11:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can clear the table.",
+              "uk": "У записі звучить I can clear the table."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can clear the table.",
+              "uk": "У записі звучить I can clear the table."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після can або can’t",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-11:i12:r1",
+          "text": "clear"
+        },
+        {
+          "responseId": "en:lesson-08:session-11:i12:r2",
+          "text": "clears"
+        },
+        {
+          "responseId": "en:lesson-08:session-11:i12:r3",
+          "text": "to clear"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після can або can’t",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после can или can’t",
+          "uk": "Виберіть форму після can або can’t"
+        },
+        "gappedTargetPhrase": "I can ___ the table.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-11:i12:r1",
+            "text": "clear"
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i12:r2",
+            "text": "clears"
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i12:r3",
+            "text": "to clear"
+          }
+        ],
+        "testedDimension": "Виберіть форму після can або can’t",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-11:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після can або can’t",
+            "feedbackByLocale": {
+              "ru": "После can или can’t глагол без окончания s.",
+              "uk": "Після can або can’t дієслово без закінчення s."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-11:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після can або can’t",
+            "feedbackByLocale": {
+              "ru": "После can или can’t не нужно to.",
+              "uk": "Після can або can’t не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-11:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте домашні справи з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте домашні справи з перекладом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-08:session-11:i10:p1",
-            "target": "debug",
+            "pairId": "en:lesson-08:session-11:i13:p1",
+            "target": "make the bed",
             "meaningByLocale": {
-              "ru": "отлаживать программы",
-              "uk": "налагоджувати програми"
+              "ru": "заправлять постель",
+              "uk": "застеляти ліжко"
             }
           },
           {
-            "pairId": "en:lesson-08:session-11:i10:p2",
-            "target": "code",
+            "pairId": "en:lesson-08:session-11:i13:p2",
+            "target": "do the washing",
             "meaningByLocale": {
-              "ru": "писать код",
-              "uk": "писати код"
+              "ru": "стирать бельё",
+              "uk": "прати білизну"
             }
           },
           {
-            "pairId": "en:lesson-08:session-11:i10:p3",
-            "target": "webcam",
+            "pairId": "en:lesson-08:session-11:i13:p3",
+            "target": "do the ironing",
             "meaningByLocale": {
-              "ru": "веб-камера",
-              "uk": "вебкамера"
+              "ru": "гладить бельё",
+              "uk": "прасувати білизну"
             }
           },
           {
-            "pairId": "en:lesson-08:session-11:i10:p4",
-            "target": "learn",
+            "pairId": "en:lesson-08:session-11:i13:p4",
+            "target": "clear the table",
             "meaningByLocale": {
-              "ru": "учиться",
-              "uk": "вчитися"
+              "ru": "убирать со стола посуду",
+              "uk": "прибирати зі столу посуд"
             }
           }
         ],
         "leftColumn": [
-          "debug",
-          "code",
-          "webcam",
-          "learn"
+          "make the bed",
+          "do the washing",
+          "do the ironing",
+          "clear the table"
         ],
         "rightColumn": [
-          "налагоджувати програми",
-          "писати код",
-          "вебкамера",
-          "вчитися"
+          "застеляти ліжко",
+          "прати білизну",
+          "прасувати білизну",
+          "прибирати зі столу посуд"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -696,151 +960,6 @@
           "speed",
           "accuracy",
           "personal_best"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-11:i11",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-11:i11:audio"
-      ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-11:i11:audio",
-          "transcript": "Whose webcam is this?"
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Whose webcam is this?",
-        "orderedTokens": [
-          "Whose",
-          "webcam",
-          "is",
-          "this"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-11:word:modem",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — modem",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-11:word:modem:audio"
-      ],
-      "accessibilityLabel": "Картка слова — modem",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-11:word:modem:audio",
-          "transcript": "modem"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-08:session-11:word:modem:r1",
-            "targetText": "modem",
-            "meaningByLocale": {
-              "ru": "модем. Whose modem is this? — «Чей это модем?» Устройство связи для подключения к интернету.",
-              "uk": "модем. Whose modem is this? — «Чий це модем?» Пристрій зв’язку для підключення до інтернету."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "modem",
-          "definitionByLocale": {
-            "ru": "модем. Whose modem is this? — «Чей это модем?» Устройство связи для подключения к интернету.",
-            "uk": "модем. Whose modem is this? — «Чий це модем?» Пристрій зв’язку для підключення до інтернету."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-11:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Після налаштування інтернету на столі залишився модем. Запитайте: «Чий це модем?»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Після налаштування інтернету на столі залишився модем. Запитайте: «Чий це модем?»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Whose modem is this?",
-        "localizedMeaning": {
-          "ru": "После настройки интернета на столе остался модем. Спросите: «Чей это модем?»",
-          "uk": "Після налаштування інтернету на столі залишився модем. Запитайте: «Чий це модем?»"
-        },
-        "orderedTokens": [
-          "Whose",
-          "modem",
-          "is",
-          "this"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-11:i13",
-      "ordinal": 20,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Сусід запитує про модем поряд із вашою сумкою. Скажіть: «Це мій модем».",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-11:i13:audio"
-      ],
-      "accessibilityLabel": "Сусід запитує про модем поряд із вашою сумкою. Скажіть: «Це мій модем».",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-11:i13:audio",
-          "transcript": "This is my modem."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "This is my modem.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -849,68 +968,36 @@
       "interactionId": "en:lesson-08:session-11:i14",
       "ordinal": 21,
       "purpose": "independent_check",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Виберіть форму: «Вона не вміє писати код»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-08:session-11:i14:r1",
-          "text": "can’t"
-        },
-        {
-          "responseId": "en:lesson-08:session-11:i14:r2",
-          "text": "can"
-        },
-        {
-          "responseId": "en:lesson-08:session-11:i14:r3",
-          "text": "is can’t"
-        }
-      ],
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму: «Вона не вміє писати код»",
+      "audioTargetIds": [
+        "en:lesson-08:session-11:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Выберите форму: «Она не умеет писать код»",
-          "uk": "Виберіть форму: «Вона не вміє писати код»"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-11:i14:audio",
+          "transcript": "He can do the washing."
         },
-        "gappedTargetPhrase": "She ___ code.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-08:session-11:i14:r1",
-            "text": "can’t"
-          },
-          {
-            "responseId": "en:lesson-08:session-11:i14:r2",
-            "text": "can"
-          },
-          {
-            "responseId": "en:lesson-08:session-11:i14:r3",
-            "text": "is can’t"
-          }
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "He can do the washing.",
+        "orderedTokens": [
+          "He",
+          "can",
+          "do",
+          "the",
+          "washing"
         ],
-        "testedDimension": "Виберіть форму: «Вона не вміє писати код»",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-08:session-11:i14:r2",
-            "correct": false,
-            "testedDimension": "Виберіть форму: «Вона не вміє писати код»",
-            "feedbackByLocale": {
-              "ru": "`Can` значит «умеет», здесь нужно `can’t` — «не умеет».",
-              "uk": "`Can` означає «вміє», тут потрібне `can’t` — «не вміє»."
-            }
-          },
-          {
-            "responseId": "en:lesson-08:session-11:i14:r3",
-            "correct": false,
-            "testedDimension": "Виберіть форму: «Вона не вміє писати код»",
-            "feedbackByLocale": {
-              "ru": "Достаточно `she can’t`; `is` не нужно.",
-              "uk": "Достатньо `she can’t`; `is` не потрібне."
-            }
-          }
-        ]
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -918,147 +1005,68 @@
       "interactionId": "en:lesson-08:session-11:i15",
       "ordinal": 22,
       "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-08:session-11:i15:r1",
-          "text": "This is my modem."
-        },
-        {
-          "responseId": "en:lesson-08:session-11:i15:r2",
-          "text": "This is your modem."
-        },
-        {
-          "responseId": "en:lesson-08:session-11:i15:r3",
-          "text": "This is my webcam."
-        }
-      ],
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-11:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "accessibilityLabel": "Складіть почуте",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-11:i15:audio",
-          "transcript": "This is my modem."
+          "transcript": "We can clear the table."
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-08:session-11:i15:r1",
-            "targetText": "This is my modem.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-08:session-11:i15:r2",
-            "targetText": "This is your modem.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-08:session-11:i15:r3",
-            "targetText": "This is my webcam.",
-            "meaningByLocale": null
-          }
+        "hiddenTargetPhrase": "We can clear the table.",
+        "orderedTokens": [
+          "We",
+          "can",
+          "clear",
+          "the",
+          "table"
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-08:session-11:i15:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
-            "feedbackByLocale": {
-              "ru": "В записи my — «мой», а не your.",
-              "uk": "У записі my — «мій», а не your."
-            }
-          },
-          {
-            "responseId": "en:lesson-08:session-11:i15:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
-            "feedbackByLocale": {
-              "ru": "В записи modem — «модем», а не webcam.",
-              "uk": "У записі modem — «модем», а не webcam."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-08:session-11:i16",
       "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "speed_match",
-      "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: Том не вміє прасувати білизну",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "audioTargetIds": [
+        "en:lesson-08:session-11:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: Том не вміє прасувати білизну",
       "modePayload": {
-        "family": "speed_match",
-        "pairGrid": [
-          {
-            "pairId": "en:lesson-08:session-11:i16:p1",
-            "target": "code",
-            "meaningByLocale": {
-              "ru": "писать код",
-              "uk": "писати код"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-11:i16:p2",
-            "target": "debug",
-            "meaningByLocale": {
-              "ru": "отлаживать программы",
-              "uk": "налагоджувати програми"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-11:i16:p3",
-            "target": "webcam",
-            "meaningByLocale": {
-              "ru": "веб-камера",
-              "uk": "вебкамера"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-11:i16:p4",
-            "target": "modem",
-            "meaningByLocale": {
-              "ru": "модем",
-              "uk": "модем"
-            }
-          }
-        ],
-        "leftColumn": [
-          "code",
-          "debug",
-          "webcam",
-          "modem"
-        ],
-        "rightColumn": [
-          "писати код",
-          "налагоджувати програми",
-          "вебкамера",
-          "модем"
-        ],
-        "pairingKey": "pair_id",
-        "timerPolicy": {
-          "enabledByDefault": true,
-          "learnerCanDisable": true,
-          "pausesOnInterruption": true
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-11:i16:audio",
+          "transcript": "Tom can’t do the ironing."
         },
-        "finishStats": [
-          "speed",
-          "accuracy",
-          "personal_best"
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom can’t do the ironing.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -1066,35 +1074,27 @@
     {
       "interactionId": "en:lesson-08:session-11:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Колега запитує, чи вміє Том програмувати. Том поки не навчився. Скажіть «Том не вміє писати код»",
+      "prompt": "Скажіть: вона вміє застеляти ліжко",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-11:i17:audio"
       ],
-      "accessibilityLabel": "Колега запитує, чи вміє Том програмувати. Том поки не навчився. Скажіть «Том не вміє писати код»",
+      "accessibilityLabel": "Скажіть: вона вміє застеляти ліжко",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-11:i17:audio",
-          "transcript": "Tom can’t code."
+          "transcript": "She can make the bed."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom can’t code.",
+        "targetPhrase": "She can make the bed.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1111,5 +1111,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "02d66563aa6c08cfbc8d7f2ac7d20ad1b1e882b613fa65192f0964a5c0812814"
+  "learnerFingerprint": "e14d7ed1b3a0cf8144906decbdc6b30929dcef3c51999ce8a361dd5929662c2a"
 }

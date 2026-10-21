@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "review: past event sequence",
+    "uk": "review: past event sequence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пощекотать",
+        "uk": "Полоскотати"
+      },
+      "bodyByLocale": {
+        "ru": "Tickle — щекотать. Did you tickle your brother? — Ты щекотал брата? После did нужна tickle. Выберите вопрос.",
+        "uk": "Tickle — лоскотати. Did you tickle your brother? — Ти лоскотав брата? Після did потрібна tickle. Виберіть запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-41:intro1:r1",
+              "text": "Did you tickle your brother?"
+            },
+            {
+              "responseId": "en:lesson-13:session-41:intro1:r2",
+              "text": "Did you tickled your brother?"
+            },
+            {
+              "responseId": "en:lesson-13:session-41:intro1:r3",
+              "text": "You tickled your brother."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-41:intro1:r1",
+              "text": "Did you tickle your brother?"
+            },
+            {
+              "responseId": "en:lesson-13:session-41:intro1:r2",
+              "text": "Did you tickled your brother?"
+            },
+            {
+              "responseId": "en:lesson-13:session-41:intro1:r3",
+              "text": "You tickled your brother."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Прищемить палец",
+        "uk": "Прищемити палець"
+      },
+      "bodyByLocale": {
+        "ru": "Pinch — ущипнуть или прищемить. Здесь случайность с дверью: Did you pinch your finger in the door? — Ты прищемил палец дверью? Выберите вопрос о пальце.",
+        "uk": "Pinch — ущипнути або прищемити. Тут випадковість із дверима: Did you pinch your finger in the door? — Ти прищемив палець дверима? Виберіть запитання про палець."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-41:intro2:r1",
+              "text": "Did you pinch your finger in the door?"
+            },
+            {
+              "responseId": "en:lesson-13:session-41:intro2:r2",
+              "text": "Did you close the door quietly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-41:intro2:r3",
+              "text": "Did you pinched your finger in the door?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-41:intro2:r1",
+              "text": "Did you pinch your finger in the door?"
+            },
+            {
+              "responseId": "en:lesson-13:session-41:intro2:r2",
+              "text": "Did you close the door quietly?"
+            },
+            {
+              "responseId": "en:lesson-13:session-41:intro2:r3",
+              "text": "Did you pinched your finger in the door?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Похлопать и погладить",
+        "uk": "Поплескати й погладити"
+      },
+      "bodyByLocale": {
+        "ru": "Pat — мягко похлопать ладонью; stroke — погладить плавным движением руки. Did you stroke the cat? — Ты погладил кошку? Выберите поглаживание кошки.",
+        "uk": "Pat — легенько поплескати долонею; stroke — погладити плавним рухом руки. Did you stroke the cat? — Ти погладив кішку? Виберіть погладжування кішки."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-41:intro3:r1",
+              "text": "Did you stroke the cat?"
+            },
+            {
+              "responseId": "en:lesson-13:session-41:intro3:r2",
+              "text": "Did you pat the dog?"
+            },
+            {
+              "responseId": "en:lesson-13:session-41:intro3:r3",
+              "text": "Did you stroked the cat?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-41:intro3:r1",
+              "text": "Did you stroke the cat?"
+            },
+            {
+              "responseId": "en:lesson-13:session-41:intro3:r2",
+              "text": "Did you pat the dog?"
+            },
+            {
+              "responseId": "en:lesson-13:session-41:intro3:r3",
+              "text": "Did you stroked the cat?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0256f1904e2ffbe380423b1410cc945e99f6285d0b175c67c1b0bfc5c5787bd1"
+}

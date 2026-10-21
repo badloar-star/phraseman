@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-08:session-25",
   "learningOutcomeByLocale": {
-    "ru": "дать короткое указание: начать сразу с действия",
-    "uk": "дати коротку вказівку: почати одразу з дії"
+    "ru": "короткая просьба: глагол в начале",
+    "uk": "коротке прохання: дієслово на початку"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-08:session-25:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Файл к письму",
-        "uk": "Файл до листа"
+        "ru": "Йогурт по списку",
+        "uk": "Йогурт за списком"
       },
       "bodyByLocale": {
-        "ru": "Друг пишет письмо и спрашивает, что делать с готовым файлом. `Attach` — «прикрепить». `Attach it` — «Прикрепи его». Здесь `it` — файл. Для короткого указания начните сразу с действия: `Attach`, без `you` и `to`. Письмо с фразой «файл прикреплён» убедительнее, когда файл действительно прикреплён.",
-        "uk": "Друг пише листа й запитує, що робити з готовим файлом. `Attach` — «прикріпити». `Attach it` — «Прикріпи його». Тут `it` — файл. Для короткої вказівки почніть одразу з дії: `Attach`, без `you` і `to`. Лист із фразою «файл прикріплено» переконливіший, коли файл справді прикріплено."
+        "ru": "Low-fat — с пониженным содержанием жира. Buy low-fat yoghurt — купи йогурт с пониженным содержанием жира. Короткую просьбу начинаем с Buy. Выберите эту просьбу.",
+        "uk": "Low-fat — зі зниженим вмістом жиру. Buy low-fat yoghurt — купи йогурт зі зниженим вмістом жиру. Коротке прохання починаємо з Buy. Виберіть це прохання."
       },
       "question": {
         "interactionId": "en:lesson-08:session-25:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите другу прикрепить файл.",
-          "uk": "Скажіть другові прикріпити файл."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-25:intro1:r1",
-              "text": "Attach it."
+              "text": "Buy low-fat yoghurt."
             },
             {
               "responseId": "en:lesson-08:session-25:intro1:r2",
-              "text": "To attach it."
+              "text": "Don’t buy low-fat yoghurt."
             },
             {
               "responseId": "en:lesson-08:session-25:intro1:r3",
-              "text": "Attaches it."
+              "text": "Buys low-fat yoghurt."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-25:intro1:r1",
-              "text": "Attach it."
+              "text": "Buy low-fat yoghurt."
             },
             {
               "responseId": "en:lesson-08:session-25:intro1:r2",
-              "text": "To attach it."
+              "text": "Don’t buy low-fat yoghurt."
             },
             {
               "responseId": "en:lesson-08:session-25:intro1:r3",
-              "text": "Attaches it."
+              "text": "Buys low-fat yoghurt."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите другу прикрепить файл.",
-          "uk": "Скажіть другові прикріпити файл."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-25:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Два похожих адреса",
-        "uk": "Дві схожі адреси"
+        "ru": "Обычная жирность",
+        "uk": "Звичайна жирність"
       },
       "bodyByLocale": {
-        "ru": "Коллега готов отправить письмо клиенту, но в адресной книге два человека с одинаковой фамилией. Recipient — «получатель», тот, кому отправляют сообщение. `Check the recipient` — «Проверь получателя». Вы даёте короткое указание перед отправкой: сначала убедиться, что выбран нужный человек.",
-        "uk": "Колега готовий надіслати лист клієнтові, але в адресній книзі дві людини з однаковим прізвищем. Recipient — «одержувач», той, кому надсилають повідомлення. `Check the recipient` — «Перевір одержувача». Ви даєте коротку вказівку перед надсиланням: спочатку переконатися, що вибрано потрібну людину."
+        "ru": "Full-fat — с обычным, не сниженным содержанием жира. Buy full-fat yoghurt — купи йогурт обычной жирности. Это описание на упаковке, а не оценка пользы. Выберите обычную жирность.",
+        "uk": "Full-fat — зі звичайним, не зниженим вмістом жиру. Buy full-fat yoghurt — купи йогурт звичайної жирності. Це опис на пакуванні, а не оцінка користі. Виберіть звичайну жирність."
       },
       "question": {
         "interactionId": "en:lesson-08:session-25:intro2:q",
         "promptByLocale": {
-          "ru": "Скажите коллеге проверить получателя.",
-          "uk": "Скажіть колезі перевірити одержувача."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-25:intro2:r1",
-              "text": "Check the recipient."
+              "text": "Buy full-fat yoghurt."
             },
             {
               "responseId": "en:lesson-08:session-25:intro2:r2",
-              "text": "Checks the recipient."
+              "text": "Buy low-fat yoghurt."
             },
             {
               "responseId": "en:lesson-08:session-25:intro2:r3",
-              "text": "To check the recipient."
+              "text": "Buys full-fat yoghurt."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-25:intro2:r1",
-              "text": "Check the recipient."
+              "text": "Buy full-fat yoghurt."
             },
             {
               "responseId": "en:lesson-08:session-25:intro2:r2",
-              "text": "Checks the recipient."
+              "text": "Buy low-fat yoghurt."
             },
             {
               "responseId": "en:lesson-08:session-25:intro2:r3",
-              "text": "To check the recipient."
+              "text": "Buys full-fat yoghurt."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите коллеге проверить получателя.",
-          "uk": "Скажіть колезі перевірити одержувача."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-25:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Инструкции к рабочей встрече",
-        "uk": "Інструкції до робочої зустрічі"
+        "ru": "Два вида молока",
+        "uk": "Два види молока"
       },
       "bodyByLocale": {
-        "ru": "Перед встречей вы отправили коллеге документ с инструкциями. Он нашёл файл и спрашивает, что делать дальше. Document — «документ», здесь электронный текстовый файл. `Open the document` — «Открой документ». Начните с Open; the указывает на уже найденный документ.",
-        "uk": "Перед зустріччю ви надіслали колезі документ з інструкціями. Він знайшов файл і запитує, що робити далі. Document — «документ», тут електронний текстовий файл. `Open the document` — «Відкрий документ». Почніть з Open; the вказує на вже знайдений документ."
+        "ru": "Skimmed milk — обезжиренное молоко; semi-skimmed milk — частично обезжиренное молоко. Buy semi-skimmed milk — купи частично обезжиренное молоко. Выберите именно его.",
+        "uk": "Skimmed milk — знежирене молоко; semi-skimmed milk — частково знежирене молоко. Buy semi-skimmed milk — купи частково знежирене молоко. Виберіть саме його."
       },
       "question": {
         "interactionId": "en:lesson-08:session-25:intro3:q",
         "promptByLocale": {
-          "ru": "Скажите коллеге открыть документ.",
-          "uk": "Скажіть колезі відкрити документ."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-25:intro3:r1",
-              "text": "Open the document."
+              "text": "Buy semi-skimmed milk."
             },
             {
               "responseId": "en:lesson-08:session-25:intro3:r2",
-              "text": "Opens the document."
+              "text": "Buy skimmed milk."
             },
             {
               "responseId": "en:lesson-08:session-25:intro3:r3",
-              "text": "To open the document."
+              "text": "Buys semi-skimmed milk."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-25:intro3:r1",
-              "text": "Open the document."
+              "text": "Buy semi-skimmed milk."
             },
             {
               "responseId": "en:lesson-08:session-25:intro3:r2",
-              "text": "Opens the document."
+              "text": "Buy skimmed milk."
             },
             {
               "responseId": "en:lesson-08:session-25:intro3:r3",
-              "text": "To open the document."
+              "text": "Buys semi-skimmed milk."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите коллеге открыть документ.",
-          "uk": "Скажіть колезі відкрити документ."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e22907c0333d9930665241c75200c48b3ea1a0dc334164ca814f622cfddd4b9f"
+  "introFingerprint": "f1f1ae99b3fe320a2678cc5b968da1fa0d455c0eb2f48b716e6db7987d3933ea"
 }

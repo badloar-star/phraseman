@@ -936,7 +936,7 @@
         },
         {
           "responseId": "en:lesson-08:session-56:i15:r3",
-          "text": "Whose prototype is this?"
+          "text": "Whose book is this?"
         }
       ],
       "mediaIds": [],
@@ -964,7 +964,7 @@
           },
           {
             "responseId": "en:lesson-08:session-56:i15:r3",
-            "targetText": "Whose prototype is this?",
+            "targetText": "Whose book is this?",
             "meaningByLocale": null
           }
         ],
@@ -1115,5 +1115,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4c45235b7d646d16f9ddae84caa0ffa96769cc9f782eba5a94857c567d0ebc71"
+  "learnerFingerprint": "6718e28229ec8c2f2eddce13408277f39f848e2ef6a90c4ea77184e30094164d"
 }

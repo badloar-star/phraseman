@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-08:session-25:word:attach",
-    "correctText": "attach",
+    "interactionId": "en:lesson-08:session-25:word:low-fat",
+    "correctText": "low-fat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-25:i01",
-    "correctText": "Attach it.",
+    "correctText": "Buy low-fat yoghurt.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-25:i02",
-    "correctText": "attach",
+    "correctText": "Buy low-fat yoghurt.",
     "correctResponseId": "en:lesson-08:session-25:i02:r1"
   },
   {
     "interactionId": "en:lesson-08:session-25:i03",
-    "correctText": "Attach",
+    "correctText": "Buy",
     "correctResponseId": "en:lesson-08:session-25:i03:r1"
   },
   {
+    "interactionId": "en:lesson-08:session-25:word:full-fat",
+    "correctText": "full-fat",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-25:i04",
-    "correctText": "en:lesson-08:session-25:i04:p1=attach\nen:lesson-08:session-25:i04:p2=file\nen:lesson-08:session-25:i04:p3=email\nen:lesson-08:session-25:i04:p4=check",
+    "correctText": "Buy full-fat yoghurt.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-25:i05",
-    "correctText": "Attach it.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-08:session-25:word:recipient",
-    "correctText": "recipient",
-    "correctResponseId": null
+    "correctText": "Buy full-fat yoghurt.",
+    "correctResponseId": "en:lesson-08:session-25:i05:r1"
   },
   {
     "interactionId": "en:lesson-08:session-25:i06",
-    "correctText": "Check the recipient.",
-    "correctResponseId": null
+    "correctText": "Buy",
+    "correctResponseId": "en:lesson-08:session-25:i06:r1"
   },
   {
-    "interactionId": "en:lesson-08:session-25:word:document",
-    "correctText": "document",
+    "interactionId": "en:lesson-08:session-25:word:skimmed",
+    "correctText": "skimmed",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-25:i07",
-    "correctText": "Open the document.",
+    "correctText": "Buy skimmed milk.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-25:i08",
-    "correctText": "Open",
+    "correctText": "Buy skimmed milk.",
     "correctResponseId": "en:lesson-08:session-25:i08:r1"
   },
   {
     "interactionId": "en:lesson-08:session-25:i09",
-    "correctText": "Attach it.",
+    "correctText": "Buy",
     "correctResponseId": "en:lesson-08:session-25:i09:r1"
   },
   {
+    "interactionId": "en:lesson-08:session-25:word:semi-skimmed",
+    "correctText": "semi-skimmed",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-25:i10",
-    "correctText": "en:lesson-08:session-25:i10:p1=attach\nen:lesson-08:session-25:i10:p2=recipient\nen:lesson-08:session-25:i10:p3=document\nen:lesson-08:session-25:i10:p4=check",
+    "correctText": "Buy semi-skimmed milk.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-25:i11",
-    "correctText": "Check the recipient.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-08:session-25:word:filename",
-    "correctText": "filename",
-    "correctResponseId": null
+    "correctText": "Buy semi-skimmed milk.",
+    "correctResponseId": "en:lesson-08:session-25:i11:r1"
   },
   {
     "interactionId": "en:lesson-08:session-25:i12",
-    "correctText": "Check the filename.",
-    "correctResponseId": null
+    "correctText": "Buy",
+    "correctResponseId": "en:lesson-08:session-25:i12:r1"
   },
   {
     "interactionId": "en:lesson-08:session-25:i13",
-    "correctText": "Attach the document.",
+    "correctText": "en:lesson-08:session-25:i13:p1=low-fat\nen:lesson-08:session-25:i13:p2=full-fat\nen:lesson-08:session-25:i13:p3=skimmed\nen:lesson-08:session-25:i13:p4=semi-skimmed",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-25:i14",
-    "correctText": "Check",
-    "correctResponseId": "en:lesson-08:session-25:i14:r1"
+    "correctText": "Please buy skimmed milk.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-25:i15",
-    "correctText": "Check the filename.",
-    "correctResponseId": "en:lesson-08:session-25:i15:r1"
+    "correctText": "Please buy full-fat yoghurt.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-25:i16",
-    "correctText": "en:lesson-08:session-25:i16:p1=attach\nen:lesson-08:session-25:i16:p2=recipient\nen:lesson-08:session-25:i16:p3=document\nen:lesson-08:session-25:i16:p4=filename",
+    "correctText": "Please buy semi-skimmed milk.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-25:i17",
-    "correctText": "Attach it.",
+    "correctText": "Please buy low-fat yoghurt.",
     "correctResponseId": null
   }
 ]

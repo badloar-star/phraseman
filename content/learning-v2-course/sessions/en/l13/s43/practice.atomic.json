@@ -1,0 +1,2329 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-13:session-43",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-13:session-43:word:felt-tip-pen",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — felt-tip pen",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:word:felt-tip-pen:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — felt-tip pen",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:word:felt-tip-pen:audio",
+            "transcript": "felt-tip pen"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-43:word:felt-tip-pen:r1",
+              "targetText": "felt-tip pen",
+              "meaningByLocale": {
+                "ru": "фломастер.",
+                "uk": "фломастер."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "felt-tip pen",
+            "definitionByLocale": {
+              "ru": "фломастер.",
+              "uk": "фломастер."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты использовал фломастер?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты использовал фломастер?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you use a felt-tip pen?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты использовал фломастер?",
+            "uk": "Скажіть: Ти використав фломастер?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "use",
+            "a",
+            "felt-tip",
+            "pen"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-43:i02:r1",
+            "text": "Did she use a felt-tip pen?"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i02:r2",
+            "text": "Did you use a felt-tip pen?"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i02:r3",
+            "text": "Did they use a felt-tip pen?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:i02:audio",
+            "transcript": "Did she use a felt-tip pen?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-43:i02:r1",
+              "targetText": "Did she use a felt-tip pen?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i02:r2",
+              "targetText": "Did you use a felt-tip pen?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i02:r3",
+              "targetText": "Did they use a felt-tip pen?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-43:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she use a felt-tip pen?",
+                "uk": "У записі звучить Did she use a felt-tip pen?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she use a felt-tip pen?",
+                "uk": "У записі звучить Did she use a felt-tip pen?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-43:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you use a felt-tip pen?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-43:i03:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i03:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i03:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-43:i03:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i03:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:word:ballpoint-pen",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — ballpoint pen",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:word:ballpoint-pen:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — ballpoint pen",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:word:ballpoint-pen:audio",
+            "transcript": "ballpoint pen"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-43:word:ballpoint-pen:r1",
+              "targetText": "ballpoint pen",
+              "meaningByLocale": {
+                "ru": "шариковая ручка.",
+                "uk": "кулькова ручка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ballpoint pen",
+            "definitionByLocale": {
+              "ru": "шариковая ручка.",
+              "uk": "кулькова ручка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты нашёл шариковую ручку?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты нашёл шариковую ручку?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you find a ballpoint pen?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты нашёл шариковую ручку?",
+            "uk": "Скажіть: Ти знайшов кулькову ручку?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "find",
+            "a",
+            "ballpoint",
+            "pen"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-43:i05:r1",
+            "text": "Did she find a ballpoint pen?"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i05:r2",
+            "text": "Did you find a ballpoint pen?"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i05:r3",
+            "text": "Did they find a ballpoint pen?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:i05:audio",
+            "transcript": "Did she find a ballpoint pen?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-43:i05:r1",
+              "targetText": "Did she find a ballpoint pen?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i05:r2",
+              "targetText": "Did you find a ballpoint pen?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i05:r3",
+              "targetText": "Did they find a ballpoint pen?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-43:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she find a ballpoint pen?",
+                "uk": "У записі звучить Did she find a ballpoint pen?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she find a ballpoint pen?",
+                "uk": "У записі звучить Did she find a ballpoint pen?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-43:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you find a ballpoint pen?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-43:i06:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i06:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i06:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-43:i06:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i06:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:word:fountain-pen",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fountain pen",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:word:fountain-pen:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fountain pen",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:word:fountain-pen:audio",
+            "transcript": "fountain pen"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-43:word:fountain-pen:r1",
+              "targetText": "fountain pen",
+              "meaningByLocale": {
+                "ru": "перьевая ручка.",
+                "uk": "пір’яна ручка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fountain pen",
+            "definitionByLocale": {
+              "ru": "перьевая ручка.",
+              "uk": "пір’яна ручка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты использовал перьевую ручку?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты использовал перьевую ручку?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you use a fountain pen?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты использовал перьевую ручку?",
+            "uk": "Скажіть: Ти використав пір’яну ручку?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "use",
+            "a",
+            "fountain",
+            "pen"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-43:i08:r1",
+            "text": "Did she use a fountain pen?"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i08:r2",
+            "text": "Did you use a fountain pen?"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i08:r3",
+            "text": "Did they use a fountain pen?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:i08:audio",
+            "transcript": "Did she use a fountain pen?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-43:i08:r1",
+              "targetText": "Did she use a fountain pen?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i08:r2",
+              "targetText": "Did you use a fountain pen?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i08:r3",
+              "targetText": "Did they use a fountain pen?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-43:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she use a fountain pen?",
+                "uk": "У записі звучить Did she use a fountain pen?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she use a fountain pen?",
+                "uk": "У записі звучить Did she use a fountain pen?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-43:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you use a fountain pen?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-43:i09:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i09:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i09:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-43:i09:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i09:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:word:coloured-pencil",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — coloured pencil",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:word:coloured-pencil:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — coloured pencil",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:word:coloured-pencil:audio",
+            "transcript": "coloured pencil"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-43:word:coloured-pencil:r1",
+              "targetText": "coloured pencil",
+              "meaningByLocale": {
+                "ru": "цветной карандаш.",
+                "uk": "кольоровий олівець."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "coloured pencil",
+            "definitionByLocale": {
+              "ru": "цветной карандаш.",
+              "uk": "кольоровий олівець."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты использовал цветной карандаш?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты использовал цветной карандаш?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you use a coloured pencil?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты использовал цветной карандаш?",
+            "uk": "Скажіть: Ти використав кольоровий олівець?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "use",
+            "a",
+            "coloured",
+            "pencil"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-43:i11:r1",
+            "text": "Did she use a coloured pencil?"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i11:r2",
+            "text": "Did you use a coloured pencil?"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i11:r3",
+            "text": "Did they use a coloured pencil?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:i11:audio",
+            "transcript": "Did she use a coloured pencil?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-43:i11:r1",
+              "targetText": "Did she use a coloured pencil?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i11:r2",
+              "targetText": "Did you use a coloured pencil?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i11:r3",
+              "targetText": "Did they use a coloured pencil?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-43:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she use a coloured pencil?",
+                "uk": "У записі звучить Did she use a coloured pencil?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she use a coloured pencil?",
+                "uk": "У записі звучить Did she use a coloured pencil?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-43:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you use a coloured pencil?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-43:i12:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i12:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i12:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-43:i12:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i12:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-13:session-43:i13:p1",
+              "target": "felt-tip pen",
+              "meaningByLocale": {
+                "ru": "фломастер",
+                "uk": "фломастер"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-43:i13:p2",
+              "target": "ballpoint pen",
+              "meaningByLocale": {
+                "ru": "шариковая ручка",
+                "uk": "кулькова ручка"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-43:i13:p3",
+              "target": "fountain pen",
+              "meaningByLocale": {
+                "ru": "перьевая ручка",
+                "uk": "пір’яна ручка"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-43:i13:p4",
+              "target": "coloured pencil",
+              "meaningByLocale": {
+                "ru": "цветной карандаш",
+                "uk": "кольоровий олівець"
+              }
+            }
+          ],
+          "leftColumn": [
+            "felt-tip pen",
+            "ballpoint pen",
+            "fountain pen",
+            "coloured pencil"
+          ],
+          "rightColumn": [
+            "фломастер",
+            "шариковая ручка",
+            "перьевая ручка",
+            "цветной карандаш"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:i14:audio",
+            "transcript": "First I found a ballpoint pen."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "First I found a ballpoint pen.",
+          "orderedTokens": [
+            "First",
+            "I",
+            "found",
+            "a",
+            "ballpoint",
+            "pen"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:i15:audio",
+            "transcript": "Then I wrote the address."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Then I wrote the address.",
+          "orderedTokens": [
+            "Then",
+            "I",
+            "wrote",
+            "the",
+            "address"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: затем она использовала цветной карандаш",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: затем она использовала цветной карандаш",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:i16:audio",
+            "transcript": "Then she used a coloured pencil."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Then she used a coloured pencil.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: я не использовал перьевую ручку вчера",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: я не использовал перьевую ручку вчера",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:i17:audio",
+            "transcript": "I didn't use a fountain pen yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I didn't use a fountain pen yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-13:session-43:word:felt-tip-pen",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — felt-tip pen",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:word:felt-tip-pen:audio"
+        ],
+        "accessibilityLabel": "Картка слова — felt-tip pen",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:word:felt-tip-pen:audio",
+            "transcript": "felt-tip pen"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-43:word:felt-tip-pen:r1",
+              "targetText": "felt-tip pen",
+              "meaningByLocale": {
+                "ru": "фломастер.",
+                "uk": "фломастер."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "felt-tip pen",
+            "definitionByLocale": {
+              "ru": "фломастер.",
+              "uk": "фломастер."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти використав фломастер?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти використав фломастер?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you use a felt-tip pen?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты использовал фломастер?",
+            "uk": "Скажіть: Ти використав фломастер?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "use",
+            "a",
+            "felt-tip",
+            "pen"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-43:i02:r1",
+            "text": "Did she use a felt-tip pen?"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i02:r2",
+            "text": "Did you use a felt-tip pen?"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i02:r3",
+            "text": "Did they use a felt-tip pen?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:i02:audio",
+            "transcript": "Did she use a felt-tip pen?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-43:i02:r1",
+              "targetText": "Did she use a felt-tip pen?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i02:r2",
+              "targetText": "Did you use a felt-tip pen?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i02:r3",
+              "targetText": "Did they use a felt-tip pen?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-43:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she use a felt-tip pen?",
+                "uk": "У записі звучить Did she use a felt-tip pen?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she use a felt-tip pen?",
+                "uk": "У записі звучить Did she use a felt-tip pen?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-43:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you use a felt-tip pen?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-43:i03:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i03:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i03:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-43:i03:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i03:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:word:ballpoint-pen",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — ballpoint pen",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:word:ballpoint-pen:audio"
+        ],
+        "accessibilityLabel": "Картка слова — ballpoint pen",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:word:ballpoint-pen:audio",
+            "transcript": "ballpoint pen"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-43:word:ballpoint-pen:r1",
+              "targetText": "ballpoint pen",
+              "meaningByLocale": {
+                "ru": "шариковая ручка.",
+                "uk": "кулькова ручка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "ballpoint pen",
+            "definitionByLocale": {
+              "ru": "шариковая ручка.",
+              "uk": "кулькова ручка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти знайшов кулькову ручку?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти знайшов кулькову ручку?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you find a ballpoint pen?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты нашёл шариковую ручку?",
+            "uk": "Скажіть: Ти знайшов кулькову ручку?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "find",
+            "a",
+            "ballpoint",
+            "pen"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-43:i05:r1",
+            "text": "Did she find a ballpoint pen?"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i05:r2",
+            "text": "Did you find a ballpoint pen?"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i05:r3",
+            "text": "Did they find a ballpoint pen?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:i05:audio",
+            "transcript": "Did she find a ballpoint pen?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-43:i05:r1",
+              "targetText": "Did she find a ballpoint pen?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i05:r2",
+              "targetText": "Did you find a ballpoint pen?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i05:r3",
+              "targetText": "Did they find a ballpoint pen?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-43:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she find a ballpoint pen?",
+                "uk": "У записі звучить Did she find a ballpoint pen?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she find a ballpoint pen?",
+                "uk": "У записі звучить Did she find a ballpoint pen?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-43:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you find a ballpoint pen?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-43:i06:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i06:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i06:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-43:i06:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i06:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:word:fountain-pen",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fountain pen",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:word:fountain-pen:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fountain pen",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:word:fountain-pen:audio",
+            "transcript": "fountain pen"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-43:word:fountain-pen:r1",
+              "targetText": "fountain pen",
+              "meaningByLocale": {
+                "ru": "перьевая ручка.",
+                "uk": "пір’яна ручка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fountain pen",
+            "definitionByLocale": {
+              "ru": "перьевая ручка.",
+              "uk": "пір’яна ручка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти використав пір’яну ручку?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти використав пір’яну ручку?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you use a fountain pen?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты использовал перьевую ручку?",
+            "uk": "Скажіть: Ти використав пір’яну ручку?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "use",
+            "a",
+            "fountain",
+            "pen"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-43:i08:r1",
+            "text": "Did she use a fountain pen?"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i08:r2",
+            "text": "Did you use a fountain pen?"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i08:r3",
+            "text": "Did they use a fountain pen?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:i08:audio",
+            "transcript": "Did she use a fountain pen?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-43:i08:r1",
+              "targetText": "Did she use a fountain pen?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i08:r2",
+              "targetText": "Did you use a fountain pen?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i08:r3",
+              "targetText": "Did they use a fountain pen?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-43:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she use a fountain pen?",
+                "uk": "У записі звучить Did she use a fountain pen?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she use a fountain pen?",
+                "uk": "У записі звучить Did she use a fountain pen?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-43:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you use a fountain pen?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-43:i09:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i09:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i09:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-43:i09:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i09:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:word:coloured-pencil",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — coloured pencil",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:word:coloured-pencil:audio"
+        ],
+        "accessibilityLabel": "Картка слова — coloured pencil",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:word:coloured-pencil:audio",
+            "transcript": "coloured pencil"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-43:word:coloured-pencil:r1",
+              "targetText": "coloured pencil",
+              "meaningByLocale": {
+                "ru": "цветной карандаш.",
+                "uk": "кольоровий олівець."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "coloured pencil",
+            "definitionByLocale": {
+              "ru": "цветной карандаш.",
+              "uk": "кольоровий олівець."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти використав кольоровий олівець?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти використав кольоровий олівець?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you use a coloured pencil?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты использовал цветной карандаш?",
+            "uk": "Скажіть: Ти використав кольоровий олівець?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "use",
+            "a",
+            "coloured",
+            "pencil"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-43:i11:r1",
+            "text": "Did she use a coloured pencil?"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i11:r2",
+            "text": "Did you use a coloured pencil?"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i11:r3",
+            "text": "Did they use a coloured pencil?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:i11:audio",
+            "transcript": "Did she use a coloured pencil?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-43:i11:r1",
+              "targetText": "Did she use a coloured pencil?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i11:r2",
+              "targetText": "Did you use a coloured pencil?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i11:r3",
+              "targetText": "Did they use a coloured pencil?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-43:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she use a coloured pencil?",
+                "uk": "У записі звучить Did she use a coloured pencil?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she use a coloured pencil?",
+                "uk": "У записі звучить Did she use a coloured pencil?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-43:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-43:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you use a coloured pencil?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-43:i12:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i12:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i12:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-43:i12:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-43:i12:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-13:session-43:i13:p1",
+              "target": "felt-tip pen",
+              "meaningByLocale": {
+                "ru": "фломастер",
+                "uk": "фломастер"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-43:i13:p2",
+              "target": "ballpoint pen",
+              "meaningByLocale": {
+                "ru": "шариковая ручка",
+                "uk": "кулькова ручка"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-43:i13:p3",
+              "target": "fountain pen",
+              "meaningByLocale": {
+                "ru": "перьевая ручка",
+                "uk": "пір’яна ручка"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-43:i13:p4",
+              "target": "coloured pencil",
+              "meaningByLocale": {
+                "ru": "цветной карандаш",
+                "uk": "кольоровий олівець"
+              }
+            }
+          ],
+          "leftColumn": [
+            "felt-tip pen",
+            "ballpoint pen",
+            "fountain pen",
+            "coloured pencil"
+          ],
+          "rightColumn": [
+            "фломастер",
+            "кулькова ручка",
+            "пір’яна ручка",
+            "кольоровий олівець"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:i14:audio",
+            "transcript": "First I found a ballpoint pen."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "First I found a ballpoint pen.",
+          "orderedTokens": [
+            "First",
+            "I",
+            "found",
+            "a",
+            "ballpoint",
+            "pen"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:i15:audio",
+            "transcript": "Then I wrote the address."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Then I wrote the address.",
+          "orderedTokens": [
+            "Then",
+            "I",
+            "wrote",
+            "the",
+            "address"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: потім вона використала кольоровий олівець",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: потім вона використала кольоровий олівець",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:i16:audio",
+            "transcript": "Then she used a coloured pencil."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Then she used a coloured pencil.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-43:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: я не використав пір’яну ручку вчора",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-43:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: я не використав пір’яну ручку вчора",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-43:i17:audio",
+            "transcript": "I didn't use a fountain pen yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I didn't use a fountain pen yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-13:session-43:word:felt-tip-pen",
+      "correctText": "felt-tip pen",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-43:i01",
+      "correctText": "Did you use a felt-tip pen?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-43:i02",
+      "correctText": "Did she use a felt-tip pen?",
+      "correctResponseId": "en:lesson-13:session-43:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-43:i03",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-43:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-43:word:ballpoint-pen",
+      "correctText": "ballpoint pen",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-43:i04",
+      "correctText": "Did you find a ballpoint pen?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-43:i05",
+      "correctText": "Did she find a ballpoint pen?",
+      "correctResponseId": "en:lesson-13:session-43:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-43:i06",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-43:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-43:word:fountain-pen",
+      "correctText": "fountain pen",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-43:i07",
+      "correctText": "Did you use a fountain pen?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-43:i08",
+      "correctText": "Did she use a fountain pen?",
+      "correctResponseId": "en:lesson-13:session-43:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-43:i09",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-43:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-43:word:coloured-pencil",
+      "correctText": "coloured pencil",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-43:i10",
+      "correctText": "Did you use a coloured pencil?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-43:i11",
+      "correctText": "Did she use a coloured pencil?",
+      "correctResponseId": "en:lesson-13:session-43:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-43:i12",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-43:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-43:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-43:i14",
+      "correctText": "First I found a ballpoint pen.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-43:i15",
+      "correctText": "Then I wrote the address.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-43:i16",
+      "correctText": "Then she used a coloured pencil.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-43:i17",
+      "correctText": "I didn't use a fountain pen yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

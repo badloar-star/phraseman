@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-46:word:diagnose",
+      "interactionId": "en:lesson-08:session-46:word:ask-for-help",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — diagnose",
+      "prompt": "Картка слова — ask for help",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-08:session-46:word:diagnose:audio"
+        "en:lesson-08:session-46:word:ask-for-help:audio"
       ],
-      "accessibilityLabel": "Картка слова — diagnose",
+      "accessibilityLabel": "Картка слова — ask for help",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-46:word:diagnose:audio",
-          "transcript": "diagnose"
+          "audioTargetId": "en:lesson-08:session-46:word:ask-for-help:audio",
+          "transcript": "ask for help"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-08:session-46:word:diagnose:r1",
-            "targetText": "diagnose",
+            "responseId": "en:lesson-08:session-46:word:ask-for-help:r1",
+            "targetText": "ask for help",
             "meaningByLocale": {
-              "ru": "диагностировать, здесь — определять причину неисправности. I can diagnose it. — «Я могу определить причину».",
-              "uk": "діагностувати, тут — визначати причину несправності. I can diagnose it. — «Я можу визначити причину»."
+              "ru": "попросить помощи.",
+              "uk": "попросити допомоги."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "diagnose",
+          "word": "ask for help",
           "definitionByLocale": {
-            "ru": "диагностировать, здесь — определять причину неисправности. I can diagnose it. — «Я могу определить причину».",
-            "uk": "діагностувати, тут — визначати причину несправності. I can diagnose it. — «Я можу визначити причину»."
+            "ru": "попросить помощи.",
+            "uk": "попросити допомоги."
           }
         }
       },
@@ -52,23 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть «Я можу визначити причину»",
+      "prompt": "Скажіть: Ти можеш попросити допомоги",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть «Я можу визначити причину»",
+      "accessibilityLabel": "Скажіть: Ти можеш попросити допомоги",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I can diagnose it.",
+        "targetPhrase": "You can ask for help.",
         "localizedMeaning": {
-          "ru": "Соберите «Я могу определить причину»",
-          "uk": "Складіть «Я можу визначити причину»"
+          "ru": "Скажите: Ты можешь попросить помощи",
+          "uk": "Скажіть: Ти можеш попросити допомоги"
         },
         "orderedTokens": [
-          "I",
+          "You",
           "can",
-          "diagnose",
-          "it"
+          "ask",
+          "for",
+          "help"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -85,47 +86,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-46:i02:r1",
-          "text": "diagnose"
+          "text": "You can ask for help."
         },
         {
           "responseId": "en:lesson-08:session-46:i02:r2",
-          "text": "mug"
+          "text": "You can’t ask for help."
         },
         {
           "responseId": "en:lesson-08:session-46:i02:r3",
-          "text": "organize"
+          "text": "You cannot ask for help."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-46:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-46:i02:audio",
-          "transcript": "diagnose"
+          "transcript": "You can ask for help."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-46:i02:r1",
-            "targetText": "diagnose",
+            "targetText": "You can ask for help.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-46:i02:r2",
-            "targetText": "mug",
+            "targetText": "You can’t ask for help.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-46:i02:r3",
-            "targetText": "organize",
+            "targetText": "You cannot ask for help.",
             "meaningByLocale": null
           }
         ],
@@ -134,19 +135,19 @@
           {
             "responseId": "en:lesson-08:session-46:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `diagnose`, а в этом варианте — `mug`.",
-              "uk": "У записі перше слово — `diagnose`, а в цьому варіанті — `mug`."
+              "ru": "В записи звучит You can ask for help.",
+              "uk": "У записі звучить You can ask for help."
             }
           },
           {
             "responseId": "en:lesson-08:session-46:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `diagnose`, а в этом варианте — `organize`.",
-              "uk": "У записі перше слово — `diagnose`, а в цьому варіанті — `organize`."
+              "ru": "В записи звучит You can ask for help.",
+              "uk": "У записі звучить You can ask for help."
             }
           }
         ],
@@ -161,168 +162,136 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму для фрази про визначення причини несправності",
+      "prompt": "Виберіть форму після can",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-46:i03:r1",
-          "text": "diagnose"
+          "text": "ask"
         },
         {
           "responseId": "en:lesson-08:session-46:i03:r2",
-          "text": "to diagnose"
+          "text": "asks"
         },
         {
           "responseId": "en:lesson-08:session-46:i03:r3",
-          "text": "diagnoses"
+          "text": "to ask"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму для фрази про визначення причини несправності",
+      "accessibilityLabel": "Виберіть форму після can",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму для фразы об определении причины неисправности",
-          "uk": "Виберіть форму для фрази про визначення причини несправності"
+          "ru": "Выберите форму после can",
+          "uk": "Виберіть форму після can"
         },
-        "gappedTargetPhrase": "I can ___ it.",
+        "gappedTargetPhrase": "You can ___ for help.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-46:i03:r1",
-            "text": "diagnose"
+            "text": "ask"
           },
           {
             "responseId": "en:lesson-08:session-46:i03:r2",
-            "text": "to diagnose"
+            "text": "asks"
           },
           {
             "responseId": "en:lesson-08:session-46:i03:r3",
-            "text": "diagnoses"
+            "text": "to ask"
           }
         ],
-        "testedDimension": "Виберіть форму для фрази про визначення причини несправності",
+        "testedDimension": "Виберіть форму після can",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-46:i03:r2",
             "correct": false,
-            "testedDimension": "Виберіть форму для фрази про визначення причини несправності",
+            "testedDimension": "Виберіть форму після can",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `diagnose`, без `to`.",
-              "uk": "Після `can` потрібне `diagnose`, без `to`."
+              "ru": "После can не добавляем s.",
+              "uk": "Після can не додаємо s."
             }
           },
           {
             "responseId": "en:lesson-08:session-46:i03:r3",
             "correct": false,
-            "testedDimension": "Виберіть форму для фрази про визначення причини несправності",
+            "testedDimension": "Виберіть форму після can",
             "feedbackByLocale": {
-              "ru": "После `can` нужно `diagnose`, без `s`.",
-              "uk": "Після `can` потрібне `diagnose`, без `s`."
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
             }
           }
         ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-46:word:take-a-break",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — take a break",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-46:word:take-a-break:audio"
+      ],
+      "accessibilityLabel": "Картка слова — take a break",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-46:word:take-a-break:audio",
+          "transcript": "take a break"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-46:word:take-a-break:r1",
+            "targetText": "take a break",
+            "meaningByLocale": {
+              "ru": "сделать перерыв.",
+              "uk": "зробити перерву."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "take a break",
+          "definitionByLocale": {
+            "ru": "сделать перерыв.",
+            "uk": "зробити перерву."
+          }
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-08:session-46:i04",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "speed_match",
-      "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ми можемо зробити перерву",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "Скажіть: Ми можемо зробити перерву",
       "modePayload": {
-        "family": "speed_match",
-        "pairGrid": [
-          {
-            "pairId": "en:lesson-08:session-46:i04:p1",
-            "target": "diagnose",
-            "meaningByLocale": {
-              "ru": "диагностировать",
-              "uk": "діагностувати"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-46:i04:p2",
-            "target": "pantry",
-            "meaningByLocale": {
-              "ru": "кладовая",
-              "uk": "комора"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-46:i04:p3",
-            "target": "mug",
-            "meaningByLocale": {
-              "ru": "кружка",
-              "uk": "кухоль"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-46:i04:p4",
-            "target": "organize",
-            "meaningByLocale": {
-              "ru": "организовывать",
-              "uk": "організовувати"
-            }
-          }
-        ],
-        "leftColumn": [
-          "diagnose",
-          "pantry",
-          "mug",
-          "organize"
-        ],
-        "rightColumn": [
-          "діагностувати",
-          "комора",
-          "кухоль",
-          "організовувати"
-        ],
-        "pairingKey": "pair_id",
-        "timerPolicy": {
-          "enabledByDefault": true,
-          "learnerCanDisable": true,
-          "pausesOnInterruption": true
+        "family": "phrase_builder",
+        "targetPhrase": "We can take a break.",
+        "localizedMeaning": {
+          "ru": "Скажите: Мы можем сделать перерыв",
+          "uk": "Скажіть: Ми можемо зробити перерву"
         },
-        "finishStats": [
-          "speed",
-          "accuracy",
-          "personal_best"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-46:i05",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-46:i05:audio"
-      ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-46:i05:audio",
-          "transcript": "I can diagnose it."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I can diagnose it.",
         "orderedTokens": [
-          "I",
+          "We",
           "can",
-          "diagnose",
-          "it"
+          "take",
+          "a",
+          "break"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -334,45 +303,78 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-46:word:reboot",
+      "interactionId": "en:lesson-08:session-46:i05",
       "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — reboot",
-      "responseOptions": [],
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-46:i05:r1",
+          "text": "We can take a break."
+        },
+        {
+          "responseId": "en:lesson-08:session-46:i05:r2",
+          "text": "We can’t take a break."
+        },
+        {
+          "responseId": "en:lesson-08:session-46:i05:r3",
+          "text": "We cannot take a break."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-08:session-46:word:reboot:audio"
+        "en:lesson-08:session-46:i05:audio"
       ],
-      "accessibilityLabel": "Картка слова — reboot",
+      "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-46:word:reboot:audio",
-          "transcript": "reboot"
+          "audioTargetId": "en:lesson-08:session-46:i05:audio",
+          "transcript": "We can take a break."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-08:session-46:word:reboot:r1",
-            "targetText": "reboot",
-            "meaningByLocale": {
-              "ru": "перезагрузить устройство. She can reboot it. — «Она может его перезагрузить».",
-              "uk": "перезавантажити пристрій. She can reboot it. — «Вона може його перезавантажити»."
-            }
+            "responseId": "en:lesson-08:session-46:i05:r1",
+            "targetText": "We can take a break.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-46:i05:r2",
+            "targetText": "We can’t take a break.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-46:i05:r3",
+            "targetText": "We cannot take a break.",
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "reboot",
-          "definitionByLocale": {
-            "ru": "перезагрузить устройство. She can reboot it. — «Она может его перезагрузить».",
-            "uk": "перезавантажити пристрій. She can reboot it. — «Вона може його перезавантажити»."
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-46:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can take a break.",
+              "uk": "У записі звучить We can take a break."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-46:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can take a break.",
+              "uk": "У записі звучить We can take a break."
+            }
           }
-        }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -380,62 +382,98 @@
       "interactionId": "en:lesson-08:session-46:i06",
       "ordinal": 11,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажіть про планшет «Вона може його перезавантажити»",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після can",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-46:i06:r1",
+          "text": "take"
+        },
+        {
+          "responseId": "en:lesson-08:session-46:i06:r2",
+          "text": "takes"
+        },
+        {
+          "responseId": "en:lesson-08:session-46:i06:r3",
+          "text": "to take"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про планшет «Вона може його перезавантажити»",
+      "accessibilityLabel": "Виберіть форму після can",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "She can reboot it.",
-        "localizedMeaning": {
-          "ru": "Скажите о планшете «Она может его перезагрузить»",
-          "uk": "Скажіть про планшет «Вона може його перезавантажити»"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после can",
+          "uk": "Виберіть форму після can"
         },
-        "orderedTokens": [
-          "She",
-          "can",
-          "reboot",
-          "it"
+        "gappedTargetPhrase": "We can ___ a break.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-46:i06:r1",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-08:session-46:i06:r2",
+            "text": "takes"
+          },
+          {
+            "responseId": "en:lesson-08:session-46:i06:r3",
+            "text": "to take"
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "testedDimension": "Виберіть форму після can",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-46:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після can",
+            "feedbackByLocale": {
+              "ru": "После can не добавляем s.",
+              "uk": "Після can не додаємо s."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-46:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після can",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-46:word:fault",
+      "interactionId": "en:lesson-08:session-46:word:make-a-mistake",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — fault",
+      "prompt": "Картка слова — make a mistake",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-08:session-46:word:fault:audio"
+        "en:lesson-08:session-46:word:make-a-mistake:audio"
       ],
-      "accessibilityLabel": "Картка слова — fault",
+      "accessibilityLabel": "Картка слова — make a mistake",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-46:word:fault:audio",
-          "transcript": "fault"
+          "audioTargetId": "en:lesson-08:session-46:word:make-a-mistake:audio",
+          "transcript": "make a mistake"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-08:session-46:word:fault:r1",
-            "targetText": "fault",
+            "responseId": "en:lesson-08:session-46:word:make-a-mistake:r1",
+            "targetText": "make a mistake",
             "meaningByLocale": {
-              "ru": "неисправность. I can find the fault. — «Я могу найти неисправность». В этом занятии речь о проблеме в работе устройства.",
-              "uk": "несправність. I can find the fault. — «Я можу знайти несправність». У цьому занятті йдеться про проблему в роботі пристрою."
+              "ru": "допустить ошибку.",
+              "uk": "припуститися помилки."
             }
           }
         ],
@@ -443,10 +481,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "fault",
+          "word": "make a mistake",
           "definitionByLocale": {
-            "ru": "неисправность. I can find the fault. — «Я могу найти неисправность». В этом занятии речь о проблеме в работе устройства.",
-            "uk": "несправність. I can find the fault. — «Я можу знайти несправність». У цьому занятті йдеться про проблему в роботі пристрою."
+            "ru": "допустить ошибку.",
+            "uk": "припуститися помилки."
           }
         }
       },
@@ -456,32 +494,33 @@
       "interactionId": "en:lesson-08:session-46:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажіть «Я можу знайти несправність»",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Будь-хто може припуститися помилки",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-46:i07:audio"
-      ],
-      "accessibilityLabel": "Скажіть «Я можу знайти несправність»",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Будь-хто може припуститися помилки",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-46:i07:audio",
-          "transcript": "I can find the fault."
+        "family": "phrase_builder",
+        "targetPhrase": "Anyone can make a mistake.",
+        "localizedMeaning": {
+          "ru": "Скажите: Любой может допустить ошибку",
+          "uk": "Скажіть: Будь-хто може припуститися помилки"
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "I can find the fault.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "orderedTokens": [
+          "Anyone",
+          "can",
+          "make",
+          "a",
+          "mistake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -489,62 +528,138 @@
       "interactionId": "en:lesson-08:session-46:i08",
       "ordinal": 14,
       "purpose": "guided_practice",
-      "family": "context_gap_grammar",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму для фрази «Вона може його перезавантажити»",
+      "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-46:i08:r1",
-          "text": "reboot"
+          "text": "Anyone can make a mistake."
         },
         {
           "responseId": "en:lesson-08:session-46:i08:r2",
-          "text": "reboots"
+          "text": "Anyone can’t make a mistake."
         },
         {
           "responseId": "en:lesson-08:session-46:i08:r3",
-          "text": "to reboot"
+          "text": "Anyone cannot make a mistake."
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму для фрази «Вона може його перезавантажити»",
+      "audioTargetIds": [
+        "en:lesson-08:session-46:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Выберите форму для фразы «Она может его перезагрузить»",
-          "uk": "Виберіть форму для фрази «Вона може його перезавантажити»"
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-46:i08:audio",
+          "transcript": "Anyone can make a mistake."
         },
-        "gappedTargetPhrase": "She can ___ it.",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-46:i08:r1",
-            "text": "reboot"
+            "targetText": "Anyone can make a mistake.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-46:i08:r2",
-            "text": "reboots"
+            "targetText": "Anyone can’t make a mistake.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-46:i08:r3",
-            "text": "to reboot"
+            "targetText": "Anyone cannot make a mistake.",
+            "meaningByLocale": null
           }
         ],
-        "testedDimension": "Виберіть форму для фрази «Вона може його перезавантажити»",
+        "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-46:i08:r2",
             "correct": false,
-            "testedDimension": "Виберіть форму для фрази «Вона може його перезавантажити»",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "После can нужно reboot, даже с she.",
-              "uk": "Після can потрібне reboot, навіть із she."
+              "ru": "В записи звучит Anyone can make a mistake.",
+              "uk": "У записі звучить Anyone can make a mistake."
             }
           },
           {
             "responseId": "en:lesson-08:session-46:i08:r3",
             "correct": false,
-            "testedDimension": "Виберіть форму для фрази «Вона може його перезавантажити»",
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Anyone can make a mistake.",
+              "uk": "У записі звучить Anyone can make a mistake."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-46:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після can",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-46:i09:r1",
+          "text": "make"
+        },
+        {
+          "responseId": "en:lesson-08:session-46:i09:r2",
+          "text": "makes"
+        },
+        {
+          "responseId": "en:lesson-08:session-46:i09:r3",
+          "text": "to make"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після can",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после can",
+          "uk": "Виберіть форму після can"
+        },
+        "gappedTargetPhrase": "Anyone can ___ a mistake.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-46:i09:r1",
+            "text": "make"
+          },
+          {
+            "responseId": "en:lesson-08:session-46:i09:r2",
+            "text": "makes"
+          },
+          {
+            "responseId": "en:lesson-08:session-46:i09:r3",
+            "text": "to make"
+          }
+        ],
+        "testedDimension": "Виберіть форму після can",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-46:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після can",
+            "feedbackByLocale": {
+              "ru": "После can не добавляем s.",
+              "uk": "Після can не додаємо s."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-46:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після can",
             "feedbackByLocale": {
               "ru": "После can не нужно to.",
               "uk": "Після can не потрібне to."
@@ -555,73 +670,150 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-46:i09",
-      "ordinal": 15,
+      "interactionId": "en:lesson-08:session-46:word:change-your-mind",
+      "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-08:session-46:i09:r1",
-          "text": "I can diagnose it."
-        },
-        {
-          "responseId": "en:lesson-08:session-46:i09:r2",
-          "text": "I can diagnose this."
-        },
-        {
-          "responseId": "en:lesson-08:session-46:i09:r3",
-          "text": "I can diagnose that."
-        }
-      ],
+      "prompt": "Картка слова — change your mind",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-08:session-46:i09:audio"
+        "en:lesson-08:session-46:word:change-your-mind:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "accessibilityLabel": "Картка слова — change your mind",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-46:i09:audio",
-          "transcript": "I can diagnose it."
+          "audioTargetId": "en:lesson-08:session-46:word:change-your-mind:audio",
+          "transcript": "change your mind"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-08:session-46:i09:r1",
-            "targetText": "I can diagnose it.",
+            "responseId": "en:lesson-08:session-46:word:change-your-mind:r1",
+            "targetText": "change your mind",
+            "meaningByLocale": {
+              "ru": "передумать.",
+              "uk": "передумати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "change your mind",
+          "definitionByLocale": {
+            "ru": "передумать.",
+            "uk": "передумати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-46:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти можеш передумати",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти можеш передумати",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "You can change your mind.",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты можешь передумать",
+          "uk": "Скажіть: Ти можеш передумати"
+        },
+        "orderedTokens": [
+          "You",
+          "can",
+          "change",
+          "your",
+          "mind"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-46:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-46:i11:r1",
+          "text": "You can change your mind."
+        },
+        {
+          "responseId": "en:lesson-08:session-46:i11:r2",
+          "text": "You can’t change your mind."
+        },
+        {
+          "responseId": "en:lesson-08:session-46:i11:r3",
+          "text": "You cannot change your mind."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-46:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-46:i11:audio",
+          "transcript": "You can change your mind."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-46:i11:r1",
+            "targetText": "You can change your mind.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-08:session-46:i09:r2",
-            "targetText": "I can diagnose this.",
+            "responseId": "en:lesson-08:session-46:i11:r2",
+            "targetText": "You can’t change your mind.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-08:session-46:i09:r3",
-            "targetText": "I can diagnose that.",
+            "responseId": "en:lesson-08:session-46:i11:r3",
+            "targetText": "You cannot change your mind.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-08:session-46:i09:r2",
+            "responseId": "en:lesson-08:session-46:i11:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `it`, а в этом варианте — `this`.",
-              "uk": "У записі останнє слово — `it`, а в цьому варіанті — `this`."
+              "ru": "В записи звучит You can change your mind.",
+              "uk": "У записі звучить You can change your mind."
             }
           },
           {
-            "responseId": "en:lesson-08:session-46:i09:r3",
+            "responseId": "en:lesson-08:session-46:i11:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `it`, а в этом варианте — `that`.",
-              "uk": "У записі останнє слово — `it`, а в цьому варіанті — `that`."
+              "ru": "В записи звучит You can change your mind.",
+              "uk": "У записі звучить You can change your mind."
             }
           }
         ],
@@ -631,63 +823,132 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-46:i10",
-      "ordinal": 16,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-08:session-46:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після can",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-46:i12:r1",
+          "text": "change"
+        },
+        {
+          "responseId": "en:lesson-08:session-46:i12:r2",
+          "text": "changes"
+        },
+        {
+          "responseId": "en:lesson-08:session-46:i12:r3",
+          "text": "to change"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після can",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после can",
+          "uk": "Виберіть форму після can"
+        },
+        "gappedTargetPhrase": "You can ___ your mind.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-46:i12:r1",
+            "text": "change"
+          },
+          {
+            "responseId": "en:lesson-08:session-46:i12:r2",
+            "text": "changes"
+          },
+          {
+            "responseId": "en:lesson-08:session-46:i12:r3",
+            "text": "to change"
+          }
+        ],
+        "testedDimension": "Виберіть форму після can",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-46:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після can",
+            "feedbackByLocale": {
+              "ru": "После can не добавляем s.",
+              "uk": "Після can не додаємо s."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-46:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після can",
+            "feedbackByLocale": {
+              "ru": "После can не нужно to.",
+              "uk": "Після can не потрібне to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-46:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "prompt": "Поєднайте вирази з перекладом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-08:session-46:i10:p1",
-            "target": "diagnose",
+            "pairId": "en:lesson-08:session-46:i13:p1",
+            "target": "ask for help",
             "meaningByLocale": {
-              "ru": "определять причину неисправности",
-              "uk": "визначати причину несправності"
+              "ru": "попросить помощи",
+              "uk": "попросити допомоги"
             }
           },
           {
-            "pairId": "en:lesson-08:session-46:i10:p2",
-            "target": "reboot",
+            "pairId": "en:lesson-08:session-46:i13:p2",
+            "target": "take a break",
             "meaningByLocale": {
-              "ru": "перезагружать",
-              "uk": "перезавантажувати"
+              "ru": "сделать перерыв",
+              "uk": "зробити перерву"
             }
           },
           {
-            "pairId": "en:lesson-08:session-46:i10:p3",
-            "target": "fault",
+            "pairId": "en:lesson-08:session-46:i13:p3",
+            "target": "make a mistake",
             "meaningByLocale": {
-              "ru": "неисправность",
-              "uk": "несправність"
+              "ru": "допустить ошибку",
+              "uk": "припуститися помилки"
             }
           },
           {
-            "pairId": "en:lesson-08:session-46:i10:p4",
-            "target": "organize",
+            "pairId": "en:lesson-08:session-46:i13:p4",
+            "target": "change your mind",
             "meaningByLocale": {
-              "ru": "организовывать",
-              "uk": "організовувати"
+              "ru": "передумать",
+              "uk": "передумати"
             }
           }
         ],
         "leftColumn": [
-          "diagnose",
-          "reboot",
-          "fault",
-          "organize"
+          "ask for help",
+          "take a break",
+          "make a mistake",
+          "change your mind"
         ],
         "rightColumn": [
-          "визначати причину несправності",
-          "перезавантажувати",
-          "несправність",
-          "організовувати"
+          "попросити допомоги",
+          "зробити перерву",
+          "припуститися помилки",
+          "передумати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -699,152 +960,6 @@
           "speed",
           "accuracy",
           "personal_best"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-46:i11",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-46:i11:audio"
-      ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-46:i11:audio",
-          "transcript": "She can reboot it."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "She can reboot it.",
-        "orderedTokens": [
-          "She",
-          "can",
-          "reboot",
-          "it"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-46:word:workaround",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — workaround",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-46:word:workaround:audio"
-      ],
-      "accessibilityLabel": "Картка слова — workaround",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-46:word:workaround:audio",
-          "transcript": "workaround"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-08:session-46:word:workaround:r1",
-            "targetText": "workaround",
-            "meaningByLocale": {
-              "ru": "обходное решение: другой способ выполнить задачу, пока проблема остаётся. I can find a workaround. — «Я могу найти обходное решение». Например, сохранить файл и отправить его по почте вместо сломанной кнопки в программе.",
-              "uk": "обхідне рішення: інший спосіб виконати завдання, поки проблема залишається. I can find a workaround. — «Я можу знайти обхідне рішення». Наприклад, зберегти файл і надіслати його поштою замість несправної кнопки в програмі."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "workaround",
-          "definitionByLocale": {
-            "ru": "обходное решение: другой способ выполнить задачу, пока проблема остаётся. I can find a workaround. — «Я могу найти обходное решение». Например, сохранить файл и отправить его по почте вместо сломанной кнопки в программе.",
-            "uk": "обхідне рішення: інший спосіб виконати завдання, поки проблема залишається. I can find a workaround. — «Я можу знайти обхідне рішення». Наприклад, зберегти файл і надіслати його поштою замість несправної кнопки в програмі."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-46:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Кнопка надсилання файлу в програмі не працює. Скажіть «Я можу знайти обхідне рішення»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Кнопка надсилання файлу в програмі не працює. Скажіть «Я можу знайти обхідне рішення»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I can find a workaround.",
-        "localizedMeaning": {
-          "ru": "Кнопка отправки файла в программе не работает. Скажите «Я могу найти обходное решение»",
-          "uk": "Кнопка надсилання файлу в програмі не працює. Скажіть «Я можу знайти обхідне рішення»"
-        },
-        "orderedTokens": [
-          "I",
-          "can",
-          "find",
-          "a",
-          "workaround"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-46:i13",
-      "ordinal": 20,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Друзі планують зустріч. Скажіть «Я можу її організувати»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-46:i13:audio"
-      ],
-      "accessibilityLabel": "Друзі планують зустріч. Скажіть «Я можу її організувати»",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-46:i13:audio",
-          "transcript": "I can organize it."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "I can organize it.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -853,68 +968,36 @@
       "interactionId": "en:lesson-08:session-46:i14",
       "ordinal": 21,
       "purpose": "independent_check",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Виберіть форму для фрази «Я можу знайти несправність»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-08:session-46:i14:r1",
-          "text": "find"
-        },
-        {
-          "responseId": "en:lesson-08:session-46:i14:r2",
-          "text": "finds"
-        },
-        {
-          "responseId": "en:lesson-08:session-46:i14:r3",
-          "text": "to find"
-        }
-      ],
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму для фрази «Я можу знайти несправність»",
+      "audioTargetIds": [
+        "en:lesson-08:session-46:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Выберите форму для фразы «Я могу найти неисправность»",
-          "uk": "Виберіть форму для фрази «Я можу знайти несправність»"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-46:i14:audio",
+          "transcript": "She can ask for help."
         },
-        "gappedTargetPhrase": "I can ___ the fault.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-08:session-46:i14:r1",
-            "text": "find"
-          },
-          {
-            "responseId": "en:lesson-08:session-46:i14:r2",
-            "text": "finds"
-          },
-          {
-            "responseId": "en:lesson-08:session-46:i14:r3",
-            "text": "to find"
-          }
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She can ask for help.",
+        "orderedTokens": [
+          "She",
+          "can",
+          "ask",
+          "for",
+          "help"
         ],
-        "testedDimension": "Виберіть форму для фрази «Я можу знайти несправність»",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-08:session-46:i14:r2",
-            "correct": false,
-            "testedDimension": "Виберіть форму для фрази «Я можу знайти несправність»",
-            "feedbackByLocale": {
-              "ru": "После can нужно find, без s.",
-              "uk": "Після can потрібне find, без s."
-            }
-          },
-          {
-            "responseId": "en:lesson-08:session-46:i14:r3",
-            "correct": false,
-            "testedDimension": "Виберіть форму для фрази «Я можу знайти несправність»",
-            "feedbackByLocale": {
-              "ru": "После can не нужно to.",
-              "uk": "Після can не потрібне to."
-            }
-          }
-        ]
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -922,147 +1005,68 @@
       "interactionId": "en:lesson-08:session-46:i15",
       "ordinal": 22,
       "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-08:session-46:i15:r1",
-          "text": "I can swim."
-        },
-        {
-          "responseId": "en:lesson-08:session-46:i15:r2",
-          "text": "I can drive."
-        },
-        {
-          "responseId": "en:lesson-08:session-46:i15:r3",
-          "text": "I can whistle."
-        }
-      ],
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-46:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "accessibilityLabel": "Складіть почуте",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-46:i15:audio",
-          "transcript": "I can swim."
+          "transcript": "They can take a break."
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-08:session-46:i15:r1",
-            "targetText": "I can swim.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-08:session-46:i15:r2",
-            "targetText": "I can drive.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-08:session-46:i15:r3",
-            "targetText": "I can whistle.",
-            "meaningByLocale": null
-          }
+        "hiddenTargetPhrase": "They can take a break.",
+        "orderedTokens": [
+          "They",
+          "can",
+          "take",
+          "a",
+          "break"
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-08:session-46:i15:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `swim`, а в этом варианте — `drive`.",
-              "uk": "У записі останнє слово — `swim`, а в цьому варіанті — `drive`."
-            }
-          },
-          {
-            "responseId": "en:lesson-08:session-46:i15:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
-            "feedbackByLocale": {
-              "ru": "В записи последнее слово — `swim`, а в этом варианте — `whistle`.",
-              "uk": "У записі останнє слово — `swim`, а в цьому варіанті — `whistle`."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-08:session-46:i16",
       "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "speed_match",
-      "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: Том може попросити допомоги",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "audioTargetIds": [
+        "en:lesson-08:session-46:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: Том може попросити допомоги",
       "modePayload": {
-        "family": "speed_match",
-        "pairGrid": [
-          {
-            "pairId": "en:lesson-08:session-46:i16:p1",
-            "target": "diagnose",
-            "meaningByLocale": {
-              "ru": "определять причину неисправности",
-              "uk": "визначати причину несправності"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-46:i16:p2",
-            "target": "reboot",
-            "meaningByLocale": {
-              "ru": "перезагружать",
-              "uk": "перезавантажувати"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-46:i16:p3",
-            "target": "fault",
-            "meaningByLocale": {
-              "ru": "неисправность",
-              "uk": "несправність"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-46:i16:p4",
-            "target": "workaround",
-            "meaningByLocale": {
-              "ru": "обходное решение",
-              "uk": "обхідне рішення"
-            }
-          }
-        ],
-        "leftColumn": [
-          "diagnose",
-          "reboot",
-          "fault",
-          "workaround"
-        ],
-        "rightColumn": [
-          "визначати причину несправності",
-          "перезавантажувати",
-          "несправність",
-          "обхідне рішення"
-        ],
-        "pairingKey": "pair_id",
-        "timerPolicy": {
-          "enabledByDefault": true,
-          "learnerCanDisable": true,
-          "pausesOnInterruption": true
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-46:i16:audio",
+          "transcript": "Tom can ask for help."
         },
-        "finishStats": [
-          "speed",
-          "accuracy",
-          "personal_best"
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tom can ask for help.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -1070,35 +1074,27 @@
     {
       "interactionId": "en:lesson-08:session-46:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "У принтера виникла несправність. Ви вмієте знаходити причини таких неполадок. Скажіть «Я можу визначити причину»",
+      "prompt": "Скажіть: я теж можу припуститися помилки",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-46:i17:audio"
       ],
-      "accessibilityLabel": "У принтера виникла несправність. Ви вмієте знаходити причини таких неполадок. Скажіть «Я можу визначити причину»",
+      "accessibilityLabel": "Скажіть: я теж можу припуститися помилки",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-46:i17:audio",
-          "transcript": "I can diagnose it."
+          "transcript": "I can make a mistake too."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I can diagnose it.",
+        "targetPhrase": "I can make a mistake too.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1115,5 +1111,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3815962582e03cde2c47533d57316dab6d67a16bc64e5714ddbcbce052923c52"
+  "learnerFingerprint": "5b5292cc44024bdbd555b5ba758415c997a10a89d06afbe4ca4d382d4c4127bf"
 }

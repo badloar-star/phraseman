@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-08:session-46",
   "learningOutcomeByLocale": {
-    "ru": "повторить can для умения и сохранить действие без to и окончаний",
-    "uk": "повторити can для вміння та залишити дію без to і закінчень"
+    "ru": "повторение can + глагол без to",
+    "uk": "повторення can + дієслово без to"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-08:session-46:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Полосы на распечатанной фотографии",
-        "uk": "Смуги на надрукованій фотографії"
+        "ru": "Попросить помощь",
+        "uk": "Попросити допомоги"
       },
       "bodyByLocale": {
-        "ru": "Принтер печатает фотографию с полосами. Друг не знает, почему это происходит, а вы умеете находить причины таких неполадок. Diagnose здесь — «определить причину неисправности». `I can diagnose it` — «Я могу определить причину». It относится к проблеме с печатью. После can нужно diagnose, без to и s.",
-        "uk": "Принтер друкує фотографію зі смугами. Друг не знає, чому це відбувається, а ви вмієте знаходити причини таких неполадок. Diagnose тут — «визначити причину несправності». `I can diagnose it` — «Я можу визначити причину». It стосується проблеми з друком. Після can потрібне diagnose, без to і s."
+        "ru": "Ask for help — попросить помощи. You can ask for help — ты можешь попросить помощи. Не обязательно справляться одному. Выберите эту фразу.",
+        "uk": "Ask for help — попросити допомоги. You can ask for help — ти можеш попросити допомоги. Не обов’язково справлятися самому. Виберіть цю фразу."
       },
       "question": {
         "interactionId": "en:lesson-08:session-46:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-08:session-46:intro1:r1",
-              "text": "I can diagnose it."
+              "text": "You can ask for help."
             },
             {
               "responseId": "en:lesson-08:session-46:intro1:r2",
-              "text": "I can to diagnose it."
+              "text": "You can’t ask for help."
             },
             {
               "responseId": "en:lesson-08:session-46:intro1:r3",
-              "text": "I can diagnoses it."
+              "text": "You can to ask for help."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-46:intro1:r1",
-              "text": "I can diagnose it."
+              "text": "You can ask for help."
             },
             {
               "responseId": "en:lesson-08:session-46:intro1:r2",
-              "text": "I can to diagnose it."
+              "text": "You can’t ask for help."
             },
             {
               "responseId": "en:lesson-08:session-46:intro1:r3",
-              "text": "I can diagnoses it."
+              "text": "You can to ask for help."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-08:session-46:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Планшет перестал реагировать",
-        "uk": "Планшет перестав реагувати"
+        "ru": "Передохнуть",
+        "uk": "Перепочити"
       },
       "bodyByLocale": {
-        "ru": "Экран планшета застыл во время игры. Подруга знает, как перезапустить устройство. Reboot — «перезагрузить». `She can reboot it` — «Она может его перезагрузить». После can нужно reboot, даже с she.",
-        "uk": "Екран планшета завмер під час гри. Подруга знає, як перезапустити пристрій. Reboot — «перезавантажити». `She can reboot it` — «Вона може його перезавантажити». Після can потрібне reboot, навіть із she."
+        "ru": "Take a break — сделать перерыв. Мы устали: We can take a break — мы можем сделать перерыв. Выберите предложение отдохнуть.",
+        "uk": "Take a break — зробити перерву. Ми втомилися: We can take a break — ми можемо зробити перерву. Виберіть пропозицію відпочити."
       },
       "question": {
         "interactionId": "en:lesson-08:session-46:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-08:session-46:intro2:r1",
-              "text": "She can reboot it."
+              "text": "We can take a break."
             },
             {
               "responseId": "en:lesson-08:session-46:intro2:r2",
-              "text": "She can to reboot it."
+              "text": "We can’t take a break."
             },
             {
               "responseId": "en:lesson-08:session-46:intro2:r3",
-              "text": "She can reboots it."
+              "text": "We can takes a break."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-46:intro2:r1",
-              "text": "She can reboot it."
+              "text": "We can take a break."
             },
             {
               "responseId": "en:lesson-08:session-46:intro2:r2",
-              "text": "She can to reboot it."
+              "text": "We can’t take a break."
             },
             {
               "responseId": "en:lesson-08:session-46:intro2:r3",
-              "text": "She can reboots it."
+              "text": "We can takes a break."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-08:session-46:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Звук только в одном наушнике",
-        "uk": "Звук лише в одному навушнику"
+        "ru": "Ошибиться и передумать",
+        "uk": "Помилитися й передумати"
       },
       "bodyByLocale": {
-        "ru": "В проводных наушниках звук идёт только с одной стороны. Вы умеете проверять такие устройства и находить место неполадки. Fault — «неисправность». `I can find the fault` — «Я могу найти неисправность». Здесь find означает обнаружить проблему, а не найти потерянный предмет.",
-        "uk": "У дротових навушниках звук іде лише з одного боку. Ви вмієте перевіряти такі пристрої й знаходити місце неполадки. Fault — «несправність». `I can find the fault` — «Я можу знайти несправність». Тут find означає виявити проблему, а не знайти загублений предмет."
+        "ru": "Make a mistake — допустить ошибку; change your mind — передумать. You can change your mind — ты можешь передумать. Здесь можно изменить своё решение. Выберите фразу о решении.",
+        "uk": "Make a mistake — припуститися помилки; change your mind — передумати. You can change your mind — ти можеш передумати. Тут можна змінити своє рішення. Виберіть фразу про рішення."
       },
       "question": {
         "interactionId": "en:lesson-08:session-46:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-08:session-46:intro3:r1",
-              "text": "I can find the fault."
+              "text": "You can change your mind."
             },
             {
               "responseId": "en:lesson-08:session-46:intro3:r2",
-              "text": "I can to find the fault."
+              "text": "You can make a mistake."
             },
             {
               "responseId": "en:lesson-08:session-46:intro3:r3",
-              "text": "I can finds the fault."
+              "text": "You can changes your mind."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-46:intro3:r1",
-              "text": "I can find the fault."
+              "text": "You can change your mind."
             },
             {
               "responseId": "en:lesson-08:session-46:intro3:r2",
-              "text": "I can to find the fault."
+              "text": "You can make a mistake."
             },
             {
               "responseId": "en:lesson-08:session-46:intro3:r3",
-              "text": "I can finds the fault."
+              "text": "You can changes your mind."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8472521f232b14c78b0d70f969b5a921f546862855259cda21aa099891e9b5f4"
+  "introFingerprint": "75c8bd6bc98fad3a891a0d1a3c745e8c1cc51a314f5edc5aa293259172c90396"
 }

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-41:word:tickle",
+    "correctText": "tickle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-41:i01",
+    "correctText": "Did you tickle your brother?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-41:i02",
+    "correctText": "Did she tickle your brother?",
+    "correctResponseId": "en:lesson-13:session-41:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-41:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-41:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-41:word:pinch",
+    "correctText": "pinch",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-41:i04",
+    "correctText": "Did you pinch your finger in the door?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-41:i05",
+    "correctText": "Did she pinch your finger in the door?",
+    "correctResponseId": "en:lesson-13:session-41:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-41:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-41:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-41:word:pat",
+    "correctText": "pat",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-41:i07",
+    "correctText": "Did you pat the dog?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-41:i08",
+    "correctText": "Did she pat the dog?",
+    "correctResponseId": "en:lesson-13:session-41:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-41:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-41:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-41:word:stroke",
+    "correctText": "stroke",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-41:i10",
+    "correctText": "Did you stroke the cat?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-41:i11",
+    "correctText": "Did she stroke the cat?",
+    "correctResponseId": "en:lesson-13:session-41:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-41:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-41:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-41:i13",
+    "correctText": "en:lesson-13:session-41:i13:p1=tickle\nen:lesson-13:session-41:i13:p2=pinch\nen:lesson-13:session-41:i13:p3=pat\nen:lesson-13:session-41:i13:p4=stroke",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-41:i14",
+    "correctText": "First I opened the door.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-41:i15",
+    "correctText": "Then she stroked the cat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-41:i16",
+    "correctText": "Did you tickle your brother yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-41:i17",
+    "correctText": "Then I patted the dog.",
+    "correctResponseId": null
+  }
+]

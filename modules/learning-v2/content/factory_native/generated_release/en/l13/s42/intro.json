@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "review: past event sequence",
+    "uk": "review: past event sequence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сумка через плечо",
+        "uk": "Сумка через плече"
+      },
+      "bodyByLocale": {
+        "ru": "Shoulder bag — сумка, которую носят на плече. Did you take your shoulder bag? — Ты взял свою сумку через плечо? Выберите вопрос о прошлом.",
+        "uk": "Shoulder bag — сумка, яку носять на плечі. Did you take your shoulder bag? — Ти взяв свою сумку через плече? Виберіть запитання про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-42:intro1:r1",
+              "text": "Did you take your shoulder bag?"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:intro1:r2",
+              "text": "Did you took your shoulder bag?"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:intro1:r3",
+              "text": "Do you take your shoulder bag every day?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-42:intro1:r1",
+              "text": "Did you take your shoulder bag?"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:intro1:r2",
+              "text": "Did you took your shoulder bag?"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:intro1:r3",
+              "text": "Do you take your shoulder bag every day?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спортивная сумка",
+        "uk": "Спортивна сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Sports bag — спортивная сумка. First I packed my sports bag — сначала я собрал спортивную сумку. Выберите вопрос об этой сумке.",
+        "uk": "Sports bag — спортивна сумка. First I packed my sports bag — спершу я спакував спортивну сумку. Виберіть запитання про цю сумку."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-42:intro2:r1",
+              "text": "Did you pack your sports bag?"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:intro2:r2",
+              "text": "Did you packed your sports bag?"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:intro2:r3",
+              "text": "Did you pack your suitcase?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-42:intro2:r1",
+              "text": "Did you pack your sports bag?"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:intro2:r2",
+              "text": "Did you packed your sports bag?"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:intro2:r3",
+              "text": "Did you pack your suitcase?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Для умывания и покупок",
+        "uk": "Для вмивання й покупок"
+      },
+      "bodyByLocale": {
+        "ru": "Washbag — дорожная сумочка для туалетных принадлежностей; shopping bag — сумка для покупок. Did you pack your washbag? — Ты собрал сумочку с туалетными принадлежностями? Выберите её.",
+        "uk": "Washbag — дорожня сумочка для туалетного приладдя; shopping bag — сумка для покупок. Did you pack your washbag? — Ти спакував сумочку з туалетним приладдям? Виберіть її."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-42:intro3:r1",
+              "text": "Did you pack your washbag?"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:intro3:r2",
+              "text": "Did you take your shopping bag?"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:intro3:r3",
+              "text": "Did you packed your washbag?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-42:intro3:r1",
+              "text": "Did you pack your washbag?"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:intro3:r2",
+              "text": "Did you take your shopping bag?"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:intro3:r3",
+              "text": "Did you packed your washbag?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "247c3bbba4359332dd48c0b23a7c6416fb535b0b93b64f11133978aa54d0714f"
+}

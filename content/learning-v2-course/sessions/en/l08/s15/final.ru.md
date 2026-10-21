@@ -1,150 +1,151 @@
-# Английский · Урок 8 · Занятие 15 — Счёт в уме
+# Английский · Урок 8 · Занятие 15 — Стирка и уборка дома
 
-**Ситуация.** Вы считаете стоимость покупок, просите подругу прикинуть расход краски и ищете владельца счётов на мастер-классе.
+**Ситуация.** Найдите нужные вещи для стирки и мытья посуды.
 
-**Что вы освоите:** повторить can’t, can, whose и often
-**Новые слова:** calculate, estimate, abacus, spreadsheet
-**Возвращаются:** sing, climb, book, pen
-
----
+**Что вы освоите:** can, whose
+**Новые слова:** clothes airer, tumble dryer, laundry bag, dishwasher tablet
 
 ## Интро 1
 
-### Покупки без калькулятора
+### Высушить бельё
 
-Вы хотите посчитать стоимость покупок, но путаетесь в числах. `Calculate` — «считать, вычислять». `I can’t calculate` — «Я не могу посчитать». Здесь вы говорите о том, что сейчас не получается. После `can’t` нужно `calculate`, без `to`. Вы просите друга помочь сложить суммы.
+Clothes airer — сушилка-стойка для белья, без мотора; tumble dryer — сушильная машина. I can use the clothes airer — я могу воспользоваться сушилкой-стойкой. Выберите стойку.
 
-**Скажите другу, что не можете посчитать.**
+**Выберите фразу для этой ситуации.**
 
-- ✅ **I can’t calculate.**
-- ❌ I can calculate. — *Не получается: нужно `can’t`.*
-- ❌ I can’t to calculate. — *После `can’t` нужно `calculate`, без `to`.*
+- ✅ **I can use the clothes airer.**
+- ❌ I can use the tumble dryer. — *Здесь другой смысл или неверное вопросительное слово. Нужно: I can use the clothes airer.*
+- ❌ I can uses the clothes airer. — *После can глагол без to и s.*
 
 ---
 
 ## Интро 2
 
-### Сколько нужно краски
+### Чей мешок?
 
-Вы собираетесь покрасить стену, но пока не знаете, сколько краски купить. Подруга умеет прикидывать нужное количество без точного расчёта. Estimate — «оценивать приблизительно». `She can estimate` — «Она умеет оценивать приблизительно». После `can` нужно `estimate`, без окончания `s`.
+Laundry bag — мешок для белья. Whose laundry bag is this? — Чей это мешок для белья? Повторяем whose: спрашиваем о владельце.
 
-**Расскажите, что подруга умеет оценивать приблизительно.**
+**Выберите фразу для этой ситуации.**
 
-- ✅ **She can estimate.**
-- ❌ She can estimates. — *После `can` нужно `estimate`, без `s`.*
-- ❌ She can’t estimate. — *Подруга умеет: нужно `can`.*
+- ✅ **Whose laundry bag is this?**
+- ❌ Who laundry bag is this? — *Здесь другой смысл или неверное вопросительное слово. Нужно: Whose laundry bag is this?*
+- ❌ Whose laundry bag are this? — *Один мешок: is this.*
 
 ---
 
 ## Интро 3
 
-### Счёты на мастер-классе
+### Помыть посуду
 
-На мастер-классе по устному счёту кто-то оставил счёты с цветными косточками. Abacus — «счёты», приспособление для счёта. Вы хотите вернуть их владельцу. `Whose abacus is this?` — «Чьи это счёты?» Сначала `whose abacus`, затем `is this`. Хотя по-русски «счёты» — множественное число, английское abacus обозначает один предмет.
+Dishwasher tablet — таблетка для посудомоечной машины. I can find a dishwasher tablet — я могу найти таблетку для посудомоечной машины. Выберите эту фразу.
 
-**Спросите, чьи это счёты.**
+**Выберите фразу для этой ситуации.**
 
-- ✅ **Whose abacus is this?**
-- ❌ Who abacus is this? — *Для «чьи» нужно `whose`.*
-- ❌ Whose abacus are this? — *Предмет один: нужно `is this`.*
+- ✅ **I can find a dishwasher tablet.**
+- ❌ I can’t find a dishwasher tablet. — *Здесь другой смысл или неверное вопросительное слово. Нужно: I can find a dishwasher tablet.*
+- ❌ I can to find a dishwasher tablet. — *После can глагол без to и s.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — calculate**
-<!-- interaction_id: en:lesson-08:session-15:word:calculate; family: word_card -->
-> **calculate** — вычислять. I can’t calculate. — «Я не могу посчитать». Получать результат с помощью вычислений.
+**1 · Карточка слова — clothes airer**
+<!-- interaction_id: en:lesson-08:session-15:word:clothes-airer; family: word_card -->
+> **clothes airer** — сушилка-стойка для белья.
 
-**2 · Скажите «Я не могу посчитать»**
+**2 · Скажите, что можете найти: сушилка-стойка для белья**
 <!-- interaction_id: en:lesson-08:session-15:i01; family: phrase_builder -->
-Плитки: `calculate` `can’t` `I` → **I can’t calculate.**
+Плитки: `airer` `clothes` `the` `find` `can` `I` → **I can find the clothes airer.**
 
-**3 · Послушайте и выберите слово**
+**3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-08:session-15:i02; family: listen_choose -->
-🔊 *calculate* → **calculate** · sing · climb
-- sing — *В записи calculate — «вычислять», а не sing — «петь».*
-- climb — *В записи calculate, а не climb — «взбираться».*
+🔊 *I can find the clothes airer.* → **I can find the clothes airer.** · I can’t find the clothes airer. · We can find the clothes airer.
+- I can’t find the clothes airer. — *В записи звучит I can find the clothes airer.*
+- We can find the clothes airer. — *В записи звучит I can find the clothes airer.*
 
-**4 · Выберите форму: «Я не могу посчитать»**
+**4 · Выберите форму после can**
 <!-- interaction_id: en:lesson-08:session-15:i03; family: context_gap_grammar -->
-I can’t ___. → **calculate** · to calculate · calculates
-- to calculate — *После `can’t` нужно `calculate`, без `to`.*
-- calculates — *После `can’t` нужно `calculate`, без `s`.*
+I can ___ the clothes airer. → **find** · finds · to find
+- finds — *Здесь нужна начальная форма глагола.*
+- to find — *Здесь нужна начальная форма без to.*
 
-**5 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-08:session-15:i04; family: speed_match -->
-calculate — вычислять · sing — петь · book — книга · pen — ручка
+**5 · Карточка слова — tumble dryer**
+<!-- interaction_id: en:lesson-08:session-15:word:tumble-dryer; family: word_card -->
+> **tumble dryer** — сушильная машина.
 
-**6 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-08:session-15:i05; family: listen_build_dictation -->
-🔊 *I can’t calculate.* Плитки: `calculate` `can’t` `I` → **I can’t calculate.**
+**6 · Скажите, что можете найти: сушильная машина**
+<!-- interaction_id: en:lesson-08:session-15:i04; family: phrase_builder -->
+Плитки: `dryer` `tumble` `the` `find` `can` `I` → **I can find the tumble dryer.**
 
-**7 · Карточка слова — estimate**
-<!-- interaction_id: en:lesson-08:session-15:word:estimate; family: word_card -->
-> **estimate** — оценивать приблизительно. She can estimate. — «Она умеет оценивать приблизительно». Прикидывать количество без точного вычисления.
+**7 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-08:session-15:i05; family: listen_choose -->
+🔊 *I can find the tumble dryer.* → **I can find the tumble dryer.** · I can’t find the tumble dryer. · We can find the tumble dryer.
+- I can’t find the tumble dryer. — *В записи звучит I can find the tumble dryer.*
+- We can find the tumble dryer. — *В записи звучит I can find the tumble dryer.*
 
-**8 · Скажите «Она умеет оценивать приблизительно»**
-<!-- interaction_id: en:lesson-08:session-15:i06; family: phrase_builder -->
-Плитки: `estimate` `can` `She` → **She can estimate.**
+**8 · Выберите форму после can**
+<!-- interaction_id: en:lesson-08:session-15:i06; family: context_gap_grammar -->
+I can ___ the tumble dryer. → **find** · finds · to find
+- finds — *Здесь нужна начальная форма глагола.*
+- to find — *Здесь нужна начальная форма без to.*
 
-**9 · Карточка слова — abacus**
-<!-- interaction_id: en:lesson-08:session-15:word:abacus; family: word_card -->
-> **abacus** — счёты. Whose abacus is this? — «Чьи это счёты?» В английском abacus — один предмет, поэтому is.
+**9 · Карточка слова — laundry bag**
+<!-- interaction_id: en:lesson-08:session-15:word:laundry-bag; family: word_card -->
+> **laundry bag** — мешок для белья.
 
-**10 · Спросите «Чьи это счёты?»**
-<!-- interaction_id: en:lesson-08:session-15:i07; family: scripted_repeat_compare -->
-🎙 **Whose abacus is this?**
+**10 · Скажите, что можете найти: мешок для белья**
+<!-- interaction_id: en:lesson-08:session-15:i07; family: phrase_builder -->
+Плитки: `bag` `laundry` `the` `find` `can` `I` → **I can find the laundry bag.**
 
-**11 · Выберите форму: «Она умеет оценивать приблизительно»**
-<!-- interaction_id: en:lesson-08:session-15:i08; family: context_gap_grammar -->
-She can ___. → **estimate** · estimates · to estimate
-- estimates — *После `can` нужно `estimate`, без `s`.*
-- to estimate — *После `can` нужно `estimate`, без `to`.*
+**11 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-08:session-15:i08; family: listen_choose -->
+🔊 *I can find the laundry bag.* → **I can find the laundry bag.** · I can’t find the laundry bag. · We can find the laundry bag.
+- I can’t find the laundry bag. — *В записи звучит I can find the laundry bag.*
+- We can find the laundry bag. — *В записи звучит I can find the laundry bag.*
 
-**12 · Послушайте и выберите фразу**
-<!-- interaction_id: en:lesson-08:session-15:i09; family: listen_choose -->
-🔊 *I can’t calculate.* → **I can’t calculate.** · I can’t estimate. · I can’t climb.
-- I can’t estimate. — *В записи последнее слово — `calculate`, а в этом варианте — `estimate`.*
-- I can’t climb. — *В записи последнее слово — `calculate`, а в этом варианте — `climb`.*
+**12 · Выберите форму после can**
+<!-- interaction_id: en:lesson-08:session-15:i09; family: context_gap_grammar -->
+I can ___ the laundry bag. → **find** · finds · to find
+- finds — *Здесь нужна начальная форма глагола.*
+- to find — *Здесь нужна начальная форма без to.*
 
-**13 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-08:session-15:i10; family: speed_match -->
-estimate — оценивать приблизительно · calculate — вычислять · abacus — счёты · sing — петь
+**13 · Карточка слова — dishwasher tablet**
+<!-- interaction_id: en:lesson-08:session-15:word:dishwasher-tablet; family: word_card -->
+> **dishwasher tablet** — таблетка для посудомоечной машины.
 
-**14 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-08:session-15:i11; family: listen_build_dictation -->
-🔊 *Whose abacus is this?* Плитки: `this` `is` `abacus` `Whose` → **Whose abacus is this?**
+**14 · Скажите, что можете найти: таблетка для посудомоечной машины**
+<!-- interaction_id: en:lesson-08:session-15:i10; family: phrase_builder -->
+Плитки: `tablet` `dishwasher` `a` `find` `can` `I` → **I can find a dishwasher tablet.**
 
-**15 · Карточка слова — spreadsheet**
-<!-- interaction_id: en:lesson-08:session-15:word:spreadsheet; family: word_card -->
-> **spreadsheet** — электронная таблица. Where is the spreadsheet? — «Где электронная таблица?» Данные и расчёты в строках и столбцах.
+**15 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-08:session-15:i11; family: listen_choose -->
+🔊 *I can find a dishwasher tablet.* → **I can find a dishwasher tablet.** · I can’t find a dishwasher tablet. · We can find a dishwasher tablet.
+- I can’t find a dishwasher tablet. — *В записи звучит I can find a dishwasher tablet.*
+- We can find a dishwasher tablet. — *В записи звучит I can find a dishwasher tablet.*
 
-**16 · Коллега ищет файл с расчётами в ячейках. Спросите «Где электронная таблица?»**
-<!-- interaction_id: en:lesson-08:session-15:i12; family: phrase_builder -->
-Плитки: `spreadsheet` `the` `is` `Where` → **Where is the spreadsheet?**
+**16 · Выберите форму после can**
+<!-- interaction_id: en:lesson-08:session-15:i12; family: context_gap_grammar -->
+I can ___ a dishwasher tablet. → **find** · finds · to find
+- finds — *Здесь нужна начальная форма глагола.*
+- to find — *Здесь нужна начальная форма без to.*
 
-**17 · Коллега спрашивает, часто ли вы делаете приблизительные оценки. Скажите «Я часто оцениваю приблизительно»**
-<!-- interaction_id: en:lesson-08:session-15:i13; family: scripted_repeat_compare -->
-🎙 **I often estimate.**
+**17 · Соедините слова с переводом**
+<!-- interaction_id: en:lesson-08:session-15:i13; family: speed_match -->
+clothes airer — сушилка-стойка для белья · tumble dryer — сушильная машина · laundry bag — мешок для белья · dishwasher tablet — таблетка для посудомоечной машины
 
-**18 · Выберите форму: «Он не может посчитать»**
-<!-- interaction_id: en:lesson-08:session-15:i14; family: context_gap_grammar -->
-He ___ calculate. → **can’t** · can · is can’t
-- can — *У него не получается: нужно `can’t`.*
-- is can’t — *Достаточно `he can’t`; `is` не нужно.*
+**18 · Соберите услышанное**
+<!-- interaction_id: en:lesson-08:session-15:i14; family: listen_build_dictation -->
+🔊 *Whose laundry bag is this?* Плитки: `this` `is` `bag` `laundry` `Whose` → **Whose laundry bag is this?**
 
-**19 · Послушайте и выберите фразу**
-<!-- interaction_id: en:lesson-08:session-15:i15; family: listen_choose -->
-🔊 *Where is the spreadsheet?* → **Where is the spreadsheet?** · Where is the abacus? · Where is the book?
-- Where is the abacus? — *В записи spreadsheet — «электронная таблица», а не abacus — «счёты».*
-- Where is the book? — *В записи spreadsheet, а не book — «книга».*
+**19 · Соберите услышанное**
+<!-- interaction_id: en:lesson-08:session-15:i15; family: listen_build_dictation -->
+🔊 *She can use the tumble dryer.* Плитки: `dryer` `tumble` `the` `use` `can` `She` → **She can use the tumble dryer.**
 
-**20 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-08:session-15:i16; family: speed_match -->
-calculate — вычислять · estimate — оценивать приблизительно · abacus — счёты · spreadsheet — электронная таблица
+**20 · Скажите: это мой мешок для белья**
+<!-- interaction_id: en:lesson-08:session-15:i16; family: scripted_repeat_compare -->
+🎙 **This is my laundry bag.**
 
-**21 · Том пытается посчитать стоимость покупок, но путается в числах. Скажите «Том не может посчитать»**
-<!-- interaction_id: en:lesson-08:session-15:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom can’t calculate.**
+**21 · Скажите: я могу воспользоваться сушилкой-стойкой**
+<!-- interaction_id: en:lesson-08:session-15:i17; family: scripted_repeat_compare -->
+🎙 **I can use the clothes airer.**
 

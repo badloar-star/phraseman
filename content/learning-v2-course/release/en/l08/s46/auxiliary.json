@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-08:session-46:intro1:q",
       "responseFeedbackById": {
         "en:lesson-08:session-46:intro1:r2": {
-          "ru": "После can не нужно to.",
-          "uk": "Після can не потрібне to."
+          "ru": "Эта фраза не передаёт нужный смысл. Здесь: You can ask for help.",
+          "uk": "Ця фраза не передає потрібний зміст. Тут: You can ask for help."
         },
         "en:lesson-08:session-46:intro1:r3": {
-          "ru": "После can действие остаётся без s.",
-          "uk": "Після can дія залишається без s."
+          "ru": "После can нужен глагол без to и окончания s.",
+          "uk": "Після can потрібне дієслово без to й закінчення s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-46:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-46:intro2:r2": {
-          "ru": "После can не нужно to.",
-          "uk": "Після can не потрібне to."
+          "ru": "Эта фраза не передаёт нужный смысл. Здесь: We can take a break.",
+          "uk": "Ця фраза не передає потрібний зміст. Тут: We can take a break."
         },
         "en:lesson-08:session-46:intro2:r3": {
-          "ru": "После can действие остаётся без s.",
-          "uk": "Після can дія залишається без s."
+          "ru": "После can нужен глагол без to и окончания s.",
+          "uk": "Після can потрібне дієслово без to й закінчення s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-46:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-46:intro3:r2": {
-          "ru": "После can не нужно to.",
-          "uk": "Після can не потрібне to."
+          "ru": "Эта фраза не передаёт нужный смысл. Здесь: You can change your mind.",
+          "uk": "Ця фраза не передає потрібний зміст. Тут: You can change your mind."
         },
         "en:lesson-08:session-46:intro3:r3": {
-          "ru": "После can действие остаётся без s.",
-          "uk": "Після can дія залишається без s."
+          "ru": "После can нужен глагол без to и окончания s.",
+          "uk": "Після can потрібне дієслово без to й закінчення s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "4d40cd21b505e4f4a98a2795040ff016b442991d59f19a45042c0b4cd4940074"
+  "auxiliaryFingerprint": "6db89bf44cde9227903d83abddfb1249aabc44e4449d953cdcd56e38be47789b"
 }

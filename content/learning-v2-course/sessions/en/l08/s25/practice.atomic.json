@@ -1,0 +1,2299 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-08:session-25",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-08:session-25:word:low-fat",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — low-fat",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:word:low-fat:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — low-fat",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:word:low-fat:audio",
+            "transcript": "low-fat"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-25:word:low-fat:r1",
+              "targetText": "low-fat",
+              "meaningByLocale": {
+                "ru": "с пониженным содержанием жира.",
+                "uk": "зі зниженим вмістом жиру."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "low-fat",
+            "definitionByLocale": {
+              "ru": "с пониженным содержанием жира.",
+              "uk": "зі зниженим вмістом жиру."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите купить: с пониженным содержанием жира — йогурт",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите купить: с пониженным содержанием жира — йогурт",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Buy low-fat yoghurt.",
+          "localizedMeaning": {
+            "ru": "Попросите купить: с пониженным содержанием жира — йогурт",
+            "uk": "Попросіть купити: зі зниженим вмістом жиру — йогурт"
+          },
+          "orderedTokens": [
+            "Buy",
+            "low-fat",
+            "yoghurt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-25:i02:r1",
+            "text": "Buy low-fat yoghurt."
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i02:r2",
+            "text": "Don’t buy low-fat yoghurt."
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i02:r3",
+            "text": "Please buy low-fat yoghurt."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:i02:audio",
+            "transcript": "Buy low-fat yoghurt."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-25:i02:r1",
+              "targetText": "Buy low-fat yoghurt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i02:r2",
+              "targetText": "Don’t buy low-fat yoghurt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i02:r3",
+              "targetText": "Please buy low-fat yoghurt.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-25:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Buy low-fat yoghurt.",
+                "uk": "У записі звучить Buy low-fat yoghurt."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Buy low-fat yoghurt.",
+                "uk": "У записі звучить Buy low-fat yoghurt."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите начало просьбы",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-25:i03:r1",
+            "text": "Buy"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i03:r2",
+            "text": "Buys"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i03:r3",
+            "text": "Buying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите начало просьбы",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите начало просьбы",
+            "uk": "Виберіть початок прохання"
+          },
+          "gappedTargetPhrase": "___ low-fat yoghurt.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-25:i03:r1",
+              "text": "Buy"
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i03:r2",
+              "text": "Buys"
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i03:r3",
+              "text": "Buying"
+            }
+          ],
+          "testedDimension": "Выберите начало просьбы",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-25:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите начало просьбы",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма глагола.",
+                "uk": "Тут потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите начало просьбы",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма без to.",
+                "uk": "Тут потрібна початкова форма без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:word:full-fat",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — full-fat",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:word:full-fat:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — full-fat",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:word:full-fat:audio",
+            "transcript": "full-fat"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-25:word:full-fat:r1",
+              "targetText": "full-fat",
+              "meaningByLocale": {
+                "ru": "с обычным содержанием жира.",
+                "uk": "зі звичайним вмістом жиру."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "full-fat",
+            "definitionByLocale": {
+              "ru": "с обычным содержанием жира.",
+              "uk": "зі звичайним вмістом жиру."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите купить: с обычным содержанием жира — йогурт",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите купить: с обычным содержанием жира — йогурт",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Buy full-fat yoghurt.",
+          "localizedMeaning": {
+            "ru": "Попросите купить: с обычным содержанием жира — йогурт",
+            "uk": "Попросіть купити: зі звичайним вмістом жиру — йогурт"
+          },
+          "orderedTokens": [
+            "Buy",
+            "full-fat",
+            "yoghurt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-25:i05:r1",
+            "text": "Buy full-fat yoghurt."
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i05:r2",
+            "text": "Don’t buy full-fat yoghurt."
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i05:r3",
+            "text": "Please buy full-fat yoghurt."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:i05:audio",
+            "transcript": "Buy full-fat yoghurt."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-25:i05:r1",
+              "targetText": "Buy full-fat yoghurt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i05:r2",
+              "targetText": "Don’t buy full-fat yoghurt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i05:r3",
+              "targetText": "Please buy full-fat yoghurt.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-25:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Buy full-fat yoghurt.",
+                "uk": "У записі звучить Buy full-fat yoghurt."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Buy full-fat yoghurt.",
+                "uk": "У записі звучить Buy full-fat yoghurt."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите начало просьбы",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-25:i06:r1",
+            "text": "Buy"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i06:r2",
+            "text": "Buys"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i06:r3",
+            "text": "Buying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите начало просьбы",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите начало просьбы",
+            "uk": "Виберіть початок прохання"
+          },
+          "gappedTargetPhrase": "___ full-fat yoghurt.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-25:i06:r1",
+              "text": "Buy"
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i06:r2",
+              "text": "Buys"
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i06:r3",
+              "text": "Buying"
+            }
+          ],
+          "testedDimension": "Выберите начало просьбы",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-25:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите начало просьбы",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма глагола.",
+                "uk": "Тут потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите начало просьбы",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма без to.",
+                "uk": "Тут потрібна початкова форма без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:word:skimmed",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — skimmed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:word:skimmed:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — skimmed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:word:skimmed:audio",
+            "transcript": "skimmed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-25:word:skimmed:r1",
+              "targetText": "skimmed",
+              "meaningByLocale": {
+                "ru": "обезжиренный — о молоке.",
+                "uk": "знежирене — про молоко."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "skimmed",
+            "definitionByLocale": {
+              "ru": "обезжиренный — о молоке.",
+              "uk": "знежирене — про молоко."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите купить: обезжиренный — о молоке — молоко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите купить: обезжиренный — о молоке — молоко",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Buy skimmed milk.",
+          "localizedMeaning": {
+            "ru": "Попросите купить: обезжиренный — о молоке — молоко",
+            "uk": "Попросіть купити: знежирене — про молоко — молоко"
+          },
+          "orderedTokens": [
+            "Buy",
+            "skimmed",
+            "milk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-25:i08:r1",
+            "text": "Buy skimmed milk."
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i08:r2",
+            "text": "Don’t buy skimmed milk."
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i08:r3",
+            "text": "Please buy skimmed milk."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:i08:audio",
+            "transcript": "Buy skimmed milk."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-25:i08:r1",
+              "targetText": "Buy skimmed milk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i08:r2",
+              "targetText": "Don’t buy skimmed milk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i08:r3",
+              "targetText": "Please buy skimmed milk.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-25:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Buy skimmed milk.",
+                "uk": "У записі звучить Buy skimmed milk."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Buy skimmed milk.",
+                "uk": "У записі звучить Buy skimmed milk."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите начало просьбы",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-25:i09:r1",
+            "text": "Buy"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i09:r2",
+            "text": "Buys"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i09:r3",
+            "text": "Buying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите начало просьбы",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите начало просьбы",
+            "uk": "Виберіть початок прохання"
+          },
+          "gappedTargetPhrase": "___ skimmed milk.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-25:i09:r1",
+              "text": "Buy"
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i09:r2",
+              "text": "Buys"
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i09:r3",
+              "text": "Buying"
+            }
+          ],
+          "testedDimension": "Выберите начало просьбы",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-25:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите начало просьбы",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма глагола.",
+                "uk": "Тут потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите начало просьбы",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма без to.",
+                "uk": "Тут потрібна початкова форма без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:word:semi-skimmed",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — semi-skimmed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:word:semi-skimmed:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — semi-skimmed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:word:semi-skimmed:audio",
+            "transcript": "semi-skimmed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-25:word:semi-skimmed:r1",
+              "targetText": "semi-skimmed",
+              "meaningByLocale": {
+                "ru": "частично обезжиренный — о молоке.",
+                "uk": "частково знежирене — про молоко."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "semi-skimmed",
+            "definitionByLocale": {
+              "ru": "частично обезжиренный — о молоке.",
+              "uk": "частково знежирене — про молоко."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите купить: частично обезжиренный — о молоке — молоко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите купить: частично обезжиренный — о молоке — молоко",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Buy semi-skimmed milk.",
+          "localizedMeaning": {
+            "ru": "Попросите купить: частично обезжиренный — о молоке — молоко",
+            "uk": "Попросіть купити: частково знежирене — про молоко — молоко"
+          },
+          "orderedTokens": [
+            "Buy",
+            "semi-skimmed",
+            "milk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-25:i11:r1",
+            "text": "Buy semi-skimmed milk."
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i11:r2",
+            "text": "Don’t buy semi-skimmed milk."
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i11:r3",
+            "text": "Please buy semi-skimmed milk."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:i11:audio",
+            "transcript": "Buy semi-skimmed milk."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-25:i11:r1",
+              "targetText": "Buy semi-skimmed milk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i11:r2",
+              "targetText": "Don’t buy semi-skimmed milk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i11:r3",
+              "targetText": "Please buy semi-skimmed milk.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-25:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Buy semi-skimmed milk.",
+                "uk": "У записі звучить Buy semi-skimmed milk."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Buy semi-skimmed milk.",
+                "uk": "У записі звучить Buy semi-skimmed milk."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите начало просьбы",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-25:i12:r1",
+            "text": "Buy"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i12:r2",
+            "text": "Buys"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i12:r3",
+            "text": "Buying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите начало просьбы",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите начало просьбы",
+            "uk": "Виберіть початок прохання"
+          },
+          "gappedTargetPhrase": "___ semi-skimmed milk.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-25:i12:r1",
+              "text": "Buy"
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i12:r2",
+              "text": "Buys"
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i12:r3",
+              "text": "Buying"
+            }
+          ],
+          "testedDimension": "Выберите начало просьбы",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-25:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите начало просьбы",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма глагола.",
+                "uk": "Тут потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите начало просьбы",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма без to.",
+                "uk": "Тут потрібна початкова форма без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-25:i13:p1",
+              "target": "low-fat",
+              "meaningByLocale": {
+                "ru": "с пониженным содержанием жира",
+                "uk": "зі зниженим вмістом жиру"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-25:i13:p2",
+              "target": "full-fat",
+              "meaningByLocale": {
+                "ru": "с обычным содержанием жира",
+                "uk": "зі звичайним вмістом жиру"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-25:i13:p3",
+              "target": "skimmed",
+              "meaningByLocale": {
+                "ru": "обезжиренный",
+                "uk": "знежирене"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-25:i13:p4",
+              "target": "semi-skimmed",
+              "meaningByLocale": {
+                "ru": "частично обезжиренный",
+                "uk": "частково знежирене"
+              }
+            }
+          ],
+          "leftColumn": [
+            "low-fat",
+            "full-fat",
+            "skimmed",
+            "semi-skimmed"
+          ],
+          "rightColumn": [
+            "с пониженным содержанием жира",
+            "с обычным содержанием жира",
+            "обезжиренный",
+            "частично обезжиренный"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:i14:audio",
+            "transcript": "Please buy skimmed milk."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please buy skimmed milk.",
+          "orderedTokens": [
+            "Please",
+            "buy",
+            "skimmed",
+            "milk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:i15:audio",
+            "transcript": "Please buy full-fat yoghurt."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please buy full-fat yoghurt.",
+          "orderedTokens": [
+            "Please",
+            "buy",
+            "full-fat",
+            "yoghurt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите: пожалуйста, купи частично обезжиренное молоко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:i16:audio"
+        ],
+        "accessibilityLabel": "Попросите: пожалуйста, купи частично обезжиренное молоко",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:i16:audio",
+            "transcript": "Please buy semi-skimmed milk."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please buy semi-skimmed milk.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите: пожалуйста, купи йогурт с пониженным содержанием жира",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:i17:audio"
+        ],
+        "accessibilityLabel": "Попросите: пожалуйста, купи йогурт с пониженным содержанием жира",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:i17:audio",
+            "transcript": "Please buy low-fat yoghurt."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please buy low-fat yoghurt.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-08:session-25:word:low-fat",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — low-fat",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:word:low-fat:audio"
+        ],
+        "accessibilityLabel": "Картка слова — low-fat",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:word:low-fat:audio",
+            "transcript": "low-fat"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-25:word:low-fat:r1",
+              "targetText": "low-fat",
+              "meaningByLocale": {
+                "ru": "с пониженным содержанием жира.",
+                "uk": "зі зниженим вмістом жиру."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "low-fat",
+            "definitionByLocale": {
+              "ru": "с пониженным содержанием жира.",
+              "uk": "зі зниженим вмістом жиру."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть купити: зі зниженим вмістом жиру — йогурт",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть купити: зі зниженим вмістом жиру — йогурт",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Buy low-fat yoghurt.",
+          "localizedMeaning": {
+            "ru": "Попросите купить: с пониженным содержанием жира — йогурт",
+            "uk": "Попросіть купити: зі зниженим вмістом жиру — йогурт"
+          },
+          "orderedTokens": [
+            "Buy",
+            "low-fat",
+            "yoghurt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-25:i02:r1",
+            "text": "Buy low-fat yoghurt."
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i02:r2",
+            "text": "Don’t buy low-fat yoghurt."
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i02:r3",
+            "text": "Please buy low-fat yoghurt."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:i02:audio",
+            "transcript": "Buy low-fat yoghurt."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-25:i02:r1",
+              "targetText": "Buy low-fat yoghurt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i02:r2",
+              "targetText": "Don’t buy low-fat yoghurt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i02:r3",
+              "targetText": "Please buy low-fat yoghurt.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-25:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Buy low-fat yoghurt.",
+                "uk": "У записі звучить Buy low-fat yoghurt."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Buy low-fat yoghurt.",
+                "uk": "У записі звучить Buy low-fat yoghurt."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть початок прохання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-25:i03:r1",
+            "text": "Buy"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i03:r2",
+            "text": "Buys"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i03:r3",
+            "text": "Buying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть початок прохання",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите начало просьбы",
+            "uk": "Виберіть початок прохання"
+          },
+          "gappedTargetPhrase": "___ low-fat yoghurt.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-25:i03:r1",
+              "text": "Buy"
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i03:r2",
+              "text": "Buys"
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i03:r3",
+              "text": "Buying"
+            }
+          ],
+          "testedDimension": "Виберіть початок прохання",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-25:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть початок прохання",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма глагола.",
+                "uk": "Тут потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть початок прохання",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма без to.",
+                "uk": "Тут потрібна початкова форма без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:word:full-fat",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — full-fat",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:word:full-fat:audio"
+        ],
+        "accessibilityLabel": "Картка слова — full-fat",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:word:full-fat:audio",
+            "transcript": "full-fat"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-25:word:full-fat:r1",
+              "targetText": "full-fat",
+              "meaningByLocale": {
+                "ru": "с обычным содержанием жира.",
+                "uk": "зі звичайним вмістом жиру."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "full-fat",
+            "definitionByLocale": {
+              "ru": "с обычным содержанием жира.",
+              "uk": "зі звичайним вмістом жиру."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть купити: зі звичайним вмістом жиру — йогурт",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть купити: зі звичайним вмістом жиру — йогурт",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Buy full-fat yoghurt.",
+          "localizedMeaning": {
+            "ru": "Попросите купить: с обычным содержанием жира — йогурт",
+            "uk": "Попросіть купити: зі звичайним вмістом жиру — йогурт"
+          },
+          "orderedTokens": [
+            "Buy",
+            "full-fat",
+            "yoghurt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-25:i05:r1",
+            "text": "Buy full-fat yoghurt."
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i05:r2",
+            "text": "Don’t buy full-fat yoghurt."
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i05:r3",
+            "text": "Please buy full-fat yoghurt."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:i05:audio",
+            "transcript": "Buy full-fat yoghurt."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-25:i05:r1",
+              "targetText": "Buy full-fat yoghurt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i05:r2",
+              "targetText": "Don’t buy full-fat yoghurt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i05:r3",
+              "targetText": "Please buy full-fat yoghurt.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-25:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Buy full-fat yoghurt.",
+                "uk": "У записі звучить Buy full-fat yoghurt."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Buy full-fat yoghurt.",
+                "uk": "У записі звучить Buy full-fat yoghurt."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть початок прохання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-25:i06:r1",
+            "text": "Buy"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i06:r2",
+            "text": "Buys"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i06:r3",
+            "text": "Buying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть початок прохання",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите начало просьбы",
+            "uk": "Виберіть початок прохання"
+          },
+          "gappedTargetPhrase": "___ full-fat yoghurt.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-25:i06:r1",
+              "text": "Buy"
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i06:r2",
+              "text": "Buys"
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i06:r3",
+              "text": "Buying"
+            }
+          ],
+          "testedDimension": "Виберіть початок прохання",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-25:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть початок прохання",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма глагола.",
+                "uk": "Тут потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть початок прохання",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма без to.",
+                "uk": "Тут потрібна початкова форма без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:word:skimmed",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — skimmed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:word:skimmed:audio"
+        ],
+        "accessibilityLabel": "Картка слова — skimmed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:word:skimmed:audio",
+            "transcript": "skimmed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-25:word:skimmed:r1",
+              "targetText": "skimmed",
+              "meaningByLocale": {
+                "ru": "обезжиренный — о молоке.",
+                "uk": "знежирене — про молоко."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "skimmed",
+            "definitionByLocale": {
+              "ru": "обезжиренный — о молоке.",
+              "uk": "знежирене — про молоко."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть купити: знежирене — про молоко — молоко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть купити: знежирене — про молоко — молоко",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Buy skimmed milk.",
+          "localizedMeaning": {
+            "ru": "Попросите купить: обезжиренный — о молоке — молоко",
+            "uk": "Попросіть купити: знежирене — про молоко — молоко"
+          },
+          "orderedTokens": [
+            "Buy",
+            "skimmed",
+            "milk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-25:i08:r1",
+            "text": "Buy skimmed milk."
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i08:r2",
+            "text": "Don’t buy skimmed milk."
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i08:r3",
+            "text": "Please buy skimmed milk."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:i08:audio",
+            "transcript": "Buy skimmed milk."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-25:i08:r1",
+              "targetText": "Buy skimmed milk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i08:r2",
+              "targetText": "Don’t buy skimmed milk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i08:r3",
+              "targetText": "Please buy skimmed milk.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-25:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Buy skimmed milk.",
+                "uk": "У записі звучить Buy skimmed milk."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Buy skimmed milk.",
+                "uk": "У записі звучить Buy skimmed milk."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть початок прохання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-25:i09:r1",
+            "text": "Buy"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i09:r2",
+            "text": "Buys"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i09:r3",
+            "text": "Buying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть початок прохання",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите начало просьбы",
+            "uk": "Виберіть початок прохання"
+          },
+          "gappedTargetPhrase": "___ skimmed milk.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-25:i09:r1",
+              "text": "Buy"
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i09:r2",
+              "text": "Buys"
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i09:r3",
+              "text": "Buying"
+            }
+          ],
+          "testedDimension": "Виберіть початок прохання",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-25:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть початок прохання",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма глагола.",
+                "uk": "Тут потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть початок прохання",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма без to.",
+                "uk": "Тут потрібна початкова форма без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:word:semi-skimmed",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — semi-skimmed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:word:semi-skimmed:audio"
+        ],
+        "accessibilityLabel": "Картка слова — semi-skimmed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:word:semi-skimmed:audio",
+            "transcript": "semi-skimmed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-25:word:semi-skimmed:r1",
+              "targetText": "semi-skimmed",
+              "meaningByLocale": {
+                "ru": "частично обезжиренный — о молоке.",
+                "uk": "частково знежирене — про молоко."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "semi-skimmed",
+            "definitionByLocale": {
+              "ru": "частично обезжиренный — о молоке.",
+              "uk": "частково знежирене — про молоко."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть купити: частково знежирене — про молоко — молоко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть купити: частково знежирене — про молоко — молоко",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Buy semi-skimmed milk.",
+          "localizedMeaning": {
+            "ru": "Попросите купить: частично обезжиренный — о молоке — молоко",
+            "uk": "Попросіть купити: частково знежирене — про молоко — молоко"
+          },
+          "orderedTokens": [
+            "Buy",
+            "semi-skimmed",
+            "milk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-25:i11:r1",
+            "text": "Buy semi-skimmed milk."
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i11:r2",
+            "text": "Don’t buy semi-skimmed milk."
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i11:r3",
+            "text": "Please buy semi-skimmed milk."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:i11:audio",
+            "transcript": "Buy semi-skimmed milk."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-25:i11:r1",
+              "targetText": "Buy semi-skimmed milk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i11:r2",
+              "targetText": "Don’t buy semi-skimmed milk.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i11:r3",
+              "targetText": "Please buy semi-skimmed milk.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-25:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Buy semi-skimmed milk.",
+                "uk": "У записі звучить Buy semi-skimmed milk."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Buy semi-skimmed milk.",
+                "uk": "У записі звучить Buy semi-skimmed milk."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть початок прохання",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-25:i12:r1",
+            "text": "Buy"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i12:r2",
+            "text": "Buys"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i12:r3",
+            "text": "Buying"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть початок прохання",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите начало просьбы",
+            "uk": "Виберіть початок прохання"
+          },
+          "gappedTargetPhrase": "___ semi-skimmed milk.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-25:i12:r1",
+              "text": "Buy"
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i12:r2",
+              "text": "Buys"
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i12:r3",
+              "text": "Buying"
+            }
+          ],
+          "testedDimension": "Виберіть початок прохання",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-25:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть початок прохання",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма глагола.",
+                "uk": "Тут потрібна початкова форма дієслова."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-25:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть початок прохання",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна начальная форма без to.",
+                "uk": "Тут потрібна початкова форма без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-25:i13:p1",
+              "target": "low-fat",
+              "meaningByLocale": {
+                "ru": "с пониженным содержанием жира",
+                "uk": "зі зниженим вмістом жиру"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-25:i13:p2",
+              "target": "full-fat",
+              "meaningByLocale": {
+                "ru": "с обычным содержанием жира",
+                "uk": "зі звичайним вмістом жиру"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-25:i13:p3",
+              "target": "skimmed",
+              "meaningByLocale": {
+                "ru": "обезжиренный",
+                "uk": "знежирене"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-25:i13:p4",
+              "target": "semi-skimmed",
+              "meaningByLocale": {
+                "ru": "частично обезжиренный",
+                "uk": "частково знежирене"
+              }
+            }
+          ],
+          "leftColumn": [
+            "low-fat",
+            "full-fat",
+            "skimmed",
+            "semi-skimmed"
+          ],
+          "rightColumn": [
+            "зі зниженим вмістом жиру",
+            "зі звичайним вмістом жиру",
+            "знежирене",
+            "частково знежирене"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:i14:audio",
+            "transcript": "Please buy skimmed milk."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please buy skimmed milk.",
+          "orderedTokens": [
+            "Please",
+            "buy",
+            "skimmed",
+            "milk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:i15:audio",
+            "transcript": "Please buy full-fat yoghurt."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please buy full-fat yoghurt.",
+          "orderedTokens": [
+            "Please",
+            "buy",
+            "full-fat",
+            "yoghurt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть: будь ласка, купи частково знежирене молоко",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:i16:audio"
+        ],
+        "accessibilityLabel": "Попросіть: будь ласка, купи частково знежирене молоко",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:i16:audio",
+            "transcript": "Please buy semi-skimmed milk."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please buy semi-skimmed milk.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-25:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть: будь ласка, купи йогурт зі зниженим вмістом жиру",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-25:i17:audio"
+        ],
+        "accessibilityLabel": "Попросіть: будь ласка, купи йогурт зі зниженим вмістом жиру",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-25:i17:audio",
+            "transcript": "Please buy low-fat yoghurt."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Please buy low-fat yoghurt.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-08:session-25:word:low-fat",
+      "correctText": "low-fat",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i01",
+      "correctText": "Buy low-fat yoghurt.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i02",
+      "correctText": "Buy low-fat yoghurt.",
+      "correctResponseId": "en:lesson-08:session-25:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i03",
+      "correctText": "Buy",
+      "correctResponseId": "en:lesson-08:session-25:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:word:full-fat",
+      "correctText": "full-fat",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i04",
+      "correctText": "Buy full-fat yoghurt.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i05",
+      "correctText": "Buy full-fat yoghurt.",
+      "correctResponseId": "en:lesson-08:session-25:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i06",
+      "correctText": "Buy",
+      "correctResponseId": "en:lesson-08:session-25:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:word:skimmed",
+      "correctText": "skimmed",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i07",
+      "correctText": "Buy skimmed milk.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i08",
+      "correctText": "Buy skimmed milk.",
+      "correctResponseId": "en:lesson-08:session-25:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i09",
+      "correctText": "Buy",
+      "correctResponseId": "en:lesson-08:session-25:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:word:semi-skimmed",
+      "correctText": "semi-skimmed",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i10",
+      "correctText": "Buy semi-skimmed milk.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i11",
+      "correctText": "Buy semi-skimmed milk.",
+      "correctResponseId": "en:lesson-08:session-25:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i12",
+      "correctText": "Buy",
+      "correctResponseId": "en:lesson-08:session-25:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i14",
+      "correctText": "Please buy skimmed milk.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i15",
+      "correctText": "Please buy full-fat yoghurt.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i16",
+      "correctText": "Please buy semi-skimmed milk.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i17",
+      "correctText": "Please buy low-fat yoghurt.",
+      "correctResponseId": null
+    }
+  ]
+}

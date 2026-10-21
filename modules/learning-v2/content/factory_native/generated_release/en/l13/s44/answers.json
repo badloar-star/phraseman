@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-44:word:acorn",
+    "correctText": "acorn",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-44:i01",
+    "correctText": "Did you find an acorn?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-44:i02",
+    "correctText": "Did she find an acorn?",
+    "correctResponseId": "en:lesson-13:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-44:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-44:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-44:word:pine-cone",
+    "correctText": "pine cone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-44:i04",
+    "correctText": "Did you see a pine cone?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-44:i05",
+    "correctText": "Did she see a pine cone?",
+    "correctResponseId": "en:lesson-13:session-44:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-44:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-44:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-44:word:twig",
+    "correctText": "twig",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-44:i07",
+    "correctText": "Did you find a twig?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-44:i08",
+    "correctText": "Did she find a twig?",
+    "correctResponseId": "en:lesson-13:session-44:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-44:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-44:word:dandelion",
+    "correctText": "dandelion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-44:i10",
+    "correctText": "Did you see a dandelion?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-44:i11",
+    "correctText": "Did she see a dandelion?",
+    "correctResponseId": "en:lesson-13:session-44:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-44:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-44:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-44:i13",
+    "correctText": "en:lesson-13:session-44:i13:p1=acorn\nen:lesson-13:session-44:i13:p2=pine cone\nen:lesson-13:session-44:i13:p3=twig\nen:lesson-13:session-44:i13:p4=dandelion",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-44:i14",
+    "correctText": "First I saw a pine cone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-44:i15",
+    "correctText": "Then we walked to the lake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-44:i16",
+    "correctText": "Then she found an acorn.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-44:i17",
+    "correctText": "Did you see a dandelion yesterday?",
+    "correctResponseId": null
+  }
+]

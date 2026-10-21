@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-42",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-42:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-42:intro1:r2": {
+          "ru": "После did нужна take.",
+          "uk": "Після did потрібна take."
+        },
+        "en:lesson-13:session-42:intro1:r3": {
+          "ru": "Это вопрос о каждом дне.",
+          "uk": "Це запитання про кожен день."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-42:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-42:intro2:r2": {
+          "ru": "После did нужна pack.",
+          "uk": "Після did потрібна pack."
+        },
+        "en:lesson-13:session-42:intro2:r3": {
+          "ru": "Это чемодан.",
+          "uk": "Це валіза."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-42:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-42:intro3:r2": {
+          "ru": "Это сумка для покупок.",
+          "uk": "Це сумка для покупок."
+        },
+        "en:lesson-13:session-42:intro3:r3": {
+          "ru": "После did нужна pack.",
+          "uk": "Після did потрібна pack."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "40fd03662af65dbe54c65f2d6bae0132933a14aa76148c96896edeff64f8d8a7"
+}

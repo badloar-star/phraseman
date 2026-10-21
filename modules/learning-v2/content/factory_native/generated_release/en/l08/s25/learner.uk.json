@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-25:word:attach",
+      "interactionId": "en:lesson-08:session-25:word:low-fat",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — attach",
+      "prompt": "Картка слова — low-fat",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-08:session-25:word:attach:audio"
+        "en:lesson-08:session-25:word:low-fat:audio"
       ],
-      "accessibilityLabel": "Картка слова — attach",
+      "accessibilityLabel": "Картка слова — low-fat",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-25:word:attach:audio",
-          "transcript": "attach"
+          "audioTargetId": "en:lesson-08:session-25:word:low-fat:audio",
+          "transcript": "low-fat"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-08:session-25:word:attach:r1",
-            "targetText": "attach",
+            "responseId": "en:lesson-08:session-25:word:low-fat:r1",
+            "targetText": "low-fat",
             "meaningByLocale": {
-              "ru": "прикрепить. Attach it. — «Прикрепи его». Здесь файл добавляют к письму. Для короткого указания начинаем с действия, без you или to.",
-              "uk": "прикріпити. Attach it. — «Прикріпи його». Тут файл додають до листа. Для короткої вказівки починаємо з дії, без you або to."
+              "ru": "с пониженным содержанием жира.",
+              "uk": "зі зниженим вмістом жиру."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "attach",
+          "word": "low-fat",
           "definitionByLocale": {
-            "ru": "прикрепить. Attach it. — «Прикрепи его». Здесь файл добавляют к письму. Для короткого указания начинаем с действия, без you или to.",
-            "uk": "прикріпити. Attach it. — «Прикріпи його». Тут файл додають до листа. Для короткої вказівки починаємо з дії, без you або to."
+            "ru": "с пониженным содержанием жира.",
+            "uk": "зі зниженим вмістом жиру."
           }
         }
       },
@@ -52,21 +52,22 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Дайте вказівку «Прикріпи його»",
+      "prompt": "Попросіть купити: зі зниженим вмістом жиру — йогурт",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте вказівку «Прикріпи його»",
+      "accessibilityLabel": "Попросіть купити: зі зниженим вмістом жиру — йогурт",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Attach it.",
+        "targetPhrase": "Buy low-fat yoghurt.",
         "localizedMeaning": {
-          "ru": "Дайте указание «Прикрепи его»",
-          "uk": "Дайте вказівку «Прикріпи його»"
+          "ru": "Попросите купить: с пониженным содержанием жира — йогурт",
+          "uk": "Попросіть купити: зі зниженим вмістом жиру — йогурт"
         },
         "orderedTokens": [
-          "Attach",
-          "it"
+          "Buy",
+          "low-fat",
+          "yoghurt"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -83,47 +84,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-25:i02:r1",
-          "text": "attach"
+          "text": "Buy low-fat yoghurt."
         },
         {
           "responseId": "en:lesson-08:session-25:i02:r2",
-          "text": "lend"
+          "text": "Don’t buy low-fat yoghurt."
         },
         {
           "responseId": "en:lesson-08:session-25:i02:r3",
-          "text": "walk"
+          "text": "Please buy low-fat yoghurt."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-25:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-25:i02:audio",
-          "transcript": "attach"
+          "transcript": "Buy low-fat yoghurt."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-25:i02:r1",
-            "targetText": "attach",
+            "targetText": "Buy low-fat yoghurt.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-25:i02:r2",
-            "targetText": "lend",
+            "targetText": "Don’t buy low-fat yoghurt.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-25:i02:r3",
-            "targetText": "walk",
+            "targetText": "Please buy low-fat yoghurt.",
             "meaningByLocale": null
           }
         ],
@@ -132,19 +133,19 @@
           {
             "responseId": "en:lesson-08:session-25:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `attach`, а в этом варианте — `lend`.",
-              "uk": "У записі перше слово — `attach`, а в цьому варіанті — `lend`."
+              "ru": "В записи звучит Buy low-fat yoghurt.",
+              "uk": "У записі звучить Buy low-fat yoghurt."
             }
           },
           {
             "responseId": "en:lesson-08:session-25:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `attach`, а в этом варианте — `walk`.",
-              "uk": "У записі перше слово — `attach`, а в цьому варіанті — `walk`."
+              "ru": "В записи звучит Buy low-fat yoghurt.",
+              "uk": "У записі звучить Buy low-fat yoghurt."
             }
           }
         ],
@@ -159,166 +160,134 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму для короткої вказівки прикріпити файл",
+      "prompt": "Виберіть початок прохання",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-25:i03:r1",
-          "text": "Attach"
+          "text": "Buy"
         },
         {
           "responseId": "en:lesson-08:session-25:i03:r2",
-          "text": "Attaches"
+          "text": "Buys"
         },
         {
           "responseId": "en:lesson-08:session-25:i03:r3",
-          "text": "To attach"
+          "text": "Buying"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму для короткої вказівки прикріпити файл",
+      "accessibilityLabel": "Виберіть початок прохання",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму для короткого указания прикрепить файл",
-          "uk": "Виберіть форму для короткої вказівки прикріпити файл"
+          "ru": "Выберите начало просьбы",
+          "uk": "Виберіть початок прохання"
         },
-        "gappedTargetPhrase": "___ it.",
+        "gappedTargetPhrase": "___ low-fat yoghurt.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-25:i03:r1",
-            "text": "Attach"
+            "text": "Buy"
           },
           {
             "responseId": "en:lesson-08:session-25:i03:r2",
-            "text": "Attaches"
+            "text": "Buys"
           },
           {
             "responseId": "en:lesson-08:session-25:i03:r3",
-            "text": "To attach"
+            "text": "Buying"
           }
         ],
-        "testedDimension": "Виберіть форму для короткої вказівки прикріпити файл",
+        "testedDimension": "Виберіть початок прохання",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-25:i03:r2",
             "correct": false,
-            "testedDimension": "Виберіть форму для короткої вказівки прикріпити файл",
+            "testedDimension": "Виберіть початок прохання",
             "feedbackByLocale": {
-              "ru": "Для указания нужно Attach, без es.",
-              "uk": "Для вказівки потрібне Attach, без es."
+              "ru": "Здесь нужна начальная форма глагола.",
+              "uk": "Тут потрібна початкова форма дієслова."
             }
           },
           {
             "responseId": "en:lesson-08:session-25:i03:r3",
             "correct": false,
-            "testedDimension": "Виберіть форму для короткої вказівки прикріпити файл",
+            "testedDimension": "Виберіть початок прохання",
             "feedbackByLocale": {
-              "ru": "Начните с Attach, без to.",
-              "uk": "Почніть з Attach, без to."
+              "ru": "Здесь нужна начальная форма без to.",
+              "uk": "Тут потрібна початкова форма без to."
             }
           }
         ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:word:full-fat",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — full-fat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-25:word:full-fat:audio"
+      ],
+      "accessibilityLabel": "Картка слова — full-fat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-25:word:full-fat:audio",
+          "transcript": "full-fat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-25:word:full-fat:r1",
+            "targetText": "full-fat",
+            "meaningByLocale": {
+              "ru": "с обычным содержанием жира.",
+              "uk": "зі звичайним вмістом жиру."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "full-fat",
+          "definitionByLocale": {
+            "ru": "с обычным содержанием жира.",
+            "uk": "зі звичайним вмістом жиру."
+          }
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-08:session-25:i04",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "speed_match",
-      "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть купити: зі звичайним вмістом жиру — йогурт",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "Попросіть купити: зі звичайним вмістом жиру — йогурт",
       "modePayload": {
-        "family": "speed_match",
-        "pairGrid": [
-          {
-            "pairId": "en:lesson-08:session-25:i04:p1",
-            "target": "attach",
-            "meaningByLocale": {
-              "ru": "прикрепить",
-              "uk": "прикріпити"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-25:i04:p2",
-            "target": "file",
-            "meaningByLocale": {
-              "ru": "файл",
-              "uk": "файл"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-25:i04:p3",
-            "target": "email",
-            "meaningByLocale": {
-              "ru": "электронное письмо",
-              "uk": "електронний лист"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-25:i04:p4",
-            "target": "check",
-            "meaningByLocale": {
-              "ru": "проверить",
-              "uk": "перевірити"
-            }
-          }
-        ],
-        "leftColumn": [
-          "attach",
-          "file",
-          "email",
-          "check"
-        ],
-        "rightColumn": [
-          "прикріпити",
-          "файл",
-          "електронний лист",
-          "перевірити"
-        ],
-        "pairingKey": "pair_id",
-        "timerPolicy": {
-          "enabledByDefault": true,
-          "learnerCanDisable": true,
-          "pausesOnInterruption": true
+        "family": "phrase_builder",
+        "targetPhrase": "Buy full-fat yoghurt.",
+        "localizedMeaning": {
+          "ru": "Попросите купить: с обычным содержанием жира — йогурт",
+          "uk": "Попросіть купити: зі звичайним вмістом жиру — йогурт"
         },
-        "finishStats": [
-          "speed",
-          "accuracy",
-          "personal_best"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-25:i05",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-25:i05:audio"
-      ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-25:i05:audio",
-          "transcript": "Attach it."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Attach it.",
         "orderedTokens": [
-          "Attach",
-          "it"
+          "Buy",
+          "full-fat",
+          "yoghurt"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -330,45 +299,78 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-25:word:recipient",
+      "interactionId": "en:lesson-08:session-25:i05",
       "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — recipient",
-      "responseOptions": [],
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-25:i05:r1",
+          "text": "Buy full-fat yoghurt."
+        },
+        {
+          "responseId": "en:lesson-08:session-25:i05:r2",
+          "text": "Don’t buy full-fat yoghurt."
+        },
+        {
+          "responseId": "en:lesson-08:session-25:i05:r3",
+          "text": "Please buy full-fat yoghurt."
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-08:session-25:word:recipient:audio"
+        "en:lesson-08:session-25:i05:audio"
       ],
-      "accessibilityLabel": "Картка слова — recipient",
+      "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-25:word:recipient:audio",
-          "transcript": "recipient"
+          "audioTargetId": "en:lesson-08:session-25:i05:audio",
+          "transcript": "Buy full-fat yoghurt."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-08:session-25:word:recipient:r1",
-            "targetText": "recipient",
-            "meaningByLocale": {
-              "ru": "получатель. Check the recipient. — «Проверь получателя». Человек, которому отправляют письмо или сообщение.",
-              "uk": "одержувач. Check the recipient. — «Перевір одержувача». Людина, якій надсилають лист або повідомлення."
-            }
+            "responseId": "en:lesson-08:session-25:i05:r1",
+            "targetText": "Buy full-fat yoghurt.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i05:r2",
+            "targetText": "Don’t buy full-fat yoghurt.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i05:r3",
+            "targetText": "Please buy full-fat yoghurt.",
+            "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "recipient",
-          "definitionByLocale": {
-            "ru": "получатель. Check the recipient. — «Проверь получателя». Человек, которому отправляют письмо или сообщение.",
-            "uk": "одержувач. Check the recipient. — «Перевір одержувача». Людина, якій надсилають лист або повідомлення."
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-25:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Buy full-fat yoghurt.",
+              "uk": "У записі звучить Buy full-fat yoghurt."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Buy full-fat yoghurt.",
+              "uk": "У записі звучить Buy full-fat yoghurt."
+            }
           }
-        }
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -376,61 +378,98 @@
       "interactionId": "en:lesson-08:session-25:i06",
       "ordinal": 11,
       "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Дайте коротку вказівку «Перевір одержувача»",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть початок прохання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-25:i06:r1",
+          "text": "Buy"
+        },
+        {
+          "responseId": "en:lesson-08:session-25:i06:r2",
+          "text": "Buys"
+        },
+        {
+          "responseId": "en:lesson-08:session-25:i06:r3",
+          "text": "Buying"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дайте коротку вказівку «Перевір одержувача»",
+      "accessibilityLabel": "Виберіть початок прохання",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Check the recipient.",
-        "localizedMeaning": {
-          "ru": "Дайте короткое указание «Проверь получателя»",
-          "uk": "Дайте коротку вказівку «Перевір одержувача»"
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите начало просьбы",
+          "uk": "Виберіть початок прохання"
         },
-        "orderedTokens": [
-          "Check",
-          "the",
-          "recipient"
+        "gappedTargetPhrase": "___ full-fat yoghurt.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-25:i06:r1",
+            "text": "Buy"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i06:r2",
+            "text": "Buys"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i06:r3",
+            "text": "Buying"
+          }
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
+        "testedDimension": "Виберіть початок прохання",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-25:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть початок прохання",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна начальная форма глагола.",
+              "uk": "Тут потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть початок прохання",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна начальная форма без to.",
+              "uk": "Тут потрібна початкова форма без to."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-25:word:document",
+      "interactionId": "en:lesson-08:session-25:word:skimmed",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — document",
+      "prompt": "Картка слова — skimmed",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-08:session-25:word:document:audio"
+        "en:lesson-08:session-25:word:skimmed:audio"
       ],
-      "accessibilityLabel": "Картка слова — document",
+      "accessibilityLabel": "Картка слова — skimmed",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-25:word:document:audio",
-          "transcript": "document"
+          "audioTargetId": "en:lesson-08:session-25:word:skimmed:audio",
+          "transcript": "skimmed"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-08:session-25:word:document:r1",
-            "targetText": "document",
+            "responseId": "en:lesson-08:session-25:word:skimmed:r1",
+            "targetText": "skimmed",
             "meaningByLocale": {
-              "ru": "документ. Open the document. — «Открой документ». Здесь электронный текстовый файл с инструкциями.",
-              "uk": "документ. Open the document. — «Відкрий документ». Тут електронний текстовий файл з інструкціями."
+              "ru": "обезжиренный — о молоке.",
+              "uk": "знежирене — про молоко."
             }
           }
         ],
@@ -438,10 +477,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "document",
+          "word": "skimmed",
           "definitionByLocale": {
-            "ru": "документ. Open the document. — «Открой документ». Здесь электронный текстовый файл с инструкциями.",
-            "uk": "документ. Open the document. — «Відкрий документ». Тут електронний текстовий файл з інструкціями."
+            "ru": "обезжиренный — о молоке.",
+            "uk": "знежирене — про молоко."
           }
         }
       },
@@ -451,32 +490,31 @@
       "interactionId": "en:lesson-08:session-25:i07",
       "ordinal": 13,
       "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Колега знайшов файл з інструкціями. Скажіть «Відкрий документ»",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть купити: знежирене — про молоко — молоко",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-25:i07:audio"
-      ],
-      "accessibilityLabel": "Колега знайшов файл з інструкціями. Скажіть «Відкрий документ»",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросіть купити: знежирене — про молоко — молоко",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-25:i07:audio",
-          "transcript": "Open the document."
+        "family": "phrase_builder",
+        "targetPhrase": "Buy skimmed milk.",
+        "localizedMeaning": {
+          "ru": "Попросите купить: обезжиренный — о молоке — молоко",
+          "uk": "Попросіть купити: знежирене — про молоко — молоко"
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "Open the document.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "orderedTokens": [
+          "Buy",
+          "skimmed",
+          "milk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -484,139 +522,70 @@
       "interactionId": "en:lesson-08:session-25:i08",
       "ordinal": 14,
       "purpose": "guided_practice",
-      "family": "context_gap_grammar",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму для короткої вказівки відкрити документ",
+      "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-25:i08:r1",
-          "text": "Open"
+          "text": "Buy skimmed milk."
         },
         {
           "responseId": "en:lesson-08:session-25:i08:r2",
-          "text": "Opens"
+          "text": "Don’t buy skimmed milk."
         },
         {
           "responseId": "en:lesson-08:session-25:i08:r3",
-          "text": "To open"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму для короткої вказівки відкрити документ",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Выберите форму для короткого указания открыть документ",
-          "uk": "Виберіть форму для короткої вказівки відкрити документ"
-        },
-        "gappedTargetPhrase": "___ the document.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-08:session-25:i08:r1",
-            "text": "Open"
-          },
-          {
-            "responseId": "en:lesson-08:session-25:i08:r2",
-            "text": "Opens"
-          },
-          {
-            "responseId": "en:lesson-08:session-25:i08:r3",
-            "text": "To open"
-          }
-        ],
-        "testedDimension": "Виберіть форму для короткої вказівки відкрити документ",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-08:session-25:i08:r2",
-            "correct": false,
-            "testedDimension": "Виберіть форму для короткої вказівки відкрити документ",
-            "feedbackByLocale": {
-              "ru": "Для указания нужно Open, без s.",
-              "uk": "Для вказівки потрібне Open, без s."
-            }
-          },
-          {
-            "responseId": "en:lesson-08:session-25:i08:r3",
-            "correct": false,
-            "testedDimension": "Виберіть форму для короткої вказівки відкрити документ",
-            "feedbackByLocale": {
-              "ru": "Начните с Open, без to.",
-              "uk": "Почніть з Open, без to."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-25:i09",
-      "ordinal": 15,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-08:session-25:i09:r1",
-          "text": "Attach it."
-        },
-        {
-          "responseId": "en:lesson-08:session-25:i09:r2",
-          "text": "Attach this."
-        },
-        {
-          "responseId": "en:lesson-08:session-25:i09:r3",
-          "text": "Attach that."
+          "text": "Please buy skimmed milk."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-08:session-25:i09:audio"
+        "en:lesson-08:session-25:i08:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-25:i09:audio",
-          "transcript": "Attach it."
+          "audioTargetId": "en:lesson-08:session-25:i08:audio",
+          "transcript": "Buy skimmed milk."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-08:session-25:i09:r1",
-            "targetText": "Attach it.",
+            "responseId": "en:lesson-08:session-25:i08:r1",
+            "targetText": "Buy skimmed milk.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-08:session-25:i09:r2",
-            "targetText": "Attach this.",
+            "responseId": "en:lesson-08:session-25:i08:r2",
+            "targetText": "Don’t buy skimmed milk.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-08:session-25:i09:r3",
-            "targetText": "Attach that.",
+            "responseId": "en:lesson-08:session-25:i08:r3",
+            "targetText": "Please buy skimmed milk.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-08:session-25:i09:r2",
+            "responseId": "en:lesson-08:session-25:i08:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `it`, а в этом варианте — `this`.",
-              "uk": "У записі останнє слово — `it`, а в цьому варіанті — `this`."
+              "ru": "В записи звучит Buy skimmed milk.",
+              "uk": "У записі звучить Buy skimmed milk."
             }
           },
           {
-            "responseId": "en:lesson-08:session-25:i09:r3",
+            "responseId": "en:lesson-08:session-25:i08:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `it`, а в этом варианте — `that`.",
-              "uk": "У записі останнє слово — `it`, а в цьому варіанті — `that`."
+              "ru": "В записи звучит Buy skimmed milk.",
+              "uk": "У записі звучить Buy skimmed milk."
             }
           }
         ],
@@ -626,63 +595,352 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-25:i10",
+      "interactionId": "en:lesson-08:session-25:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть початок прохання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-25:i09:r1",
+          "text": "Buy"
+        },
+        {
+          "responseId": "en:lesson-08:session-25:i09:r2",
+          "text": "Buys"
+        },
+        {
+          "responseId": "en:lesson-08:session-25:i09:r3",
+          "text": "Buying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть початок прохання",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите начало просьбы",
+          "uk": "Виберіть початок прохання"
+        },
+        "gappedTargetPhrase": "___ skimmed milk.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-25:i09:r1",
+            "text": "Buy"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i09:r2",
+            "text": "Buys"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i09:r3",
+            "text": "Buying"
+          }
+        ],
+        "testedDimension": "Виберіть початок прохання",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-25:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть початок прохання",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна начальная форма глагола.",
+              "uk": "Тут потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть початок прохання",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна начальная форма без to.",
+              "uk": "Тут потрібна початкова форма без to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:word:semi-skimmed",
       "ordinal": 16,
       "purpose": "guided_practice",
-      "family": "speed_match",
-      "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — semi-skimmed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-25:word:semi-skimmed:audio"
+      ],
+      "accessibilityLabel": "Картка слова — semi-skimmed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-25:word:semi-skimmed:audio",
+          "transcript": "semi-skimmed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-25:word:semi-skimmed:r1",
+            "targetText": "semi-skimmed",
+            "meaningByLocale": {
+              "ru": "частично обезжиренный — о молоке.",
+              "uk": "частково знежирене — про молоко."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "semi-skimmed",
+          "definitionByLocale": {
+            "ru": "частично обезжиренный — о молоке.",
+            "uk": "частково знежирене — про молоко."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросіть купити: частково знежирене — про молоко — молоко",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "Попросіть купити: частково знежирене — про молоко — молоко",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Buy semi-skimmed milk.",
+        "localizedMeaning": {
+          "ru": "Попросите купить: частично обезжиренный — о молоке — молоко",
+          "uk": "Попросіть купити: частково знежирене — про молоко — молоко"
+        },
+        "orderedTokens": [
+          "Buy",
+          "semi-skimmed",
+          "milk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-25:i11:r1",
+          "text": "Buy semi-skimmed milk."
+        },
+        {
+          "responseId": "en:lesson-08:session-25:i11:r2",
+          "text": "Don’t buy semi-skimmed milk."
+        },
+        {
+          "responseId": "en:lesson-08:session-25:i11:r3",
+          "text": "Please buy semi-skimmed milk."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-25:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-25:i11:audio",
+          "transcript": "Buy semi-skimmed milk."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-25:i11:r1",
+            "targetText": "Buy semi-skimmed milk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i11:r2",
+            "targetText": "Don’t buy semi-skimmed milk.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i11:r3",
+            "targetText": "Please buy semi-skimmed milk.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-25:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Buy semi-skimmed milk.",
+              "uk": "У записі звучить Buy semi-skimmed milk."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Buy semi-skimmed milk.",
+              "uk": "У записі звучить Buy semi-skimmed milk."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть початок прохання",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-25:i12:r1",
+          "text": "Buy"
+        },
+        {
+          "responseId": "en:lesson-08:session-25:i12:r2",
+          "text": "Buys"
+        },
+        {
+          "responseId": "en:lesson-08:session-25:i12:r3",
+          "text": "Buying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть початок прохання",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите начало просьбы",
+          "uk": "Виберіть початок прохання"
+        },
+        "gappedTargetPhrase": "___ semi-skimmed milk.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-25:i12:r1",
+            "text": "Buy"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i12:r2",
+            "text": "Buys"
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i12:r3",
+            "text": "Buying"
+          }
+        ],
+        "testedDimension": "Виберіть початок прохання",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-25:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть початок прохання",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна начальная форма глагола.",
+              "uk": "Тут потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-25:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть початок прохання",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна начальная форма без to.",
+              "uk": "Тут потрібна початкова форма без to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-25:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-08:session-25:i10:p1",
-            "target": "attach",
+            "pairId": "en:lesson-08:session-25:i13:p1",
+            "target": "low-fat",
             "meaningByLocale": {
-              "ru": "прикрепить",
-              "uk": "прикріпити"
+              "ru": "с пониженным содержанием жира",
+              "uk": "зі зниженим вмістом жиру"
             }
           },
           {
-            "pairId": "en:lesson-08:session-25:i10:p2",
-            "target": "recipient",
+            "pairId": "en:lesson-08:session-25:i13:p2",
+            "target": "full-fat",
             "meaningByLocale": {
-              "ru": "получатель",
-              "uk": "одержувач"
+              "ru": "с обычным содержанием жира",
+              "uk": "зі звичайним вмістом жиру"
             }
           },
           {
-            "pairId": "en:lesson-08:session-25:i10:p3",
-            "target": "document",
+            "pairId": "en:lesson-08:session-25:i13:p3",
+            "target": "skimmed",
             "meaningByLocale": {
-              "ru": "документ",
-              "uk": "документ"
+              "ru": "обезжиренный",
+              "uk": "знежирене"
             }
           },
           {
-            "pairId": "en:lesson-08:session-25:i10:p4",
-            "target": "check",
+            "pairId": "en:lesson-08:session-25:i13:p4",
+            "target": "semi-skimmed",
             "meaningByLocale": {
-              "ru": "проверить",
-              "uk": "перевірити"
+              "ru": "частично обезжиренный",
+              "uk": "частково знежирене"
             }
           }
         ],
         "leftColumn": [
-          "attach",
-          "recipient",
-          "document",
-          "check"
+          "low-fat",
+          "full-fat",
+          "skimmed",
+          "semi-skimmed"
         ],
         "rightColumn": [
-          "прикріпити",
-          "одержувач",
-          "документ",
-          "перевірити"
+          "зі зниженим вмістом жиру",
+          "зі звичайним вмістом жиру",
+          "знежирене",
+          "частково знежирене"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -694,149 +952,6 @@
           "speed",
           "accuracy",
           "personal_best"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-25:i11",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-25:i11:audio"
-      ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-25:i11:audio",
-          "transcript": "Check the recipient."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Check the recipient.",
-        "orderedTokens": [
-          "Check",
-          "the",
-          "recipient"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-25:word:filename",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — filename",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-25:word:filename:audio"
-      ],
-      "accessibilityLabel": "Картка слова — filename",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-25:word:filename:audio",
-          "transcript": "filename"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-08:session-25:word:filename:r1",
-            "targetText": "filename",
-            "meaningByLocale": {
-              "ru": "имя файла. Check the filename. — «Проверь имя файла». Название файла на компьютере, например report.pdf; filename пишется слитно.",
-              "uk": "ім’я файлу. Check the filename. — «Перевір ім’я файлу». Назва файлу на комп’ютері, наприклад report.pdf; filename пишеться разом."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "filename",
-          "definitionByLocale": {
-            "ru": "имя файла. Check the filename. — «Проверь имя файла». Название файла на компьютере, например report.pdf; filename пишется слитно.",
-            "uk": "ім’я файлу. Check the filename. — «Перевір ім’я файлу». Назва файлу на комп’ютері, наприклад report.pdf; filename пишеться разом."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-25:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Поруч є стара й нова версії файлу. Скажіть «Перевір ім’я файлу»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Поруч є стара й нова версії файлу. Скажіть «Перевір ім’я файлу»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Check the filename.",
-        "localizedMeaning": {
-          "ru": "Рядом лежат старая и новая версии файла. Скажите «Проверь имя файла»",
-          "uk": "Поруч є стара й нова версії файлу. Скажіть «Перевір ім’я файлу»"
-        },
-        "orderedTokens": [
-          "Check",
-          "the",
-          "filename"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-25:i13",
-      "ordinal": 20,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Документ уже відкрито. Тепер його потрібно надіслати вкладенням. Скажіть «Прикріпи документ»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-25:i13:audio"
-      ],
-      "accessibilityLabel": "Документ уже відкрито. Тепер його потрібно надіслати вкладенням. Скажіть «Прикріпи документ»",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-25:i13:audio",
-          "transcript": "Attach the document."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "Attach the document.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -845,68 +960,35 @@
       "interactionId": "en:lesson-08:session-25:i14",
       "ordinal": 21,
       "purpose": "independent_check",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Виберіть форму для короткої вказівки перевірити ім’я файлу",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-08:session-25:i14:r1",
-          "text": "Check"
-        },
-        {
-          "responseId": "en:lesson-08:session-25:i14:r2",
-          "text": "Checks"
-        },
-        {
-          "responseId": "en:lesson-08:session-25:i14:r3",
-          "text": "To check"
-        }
-      ],
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму для короткої вказівки перевірити ім’я файлу",
+      "audioTargetIds": [
+        "en:lesson-08:session-25:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуте",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Выберите форму для короткого указания проверить имя файла",
-          "uk": "Виберіть форму для короткої вказівки перевірити ім’я файлу"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-25:i14:audio",
+          "transcript": "Please buy skimmed milk."
         },
-        "gappedTargetPhrase": "___ the filename.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-08:session-25:i14:r1",
-            "text": "Check"
-          },
-          {
-            "responseId": "en:lesson-08:session-25:i14:r2",
-            "text": "Checks"
-          },
-          {
-            "responseId": "en:lesson-08:session-25:i14:r3",
-            "text": "To check"
-          }
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please buy skimmed milk.",
+        "orderedTokens": [
+          "Please",
+          "buy",
+          "skimmed",
+          "milk"
         ],
-        "testedDimension": "Виберіть форму для короткої вказівки перевірити ім’я файлу",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-08:session-25:i14:r2",
-            "correct": false,
-            "testedDimension": "Виберіть форму для короткої вказівки перевірити ім’я файлу",
-            "feedbackByLocale": {
-              "ru": "Для указания нужно Check, без s.",
-              "uk": "Для вказівки потрібне Check, без s."
-            }
-          },
-          {
-            "responseId": "en:lesson-08:session-25:i14:r3",
-            "correct": false,
-            "testedDimension": "Виберіть форму для короткої вказівки перевірити ім’я файлу",
-            "feedbackByLocale": {
-              "ru": "Начните с Check, без to.",
-              "uk": "Почніть з Check, без to."
-            }
-          }
-        ]
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -914,147 +996,67 @@
       "interactionId": "en:lesson-08:session-25:i15",
       "ordinal": 22,
       "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-08:session-25:i15:r1",
-          "text": "Check the filename."
-        },
-        {
-          "responseId": "en:lesson-08:session-25:i15:r2",
-          "text": "Check the recipient."
-        },
-        {
-          "responseId": "en:lesson-08:session-25:i15:r3",
-          "text": "Check the document."
-        }
-      ],
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-25:i15:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "accessibilityLabel": "Складіть почуте",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-25:i15:audio",
-          "transcript": "Check the filename."
+          "transcript": "Please buy full-fat yoghurt."
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-08:session-25:i15:r1",
-            "targetText": "Check the filename.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-08:session-25:i15:r2",
-            "targetText": "Check the recipient.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-08:session-25:i15:r3",
-            "targetText": "Check the document.",
-            "meaningByLocale": null
-          }
+        "hiddenTargetPhrase": "Please buy full-fat yoghurt.",
+        "orderedTokens": [
+          "Please",
+          "buy",
+          "full-fat",
+          "yoghurt"
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-08:session-25:i15:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
-            "feedbackByLocale": {
-              "ru": "В записи filename — «имя файла», а не recipient — «получатель».",
-              "uk": "У записі filename — «ім’я файлу», а не recipient — «одержувач»."
-            }
-          },
-          {
-            "responseId": "en:lesson-08:session-25:i15:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
-            "feedbackByLocale": {
-              "ru": "В записи filename, а не document — «документ».",
-              "uk": "У записі filename, а не document — «документ»."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-08:session-25:i16",
       "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "speed_match",
-      "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть: будь ласка, купи частково знежирене молоко",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "audioTargetIds": [
+        "en:lesson-08:session-25:i16:audio"
+      ],
+      "accessibilityLabel": "Попросіть: будь ласка, купи частково знежирене молоко",
       "modePayload": {
-        "family": "speed_match",
-        "pairGrid": [
-          {
-            "pairId": "en:lesson-08:session-25:i16:p1",
-            "target": "attach",
-            "meaningByLocale": {
-              "ru": "прикрепить",
-              "uk": "прикріпити"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-25:i16:p2",
-            "target": "recipient",
-            "meaningByLocale": {
-              "ru": "получатель",
-              "uk": "одержувач"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-25:i16:p3",
-            "target": "document",
-            "meaningByLocale": {
-              "ru": "документ",
-              "uk": "документ"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-25:i16:p4",
-            "target": "filename",
-            "meaningByLocale": {
-              "ru": "имя файла",
-              "uk": "ім’я файлу"
-            }
-          }
-        ],
-        "leftColumn": [
-          "attach",
-          "recipient",
-          "document",
-          "filename"
-        ],
-        "rightColumn": [
-          "прикріпити",
-          "одержувач",
-          "документ",
-          "ім’я файлу"
-        ],
-        "pairingKey": "pair_id",
-        "timerPolicy": {
-          "enabledByDefault": true,
-          "learnerCanDisable": true,
-          "pausesOnInterruption": true
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-25:i16:audio",
+          "transcript": "Please buy semi-skimmed milk."
         },
-        "finishStats": [
-          "speed",
-          "accuracy",
-          "personal_best"
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please buy semi-skimmed milk.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -1062,35 +1064,27 @@
     {
       "interactionId": "en:lesson-08:session-25:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг готує листа з фотографією. Фотографію вже вибрано. Дайте коротку вказівку «Прикріпи її»",
+      "prompt": "Попросіть: будь ласка, купи йогурт зі зниженим вмістом жиру",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-25:i17:audio"
       ],
-      "accessibilityLabel": "Друг готує листа з фотографією. Фотографію вже вибрано. Дайте коротку вказівку «Прикріпи її»",
+      "accessibilityLabel": "Попросіть: будь ласка, купи йогурт зі зниженим вмістом жиру",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-25:i17:audio",
-          "transcript": "Attach it."
+          "transcript": "Please buy low-fat yoghurt."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Attach it.",
+        "targetPhrase": "Please buy low-fat yoghurt.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1107,5 +1101,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a95fd80fd29acb070b0e7d4b40a7bf0bdd22cc617e04e466fbf3ef88b1bdaea8"
+  "learnerFingerprint": "8547d3c8db356cf4c8de36a4017a49f7ebe7c2615ce709e5a018175bfc87a865"
 }

@@ -936,7 +936,7 @@
           },
           {
             "responseId": "en:lesson-08:session-56:i15:r3",
-            "text": "Whose prototype is this?"
+            "text": "Whose book is this?"
           }
         ],
         "mediaIds": [],
@@ -964,7 +964,7 @@
             },
             {
               "responseId": "en:lesson-08:session-56:i15:r3",
-              "targetText": "Whose prototype is this?",
+              "targetText": "Whose book is this?",
               "meaningByLocale": null
             }
           ],
@@ -2043,7 +2043,7 @@
           },
           {
             "responseId": "en:lesson-08:session-56:i15:r3",
-            "text": "Whose prototype is this?"
+            "text": "Whose book is this?"
           }
         ],
         "mediaIds": [],
@@ -2071,7 +2071,7 @@
             },
             {
               "responseId": "en:lesson-08:session-56:i15:r3",
-              "targetText": "Whose prototype is this?",
+              "targetText": "Whose book is this?",
               "meaningByLocale": null
             }
           ],

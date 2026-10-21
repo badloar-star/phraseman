@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-08:session-11:intro1:q",
       "responseFeedbackById": {
         "en:lesson-08:session-11:intro1:r2": {
-          "ru": "Здесь нужно `can’t` — «не умею».",
-          "uk": "Тут потрібне `can’t` — «не вмію»."
+          "ru": "Can означает «умею».",
+          "uk": "Can означає «вмію»."
         },
         "en:lesson-08:session-11:intro1:r3": {
-          "ru": "После `can’t` нужно `code`, без `to`.",
-          "uk": "Після `can’t` потрібне `code`, без `to`."
+          "ru": "После can’t не нужно to.",
+          "uk": "Після can’t не потрібне to."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-11:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-11:intro2:r2": {
-          "ru": "Здесь нужно `can’t` — «не умеет».",
-          "uk": "Тут потрібне `can’t` — «не вміє»."
+          "ru": "Здесь говорится о стирке.",
+          "uk": "Тут ідеться про прання."
         },
         "en:lesson-08:session-11:intro2:r3": {
-          "ru": "После `can’t` нужно `debug`, без `s`.",
-          "uk": "Після `can’t` потрібне `debug`, без `s`."
+          "ru": "После can’t нужна do.",
+          "uk": "Після can’t потрібна do."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-11:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-11:intro3:r2": {
-          "ru": "Для «чья» нужно `whose`, а не `who`.",
-          "uk": "Для «чия» потрібне `whose`, а не `who`."
+          "ru": "Can’t означает «не могу».",
+          "uk": "Can’t означає «не можу»."
         },
         "en:lesson-08:session-11:intro3:r3": {
-          "ru": "Камера одна: нужно `is this`.",
-          "uk": "Камера одна: потрібне `is this`."
+          "ru": "После can не нужно to.",
+          "uk": "Після can не потрібне to."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "57d1736cbfb3541ab3ae06a82eae55e197746b55f5751198ed3df3bed7cc54a9"
+  "auxiliaryFingerprint": "26a2048b9a4b255b6a7e0760eec6dabb42fc056fcdbf0ff8205fbd04f7339bb8"
 }

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-42:word:shoulder-bag",
+    "correctText": "shoulder bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-42:i01",
+    "correctText": "Did you take your shoulder bag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-42:i02",
+    "correctText": "Did she take your shoulder bag?",
+    "correctResponseId": "en:lesson-13:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-42:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-42:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-42:word:sports-bag",
+    "correctText": "sports bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-42:i04",
+    "correctText": "Did you pack your sports bag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-42:i05",
+    "correctText": "Did she pack your sports bag?",
+    "correctResponseId": "en:lesson-13:session-42:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-42:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-42:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-42:word:washbag",
+    "correctText": "washbag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-42:i07",
+    "correctText": "Did you pack your washbag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-42:i08",
+    "correctText": "Did she pack your washbag?",
+    "correctResponseId": "en:lesson-13:session-42:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-42:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-42:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-42:word:shopping-bag",
+    "correctText": "shopping bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-42:i10",
+    "correctText": "Did you take your shopping bag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-42:i11",
+    "correctText": "Did she take your shopping bag?",
+    "correctResponseId": "en:lesson-13:session-42:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-42:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-42:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-42:i13",
+    "correctText": "en:lesson-13:session-42:i13:p1=shoulder bag\nen:lesson-13:session-42:i13:p2=sports bag\nen:lesson-13:session-42:i13:p3=washbag\nen:lesson-13:session-42:i13:p4=shopping bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-42:i14",
+    "correctText": "First I packed my sports bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-42:i15",
+    "correctText": "Then I checked the tickets.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-42:i16",
+    "correctText": "Then she took her shopping bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-42:i17",
+    "correctText": "In the end, I didn't take my shoulder bag.",
+    "correctResponseId": null
+  }
+]

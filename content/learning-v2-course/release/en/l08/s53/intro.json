@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-08:session-53",
   "learningOutcomeByLocale": {
-    "ru": "предложение помощи и просьба с can; чей предмет — whose",
-    "uk": "пропозиція допомоги та прохання з can; чий предмет — whose"
+    "ru": "повторение can + глагол без to",
+    "uk": "повторення can + дієслово без to"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-08:session-53:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Приглашение на открытый урок танцев",
-        "uk": "Запрошення на відкритий урок танців"
+        "ru": "Одеться",
+        "uk": "Одягнутися"
       },
       "bodyByLocale": {
-        "ru": "Танцевальная студия приглашает соседей на открытый урок, но у неё ещё нет красивого приглашения. Вы предлагаете придумать его оформление. Design — «разрабатывать, создавать оформление». I can design it — «Я могу разработать его оформление». It относится к приглашению. После can нужно design без to и s.",
-        "uk": "Танцювальна студія запрошує сусідів на відкритий урок, але ще не має гарного запрошення. Ви пропонуєте придумати його оформлення. Design — «розробляти, створювати оформлення». I can design it — «Я можу розробити його оформлення». It стосується запрошення. Після can потрібне design без to й s."
+        "ru": "Get dressed — одеться. I can get dressed — я умею одеваться. После can остаётся get. Выберите фразу об умении.",
+        "uk": "Get dressed — одягнутися. I can get dressed — я вмію одягатися. Після can залишається get. Виберіть фразу про вміння."
       },
       "question": {
         "interactionId": "en:lesson-08:session-53:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-08:session-53:intro1:r1",
-              "text": "I can design it."
+              "text": "I can get dressed."
             },
             {
               "responseId": "en:lesson-08:session-53:intro1:r2",
-              "text": "I can to design it."
+              "text": "I can’t get dressed."
             },
             {
               "responseId": "en:lesson-08:session-53:intro1:r3",
-              "text": "I can designs it."
+              "text": "I can gets dressed."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-53:intro1:r1",
-              "text": "I can design it."
+              "text": "I can get dressed."
             },
             {
               "responseId": "en:lesson-08:session-53:intro1:r2",
-              "text": "I can to design it."
+              "text": "I can’t get dressed."
             },
             {
               "responseId": "en:lesson-08:session-53:intro1:r3",
-              "text": "I can designs it."
+              "text": "I can gets dressed."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-08:session-53:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Фотографии закрывают подписи",
-        "uk": "Фотографії закривають підписи"
+        "ru": "Зубы и волосы",
+        "uk": "Зуби й волосся"
       },
       "bodyByLocale": {
-        "ru": "На выставочном стенде фотографии стоят слишком близко к подписям. Вы с коллегой можете иначе расположить элементы. Layout — «расположение элементов, компоновка». We can change the layout — «Мы можем изменить расположение элементов». После can — change, без окончания s.",
-        "uk": "На виставковому стенді фотографії стоять надто близько до підписів. Ви з колегою можете інакше розташувати елементи. Layout — «розташування елементів, компонування». We can change the layout — «Ми можемо змінити розташування елементів». Після can — change, без закінчення s."
+        "ru": "Brush your teeth — чистить зубы; comb your hair — расчёсывать волосы. You can brush your teeth — ты умеешь чистить зубы. Выберите фразу о зубах.",
+        "uk": "Brush your teeth — чистити зуби; comb your hair — розчісувати волосся. You can brush your teeth — ти вмієш чистити зуби. Виберіть фразу про зуби."
       },
       "question": {
         "interactionId": "en:lesson-08:session-53:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-08:session-53:intro2:r1",
-              "text": "We can change the layout."
+              "text": "You can brush your teeth."
             },
             {
               "responseId": "en:lesson-08:session-53:intro2:r2",
-              "text": "We can to change the layout."
+              "text": "You can comb your hair."
             },
             {
               "responseId": "en:lesson-08:session-53:intro2:r3",
-              "text": "We can changes the layout."
+              "text": "You can brushes your teeth."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-53:intro2:r1",
-              "text": "We can change the layout."
+              "text": "You can brush your teeth."
             },
             {
               "responseId": "en:lesson-08:session-53:intro2:r2",
-              "text": "We can to change the layout."
+              "text": "You can comb your hair."
             },
             {
               "responseId": "en:lesson-08:session-53:intro2:r3",
-              "text": "We can changes the layout."
+              "text": "You can brushes your teeth."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-08:session-53:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Буквы на меню",
-        "uk": "Літери в меню"
+        "ru": "Умыться",
+        "uk": "Умитися"
       },
       "bodyByLocale": {
-        "ru": "Подруга оформляет меню для кофейни и умеет выбирать удобные для чтения буквы. Typeface — «шрифт», рисунок букв. She can choose a typeface — «Она может выбрать шрифт». С she после can тоже используется choose, без s.",
-        "uk": "Подруга оформлює меню для кав’ярні й уміє вибирати зручні для читання літери. Typeface — «шрифт», малюнок літер. She can choose a typeface — «Вона може вибрати шрифт». Із she після can також використовується choose, без s."
+        "ru": "Wash your face — умыться, вымыть лицо. You can wash your face — ты умеешь умываться. Your показывает, что речь о твоём лице. Выберите эту фразу.",
+        "uk": "Wash your face — умитися, вимити обличчя. You can wash your face — ти вмієш умиватися. Your показує, що йдеться про твоє обличчя. Виберіть цю фразу."
       },
       "question": {
         "interactionId": "en:lesson-08:session-53:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-08:session-53:intro3:r1",
-              "text": "She can choose a typeface."
+              "text": "You can wash your face."
             },
             {
               "responseId": "en:lesson-08:session-53:intro3:r2",
-              "text": "She can to choose a typeface."
+              "text": "You can’t wash your face."
             },
             {
               "responseId": "en:lesson-08:session-53:intro3:r3",
-              "text": "She can chooses a typeface."
+              "text": "You can to wash your face."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-53:intro3:r1",
-              "text": "She can choose a typeface."
+              "text": "You can wash your face."
             },
             {
               "responseId": "en:lesson-08:session-53:intro3:r2",
-              "text": "She can to choose a typeface."
+              "text": "You can’t wash your face."
             },
             {
               "responseId": "en:lesson-08:session-53:intro3:r3",
-              "text": "She can chooses a typeface."
+              "text": "You can to wash your face."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "519cb010a2386672ccef56dd86c4343404c37943b862f4ae530948489188b814"
+  "introFingerprint": "9bdd62182eed23686c0d4db1b191a0cb4ad92d2dd08a769ea61237290788d631"
 }

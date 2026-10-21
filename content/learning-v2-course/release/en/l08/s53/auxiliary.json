@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-08:session-53:intro1:q",
       "responseFeedbackById": {
         "en:lesson-08:session-53:intro1:r2": {
-          "ru": "После can не нужно to.",
-          "uk": "Після can не потрібне to."
+          "ru": "Эта фраза не передаёт нужный смысл. Здесь: I can get dressed.",
+          "uk": "Ця фраза не передає потрібний зміст. Тут: I can get dressed."
         },
         "en:lesson-08:session-53:intro1:r3": {
-          "ru": "После can действие без s/es.",
-          "uk": "Після can дія без s/es."
+          "ru": "После can нужен глагол без to и окончания s.",
+          "uk": "Після can потрібне дієслово без to й закінчення s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-53:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-53:intro2:r2": {
-          "ru": "После can не нужно to.",
-          "uk": "Після can не потрібне to."
+          "ru": "Эта фраза не передаёт нужный смысл. Здесь: You can brush your teeth.",
+          "uk": "Ця фраза не передає потрібний зміст. Тут: You can brush your teeth."
         },
         "en:lesson-08:session-53:intro2:r3": {
-          "ru": "После can действие без s/es.",
-          "uk": "Після can дія без s/es."
+          "ru": "После can нужен глагол без to и окончания s.",
+          "uk": "Після can потрібне дієслово без to й закінчення s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-53:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-53:intro3:r2": {
-          "ru": "После can не нужно to.",
-          "uk": "Після can не потрібне to."
+          "ru": "Эта фраза не передаёт нужный смысл. Здесь: You can wash your face.",
+          "uk": "Ця фраза не передає потрібний зміст. Тут: You can wash your face."
         },
         "en:lesson-08:session-53:intro3:r3": {
-          "ru": "После can действие без s/es.",
-          "uk": "Після can дія без s/es."
+          "ru": "После can нужен глагол без to и окончания s.",
+          "uk": "Після can потрібне дієслово без to й закінчення s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "55b3d67c86124e99a04b32c168d293fc053fe46cb6dfa8690d84dc8d2e0136c7"
+  "auxiliaryFingerprint": "3e7f822e8f5ff85802b031da8a94e295ff9da8a4830c6de01fb68ca070659659"
 }

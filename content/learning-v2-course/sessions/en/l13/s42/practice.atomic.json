@@ -1,0 +1,2327 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-13:session-42",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-13:session-42:word:shoulder-bag",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shoulder bag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:word:shoulder-bag:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shoulder bag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:word:shoulder-bag:audio",
+            "transcript": "shoulder bag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-42:word:shoulder-bag:r1",
+              "targetText": "shoulder bag",
+              "meaningByLocale": {
+                "ru": "сумка через плечо.",
+                "uk": "сумка через плече."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shoulder bag",
+            "definitionByLocale": {
+              "ru": "сумка через плечо.",
+              "uk": "сумка через плече."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты взял свою сумку через плечо?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты взял свою сумку через плечо?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you take your shoulder bag?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты взял свою сумку через плечо?",
+            "uk": "Скажіть: Ти взяв свою сумку через плече?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "take",
+            "your",
+            "shoulder",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-42:i02:r1",
+            "text": "Did she take your shoulder bag?"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i02:r2",
+            "text": "Did you take your shoulder bag?"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i02:r3",
+            "text": "Did they take your shoulder bag?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:i02:audio",
+            "transcript": "Did she take your shoulder bag?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-42:i02:r1",
+              "targetText": "Did she take your shoulder bag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i02:r2",
+              "targetText": "Did you take your shoulder bag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i02:r3",
+              "targetText": "Did they take your shoulder bag?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-42:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she take your shoulder bag?",
+                "uk": "У записі звучить Did she take your shoulder bag?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she take your shoulder bag?",
+                "uk": "У записі звучить Did she take your shoulder bag?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-42:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you take your shoulder bag?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-42:i03:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i03:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i03:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-42:i03:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i03:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:word:sports-bag",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sports bag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:word:sports-bag:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sports bag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:word:sports-bag:audio",
+            "transcript": "sports bag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-42:word:sports-bag:r1",
+              "targetText": "sports bag",
+              "meaningByLocale": {
+                "ru": "спортивная сумка.",
+                "uk": "спортивна сумка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sports bag",
+            "definitionByLocale": {
+              "ru": "спортивная сумка.",
+              "uk": "спортивна сумка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты собрал свою спортивную сумку?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты собрал свою спортивную сумку?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you pack your sports bag?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты собрал свою спортивную сумку?",
+            "uk": "Скажіть: Ти спакував свою спортивну сумку?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "pack",
+            "your",
+            "sports",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-42:i05:r1",
+            "text": "Did she pack your sports bag?"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i05:r2",
+            "text": "Did you pack your sports bag?"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i05:r3",
+            "text": "Did they pack your sports bag?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:i05:audio",
+            "transcript": "Did she pack your sports bag?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-42:i05:r1",
+              "targetText": "Did she pack your sports bag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i05:r2",
+              "targetText": "Did you pack your sports bag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i05:r3",
+              "targetText": "Did they pack your sports bag?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-42:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she pack your sports bag?",
+                "uk": "У записі звучить Did she pack your sports bag?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she pack your sports bag?",
+                "uk": "У записі звучить Did she pack your sports bag?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-42:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you pack your sports bag?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-42:i06:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i06:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i06:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-42:i06:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i06:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:word:washbag",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — washbag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:word:washbag:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — washbag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:word:washbag:audio",
+            "transcript": "washbag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-42:word:washbag:r1",
+              "targetText": "washbag",
+              "meaningByLocale": {
+                "ru": "дорожная сумочка для туалетных принадлежностей.",
+                "uk": "дорожня сумочка для туалетного приладдя."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "washbag",
+            "definitionByLocale": {
+              "ru": "дорожная сумочка для туалетных принадлежностей.",
+              "uk": "дорожня сумочка для туалетного приладдя."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты собрал сумочку с туалетными принадлежностями?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты собрал сумочку с туалетными принадлежностями?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you pack your washbag?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты собрал сумочку с туалетными принадлежностями?",
+            "uk": "Скажіть: Ти спакував сумочку з туалетним приладдям?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "pack",
+            "your",
+            "washbag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-42:i08:r1",
+            "text": "Did she pack your washbag?"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i08:r2",
+            "text": "Did you pack your washbag?"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i08:r3",
+            "text": "Did they pack your washbag?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:i08:audio",
+            "transcript": "Did she pack your washbag?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-42:i08:r1",
+              "targetText": "Did she pack your washbag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i08:r2",
+              "targetText": "Did you pack your washbag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i08:r3",
+              "targetText": "Did they pack your washbag?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-42:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she pack your washbag?",
+                "uk": "У записі звучить Did she pack your washbag?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she pack your washbag?",
+                "uk": "У записі звучить Did she pack your washbag?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-42:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you pack your washbag?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-42:i09:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i09:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i09:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-42:i09:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i09:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:word:shopping-bag",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shopping bag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:word:shopping-bag:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shopping bag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:word:shopping-bag:audio",
+            "transcript": "shopping bag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-42:word:shopping-bag:r1",
+              "targetText": "shopping bag",
+              "meaningByLocale": {
+                "ru": "сумка для покупок.",
+                "uk": "сумка для покупок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shopping bag",
+            "definitionByLocale": {
+              "ru": "сумка для покупок.",
+              "uk": "сумка для покупок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты взял сумку для покупок?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты взял сумку для покупок?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you take your shopping bag?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты взял сумку для покупок?",
+            "uk": "Скажіть: Ти взяв сумку для покупок?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "take",
+            "your",
+            "shopping",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-42:i11:r1",
+            "text": "Did she take your shopping bag?"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i11:r2",
+            "text": "Did you take your shopping bag?"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i11:r3",
+            "text": "Did they take your shopping bag?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:i11:audio",
+            "transcript": "Did she take your shopping bag?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-42:i11:r1",
+              "targetText": "Did she take your shopping bag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i11:r2",
+              "targetText": "Did you take your shopping bag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i11:r3",
+              "targetText": "Did they take your shopping bag?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-42:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she take your shopping bag?",
+                "uk": "У записі звучить Did she take your shopping bag?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she take your shopping bag?",
+                "uk": "У записі звучить Did she take your shopping bag?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-42:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you take your shopping bag?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-42:i12:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i12:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i12:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-42:i12:r2",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i12:r3",
+              "correct": false,
+              "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-13:session-42:i13:p1",
+              "target": "shoulder bag",
+              "meaningByLocale": {
+                "ru": "сумка через плечо",
+                "uk": "сумка через плече"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-42:i13:p2",
+              "target": "sports bag",
+              "meaningByLocale": {
+                "ru": "спортивная сумка",
+                "uk": "спортивна сумка"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-42:i13:p3",
+              "target": "washbag",
+              "meaningByLocale": {
+                "ru": "дорожная сумочка для туалетных принадлежностей",
+                "uk": "дорожня сумочка для туалетного приладдя"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-42:i13:p4",
+              "target": "shopping bag",
+              "meaningByLocale": {
+                "ru": "сумка для покупок",
+                "uk": "сумка для покупок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shoulder bag",
+            "sports bag",
+            "washbag",
+            "shopping bag"
+          ],
+          "rightColumn": [
+            "сумка через плечо",
+            "спортивная сумка",
+            "дорожная сумочка для туалетных принадлежностей",
+            "сумка для покупок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:i14:audio",
+            "transcript": "First I packed my sports bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "First I packed my sports bag.",
+          "orderedTokens": [
+            "First",
+            "I",
+            "packed",
+            "my",
+            "sports",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:i15:audio",
+            "transcript": "Then I checked the tickets."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Then I checked the tickets.",
+          "orderedTokens": [
+            "Then",
+            "I",
+            "checked",
+            "the",
+            "tickets"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: затем она взяла сумку для покупок",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: затем она взяла сумку для покупок",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:i16:audio",
+            "transcript": "Then she took her shopping bag."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Then she took her shopping bag.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: в итоге я не взял сумку через плечо",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: в итоге я не взял сумку через плечо",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:i17:audio",
+            "transcript": "In the end, I didn't take my shoulder bag."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "In the end, I didn't take my shoulder bag.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-13:session-42:word:shoulder-bag",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shoulder bag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:word:shoulder-bag:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shoulder bag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:word:shoulder-bag:audio",
+            "transcript": "shoulder bag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-42:word:shoulder-bag:r1",
+              "targetText": "shoulder bag",
+              "meaningByLocale": {
+                "ru": "сумка через плечо.",
+                "uk": "сумка через плече."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shoulder bag",
+            "definitionByLocale": {
+              "ru": "сумка через плечо.",
+              "uk": "сумка через плече."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти взяв свою сумку через плече?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти взяв свою сумку через плече?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you take your shoulder bag?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты взял свою сумку через плечо?",
+            "uk": "Скажіть: Ти взяв свою сумку через плече?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "take",
+            "your",
+            "shoulder",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-42:i02:r1",
+            "text": "Did she take your shoulder bag?"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i02:r2",
+            "text": "Did you take your shoulder bag?"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i02:r3",
+            "text": "Did they take your shoulder bag?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:i02:audio",
+            "transcript": "Did she take your shoulder bag?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-42:i02:r1",
+              "targetText": "Did she take your shoulder bag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i02:r2",
+              "targetText": "Did you take your shoulder bag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i02:r3",
+              "targetText": "Did they take your shoulder bag?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-42:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she take your shoulder bag?",
+                "uk": "У записі звучить Did she take your shoulder bag?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she take your shoulder bag?",
+                "uk": "У записі звучить Did she take your shoulder bag?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-42:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you take your shoulder bag?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-42:i03:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i03:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i03:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-42:i03:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i03:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:word:sports-bag",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sports bag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:word:sports-bag:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sports bag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:word:sports-bag:audio",
+            "transcript": "sports bag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-42:word:sports-bag:r1",
+              "targetText": "sports bag",
+              "meaningByLocale": {
+                "ru": "спортивная сумка.",
+                "uk": "спортивна сумка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sports bag",
+            "definitionByLocale": {
+              "ru": "спортивная сумка.",
+              "uk": "спортивна сумка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти спакував свою спортивну сумку?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти спакував свою спортивну сумку?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you pack your sports bag?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты собрал свою спортивную сумку?",
+            "uk": "Скажіть: Ти спакував свою спортивну сумку?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "pack",
+            "your",
+            "sports",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-42:i05:r1",
+            "text": "Did she pack your sports bag?"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i05:r2",
+            "text": "Did you pack your sports bag?"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i05:r3",
+            "text": "Did they pack your sports bag?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:i05:audio",
+            "transcript": "Did she pack your sports bag?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-42:i05:r1",
+              "targetText": "Did she pack your sports bag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i05:r2",
+              "targetText": "Did you pack your sports bag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i05:r3",
+              "targetText": "Did they pack your sports bag?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-42:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she pack your sports bag?",
+                "uk": "У записі звучить Did she pack your sports bag?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she pack your sports bag?",
+                "uk": "У записі звучить Did she pack your sports bag?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-42:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you pack your sports bag?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-42:i06:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i06:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i06:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-42:i06:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i06:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:word:washbag",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — washbag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:word:washbag:audio"
+        ],
+        "accessibilityLabel": "Картка слова — washbag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:word:washbag:audio",
+            "transcript": "washbag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-42:word:washbag:r1",
+              "targetText": "washbag",
+              "meaningByLocale": {
+                "ru": "дорожная сумочка для туалетных принадлежностей.",
+                "uk": "дорожня сумочка для туалетного приладдя."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "washbag",
+            "definitionByLocale": {
+              "ru": "дорожная сумочка для туалетных принадлежностей.",
+              "uk": "дорожня сумочка для туалетного приладдя."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти спакував сумочку з туалетним приладдям?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти спакував сумочку з туалетним приладдям?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you pack your washbag?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты собрал сумочку с туалетными принадлежностями?",
+            "uk": "Скажіть: Ти спакував сумочку з туалетним приладдям?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "pack",
+            "your",
+            "washbag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-42:i08:r1",
+            "text": "Did she pack your washbag?"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i08:r2",
+            "text": "Did you pack your washbag?"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i08:r3",
+            "text": "Did they pack your washbag?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:i08:audio",
+            "transcript": "Did she pack your washbag?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-42:i08:r1",
+              "targetText": "Did she pack your washbag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i08:r2",
+              "targetText": "Did you pack your washbag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i08:r3",
+              "targetText": "Did they pack your washbag?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-42:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she pack your washbag?",
+                "uk": "У записі звучить Did she pack your washbag?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she pack your washbag?",
+                "uk": "У записі звучить Did she pack your washbag?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-42:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you pack your washbag?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-42:i09:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i09:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i09:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-42:i09:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i09:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:word:shopping-bag",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shopping bag",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:word:shopping-bag:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shopping bag",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:word:shopping-bag:audio",
+            "transcript": "shopping bag"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-42:word:shopping-bag:r1",
+              "targetText": "shopping bag",
+              "meaningByLocale": {
+                "ru": "сумка для покупок.",
+                "uk": "сумка для покупок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shopping bag",
+            "definitionByLocale": {
+              "ru": "сумка для покупок.",
+              "uk": "сумка для покупок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти взяв сумку для покупок?",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти взяв сумку для покупок?",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Did you take your shopping bag?",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты взял сумку для покупок?",
+            "uk": "Скажіть: Ти взяв сумку для покупок?"
+          },
+          "orderedTokens": [
+            "Did",
+            "you",
+            "take",
+            "your",
+            "shopping",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-42:i11:r1",
+            "text": "Did she take your shopping bag?"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i11:r2",
+            "text": "Did you take your shopping bag?"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i11:r3",
+            "text": "Did they take your shopping bag?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:i11:audio",
+            "transcript": "Did she take your shopping bag?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-13:session-42:i11:r1",
+              "targetText": "Did she take your shopping bag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i11:r2",
+              "targetText": "Did you take your shopping bag?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i11:r3",
+              "targetText": "Did they take your shopping bag?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-42:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she take your shopping bag?",
+                "uk": "У записі звучить Did she take your shopping bag?"
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Did she take your shopping bag?",
+                "uk": "У записі звучить Did she take your shopping bag?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Запитання про вчорашню дію. Виберіть початок",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-13:session-42:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-42:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вопрос о вчерашнем действии. Выберите начало",
+            "uk": "Запитання про вчорашню дію. Виберіть початок"
+          },
+          "gappedTargetPhrase": "___ you take your shopping bag?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-13:session-42:i12:r1",
+              "text": "Did"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i12:r2",
+              "text": "Do"
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i12:r3",
+              "text": "Does"
+            }
+          ],
+          "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-13:session-42:i12:r2",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма Did.",
+                "uk": "Для минулого потрібна форма Did."
+              }
+            },
+            {
+              "responseId": "en:lesson-13:session-42:i12:r3",
+              "correct": false,
+              "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна Did.",
+                "uk": "Це не форма минулого. Потрібна Did."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-13:session-42:i13:p1",
+              "target": "shoulder bag",
+              "meaningByLocale": {
+                "ru": "сумка через плечо",
+                "uk": "сумка через плече"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-42:i13:p2",
+              "target": "sports bag",
+              "meaningByLocale": {
+                "ru": "спортивная сумка",
+                "uk": "спортивна сумка"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-42:i13:p3",
+              "target": "washbag",
+              "meaningByLocale": {
+                "ru": "дорожная сумочка для туалетных принадлежностей",
+                "uk": "дорожня сумочка для туалетного приладдя"
+              }
+            },
+            {
+              "pairId": "en:lesson-13:session-42:i13:p4",
+              "target": "shopping bag",
+              "meaningByLocale": {
+                "ru": "сумка для покупок",
+                "uk": "сумка для покупок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "shoulder bag",
+            "sports bag",
+            "washbag",
+            "shopping bag"
+          ],
+          "rightColumn": [
+            "сумка через плече",
+            "спортивна сумка",
+            "дорожня сумочка для туалетного приладдя",
+            "сумка для покупок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:i14:audio",
+            "transcript": "First I packed my sports bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "First I packed my sports bag.",
+          "orderedTokens": [
+            "First",
+            "I",
+            "packed",
+            "my",
+            "sports",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:i15:audio",
+            "transcript": "Then I checked the tickets."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Then I checked the tickets.",
+          "orderedTokens": [
+            "Then",
+            "I",
+            "checked",
+            "the",
+            "tickets"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: потім вона взяла сумку для покупок",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: потім вона взяла сумку для покупок",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:i16:audio",
+            "transcript": "Then she took her shopping bag."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Then she took her shopping bag.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-13:session-42:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: зрештою я не взяв сумку через плече",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-13:session-42:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: зрештою я не взяв сумку через плече",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-13:session-42:i17:audio",
+            "transcript": "In the end, I didn't take my shoulder bag."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "In the end, I didn't take my shoulder bag.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-13:session-42:word:shoulder-bag",
+      "correctText": "shoulder bag",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-42:i01",
+      "correctText": "Did you take your shoulder bag?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-42:i02",
+      "correctText": "Did she take your shoulder bag?",
+      "correctResponseId": "en:lesson-13:session-42:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-42:i03",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-42:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-42:word:sports-bag",
+      "correctText": "sports bag",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-42:i04",
+      "correctText": "Did you pack your sports bag?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-42:i05",
+      "correctText": "Did she pack your sports bag?",
+      "correctResponseId": "en:lesson-13:session-42:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-42:i06",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-42:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-42:word:washbag",
+      "correctText": "washbag",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-42:i07",
+      "correctText": "Did you pack your washbag?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-42:i08",
+      "correctText": "Did she pack your washbag?",
+      "correctResponseId": "en:lesson-13:session-42:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-42:i09",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-42:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-42:word:shopping-bag",
+      "correctText": "shopping bag",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-42:i10",
+      "correctText": "Did you take your shopping bag?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-42:i11",
+      "correctText": "Did she take your shopping bag?",
+      "correctResponseId": "en:lesson-13:session-42:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-42:i12",
+      "correctText": "Did",
+      "correctResponseId": "en:lesson-13:session-42:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-13:session-42:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-42:i14",
+      "correctText": "First I packed my sports bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-42:i15",
+      "correctText": "Then I checked the tickets.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-42:i16",
+      "correctText": "Then she took her shopping bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-42:i17",
+      "correctText": "In the end, I didn't take my shoulder bag.",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-08:session-11",
   "learningOutcomeByLocale": {
-    "ru": "закрепить can’t для отсутствия умения и повторить вопрос «чей?»",
-    "uk": "закріпити can’t для відсутності вміння й повторити запитання «чий?»"
+    "ru": "can / can’t + глагол без to",
+    "uk": "can / can’t + дієслово без to"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-08:session-11:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Роль в команде",
-        "uk": "Роль у команді"
+        "ru": "Заправить постель",
+        "uk": "Застелити ліжко"
       },
       "bodyByLocale": {
-        "ru": "Друзья собирают команду для создания маленькой игры. Вам предлагают писать программу, но вы пока не умеете. `Code` — «писать код, программировать». `I can’t code` — «Я не умею писать код». После `can’t` нужно `code`, без `to` и окончания `s`. Так вы объясняете, почему вам нужна другая роль в команде.",
-        "uk": "Друзі збирають команду для створення маленької гри. Вам пропонують писати програму, але ви поки не вмієте. `Code` — «писати код, програмувати». `I can’t code` — «Я не вмію писати код». Після `can’t` потрібне `code`, без `to` й закінчення `s`. Так ви пояснюєте, чому вам потрібна інша роль у команді."
+        "ru": "Make the bed — заправить постель. Ребёнок пока учится: I can’t make the bed — я не умею заправлять постель. После can’t используем make, без to. Выберите отрицание.",
+        "uk": "Make the bed — застелити ліжко. Дитина поки вчиться: I can’t make the bed — я не вмію застеляти ліжко. Після can’t уживаємо make, без to. Виберіть заперечення."
       },
       "question": {
         "interactionId": "en:lesson-08:session-11:intro1:q",
         "promptByLocale": {
-          "ru": "Ответьте другу о своём умении.",
-          "uk": "Дайте другові відповідь про своє вміння."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-11:intro1:r1",
-              "text": "I can’t code."
+              "text": "I can’t make the bed."
             },
             {
               "responseId": "en:lesson-08:session-11:intro1:r2",
-              "text": "I can code."
+              "text": "I can make the bed."
             },
             {
               "responseId": "en:lesson-08:session-11:intro1:r3",
-              "text": "I can’t to code."
+              "text": "I can’t to make the bed."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-11:intro1:r1",
-              "text": "I can’t code."
+              "text": "I can’t make the bed."
             },
             {
               "responseId": "en:lesson-08:session-11:intro1:r2",
-              "text": "I can code."
+              "text": "I can make the bed."
             },
             {
               "responseId": "en:lesson-08:session-11:intro1:r3",
-              "text": "I can’t to code."
+              "text": "I can’t to make the bed."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Ответьте другу о своём умении.",
-          "uk": "Дайте другові відповідь про своє вміння."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-11:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ошибка в игре",
-        "uk": "Помилка у грі"
+        "ru": "Постирать и погладить",
+        "uk": "Випрати й попрасувати"
       },
       "bodyByLocale": {
-        "ru": "В игре, которую сделал клуб, не работает кнопка запуска. Коллега предлагает обратиться к знакомой, но она ещё не умеет находить и исправлять ошибки в программах. Debug — «отлаживать программы». `She can’t debug` — «Она не умеет отлаживать программы». `Can’t` не меняется после `she`; после него нужно `debug`, без окончания `s`.",
-        "uk": "У грі, яку зробив клуб, не працює кнопка запуску. Колега пропонує звернутися до знайомої, але вона ще не вміє знаходити й виправляти помилки в програмах. Debug — «налагоджувати програми». `She can’t debug` — «Вона не вміє налагоджувати програми». `Can’t` не змінюється після `she`; після нього потрібне `debug`, без закінчення `s`."
+        "ru": "Do the washing — стирать бельё; do the ironing — гладить бельё. Это разные дела. She can’t do the ironing — она не умеет гладить бельё. Даже после she остаётся do, не does. Выберите фразу о глажке.",
+        "uk": "Do the washing — прати білизну; do the ironing — прасувати білизну. Це різні справи. She can’t do the ironing — вона не вміє прасувати білизну. Навіть після she залишається do, не does. Виберіть фразу про прасування."
       },
       "question": {
         "interactionId": "en:lesson-08:session-11:intro2:q",
         "promptByLocale": {
-          "ru": "Расскажите об умении знакомой.",
-          "uk": "Розкажіть про вміння знайомої."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-11:intro2:r1",
-              "text": "She can’t debug."
+              "text": "She can’t do the ironing."
             },
             {
               "responseId": "en:lesson-08:session-11:intro2:r2",
-              "text": "She can debug."
+              "text": "She can’t do the washing."
             },
             {
               "responseId": "en:lesson-08:session-11:intro2:r3",
-              "text": "She can’t debugs."
+              "text": "She can’t does the ironing."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-11:intro2:r1",
-              "text": "She can’t debug."
+              "text": "She can’t do the ironing."
             },
             {
               "responseId": "en:lesson-08:session-11:intro2:r2",
-              "text": "She can debug."
+              "text": "She can’t do the washing."
             },
             {
               "responseId": "en:lesson-08:session-11:intro2:r3",
-              "text": "She can’t debugs."
+              "text": "She can’t does the ironing."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите об умении знакомой.",
-          "uk": "Розкажіть про вміння знайомої."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-11:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Камера после онлайн-встречи",
-        "uk": "Камера після онлайн-зустрічі"
+        "ru": "После ужина",
+        "uk": "Після вечері"
       },
       "bodyByLocale": {
-        "ru": "После общей онлайн-встречи вы отсоединяете от компьютера чужую веб-камеру. Webcam — «веб-камера», камера для передачи видео через компьютер. Вы хотите вернуть её владельцу. `Whose webcam is this?` — «Чья это веб-камера?» Сначала `whose webcam`, затем `is this`.",
-        "uk": "Після спільної онлайн-зустрічі ви від’єднуєте від комп’ютера чужу вебкамеру. Webcam — «вебкамера», камера для передавання відео через комп’ютер. Ви хочете повернути її власникові. `Whose webcam is this?` — «Чия це вебкамера?» Спочатку `whose webcam`, потім `is this`."
+        "ru": "Clear the table — убрать со стола посуду после еды. I can clear the table — я могу убрать со стола. Вы предлагаете помощь после ужина. Выберите предложение помочь.",
+        "uk": "Clear the table — прибрати зі столу посуд після їжі. I can clear the table — я можу прибрати зі столу. Ви пропонуєте допомогу після вечері. Виберіть пропозицію допомогти."
       },
       "question": {
         "interactionId": "en:lesson-08:session-11:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите коллег, чья это веб-камера.",
-          "uk": "Запитайте колег, чия це вебкамера."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-11:intro3:r1",
-              "text": "Whose webcam is this?"
+              "text": "I can clear the table."
             },
             {
               "responseId": "en:lesson-08:session-11:intro3:r2",
-              "text": "Who webcam is this?"
+              "text": "I can’t clear the table."
             },
             {
               "responseId": "en:lesson-08:session-11:intro3:r3",
-              "text": "Whose webcam are this?"
+              "text": "I can to clear the table."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-11:intro3:r1",
-              "text": "Whose webcam is this?"
+              "text": "I can clear the table."
             },
             {
               "responseId": "en:lesson-08:session-11:intro3:r2",
-              "text": "Who webcam is this?"
+              "text": "I can’t clear the table."
             },
             {
               "responseId": "en:lesson-08:session-11:intro3:r3",
-              "text": "Whose webcam are this?"
+              "text": "I can to clear the table."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите коллег, чья это веб-камера.",
-          "uk": "Запитайте колег, чия це вебкамера."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "58657e8a7561eed1aa574f7cc93d89872684fb2a498056cdc347be1b96be6987"
+  "introFingerprint": "0004ba84e25abf8880d4608dcda621820ee132cafc521ee1afddee75ed2d13a9"
 }

@@ -1,149 +1,151 @@
-# Англійська · Урок 8 · Заняття 46 — Я можу визначити причину
+# Англійська · Урок 8 · Заняття 46 — Попросити допомоги й перепочити
 
-**Ситуація.** Знайти причину смуг під час друку, перезапустити завислий планшет і виявити несправність навушників.
+**Ситуація.** Обговоріть із другом, що можна зробити у складній ситуації: попросити допомоги, перепочити або змінити рішення.
 
-**Що ви опануєте:** повторити can для вміння та залишити дію без to і закінчень
-**Нові слова:** diagnose, reboot, fault, workaround
-
----
+**Що ви опануєте:** повторення can + дієслово без to
+**Нові слова:** ask for help, take a break, make a mistake, change your mind
 
 ## Інтро 1
 
-### Смуги на надрукованій фотографії
+### Попросити допомоги
 
-Принтер друкує фотографію зі смугами. Друг не знає, чому це відбувається, а ви вмієте знаходити причини таких неполадок. Diagnose тут — «визначити причину несправності». `I can diagnose it` — «Я можу визначити причину». It стосується проблеми з друком. Після can потрібне diagnose, без to і s.
+Ask for help — попросити допомоги. You can ask for help — ти можеш попросити допомоги. Не обов’язково справлятися самому. Виберіть цю фразу.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I can diagnose it.**
-- ❌ I can to diagnose it. — *Після can не потрібне to.*
-- ❌ I can diagnoses it. — *Після can дія залишається без s.*
+- ✅ **You can ask for help.**
+- ❌ You can’t ask for help. — *Ця фраза не передає потрібний зміст. Тут: You can ask for help.*
+- ❌ You can to ask for help. — *Після can потрібне дієслово без to й закінчення s.*
 
 ---
 
 ## Інтро 2
 
-### Планшет перестав реагувати
+### Перепочити
 
-Екран планшета завмер під час гри. Подруга знає, як перезапустити пристрій. Reboot — «перезавантажити». `She can reboot it` — «Вона може його перезавантажити». Після can потрібне reboot, навіть із she.
+Take a break — зробити перерву. Ми втомилися: We can take a break — ми можемо зробити перерву. Виберіть пропозицію відпочити.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **She can reboot it.**
-- ❌ She can to reboot it. — *Після can не потрібне to.*
-- ❌ She can reboots it. — *Після can дія залишається без s.*
+- ✅ **We can take a break.**
+- ❌ We can’t take a break. — *Ця фраза не передає потрібний зміст. Тут: We can take a break.*
+- ❌ We can takes a break. — *Після can потрібне дієслово без to й закінчення s.*
 
 ---
 
 ## Інтро 3
 
-### Звук лише в одному навушнику
+### Помилитися й передумати
 
-У дротових навушниках звук іде лише з одного боку. Ви вмієте перевіряти такі пристрої й знаходити місце неполадки. Fault — «несправність». `I can find the fault` — «Я можу знайти несправність». Тут find означає виявити проблему, а не знайти загублений предмет.
+Make a mistake — припуститися помилки; change your mind — передумати. You can change your mind — ти можеш передумати. Тут можна змінити своє рішення. Виберіть фразу про рішення.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I can find the fault.**
-- ❌ I can to find the fault. — *Після can не потрібне to.*
-- ❌ I can finds the fault. — *Після can дія залишається без s.*
+- ✅ **You can change your mind.**
+- ❌ You can make a mistake. — *Ця фраза не передає потрібний зміст. Тут: You can change your mind.*
+- ❌ You can changes your mind. — *Після can потрібне дієслово без to й закінчення s.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — diagnose**
-<!-- interaction_id: en:lesson-08:session-46:word:diagnose; family: word_card -->
-> **diagnose** — діагностувати, тут — визначати причину несправності. I can diagnose it. — «Я можу визначити причину».
+**1 · Картка слова — ask for help**
+<!-- interaction_id: en:lesson-08:session-46:word:ask-for-help; family: word_card -->
+> **ask for help** — попросити допомоги.
 
-**2 · Складіть «Я можу визначити причину»**
+**2 · Скажіть: Ти можеш попросити допомоги**
 <!-- interaction_id: en:lesson-08:session-46:i01; family: phrase_builder -->
-Плитки: `it` `diagnose` `can` `I` → **I can diagnose it.**
+Плитки: `help` `for` `ask` `can` `You` → **You can ask for help.**
 
-**3 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-08:session-46:i02; family: listen_choose -->
-🔊 *diagnose* → **diagnose** · mug · organize
-- mug — *У записі перше слово — `diagnose`, а в цьому варіанті — `mug`.*
-- organize — *У записі перше слово — `diagnose`, а в цьому варіанті — `organize`.*
+🔊 *You can ask for help.* → **You can ask for help.** · You can’t ask for help. · You cannot ask for help.
+- You can’t ask for help. — *У записі звучить You can ask for help.*
+- You cannot ask for help. — *У записі звучить You can ask for help.*
 
-**4 · Виберіть форму для фрази про визначення причини несправності**
+**4 · Виберіть форму після can**
 <!-- interaction_id: en:lesson-08:session-46:i03; family: context_gap_grammar -->
-I can ___ it. → **diagnose** · to diagnose · diagnoses
-- to diagnose — *Після `can` потрібне `diagnose`, без `to`.*
-- diagnoses — *Після `can` потрібне `diagnose`, без `s`.*
+You can ___ for help. → **ask** · asks · to ask
+- asks — *Після can не додаємо s.*
+- to ask — *Після can не потрібне to.*
 
-**5 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-08:session-46:i04; family: speed_match -->
-diagnose — діагностувати · pantry — комора · mug — кухоль · organize — організовувати
+**5 · Картка слова — take a break**
+<!-- interaction_id: en:lesson-08:session-46:word:take-a-break; family: word_card -->
+> **take a break** — зробити перерву.
 
-**6 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-08:session-46:i05; family: listen_build_dictation -->
-🔊 *I can diagnose it.* Плитки: `it` `diagnose` `can` `I` → **I can diagnose it.**
+**6 · Скажіть: Ми можемо зробити перерву**
+<!-- interaction_id: en:lesson-08:session-46:i04; family: phrase_builder -->
+Плитки: `break` `a` `take` `can` `We` → **We can take a break.**
 
-**7 · Картка слова — reboot**
-<!-- interaction_id: en:lesson-08:session-46:word:reboot; family: word_card -->
-> **reboot** — перезавантажити пристрій. She can reboot it. — «Вона може його перезавантажити».
+**7 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-08:session-46:i05; family: listen_choose -->
+🔊 *We can take a break.* → **We can take a break.** · We can’t take a break. · We cannot take a break.
+- We can’t take a break. — *У записі звучить We can take a break.*
+- We cannot take a break. — *У записі звучить We can take a break.*
 
-**8 · Скажіть про планшет «Вона може його перезавантажити»**
-<!-- interaction_id: en:lesson-08:session-46:i06; family: phrase_builder -->
-Плитки: `it` `reboot` `can` `She` → **She can reboot it.**
+**8 · Виберіть форму після can**
+<!-- interaction_id: en:lesson-08:session-46:i06; family: context_gap_grammar -->
+We can ___ a break. → **take** · takes · to take
+- takes — *Після can не додаємо s.*
+- to take — *Після can не потрібне to.*
 
-**9 · Картка слова — fault**
-<!-- interaction_id: en:lesson-08:session-46:word:fault; family: word_card -->
-> **fault** — несправність. I can find the fault. — «Я можу знайти несправність». У цьому занятті йдеться про проблему в роботі пристрою.
+**9 · Картка слова — make a mistake**
+<!-- interaction_id: en:lesson-08:session-46:word:make-a-mistake; family: word_card -->
+> **make a mistake** — припуститися помилки.
 
-**10 · Скажіть «Я можу знайти несправність»**
-<!-- interaction_id: en:lesson-08:session-46:i07; family: scripted_repeat_compare -->
-🎙 **I can find the fault.**
+**10 · Скажіть: Будь-хто може припуститися помилки**
+<!-- interaction_id: en:lesson-08:session-46:i07; family: phrase_builder -->
+Плитки: `mistake` `a` `make` `can` `Anyone` → **Anyone can make a mistake.**
 
-**11 · Виберіть форму для фрази «Вона може його перезавантажити»**
-<!-- interaction_id: en:lesson-08:session-46:i08; family: context_gap_grammar -->
-She can ___ it. → **reboot** · reboots · to reboot
-- reboots — *Після can потрібне reboot, навіть із she.*
-- to reboot — *Після can не потрібне to.*
+**11 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-08:session-46:i08; family: listen_choose -->
+🔊 *Anyone can make a mistake.* → **Anyone can make a mistake.** · Anyone can’t make a mistake. · Anyone cannot make a mistake.
+- Anyone can’t make a mistake. — *У записі звучить Anyone can make a mistake.*
+- Anyone cannot make a mistake. — *У записі звучить Anyone can make a mistake.*
 
-**12 · Послухайте й виберіть фразу**
-<!-- interaction_id: en:lesson-08:session-46:i09; family: listen_choose -->
-🔊 *I can diagnose it.* → **I can diagnose it.** · I can diagnose this. · I can diagnose that.
-- I can diagnose this. — *У записі останнє слово — `it`, а в цьому варіанті — `this`.*
-- I can diagnose that. — *У записі останнє слово — `it`, а в цьому варіанті — `that`.*
+**12 · Виберіть форму після can**
+<!-- interaction_id: en:lesson-08:session-46:i09; family: context_gap_grammar -->
+Anyone can ___ a mistake. → **make** · makes · to make
+- makes — *Після can не додаємо s.*
+- to make — *Після can не потрібне to.*
 
-**13 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-08:session-46:i10; family: speed_match -->
-diagnose — визначати причину несправності · reboot — перезавантажувати · fault — несправність · organize — організовувати
+**13 · Картка слова — change your mind**
+<!-- interaction_id: en:lesson-08:session-46:word:change-your-mind; family: word_card -->
+> **change your mind** — передумати.
 
-**14 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-08:session-46:i11; family: listen_build_dictation -->
-🔊 *She can reboot it.* Плитки: `it` `reboot` `can` `She` → **She can reboot it.**
+**14 · Скажіть: Ти можеш передумати**
+<!-- interaction_id: en:lesson-08:session-46:i10; family: phrase_builder -->
+Плитки: `mind` `your` `change` `can` `You` → **You can change your mind.**
 
-**15 · Картка слова — workaround**
-<!-- interaction_id: en:lesson-08:session-46:word:workaround; family: word_card -->
-> **workaround** — обхідне рішення: інший спосіб виконати завдання, поки проблема залишається. I can find a workaround. — «Я можу знайти обхідне рішення». Наприклад, зберегти файл і надіслати його поштою замість несправної кнопки в програмі.
+**15 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-08:session-46:i11; family: listen_choose -->
+🔊 *You can change your mind.* → **You can change your mind.** · You can’t change your mind. · You cannot change your mind.
+- You can’t change your mind. — *У записі звучить You can change your mind.*
+- You cannot change your mind. — *У записі звучить You can change your mind.*
 
-**16 · Кнопка надсилання файлу в програмі не працює. Скажіть «Я можу знайти обхідне рішення»**
-<!-- interaction_id: en:lesson-08:session-46:i12; family: phrase_builder -->
-Плитки: `workaround` `a` `find` `can` `I` → **I can find a workaround.**
+**16 · Виберіть форму після can**
+<!-- interaction_id: en:lesson-08:session-46:i12; family: context_gap_grammar -->
+You can ___ your mind. → **change** · changes · to change
+- changes — *Після can не додаємо s.*
+- to change — *Після can не потрібне to.*
 
-**17 · Друзі планують зустріч. Скажіть «Я можу її організувати»**
-<!-- interaction_id: en:lesson-08:session-46:i13; family: scripted_repeat_compare -->
-🎙 **I can organize it.**
+**17 · Поєднайте вирази з перекладом**
+<!-- interaction_id: en:lesson-08:session-46:i13; family: speed_match -->
+ask for help — попросити допомоги · take a break — зробити перерву · make a mistake — припуститися помилки · change your mind — передумати
 
-**18 · Виберіть форму для фрази «Я можу знайти несправність»**
-<!-- interaction_id: en:lesson-08:session-46:i14; family: context_gap_grammar -->
-I can ___ the fault. → **find** · finds · to find
-- finds — *Після can потрібне find, без s.*
-- to find — *Після can не потрібне to.*
+**18 · Складіть почуте**
+<!-- interaction_id: en:lesson-08:session-46:i14; family: listen_build_dictation -->
+🔊 *She can ask for help.* Плитки: `help` `for` `ask` `can` `She` → **She can ask for help.**
 
-**19 · Послухайте й виберіть фразу**
-<!-- interaction_id: en:lesson-08:session-46:i15; family: listen_choose -->
-🔊 *I can swim.* → **I can swim.** · I can drive. · I can whistle.
-- I can drive. — *У записі останнє слово — `swim`, а в цьому варіанті — `drive`.*
-- I can whistle. — *У записі останнє слово — `swim`, а в цьому варіанті — `whistle`.*
+**19 · Складіть почуте**
+<!-- interaction_id: en:lesson-08:session-46:i15; family: listen_build_dictation -->
+🔊 *They can take a break.* Плитки: `break` `a` `take` `can` `They` → **They can take a break.**
 
-**20 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-08:session-46:i16; family: speed_match -->
-diagnose — визначати причину несправності · reboot — перезавантажувати · fault — несправність · workaround — обхідне рішення
+**20 · Скажіть: Том може попросити допомоги**
+<!-- interaction_id: en:lesson-08:session-46:i16; family: scripted_repeat_compare -->
+🎙 **Tom can ask for help.**
 
-**21 · У принтера виникла несправність. Ви вмієте знаходити причини таких неполадок. Скажіть «Я можу визначити причину»**
-<!-- interaction_id: en:lesson-08:session-46:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I can diagnose it.**
+**21 · Скажіть: я теж можу припуститися помилки**
+<!-- interaction_id: en:lesson-08:session-46:i17; family: scripted_repeat_compare -->
+🎙 **I can make a mistake too.**
 

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-44",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-44:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-44:intro1:r2": {
+          "ru": "После did нужна find.",
+          "uk": "Після did потрібна find."
+        },
+        "en:lesson-13:session-44:intro1:r3": {
+          "ru": "Это сообщение, не вопрос.",
+          "uk": "Це повідомлення, не запитання."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-44:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-44:intro2:r2": {
+          "ru": "Это жёлудь.",
+          "uk": "Це жолудь."
+        },
+        "en:lesson-13:session-44:intro2:r3": {
+          "ru": "Для прошлого нужна saw.",
+          "uk": "Для минулого потрібна saw."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-44:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-44:intro3:r2": {
+          "ru": "Это веточка.",
+          "uk": "Це гілочка."
+        },
+        "en:lesson-13:session-44:intro3:r3": {
+          "ru": "После did нужна see.",
+          "uk": "Після did потрібна see."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "fbdbc1b79baa962f04948cf5c815e67f0d5a04f0e6d1dea473a22a53120a1109"
+}

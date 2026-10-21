@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-41",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-41:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-41:intro1:r2": {
+          "ru": "После did нужна tickle.",
+          "uk": "Після did потрібна tickle."
+        },
+        "en:lesson-13:session-41:intro1:r3": {
+          "ru": "Это сообщение, не вопрос.",
+          "uk": "Це повідомлення, не запитання."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-41:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-41:intro2:r2": {
+          "ru": "Здесь спрашивают о тихом закрывании двери.",
+          "uk": "Тут запитують про тихе зачинення дверей."
+        },
+        "en:lesson-13:session-41:intro2:r3": {
+          "ru": "После did нужна pinch.",
+          "uk": "Після did потрібна pinch."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-41:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-41:intro3:r2": {
+          "ru": "Это лёгкое похлопывание собаки.",
+          "uk": "Це легеньке поплескування собаки."
+        },
+        "en:lesson-13:session-41:intro3:r3": {
+          "ru": "После did нужна stroke.",
+          "uk": "Після did потрібна stroke."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "de4829af8ea1fe76059d130bd4d41a0361dfc40e5a0bc63cf8a301300965d2bb"
+}

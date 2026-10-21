@@ -97,7 +97,7 @@
         },
         {
           "responseId": "en:lesson-08:session-19:i02:r3",
-          "text": "code"
+          "text": "dance"
         }
       ],
       "mediaIds": [],
@@ -125,7 +125,7 @@
           },
           {
             "responseId": "en:lesson-08:session-19:i02:r3",
-            "targetText": "code",
+            "targetText": "dance",
             "meaningByLocale": null
           }
         ],
@@ -145,8 +145,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
-              "ru": "В записи первое слово — `explain`, а в этом варианте — `code`.",
-              "uk": "У записі перше слово — `explain`, а в цьому варіанті — `code`."
+              "ru": "В записи первое слово — `explain`, а в этом варианте — `dance`.",
+              "uk": "У записі перше слово — `explain`, а в цьому варіанті — `dance`."
             }
           }
         ],
@@ -264,10 +264,10 @@
           },
           {
             "pairId": "en:lesson-08:session-19:i04:p4",
-            "target": "code",
+            "target": "dance",
             "meaningByLocale": {
-              "ru": "писать код",
-              "uk": "писати код"
+              "ru": "танцевать",
+              "uk": "танцювати"
             }
           }
         ],
@@ -275,13 +275,13 @@
           "explain",
           "soup",
           "draw",
-          "code"
+          "dance"
         ],
         "rightColumn": [
           "пояснити",
           "суп",
           "малювати",
-          "писати код"
+          "танцювати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -1116,5 +1116,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "73a3146fd710cd27973f2517b97b116d725fba94cfb9ea82d95775e0b5c5abc6"
+  "learnerFingerprint": "6f53e2cc7890ed726437d3dfefea59ea10d14c8ee5206286edaf391f56ceecee"
 }

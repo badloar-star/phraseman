@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-08:session-15:intro1:q",
       "responseFeedbackById": {
         "en:lesson-08:session-15:intro1:r2": {
-          "ru": "Не получается: нужно `can’t`.",
-          "uk": "Не виходить: потрібне `can’t`."
+          "ru": "Здесь другой смысл или неверное вопросительное слово. Нужно: I can use the clothes airer.",
+          "uk": "Тут інший зміст або неправильне питальне слово. Потрібно: I can use the clothes airer."
         },
         "en:lesson-08:session-15:intro1:r3": {
-          "ru": "После `can’t` нужно `calculate`, без `to`.",
-          "uk": "Після `can’t` потрібне `calculate`, без `to`."
+          "ru": "После can глагол без to и s.",
+          "uk": "Після can дієслово без to й s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-08:session-15:intro2:q",
       "responseFeedbackById": {
         "en:lesson-08:session-15:intro2:r2": {
-          "ru": "После `can` нужно `estimate`, без `s`.",
-          "uk": "Після `can` потрібне `estimate`, без `s`."
+          "ru": "Здесь другой смысл или неверное вопросительное слово. Нужно: Whose laundry bag is this?",
+          "uk": "Тут інший зміст або неправильне питальне слово. Потрібно: Whose laundry bag is this?"
         },
         "en:lesson-08:session-15:intro2:r3": {
-          "ru": "Подруга умеет: нужно `can`.",
-          "uk": "Подруга вміє: потрібне `can`."
+          "ru": "Один мешок: is this.",
+          "uk": "Один мішок: is this."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-08:session-15:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-15:intro3:r2": {
-          "ru": "Для «чьи» нужно `whose`.",
-          "uk": "Для «чия» потрібне `whose`."
+          "ru": "Здесь другой смысл или неверное вопросительное слово. Нужно: I can find a dishwasher tablet.",
+          "uk": "Тут інший зміст або неправильне питальне слово. Потрібно: I can find a dishwasher tablet."
         },
         "en:lesson-08:session-15:intro3:r3": {
-          "ru": "Предмет один: нужно `is this`.",
-          "uk": "Рахівниця одна: потрібне `is this`."
+          "ru": "После can глагол без to и s.",
+          "uk": "Після can дієслово без to й s."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "9b47d3f4f6b3d87221eb6b06d38051c9c9438e5fdf005c9deecef0a1ae585191"
+  "auxiliaryFingerprint": "75e9d1977e16695e25ae255e1c22828c0b06170689829207c6d922c37a24f1ab"
 }

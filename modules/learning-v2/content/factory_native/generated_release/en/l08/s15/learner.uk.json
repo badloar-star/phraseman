@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-08:session-15:word:calculate",
+      "interactionId": "en:lesson-08:session-15:word:clothes-airer",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — calculate",
+      "prompt": "Картка слова — clothes airer",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-08:session-15:word:calculate:audio"
+        "en:lesson-08:session-15:word:clothes-airer:audio"
       ],
-      "accessibilityLabel": "Картка слова — calculate",
+      "accessibilityLabel": "Картка слова — clothes airer",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-15:word:calculate:audio",
-          "transcript": "calculate"
+          "audioTargetId": "en:lesson-08:session-15:word:clothes-airer:audio",
+          "transcript": "clothes airer"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-08:session-15:word:calculate:r1",
-            "targetText": "calculate",
+            "responseId": "en:lesson-08:session-15:word:clothes-airer:r1",
+            "targetText": "clothes airer",
             "meaningByLocale": {
-              "ru": "вычислять. I can’t calculate. — «Я не могу посчитать». Получать результат с помощью вычислений.",
-              "uk": "обчислювати. I can’t calculate. — «Я не можу порахувати». Отримувати результат за допомогою обчислень."
+              "ru": "сушилка-стойка для белья.",
+              "uk": "сушарка-стійка для білизни."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "calculate",
+          "word": "clothes airer",
           "definitionByLocale": {
-            "ru": "вычислять. I can’t calculate. — «Я не могу посчитать». Получать результат с помощью вычислений.",
-            "uk": "обчислювати. I can’t calculate. — «Я не можу порахувати». Отримувати результат за допомогою обчислень."
+            "ru": "сушилка-стойка для белья.",
+            "uk": "сушарка-стійка для білизни."
           }
         }
       },
@@ -52,22 +52,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Я не можу порахувати»",
+      "prompt": "Скажіть, що можете знайти: сушарка-стійка для білизни",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Я не можу порахувати»",
+      "accessibilityLabel": "Скажіть, що можете знайти: сушарка-стійка для білизни",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I can’t calculate.",
+        "targetPhrase": "I can find the clothes airer.",
         "localizedMeaning": {
-          "ru": "Скажите «Я не могу посчитать»",
-          "uk": "Скажіть «Я не можу порахувати»"
+          "ru": "Скажите, что можете найти: сушилка-стойка для белья",
+          "uk": "Скажіть, що можете знайти: сушарка-стійка для білизни"
         },
         "orderedTokens": [
           "I",
-          "can’t",
-          "calculate"
+          "can",
+          "find",
+          "the",
+          "clothes",
+          "airer"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -84,47 +87,47 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть слово",
+      "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-15:i02:r1",
-          "text": "calculate"
+          "text": "I can find the clothes airer."
         },
         {
           "responseId": "en:lesson-08:session-15:i02:r2",
-          "text": "sing"
+          "text": "I can’t find the clothes airer."
         },
         {
           "responseId": "en:lesson-08:session-15:i02:r3",
-          "text": "climb"
+          "text": "We can find the clothes airer."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-15:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть слово",
+      "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-15:i02:audio",
-          "transcript": "calculate"
+          "transcript": "I can find the clothes airer."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-08:session-15:i02:r1",
-            "targetText": "calculate",
+            "targetText": "I can find the clothes airer.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-15:i02:r2",
-            "targetText": "sing",
+            "targetText": "I can’t find the clothes airer.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-08:session-15:i02:r3",
-            "targetText": "climb",
+            "targetText": "We can find the clothes airer.",
             "meaningByLocale": null
           }
         ],
@@ -133,19 +136,19 @@
           {
             "responseId": "en:lesson-08:session-15:i02:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи calculate — «вычислять», а не sing — «петь».",
-              "uk": "У записі calculate — «обчислювати», а не sing — «співати»."
+              "ru": "В записи звучит I can find the clothes airer.",
+              "uk": "У записі звучить I can find the clothes airer."
             }
           },
           {
             "responseId": "en:lesson-08:session-15:i02:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть слово",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи calculate, а не climb — «взбираться».",
-              "uk": "У записі calculate, а не climb — «видиратися»."
+              "ru": "В записи звучит I can find the clothes airer.",
+              "uk": "У записі звучить I can find the clothes airer."
             }
           }
         ],
@@ -160,465 +163,215 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму: «Я не можу порахувати»",
+      "prompt": "Виберіть форму після can",
       "responseOptions": [
         {
           "responseId": "en:lesson-08:session-15:i03:r1",
-          "text": "calculate"
+          "text": "find"
         },
         {
           "responseId": "en:lesson-08:session-15:i03:r2",
-          "text": "to calculate"
+          "text": "finds"
         },
         {
           "responseId": "en:lesson-08:session-15:i03:r3",
-          "text": "calculates"
+          "text": "to find"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму: «Я не можу порахувати»",
+      "accessibilityLabel": "Виберіть форму після can",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму: «Я не могу посчитать»",
-          "uk": "Виберіть форму: «Я не можу порахувати»"
+          "ru": "Выберите форму после can",
+          "uk": "Виберіть форму після can"
         },
-        "gappedTargetPhrase": "I can’t ___.",
+        "gappedTargetPhrase": "I can ___ the clothes airer.",
         "gapOptions": [
           {
             "responseId": "en:lesson-08:session-15:i03:r1",
-            "text": "calculate"
+            "text": "find"
           },
           {
             "responseId": "en:lesson-08:session-15:i03:r2",
-            "text": "to calculate"
+            "text": "finds"
           },
           {
             "responseId": "en:lesson-08:session-15:i03:r3",
-            "text": "calculates"
+            "text": "to find"
           }
         ],
-        "testedDimension": "Виберіть форму: «Я не можу порахувати»",
+        "testedDimension": "Виберіть форму після can",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-08:session-15:i03:r2",
             "correct": false,
-            "testedDimension": "Виберіть форму: «Я не можу порахувати»",
+            "testedDimension": "Виберіть форму після can",
             "feedbackByLocale": {
-              "ru": "После `can’t` нужно `calculate`, без `to`.",
-              "uk": "Після `can’t` потрібне `calculate`, без `to`."
+              "ru": "Здесь нужна начальная форма глагола.",
+              "uk": "Тут потрібна початкова форма дієслова."
             }
           },
           {
             "responseId": "en:lesson-08:session-15:i03:r3",
             "correct": false,
-            "testedDimension": "Виберіть форму: «Я не можу порахувати»",
+            "testedDimension": "Виберіть форму після can",
             "feedbackByLocale": {
-              "ru": "После `can’t` нужно `calculate`, без `s`.",
-              "uk": "Після `can’t` потрібне `calculate`, без `s`."
+              "ru": "Здесь нужна начальная форма без to.",
+              "uk": "Тут потрібна початкова форма без to."
             }
           }
         ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:word:tumble-dryer",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tumble dryer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-15:word:tumble-dryer:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tumble dryer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-15:word:tumble-dryer:audio",
+          "transcript": "tumble dryer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-15:word:tumble-dryer:r1",
+            "targetText": "tumble dryer",
+            "meaningByLocale": {
+              "ru": "сушильная машина.",
+              "uk": "сушильна машина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tumble dryer",
+          "definitionByLocale": {
+            "ru": "сушильная машина.",
+            "uk": "сушильна машина."
+          }
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-08:session-15:i04",
-      "ordinal": 8,
+      "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "speed_match",
-      "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що можете знайти: сушильна машина",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "Скажіть, що можете знайти: сушильна машина",
       "modePayload": {
-        "family": "speed_match",
-        "pairGrid": [
-          {
-            "pairId": "en:lesson-08:session-15:i04:p1",
-            "target": "calculate",
-            "meaningByLocale": {
-              "ru": "вычислять",
-              "uk": "обчислювати"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-15:i04:p2",
-            "target": "sing",
-            "meaningByLocale": {
-              "ru": "петь",
-              "uk": "співати"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-15:i04:p3",
-            "target": "book",
-            "meaningByLocale": {
-              "ru": "книга",
-              "uk": "книжка"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-15:i04:p4",
-            "target": "pen",
-            "meaningByLocale": {
-              "ru": "ручка",
-              "uk": "ручка"
-            }
-          }
-        ],
-        "leftColumn": [
-          "calculate",
-          "sing",
-          "book",
-          "pen"
-        ],
-        "rightColumn": [
-          "обчислювати",
-          "співати",
-          "книжка",
-          "ручка"
-        ],
-        "pairingKey": "pair_id",
-        "timerPolicy": {
-          "enabledByDefault": true,
-          "learnerCanDisable": true,
-          "pausesOnInterruption": true
+        "family": "phrase_builder",
+        "targetPhrase": "I can find the tumble dryer.",
+        "localizedMeaning": {
+          "ru": "Скажите, что можете найти: сушильная машина",
+          "uk": "Скажіть, що можете знайти: сушильна машина"
         },
-        "finishStats": [
-          "speed",
-          "accuracy",
-          "personal_best"
-        ]
+        "orderedTokens": [
+          "I",
+          "can",
+          "find",
+          "the",
+          "tumble",
+          "dryer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-08:session-15:i05",
-      "ordinal": 9,
-      "purpose": "supported_practice",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-15:i05:audio"
-      ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-15:i05:audio",
-          "transcript": "I can’t calculate."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I can’t calculate.",
-        "orderedTokens": [
-          "I",
-          "can’t",
-          "calculate"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-15:word:estimate",
       "ordinal": 10,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — estimate",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-15:word:estimate:audio"
-      ],
-      "accessibilityLabel": "Картка слова — estimate",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-15:word:estimate:audio",
-          "transcript": "estimate"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-08:session-15:word:estimate:r1",
-            "targetText": "estimate",
-            "meaningByLocale": {
-              "ru": "оценивать приблизительно. She can estimate. — «Она умеет оценивать приблизительно». Прикидывать количество без точного вычисления.",
-              "uk": "оцінювати приблизно. She can estimate. — «Вона вміє оцінювати приблизно». Прикидати кількість без точного обчислення."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "estimate",
-          "definitionByLocale": {
-            "ru": "оценивать приблизительно. She can estimate. — «Она умеет оценивать приблизительно». Прикидывать количество без точного вычисления.",
-            "uk": "оцінювати приблизно. She can estimate. — «Вона вміє оцінювати приблизно». Прикидати кількість без точного обчислення."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-15:i06",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажіть «Вона вміє оцінювати приблизно»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть «Вона вміє оцінювати приблизно»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "She can estimate.",
-        "localizedMeaning": {
-          "ru": "Скажите «Она умеет оценивать приблизительно»",
-          "uk": "Скажіть «Вона вміє оцінювати приблизно»"
-        },
-        "orderedTokens": [
-          "She",
-          "can",
-          "estimate"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-15:word:abacus",
-      "ordinal": 12,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — abacus",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-15:word:abacus:audio"
-      ],
-      "accessibilityLabel": "Картка слова — abacus",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-15:word:abacus:audio",
-          "transcript": "abacus"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-08:session-15:word:abacus:r1",
-            "targetText": "abacus",
-            "meaningByLocale": {
-              "ru": "счёты. Whose abacus is this? — «Чьи это счёты?» В английском abacus — один предмет, поэтому is.",
-              "uk": "рахівниця. Whose abacus is this? — «Чия це рахівниця?» Пристрій із кісточками для лічби."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "abacus",
-          "definitionByLocale": {
-            "ru": "счёты. Whose abacus is this? — «Чьи это счёты?» В английском abacus — один предмет, поэтому is.",
-            "uk": "рахівниця. Whose abacus is this? — «Чия це рахівниця?» Пристрій із кісточками для лічби."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-15:i07",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Запитайте «Чия це рахівниця?»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-15:i07:audio"
-      ],
-      "accessibilityLabel": "Запитайте «Чия це рахівниця?»",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-15:i07:audio",
-          "transcript": "Whose abacus is this?"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "Whose abacus is this?",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-15:i08",
-      "ordinal": 14,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Виберіть форму: «Вона вміє оцінювати приблизно»",
+      "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
-          "responseId": "en:lesson-08:session-15:i08:r1",
-          "text": "estimate"
+          "responseId": "en:lesson-08:session-15:i05:r1",
+          "text": "I can find the tumble dryer."
         },
         {
-          "responseId": "en:lesson-08:session-15:i08:r2",
-          "text": "estimates"
+          "responseId": "en:lesson-08:session-15:i05:r2",
+          "text": "I can’t find the tumble dryer."
         },
         {
-          "responseId": "en:lesson-08:session-15:i08:r3",
-          "text": "to estimate"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму: «Вона вміє оцінювати приблизно»",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Выберите форму: «Она умеет оценивать приблизительно»",
-          "uk": "Виберіть форму: «Вона вміє оцінювати приблизно»"
-        },
-        "gappedTargetPhrase": "She can ___.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-08:session-15:i08:r1",
-            "text": "estimate"
-          },
-          {
-            "responseId": "en:lesson-08:session-15:i08:r2",
-            "text": "estimates"
-          },
-          {
-            "responseId": "en:lesson-08:session-15:i08:r3",
-            "text": "to estimate"
-          }
-        ],
-        "testedDimension": "Виберіть форму: «Вона вміє оцінювати приблизно»",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-08:session-15:i08:r2",
-            "correct": false,
-            "testedDimension": "Виберіть форму: «Вона вміє оцінювати приблизно»",
-            "feedbackByLocale": {
-              "ru": "После `can` нужно `estimate`, без `s`.",
-              "uk": "Після `can` потрібне `estimate`, без `s`."
-            }
-          },
-          {
-            "responseId": "en:lesson-08:session-15:i08:r3",
-            "correct": false,
-            "testedDimension": "Виберіть форму: «Вона вміє оцінювати приблизно»",
-            "feedbackByLocale": {
-              "ru": "После `can` нужно `estimate`, без `to`.",
-              "uk": "Після `can` потрібне `estimate`, без `to`."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-15:i09",
-      "ordinal": 15,
-      "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-08:session-15:i09:r1",
-          "text": "I can’t calculate."
-        },
-        {
-          "responseId": "en:lesson-08:session-15:i09:r2",
-          "text": "I can’t estimate."
-        },
-        {
-          "responseId": "en:lesson-08:session-15:i09:r3",
-          "text": "I can’t climb."
+          "responseId": "en:lesson-08:session-15:i05:r3",
+          "text": "We can find the tumble dryer."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-08:session-15:i09:audio"
+        "en:lesson-08:session-15:i05:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-15:i09:audio",
-          "transcript": "I can’t calculate."
+          "audioTargetId": "en:lesson-08:session-15:i05:audio",
+          "transcript": "I can find the tumble dryer."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-08:session-15:i09:r1",
-            "targetText": "I can’t calculate.",
+            "responseId": "en:lesson-08:session-15:i05:r1",
+            "targetText": "I can find the tumble dryer.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-08:session-15:i09:r2",
-            "targetText": "I can’t estimate.",
+            "responseId": "en:lesson-08:session-15:i05:r2",
+            "targetText": "I can’t find the tumble dryer.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-08:session-15:i09:r3",
-            "targetText": "I can’t climb.",
+            "responseId": "en:lesson-08:session-15:i05:r3",
+            "targetText": "We can find the tumble dryer.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-08:session-15:i09:r2",
+            "responseId": "en:lesson-08:session-15:i05:r2",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `calculate`, а в этом варианте — `estimate`.",
-              "uk": "У записі останнє слово — `calculate`, а в цьому варіанті — `estimate`."
+              "ru": "В записи звучит I can find the tumble dryer.",
+              "uk": "У записі звучить I can find the tumble dryer."
             }
           },
           {
-            "responseId": "en:lesson-08:session-15:i09:r3",
+            "responseId": "en:lesson-08:session-15:i05:r3",
             "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи последнее слово — `calculate`, а в этом варианте — `climb`.",
-              "uk": "У записі останнє слово — `calculate`, а в цьому варіанті — `climb`."
+              "ru": "В записи звучит I can find the tumble dryer.",
+              "uk": "У записі звучить I can find the tumble dryer."
             }
           }
         ],
@@ -628,63 +381,578 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-15:i10",
-      "ordinal": 16,
+      "interactionId": "en:lesson-08:session-15:i06",
+      "ordinal": 11,
       "purpose": "guided_practice",
-      "family": "speed_match",
-      "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після can",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-15:i06:r1",
+          "text": "find"
+        },
+        {
+          "responseId": "en:lesson-08:session-15:i06:r2",
+          "text": "finds"
+        },
+        {
+          "responseId": "en:lesson-08:session-15:i06:r3",
+          "text": "to find"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після can",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после can",
+          "uk": "Виберіть форму після can"
+        },
+        "gappedTargetPhrase": "I can ___ the tumble dryer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-15:i06:r1",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i06:r2",
+            "text": "finds"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i06:r3",
+            "text": "to find"
+          }
+        ],
+        "testedDimension": "Виберіть форму після can",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-15:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після can",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна начальная форма глагола.",
+              "uk": "Тут потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після can",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна начальная форма без to.",
+              "uk": "Тут потрібна початкова форма без to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:word:laundry-bag",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — laundry bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-15:word:laundry-bag:audio"
+      ],
+      "accessibilityLabel": "Картка слова — laundry bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-15:word:laundry-bag:audio",
+          "transcript": "laundry bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-15:word:laundry-bag:r1",
+            "targetText": "laundry bag",
+            "meaningByLocale": {
+              "ru": "мешок для белья.",
+              "uk": "мішок для білизни."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "laundry bag",
+          "definitionByLocale": {
+            "ru": "мешок для белья.",
+            "uk": "мішок для білизни."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що можете знайти: мішок для білизни",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
+      "accessibilityLabel": "Скажіть, що можете знайти: мішок для білизни",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can find the laundry bag.",
+        "localizedMeaning": {
+          "ru": "Скажите, что можете найти: мешок для белья",
+          "uk": "Скажіть, що можете знайти: мішок для білизни"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "find",
+          "the",
+          "laundry",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-15:i08:r1",
+          "text": "I can find the laundry bag."
+        },
+        {
+          "responseId": "en:lesson-08:session-15:i08:r2",
+          "text": "I can’t find the laundry bag."
+        },
+        {
+          "responseId": "en:lesson-08:session-15:i08:r3",
+          "text": "We can find the laundry bag."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-15:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-15:i08:audio",
+          "transcript": "I can find the laundry bag."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-15:i08:r1",
+            "targetText": "I can find the laundry bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i08:r2",
+            "targetText": "I can’t find the laundry bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i08:r3",
+            "targetText": "We can find the laundry bag.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can find the laundry bag.",
+              "uk": "У записі звучить I can find the laundry bag."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can find the laundry bag.",
+              "uk": "У записі звучить I can find the laundry bag."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після can",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-15:i09:r1",
+          "text": "find"
+        },
+        {
+          "responseId": "en:lesson-08:session-15:i09:r2",
+          "text": "finds"
+        },
+        {
+          "responseId": "en:lesson-08:session-15:i09:r3",
+          "text": "to find"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після can",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после can",
+          "uk": "Виберіть форму після can"
+        },
+        "gappedTargetPhrase": "I can ___ the laundry bag.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-15:i09:r1",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i09:r2",
+            "text": "finds"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i09:r3",
+            "text": "to find"
+          }
+        ],
+        "testedDimension": "Виберіть форму після can",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-15:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після can",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна начальная форма глагола.",
+              "uk": "Тут потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після can",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна начальная форма без to.",
+              "uk": "Тут потрібна початкова форма без to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:word:dishwasher-tablet",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dishwasher tablet",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-15:word:dishwasher-tablet:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dishwasher tablet",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-15:word:dishwasher-tablet:audio",
+          "transcript": "dishwasher tablet"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-15:word:dishwasher-tablet:r1",
+            "targetText": "dishwasher tablet",
+            "meaningByLocale": {
+              "ru": "таблетка для посудомоечной машины.",
+              "uk": "таблетка для посудомийної машини."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dishwasher tablet",
+          "definitionByLocale": {
+            "ru": "таблетка для посудомоечной машины.",
+            "uk": "таблетка для посудомийної машини."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що можете знайти: таблетка для посудомийної машини",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що можете знайти: таблетка для посудомийної машини",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can find a dishwasher tablet.",
+        "localizedMeaning": {
+          "ru": "Скажите, что можете найти: таблетка для посудомоечной машины",
+          "uk": "Скажіть, що можете знайти: таблетка для посудомийної машини"
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "find",
+          "a",
+          "dishwasher",
+          "tablet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-15:i11:r1",
+          "text": "I can find a dishwasher tablet."
+        },
+        {
+          "responseId": "en:lesson-08:session-15:i11:r2",
+          "text": "I can’t find a dishwasher tablet."
+        },
+        {
+          "responseId": "en:lesson-08:session-15:i11:r3",
+          "text": "We can find a dishwasher tablet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-08:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-08:session-15:i11:audio",
+          "transcript": "I can find a dishwasher tablet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-08:session-15:i11:r1",
+            "targetText": "I can find a dishwasher tablet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i11:r2",
+            "targetText": "I can’t find a dishwasher tablet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i11:r3",
+            "targetText": "We can find a dishwasher tablet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-15:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can find a dishwasher tablet.",
+              "uk": "У записі звучить I can find a dishwasher tablet."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can find a dishwasher tablet.",
+              "uk": "У записі звучить I can find a dishwasher tablet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму після can",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-08:session-15:i12:r1",
+          "text": "find"
+        },
+        {
+          "responseId": "en:lesson-08:session-15:i12:r2",
+          "text": "finds"
+        },
+        {
+          "responseId": "en:lesson-08:session-15:i12:r3",
+          "text": "to find"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму після can",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму после can",
+          "uk": "Виберіть форму після can"
+        },
+        "gappedTargetPhrase": "I can ___ a dishwasher tablet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-08:session-15:i12:r1",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i12:r2",
+            "text": "finds"
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i12:r3",
+            "text": "to find"
+          }
+        ],
+        "testedDimension": "Виберіть форму після can",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-08:session-15:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму після can",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна начальная форма глагола.",
+              "uk": "Тут потрібна початкова форма дієслова."
+            }
+          },
+          {
+            "responseId": "en:lesson-08:session-15:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму після can",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна начальная форма без to.",
+              "uk": "Тут потрібна початкова форма без to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-15:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
-            "pairId": "en:lesson-08:session-15:i10:p1",
-            "target": "estimate",
+            "pairId": "en:lesson-08:session-15:i13:p1",
+            "target": "clothes airer",
             "meaningByLocale": {
-              "ru": "оценивать приблизительно",
-              "uk": "оцінювати приблизно"
+              "ru": "сушилка-стойка для белья",
+              "uk": "сушарка-стійка для білизни"
             }
           },
           {
-            "pairId": "en:lesson-08:session-15:i10:p2",
-            "target": "calculate",
+            "pairId": "en:lesson-08:session-15:i13:p2",
+            "target": "tumble dryer",
             "meaningByLocale": {
-              "ru": "вычислять",
-              "uk": "обчислювати"
+              "ru": "сушильная машина",
+              "uk": "сушильна машина"
             }
           },
           {
-            "pairId": "en:lesson-08:session-15:i10:p3",
-            "target": "abacus",
+            "pairId": "en:lesson-08:session-15:i13:p3",
+            "target": "laundry bag",
             "meaningByLocale": {
-              "ru": "счёты",
-              "uk": "рахівниця"
+              "ru": "мешок для белья",
+              "uk": "мішок для білизни"
             }
           },
           {
-            "pairId": "en:lesson-08:session-15:i10:p4",
-            "target": "sing",
+            "pairId": "en:lesson-08:session-15:i13:p4",
+            "target": "dishwasher tablet",
             "meaningByLocale": {
-              "ru": "петь",
-              "uk": "співати"
+              "ru": "таблетка для посудомоечной машины",
+              "uk": "таблетка для посудомийної машини"
             }
           }
         ],
         "leftColumn": [
-          "estimate",
-          "calculate",
-          "abacus",
-          "sing"
+          "clothes airer",
+          "tumble dryer",
+          "laundry bag",
+          "dishwasher tablet"
         ],
         "rightColumn": [
-          "оцінювати приблизно",
-          "обчислювати",
-          "рахівниця",
-          "співати"
+          "сушарка-стійка для білизни",
+          "сушильна машина",
+          "мішок для білизни",
+          "таблетка для посудомийної машини"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -701,29 +969,30 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-15:i11",
-      "ordinal": 17,
-      "purpose": "retrieval_practice",
+      "interactionId": "en:lesson-08:session-15:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Складіть почуте",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-08:session-15:i11:audio"
+        "en:lesson-08:session-15:i14:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Складіть почуте",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-15:i11:audio",
-          "transcript": "Whose abacus is this?"
+          "audioTargetId": "en:lesson-08:session-15:i14:audio",
+          "transcript": "Whose laundry bag is this?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Whose abacus is this?",
+        "hiddenTargetPhrase": "Whose laundry bag is this?",
         "orderedTokens": [
           "Whose",
-          "abacus",
+          "laundry",
+          "bag",
           "is",
           "this"
         ],
@@ -737,71 +1006,33 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-15:word:spreadsheet",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Картка слова — spreadsheet",
+      "interactionId": "en:lesson-08:session-15:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуте",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-08:session-15:word:spreadsheet:audio"
+        "en:lesson-08:session-15:i15:audio"
       ],
-      "accessibilityLabel": "Картка слова — spreadsheet",
+      "accessibilityLabel": "Складіть почуте",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "listen_build_dictation",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-15:word:spreadsheet:audio",
-          "transcript": "spreadsheet"
+          "audioTargetId": "en:lesson-08:session-15:i15:audio",
+          "transcript": "She can use the tumble dryer."
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-08:session-15:word:spreadsheet:r1",
-            "targetText": "spreadsheet",
-            "meaningByLocale": {
-              "ru": "электронная таблица. Where is the spreadsheet? — «Где электронная таблица?» Данные и расчёты в строках и столбцах.",
-              "uk": "електронна таблиця. Where is the spreadsheet? — «Де електронна таблиця?» Дані й розрахунки в рядках і стовпцях."
-            }
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [],
-        "isWordCard": true,
-        "wordCard": {
-          "word": "spreadsheet",
-          "definitionByLocale": {
-            "ru": "электронная таблица. Where is the spreadsheet? — «Где электронная таблица?» Данные и расчёты в строках и столбцах.",
-            "uk": "електронна таблиця. Where is the spreadsheet? — «Де електронна таблиця?» Дані й розрахунки в рядках і стовпцях."
-          }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-15:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Колега шукає файл із розрахунками в комірках. Запитайте «Де електронна таблиця?»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Колега шукає файл із розрахунками в комірках. Запитайте «Де електронна таблиця?»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Where is the spreadsheet?",
-        "localizedMeaning": {
-          "ru": "Коллега ищет файл с расчётами в ячейках. Спросите «Где электронная таблица?»",
-          "uk": "Колега шукає файл із розрахунками в комірках. Запитайте «Де електронна таблиця?»"
-        },
+        "hiddenTargetPhrase": "She can use the tumble dryer.",
         "orderedTokens": [
-          "Where",
-          "is",
+          "She",
+          "can",
+          "use",
           "the",
-          "spreadsheet"
+          "tumble",
+          "dryer"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -813,26 +1044,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-15:i13",
-      "ordinal": 20,
+      "interactionId": "en:lesson-08:session-15:i16",
+      "ordinal": 23,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Колега запитує, чи часто ви робите приблизні оцінки. Скажіть «Я часто оцінюю приблизно»",
+      "prompt": "Скажіть: це мій мішок для білизни",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-08:session-15:i13:audio"
+        "en:lesson-08:session-15:i16:audio"
       ],
-      "accessibilityLabel": "Колега запитує, чи часто ви робите приблизні оцінки. Скажіть «Я часто оцінюю приблизно»",
+      "accessibilityLabel": "Скажіть: це мій мішок для білизни",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-15:i13:audio",
-          "transcript": "I often estimate."
+          "audioTargetId": "en:lesson-08:session-15:i16:audio",
+          "transcript": "This is my laundry bag."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I often estimate.",
+        "targetPhrase": "This is my laundry bag.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -846,255 +1077,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-08:session-15:i14",
-      "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Виберіть форму: «Він не може порахувати»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-08:session-15:i14:r1",
-          "text": "can’t"
-        },
-        {
-          "responseId": "en:lesson-08:session-15:i14:r2",
-          "text": "can"
-        },
-        {
-          "responseId": "en:lesson-08:session-15:i14:r3",
-          "text": "is can’t"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму: «Він не може порахувати»",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Выберите форму: «Он не может посчитать»",
-          "uk": "Виберіть форму: «Він не може порахувати»"
-        },
-        "gappedTargetPhrase": "He ___ calculate.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-08:session-15:i14:r1",
-            "text": "can’t"
-          },
-          {
-            "responseId": "en:lesson-08:session-15:i14:r2",
-            "text": "can"
-          },
-          {
-            "responseId": "en:lesson-08:session-15:i14:r3",
-            "text": "is can’t"
-          }
-        ],
-        "testedDimension": "Виберіть форму: «Він не може порахувати»",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-08:session-15:i14:r2",
-            "correct": false,
-            "testedDimension": "Виберіть форму: «Він не може порахувати»",
-            "feedbackByLocale": {
-              "ru": "У него не получается: нужно `can’t`.",
-              "uk": "У нього не виходить: потрібне `can’t`."
-            }
-          },
-          {
-            "responseId": "en:lesson-08:session-15:i14:r3",
-            "correct": false,
-            "testedDimension": "Виберіть форму: «Він не може порахувати»",
-            "feedbackByLocale": {
-              "ru": "Достаточно `he can’t`; `is` не нужно.",
-              "uk": "Достатньо `he can’t`; `is` не потрібне."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-15:i15",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть фразу",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-08:session-15:i15:r1",
-          "text": "Where is the spreadsheet?"
-        },
-        {
-          "responseId": "en:lesson-08:session-15:i15:r2",
-          "text": "Where is the abacus?"
-        },
-        {
-          "responseId": "en:lesson-08:session-15:i15:r3",
-          "text": "Where is the book?"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-08:session-15:i15:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть фразу",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-08:session-15:i15:audio",
-          "transcript": "Where is the spreadsheet?"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-08:session-15:i15:r1",
-            "targetText": "Where is the spreadsheet?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-08:session-15:i15:r2",
-            "targetText": "Where is the abacus?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-08:session-15:i15:r3",
-            "targetText": "Where is the book?",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-08:session-15:i15:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
-            "feedbackByLocale": {
-              "ru": "В записи spreadsheet — «электронная таблица», а не abacus — «счёты».",
-              "uk": "У записі spreadsheet — «електронна таблиця», а не abacus — «рахівниця»."
-            }
-          },
-          {
-            "responseId": "en:lesson-08:session-15:i15:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть фразу",
-            "feedbackByLocale": {
-              "ru": "В записи spreadsheet, а не book — «книга».",
-              "uk": "У записі spreadsheet, а не book — «книжка»."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-15:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "speed_match",
-      "inputMode": "pair_grid",
-      "prompt": "З’єднайте слова зі значеннями",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте слова зі значеннями",
-      "modePayload": {
-        "family": "speed_match",
-        "pairGrid": [
-          {
-            "pairId": "en:lesson-08:session-15:i16:p1",
-            "target": "calculate",
-            "meaningByLocale": {
-              "ru": "вычислять",
-              "uk": "обчислювати"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-15:i16:p2",
-            "target": "estimate",
-            "meaningByLocale": {
-              "ru": "оценивать приблизительно",
-              "uk": "оцінювати приблизно"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-15:i16:p3",
-            "target": "abacus",
-            "meaningByLocale": {
-              "ru": "счёты",
-              "uk": "рахівниця"
-            }
-          },
-          {
-            "pairId": "en:lesson-08:session-15:i16:p4",
-            "target": "spreadsheet",
-            "meaningByLocale": {
-              "ru": "электронная таблица",
-              "uk": "електронна таблиця"
-            }
-          }
-        ],
-        "leftColumn": [
-          "calculate",
-          "estimate",
-          "abacus",
-          "spreadsheet"
-        ],
-        "rightColumn": [
-          "обчислювати",
-          "оцінювати приблизно",
-          "рахівниця",
-          "електронна таблиця"
-        ],
-        "pairingKey": "pair_id",
-        "timerPolicy": {
-          "enabledByDefault": true,
-          "learnerCanDisable": true,
-          "pausesOnInterruption": true
-        },
-        "finishStats": [
-          "speed",
-          "accuracy",
-          "personal_best"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-08:session-15:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Том намагається порахувати вартість покупок, але плутається в числах. Скажіть «Том не може порахувати»",
+      "prompt": "Скажіть: я можу скористатися сушаркою-стійкою",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-08:session-15:i17:audio"
       ],
-      "accessibilityLabel": "Том намагається порахувати вартість покупок, але плутається в числах. Скажіть «Том не може порахувати»",
+      "accessibilityLabel": "Скажіть: я можу скористатися сушаркою-стійкою",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-08:session-15:i17:audio",
-          "transcript": "Tom can’t calculate."
+          "transcript": "I can use the clothes airer."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "Tom can’t calculate.",
+        "targetPhrase": "I can use the clothes airer.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1111,5 +1116,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "550d2d8bb529f30807324ee43904732252961b499c3351a90bd3efa7bb261808"
+  "learnerFingerprint": "8a99e9afdde4f851acd07780d1b4fcd0e643f67be424447234628cbeb3c9e0e3"
 }

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-43:word:felt-tip-pen",
+    "correctText": "felt-tip pen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-43:i01",
+    "correctText": "Did you use a felt-tip pen?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-43:i02",
+    "correctText": "Did she use a felt-tip pen?",
+    "correctResponseId": "en:lesson-13:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-43:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-43:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-43:word:ballpoint-pen",
+    "correctText": "ballpoint pen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-43:i04",
+    "correctText": "Did you find a ballpoint pen?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-43:i05",
+    "correctText": "Did she find a ballpoint pen?",
+    "correctResponseId": "en:lesson-13:session-43:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-43:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-43:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-43:word:fountain-pen",
+    "correctText": "fountain pen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-43:i07",
+    "correctText": "Did you use a fountain pen?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-43:i08",
+    "correctText": "Did she use a fountain pen?",
+    "correctResponseId": "en:lesson-13:session-43:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-43:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-43:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-43:word:coloured-pencil",
+    "correctText": "coloured pencil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-43:i10",
+    "correctText": "Did you use a coloured pencil?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-43:i11",
+    "correctText": "Did she use a coloured pencil?",
+    "correctResponseId": "en:lesson-13:session-43:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-43:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-43:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-43:i13",
+    "correctText": "en:lesson-13:session-43:i13:p1=felt-tip pen\nen:lesson-13:session-43:i13:p2=ballpoint pen\nen:lesson-13:session-43:i13:p3=fountain pen\nen:lesson-13:session-43:i13:p4=coloured pencil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-43:i14",
+    "correctText": "First I found a ballpoint pen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-43:i15",
+    "correctText": "Then I wrote the address.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-43:i16",
+    "correctText": "Then she used a coloured pencil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-43:i17",
+    "correctText": "I didn't use a fountain pen yesterday.",
+    "correctResponseId": null
+  }
+]

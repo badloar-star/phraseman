@@ -4,32 +4,32 @@
   "interactionsByLocale": {
     "ru": [
       {
-        "interactionId": "en:lesson-08:session-53:word:design",
+        "interactionId": "en:lesson-08:session-53:word:get-dressed",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — design",
+        "prompt": "Карточка слова — get dressed",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-08:session-53:word:design:audio"
+          "en:lesson-08:session-53:word:get-dressed:audio"
         ],
-        "accessibilityLabel": "Карточка слова — design",
+        "accessibilityLabel": "Карточка слова — get dressed",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-08:session-53:word:design:audio",
-            "transcript": "design"
+            "audioTargetId": "en:lesson-08:session-53:word:get-dressed:audio",
+            "transcript": "get dressed"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-08:session-53:word:design:r1",
-              "targetText": "design",
+              "responseId": "en:lesson-08:session-53:word:get-dressed:r1",
+              "targetText": "get dressed",
               "meaningByLocale": {
-                "ru": "разрабатывать, создавать оформление. I can design it. — «Я могу разработать его оформление». Здесь design — действие.",
-                "uk": "розробляти, створювати оформлення. I can design it. — «Я можу розробити його оформлення». Тут design — дія."
+                "ru": "одеваться.",
+                "uk": "одягатися."
               }
             }
           ],
@@ -37,10 +37,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "design",
+            "word": "get dressed",
             "definitionByLocale": {
-              "ru": "разрабатывать, создавать оформление. I can design it. — «Я могу разработать его оформление». Здесь design — действие.",
-              "uk": "розробляти, створювати оформлення. I can design it. — «Я можу розробити його оформлення». Тут design — дія."
+              "ru": "одеваться.",
+              "uk": "одягатися."
             }
           }
         },
@@ -52,23 +52,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Предложите разработать оформление приглашения",
+        "prompt": "Скажите: Я умею одеваться",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Предложите разработать оформление приглашения",
+        "accessibilityLabel": "Скажите: Я умею одеваться",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I can design it.",
+          "targetPhrase": "I can get dressed.",
           "localizedMeaning": {
-            "ru": "Предложите разработать оформление приглашения",
-            "uk": "Запропонуйте розробити оформлення запрошення"
+            "ru": "Скажите: Я умею одеваться",
+            "uk": "Скажіть: Я вмію одягатися"
           },
           "orderedTokens": [
             "I",
             "can",
-            "design",
-            "it"
+            "get",
+            "dressed"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -89,15 +89,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-08:session-53:i02:r1",
-            "text": "design"
+            "text": "I can get dressed."
           },
           {
             "responseId": "en:lesson-08:session-53:i02:r2",
-            "text": "manage"
+            "text": "I can’t get dressed."
           },
           {
             "responseId": "en:lesson-08:session-53:i02:r3",
-            "text": "evaluate"
+            "text": "I cannot get dressed."
           }
         ],
         "mediaIds": [],
@@ -109,23 +109,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-08:session-53:i02:audio",
-            "transcript": "design"
+            "transcript": "I can get dressed."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-08:session-53:i02:r1",
-              "targetText": "design",
+              "targetText": "I can get dressed.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-08:session-53:i02:r2",
-              "targetText": "manage",
+              "targetText": "I can’t get dressed.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-08:session-53:i02:r3",
-              "targetText": "evaluate",
+              "targetText": "I cannot get dressed.",
               "meaningByLocale": null
             }
           ],
@@ -136,8 +136,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит design",
-                "uk": "У записі звучить design"
+                "ru": "В записи звучит I can get dressed.",
+                "uk": "У записі звучить I can get dressed."
               }
             },
             {
@@ -145,8 +145,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит design",
-                "uk": "У записі звучить design"
+                "ru": "В записи звучит I can get dressed.",
+                "uk": "У записі звучить I can get dressed."
               }
             }
           ],
@@ -161,168 +161,136 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите форму действия",
+        "prompt": "Выберите форму после can",
         "responseOptions": [
           {
             "responseId": "en:lesson-08:session-53:i03:r1",
-            "text": "design"
+            "text": "get"
           },
           {
             "responseId": "en:lesson-08:session-53:i03:r2",
-            "text": "to design"
+            "text": "gets"
           },
           {
             "responseId": "en:lesson-08:session-53:i03:r3",
-            "text": "designs"
+            "text": "to get"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите форму действия",
+        "accessibilityLabel": "Выберите форму после can",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму действия",
-            "uk": "Виберіть форму дії"
+            "ru": "Выберите форму после can",
+            "uk": "Виберіть форму після can"
           },
-          "gappedTargetPhrase": "I can ___ it.",
+          "gappedTargetPhrase": "I can ___ dressed.",
           "gapOptions": [
             {
               "responseId": "en:lesson-08:session-53:i03:r1",
-              "text": "design"
+              "text": "get"
             },
             {
               "responseId": "en:lesson-08:session-53:i03:r2",
-              "text": "to design"
+              "text": "gets"
             },
             {
               "responseId": "en:lesson-08:session-53:i03:r3",
-              "text": "designs"
+              "text": "to get"
             }
           ],
-          "testedDimension": "Выберите форму действия",
+          "testedDimension": "Выберите форму после can",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-08:session-53:i03:r2",
               "correct": false,
-              "testedDimension": "Выберите форму действия",
+              "testedDimension": "Выберите форму после can",
               "feedbackByLocale": {
-                "ru": "После can не нужно to.",
-                "uk": "Після can не потрібне to."
+                "ru": "После can не добавляем s.",
+                "uk": "Після can не додаємо s."
               }
             },
             {
               "responseId": "en:lesson-08:session-53:i03:r3",
               "correct": false,
-              "testedDimension": "Выберите форму действия",
+              "testedDimension": "Выберите форму после can",
               "feedbackByLocale": {
-                "ru": "После can не нужно окончание s.",
-                "uk": "Після can не потрібне закінчення s."
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
               }
             }
           ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-53:word:brush-your-teeth",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — brush your teeth",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-53:word:brush-your-teeth:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — brush your teeth",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-53:word:brush-your-teeth:audio",
+            "transcript": "brush your teeth"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-53:word:brush-your-teeth:r1",
+              "targetText": "brush your teeth",
+              "meaningByLocale": {
+                "ru": "чистить зубы.",
+                "uk": "чистити зуби."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brush your teeth",
+            "definitionByLocale": {
+              "ru": "чистить зубы.",
+              "uk": "чистити зуби."
+            }
+          }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-08:session-53:i04",
-        "ordinal": 8,
+        "ordinal": 9,
         "purpose": "supported_practice",
-        "family": "speed_match",
-        "inputMode": "pair_grid",
-        "prompt": "Соедините слова со значениями",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты умеешь чистить зубы",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините слова со значениями",
+        "accessibilityLabel": "Скажите: Ты умеешь чистить зубы",
         "modePayload": {
-          "family": "speed_match",
-          "pairGrid": [
-            {
-              "pairId": "en:lesson-08:session-53:i04:p1",
-              "target": "design",
-              "meaningByLocale": {
-                "ru": "разрабатывать оформление",
-                "uk": "розробляти оформлення"
-              }
-            },
-            {
-              "pairId": "en:lesson-08:session-53:i04:p2",
-              "target": "sketch",
-              "meaningByLocale": {
-                "ru": "набросок",
-                "uk": "начерк"
-              }
-            },
-            {
-              "pairId": "en:lesson-08:session-53:i04:p3",
-              "target": "artist",
-              "meaningByLocale": {
-                "ru": "художник",
-                "uk": "художник"
-              }
-            },
-            {
-              "pairId": "en:lesson-08:session-53:i04:p4",
-              "target": "gallery",
-              "meaningByLocale": {
-                "ru": "галерея",
-                "uk": "галерея"
-              }
-            }
-          ],
-          "leftColumn": [
-            "design",
-            "sketch",
-            "artist",
-            "gallery"
-          ],
-          "rightColumn": [
-            "разрабатывать оформление",
-            "набросок",
-            "художник",
-            "галерея"
-          ],
-          "pairingKey": "pair_id",
-          "timerPolicy": {
-            "enabledByDefault": true,
-            "learnerCanDisable": true,
-            "pausesOnInterruption": true
+          "family": "phrase_builder",
+          "targetPhrase": "You can brush your teeth.",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты умеешь чистить зубы",
+            "uk": "Скажіть: Ти вмієш чистити зуби"
           },
-          "finishStats": [
-            "speed",
-            "accuracy",
-            "personal_best"
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-08:session-53:i05",
-        "ordinal": 9,
-        "purpose": "supported_practice",
-        "family": "listen_build_dictation",
-        "inputMode": "ordered_tokens",
-        "prompt": "Послушайте и соберите просьбу",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-08:session-53:i05:audio"
-        ],
-        "accessibilityLabel": "Послушайте и соберите просьбу",
-        "modePayload": {
-          "family": "listen_build_dictation",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-08:session-53:i05:audio",
-            "transcript": "Can you design it?"
-          },
-          "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "Can you design it?",
           "orderedTokens": [
-            "Can",
-            "you",
-            "design",
-            "it"
+            "You",
+            "can",
+            "brush",
+            "your",
+            "teeth"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -334,45 +302,78 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-08:session-53:word:layout",
+        "interactionId": "en:lesson-08:session-53:i05",
         "ordinal": 10,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — layout",
-        "responseOptions": [],
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-53:i05:r1",
+            "text": "You can brush your teeth."
+          },
+          {
+            "responseId": "en:lesson-08:session-53:i05:r2",
+            "text": "You can’t brush your teeth."
+          },
+          {
+            "responseId": "en:lesson-08:session-53:i05:r3",
+            "text": "You cannot brush your teeth."
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-08:session-53:word:layout:audio"
+          "en:lesson-08:session-53:i05:audio"
         ],
-        "accessibilityLabel": "Карточка слова — layout",
+        "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-08:session-53:word:layout:audio",
-            "transcript": "layout"
+            "audioTargetId": "en:lesson-08:session-53:i05:audio",
+            "transcript": "You can brush your teeth."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-08:session-53:word:layout:r1",
-              "targetText": "layout",
-              "meaningByLocale": {
-                "ru": "расположение элементов, компоновка. We can change the layout. — «Мы можем изменить расположение элементов».",
-                "uk": "розташування елементів, компонування. We can change the layout. — «Ми можемо змінити розташування елементів»."
-              }
+              "responseId": "en:lesson-08:session-53:i05:r1",
+              "targetText": "You can brush your teeth.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i05:r2",
+              "targetText": "You can’t brush your teeth.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i05:r3",
+              "targetText": "You cannot brush your teeth.",
+              "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "layout",
-            "definitionByLocale": {
-              "ru": "расположение элементов, компоновка. We can change the layout. — «Мы можем изменить расположение элементов».",
-              "uk": "розташування елементів, компонування. We can change the layout. — «Ми можемо змінити розташування елементів»."
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-53:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can brush your teeth.",
+                "uk": "У записі звучить You can brush your teeth."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can brush your teeth.",
+                "uk": "У записі звучить You can brush your teeth."
+              }
             }
-          }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
@@ -380,63 +381,98 @@
         "interactionId": "en:lesson-08:session-53:i06",
         "ordinal": 11,
         "purpose": "guided_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Предложите изменить расположение элементов",
-        "responseOptions": [],
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после can",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-53:i06:r1",
+            "text": "brush"
+          },
+          {
+            "responseId": "en:lesson-08:session-53:i06:r2",
+            "text": "brushes"
+          },
+          {
+            "responseId": "en:lesson-08:session-53:i06:r3",
+            "text": "to brush"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Предложите изменить расположение элементов",
+        "accessibilityLabel": "Выберите форму после can",
         "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "We can change the layout.",
-          "localizedMeaning": {
-            "ru": "Предложите изменить расположение элементов",
-            "uk": "Запропонуйте змінити розташування елементів"
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can",
+            "uk": "Виберіть форму після can"
           },
-          "orderedTokens": [
-            "We",
-            "can",
-            "change",
-            "the",
-            "layout"
+          "gappedTargetPhrase": "You can ___ your teeth.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-53:i06:r1",
+              "text": "brush"
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i06:r2",
+              "text": "brushes"
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i06:r3",
+              "text": "to brush"
+            }
           ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
+          "testedDimension": "Выберите форму после can",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-53:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после can",
+              "feedbackByLocale": {
+                "ru": "После can не добавляем s.",
+                "uk": "Після can не додаємо s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после can",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-08:session-53:word:typeface",
+        "interactionId": "en:lesson-08:session-53:word:comb-your-hair",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — typeface",
+        "prompt": "Карточка слова — comb your hair",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-08:session-53:word:typeface:audio"
+          "en:lesson-08:session-53:word:comb-your-hair:audio"
         ],
-        "accessibilityLabel": "Карточка слова — typeface",
+        "accessibilityLabel": "Карточка слова — comb your hair",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-08:session-53:word:typeface:audio",
-            "transcript": "typeface"
+            "audioTargetId": "en:lesson-08:session-53:word:comb-your-hair:audio",
+            "transcript": "comb your hair"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-08:session-53:word:typeface:r1",
-              "targetText": "typeface",
+              "responseId": "en:lesson-08:session-53:word:comb-your-hair:r1",
+              "targetText": "comb your hair",
               "meaningByLocale": {
-                "ru": "шрифт, рисунок букв. She can choose a typeface. — «Она может выбрать шрифт».",
-                "uk": "шрифт, малюнок літер. She can choose a typeface. — «Вона може вибрати шрифт»."
+                "ru": "расчёсывать волосы.",
+                "uk": "розчісувати волосся."
               }
             }
           ],
@@ -444,10 +480,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "typeface",
+            "word": "comb your hair",
             "definitionByLocale": {
-              "ru": "шрифт, рисунок букв. She can choose a typeface. — «Она может выбрать шрифт».",
-              "uk": "шрифт, малюнок літер. She can choose a typeface. — «Вона може вибрати шрифт»."
+              "ru": "расчёсывать волосы.",
+              "uk": "розчісувати волосся."
             }
           }
         },
@@ -457,32 +493,33 @@
         "interactionId": "en:lesson-08:session-53:i07",
         "ordinal": 13,
         "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажите «Она может выбрать шрифт»",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты умеешь расчёсывать волосы",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-08:session-53:i07:audio"
-        ],
-        "accessibilityLabel": "Скажите «Она может выбрать шрифт»",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Ты умеешь расчёсывать волосы",
         "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-08:session-53:i07:audio",
-            "transcript": "She can choose a typeface."
+          "family": "phrase_builder",
+          "targetPhrase": "You can comb your hair.",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты умеешь расчёсывать волосы",
+            "uk": "Скажіть: Ти вмієш розчісувати волосся"
           },
-          "slowReferenceAudio": null,
-          "targetPhrase": "She can choose a typeface.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
-          ]
+          "orderedTokens": [
+            "You",
+            "can",
+            "comb",
+            "your",
+            "hair"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
@@ -490,139 +527,70 @@
         "interactionId": "en:lesson-08:session-53:i08",
         "ordinal": 14,
         "purpose": "guided_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Выберите форму действия",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-08:session-53:i08:r1",
-            "text": "choose"
-          },
-          {
-            "responseId": "en:lesson-08:session-53:i08:r2",
-            "text": "to choose"
-          },
-          {
-            "responseId": "en:lesson-08:session-53:i08:r3",
-            "text": "chooses"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Выберите форму действия",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Выберите форму действия",
-            "uk": "Виберіть форму дії"
-          },
-          "gappedTargetPhrase": "She can ___ a typeface.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-08:session-53:i08:r1",
-              "text": "choose"
-            },
-            {
-              "responseId": "en:lesson-08:session-53:i08:r2",
-              "text": "to choose"
-            },
-            {
-              "responseId": "en:lesson-08:session-53:i08:r3",
-              "text": "chooses"
-            }
-          ],
-          "testedDimension": "Выберите форму действия",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-08:session-53:i08:r2",
-              "correct": false,
-              "testedDimension": "Выберите форму действия",
-              "feedbackByLocale": {
-                "ru": "После can не нужно to.",
-                "uk": "Після can не потрібне to."
-              }
-            },
-            {
-              "responseId": "en:lesson-08:session-53:i08:r3",
-              "correct": false,
-              "testedDimension": "Выберите форму действия",
-              "feedbackByLocale": {
-                "ru": "После can не нужно окончание s.",
-                "uk": "Після can не потрібне закінчення s."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-08:session-53:i09",
-        "ordinal": 15,
-        "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
-            "responseId": "en:lesson-08:session-53:i09:r1",
-            "text": "We can change the layout."
+            "responseId": "en:lesson-08:session-53:i08:r1",
+            "text": "You can comb your hair."
           },
           {
-            "responseId": "en:lesson-08:session-53:i09:r2",
-            "text": "I can change the layout."
+            "responseId": "en:lesson-08:session-53:i08:r2",
+            "text": "You can’t comb your hair."
           },
           {
-            "responseId": "en:lesson-08:session-53:i09:r3",
-            "text": "They can change the layout."
+            "responseId": "en:lesson-08:session-53:i08:r3",
+            "text": "You cannot comb your hair."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-08:session-53:i09:audio"
+          "en:lesson-08:session-53:i08:audio"
         ],
         "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-08:session-53:i09:audio",
-            "transcript": "We can change the layout."
+            "audioTargetId": "en:lesson-08:session-53:i08:audio",
+            "transcript": "You can comb your hair."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-08:session-53:i09:r1",
-              "targetText": "We can change the layout.",
+              "responseId": "en:lesson-08:session-53:i08:r1",
+              "targetText": "You can comb your hair.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-08:session-53:i09:r2",
-              "targetText": "I can change the layout.",
+              "responseId": "en:lesson-08:session-53:i08:r2",
+              "targetText": "You can’t comb your hair.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-08:session-53:i09:r3",
-              "targetText": "They can change the layout.",
+              "responseId": "en:lesson-08:session-53:i08:r3",
+              "targetText": "You cannot comb your hair.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-08:session-53:i09:r2",
+              "responseId": "en:lesson-08:session-53:i08:r2",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит We can change the layout.",
-                "uk": "У записі звучить We can change the layout."
+                "ru": "В записи звучит You can comb your hair.",
+                "uk": "У записі звучить You can comb your hair."
               }
             },
             {
-              "responseId": "en:lesson-08:session-53:i09:r3",
+              "responseId": "en:lesson-08:session-53:i08:r3",
               "correct": false,
               "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
-                "ru": "В записи звучит We can change the layout.",
-                "uk": "У записі звучить We can change the layout."
+                "ru": "В записи звучит You can comb your hair.",
+                "uk": "У записі звучить You can comb your hair."
               }
             }
           ],
@@ -632,63 +600,354 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-08:session-53:i10",
+        "interactionId": "en:lesson-08:session-53:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после can",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-53:i09:r1",
+            "text": "comb"
+          },
+          {
+            "responseId": "en:lesson-08:session-53:i09:r2",
+            "text": "combs"
+          },
+          {
+            "responseId": "en:lesson-08:session-53:i09:r3",
+            "text": "to comb"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после can",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can",
+            "uk": "Виберіть форму після can"
+          },
+          "gappedTargetPhrase": "You can ___ your hair.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-53:i09:r1",
+              "text": "comb"
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i09:r2",
+              "text": "combs"
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i09:r3",
+              "text": "to comb"
+            }
+          ],
+          "testedDimension": "Выберите форму после can",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-53:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после can",
+              "feedbackByLocale": {
+                "ru": "После can не добавляем s.",
+                "uk": "Після can не додаємо s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после can",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-53:word:wash-your-face",
         "ordinal": 16,
         "purpose": "guided_practice",
-        "family": "speed_match",
-        "inputMode": "pair_grid",
-        "prompt": "Соедините слова со значениями",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — wash your face",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-53:word:wash-your-face:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — wash your face",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-53:word:wash-your-face:audio",
+            "transcript": "wash your face"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-53:word:wash-your-face:r1",
+              "targetText": "wash your face",
+              "meaningByLocale": {
+                "ru": "умываться.",
+                "uk": "умиватися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wash your face",
+            "definitionByLocale": {
+              "ru": "умываться.",
+              "uk": "умиватися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-53:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Ты умеешь умываться",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соедините слова со значениями",
+        "accessibilityLabel": "Скажите: Ты умеешь умываться",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You can wash your face.",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты умеешь умываться",
+            "uk": "Скажіть: Ти вмієш умиватися"
+          },
+          "orderedTokens": [
+            "You",
+            "can",
+            "wash",
+            "your",
+            "face"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-53:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-53:i11:r1",
+            "text": "You can wash your face."
+          },
+          {
+            "responseId": "en:lesson-08:session-53:i11:r2",
+            "text": "You can’t wash your face."
+          },
+          {
+            "responseId": "en:lesson-08:session-53:i11:r3",
+            "text": "You cannot wash your face."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-53:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-53:i11:audio",
+            "transcript": "You can wash your face."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-53:i11:r1",
+              "targetText": "You can wash your face.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i11:r2",
+              "targetText": "You can’t wash your face.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i11:r3",
+              "targetText": "You cannot wash your face.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-53:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can wash your face.",
+                "uk": "У записі звучить You can wash your face."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can wash your face.",
+                "uk": "У записі звучить You can wash your face."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-53:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму после can",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-53:i12:r1",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-08:session-53:i12:r2",
+            "text": "washes"
+          },
+          {
+            "responseId": "en:lesson-08:session-53:i12:r3",
+            "text": "to wash"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму после can",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can",
+            "uk": "Виберіть форму після can"
+          },
+          "gappedTargetPhrase": "You can ___ your face.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-53:i12:r1",
+              "text": "wash"
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i12:r2",
+              "text": "washes"
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i12:r3",
+              "text": "to wash"
+            }
+          ],
+          "testedDimension": "Выберите форму после can",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-53:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму после can",
+              "feedbackByLocale": {
+                "ru": "После can не добавляем s.",
+                "uk": "Після can не додаємо s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму после can",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-53:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
-              "pairId": "en:lesson-08:session-53:i10:p1",
-              "target": "design",
+              "pairId": "en:lesson-08:session-53:i13:p1",
+              "target": "get dressed",
               "meaningByLocale": {
-                "ru": "разрабатывать оформление",
-                "uk": "розробляти оформлення"
+                "ru": "одеваться",
+                "uk": "одягатися"
               }
             },
             {
-              "pairId": "en:lesson-08:session-53:i10:p2",
-              "target": "layout",
+              "pairId": "en:lesson-08:session-53:i13:p2",
+              "target": "brush your teeth",
               "meaningByLocale": {
-                "ru": "расположение элементов",
-                "uk": "розташування елементів"
+                "ru": "чистить зубы",
+                "uk": "чистити зуби"
               }
             },
             {
-              "pairId": "en:lesson-08:session-53:i10:p3",
-              "target": "typeface",
+              "pairId": "en:lesson-08:session-53:i13:p3",
+              "target": "comb your hair",
               "meaningByLocale": {
-                "ru": "шрифт",
-                "uk": "шрифт"
+                "ru": "расчёсывать волосы",
+                "uk": "розчісувати волосся"
               }
             },
             {
-              "pairId": "en:lesson-08:session-53:i10:p4",
-              "target": "sketch",
+              "pairId": "en:lesson-08:session-53:i13:p4",
+              "target": "wash your face",
               "meaningByLocale": {
-                "ru": "набросок",
-                "uk": "начерк"
+                "ru": "умываться",
+                "uk": "умиватися"
               }
             }
           ],
           "leftColumn": [
-            "design",
-            "layout",
-            "typeface",
-            "sketch"
+            "get dressed",
+            "brush your teeth",
+            "comb your hair",
+            "wash your face"
           ],
           "rightColumn": [
-            "разрабатывать оформление",
-            "расположение элементов",
-            "шрифт",
-            "набросок"
+            "одеваться",
+            "чистить зубы",
+            "расчёсывать волосы",
+            "умываться"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -700,153 +959,6 @@
             "speed",
             "accuracy",
             "personal_best"
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-08:session-53:i11",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
-        "family": "listen_build_dictation",
-        "inputMode": "ordered_tokens",
-        "prompt": "Послушайте и соберите фразу",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-08:session-53:i11:audio"
-        ],
-        "accessibilityLabel": "Послушайте и соберите фразу",
-        "modePayload": {
-          "family": "listen_build_dictation",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-08:session-53:i11:audio",
-            "transcript": "She can choose a typeface."
-          },
-          "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "She can choose a typeface.",
-          "orderedTokens": [
-            "She",
-            "can",
-            "choose",
-            "a",
-            "typeface"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-08:session-53:word:prototype",
-        "ordinal": 18,
-        "purpose": "retrieval_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Карточка слова — prototype",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-08:session-53:word:prototype:audio"
-        ],
-        "accessibilityLabel": "Карточка слова — prototype",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-08:session-53:word:prototype:audio",
-            "transcript": "prototype"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-08:session-53:word:prototype:r1",
-              "targetText": "prototype",
-              "meaningByLocale": {
-                "ru": "прототип, пробный образец. We can test the prototype. — «Мы можем испытать прототип». Его делают, чтобы проверить идею до изготовления готовой вещи.",
-                "uk": "прототип, пробний зразок. We can test the prototype. — «Ми можемо випробувати прототип». Його роблять, щоб перевірити ідею до виготовлення готової речі."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "prototype",
-            "definitionByLocale": {
-              "ru": "прототип, пробный образец. We can test the prototype. — «Мы можем испытать прототип». Его делают, чтобы проверить идею до изготовления готовой вещи.",
-              "uk": "прототип, пробний зразок. We can test the prototype. — «Ми можемо випробувати прототип». Його роблять, щоб перевірити ідею до виготовлення готової речі."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-08:session-53:i12",
-        "ordinal": 19,
-        "purpose": "retrieval_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Вы сделали пробный держатель для телефона. Предложите испытать прототип",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Вы сделали пробный держатель для телефона. Предложите испытать прототип",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "We can test the prototype.",
-          "localizedMeaning": {
-            "ru": "Вы сделали пробный держатель для телефона. Предложите испытать прототип",
-            "uk": "Ви зробили пробний тримач для телефона. Запропонуйте випробувати прототип"
-          },
-          "orderedTokens": [
-            "We",
-            "can",
-            "test",
-            "the",
-            "prototype"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-08:session-53:i13",
-        "ordinal": 20,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "На общем столе лежит пробный образец. Спросите «Чей это прототип?»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-08:session-53:i13:audio"
-        ],
-        "accessibilityLabel": "На общем столе лежит пробный образец. Спросите «Чей это прототип?»",
-        "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-08:session-53:i13:audio",
-            "transcript": "Whose prototype is this?"
-          },
-          "slowReferenceAudio": null,
-          "targetPhrase": "Whose prototype is this?",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
           ]
         },
         "scriptedAlternate": null
@@ -855,68 +967,35 @@
         "interactionId": "en:lesson-08:session-53:i14",
         "ordinal": 21,
         "purpose": "independent_check",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Выберите форму действия",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-08:session-53:i14:r1",
-            "text": "test"
-          },
-          {
-            "responseId": "en:lesson-08:session-53:i14:r2",
-            "text": "to test"
-          },
-          {
-            "responseId": "en:lesson-08:session-53:i14:r3",
-            "text": "tests"
-          }
-        ],
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное",
+        "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Выберите форму действия",
+        "audioTargetIds": [
+          "en:lesson-08:session-53:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанное",
         "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Выберите форму действия",
-            "uk": "Виберіть форму дії"
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-53:i14:audio",
+            "transcript": "She can get dressed."
           },
-          "gappedTargetPhrase": "We can ___ the prototype.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-08:session-53:i14:r1",
-              "text": "test"
-            },
-            {
-              "responseId": "en:lesson-08:session-53:i14:r2",
-              "text": "to test"
-            },
-            {
-              "responseId": "en:lesson-08:session-53:i14:r3",
-              "text": "tests"
-            }
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She can get dressed.",
+          "orderedTokens": [
+            "She",
+            "can",
+            "get",
+            "dressed"
           ],
-          "testedDimension": "Выберите форму действия",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-08:session-53:i14:r2",
-              "correct": false,
-              "testedDimension": "Выберите форму действия",
-              "feedbackByLocale": {
-                "ru": "После can не нужно to.",
-                "uk": "Після can не потрібне to."
-              }
-            },
-            {
-              "responseId": "en:lesson-08:session-53:i14:r3",
-              "correct": false,
-              "testedDimension": "Выберите форму действия",
-              "feedbackByLocale": {
-                "ru": "После can не нужно окончание s.",
-                "uk": "Після can не потрібне закінчення s."
-              }
-            }
-          ]
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
@@ -924,147 +1003,68 @@
         "interactionId": "en:lesson-08:session-53:i15",
         "ordinal": 22,
         "purpose": "independent_check",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-08:session-53:i15:r1",
-            "text": "Whose prototype is this?"
-          },
-          {
-            "responseId": "en:lesson-08:session-53:i15:r2",
-            "text": "Whose prototype is that?"
-          },
-          {
-            "responseId": "en:lesson-08:session-53:i15:r3",
-            "text": "Whose sketch is this?"
-          }
-        ],
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанное",
+        "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-08:session-53:i15:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите",
+        "accessibilityLabel": "Соберите услышанное",
         "modePayload": {
-          "family": "listen_choose",
+          "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-08:session-53:i15:audio",
-            "transcript": "Whose prototype is this?"
+            "transcript": "I can wash my face."
           },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-08:session-53:i15:r1",
-              "targetText": "Whose prototype is this?",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-08:session-53:i15:r2",
-              "targetText": "Whose prototype is that?",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-08:session-53:i15:r3",
-              "targetText": "Whose sketch is this?",
-              "meaningByLocale": null
-            }
+          "hiddenTargetPhrase": "I can wash my face.",
+          "orderedTokens": [
+            "I",
+            "can",
+            "wash",
+            "my",
+            "face"
           ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-08:session-53:i15:r2",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит Whose prototype is this?",
-                "uk": "У записі звучить Whose prototype is this?"
-              }
-            },
-            {
-              "responseId": "en:lesson-08:session-53:i15:r3",
-              "correct": false,
-              "testedDimension": "Послушайте и выберите",
-              "feedbackByLocale": {
-                "ru": "В записи звучит Whose prototype is this?",
-                "uk": "У записі звучить Whose prototype is this?"
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-08:session-53:i16",
         "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "speed_match",
-        "inputMode": "pair_grid",
-        "prompt": "Соедините слова со значениями",
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: Том умеет одеваться",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Соедините слова со значениями",
+        "audioTargetIds": [
+          "en:lesson-08:session-53:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: Том умеет одеваться",
         "modePayload": {
-          "family": "speed_match",
-          "pairGrid": [
-            {
-              "pairId": "en:lesson-08:session-53:i16:p1",
-              "target": "design",
-              "meaningByLocale": {
-                "ru": "разрабатывать оформление",
-                "uk": "розробляти оформлення"
-              }
-            },
-            {
-              "pairId": "en:lesson-08:session-53:i16:p2",
-              "target": "layout",
-              "meaningByLocale": {
-                "ru": "расположение элементов",
-                "uk": "розташування елементів"
-              }
-            },
-            {
-              "pairId": "en:lesson-08:session-53:i16:p3",
-              "target": "typeface",
-              "meaningByLocale": {
-                "ru": "шрифт",
-                "uk": "шрифт"
-              }
-            },
-            {
-              "pairId": "en:lesson-08:session-53:i16:p4",
-              "target": "prototype",
-              "meaningByLocale": {
-                "ru": "пробный образец",
-                "uk": "пробний зразок"
-              }
-            }
-          ],
-          "leftColumn": [
-            "design",
-            "layout",
-            "typeface",
-            "prototype"
-          ],
-          "rightColumn": [
-            "разрабатывать оформление",
-            "расположение элементов",
-            "шрифт",
-            "пробный образец"
-          ],
-          "pairingKey": "pair_id",
-          "timerPolicy": {
-            "enabledByDefault": true,
-            "learnerCanDisable": true,
-            "pausesOnInterruption": true
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-53:i16:audio",
+            "transcript": "Tom can get dressed."
           },
-          "finishStats": [
-            "speed",
-            "accuracy",
-            "personal_best"
+          "slowReferenceAudio": null,
+          "targetPhrase": "Tom can get dressed.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
           ]
         },
         "scriptedAlternate": null
@@ -1072,35 +1072,27 @@
       {
         "interactionId": "en:lesson-08:session-53:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Музею нужен новый билет с красивым оформлением. Попросите знакомого разработать его: «Ты можешь разработать его оформление?»",
+        "prompt": "Скажите: я умею чистить зубы",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-08:session-53:i17:audio"
         ],
-        "accessibilityLabel": "Музею нужен новый билет с красивым оформлением. Попросите знакомого разработать его: «Ты можешь разработать его оформление?»",
+        "accessibilityLabel": "Скажите: я умею чистить зубы",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-08:session-53:i17:audio",
-            "transcript": "Can you design it?"
+            "transcript": "I can brush my teeth."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "Can you design it?",
+          "targetPhrase": "I can brush my teeth.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -1113,32 +1105,32 @@
     ],
     "uk": [
       {
-        "interactionId": "en:lesson-08:session-53:word:design",
+        "interactionId": "en:lesson-08:session-53:word:get-dressed",
         "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — design",
+        "prompt": "Картка слова — get dressed",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-08:session-53:word:design:audio"
+          "en:lesson-08:session-53:word:get-dressed:audio"
         ],
-        "accessibilityLabel": "Картка слова — design",
+        "accessibilityLabel": "Картка слова — get dressed",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-08:session-53:word:design:audio",
-            "transcript": "design"
+            "audioTargetId": "en:lesson-08:session-53:word:get-dressed:audio",
+            "transcript": "get dressed"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-08:session-53:word:design:r1",
-              "targetText": "design",
+              "responseId": "en:lesson-08:session-53:word:get-dressed:r1",
+              "targetText": "get dressed",
               "meaningByLocale": {
-                "ru": "разрабатывать, создавать оформление. I can design it. — «Я могу разработать его оформление». Здесь design — действие.",
-                "uk": "розробляти, створювати оформлення. I can design it. — «Я можу розробити його оформлення». Тут design — дія."
+                "ru": "одеваться.",
+                "uk": "одягатися."
               }
             }
           ],
@@ -1146,10 +1138,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "design",
+            "word": "get dressed",
             "definitionByLocale": {
-              "ru": "разрабатывать, создавать оформление. I can design it. — «Я могу разработать его оформление». Здесь design — действие.",
-              "uk": "розробляти, створювати оформлення. I can design it. — «Я можу розробити його оформлення». Тут design — дія."
+              "ru": "одеваться.",
+              "uk": "одягатися."
             }
           }
         },
@@ -1161,23 +1153,23 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Запропонуйте розробити оформлення запрошення",
+        "prompt": "Скажіть: Я вмію одягатися",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Запропонуйте розробити оформлення запрошення",
+        "accessibilityLabel": "Скажіть: Я вмію одягатися",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I can design it.",
+          "targetPhrase": "I can get dressed.",
           "localizedMeaning": {
-            "ru": "Предложите разработать оформление приглашения",
-            "uk": "Запропонуйте розробити оформлення запрошення"
+            "ru": "Скажите: Я умею одеваться",
+            "uk": "Скажіть: Я вмію одягатися"
           },
           "orderedTokens": [
             "I",
             "can",
-            "design",
-            "it"
+            "get",
+            "dressed"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1198,15 +1190,15 @@
         "responseOptions": [
           {
             "responseId": "en:lesson-08:session-53:i02:r1",
-            "text": "design"
+            "text": "I can get dressed."
           },
           {
             "responseId": "en:lesson-08:session-53:i02:r2",
-            "text": "manage"
+            "text": "I can’t get dressed."
           },
           {
             "responseId": "en:lesson-08:session-53:i02:r3",
-            "text": "evaluate"
+            "text": "I cannot get dressed."
           }
         ],
         "mediaIds": [],
@@ -1218,23 +1210,23 @@
           "family": "listen_choose",
           "referenceAudio": {
             "audioTargetId": "en:lesson-08:session-53:i02:audio",
-            "transcript": "design"
+            "transcript": "I can get dressed."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
               "responseId": "en:lesson-08:session-53:i02:r1",
-              "targetText": "design",
+              "targetText": "I can get dressed.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-08:session-53:i02:r2",
-              "targetText": "manage",
+              "targetText": "I can’t get dressed.",
               "meaningByLocale": null
             },
             {
               "responseId": "en:lesson-08:session-53:i02:r3",
-              "targetText": "evaluate",
+              "targetText": "I cannot get dressed.",
               "meaningByLocale": null
             }
           ],
@@ -1245,8 +1237,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит design",
-                "uk": "У записі звучить design"
+                "ru": "В записи звучит I can get dressed.",
+                "uk": "У записі звучить I can get dressed."
               }
             },
             {
@@ -1254,8 +1246,8 @@
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит design",
-                "uk": "У записі звучить design"
+                "ru": "В записи звучит I can get dressed.",
+                "uk": "У записі звучить I can get dressed."
               }
             }
           ],
@@ -1270,168 +1262,136 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть форму дії",
+        "prompt": "Виберіть форму після can",
         "responseOptions": [
           {
             "responseId": "en:lesson-08:session-53:i03:r1",
-            "text": "design"
+            "text": "get"
           },
           {
             "responseId": "en:lesson-08:session-53:i03:r2",
-            "text": "to design"
+            "text": "gets"
           },
           {
             "responseId": "en:lesson-08:session-53:i03:r3",
-            "text": "designs"
+            "text": "to get"
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть форму дії",
+        "accessibilityLabel": "Виберіть форму після can",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите форму действия",
-            "uk": "Виберіть форму дії"
+            "ru": "Выберите форму после can",
+            "uk": "Виберіть форму після can"
           },
-          "gappedTargetPhrase": "I can ___ it.",
+          "gappedTargetPhrase": "I can ___ dressed.",
           "gapOptions": [
             {
               "responseId": "en:lesson-08:session-53:i03:r1",
-              "text": "design"
+              "text": "get"
             },
             {
               "responseId": "en:lesson-08:session-53:i03:r2",
-              "text": "to design"
+              "text": "gets"
             },
             {
               "responseId": "en:lesson-08:session-53:i03:r3",
-              "text": "designs"
+              "text": "to get"
             }
           ],
-          "testedDimension": "Виберіть форму дії",
+          "testedDimension": "Виберіть форму після can",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-08:session-53:i03:r2",
               "correct": false,
-              "testedDimension": "Виберіть форму дії",
+              "testedDimension": "Виберіть форму після can",
               "feedbackByLocale": {
-                "ru": "После can не нужно to.",
-                "uk": "Після can не потрібне to."
+                "ru": "После can не добавляем s.",
+                "uk": "Після can не додаємо s."
               }
             },
             {
               "responseId": "en:lesson-08:session-53:i03:r3",
               "correct": false,
-              "testedDimension": "Виберіть форму дії",
+              "testedDimension": "Виберіть форму після can",
               "feedbackByLocale": {
-                "ru": "После can не нужно окончание s.",
-                "uk": "Після can не потрібне закінчення s."
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
               }
             }
           ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-53:word:brush-your-teeth",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — brush your teeth",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-53:word:brush-your-teeth:audio"
+        ],
+        "accessibilityLabel": "Картка слова — brush your teeth",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-53:word:brush-your-teeth:audio",
+            "transcript": "brush your teeth"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-53:word:brush-your-teeth:r1",
+              "targetText": "brush your teeth",
+              "meaningByLocale": {
+                "ru": "чистить зубы.",
+                "uk": "чистити зуби."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brush your teeth",
+            "definitionByLocale": {
+              "ru": "чистить зубы.",
+              "uk": "чистити зуби."
+            }
+          }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-08:session-53:i04",
-        "ordinal": 8,
+        "ordinal": 9,
         "purpose": "supported_practice",
-        "family": "speed_match",
-        "inputMode": "pair_grid",
-        "prompt": "З’єднайте слова зі значеннями",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти вмієш чистити зуби",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "accessibilityLabel": "Скажіть: Ти вмієш чистити зуби",
         "modePayload": {
-          "family": "speed_match",
-          "pairGrid": [
-            {
-              "pairId": "en:lesson-08:session-53:i04:p1",
-              "target": "design",
-              "meaningByLocale": {
-                "ru": "разрабатывать оформление",
-                "uk": "розробляти оформлення"
-              }
-            },
-            {
-              "pairId": "en:lesson-08:session-53:i04:p2",
-              "target": "sketch",
-              "meaningByLocale": {
-                "ru": "набросок",
-                "uk": "начерк"
-              }
-            },
-            {
-              "pairId": "en:lesson-08:session-53:i04:p3",
-              "target": "artist",
-              "meaningByLocale": {
-                "ru": "художник",
-                "uk": "художник"
-              }
-            },
-            {
-              "pairId": "en:lesson-08:session-53:i04:p4",
-              "target": "gallery",
-              "meaningByLocale": {
-                "ru": "галерея",
-                "uk": "галерея"
-              }
-            }
-          ],
-          "leftColumn": [
-            "design",
-            "sketch",
-            "artist",
-            "gallery"
-          ],
-          "rightColumn": [
-            "розробляти оформлення",
-            "начерк",
-            "художник",
-            "галерея"
-          ],
-          "pairingKey": "pair_id",
-          "timerPolicy": {
-            "enabledByDefault": true,
-            "learnerCanDisable": true,
-            "pausesOnInterruption": true
+          "family": "phrase_builder",
+          "targetPhrase": "You can brush your teeth.",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты умеешь чистить зубы",
+            "uk": "Скажіть: Ти вмієш чистити зуби"
           },
-          "finishStats": [
-            "speed",
-            "accuracy",
-            "personal_best"
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-08:session-53:i05",
-        "ordinal": 9,
-        "purpose": "supported_practice",
-        "family": "listen_build_dictation",
-        "inputMode": "ordered_tokens",
-        "prompt": "Послухайте й складіть прохання",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-08:session-53:i05:audio"
-        ],
-        "accessibilityLabel": "Послухайте й складіть прохання",
-        "modePayload": {
-          "family": "listen_build_dictation",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-08:session-53:i05:audio",
-            "transcript": "Can you design it?"
-          },
-          "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "Can you design it?",
           "orderedTokens": [
-            "Can",
-            "you",
-            "design",
-            "it"
+            "You",
+            "can",
+            "brush",
+            "your",
+            "teeth"
           ],
           "authoredDistractorTokens": [],
           "slotFeedback": [],
@@ -1443,45 +1403,78 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-08:session-53:word:layout",
+        "interactionId": "en:lesson-08:session-53:i05",
         "ordinal": 10,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — layout",
-        "responseOptions": [],
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-53:i05:r1",
+            "text": "You can brush your teeth."
+          },
+          {
+            "responseId": "en:lesson-08:session-53:i05:r2",
+            "text": "You can’t brush your teeth."
+          },
+          {
+            "responseId": "en:lesson-08:session-53:i05:r3",
+            "text": "You cannot brush your teeth."
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-08:session-53:word:layout:audio"
+          "en:lesson-08:session-53:i05:audio"
         ],
-        "accessibilityLabel": "Картка слова — layout",
+        "accessibilityLabel": "Послухайте й виберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-08:session-53:word:layout:audio",
-            "transcript": "layout"
+            "audioTargetId": "en:lesson-08:session-53:i05:audio",
+            "transcript": "You can brush your teeth."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-08:session-53:word:layout:r1",
-              "targetText": "layout",
-              "meaningByLocale": {
-                "ru": "расположение элементов, компоновка. We can change the layout. — «Мы можем изменить расположение элементов».",
-                "uk": "розташування елементів, компонування. We can change the layout. — «Ми можемо змінити розташування елементів»."
-              }
+              "responseId": "en:lesson-08:session-53:i05:r1",
+              "targetText": "You can brush your teeth.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i05:r2",
+              "targetText": "You can’t brush your teeth.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i05:r3",
+              "targetText": "You cannot brush your teeth.",
+              "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "layout",
-            "definitionByLocale": {
-              "ru": "расположение элементов, компоновка. We can change the layout. — «Мы можем изменить расположение элементов».",
-              "uk": "розташування елементів, компонування. We can change the layout. — «Ми можемо змінити розташування елементів»."
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-53:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can brush your teeth.",
+                "uk": "У записі звучить You can brush your teeth."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can brush your teeth.",
+                "uk": "У записі звучить You can brush your teeth."
+              }
             }
-          }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
@@ -1489,63 +1482,98 @@
         "interactionId": "en:lesson-08:session-53:i06",
         "ordinal": 11,
         "purpose": "guided_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Запропонуйте змінити розташування елементів",
-        "responseOptions": [],
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після can",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-53:i06:r1",
+            "text": "brush"
+          },
+          {
+            "responseId": "en:lesson-08:session-53:i06:r2",
+            "text": "brushes"
+          },
+          {
+            "responseId": "en:lesson-08:session-53:i06:r3",
+            "text": "to brush"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Запропонуйте змінити розташування елементів",
+        "accessibilityLabel": "Виберіть форму після can",
         "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "We can change the layout.",
-          "localizedMeaning": {
-            "ru": "Предложите изменить расположение элементов",
-            "uk": "Запропонуйте змінити розташування елементів"
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can",
+            "uk": "Виберіть форму після can"
           },
-          "orderedTokens": [
-            "We",
-            "can",
-            "change",
-            "the",
-            "layout"
+          "gappedTargetPhrase": "You can ___ your teeth.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-53:i06:r1",
+              "text": "brush"
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i06:r2",
+              "text": "brushes"
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i06:r3",
+              "text": "to brush"
+            }
           ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
+          "testedDimension": "Виберіть форму після can",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-53:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can",
+              "feedbackByLocale": {
+                "ru": "После can не добавляем s.",
+                "uk": "Після can не додаємо s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-08:session-53:word:typeface",
+        "interactionId": "en:lesson-08:session-53:word:comb-your-hair",
         "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — typeface",
+        "prompt": "Картка слова — comb your hair",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-08:session-53:word:typeface:audio"
+          "en:lesson-08:session-53:word:comb-your-hair:audio"
         ],
-        "accessibilityLabel": "Картка слова — typeface",
+        "accessibilityLabel": "Картка слова — comb your hair",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-08:session-53:word:typeface:audio",
-            "transcript": "typeface"
+            "audioTargetId": "en:lesson-08:session-53:word:comb-your-hair:audio",
+            "transcript": "comb your hair"
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-08:session-53:word:typeface:r1",
-              "targetText": "typeface",
+              "responseId": "en:lesson-08:session-53:word:comb-your-hair:r1",
+              "targetText": "comb your hair",
               "meaningByLocale": {
-                "ru": "шрифт, рисунок букв. She can choose a typeface. — «Она может выбрать шрифт».",
-                "uk": "шрифт, малюнок літер. She can choose a typeface. — «Вона може вибрати шрифт»."
+                "ru": "расчёсывать волосы.",
+                "uk": "розчісувати волосся."
               }
             }
           ],
@@ -1553,10 +1581,10 @@
           "choiceFeedback": [],
           "isWordCard": true,
           "wordCard": {
-            "word": "typeface",
+            "word": "comb your hair",
             "definitionByLocale": {
-              "ru": "шрифт, рисунок букв. She can choose a typeface. — «Она может выбрать шрифт».",
-              "uk": "шрифт, малюнок літер. She can choose a typeface. — «Вона може вибрати шрифт»."
+              "ru": "расчёсывать волосы.",
+              "uk": "розчісувати волосся."
             }
           }
         },
@@ -1566,32 +1594,33 @@
         "interactionId": "en:lesson-08:session-53:i07",
         "ordinal": 13,
         "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажіть «Вона може вибрати шрифт»",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти вмієш розчісувати волосся",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-08:session-53:i07:audio"
-        ],
-        "accessibilityLabel": "Скажіть «Вона може вибрати шрифт»",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Ти вмієш розчісувати волосся",
         "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-08:session-53:i07:audio",
-            "transcript": "She can choose a typeface."
+          "family": "phrase_builder",
+          "targetPhrase": "You can comb your hair.",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты умеешь расчёсывать волосы",
+            "uk": "Скажіть: Ти вмієш розчісувати волосся"
           },
-          "slowReferenceAudio": null,
-          "targetPhrase": "She can choose a typeface.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
-          ]
+          "orderedTokens": [
+            "You",
+            "can",
+            "comb",
+            "your",
+            "hair"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
@@ -1599,139 +1628,70 @@
         "interactionId": "en:lesson-08:session-53:i08",
         "ordinal": 14,
         "purpose": "guided_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Виберіть форму дії",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-08:session-53:i08:r1",
-            "text": "choose"
-          },
-          {
-            "responseId": "en:lesson-08:session-53:i08:r2",
-            "text": "to choose"
-          },
-          {
-            "responseId": "en:lesson-08:session-53:i08:r3",
-            "text": "chooses"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть форму дії",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Выберите форму действия",
-            "uk": "Виберіть форму дії"
-          },
-          "gappedTargetPhrase": "She can ___ a typeface.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-08:session-53:i08:r1",
-              "text": "choose"
-            },
-            {
-              "responseId": "en:lesson-08:session-53:i08:r2",
-              "text": "to choose"
-            },
-            {
-              "responseId": "en:lesson-08:session-53:i08:r3",
-              "text": "chooses"
-            }
-          ],
-          "testedDimension": "Виберіть форму дії",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-08:session-53:i08:r2",
-              "correct": false,
-              "testedDimension": "Виберіть форму дії",
-              "feedbackByLocale": {
-                "ru": "После can не нужно to.",
-                "uk": "Після can не потрібне to."
-              }
-            },
-            {
-              "responseId": "en:lesson-08:session-53:i08:r3",
-              "correct": false,
-              "testedDimension": "Виберіть форму дії",
-              "feedbackByLocale": {
-                "ru": "После can не нужно окончание s.",
-                "uk": "Після can не потрібне закінчення s."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-08:session-53:i09",
-        "ordinal": 15,
-        "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте й виберіть",
         "responseOptions": [
           {
-            "responseId": "en:lesson-08:session-53:i09:r1",
-            "text": "We can change the layout."
+            "responseId": "en:lesson-08:session-53:i08:r1",
+            "text": "You can comb your hair."
           },
           {
-            "responseId": "en:lesson-08:session-53:i09:r2",
-            "text": "I can change the layout."
+            "responseId": "en:lesson-08:session-53:i08:r2",
+            "text": "You can’t comb your hair."
           },
           {
-            "responseId": "en:lesson-08:session-53:i09:r3",
-            "text": "They can change the layout."
+            "responseId": "en:lesson-08:session-53:i08:r3",
+            "text": "You cannot comb your hair."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-08:session-53:i09:audio"
+          "en:lesson-08:session-53:i08:audio"
         ],
         "accessibilityLabel": "Послухайте й виберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-08:session-53:i09:audio",
-            "transcript": "We can change the layout."
+            "audioTargetId": "en:lesson-08:session-53:i08:audio",
+            "transcript": "You can comb your hair."
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
-              "responseId": "en:lesson-08:session-53:i09:r1",
-              "targetText": "We can change the layout.",
+              "responseId": "en:lesson-08:session-53:i08:r1",
+              "targetText": "You can comb your hair.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-08:session-53:i09:r2",
-              "targetText": "I can change the layout.",
+              "responseId": "en:lesson-08:session-53:i08:r2",
+              "targetText": "You can’t comb your hair.",
               "meaningByLocale": null
             },
             {
-              "responseId": "en:lesson-08:session-53:i09:r3",
-              "targetText": "They can change the layout.",
+              "responseId": "en:lesson-08:session-53:i08:r3",
+              "targetText": "You cannot comb your hair.",
               "meaningByLocale": null
             }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
-              "responseId": "en:lesson-08:session-53:i09:r2",
+              "responseId": "en:lesson-08:session-53:i08:r2",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит We can change the layout.",
-                "uk": "У записі звучить We can change the layout."
+                "ru": "В записи звучит You can comb your hair.",
+                "uk": "У записі звучить You can comb your hair."
               }
             },
             {
-              "responseId": "en:lesson-08:session-53:i09:r3",
+              "responseId": "en:lesson-08:session-53:i08:r3",
               "correct": false,
               "testedDimension": "Послухайте й виберіть",
               "feedbackByLocale": {
-                "ru": "В записи звучит We can change the layout.",
-                "uk": "У записі звучить We can change the layout."
+                "ru": "В записи звучит You can comb your hair.",
+                "uk": "У записі звучить You can comb your hair."
               }
             }
           ],
@@ -1741,63 +1701,354 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-08:session-53:i10",
+        "interactionId": "en:lesson-08:session-53:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після can",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-53:i09:r1",
+            "text": "comb"
+          },
+          {
+            "responseId": "en:lesson-08:session-53:i09:r2",
+            "text": "combs"
+          },
+          {
+            "responseId": "en:lesson-08:session-53:i09:r3",
+            "text": "to comb"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після can",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can",
+            "uk": "Виберіть форму після can"
+          },
+          "gappedTargetPhrase": "You can ___ your hair.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-53:i09:r1",
+              "text": "comb"
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i09:r2",
+              "text": "combs"
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i09:r3",
+              "text": "to comb"
+            }
+          ],
+          "testedDimension": "Виберіть форму після can",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-53:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can",
+              "feedbackByLocale": {
+                "ru": "После can не добавляем s.",
+                "uk": "Після can не додаємо s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-53:word:wash-your-face",
         "ordinal": 16,
         "purpose": "guided_practice",
-        "family": "speed_match",
-        "inputMode": "pair_grid",
-        "prompt": "З’єднайте слова зі значеннями",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — wash your face",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-53:word:wash-your-face:audio"
+        ],
+        "accessibilityLabel": "Картка слова — wash your face",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-53:word:wash-your-face:audio",
+            "transcript": "wash your face"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-53:word:wash-your-face:r1",
+              "targetText": "wash your face",
+              "meaningByLocale": {
+                "ru": "умываться.",
+                "uk": "умиватися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "wash your face",
+            "definitionByLocale": {
+              "ru": "умываться.",
+              "uk": "умиватися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-53:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Ти вмієш умиватися",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "accessibilityLabel": "Скажіть: Ти вмієш умиватися",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "You can wash your face.",
+          "localizedMeaning": {
+            "ru": "Скажите: Ты умеешь умываться",
+            "uk": "Скажіть: Ти вмієш умиватися"
+          },
+          "orderedTokens": [
+            "You",
+            "can",
+            "wash",
+            "your",
+            "face"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-53:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-53:i11:r1",
+            "text": "You can wash your face."
+          },
+          {
+            "responseId": "en:lesson-08:session-53:i11:r2",
+            "text": "You can’t wash your face."
+          },
+          {
+            "responseId": "en:lesson-08:session-53:i11:r3",
+            "text": "You cannot wash your face."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-53:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-53:i11:audio",
+            "transcript": "You can wash your face."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-53:i11:r1",
+              "targetText": "You can wash your face.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i11:r2",
+              "targetText": "You can’t wash your face.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i11:r3",
+              "targetText": "You cannot wash your face.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-53:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can wash your face.",
+                "uk": "У записі звучить You can wash your face."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит You can wash your face.",
+                "uk": "У записі звучить You can wash your face."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-53:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму після can",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-53:i12:r1",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-08:session-53:i12:r2",
+            "text": "washes"
+          },
+          {
+            "responseId": "en:lesson-08:session-53:i12:r3",
+            "text": "to wash"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму після can",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму после can",
+            "uk": "Виберіть форму після can"
+          },
+          "gappedTargetPhrase": "You can ___ your face.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-53:i12:r1",
+              "text": "wash"
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i12:r2",
+              "text": "washes"
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i12:r3",
+              "text": "to wash"
+            }
+          ],
+          "testedDimension": "Виберіть форму після can",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-53:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can",
+              "feedbackByLocale": {
+                "ru": "После can не добавляем s.",
+                "uk": "Після can не додаємо s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-53:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму після can",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-53:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
             {
-              "pairId": "en:lesson-08:session-53:i10:p1",
-              "target": "design",
+              "pairId": "en:lesson-08:session-53:i13:p1",
+              "target": "get dressed",
               "meaningByLocale": {
-                "ru": "разрабатывать оформление",
-                "uk": "розробляти оформлення"
+                "ru": "одеваться",
+                "uk": "одягатися"
               }
             },
             {
-              "pairId": "en:lesson-08:session-53:i10:p2",
-              "target": "layout",
+              "pairId": "en:lesson-08:session-53:i13:p2",
+              "target": "brush your teeth",
               "meaningByLocale": {
-                "ru": "расположение элементов",
-                "uk": "розташування елементів"
+                "ru": "чистить зубы",
+                "uk": "чистити зуби"
               }
             },
             {
-              "pairId": "en:lesson-08:session-53:i10:p3",
-              "target": "typeface",
+              "pairId": "en:lesson-08:session-53:i13:p3",
+              "target": "comb your hair",
               "meaningByLocale": {
-                "ru": "шрифт",
-                "uk": "шрифт"
+                "ru": "расчёсывать волосы",
+                "uk": "розчісувати волосся"
               }
             },
             {
-              "pairId": "en:lesson-08:session-53:i10:p4",
-              "target": "sketch",
+              "pairId": "en:lesson-08:session-53:i13:p4",
+              "target": "wash your face",
               "meaningByLocale": {
-                "ru": "набросок",
-                "uk": "начерк"
+                "ru": "умываться",
+                "uk": "умиватися"
               }
             }
           ],
           "leftColumn": [
-            "design",
-            "layout",
-            "typeface",
-            "sketch"
+            "get dressed",
+            "brush your teeth",
+            "comb your hair",
+            "wash your face"
           ],
           "rightColumn": [
-            "розробляти оформлення",
-            "розташування елементів",
-            "шрифт",
-            "начерк"
+            "одягатися",
+            "чистити зуби",
+            "розчісувати волосся",
+            "умиватися"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -1809,153 +2060,6 @@
             "speed",
             "accuracy",
             "personal_best"
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-08:session-53:i11",
-        "ordinal": 17,
-        "purpose": "retrieval_practice",
-        "family": "listen_build_dictation",
-        "inputMode": "ordered_tokens",
-        "prompt": "Послухайте й складіть фразу",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-08:session-53:i11:audio"
-        ],
-        "accessibilityLabel": "Послухайте й складіть фразу",
-        "modePayload": {
-          "family": "listen_build_dictation",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-08:session-53:i11:audio",
-            "transcript": "She can choose a typeface."
-          },
-          "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "She can choose a typeface.",
-          "orderedTokens": [
-            "She",
-            "can",
-            "choose",
-            "a",
-            "typeface"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-08:session-53:word:prototype",
-        "ordinal": 18,
-        "purpose": "retrieval_practice",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Картка слова — prototype",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-08:session-53:word:prototype:audio"
-        ],
-        "accessibilityLabel": "Картка слова — prototype",
-        "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-08:session-53:word:prototype:audio",
-            "transcript": "prototype"
-          },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-08:session-53:word:prototype:r1",
-              "targetText": "prototype",
-              "meaningByLocale": {
-                "ru": "прототип, пробный образец. We can test the prototype. — «Мы можем испытать прототип». Его делают, чтобы проверить идею до изготовления готовой вещи.",
-                "uk": "прототип, пробний зразок. We can test the prototype. — «Ми можемо випробувати прототип». Його роблять, щоб перевірити ідею до виготовлення готової речі."
-              }
-            }
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [],
-          "isWordCard": true,
-          "wordCard": {
-            "word": "prototype",
-            "definitionByLocale": {
-              "ru": "прототип, пробный образец. We can test the prototype. — «Мы можем испытать прототип». Его делают, чтобы проверить идею до изготовления готовой вещи.",
-              "uk": "прототип, пробний зразок. We can test the prototype. — «Ми можемо випробувати прототип». Його роблять, щоб перевірити ідею до виготовлення готової речі."
-            }
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-08:session-53:i12",
-        "ordinal": 19,
-        "purpose": "retrieval_practice",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Ви зробили пробний тримач для телефона. Запропонуйте випробувати прототип",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Ви зробили пробний тримач для телефона. Запропонуйте випробувати прототип",
-        "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "We can test the prototype.",
-          "localizedMeaning": {
-            "ru": "Вы сделали пробный держатель для телефона. Предложите испытать прототип",
-            "uk": "Ви зробили пробний тримач для телефона. Запропонуйте випробувати прототип"
-          },
-          "orderedTokens": [
-            "We",
-            "can",
-            "test",
-            "the",
-            "prototype"
-          ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": [],
-          "completionFeedbackByLocale": {
-            "ru": "",
-            "uk": ""
-          }
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-08:session-53:i13",
-        "ordinal": 20,
-        "purpose": "guided_practice",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "На спільному столі лежить пробний зразок. Запитайте «Чий це прототип?»",
-        "responseOptions": [],
-        "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-08:session-53:i13:audio"
-        ],
-        "accessibilityLabel": "На спільному столі лежить пробний зразок. Запитайте «Чий це прототип?»",
-        "modePayload": {
-          "family": "scripted_repeat_compare",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-08:session-53:i13:audio",
-            "transcript": "Whose prototype is this?"
-          },
-          "slowReferenceAudio": null,
-          "targetPhrase": "Whose prototype is this?",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
           ]
         },
         "scriptedAlternate": null
@@ -1964,68 +2068,35 @@
         "interactionId": "en:lesson-08:session-53:i14",
         "ordinal": 21,
         "purpose": "independent_check",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Виберіть форму дії",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-08:session-53:i14:r1",
-            "text": "test"
-          },
-          {
-            "responseId": "en:lesson-08:session-53:i14:r2",
-            "text": "to test"
-          },
-          {
-            "responseId": "en:lesson-08:session-53:i14:r3",
-            "text": "tests"
-          }
-        ],
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте",
+        "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть форму дії",
+        "audioTargetIds": [
+          "en:lesson-08:session-53:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуте",
         "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Выберите форму действия",
-            "uk": "Виберіть форму дії"
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-53:i14:audio",
+            "transcript": "She can get dressed."
           },
-          "gappedTargetPhrase": "We can ___ the prototype.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-08:session-53:i14:r1",
-              "text": "test"
-            },
-            {
-              "responseId": "en:lesson-08:session-53:i14:r2",
-              "text": "to test"
-            },
-            {
-              "responseId": "en:lesson-08:session-53:i14:r3",
-              "text": "tests"
-            }
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She can get dressed.",
+          "orderedTokens": [
+            "She",
+            "can",
+            "get",
+            "dressed"
           ],
-          "testedDimension": "Виберіть форму дії",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-08:session-53:i14:r2",
-              "correct": false,
-              "testedDimension": "Виберіть форму дії",
-              "feedbackByLocale": {
-                "ru": "После can не нужно to.",
-                "uk": "Після can не потрібне to."
-              }
-            },
-            {
-              "responseId": "en:lesson-08:session-53:i14:r3",
-              "correct": false,
-              "testedDimension": "Виберіть форму дії",
-              "feedbackByLocale": {
-                "ru": "После can не нужно окончание s.",
-                "uk": "Після can не потрібне закінчення s."
-              }
-            }
-          ]
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
@@ -2033,147 +2104,68 @@
         "interactionId": "en:lesson-08:session-53:i15",
         "ordinal": 22,
         "purpose": "independent_check",
-        "family": "listen_choose",
-        "inputMode": "single_choice",
-        "prompt": "Послухайте й виберіть",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-08:session-53:i15:r1",
-            "text": "Whose prototype is this?"
-          },
-          {
-            "responseId": "en:lesson-08:session-53:i15:r2",
-            "text": "Whose prototype is that?"
-          },
-          {
-            "responseId": "en:lesson-08:session-53:i15:r3",
-            "text": "Whose sketch is this?"
-          }
-        ],
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуте",
+        "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-08:session-53:i15:audio"
         ],
-        "accessibilityLabel": "Послухайте й виберіть",
+        "accessibilityLabel": "Складіть почуте",
         "modePayload": {
-          "family": "listen_choose",
+          "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-08:session-53:i15:audio",
-            "transcript": "Whose prototype is this?"
+            "transcript": "I can wash my face."
           },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {
-              "responseId": "en:lesson-08:session-53:i15:r1",
-              "targetText": "Whose prototype is this?",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-08:session-53:i15:r2",
-              "targetText": "Whose prototype is that?",
-              "meaningByLocale": null
-            },
-            {
-              "responseId": "en:lesson-08:session-53:i15:r3",
-              "targetText": "Whose sketch is this?",
-              "meaningByLocale": null
-            }
+          "hiddenTargetPhrase": "I can wash my face.",
+          "orderedTokens": [
+            "I",
+            "can",
+            "wash",
+            "my",
+            "face"
           ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-08:session-53:i15:r2",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит Whose prototype is this?",
-                "uk": "У записі звучить Whose prototype is this?"
-              }
-            },
-            {
-              "responseId": "en:lesson-08:session-53:i15:r3",
-              "correct": false,
-              "testedDimension": "Послухайте й виберіть",
-              "feedbackByLocale": {
-                "ru": "В записи звучит Whose prototype is this?",
-                "uk": "У записі звучить Whose prototype is this?"
-              }
-            }
-          ],
-          "isWordCard": false,
-          "wordCard": null
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-08:session-53:i16",
         "ordinal": 23,
-        "purpose": "independent_check",
-        "family": "speed_match",
-        "inputMode": "pair_grid",
-        "prompt": "З’єднайте слова зі значеннями",
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: Том уміє одягатися",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "audioTargetIds": [
+          "en:lesson-08:session-53:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: Том уміє одягатися",
         "modePayload": {
-          "family": "speed_match",
-          "pairGrid": [
-            {
-              "pairId": "en:lesson-08:session-53:i16:p1",
-              "target": "design",
-              "meaningByLocale": {
-                "ru": "разрабатывать оформление",
-                "uk": "розробляти оформлення"
-              }
-            },
-            {
-              "pairId": "en:lesson-08:session-53:i16:p2",
-              "target": "layout",
-              "meaningByLocale": {
-                "ru": "расположение элементов",
-                "uk": "розташування елементів"
-              }
-            },
-            {
-              "pairId": "en:lesson-08:session-53:i16:p3",
-              "target": "typeface",
-              "meaningByLocale": {
-                "ru": "шрифт",
-                "uk": "шрифт"
-              }
-            },
-            {
-              "pairId": "en:lesson-08:session-53:i16:p4",
-              "target": "prototype",
-              "meaningByLocale": {
-                "ru": "пробный образец",
-                "uk": "пробний зразок"
-              }
-            }
-          ],
-          "leftColumn": [
-            "design",
-            "layout",
-            "typeface",
-            "prototype"
-          ],
-          "rightColumn": [
-            "розробляти оформлення",
-            "розташування елементів",
-            "шрифт",
-            "пробний зразок"
-          ],
-          "pairingKey": "pair_id",
-          "timerPolicy": {
-            "enabledByDefault": true,
-            "learnerCanDisable": true,
-            "pausesOnInterruption": true
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-53:i16:audio",
+            "transcript": "Tom can get dressed."
           },
-          "finishStats": [
-            "speed",
-            "accuracy",
-            "personal_best"
+          "slowReferenceAudio": null,
+          "targetPhrase": "Tom can get dressed.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
           ]
         },
         "scriptedAlternate": null
@@ -2181,35 +2173,27 @@
       {
         "interactionId": "en:lesson-08:session-53:i17",
         "ordinal": 24,
-        "purpose": "independent_check",
+        "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Музею потрібен новий квиток із гарним оформленням. Попросіть знайомого розробити його: «Ти можеш розробити його оформлення?»",
+        "prompt": "Скажіть: я вмію чистити зуби",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-08:session-53:i17:audio"
         ],
-        "accessibilityLabel": "Музею потрібен новий квиток із гарним оформленням. Попросіть знайомого розробити його: «Ти можеш розробити його оформлення?»",
+        "accessibilityLabel": "Скажіть: я вмію чистити зуби",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-08:session-53:i17:audio",
-            "transcript": "Can you design it?"
+            "transcript": "I can brush my teeth."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "Can you design it?",
+          "targetPhrase": "I can brush my teeth.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "scriptedRepeatRevealPolicy": {
-            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-            "revealAfter": "first_submitted_attempt",
-            "answerExposedBeforeAttempt": false,
-            "targetPhraseVisibleBeforeAttempt": false,
-            "referenceAudioAvailableBeforeAttempt": false,
-            "modelPlaybackAvailableBeforeAttempt": false
-          },
           "honestOutcomeStates": [
             "PASS_CONFIDENT",
             "NEEDS_WORK_CONFIDENT",
@@ -2223,108 +2207,108 @@
   },
   "answers": [
     {
-      "interactionId": "en:lesson-08:session-53:word:design",
-      "correctText": "design",
+      "interactionId": "en:lesson-08:session-53:word:get-dressed",
+      "correctText": "get dressed",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-08:session-53:i01",
-      "correctText": "I can design it.",
+      "correctText": "I can get dressed.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-08:session-53:i02",
-      "correctText": "design",
+      "correctText": "I can get dressed.",
       "correctResponseId": "en:lesson-08:session-53:i02:r1"
     },
     {
       "interactionId": "en:lesson-08:session-53:i03",
-      "correctText": "design",
+      "correctText": "get",
       "correctResponseId": "en:lesson-08:session-53:i03:r1"
     },
     {
+      "interactionId": "en:lesson-08:session-53:word:brush-your-teeth",
+      "correctText": "brush your teeth",
+      "correctResponseId": null
+    },
+    {
       "interactionId": "en:lesson-08:session-53:i04",
-      "correctText": "",
+      "correctText": "You can brush your teeth.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-08:session-53:i05",
-      "correctText": "Can you design it?",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-53:word:layout",
-      "correctText": "layout",
-      "correctResponseId": null
+      "correctText": "You can brush your teeth.",
+      "correctResponseId": "en:lesson-08:session-53:i05:r1"
     },
     {
       "interactionId": "en:lesson-08:session-53:i06",
-      "correctText": "We can change the layout.",
-      "correctResponseId": null
+      "correctText": "brush",
+      "correctResponseId": "en:lesson-08:session-53:i06:r1"
     },
     {
-      "interactionId": "en:lesson-08:session-53:word:typeface",
-      "correctText": "typeface",
+      "interactionId": "en:lesson-08:session-53:word:comb-your-hair",
+      "correctText": "comb your hair",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-08:session-53:i07",
-      "correctText": "She can choose a typeface.",
+      "correctText": "You can comb your hair.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-08:session-53:i08",
-      "correctText": "choose",
+      "correctText": "You can comb your hair.",
       "correctResponseId": "en:lesson-08:session-53:i08:r1"
     },
     {
       "interactionId": "en:lesson-08:session-53:i09",
-      "correctText": "We can change the layout.",
+      "correctText": "comb",
       "correctResponseId": "en:lesson-08:session-53:i09:r1"
     },
     {
+      "interactionId": "en:lesson-08:session-53:word:wash-your-face",
+      "correctText": "wash your face",
+      "correctResponseId": null
+    },
+    {
       "interactionId": "en:lesson-08:session-53:i10",
-      "correctText": "",
+      "correctText": "You can wash your face.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-08:session-53:i11",
-      "correctText": "She can choose a typeface.",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-53:word:prototype",
-      "correctText": "prototype",
-      "correctResponseId": null
+      "correctText": "You can wash your face.",
+      "correctResponseId": "en:lesson-08:session-53:i11:r1"
     },
     {
       "interactionId": "en:lesson-08:session-53:i12",
-      "correctText": "We can test the prototype.",
-      "correctResponseId": null
+      "correctText": "wash",
+      "correctResponseId": "en:lesson-08:session-53:i12:r1"
     },
     {
       "interactionId": "en:lesson-08:session-53:i13",
-      "correctText": "Whose prototype is this?",
-      "correctResponseId": null
-    },
-    {
-      "interactionId": "en:lesson-08:session-53:i14",
-      "correctText": "test",
-      "correctResponseId": "en:lesson-08:session-53:i14:r1"
-    },
-    {
-      "interactionId": "en:lesson-08:session-53:i15",
-      "correctText": "Whose prototype is this?",
-      "correctResponseId": "en:lesson-08:session-53:i15:r1"
-    },
-    {
-      "interactionId": "en:lesson-08:session-53:i16",
       "correctText": "",
       "correctResponseId": null
     },
     {
+      "interactionId": "en:lesson-08:session-53:i14",
+      "correctText": "She can get dressed.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-53:i15",
+      "correctText": "I can wash my face.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-53:i16",
+      "correctText": "Tom can get dressed.",
+      "correctResponseId": null
+    },
+    {
       "interactionId": "en:lesson-08:session-53:i17",
-      "correctText": "Can you design it?",
+      "correctText": "I can brush my teeth.",
       "correctResponseId": null
     }
   ]

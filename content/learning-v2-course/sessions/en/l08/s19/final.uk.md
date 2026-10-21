@@ -4,7 +4,7 @@
 
 **Що ви опануєте:** закріпити прохання Can you…? зі словом explain
 **Нові слова:** explain, demonstrate, diagram, manual
-**Повертаються:** draw, code, book, pass
+**Повертаються:** draw, dance, book, pass
 
 ---
 
@@ -62,9 +62,9 @@
 
 **3 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-08:session-19:i02; family: listen_choose -->
-🔊 *explain* → **explain** · draw · code
+🔊 *explain* → **explain** · draw · dance
 - draw — *У записі перше слово — `explain`, а в цьому варіанті — `draw`.*
-- code — *У записі перше слово — `explain`, а в цьому варіанті — `code`.*
+- dance — *У записі перше слово — `explain`, а в цьому варіанті — `dance`.*
 
 **4 · Виберіть форму для прохання пояснити це**
 <!-- interaction_id: en:lesson-08:session-19:i03; family: context_gap_grammar -->
@@ -74,7 +74,7 @@ Can you ___ it? → **explain** · to explain · explains
 
 **5 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-08:session-19:i04; family: speed_match -->
-explain — пояснити · soup — суп · draw — малювати · code — писати код
+explain — пояснити · soup — суп · draw — малювати · dance — танцювати
 
 **6 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-08:session-19:i05; family: listen_build_dictation -->

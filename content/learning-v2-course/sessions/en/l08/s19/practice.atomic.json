@@ -1,0 +1,2329 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-08:session-19",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-08:session-19:word:explain",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — explain",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:word:explain:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — explain",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:word:explain:audio",
+            "transcript": "explain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-19:word:explain:r1",
+              "targetText": "explain",
+              "meaningByLocale": {
+                "ru": "объяснить. Can you explain it? — «Можешь это объяснить?» Сделать смысл понятным с помощью слов.",
+                "uk": "пояснити. Can you explain it? — «Можеш це пояснити?» Зробити зміст зрозумілим за допомогою слів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "explain",
+            "definitionByLocale": {
+              "ru": "объяснить. Can you explain it? — «Можешь это объяснить?» Сделать смысл понятным с помощью слов.",
+              "uk": "пояснити. Can you explain it? — «Можеш це пояснити?» Зробити зміст зрозумілим за допомогою слів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите «Можешь это объяснить?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите «Можешь это объяснить?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you explain it?",
+          "localizedMeaning": {
+            "ru": "Попросите «Можешь это объяснить?»",
+            "uk": "Попросіть «Можеш це пояснити?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "explain",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-19:i02:r1",
+            "text": "explain"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i02:r2",
+            "text": "draw"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i02:r3",
+            "text": "dance"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:i02:audio",
+            "transcript": "explain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-19:i02:r1",
+              "targetText": "explain",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i02:r2",
+              "targetText": "draw",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i02:r3",
+              "targetText": "dance",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-19:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `explain`, а в этом варианте — `draw`.",
+                "uk": "У записі перше слово — `explain`, а в цьому варіанті — `draw`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `explain`, а в этом варианте — `dance`.",
+                "uk": "У записі перше слово — `explain`, а в цьому варіанті — `dance`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для просьбы объяснить это",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-19:i03:r1",
+            "text": "explain"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i03:r2",
+            "text": "to explain"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i03:r3",
+            "text": "explains"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для просьбы объяснить это",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для просьбы объяснить это",
+            "uk": "Виберіть форму для прохання пояснити це"
+          },
+          "gappedTargetPhrase": "Can you ___ it?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-19:i03:r1",
+              "text": "explain"
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i03:r2",
+              "text": "to explain"
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i03:r3",
+              "text": "explains"
+            }
+          ],
+          "testedDimension": "Выберите форму для просьбы объяснить это",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-19:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для просьбы объяснить это",
+              "feedbackByLocale": {
+                "ru": "После `can` нужно `explain`, без `to`.",
+                "uk": "Після `can` потрібне `explain`, без `to`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для просьбы объяснить это",
+              "feedbackByLocale": {
+                "ru": "После `can` нужно `explain`, без `s`.",
+                "uk": "Після `can` потрібне `explain`, без `s`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-19:i04:p1",
+              "target": "explain",
+              "meaningByLocale": {
+                "ru": "объяснить",
+                "uk": "пояснити"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-19:i04:p2",
+              "target": "soup",
+              "meaningByLocale": {
+                "ru": "суп",
+                "uk": "суп"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-19:i04:p3",
+              "target": "draw",
+              "meaningByLocale": {
+                "ru": "рисовать",
+                "uk": "малювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-19:i04:p4",
+              "target": "dance",
+              "meaningByLocale": {
+                "ru": "танцевать",
+                "uk": "танцювати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "explain",
+            "soup",
+            "draw",
+            "dance"
+          ],
+          "rightColumn": [
+            "объяснить",
+            "суп",
+            "рисовать",
+            "танцевать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:i05:audio",
+            "transcript": "Can you explain it?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Can you explain it?",
+          "orderedTokens": [
+            "Can",
+            "you",
+            "explain",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:word:demonstrate",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — demonstrate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:word:demonstrate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — demonstrate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:word:demonstrate:audio",
+            "transcript": "demonstrate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-19:word:demonstrate:r1",
+              "targetText": "demonstrate",
+              "meaningByLocale": {
+                "ru": "показать на практике. Can you demonstrate it? — «Можешь это показать на практике?» Выполнить действие, чтобы другой увидел, как это делается.",
+                "uk": "показати на практиці. Can you demonstrate it? — «Можеш це показати на практиці?» Виконати дію, щоб інший побачив, як це робиться."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "demonstrate",
+            "definitionByLocale": {
+              "ru": "показать на практике. Can you demonstrate it? — «Можешь это показать на практике?» Выполнить действие, чтобы другой увидел, как это делается.",
+              "uk": "показати на практиці. Can you demonstrate it? — «Можеш це показати на практиці?» Виконати дію, щоб інший побачив, як це робиться."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите «Можешь это показать на практике?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите «Можешь это показать на практике?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you demonstrate it?",
+          "localizedMeaning": {
+            "ru": "Попросите «Можешь это показать на практике?»",
+            "uk": "Попросіть «Можеш це показати на практиці?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "demonstrate",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:word:diagram",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — diagram",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:word:diagram:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — diagram",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:word:diagram:audio",
+            "transcript": "diagram"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-19:word:diagram:r1",
+              "targetText": "diagram",
+              "meaningByLocale": {
+                "ru": "схема. Can you explain the diagram? — «Можешь объяснить схему?» Рисунок, показывающий устройство или связь деталей.",
+                "uk": "схема. Can you explain the diagram? — «Можеш пояснити схему?» Малюнок, що показує будову або зв’язок деталей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "diagram",
+            "definitionByLocale": {
+              "ru": "схема. Can you explain the diagram? — «Можешь объяснить схему?» Рисунок, показывающий устройство или связь деталей.",
+              "uk": "схема. Can you explain the diagram? — «Можеш пояснити схему?» Малюнок, що показує будову або зв’язок деталей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы не понимаете стрелки на схеме. Попросите друга «Можешь объяснить схему?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:i07:audio"
+        ],
+        "accessibilityLabel": "Вы не понимаете стрелки на схеме. Попросите друга «Можешь объяснить схему?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:i07:audio",
+            "transcript": "Can you explain the diagram?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you explain the diagram?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для просьбы показать действие на практике",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-19:i08:r1",
+            "text": "demonstrate"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i08:r2",
+            "text": "demonstrates"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i08:r3",
+            "text": "to demonstrate"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для просьбы показать действие на практике",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для просьбы показать действие на практике",
+            "uk": "Виберіть форму для прохання показати дію на практиці"
+          },
+          "gappedTargetPhrase": "Can you ___ it?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-19:i08:r1",
+              "text": "demonstrate"
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i08:r2",
+              "text": "demonstrates"
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i08:r3",
+              "text": "to demonstrate"
+            }
+          ],
+          "testedDimension": "Выберите форму для просьбы показать действие на практике",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-19:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для просьбы показать действие на практике",
+              "feedbackByLocale": {
+                "ru": "После can нужно demonstrate, без s.",
+                "uk": "Після can потрібне demonstrate, без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для просьбы показать действие на практике",
+              "feedbackByLocale": {
+                "ru": "После can нужно demonstrate, без to.",
+                "uk": "Після can потрібне demonstrate, без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-19:i09:r1",
+            "text": "Can you explain it?"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i09:r2",
+            "text": "Can you explain this?"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i09:r3",
+            "text": "Can you explain that?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:i09:audio",
+            "transcript": "Can you explain it?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-19:i09:r1",
+              "targetText": "Can you explain it?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i09:r2",
+              "targetText": "Can you explain this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i09:r3",
+              "targetText": "Can you explain that?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-19:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `it`, а в этом варианте — `this`.",
+                "uk": "У записі останнє слово — `it`, а в цьому варіанті — `this`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `it`, а в этом варианте — `that`.",
+                "uk": "У записі останнє слово — `it`, а в цьому варіанті — `that`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-19:i10:p1",
+              "target": "explain",
+              "meaningByLocale": {
+                "ru": "объяснить",
+                "uk": "пояснити"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-19:i10:p2",
+              "target": "demonstrate",
+              "meaningByLocale": {
+                "ru": "показать на практике",
+                "uk": "показати на практиці"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-19:i10:p3",
+              "target": "diagram",
+              "meaningByLocale": {
+                "ru": "схема",
+                "uk": "схема"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-19:i10:p4",
+              "target": "draw",
+              "meaningByLocale": {
+                "ru": "рисовать",
+                "uk": "малювати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "explain",
+            "demonstrate",
+            "diagram",
+            "draw"
+          ],
+          "rightColumn": [
+            "объяснить",
+            "показать на практике",
+            "схема",
+            "рисовать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:i11:audio",
+            "transcript": "Can you demonstrate it?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Can you demonstrate it?",
+          "orderedTokens": [
+            "Can",
+            "you",
+            "demonstrate",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:word:manual",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — manual",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:word:manual:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — manual",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:word:manual:audio",
+            "transcript": "manual"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-19:word:manual:r1",
+              "targetText": "manual",
+              "meaningByLocale": {
+                "ru": "руководство, инструкция. Can you pass me the manual? — «Можешь передать мне руководство?» Здесь — брошюра с инструкциями по сборке.",
+                "uk": "посібник, інструкція. Can you pass me the manual? — «Можеш передати мені посібник?» Тут — брошура з інструкціями зі складання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "manual",
+            "definitionByLocale": {
+              "ru": "руководство, инструкция. Can you pass me the manual? — «Можешь передать мне руководство?» Здесь — брошюра с инструкциями по сборке.",
+              "uk": "посібник, інструкція. Can you pass me the manual? — «Можеш передати мені посібник?» Тут — брошура з інструкціями зі складання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Руководство по сборке лежит у друга. Попросите «Можешь передать мне руководство?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Руководство по сборке лежит у друга. Попросите «Можешь передать мне руководство?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you pass me the manual?",
+          "localizedMeaning": {
+            "ru": "Руководство по сборке лежит у друга. Попросите «Можешь передать мне руководство?»",
+            "uk": "Посібник зі складання лежить у друга. Попросіть «Можеш передати мені посібник?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "pass",
+            "me",
+            "the",
+            "manual"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг рассматривает ваш альбом. Используйте draw: «Я часто рисую»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:i13:audio"
+        ],
+        "accessibilityLabel": "Друг рассматривает ваш альбом. Используйте draw: «Я часто рисую»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:i13:audio",
+            "transcript": "I often draw."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I often draw.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните просьбу «Можешь это объяснить?»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-19:i14:r1",
+            "text": "Can"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i14:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i14:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните просьбу «Можешь это объяснить?»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните просьбу «Можешь это объяснить?»",
+            "uk": "Почніть прохання «Можеш це пояснити?»"
+          },
+          "gappedTargetPhrase": "___ you explain it?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-19:i14:r1",
+              "text": "Can"
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i14:r2",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i14:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Начните просьбу «Можешь это объяснить?»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-19:i14:r2",
+              "correct": false,
+              "testedDimension": "Начните просьбу «Можешь это объяснить?»",
+              "feedbackByLocale": {
+                "ru": "В этой просьбе нужно `Can you explain`, без `are`.",
+                "uk": "У цьому проханні потрібне `Can you explain`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i14:r3",
+              "correct": false,
+              "testedDimension": "Начните просьбу «Можешь это объяснить?»",
+              "feedbackByLocale": {
+                "ru": "Начните с `Can you explain`.",
+                "uk": "Почніть із `Can you explain`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-19:i15:r1",
+            "text": "Can you pass me the manual?"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i15:r2",
+            "text": "Can you pass me the diagram?"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i15:r3",
+            "text": "Can you pass me the book?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:i15:audio",
+            "transcript": "Can you pass me the manual?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-19:i15:r1",
+              "targetText": "Can you pass me the manual?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i15:r2",
+              "targetText": "Can you pass me the diagram?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i15:r3",
+              "targetText": "Can you pass me the book?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-19:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи manual — «руководство», а не diagram — «схема».",
+                "uk": "У записі manual — «посібник», а не diagram — «схема»."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи manual, а не book — «книга».",
+                "uk": "У записі manual, а не book — «книжка»."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-19:i16:p1",
+              "target": "explain",
+              "meaningByLocale": {
+                "ru": "объяснить",
+                "uk": "пояснити"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-19:i16:p2",
+              "target": "demonstrate",
+              "meaningByLocale": {
+                "ru": "показать на практике",
+                "uk": "показати на практиці"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-19:i16:p3",
+              "target": "diagram",
+              "meaningByLocale": {
+                "ru": "схема",
+                "uk": "схема"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-19:i16:p4",
+              "target": "manual",
+              "meaningByLocale": {
+                "ru": "руководство",
+                "uk": "посібник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "explain",
+            "demonstrate",
+            "diagram",
+            "manual"
+          ],
+          "rightColumn": [
+            "объяснить",
+            "показать на практике",
+            "схема",
+            "руководство"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг показал вам ход в игре, но вы не поняли, почему он так сделал. Попросите «Можешь это объяснить?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:i17:audio"
+        ],
+        "accessibilityLabel": "Друг показал вам ход в игре, но вы не поняли, почему он так сделал. Попросите «Можешь это объяснить?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:i17:audio",
+            "transcript": "Can you explain it?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you explain it?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-08:session-19:word:explain",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — explain",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:word:explain:audio"
+        ],
+        "accessibilityLabel": "Картка слова — explain",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:word:explain:audio",
+            "transcript": "explain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-19:word:explain:r1",
+              "targetText": "explain",
+              "meaningByLocale": {
+                "ru": "объяснить. Can you explain it? — «Можешь это объяснить?» Сделать смысл понятным с помощью слов.",
+                "uk": "пояснити. Can you explain it? — «Можеш це пояснити?» Зробити зміст зрозумілим за допомогою слів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "explain",
+            "definitionByLocale": {
+              "ru": "объяснить. Can you explain it? — «Можешь это объяснить?» Сделать смысл понятным с помощью слов.",
+              "uk": "пояснити. Can you explain it? — «Можеш це пояснити?» Зробити зміст зрозумілим за допомогою слів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть «Можеш це пояснити?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть «Можеш це пояснити?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you explain it?",
+          "localizedMeaning": {
+            "ru": "Попросите «Можешь это объяснить?»",
+            "uk": "Попросіть «Можеш це пояснити?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "explain",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-19:i02:r1",
+            "text": "explain"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i02:r2",
+            "text": "draw"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i02:r3",
+            "text": "dance"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:i02:audio",
+            "transcript": "explain"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-19:i02:r1",
+              "targetText": "explain",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i02:r2",
+              "targetText": "draw",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i02:r3",
+              "targetText": "dance",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-19:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `explain`, а в этом варианте — `draw`.",
+                "uk": "У записі перше слово — `explain`, а в цьому варіанті — `draw`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `explain`, а в этом варианте — `dance`.",
+                "uk": "У записі перше слово — `explain`, а в цьому варіанті — `dance`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для прохання пояснити це",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-19:i03:r1",
+            "text": "explain"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i03:r2",
+            "text": "to explain"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i03:r3",
+            "text": "explains"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для прохання пояснити це",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для просьбы объяснить это",
+            "uk": "Виберіть форму для прохання пояснити це"
+          },
+          "gappedTargetPhrase": "Can you ___ it?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-19:i03:r1",
+              "text": "explain"
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i03:r2",
+              "text": "to explain"
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i03:r3",
+              "text": "explains"
+            }
+          ],
+          "testedDimension": "Виберіть форму для прохання пояснити це",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-19:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для прохання пояснити це",
+              "feedbackByLocale": {
+                "ru": "После `can` нужно `explain`, без `to`.",
+                "uk": "Після `can` потрібне `explain`, без `to`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для прохання пояснити це",
+              "feedbackByLocale": {
+                "ru": "После `can` нужно `explain`, без `s`.",
+                "uk": "Після `can` потрібне `explain`, без `s`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-19:i04:p1",
+              "target": "explain",
+              "meaningByLocale": {
+                "ru": "объяснить",
+                "uk": "пояснити"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-19:i04:p2",
+              "target": "soup",
+              "meaningByLocale": {
+                "ru": "суп",
+                "uk": "суп"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-19:i04:p3",
+              "target": "draw",
+              "meaningByLocale": {
+                "ru": "рисовать",
+                "uk": "малювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-19:i04:p4",
+              "target": "dance",
+              "meaningByLocale": {
+                "ru": "танцевать",
+                "uk": "танцювати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "explain",
+            "soup",
+            "draw",
+            "dance"
+          ],
+          "rightColumn": [
+            "пояснити",
+            "суп",
+            "малювати",
+            "танцювати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:i05:audio",
+            "transcript": "Can you explain it?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Can you explain it?",
+          "orderedTokens": [
+            "Can",
+            "you",
+            "explain",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:word:demonstrate",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — demonstrate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:word:demonstrate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — demonstrate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:word:demonstrate:audio",
+            "transcript": "demonstrate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-19:word:demonstrate:r1",
+              "targetText": "demonstrate",
+              "meaningByLocale": {
+                "ru": "показать на практике. Can you demonstrate it? — «Можешь это показать на практике?» Выполнить действие, чтобы другой увидел, как это делается.",
+                "uk": "показати на практиці. Can you demonstrate it? — «Можеш це показати на практиці?» Виконати дію, щоб інший побачив, як це робиться."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "demonstrate",
+            "definitionByLocale": {
+              "ru": "показать на практике. Can you demonstrate it? — «Можешь это показать на практике?» Выполнить действие, чтобы другой увидел, как это делается.",
+              "uk": "показати на практиці. Can you demonstrate it? — «Можеш це показати на практиці?» Виконати дію, щоб інший побачив, як це робиться."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть «Можеш це показати на практиці?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть «Можеш це показати на практиці?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you demonstrate it?",
+          "localizedMeaning": {
+            "ru": "Попросите «Можешь это показать на практике?»",
+            "uk": "Попросіть «Можеш це показати на практиці?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "demonstrate",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:word:diagram",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — diagram",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:word:diagram:audio"
+        ],
+        "accessibilityLabel": "Картка слова — diagram",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:word:diagram:audio",
+            "transcript": "diagram"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-19:word:diagram:r1",
+              "targetText": "diagram",
+              "meaningByLocale": {
+                "ru": "схема. Can you explain the diagram? — «Можешь объяснить схему?» Рисунок, показывающий устройство или связь деталей.",
+                "uk": "схема. Can you explain the diagram? — «Можеш пояснити схему?» Малюнок, що показує будову або зв’язок деталей."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "diagram",
+            "definitionByLocale": {
+              "ru": "схема. Can you explain the diagram? — «Можешь объяснить схему?» Рисунок, показывающий устройство или связь деталей.",
+              "uk": "схема. Can you explain the diagram? — «Можеш пояснити схему?» Малюнок, що показує будову або зв’язок деталей."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви не розумієте стрілки на схемі. Попросіть друга «Можеш пояснити схему?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:i07:audio"
+        ],
+        "accessibilityLabel": "Ви не розумієте стрілки на схемі. Попросіть друга «Можеш пояснити схему?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:i07:audio",
+            "transcript": "Can you explain the diagram?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you explain the diagram?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для прохання показати дію на практиці",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-19:i08:r1",
+            "text": "demonstrate"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i08:r2",
+            "text": "demonstrates"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i08:r3",
+            "text": "to demonstrate"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для прохання показати дію на практиці",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для просьбы показать действие на практике",
+            "uk": "Виберіть форму для прохання показати дію на практиці"
+          },
+          "gappedTargetPhrase": "Can you ___ it?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-19:i08:r1",
+              "text": "demonstrate"
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i08:r2",
+              "text": "demonstrates"
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i08:r3",
+              "text": "to demonstrate"
+            }
+          ],
+          "testedDimension": "Виберіть форму для прохання показати дію на практиці",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-19:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для прохання показати дію на практиці",
+              "feedbackByLocale": {
+                "ru": "После can нужно demonstrate, без s.",
+                "uk": "Після can потрібне demonstrate, без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для прохання показати дію на практиці",
+              "feedbackByLocale": {
+                "ru": "После can нужно demonstrate, без to.",
+                "uk": "Після can потрібне demonstrate, без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-19:i09:r1",
+            "text": "Can you explain it?"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i09:r2",
+            "text": "Can you explain this?"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i09:r3",
+            "text": "Can you explain that?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:i09:audio",
+            "transcript": "Can you explain it?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-19:i09:r1",
+              "targetText": "Can you explain it?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i09:r2",
+              "targetText": "Can you explain this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i09:r3",
+              "targetText": "Can you explain that?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-19:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `it`, а в этом варианте — `this`.",
+                "uk": "У записі останнє слово — `it`, а в цьому варіанті — `this`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `it`, а в этом варианте — `that`.",
+                "uk": "У записі останнє слово — `it`, а в цьому варіанті — `that`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-19:i10:p1",
+              "target": "explain",
+              "meaningByLocale": {
+                "ru": "объяснить",
+                "uk": "пояснити"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-19:i10:p2",
+              "target": "demonstrate",
+              "meaningByLocale": {
+                "ru": "показать на практике",
+                "uk": "показати на практиці"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-19:i10:p3",
+              "target": "diagram",
+              "meaningByLocale": {
+                "ru": "схема",
+                "uk": "схема"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-19:i10:p4",
+              "target": "draw",
+              "meaningByLocale": {
+                "ru": "рисовать",
+                "uk": "малювати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "explain",
+            "demonstrate",
+            "diagram",
+            "draw"
+          ],
+          "rightColumn": [
+            "пояснити",
+            "показати на практиці",
+            "схема",
+            "малювати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:i11:audio",
+            "transcript": "Can you demonstrate it?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Can you demonstrate it?",
+          "orderedTokens": [
+            "Can",
+            "you",
+            "demonstrate",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:word:manual",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — manual",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:word:manual:audio"
+        ],
+        "accessibilityLabel": "Картка слова — manual",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:word:manual:audio",
+            "transcript": "manual"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-19:word:manual:r1",
+              "targetText": "manual",
+              "meaningByLocale": {
+                "ru": "руководство, инструкция. Can you pass me the manual? — «Можешь передать мне руководство?» Здесь — брошюра с инструкциями по сборке.",
+                "uk": "посібник, інструкція. Can you pass me the manual? — «Можеш передати мені посібник?» Тут — брошура з інструкціями зі складання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "manual",
+            "definitionByLocale": {
+              "ru": "руководство, инструкция. Can you pass me the manual? — «Можешь передать мне руководство?» Здесь — брошюра с инструкциями по сборке.",
+              "uk": "посібник, інструкція. Can you pass me the manual? — «Можеш передати мені посібник?» Тут — брошура з інструкціями зі складання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Посібник зі складання лежить у друга. Попросіть «Можеш передати мені посібник?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Посібник зі складання лежить у друга. Попросіть «Можеш передати мені посібник?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you pass me the manual?",
+          "localizedMeaning": {
+            "ru": "Руководство по сборке лежит у друга. Попросите «Можешь передать мне руководство?»",
+            "uk": "Посібник зі складання лежить у друга. Попросіть «Можеш передати мені посібник?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "pass",
+            "me",
+            "the",
+            "manual"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг розглядає ваш альбом. Використайте draw: «Я часто малюю»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:i13:audio"
+        ],
+        "accessibilityLabel": "Друг розглядає ваш альбом. Використайте draw: «Я часто малюю»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:i13:audio",
+            "transcript": "I often draw."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I often draw.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть прохання «Можеш це пояснити?»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-19:i14:r1",
+            "text": "Can"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i14:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i14:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть прохання «Можеш це пояснити?»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните просьбу «Можешь это объяснить?»",
+            "uk": "Почніть прохання «Можеш це пояснити?»"
+          },
+          "gappedTargetPhrase": "___ you explain it?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-19:i14:r1",
+              "text": "Can"
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i14:r2",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i14:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Почніть прохання «Можеш це пояснити?»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-19:i14:r2",
+              "correct": false,
+              "testedDimension": "Почніть прохання «Можеш це пояснити?»",
+              "feedbackByLocale": {
+                "ru": "В этой просьбе нужно `Can you explain`, без `are`.",
+                "uk": "У цьому проханні потрібне `Can you explain`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i14:r3",
+              "correct": false,
+              "testedDimension": "Почніть прохання «Можеш це пояснити?»",
+              "feedbackByLocale": {
+                "ru": "Начните с `Can you explain`.",
+                "uk": "Почніть із `Can you explain`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-19:i15:r1",
+            "text": "Can you pass me the manual?"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i15:r2",
+            "text": "Can you pass me the diagram?"
+          },
+          {
+            "responseId": "en:lesson-08:session-19:i15:r3",
+            "text": "Can you pass me the book?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:i15:audio",
+            "transcript": "Can you pass me the manual?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-19:i15:r1",
+              "targetText": "Can you pass me the manual?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i15:r2",
+              "targetText": "Can you pass me the diagram?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i15:r3",
+              "targetText": "Can you pass me the book?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-19:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи manual — «руководство», а не diagram — «схема».",
+                "uk": "У записі manual — «посібник», а не diagram — «схема»."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-19:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи manual, а не book — «книга».",
+                "uk": "У записі manual, а не book — «книжка»."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-19:i16:p1",
+              "target": "explain",
+              "meaningByLocale": {
+                "ru": "объяснить",
+                "uk": "пояснити"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-19:i16:p2",
+              "target": "demonstrate",
+              "meaningByLocale": {
+                "ru": "показать на практике",
+                "uk": "показати на практиці"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-19:i16:p3",
+              "target": "diagram",
+              "meaningByLocale": {
+                "ru": "схема",
+                "uk": "схема"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-19:i16:p4",
+              "target": "manual",
+              "meaningByLocale": {
+                "ru": "руководство",
+                "uk": "посібник"
+              }
+            }
+          ],
+          "leftColumn": [
+            "explain",
+            "demonstrate",
+            "diagram",
+            "manual"
+          ],
+          "rightColumn": [
+            "пояснити",
+            "показати на практиці",
+            "схема",
+            "посібник"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-19:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг показав вам хід у грі, але ви не зрозуміли, чому він так зробив. Попросіть «Можеш це пояснити?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-19:i17:audio"
+        ],
+        "accessibilityLabel": "Друг показав вам хід у грі, але ви не зрозуміли, чому він так зробив. Попросіть «Можеш це пояснити?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-19:i17:audio",
+            "transcript": "Can you explain it?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you explain it?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-08:session-19:word:explain",
+      "correctText": "explain",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-19:i01",
+      "correctText": "Can you explain it?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-19:i02",
+      "correctText": "explain",
+      "correctResponseId": "en:lesson-08:session-19:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-19:i03",
+      "correctText": "explain",
+      "correctResponseId": "en:lesson-08:session-19:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-19:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-19:i05",
+      "correctText": "Can you explain it?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-19:word:demonstrate",
+      "correctText": "demonstrate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-19:i06",
+      "correctText": "Can you demonstrate it?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-19:word:diagram",
+      "correctText": "diagram",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-19:i07",
+      "correctText": "Can you explain the diagram?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-19:i08",
+      "correctText": "demonstrate",
+      "correctResponseId": "en:lesson-08:session-19:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-19:i09",
+      "correctText": "Can you explain it?",
+      "correctResponseId": "en:lesson-08:session-19:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-19:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-19:i11",
+      "correctText": "Can you demonstrate it?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-19:word:manual",
+      "correctText": "manual",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-19:i12",
+      "correctText": "Can you pass me the manual?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-19:i13",
+      "correctText": "I often draw.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-19:i14",
+      "correctText": "Can",
+      "correctResponseId": "en:lesson-08:session-19:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-19:i15",
+      "correctText": "Can you pass me the manual?",
+      "correctResponseId": "en:lesson-08:session-19:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-19:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-19:i17",
+      "correctText": "Can you explain it?",
+      "correctResponseId": null
+    }
+  ]
+}

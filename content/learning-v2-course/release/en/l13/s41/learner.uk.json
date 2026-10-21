@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-41",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-41:word:tickle",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tickle",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-41:word:tickle:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tickle",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-41:word:tickle:audio",
+          "transcript": "tickle"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-41:word:tickle:r1",
+            "targetText": "tickle",
+            "meaningByLocale": {
+              "ru": "щекотать.",
+              "uk": "лоскотати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tickle",
+          "definitionByLocale": {
+            "ru": "щекотать.",
+            "uk": "лоскотати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-41:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти лоскотав брата?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти лоскотав брата?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you tickle your brother?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты щекотал брата?",
+          "uk": "Скажіть: Ти лоскотав брата?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "tickle",
+          "your",
+          "brother"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-41:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-41:i02:r1",
+          "text": "Did she tickle your brother?"
+        },
+        {
+          "responseId": "en:lesson-13:session-41:i02:r2",
+          "text": "Did you tickle your brother?"
+        },
+        {
+          "responseId": "en:lesson-13:session-41:i02:r3",
+          "text": "Did they tickle your brother?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-41:i02:audio",
+          "transcript": "Did she tickle your brother?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-41:i02:r1",
+            "targetText": "Did she tickle your brother?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i02:r2",
+            "targetText": "Did you tickle your brother?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i02:r3",
+            "targetText": "Did they tickle your brother?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she tickle your brother?",
+              "uk": "У записі звучить Did she tickle your brother?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she tickle your brother?",
+              "uk": "У записі звучить Did she tickle your brother?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-41:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-41:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-41:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-41:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you tickle your brother?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-41:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-41:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-41:word:pinch",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pinch",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-41:word:pinch:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pinch",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-41:word:pinch:audio",
+          "transcript": "pinch"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-41:word:pinch:r1",
+            "targetText": "pinch",
+            "meaningByLocale": {
+              "ru": "ущипнуть или прищемить.",
+              "uk": "ущипнути або прищемити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pinch",
+          "definitionByLocale": {
+            "ru": "ущипнуть или прищемить.",
+            "uk": "ущипнути або прищемити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-41:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти прищемив палець дверима?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти прищемив палець дверима?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you pinch your finger in the door?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты прищемил палец дверью?",
+          "uk": "Скажіть: Ти прищемив палець дверима?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "pinch",
+          "your",
+          "finger",
+          "in",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-41:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-41:i05:r1",
+          "text": "Did she pinch your finger in the door?"
+        },
+        {
+          "responseId": "en:lesson-13:session-41:i05:r2",
+          "text": "Did you pinch your finger in the door?"
+        },
+        {
+          "responseId": "en:lesson-13:session-41:i05:r3",
+          "text": "Did they pinch your finger in the door?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-41:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-41:i05:audio",
+          "transcript": "Did she pinch your finger in the door?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-41:i05:r1",
+            "targetText": "Did she pinch your finger in the door?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i05:r2",
+            "targetText": "Did you pinch your finger in the door?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i05:r3",
+            "targetText": "Did they pinch your finger in the door?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-41:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she pinch your finger in the door?",
+              "uk": "У записі звучить Did she pinch your finger in the door?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she pinch your finger in the door?",
+              "uk": "У записі звучить Did she pinch your finger in the door?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-41:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-41:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-41:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-41:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you pinch your finger in the door?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-41:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-41:i06:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i06:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-41:word:pat",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-41:word:pat:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-41:word:pat:audio",
+          "transcript": "pat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-41:word:pat:r1",
+            "targetText": "pat",
+            "meaningByLocale": {
+              "ru": "мягко похлопать ладонью.",
+              "uk": "легенько поплескати долонею."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pat",
+          "definitionByLocale": {
+            "ru": "мягко похлопать ладонью.",
+            "uk": "легенько поплескати долонею."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-41:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти легенько поплескав собаку долонею?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти легенько поплескав собаку долонею?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you pat the dog?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты мягко похлопал собаку ладонью?",
+          "uk": "Скажіть: Ти легенько поплескав собаку долонею?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "pat",
+          "the",
+          "dog"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-41:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-41:i08:r1",
+          "text": "Did she pat the dog?"
+        },
+        {
+          "responseId": "en:lesson-13:session-41:i08:r2",
+          "text": "Did you pat the dog?"
+        },
+        {
+          "responseId": "en:lesson-13:session-41:i08:r3",
+          "text": "Did they pat the dog?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-41:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-41:i08:audio",
+          "transcript": "Did she pat the dog?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-41:i08:r1",
+            "targetText": "Did she pat the dog?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i08:r2",
+            "targetText": "Did you pat the dog?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i08:r3",
+            "targetText": "Did they pat the dog?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-41:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she pat the dog?",
+              "uk": "У записі звучить Did she pat the dog?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she pat the dog?",
+              "uk": "У записі звучить Did she pat the dog?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-41:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-41:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-41:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-41:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you pat the dog?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-41:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-41:i09:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i09:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-41:word:stroke",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — stroke",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-41:word:stroke:audio"
+      ],
+      "accessibilityLabel": "Картка слова — stroke",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-41:word:stroke:audio",
+          "transcript": "stroke"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-41:word:stroke:r1",
+            "targetText": "stroke",
+            "meaningByLocale": {
+              "ru": "погладить плавным движением руки.",
+              "uk": "погладити плавним рухом руки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stroke",
+          "definitionByLocale": {
+            "ru": "погладить плавным движением руки.",
+            "uk": "погладити плавним рухом руки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-41:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти погладив кішку?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти погладив кішку?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you stroke the cat?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты погладил кошку?",
+          "uk": "Скажіть: Ти погладив кішку?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "stroke",
+          "the",
+          "cat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-41:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-41:i11:r1",
+          "text": "Did she stroke the cat?"
+        },
+        {
+          "responseId": "en:lesson-13:session-41:i11:r2",
+          "text": "Did you stroke the cat?"
+        },
+        {
+          "responseId": "en:lesson-13:session-41:i11:r3",
+          "text": "Did they stroke the cat?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-41:i11:audio",
+          "transcript": "Did she stroke the cat?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-41:i11:r1",
+            "targetText": "Did she stroke the cat?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i11:r2",
+            "targetText": "Did you stroke the cat?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i11:r3",
+            "targetText": "Did they stroke the cat?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-41:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she stroke the cat?",
+              "uk": "У записі звучить Did she stroke the cat?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she stroke the cat?",
+              "uk": "У записі звучить Did she stroke the cat?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-41:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-41:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-41:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-41:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you stroke the cat?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-41:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-41:i12:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-41:i12:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-41:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-41:i13:p1",
+            "target": "tickle",
+            "meaningByLocale": {
+              "ru": "щекотать",
+              "uk": "лоскотати"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-41:i13:p2",
+            "target": "pinch",
+            "meaningByLocale": {
+              "ru": "ущипнуть или прищемить",
+              "uk": "ущипнути або прищемити"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-41:i13:p3",
+            "target": "pat",
+            "meaningByLocale": {
+              "ru": "мягко похлопать ладонью",
+              "uk": "легенько поплескати долонею"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-41:i13:p4",
+            "target": "stroke",
+            "meaningByLocale": {
+              "ru": "погладить плавным движением руки",
+              "uk": "погладити плавним рухом руки"
+            }
+          }
+        ],
+        "leftColumn": [
+          "tickle",
+          "pinch",
+          "pat",
+          "stroke"
+        ],
+        "rightColumn": [
+          "лоскотати",
+          "ущипнути або прищемити",
+          "легенько поплескати долонею",
+          "погладити плавним рухом руки"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-41:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-41:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-41:i14:audio",
+          "transcript": "First I opened the door."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "First I opened the door.",
+        "orderedTokens": [
+          "First",
+          "I",
+          "opened",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-41:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-41:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-41:i15:audio",
+          "transcript": "Then she stroked the cat."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Then she stroked the cat.",
+        "orderedTokens": [
+          "Then",
+          "she",
+          "stroked",
+          "the",
+          "cat"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-41:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте друга: ти вчора лоскотав брата?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-41:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте друга: ти вчора лоскотав брата?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-41:i16:audio",
+          "transcript": "Did you tickle your brother yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you tickle your brother yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-41:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: потім я легенько поплескав собаку долонею",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-41:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: потім я легенько поплескав собаку долонею",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-41:i17:audio",
+          "transcript": "Then I patted the dog."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Then I patted the dog.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a9ce2361eb9d975e5be8076a1d5420e3c7c3f2755271d93ddaa257f54423ddc2"
+}

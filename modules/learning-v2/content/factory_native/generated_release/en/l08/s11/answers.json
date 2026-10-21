@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-08:session-11:word:code",
-    "correctText": "code",
+    "interactionId": "en:lesson-08:session-11:word:make-the-bed",
+    "correctText": "make the bed",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-11:i01",
-    "correctText": "I can’t code.",
+    "correctText": "I can’t make the bed.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-11:i02",
-    "correctText": "code",
+    "correctText": "I can’t make the bed.",
     "correctResponseId": "en:lesson-08:session-11:i02:r1"
   },
   {
     "interactionId": "en:lesson-08:session-11:i03",
-    "correctText": "code",
+    "correctText": "make",
     "correctResponseId": "en:lesson-08:session-11:i03:r1"
   },
   {
+    "interactionId": "en:lesson-08:session-11:word:do-the-washing",
+    "correctText": "do the washing",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-11:i04",
-    "correctText": "en:lesson-08:session-11:i04:p1=code\nen:lesson-08:session-11:i04:p2=type\nen:lesson-08:session-11:i04:p3=ball\nen:lesson-08:session-11:i04:p4=coat",
+    "correctText": "I can do the washing.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-11:i05",
-    "correctText": "I can’t code.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-08:session-11:word:debug",
-    "correctText": "debug",
-    "correctResponseId": null
+    "correctText": "I can do the washing.",
+    "correctResponseId": "en:lesson-08:session-11:i05:r1"
   },
   {
     "interactionId": "en:lesson-08:session-11:i06",
-    "correctText": "She can’t debug.",
-    "correctResponseId": null
+    "correctText": "do",
+    "correctResponseId": "en:lesson-08:session-11:i06:r1"
   },
   {
-    "interactionId": "en:lesson-08:session-11:word:webcam",
-    "correctText": "webcam",
+    "interactionId": "en:lesson-08:session-11:word:do-the-ironing",
+    "correctText": "do the ironing",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-11:i07",
-    "correctText": "Whose webcam is this?",
+    "correctText": "She can’t do the ironing.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-11:i08",
-    "correctText": "debug",
+    "correctText": "She can’t do the ironing.",
     "correctResponseId": "en:lesson-08:session-11:i08:r1"
   },
   {
     "interactionId": "en:lesson-08:session-11:i09",
-    "correctText": "I can’t code.",
+    "correctText": "do",
     "correctResponseId": "en:lesson-08:session-11:i09:r1"
   },
   {
+    "interactionId": "en:lesson-08:session-11:word:clear-the-table",
+    "correctText": "clear the table",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-11:i10",
-    "correctText": "en:lesson-08:session-11:i10:p1=debug\nen:lesson-08:session-11:i10:p2=code\nen:lesson-08:session-11:i10:p3=webcam\nen:lesson-08:session-11:i10:p4=learn",
+    "correctText": "I can clear the table.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-11:i11",
-    "correctText": "Whose webcam is this?",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-08:session-11:word:modem",
-    "correctText": "modem",
-    "correctResponseId": null
+    "correctText": "I can clear the table.",
+    "correctResponseId": "en:lesson-08:session-11:i11:r1"
   },
   {
     "interactionId": "en:lesson-08:session-11:i12",
-    "correctText": "Whose modem is this?",
-    "correctResponseId": null
+    "correctText": "clear",
+    "correctResponseId": "en:lesson-08:session-11:i12:r1"
   },
   {
     "interactionId": "en:lesson-08:session-11:i13",
-    "correctText": "This is my modem.",
+    "correctText": "en:lesson-08:session-11:i13:p1=make the bed\nen:lesson-08:session-11:i13:p2=do the washing\nen:lesson-08:session-11:i13:p3=do the ironing\nen:lesson-08:session-11:i13:p4=clear the table",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-11:i14",
-    "correctText": "can’t",
-    "correctResponseId": "en:lesson-08:session-11:i14:r1"
+    "correctText": "He can do the washing.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-11:i15",
-    "correctText": "This is my modem.",
-    "correctResponseId": "en:lesson-08:session-11:i15:r1"
+    "correctText": "We can clear the table.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-11:i16",
-    "correctText": "en:lesson-08:session-11:i16:p1=code\nen:lesson-08:session-11:i16:p2=debug\nen:lesson-08:session-11:i16:p3=webcam\nen:lesson-08:session-11:i16:p4=modem",
+    "correctText": "Tom can’t do the ironing.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-11:i17",
-    "correctText": "Tom can’t code.",
+    "correctText": "She can make the bed.",
     "correctResponseId": null
   }
 ]

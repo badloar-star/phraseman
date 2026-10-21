@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-43",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-43:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-43:intro1:r2": {
+          "ru": "После did нужна use.",
+          "uk": "Після did потрібна use."
+        },
+        "en:lesson-13:session-43:intro1:r3": {
+          "ru": "Это вопрос о привычке.",
+          "uk": "Це запитання про звичку."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-43:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-43:intro2:r2": {
+          "ru": "Это фломастер.",
+          "uk": "Це фломастер."
+        },
+        "en:lesson-13:session-43:intro2:r3": {
+          "ru": "Для прошлого нужна found.",
+          "uk": "Для минулого потрібна found."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-43:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-43:intro3:r2": {
+          "ru": "Это перьевая ручка.",
+          "uk": "Це пір’яна ручка."
+        },
+        "en:lesson-13:session-43:intro3:r3": {
+          "ru": "После did нужна use.",
+          "uk": "Після did потрібна use."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c2d801e977e1dae05924ed44b4deac24551174fd6c526d917d571e39860dc32c"
+}

@@ -1,150 +1,151 @@
-# Англійська · Урок 8 · Заняття 11 — Поки не вмію писати код
+# Англійська · Урок 8 · Заняття 11 — Допомогти вдома
 
-**Ситуація.** Ви обираєте роль у команді, обговорюєте виправлення помилки у грі й повертаєте вебкамеру після онлайн-зустрічі.
+**Ситуація.** Обговоріть із близькими, які домашні справи ви вмієте робити та з чим поки потрібна допомога.
 
-**Що ви опануєте:** закріпити can’t для відсутності вміння й повторити запитання «чий?»
-**Нові слова:** code, debug, webcam, modem
-**Повертаються:** type, learn, ball, coat
-
----
+**Що ви опануєте:** can / can’t + дієслово без to
+**Нові слова:** make the bed, do the washing, do the ironing, clear the table
 
 ## Інтро 1
 
-### Роль у команді
+### Застелити ліжко
 
-Друзі збирають команду для створення маленької гри. Вам пропонують писати програму, але ви поки не вмієте. `Code` — «писати код, програмувати». `I can’t code` — «Я не вмію писати код». Після `can’t` потрібне `code`, без `to` й закінчення `s`. Так ви пояснюєте, чому вам потрібна інша роль у команді.
+Make the bed — застелити ліжко. Дитина поки вчиться: I can’t make the bed — я не вмію застеляти ліжко. Після can’t уживаємо make, без to. Виберіть заперечення.
 
-**Дайте другові відповідь про своє вміння.**
+**Виберіть фразу для цієї ситуації.**
 
-- ✅ **I can’t code.**
-- ❌ I can code. — *Тут потрібне `can’t` — «не вмію».*
-- ❌ I can’t to code. — *Після `can’t` потрібне `code`, без `to`.*
+- ✅ **I can’t make the bed.**
+- ❌ I can make the bed. — *Can означає «вмію».*
+- ❌ I can’t to make the bed. — *Після can’t не потрібне to.*
 
 ---
 
 ## Інтро 2
 
-### Помилка у грі
+### Випрати й попрасувати
 
-У грі, яку зробив клуб, не працює кнопка запуску. Колега пропонує звернутися до знайомої, але вона ще не вміє знаходити й виправляти помилки в програмах. Debug — «налагоджувати програми». `She can’t debug` — «Вона не вміє налагоджувати програми». `Can’t` не змінюється після `she`; після нього потрібне `debug`, без закінчення `s`.
+Do the washing — прати білизну; do the ironing — прасувати білизну. Це різні справи. She can’t do the ironing — вона не вміє прасувати білизну. Навіть після she залишається do, не does. Виберіть фразу про прасування.
 
-**Розкажіть про вміння знайомої.**
+**Виберіть фразу для цієї ситуації.**
 
-- ✅ **She can’t debug.**
-- ❌ She can debug. — *Тут потрібне `can’t` — «не вміє».*
-- ❌ She can’t debugs. — *Після `can’t` потрібне `debug`, без `s`.*
+- ✅ **She can’t do the ironing.**
+- ❌ She can’t do the washing. — *Тут ідеться про прання.*
+- ❌ She can’t does the ironing. — *Після can’t потрібна do.*
 
 ---
 
 ## Інтро 3
 
-### Камера після онлайн-зустрічі
+### Після вечері
 
-Після спільної онлайн-зустрічі ви від’єднуєте від комп’ютера чужу вебкамеру. Webcam — «вебкамера», камера для передавання відео через комп’ютер. Ви хочете повернути її власникові. `Whose webcam is this?` — «Чия це вебкамера?» Спочатку `whose webcam`, потім `is this`.
+Clear the table — прибрати зі столу посуд після їжі. I can clear the table — я можу прибрати зі столу. Ви пропонуєте допомогу після вечері. Виберіть пропозицію допомогти.
 
-**Запитайте колег, чия це вебкамера.**
+**Виберіть фразу для цієї ситуації.**
 
-- ✅ **Whose webcam is this?**
-- ❌ Who webcam is this? — *Для «чия» потрібне `whose`, а не `who`.*
-- ❌ Whose webcam are this? — *Камера одна: потрібне `is this`.*
+- ✅ **I can clear the table.**
+- ❌ I can’t clear the table. — *Can’t означає «не можу».*
+- ❌ I can to clear the table. — *Після can не потрібне to.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — code**
-<!-- interaction_id: en:lesson-08:session-11:word:code; family: word_card -->
-> **code** — писати код. I can’t code. — «Я не вмію писати код». Створювати комп’ютерні програми.
+**1 · Картка слова — make the bed**
+<!-- interaction_id: en:lesson-08:session-11:word:make-the-bed; family: word_card -->
+> **make the bed** — застеляти ліжко.
 
-**2 · Скажіть «Я не вмію писати код»**
+**2 · Скажіть: Я не вмію застеляти ліжко**
 <!-- interaction_id: en:lesson-08:session-11:i01; family: phrase_builder -->
-Плитки: `code` `can’t` `I` → **I can’t code.**
+Плитки: `bed` `the` `make` `can’t` `I` → **I can’t make the bed.**
 
-**3 · Послухайте й виберіть слово**
+**3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-08:session-11:i02; family: listen_choose -->
-🔊 *code* → **code** · type · learn
-- type — *У записі code — «писати код», а не type — «друкувати».*
-- learn — *У записі code, а не learn — «вчитися».*
+🔊 *I can’t make the bed.* → **I can’t make the bed.** · I can make the bed. · We can’t make the bed.
+- I can make the bed. — *У записі звучить I can’t make the bed.*
+- We can’t make the bed. — *У записі звучить I can’t make the bed.*
 
-**4 · Виберіть слово: «Я не вмію писати код»**
+**4 · Виберіть форму після can або can’t**
 <!-- interaction_id: en:lesson-08:session-11:i03; family: context_gap_grammar -->
-I can’t ___. → **code** · to code · codes
-- to code — *Після `can’t` потрібне `code`, без `to`.*
-- codes — *Після `can’t` потрібне `code`, без `s`.*
+I can’t ___ the bed. → **make** · makes · to make
+- makes — *Після can або can’t дієслово без закінчення s.*
+- to make — *Після can або can’t не потрібне to.*
 
-**5 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-08:session-11:i04; family: speed_match -->
-code — писати код · type — друкувати на клавіатурі · ball — м’яч · coat — пальто
+**5 · Картка слова — do the washing**
+<!-- interaction_id: en:lesson-08:session-11:word:do-the-washing; family: word_card -->
+> **do the washing** — прати білизну.
 
-**6 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-08:session-11:i05; family: listen_build_dictation -->
-🔊 *I can’t code.* Плитки: `code` `can’t` `I` → **I can’t code.**
+**6 · Скажіть: Я можу випрати білизну**
+<!-- interaction_id: en:lesson-08:session-11:i04; family: phrase_builder -->
+Плитки: `washing` `the` `do` `can` `I` → **I can do the washing.**
 
-**7 · Картка слова — debug**
-<!-- interaction_id: en:lesson-08:session-11:word:debug; family: word_card -->
-> **debug** — налагоджувати програми. She can’t debug. — «Вона не вміє налагоджувати програми». Знаходити й виправляти помилки в коді.
+**7 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-08:session-11:i05; family: listen_choose -->
+🔊 *I can do the washing.* → **I can do the washing.** · I can’t do the washing. · We can do the washing.
+- I can’t do the washing. — *У записі звучить I can do the washing.*
+- We can do the washing. — *У записі звучить I can do the washing.*
 
-**8 · Скажіть про знайому «Вона не вміє налагоджувати програми»**
-<!-- interaction_id: en:lesson-08:session-11:i06; family: phrase_builder -->
-Плитки: `debug` `can’t` `She` → **She can’t debug.**
+**8 · Виберіть форму після can або can’t**
+<!-- interaction_id: en:lesson-08:session-11:i06; family: context_gap_grammar -->
+I can ___ the washing. → **do** · does · to do
+- does — *Після can або can’t дієслово без закінчення s.*
+- to do — *Після can або can’t не потрібне to.*
 
-**9 · Картка слова — webcam**
-<!-- interaction_id: en:lesson-08:session-11:word:webcam; family: word_card -->
-> **webcam** — вебкамера. Whose webcam is this? — «Чия це вебкамера?» Камера для передавання відео через комп’ютер.
+**9 · Картка слова — do the ironing**
+<!-- interaction_id: en:lesson-08:session-11:word:do-the-ironing; family: word_card -->
+> **do the ironing** — прасувати білизну.
 
-**10 · Запитайте колег «Чия це вебкамера?»**
-<!-- interaction_id: en:lesson-08:session-11:i07; family: scripted_repeat_compare -->
-🎙 **Whose webcam is this?**
+**10 · Скажіть: Вона не вміє прасувати білизну**
+<!-- interaction_id: en:lesson-08:session-11:i07; family: phrase_builder -->
+Плитки: `ironing` `the` `do` `can’t` `She` → **She can’t do the ironing.**
 
-**11 · Виберіть слово: «Вона не вміє налагоджувати програми»**
-<!-- interaction_id: en:lesson-08:session-11:i08; family: context_gap_grammar -->
-She can’t ___. → **debug** · debugs · to debug
-- debugs — *Після `can’t` потрібне `debug`, без `s`.*
-- to debug — *Після `can’t` потрібне `debug`, без `to`.*
+**11 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-08:session-11:i08; family: listen_choose -->
+🔊 *She can’t do the ironing.* → **She can’t do the ironing.** · She can do the ironing. · We can’t do the ironing.
+- She can do the ironing. — *У записі звучить She can’t do the ironing.*
+- We can’t do the ironing. — *У записі звучить She can’t do the ironing.*
 
-**12 · Послухайте й виберіть фразу**
-<!-- interaction_id: en:lesson-08:session-11:i09; family: listen_choose -->
-🔊 *I can’t code.* → **I can’t code.** · I can’t debug. · I can’t dive.
-- I can’t debug. — *У записі останнє слово — `code`, а в цьому варіанті — `debug`.*
-- I can’t dive. — *У записі останнє слово — `code`, а в цьому варіанті — `dive`.*
+**12 · Виберіть форму після can або can’t**
+<!-- interaction_id: en:lesson-08:session-11:i09; family: context_gap_grammar -->
+She can’t ___ the ironing. → **do** · does · to do
+- does — *Після can або can’t дієслово без закінчення s.*
+- to do — *Після can або can’t не потрібне to.*
 
-**13 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-08:session-11:i10; family: speed_match -->
-debug — налагоджувати програми · code — писати код · webcam — вебкамера · learn — вчитися
+**13 · Картка слова — clear the table**
+<!-- interaction_id: en:lesson-08:session-11:word:clear-the-table; family: word_card -->
+> **clear the table** — прибирати зі столу посуд.
 
-**14 · Послухайте й складіть фразу**
-<!-- interaction_id: en:lesson-08:session-11:i11; family: listen_build_dictation -->
-🔊 *Whose webcam is this?* Плитки: `this` `is` `webcam` `Whose` → **Whose webcam is this?**
+**14 · Скажіть: Я можу прибрати зі столу**
+<!-- interaction_id: en:lesson-08:session-11:i10; family: phrase_builder -->
+Плитки: `table` `the` `clear` `can` `I` → **I can clear the table.**
 
-**15 · Картка слова — modem**
-<!-- interaction_id: en:lesson-08:session-11:word:modem; family: word_card -->
-> **modem** — модем. Whose modem is this? — «Чий це модем?» Пристрій зв’язку для підключення до інтернету.
+**15 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-08:session-11:i11; family: listen_choose -->
+🔊 *I can clear the table.* → **I can clear the table.** · I can’t clear the table. · We can clear the table.
+- I can’t clear the table. — *У записі звучить I can clear the table.*
+- We can clear the table. — *У записі звучить I can clear the table.*
 
-**16 · Після налаштування інтернету на столі залишився модем. Запитайте: «Чий це модем?»**
-<!-- interaction_id: en:lesson-08:session-11:i12; family: phrase_builder -->
-Плитки: `this` `is` `modem` `Whose` → **Whose modem is this?**
+**16 · Виберіть форму після can або can’t**
+<!-- interaction_id: en:lesson-08:session-11:i12; family: context_gap_grammar -->
+I can ___ the table. → **clear** · clears · to clear
+- clears — *Після can або can’t дієслово без закінчення s.*
+- to clear — *Після can або can’t не потрібне to.*
 
-**17 · Сусід запитує про модем поряд із вашою сумкою. Скажіть: «Це мій модем».**
-<!-- interaction_id: en:lesson-08:session-11:i13; family: scripted_repeat_compare -->
-🎙 **This is my modem.**
+**17 · Поєднайте домашні справи з перекладом**
+<!-- interaction_id: en:lesson-08:session-11:i13; family: speed_match -->
+make the bed — застеляти ліжко · do the washing — прати білизну · do the ironing — прасувати білизну · clear the table — прибирати зі столу посуд
 
-**18 · Виберіть форму: «Вона не вміє писати код»**
-<!-- interaction_id: en:lesson-08:session-11:i14; family: context_gap_grammar -->
-She ___ code. → **can’t** · can · is can’t
-- can — *`Can` означає «вміє», тут потрібне `can’t` — «не вміє».*
-- is can’t — *Достатньо `she can’t`; `is` не потрібне.*
+**18 · Складіть почуте**
+<!-- interaction_id: en:lesson-08:session-11:i14; family: listen_build_dictation -->
+🔊 *He can do the washing.* Плитки: `washing` `the` `do` `can` `He` → **He can do the washing.**
 
-**19 · Послухайте й виберіть фразу**
-<!-- interaction_id: en:lesson-08:session-11:i15; family: listen_choose -->
-🔊 *This is my modem.* → **This is my modem.** · This is your modem. · This is my webcam.
-- This is your modem. — *У записі my — «мій», а не your.*
-- This is my webcam. — *У записі modem — «модем», а не webcam.*
+**19 · Складіть почуте**
+<!-- interaction_id: en:lesson-08:session-11:i15; family: listen_build_dictation -->
+🔊 *We can clear the table.* Плитки: `table` `the` `clear` `can` `We` → **We can clear the table.**
 
-**20 · З’єднайте слова зі значеннями**
-<!-- interaction_id: en:lesson-08:session-11:i16; family: speed_match -->
-code — писати код · debug — налагоджувати програми · webcam — вебкамера · modem — модем
+**20 · Скажіть: Том не вміє прасувати білизну**
+<!-- interaction_id: en:lesson-08:session-11:i16; family: scripted_repeat_compare -->
+🎙 **Tom can’t do the ironing.**
 
-**21 · Колега запитує, чи вміє Том програмувати. Том поки не навчився. Скажіть «Том не вміє писати код»**
-<!-- interaction_id: en:lesson-08:session-11:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Tom can’t code.**
+**21 · Скажіть: вона вміє застеляти ліжко**
+<!-- interaction_id: en:lesson-08:session-11:i17; family: scripted_repeat_compare -->
+🎙 **She can make the bed.**
 

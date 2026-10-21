@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "review: past event sequence",
+    "uk": "review: past event sequence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Жёлудь",
+        "uk": "Жолудь"
+      },
+      "bodyByLocale": {
+        "ru": "Acorn — жёлудь. Did you find an acorn? — Ты нашёл жёлудь? Перед acorn используем an. Выберите вопрос о находке.",
+        "uk": "Acorn — жолудь. Did you find an acorn? — Ти знайшов жолудь? Перед acorn використовуємо an. Виберіть запитання про знахідку."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-44:intro1:r1",
+              "text": "Did you find an acorn?"
+            },
+            {
+              "responseId": "en:lesson-13:session-44:intro1:r2",
+              "text": "Did you found an acorn?"
+            },
+            {
+              "responseId": "en:lesson-13:session-44:intro1:r3",
+              "text": "You found an acorn."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-44:intro1:r1",
+              "text": "Did you find an acorn?"
+            },
+            {
+              "responseId": "en:lesson-13:session-44:intro1:r2",
+              "text": "Did you found an acorn?"
+            },
+            {
+              "responseId": "en:lesson-13:session-44:intro1:r3",
+              "text": "You found an acorn."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Шишка",
+        "uk": "Шишка"
+      },
+      "bodyByLocale": {
+        "ru": "Pine cone — сосновая шишка. First I saw a pine cone — сначала я увидел сосновую шишку. Выберите шишку, не жёлудь.",
+        "uk": "Pine cone — соснова шишка. First I saw a pine cone — спершу я побачив соснову шишку. Виберіть шишку, не жолудь."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-44:intro2:r1",
+              "text": "First I saw a pine cone."
+            },
+            {
+              "responseId": "en:lesson-13:session-44:intro2:r2",
+              "text": "First I saw an acorn."
+            },
+            {
+              "responseId": "en:lesson-13:session-44:intro2:r3",
+              "text": "First I see a pine cone yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-44:intro2:r1",
+              "text": "First I saw a pine cone."
+            },
+            {
+              "responseId": "en:lesson-13:session-44:intro2:r2",
+              "text": "First I saw an acorn."
+            },
+            {
+              "responseId": "en:lesson-13:session-44:intro2:r3",
+              "text": "First I see a pine cone yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Веточка и одуванчик",
+        "uk": "Гілочка й кульбаба"
+      },
+      "bodyByLocale": {
+        "ru": "Twig — тонкая веточка; dandelion — одуванчик. Did you see a dandelion? — Ты видел одуванчик? Выберите цветок, не веточку.",
+        "uk": "Twig — тонка гілочка; dandelion — кульбаба. Did you see a dandelion? — Ти бачив кульбабу? Виберіть квітку, не гілочку."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-44:intro3:r1",
+              "text": "Did you see a dandelion?"
+            },
+            {
+              "responseId": "en:lesson-13:session-44:intro3:r2",
+              "text": "Did you see a twig?"
+            },
+            {
+              "responseId": "en:lesson-13:session-44:intro3:r3",
+              "text": "Did you saw a dandelion?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-44:intro3:r1",
+              "text": "Did you see a dandelion?"
+            },
+            {
+              "responseId": "en:lesson-13:session-44:intro3:r2",
+              "text": "Did you see a twig?"
+            },
+            {
+              "responseId": "en:lesson-13:session-44:intro3:r3",
+              "text": "Did you saw a dandelion?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6482493179819dfd0118adf7ec513c55d5e04286b169b28879d8ca0724744788"
+}

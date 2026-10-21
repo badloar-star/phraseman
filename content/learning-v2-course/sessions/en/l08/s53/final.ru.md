@@ -1,149 +1,151 @@
-# Английский · Урок 8 · Занятие 53 — От идеи к оформлению
+# Английский · Урок 8 · Занятие 53 — Утренние дела
 
-**Ситуация.** Придумать приглашение, разместить материалы на стенде и выбрать шрифт.
+**Ситуация.** Обсудите с ребёнком, что он умеет делать утром сам.
 
-**Что вы освоите:** предложение помощи и просьба с can; чей предмет — whose
-**Новые слова:** design, layout, typeface, prototype
-
----
+**Что вы освоите:** повторение can + глагол без to
+**Новые слова:** get dressed, brush your teeth, comb your hair, wash your face
 
 ## Интро 1
 
-### Приглашение на открытый урок танцев
+### Одеться
 
-Танцевальная студия приглашает соседей на открытый урок, но у неё ещё нет красивого приглашения. Вы предлагаете придумать его оформление. Design — «разрабатывать, создавать оформление». I can design it — «Я могу разработать его оформление». It относится к приглашению. После can нужно design без to и s.
+Get dressed — одеться. I can get dressed — я умею одеваться. После can остаётся get. Выберите фразу об умении.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I can design it.**
-- ❌ I can to design it. — *После can не нужно to.*
-- ❌ I can designs it. — *После can действие без s/es.*
+- ✅ **I can get dressed.**
+- ❌ I can’t get dressed. — *Эта фраза не передаёт нужный смысл. Здесь: I can get dressed.*
+- ❌ I can gets dressed. — *После can нужен глагол без to и окончания s.*
 
 ---
 
 ## Интро 2
 
-### Фотографии закрывают подписи
+### Зубы и волосы
 
-На выставочном стенде фотографии стоят слишком близко к подписям. Вы с коллегой можете иначе расположить элементы. Layout — «расположение элементов, компоновка». We can change the layout — «Мы можем изменить расположение элементов». После can — change, без окончания s.
+Brush your teeth — чистить зубы; comb your hair — расчёсывать волосы. You can brush your teeth — ты умеешь чистить зубы. Выберите фразу о зубах.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **We can change the layout.**
-- ❌ We can to change the layout. — *После can не нужно to.*
-- ❌ We can changes the layout. — *После can действие без s/es.*
+- ✅ **You can brush your teeth.**
+- ❌ You can comb your hair. — *Эта фраза не передаёт нужный смысл. Здесь: You can brush your teeth.*
+- ❌ You can brushes your teeth. — *После can нужен глагол без to и окончания s.*
 
 ---
 
 ## Интро 3
 
-### Буквы на меню
+### Умыться
 
-Подруга оформляет меню для кофейни и умеет выбирать удобные для чтения буквы. Typeface — «шрифт», рисунок букв. She can choose a typeface — «Она может выбрать шрифт». С she после can тоже используется choose, без s.
+Wash your face — умыться, вымыть лицо. You can wash your face — ты умеешь умываться. Your показывает, что речь о твоём лице. Выберите эту фразу.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **She can choose a typeface.**
-- ❌ She can to choose a typeface. — *После can не нужно to.*
-- ❌ She can chooses a typeface. — *После can действие без s/es.*
+- ✅ **You can wash your face.**
+- ❌ You can’t wash your face. — *Эта фраза не передаёт нужный смысл. Здесь: You can wash your face.*
+- ❌ You can to wash your face. — *После can нужен глагол без to и окончания s.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — design**
-<!-- interaction_id: en:lesson-08:session-53:word:design; family: word_card -->
-> **design** — разрабатывать, создавать оформление. I can design it. — «Я могу разработать его оформление». Здесь design — действие.
+**1 · Карточка слова — get dressed**
+<!-- interaction_id: en:lesson-08:session-53:word:get-dressed; family: word_card -->
+> **get dressed** — одеваться.
 
-**2 · Предложите разработать оформление приглашения**
+**2 · Скажите: Я умею одеваться**
 <!-- interaction_id: en:lesson-08:session-53:i01; family: phrase_builder -->
-Плитки: `it` `design` `can` `I` → **I can design it.**
+Плитки: `dressed` `get` `can` `I` → **I can get dressed.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-08:session-53:i02; family: listen_choose -->
-🔊 *design* → **design** · manage · evaluate
-- manage — *В записи звучит design*
-- evaluate — *В записи звучит design*
+🔊 *I can get dressed.* → **I can get dressed.** · I can’t get dressed. · I cannot get dressed.
+- I can’t get dressed. — *В записи звучит I can get dressed.*
+- I cannot get dressed. — *В записи звучит I can get dressed.*
 
-**4 · Выберите форму действия**
+**4 · Выберите форму после can**
 <!-- interaction_id: en:lesson-08:session-53:i03; family: context_gap_grammar -->
-I can ___ it. → **design** · to design · designs
-- to design — *После can не нужно to.*
-- designs — *После can не нужно окончание s.*
+I can ___ dressed. → **get** · gets · to get
+- gets — *После can не добавляем s.*
+- to get — *После can не нужно to.*
 
-**5 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-08:session-53:i04; family: speed_match -->
-design — разрабатывать оформление · sketch — набросок · artist — художник · gallery — галерея
+**5 · Карточка слова — brush your teeth**
+<!-- interaction_id: en:lesson-08:session-53:word:brush-your-teeth; family: word_card -->
+> **brush your teeth** — чистить зубы.
 
-**6 · Послушайте и соберите просьбу**
-<!-- interaction_id: en:lesson-08:session-53:i05; family: listen_build_dictation -->
-🔊 *Can you design it?* Плитки: `it` `design` `you` `Can` → **Can you design it?**
+**6 · Скажите: Ты умеешь чистить зубы**
+<!-- interaction_id: en:lesson-08:session-53:i04; family: phrase_builder -->
+Плитки: `teeth` `your` `brush` `can` `You` → **You can brush your teeth.**
 
-**7 · Карточка слова — layout**
-<!-- interaction_id: en:lesson-08:session-53:word:layout; family: word_card -->
-> **layout** — расположение элементов, компоновка. We can change the layout. — «Мы можем изменить расположение элементов».
+**7 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-08:session-53:i05; family: listen_choose -->
+🔊 *You can brush your teeth.* → **You can brush your teeth.** · You can’t brush your teeth. · You cannot brush your teeth.
+- You can’t brush your teeth. — *В записи звучит You can brush your teeth.*
+- You cannot brush your teeth. — *В записи звучит You can brush your teeth.*
 
-**8 · Предложите изменить расположение элементов**
-<!-- interaction_id: en:lesson-08:session-53:i06; family: phrase_builder -->
-Плитки: `layout` `the` `change` `can` `We` → **We can change the layout.**
+**8 · Выберите форму после can**
+<!-- interaction_id: en:lesson-08:session-53:i06; family: context_gap_grammar -->
+You can ___ your teeth. → **brush** · brushes · to brush
+- brushes — *После can не добавляем s.*
+- to brush — *После can не нужно to.*
 
-**9 · Карточка слова — typeface**
-<!-- interaction_id: en:lesson-08:session-53:word:typeface; family: word_card -->
-> **typeface** — шрифт, рисунок букв. She can choose a typeface. — «Она может выбрать шрифт».
+**9 · Карточка слова — comb your hair**
+<!-- interaction_id: en:lesson-08:session-53:word:comb-your-hair; family: word_card -->
+> **comb your hair** — расчёсывать волосы.
 
-**10 · Скажите «Она может выбрать шрифт»**
-<!-- interaction_id: en:lesson-08:session-53:i07; family: scripted_repeat_compare -->
-🎙 **She can choose a typeface.**
+**10 · Скажите: Ты умеешь расчёсывать волосы**
+<!-- interaction_id: en:lesson-08:session-53:i07; family: phrase_builder -->
+Плитки: `hair` `your` `comb` `can` `You` → **You can comb your hair.**
 
-**11 · Выберите форму действия**
-<!-- interaction_id: en:lesson-08:session-53:i08; family: context_gap_grammar -->
-She can ___ a typeface. → **choose** · to choose · chooses
-- to choose — *После can не нужно to.*
-- chooses — *После can не нужно окончание s.*
+**11 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-08:session-53:i08; family: listen_choose -->
+🔊 *You can comb your hair.* → **You can comb your hair.** · You can’t comb your hair. · You cannot comb your hair.
+- You can’t comb your hair. — *В записи звучит You can comb your hair.*
+- You cannot comb your hair. — *В записи звучит You can comb your hair.*
 
-**12 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-08:session-53:i09; family: listen_choose -->
-🔊 *We can change the layout.* → **We can change the layout.** · I can change the layout. · They can change the layout.
-- I can change the layout. — *В записи звучит We can change the layout.*
-- They can change the layout. — *В записи звучит We can change the layout.*
+**12 · Выберите форму после can**
+<!-- interaction_id: en:lesson-08:session-53:i09; family: context_gap_grammar -->
+You can ___ your hair. → **comb** · combs · to comb
+- combs — *После can не добавляем s.*
+- to comb — *После can не нужно to.*
 
-**13 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-08:session-53:i10; family: speed_match -->
-design — разрабатывать оформление · layout — расположение элементов · typeface — шрифт · sketch — набросок
+**13 · Карточка слова — wash your face**
+<!-- interaction_id: en:lesson-08:session-53:word:wash-your-face; family: word_card -->
+> **wash your face** — умываться.
 
-**14 · Послушайте и соберите фразу**
-<!-- interaction_id: en:lesson-08:session-53:i11; family: listen_build_dictation -->
-🔊 *She can choose a typeface.* Плитки: `typeface` `a` `choose` `can` `She` → **She can choose a typeface.**
+**14 · Скажите: Ты умеешь умываться**
+<!-- interaction_id: en:lesson-08:session-53:i10; family: phrase_builder -->
+Плитки: `face` `your` `wash` `can` `You` → **You can wash your face.**
 
-**15 · Карточка слова — prototype**
-<!-- interaction_id: en:lesson-08:session-53:word:prototype; family: word_card -->
-> **prototype** — прототип, пробный образец. We can test the prototype. — «Мы можем испытать прототип». Его делают, чтобы проверить идею до изготовления готовой вещи.
+**15 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-08:session-53:i11; family: listen_choose -->
+🔊 *You can wash your face.* → **You can wash your face.** · You can’t wash your face. · You cannot wash your face.
+- You can’t wash your face. — *В записи звучит You can wash your face.*
+- You cannot wash your face. — *В записи звучит You can wash your face.*
 
-**16 · Вы сделали пробный держатель для телефона. Предложите испытать прототип**
-<!-- interaction_id: en:lesson-08:session-53:i12; family: phrase_builder -->
-Плитки: `prototype` `the` `test` `can` `We` → **We can test the prototype.**
+**16 · Выберите форму после can**
+<!-- interaction_id: en:lesson-08:session-53:i12; family: context_gap_grammar -->
+You can ___ your face. → **wash** · washes · to wash
+- washes — *После can не добавляем s.*
+- to wash — *После can не нужно to.*
 
-**17 · На общем столе лежит пробный образец. Спросите «Чей это прототип?»**
-<!-- interaction_id: en:lesson-08:session-53:i13; family: scripted_repeat_compare -->
-🎙 **Whose prototype is this?**
+**17 · Соедините выражения с переводом**
+<!-- interaction_id: en:lesson-08:session-53:i13; family: speed_match -->
+get dressed — одеваться · brush your teeth — чистить зубы · comb your hair — расчёсывать волосы · wash your face — умываться
 
-**18 · Выберите форму действия**
-<!-- interaction_id: en:lesson-08:session-53:i14; family: context_gap_grammar -->
-We can ___ the prototype. → **test** · to test · tests
-- to test — *После can не нужно to.*
-- tests — *После can не нужно окончание s.*
+**18 · Соберите услышанное**
+<!-- interaction_id: en:lesson-08:session-53:i14; family: listen_build_dictation -->
+🔊 *She can get dressed.* Плитки: `dressed` `get` `can` `She` → **She can get dressed.**
 
-**19 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-08:session-53:i15; family: listen_choose -->
-🔊 *Whose prototype is this?* → **Whose prototype is this?** · Whose prototype is that? · Whose sketch is this?
-- Whose prototype is that? — *В записи звучит Whose prototype is this?*
-- Whose sketch is this? — *В записи звучит Whose prototype is this?*
+**19 · Соберите услышанное**
+<!-- interaction_id: en:lesson-08:session-53:i15; family: listen_build_dictation -->
+🔊 *I can wash my face.* Плитки: `face` `my` `wash` `can` `I` → **I can wash my face.**
 
-**20 · Соедините слова со значениями**
-<!-- interaction_id: en:lesson-08:session-53:i16; family: speed_match -->
-design — разрабатывать оформление · layout — расположение элементов · typeface — шрифт · prototype — пробный образец
+**20 · Скажите: Том умеет одеваться**
+<!-- interaction_id: en:lesson-08:session-53:i16; family: scripted_repeat_compare -->
+🎙 **Tom can get dressed.**
 
-**21 · Музею нужен новый билет с красивым оформлением. Попросите знакомого разработать его: «Ты можешь разработать его оформление?»**
-<!-- interaction_id: en:lesson-08:session-53:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **Can you design it?**
+**21 · Скажите: я умею чистить зубы**
+<!-- interaction_id: en:lesson-08:session-53:i17; family: scripted_repeat_compare -->
+🎙 **I can brush my teeth.**
 

@@ -135,9 +135,9 @@ I can ___ the handout. → **print** · to print · prints
 
 **19 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-08:session-56:i15; family: listen_choose -->
-🔊 *Whose handout is this?* → **Whose handout is this?** · Whose handout is that? · Whose prototype is this?
+🔊 *Whose handout is this?* → **Whose handout is this?** · Whose handout is that? · Whose book is this?
 - Whose handout is that? — *В записи звучит Whose handout is this?*
-- Whose prototype is this? — *В записи звучит Whose handout is this?*
+- Whose book is this? — *В записи звучит Whose handout is this?*
 
 **20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-08:session-56:i16; family: speed_match -->

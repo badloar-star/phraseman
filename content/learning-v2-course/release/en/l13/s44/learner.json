@@ -1,0 +1,1118 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-44",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-44:word:acorn",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — acorn",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-44:word:acorn:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — acorn",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-44:word:acorn:audio",
+          "transcript": "acorn"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-44:word:acorn:r1",
+            "targetText": "acorn",
+            "meaningByLocale": {
+              "ru": "жёлудь.",
+              "uk": "жолудь."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "acorn",
+          "definitionByLocale": {
+            "ru": "жёлудь.",
+            "uk": "жолудь."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-44:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты нашёл жёлудь?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты нашёл жёлудь?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you find an acorn?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты нашёл жёлудь?",
+          "uk": "Скажіть: Ти знайшов жолудь?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "find",
+          "an",
+          "acorn"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-44:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-44:i02:r1",
+          "text": "Did she find an acorn?"
+        },
+        {
+          "responseId": "en:lesson-13:session-44:i02:r2",
+          "text": "Did you find an acorn?"
+        },
+        {
+          "responseId": "en:lesson-13:session-44:i02:r3",
+          "text": "Did they find an acorn?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-44:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-44:i02:audio",
+          "transcript": "Did she find an acorn?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-44:i02:r1",
+            "targetText": "Did she find an acorn?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i02:r2",
+            "targetText": "Did you find an acorn?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i02:r3",
+            "targetText": "Did they find an acorn?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-44:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she find an acorn?",
+              "uk": "У записі звучить Did she find an acorn?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she find an acorn?",
+              "uk": "У записі звучить Did she find an acorn?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-44:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-44:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-44:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-44:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you find an acorn?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-44:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-44:i03:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i03:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-44:word:pine-cone",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pine cone",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-44:word:pine-cone:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pine cone",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-44:word:pine-cone:audio",
+          "transcript": "pine cone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-44:word:pine-cone:r1",
+            "targetText": "pine cone",
+            "meaningByLocale": {
+              "ru": "сосновая шишка.",
+              "uk": "соснова шишка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pine cone",
+          "definitionByLocale": {
+            "ru": "сосновая шишка.",
+            "uk": "соснова шишка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-44:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты видел сосновую шишку?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты видел сосновую шишку?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you see a pine cone?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты видел сосновую шишку?",
+          "uk": "Скажіть: Ти бачив соснову шишку?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "see",
+          "a",
+          "pine",
+          "cone"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-44:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-44:i05:r1",
+          "text": "Did she see a pine cone?"
+        },
+        {
+          "responseId": "en:lesson-13:session-44:i05:r2",
+          "text": "Did you see a pine cone?"
+        },
+        {
+          "responseId": "en:lesson-13:session-44:i05:r3",
+          "text": "Did they see a pine cone?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-44:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-44:i05:audio",
+          "transcript": "Did she see a pine cone?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-44:i05:r1",
+            "targetText": "Did she see a pine cone?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i05:r2",
+            "targetText": "Did you see a pine cone?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i05:r3",
+            "targetText": "Did they see a pine cone?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-44:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she see a pine cone?",
+              "uk": "У записі звучить Did she see a pine cone?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she see a pine cone?",
+              "uk": "У записі звучить Did she see a pine cone?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-44:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-44:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-44:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-44:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you see a pine cone?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-44:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-44:i06:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i06:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-44:word:twig",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — twig",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-44:word:twig:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — twig",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-44:word:twig:audio",
+          "transcript": "twig"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-44:word:twig:r1",
+            "targetText": "twig",
+            "meaningByLocale": {
+              "ru": "тонкая веточка.",
+              "uk": "тонка гілочка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "twig",
+          "definitionByLocale": {
+            "ru": "тонкая веточка.",
+            "uk": "тонка гілочка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-44:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты нашёл тонкую веточку?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты нашёл тонкую веточку?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you find a twig?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты нашёл тонкую веточку?",
+          "uk": "Скажіть: Ти знайшов тонку гілочку?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "find",
+          "a",
+          "twig"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-44:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-44:i08:r1",
+          "text": "Did she find a twig?"
+        },
+        {
+          "responseId": "en:lesson-13:session-44:i08:r2",
+          "text": "Did you find a twig?"
+        },
+        {
+          "responseId": "en:lesson-13:session-44:i08:r3",
+          "text": "Did they find a twig?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-44:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-44:i08:audio",
+          "transcript": "Did she find a twig?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-44:i08:r1",
+            "targetText": "Did she find a twig?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i08:r2",
+            "targetText": "Did you find a twig?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i08:r3",
+            "targetText": "Did they find a twig?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-44:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she find a twig?",
+              "uk": "У записі звучить Did she find a twig?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she find a twig?",
+              "uk": "У записі звучить Did she find a twig?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-44:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-44:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-44:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-44:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you find a twig?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-44:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-44:i09:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i09:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-44:word:dandelion",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dandelion",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-44:word:dandelion:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dandelion",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-44:word:dandelion:audio",
+          "transcript": "dandelion"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-44:word:dandelion:r1",
+            "targetText": "dandelion",
+            "meaningByLocale": {
+              "ru": "одуванчик.",
+              "uk": "кульбаба."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dandelion",
+          "definitionByLocale": {
+            "ru": "одуванчик.",
+            "uk": "кульбаба."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-44:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты видел одуванчик?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты видел одуванчик?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you see a dandelion?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты видел одуванчик?",
+          "uk": "Скажіть: Ти бачив кульбабу?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "see",
+          "a",
+          "dandelion"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-44:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-44:i11:r1",
+          "text": "Did she see a dandelion?"
+        },
+        {
+          "responseId": "en:lesson-13:session-44:i11:r2",
+          "text": "Did you see a dandelion?"
+        },
+        {
+          "responseId": "en:lesson-13:session-44:i11:r3",
+          "text": "Did they see a dandelion?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-44:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-44:i11:audio",
+          "transcript": "Did she see a dandelion?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-44:i11:r1",
+            "targetText": "Did she see a dandelion?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i11:r2",
+            "targetText": "Did you see a dandelion?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i11:r3",
+            "targetText": "Did they see a dandelion?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-44:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she see a dandelion?",
+              "uk": "У записі звучить Did she see a dandelion?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she see a dandelion?",
+              "uk": "У записі звучить Did she see a dandelion?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-44:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-44:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-44:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-44:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you see a dandelion?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-44:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-44:i12:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-44:i12:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-44:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-44:i13:p1",
+            "target": "acorn",
+            "meaningByLocale": {
+              "ru": "жёлудь",
+              "uk": "жолудь"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-44:i13:p2",
+            "target": "pine cone",
+            "meaningByLocale": {
+              "ru": "сосновая шишка",
+              "uk": "соснова шишка"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-44:i13:p3",
+            "target": "twig",
+            "meaningByLocale": {
+              "ru": "тонкая веточка",
+              "uk": "тонка гілочка"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-44:i13:p4",
+            "target": "dandelion",
+            "meaningByLocale": {
+              "ru": "одуванчик",
+              "uk": "кульбаба"
+            }
+          }
+        ],
+        "leftColumn": [
+          "acorn",
+          "pine cone",
+          "twig",
+          "dandelion"
+        ],
+        "rightColumn": [
+          "жёлудь",
+          "сосновая шишка",
+          "тонкая веточка",
+          "одуванчик"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-44:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-44:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-44:i14:audio",
+          "transcript": "First I saw a pine cone."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "First I saw a pine cone.",
+        "orderedTokens": [
+          "First",
+          "I",
+          "saw",
+          "a",
+          "pine",
+          "cone"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-44:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-44:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-44:i15:audio",
+          "transcript": "Then we walked to the lake."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Then we walked to the lake.",
+        "orderedTokens": [
+          "Then",
+          "we",
+          "walked",
+          "to",
+          "the",
+          "lake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-44:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: затем она нашла жёлудь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-44:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите: затем она нашла жёлудь",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-44:i16:audio",
+          "transcript": "Then she found an acorn."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Then she found an acorn.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-44:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите друга: ты видел одуванчик вчера?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-44:i17:audio"
+      ],
+      "accessibilityLabel": "Спросите друга: ты видел одуванчик вчера?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-44:i17:audio",
+          "transcript": "Did you see a dandelion yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you see a dandelion yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7fe60c039934e2732c31d00f9177fc90628da01440da91a4af216e12eb0d377d"
+}

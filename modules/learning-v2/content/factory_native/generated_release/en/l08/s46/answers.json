@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-08:session-46:word:diagnose",
-    "correctText": "diagnose",
+    "interactionId": "en:lesson-08:session-46:word:ask-for-help",
+    "correctText": "ask for help",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-46:i01",
-    "correctText": "I can diagnose it.",
+    "correctText": "You can ask for help.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-46:i02",
-    "correctText": "diagnose",
+    "correctText": "You can ask for help.",
     "correctResponseId": "en:lesson-08:session-46:i02:r1"
   },
   {
     "interactionId": "en:lesson-08:session-46:i03",
-    "correctText": "diagnose",
+    "correctText": "ask",
     "correctResponseId": "en:lesson-08:session-46:i03:r1"
   },
   {
+    "interactionId": "en:lesson-08:session-46:word:take-a-break",
+    "correctText": "take a break",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-46:i04",
-    "correctText": "en:lesson-08:session-46:i04:p1=diagnose\nen:lesson-08:session-46:i04:p2=pantry\nen:lesson-08:session-46:i04:p3=mug\nen:lesson-08:session-46:i04:p4=organize",
+    "correctText": "We can take a break.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-46:i05",
-    "correctText": "I can diagnose it.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-08:session-46:word:reboot",
-    "correctText": "reboot",
-    "correctResponseId": null
+    "correctText": "We can take a break.",
+    "correctResponseId": "en:lesson-08:session-46:i05:r1"
   },
   {
     "interactionId": "en:lesson-08:session-46:i06",
-    "correctText": "She can reboot it.",
-    "correctResponseId": null
+    "correctText": "take",
+    "correctResponseId": "en:lesson-08:session-46:i06:r1"
   },
   {
-    "interactionId": "en:lesson-08:session-46:word:fault",
-    "correctText": "fault",
+    "interactionId": "en:lesson-08:session-46:word:make-a-mistake",
+    "correctText": "make a mistake",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-46:i07",
-    "correctText": "I can find the fault.",
+    "correctText": "Anyone can make a mistake.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-46:i08",
-    "correctText": "reboot",
+    "correctText": "Anyone can make a mistake.",
     "correctResponseId": "en:lesson-08:session-46:i08:r1"
   },
   {
     "interactionId": "en:lesson-08:session-46:i09",
-    "correctText": "I can diagnose it.",
+    "correctText": "make",
     "correctResponseId": "en:lesson-08:session-46:i09:r1"
   },
   {
+    "interactionId": "en:lesson-08:session-46:word:change-your-mind",
+    "correctText": "change your mind",
+    "correctResponseId": null
+  },
+  {
     "interactionId": "en:lesson-08:session-46:i10",
-    "correctText": "en:lesson-08:session-46:i10:p1=diagnose\nen:lesson-08:session-46:i10:p2=reboot\nen:lesson-08:session-46:i10:p3=fault\nen:lesson-08:session-46:i10:p4=organize",
+    "correctText": "You can change your mind.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-46:i11",
-    "correctText": "She can reboot it.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-08:session-46:word:workaround",
-    "correctText": "workaround",
-    "correctResponseId": null
+    "correctText": "You can change your mind.",
+    "correctResponseId": "en:lesson-08:session-46:i11:r1"
   },
   {
     "interactionId": "en:lesson-08:session-46:i12",
-    "correctText": "I can find a workaround.",
-    "correctResponseId": null
+    "correctText": "change",
+    "correctResponseId": "en:lesson-08:session-46:i12:r1"
   },
   {
     "interactionId": "en:lesson-08:session-46:i13",
-    "correctText": "I can organize it.",
+    "correctText": "en:lesson-08:session-46:i13:p1=ask for help\nen:lesson-08:session-46:i13:p2=take a break\nen:lesson-08:session-46:i13:p3=make a mistake\nen:lesson-08:session-46:i13:p4=change your mind",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-46:i14",
-    "correctText": "find",
-    "correctResponseId": "en:lesson-08:session-46:i14:r1"
+    "correctText": "She can ask for help.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-46:i15",
-    "correctText": "I can swim.",
-    "correctResponseId": "en:lesson-08:session-46:i15:r1"
+    "correctText": "They can take a break.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-46:i16",
-    "correctText": "en:lesson-08:session-46:i16:p1=diagnose\nen:lesson-08:session-46:i16:p2=reboot\nen:lesson-08:session-46:i16:p3=fault\nen:lesson-08:session-46:i16:p4=workaround",
+    "correctText": "Tom can ask for help.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-08:session-46:i17",
-    "correctText": "I can diagnose it.",
+    "correctText": "I can make a mistake too.",
     "correctResponseId": null
   }
 ]

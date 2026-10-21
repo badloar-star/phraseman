@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-08:session-15",
   "learningOutcomeByLocale": {
-    "ru": "повторить can’t, can, whose и often",
-    "uk": "повторити can’t, can, whose та often"
+    "ru": "can, whose",
+    "uk": "can, whose"
   },
   "pages": [
     {
@@ -11,52 +11,52 @@
       "pageId": "en:lesson-08:session-15:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Покупки без калькулятора",
-        "uk": "Покупки без калькулятора"
+        "ru": "Высушить бельё",
+        "uk": "Висушити білизну"
       },
       "bodyByLocale": {
-        "ru": "Вы хотите посчитать стоимость покупок, но путаетесь в числах. `Calculate` — «считать, вычислять». `I can’t calculate` — «Я не могу посчитать». Здесь вы говорите о том, что сейчас не получается. После `can’t` нужно `calculate`, без `to`. Вы просите друга помочь сложить суммы.",
-        "uk": "Ви хочете порахувати вартість покупок, але плутаєтеся в числах. `Calculate` — «рахувати, обчислювати». `I can’t calculate` — «Я не можу порахувати». Тут ви говорите про те, що зараз не виходить. Після `can’t` потрібне `calculate`, без `to`. Ви просите друга допомогти скласти суми."
+        "ru": "Clothes airer — сушилка-стойка для белья, без мотора; tumble dryer — сушильная машина. I can use the clothes airer — я могу воспользоваться сушилкой-стойкой. Выберите стойку.",
+        "uk": "Clothes airer — сушарка-стійка для білизни, без мотора; tumble dryer — сушильна машина. I can use the clothes airer — я можу скористатися сушаркою-стійкою. Виберіть стійку."
       },
       "question": {
         "interactionId": "en:lesson-08:session-15:intro1:q",
         "promptByLocale": {
-          "ru": "Скажите другу, что не можете посчитать.",
-          "uk": "Скажіть другові, що не можете порахувати."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-15:intro1:r1",
-              "text": "I can’t calculate."
+              "text": "I can use the clothes airer."
             },
             {
               "responseId": "en:lesson-08:session-15:intro1:r2",
-              "text": "I can calculate."
+              "text": "I can use the tumble dryer."
             },
             {
               "responseId": "en:lesson-08:session-15:intro1:r3",
-              "text": "I can’t to calculate."
+              "text": "I can uses the clothes airer."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-15:intro1:r1",
-              "text": "I can’t calculate."
+              "text": "I can use the clothes airer."
             },
             {
               "responseId": "en:lesson-08:session-15:intro1:r2",
-              "text": "I can calculate."
+              "text": "I can use the tumble dryer."
             },
             {
               "responseId": "en:lesson-08:session-15:intro1:r3",
-              "text": "I can’t to calculate."
+              "text": "I can uses the clothes airer."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Скажите другу, что не можете посчитать.",
-          "uk": "Скажіть другові, що не можете порахувати."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     },
@@ -65,52 +65,52 @@
       "pageId": "en:lesson-08:session-15:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сколько нужно краски",
-        "uk": "Скільки потрібно фарби"
+        "ru": "Чей мешок?",
+        "uk": "Чий мішок?"
       },
       "bodyByLocale": {
-        "ru": "Вы собираетесь покрасить стену, но пока не знаете, сколько краски купить. Подруга умеет прикидывать нужное количество без точного расчёта. Estimate — «оценивать приблизительно». `She can estimate` — «Она умеет оценивать приблизительно». После `can` нужно `estimate`, без окончания `s`.",
-        "uk": "Ви збираєтеся пофарбувати стіну, але поки не знаєте, скільки фарби купити. Подруга вміє прикидати потрібну кількість без точного розрахунку. Estimate — «оцінювати приблизно». `She can estimate` — «Вона вміє оцінювати приблизно». Після `can` потрібне `estimate`, без закінчення `s`."
+        "ru": "Laundry bag — мешок для белья. Whose laundry bag is this? — Чей это мешок для белья? Повторяем whose: спрашиваем о владельце.",
+        "uk": "Laundry bag — мішок для білизни. Whose laundry bag is this? — Чий це мішок для білизни? Повторюємо whose: запитуємо про власника."
       },
       "question": {
         "interactionId": "en:lesson-08:session-15:intro2:q",
         "promptByLocale": {
-          "ru": "Расскажите, что подруга умеет оценивать приблизительно.",
-          "uk": "Розкажіть, що подруга вміє оцінювати приблизно."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-15:intro2:r1",
-              "text": "She can estimate."
+              "text": "Whose laundry bag is this?"
             },
             {
               "responseId": "en:lesson-08:session-15:intro2:r2",
-              "text": "She can estimates."
+              "text": "Who laundry bag is this?"
             },
             {
               "responseId": "en:lesson-08:session-15:intro2:r3",
-              "text": "She can’t estimate."
+              "text": "Whose laundry bag are this?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-15:intro2:r1",
-              "text": "She can estimate."
+              "text": "Whose laundry bag is this?"
             },
             {
               "responseId": "en:lesson-08:session-15:intro2:r2",
-              "text": "She can estimates."
+              "text": "Who laundry bag is this?"
             },
             {
               "responseId": "en:lesson-08:session-15:intro2:r3",
-              "text": "She can’t estimate."
+              "text": "Whose laundry bag are this?"
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Расскажите, что подруга умеет оценивать приблизительно.",
-          "uk": "Розкажіть, що подруга вміє оцінювати приблизно."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     },
@@ -119,52 +119,52 @@
       "pageId": "en:lesson-08:session-15:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Счёты на мастер-классе",
-        "uk": "Рахівниця на майстер-класі"
+        "ru": "Помыть посуду",
+        "uk": "Помити посуд"
       },
       "bodyByLocale": {
-        "ru": "На мастер-классе по устному счёту кто-то оставил счёты с цветными косточками. Abacus — «счёты», приспособление для счёта. Вы хотите вернуть их владельцу. `Whose abacus is this?` — «Чьи это счёты?» Сначала `whose abacus`, затем `is this`. Хотя по-русски «счёты» — множественное число, английское abacus обозначает один предмет.",
-        "uk": "На майстер-класі з усної лічби хтось залишив рахівницю з кольоровими кісточками. Abacus — «рахівниця», пристрій для лічби. Ви хочете повернути її власникові. `Whose abacus is this?` — «Чия це рахівниця?» Спочатку `whose abacus`, потім `is this`."
+        "ru": "Dishwasher tablet — таблетка для посудомоечной машины. I can find a dishwasher tablet — я могу найти таблетку для посудомоечной машины. Выберите эту фразу.",
+        "uk": "Dishwasher tablet — таблетка для посудомийної машини. I can find a dishwasher tablet — я можу знайти таблетку для посудомийної машини. Виберіть цю фразу."
       },
       "question": {
         "interactionId": "en:lesson-08:session-15:intro3:q",
         "promptByLocale": {
-          "ru": "Спросите, чьи это счёты.",
-          "uk": "Запитайте, чия це рахівниця."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         },
         "choicesByLocale": {
           "ru": [
             {
               "responseId": "en:lesson-08:session-15:intro3:r1",
-              "text": "Whose abacus is this?"
+              "text": "I can find a dishwasher tablet."
             },
             {
               "responseId": "en:lesson-08:session-15:intro3:r2",
-              "text": "Who abacus is this?"
+              "text": "I can’t find a dishwasher tablet."
             },
             {
               "responseId": "en:lesson-08:session-15:intro3:r3",
-              "text": "Whose abacus are this?"
+              "text": "I can to find a dishwasher tablet."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-08:session-15:intro3:r1",
-              "text": "Whose abacus is this?"
+              "text": "I can find a dishwasher tablet."
             },
             {
               "responseId": "en:lesson-08:session-15:intro3:r2",
-              "text": "Who abacus is this?"
+              "text": "I can’t find a dishwasher tablet."
             },
             {
               "responseId": "en:lesson-08:session-15:intro3:r3",
-              "text": "Whose abacus are this?"
+              "text": "I can to find a dishwasher tablet."
             }
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Спросите, чьи это счёты.",
-          "uk": "Запитайте, чия це рахівниця."
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
         }
       }
     }
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7765fc6c923c0927fd7af69e37e56037409ac633bcac91d54a16131f739b1f70"
+  "introFingerprint": "62933f5f04f3a8a6be77991a7a20b755496230d67cc2982d9f431f55b0b47c8a"
 }

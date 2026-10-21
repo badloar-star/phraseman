@@ -2823,9 +2823,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 8, sessionOrdinal: 11,
-    sourceFingerprint: "dd17daea7f1efe3c8f6d105c8c51f8ef6b00d14aa01274ea6f0ba0f296d79574",
+    sourceFingerprint: "a543bfd96a720777a96ce5622a573d1d202ec0fac426619ab0d5224f7c34e197",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"закрепить can’t для отсутствия умения и повторить вопрос «чей?»","uk":"закріпити can’t для відсутності вміння й повторити запитання «чий?»"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"can / can’t + глагол без to","uk":"can / can’t + дієслово без to"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 8","uk":"Англійська · Урок 8"}),
   }),
   Object.freeze({
@@ -2851,9 +2851,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 8, sessionOrdinal: 15,
-    sourceFingerprint: "f899be8e7b2d4bf0001df73fbef8623497fa48a364ad454ad15153075ecb599f",
+    sourceFingerprint: "68ee10707029854e73b09d1fc777fc93955d094818a3997d3fa8cd22c4aef27c",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"повторить can’t, can, whose и often","uk":"повторити can’t, can, whose та often"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"can, whose","uk":"can, whose"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 8","uk":"Англійська · Урок 8"}),
   }),
   Object.freeze({
@@ -2879,7 +2879,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 8, sessionOrdinal: 19,
-    sourceFingerprint: "babc7b0292d1c727e569b13557eb9bfd69cde5e763d0f9e0c3873003ca7d5679",
+    sourceFingerprint: "0f8f9cecf9395f0b0505ff55b63fa7b45391cfdffe271eab2a0dbe6a645d6ba4",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"закрепить просьбы Can you…? со словом explain","uk":"закріпити прохання Can you…? зі словом explain"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 8","uk":"Англійська · Урок 8"}),
@@ -2921,9 +2921,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 8, sessionOrdinal: 25,
-    sourceFingerprint: "3fcb2bc669ae83c605d284c6f620b8833b163c9d6299dab0397f94f08da66a3a",
+    sourceFingerprint: "c2e47c05e20320c5e80a99f58b924a0eba517360ebbc2df5d3b0a446d3055edd",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"дать короткое указание: начать сразу с действия","uk":"дати коротку вказівку: почати одразу з дії"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"короткая просьба: глагол в начале","uk":"коротке прохання: дієслово на початку"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 8","uk":"Англійська · Урок 8"}),
   }),
   Object.freeze({
@@ -3068,9 +3068,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 8, sessionOrdinal: 46,
-    sourceFingerprint: "1f7979b8c873225ba1caf6a0ea669a70a66ea3c85d7cab724cdafc3ebbe0f3d6",
+    sourceFingerprint: "cc4a37bfd7213ac3e145a0ec656ad2418a19a1fea39ddb797d4d8388433e8051",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"повторить can для умения и сохранить действие без to и окончаний","uk":"повторити can для вміння та залишити дію без to і закінчень"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"повторение can + глагол без to","uk":"повторення can + дієслово без to"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 8","uk":"Англійська · Урок 8"}),
   }),
   Object.freeze({
@@ -3117,9 +3117,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 8, sessionOrdinal: 53,
-    sourceFingerprint: "132be5693489223f54937d1da15427a26bbc06df89321c71c4f9c3aff96777e5",
+    sourceFingerprint: "0090081bdf37938fb5d2a0a3ba98b0a909c33cecc609c8703d4c6e7a611e23c0",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"предложение помощи и просьба с can; чей предмет — whose","uk":"пропозиція допомоги та прохання з can; чий предмет — whose"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"повторение can + глагол без to","uk":"повторення can + дієслово без to"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 8","uk":"Англійська · Урок 8"}),
   }),
   Object.freeze({
@@ -3138,7 +3138,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 8, sessionOrdinal: 56,
-    sourceFingerprint: "393799d0357d5a31aa26edd119ce14bbc35662d99833fe08223409cb557186aa",
+    sourceFingerprint: "4cf40bce02e9cf56721843a2ebb4ed5a16c4ca1a50f9d261e973b93a63615531",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"повторить can, вопрос whose и вежливую инструкцию","uk":"повторити can, запитання whose і ввічливу інструкцію"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 8","uk":"Англійська · Урок 8"}),
@@ -4987,6 +4987,34 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   Object.freeze({
     lessonOrdinal: 13, sessionOrdinal: 40,
     sourceFingerprint: "12ba6c67fa96c5e856838eb9957f776e6f675e048625ff1b73651c2ac5fc1d9b",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: past event sequence","uk":"review: past event sequence"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 41,
+    sourceFingerprint: "267a1d49fd9ba013f81e77db408c95d33529d6278f34f741dc76715653a9471c",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: past event sequence","uk":"review: past event sequence"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 42,
+    sourceFingerprint: "8933099c01f9a7004b10f103734b3bc3ed849c799a5ec5878014b733cf0f95bb",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: past event sequence","uk":"review: past event sequence"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 43,
+    sourceFingerprint: "90efeeb76cdddcde5eda72ae8a9375b02f62ccb3a98e85f86974a14143d928e3",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: past event sequence","uk":"review: past event sequence"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
+  }),
+  Object.freeze({
+    lessonOrdinal: 13, sessionOrdinal: 44,
+    sourceFingerprint: "71012dd4340626af1c80e353a50ef3560ff5f7d8abf0991cf0908fb0ccbe7e24",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: past event sequence","uk":"review: past event sequence"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),

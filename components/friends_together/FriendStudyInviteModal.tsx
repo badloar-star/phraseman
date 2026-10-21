@@ -10,15 +10,21 @@ import DuoPressable from '../DuoPressable';
 import { LinearGradient } from '../SafeLinearGradient';
 import { FONT_SCALE, useTheme } from '../ThemeContext';
 import { useLang } from '../LangContext';
+import { pairInviteLine } from '../../app/friends_together/pair_copy';
 
 type Props = {
   visible: boolean;
   friendCoinRank?: number | null;
+  /** Серия вдвоём из зова (nav.pairStreak сервера); от 2 дней — строка «Серия вдвоём · 7 дней». Нет — окно прежнее. */
+  pairStreak?: number | null;
   onStart: () => void;
   onDecline: () => void;
 };
 
-function FriendStudyInviteModal({ visible, friendCoinRank = null, onStart, onDecline }: Props) {
+/** С какой серии окно называет её — так же, как текст пуша (PAIR_STREAK_PUSH_MIN сервера). */
+const INVITE_PAIR_STREAK_MIN = 2;
+
+function FriendStudyInviteModal({ visible, friendCoinRank = null, pairStreak = null, onStart, onDecline }: Props) {
   const { fontSize, liquidGlassThemeId, uiScale } = useTheme();
   const { lang } = useLang();
   const glass = liquidGlassTokens(liquidGlassThemeId);
@@ -65,6 +71,8 @@ function FriendStudyInviteModal({ visible, friendCoinRank = null, onStart, onDec
         </Text>
         <Text style={[styles.body, { color: glass.secondary, fontSize: 13 * textScale, lineHeight: 18 * textScale }]}>
           {L('Друг зовёт тебя заниматься сегодня.', 'Друг кличе тебе позайматися сьогодні.', 'A friend is inviting you to study today.', 'Un amigo te invita a estudiar hoy.', 'Um amigo está convidando você para estudar hoje.', 'Một người bạn đang mời bạn học hôm nay.', 'Seorang teman mengajakmu belajar hari ini.', 'Bir arkadaşın seni bugün çalışmaya davet ediyor.', 'Znajomy zaprasza cię dziś do nauki.')}
+          {/* зачем (идея 1, макет friendSide: «…Серия вдвоём с Алексом · 7 дней»): зов друга напоминает, что на кону общая серия */}
+          {typeof pairStreak === 'number' && pairStreak >= INVITE_PAIR_STREAK_MIN ? ` ${pairInviteLine(lang, pairStreak)}.` : ''}
         </Text>
         <DuoPressable
           testID="friend-study-start"

@@ -65,6 +65,13 @@ export function friendsTogetherClientConfigFromNumbers(numbers: Record<string, u
   });
 }
 
+/**
+ * Сборочный выключатель интерфейса «Вместе» 2.0: вкладка «Друзья», строка «Серия вдвоём» на Главной, карточки финала занятия.
+ * зачем (координатор 21.10): включается только после «Сверки» эмулятора с макетом docs/design/v2-app/friends-full.html;
+ * удалённый friends_together_enabled остаётся аварийным выключателем. Один выключатель на все экраны — экраны не расходятся.
+ */
+export const FRIENDS_TOGETHER_UI_ENABLED = false;
+
 const FRIENDS_TOGETHER_FLAG_KEY = 'friends_together_enabled';
 
 /** Синхронный кэш последнего прочитанного значения — синхронное API нужно

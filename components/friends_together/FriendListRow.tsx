@@ -9,6 +9,10 @@ import { FlowText } from '../text-integrity';
 import { type Lang, triLang } from '../../constants/i18n';
 import type { FriendSocialEvent } from '../../app/friend_social_events';
 import FriendEventMarker from './FriendEventMarker';
+import PairFlameInline from './PairFlameInline';
+import FriendCallPill, { type FriendCallState } from './FriendCallPill';
+import { pairRowSubline, pairStreakDaysLabel } from '../../app/friends_together/pair_copy';
+import type { PairStreakView } from '../../app/friends_together/pair_streak';
 import { noAndroidOutline } from '../../constants/androidGlow';
 
 export interface FriendListRowProps {
@@ -27,6 +31,15 @@ export interface FriendListRowProps {
   onOpenDetails: (friendUid: string) => void;
   event?: FriendSocialEvent | null;
   onOpenEvent?: (friendUid: string, event: FriendSocialEvent) => void;
+  /**
+   * «Серия вдвоём» (идея 1, макет friends-full.html): огонь пары + подпись состояния вместо «N дней вместе».
+   * Нет (флаг «Вместе» выключен) — строка прежняя. Объект из снимка — та же ссылка до обновления, memo не ломается.
+   */
+  pair?: PairStreakView | null;
+  /** Кнопка «Позвать» справа (вместо шеврона); null — шеврон. Маркер события важнее кнопки. */
+  callState?: FriendCallState | null;
+  /** Стабильная ссылка от экрана (как onOpenDetails) — строка сама подставит свой friendUid. */
+  onCall?: (friendUid: string) => void;
 }
 
 function slavicDayWord(days: number, singular: string, few: string, many: string): string {
@@ -68,11 +81,21 @@ function FriendListRow({
   onOpenDetails,
   event = null,
   onOpenEvent,
+  pair = null,
+  callState = null,
+  onCall,
 }: FriendListRowProps) {
   const { theme: t } = useTheme();
   const { glass, textScale } = useFriendsGlass();
   const { lang } = useLang();
   const relationship = formatFriendRelationship(lang, daysTogether);
+  const pairLine = pair ? pairRowSubline(lang, pair.state) : null;
+  const handleCall = onCall ? () => onCall(friendUid) : null;
+  // зачем (доступность): огонь скрыт от диктора как картинка — серию проговариваем в подписи зоны «детали»
+  const pairA11y = pair && pairLine
+    ? (pair.state === 'broken' ? pairLine : `${pair.streak} ${pairStreakDaysLabel(lang, pair.streak)}. ${pairLine}`)
+    : null;
+  const showCall = !(event && onOpenEvent) && callState !== null && handleCall !== null;
   // Локальные обёртки-с-аргументом: сам компонент под memo, поэтому создание
   // этих замыканий на его собственный рендер (а не на рендер списка) безвредно —
   // они не участвуют в сравнении пропсов и не размножаются на N строк.
@@ -108,21 +131,38 @@ function FriendListRow({
         testID={`friend-row-body-${friendUid}`}
         onPress={handleOpenDetails}
         accessibilityRole="button"
-        accessibilityLabel={detailsLabel}
+        accessibilityLabel={pairA11y ? `${detailsLabel}. ${pairA11y}` : detailsLabel}
         style={styles.bodyTarget}
       >
         <View style={styles.identity}>
           <FlowText testID={`friend-row-name-${friendUid}`} provenance="user" style={[styles.name, { color: glass.text, fontSize: 16 * textScale, lineHeight: 21 * textScale }]}>
             {friendName}
           </FlowText>
-          <FlowText testID={`friend-row-relationship-${friendUid}`} provenance="authored" style={[styles.relationship, { color: glass.mutedText, fontSize: 13 * textScale, lineHeight: 18 * textScale }]}>
-            {relationship}
-          </FlowText>
+          {pair && pairLine ? (
+            // зачем (макет `.frw .sub`): огонь пары и подпись в одну строку — по ней видно, с кем серия горит, кто ждёт, у кого прервалась
+            <View style={styles.pairLine}>
+              <PairFlameInline glass={glass} textScale={textScale} view={pair} testID={`friend-row-flame-${friendUid}`} />
+              <FlowText testID={`friend-row-pair-${friendUid}`} provenance="authored" style={[styles.pairText, { color: glass.mutedText, fontSize: 13 * textScale, lineHeight: 18 * textScale }]}>
+                {pairLine}
+              </FlowText>
+            </View>
+          ) : (
+            <FlowText testID={`friend-row-relationship-${friendUid}`} provenance="authored" style={[styles.relationship, { color: glass.mutedText, fontSize: 13 * textScale, lineHeight: 18 * textScale }]}>
+              {relationship}
+            </FlowText>
+          )}
         </View>
         {event && handleOpenEvent
           ? <FriendEventMarker event={event} onPress={handleOpenEvent} />
-          : <Ionicons name="chevron-forward" size={18} color={glass.secondary} accessible={false} importantForAccessibility="no" />}
+          : showCall
+            ? null
+            : <Ionicons name="chevron-forward" size={18} color={glass.secondary} accessible={false} importantForAccessibility="no" />}
       </Pressable>
+      {/* зачем (макет `.frw`: кнопка — отдельный элемент строки с зазором 14; доступность): кнопка вне зоны «детали» —
+          вложенную в нажимаемую область кнопку iOS-диктор не находит */}
+      {showCall && callState && handleCall ? (
+        <FriendCallPill glass={glass} textScale={textScale} state={callState} friendName={friendName} onCall={handleCall} testID={`friend-row-call-${friendUid}-${callState}`} />
+      ) : null}
     </FriendsCard>
   );
 }
@@ -164,6 +204,16 @@ const styles = {
     fontWeight: '700',
   },
   relationship: {
+    fontWeight: '400',
+  },
+  pairLine: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    minWidth: 0,
+  },
+  pairText: {
+    flexShrink: 1,
     fontWeight: '400',
   },
 } as const;

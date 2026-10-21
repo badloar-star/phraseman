@@ -20,6 +20,7 @@ import {
   levelForDays,
   type ActiveDays,
 } from './together_days';
+import { computePairStreak, type PairStreakView } from './pair_streak';
 import { DebugLogger } from '../debug-logger';
 import { noteSwallowedHandler, noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
@@ -43,6 +44,20 @@ export type FriendTogetherPairState = Readonly<{
   days: number;
   level: number;
   todayCommon: boolean;
+  /** Серия вдвоём (идея 1, владелец 21.10). Нет в старых снапшотах — до первого обновления вкладки. */
+  pair?: PairStreakView;
+  /**
+   * Дни друга из последнего friendsGetProfiles — чтобы Главная и финал занятия пересчитали огонь после МОЕГО занятия
+   * без нового запроса (recomputePairWithMyDays). Только { anchor, bits } — те же данные, что уже пришли в профиле.
+   */
+  friendActiveDays?: ActiveDays | null;
+  /**
+   * Имя, ранг монеты и Plus друга из того же профиля — Главная («Серия вдвоём · Лидия») и финал занятия рисуют строку
+   * без сети и без кэша профилей (тот живёт только в памяти вкладки). Те же данные, что вкладка «Друзья» уже показывает.
+   */
+  name?: string;
+  coinRank?: number | null;
+  isPlus?: boolean;
 }>;
 
 export type FriendsTogetherSnapshot = Readonly<{
@@ -199,16 +214,31 @@ export async function primeFriendsTogetherSnapshot(): Promise<FriendsTogetherSna
   }
 }
 
-async function readMyActiveDays(): Promise<ActiveDays | null> {
+/** Свои дни активности (active_days_v1 на телефоне). Экспорт — для Главной и финала занятия (серия вдвоём). */
+export async function readMyActiveDays(): Promise<ActiveDays | null> {
   try {
     const raw = await AsyncStorage.getItem('active_days_v1');
     if (!raw) return null;
     const parsed = JSON.parse(raw) as unknown;
     if (!isRecord(parsed) || typeof parsed.anchor !== 'string' || typeof parsed.bits !== 'string') return null;
     return { anchor: parsed.anchor, bits: parsed.bits };
-  } catch {
+  } catch (e) {
+    console.warn(`[FRIENDS-1] свои дни активности не прочитаны → без огня пары: ${e instanceof Error ? e.message : String(e)}`); // guard-ok: catch называет причину
     return null;
   }
+}
+
+/**
+ * Огонь пары заново — по свежим СВОИМ дням и сохранённым дням друга из снапшота (без сети).
+ * зачем: после занятия Главная и финал показывают «Серия вдвоём · 13», хотя профиль друга обновлялся раньше.
+ */
+export function recomputePairWithMyDays(
+  pair: FriendTogetherPairState,
+  myActiveDays: ActiveDays | null,
+  todayKey: string = getLocalDayKey(),
+): PairStreakView | null {
+  if (pair.friendActiveDays === undefined) return pair.pair ?? null;
+  return computePairStreak(myActiveDays, pair.friendActiveDays, todayKey);
 }
 
 /**
@@ -241,6 +271,12 @@ export async function refreshFriendsTogether(
       days,
       level,
       todayCommon,
+      // зачем (идея 1 «Серия вдвоём»): огонь пары считается здесь же, из тех же данных, и уходит в снапшот — первый кадр без расчёта
+      pair: computePairStreak(myActiveDays, friendActiveDays, myDayKey),
+      friendActiveDays,
+      name: profile.displayName,
+      coinRank: profile.coinRank ?? null,
+      isPlus: profile.isPremium || profile.isVip,
     };
   }
 

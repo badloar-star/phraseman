@@ -55,6 +55,10 @@ jest.mock('@expo/vector-icons/Ionicons', () => ({
   default: () => null,
 }));
 
+// зачем (21.10): FriendsGlassKit рисует монету через expo-image (R129) — в jest нет нативного модуля, и набор падал до первого теста;
+// строке друга картинка монеты не важна
+jest.mock('expo-image', () => ({ Image: () => null }));
+
 const LOCALES = [
   { lang: 'ru', neutral: 'В друзьях', one: '1 день вместе', few: '2 дня вместе', many: '14 дней вместе', profile: 'Открыть профиль Друг', details: 'Открыть детали дружбы с Друг' },
   { lang: 'uk', neutral: 'У друзях', one: '1 день разом', few: '2 дні разом', many: '14 днів разом', profile: 'Відкрити профіль Друг', details: 'Відкрити деталі дружби з Друг' },
@@ -120,6 +124,39 @@ describe.each(LOCALES)('FriendListRow in $lang', ({ lang, neutral, one, few, man
     expect(screen.getByText('Друг')).toBeTruthy();
     expect(screen.getByText(many)).toBeTruthy();
     expect(screen.queryByTestId('friend-row-actions-friend-1')).toBeNull();
+  });
+});
+
+describe('FriendListRow «Серия вдвоём» (идея 1, макет friends-full.html)', () => {
+  beforeEach(() => {
+    mockLang = 'ru';
+  });
+
+  const pairView = (state: 'both_today' | 'friend_pending' | 'broken' | 'none', streak: number) => ({ state, streak, best: streak, lostStreak: 0, week: [] });
+
+  it('shows the pair flame and its state line instead of days together', async () => {
+    const screen = await render(<FriendListRow {...propsFor(14)} pair={pairView('friend_pending', 7)} callState="idle" onCall={jest.fn()} />);
+
+    // огонь скрыт от диктора как картинка — ищем со скрытыми элементами; серию диктор слышит в подписи зоны «детали»
+    expect(screen.getByTestId('friend-row-flame-friend-1', { includeHiddenElements: true })).toBeTruthy();
+    expect(screen.getByText('Ещё не занимался(ась)')).toBeTruthy();
+    expect(screen.queryByTestId('friend-row-relationship-friend-1', { includeHiddenElements: true })).toBeNull();
+    expect(screen.getByTestId('friend-row-body-friend-1').props.accessibilityLabel).toBe('Открыть детали дружбы с Друг. 7 дней подряд вдвоём. Ещё не занимался(ась)');
+  });
+
+  it('keeps the old «N days together» line when the pair has no streak', async () => {
+    const screen = await render(<FriendListRow {...propsFor(14)} pair={pairView('none', 0)} />);
+
+    expect(screen.getByText('14 дней вместе')).toBeTruthy();
+    expect(screen.queryByTestId('friend-row-flame-friend-1', { includeHiddenElements: true })).toBeNull();
+  });
+
+  it('without pair props the row is exactly the previous one', async () => {
+    const screen = await render(<FriendListRow {...propsFor(2)} />);
+
+    expect(screen.getByText('2 дня вместе')).toBeTruthy();
+    expect(screen.queryByTestId('friend-row-flame-friend-1', { includeHiddenElements: true })).toBeNull();
+    expect(screen.getByTestId('friend-row-body-friend-1').props.accessibilityLabel).toBe('Открыть детали дружбы с Друг');
   });
 });
 

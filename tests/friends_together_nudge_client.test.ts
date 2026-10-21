@@ -38,11 +38,32 @@ jest.mock('../app/friends_together/sender_identity', () => ({
   prepareTogetherSender: () => mockPrepareTogetherSender(),
 }));
 
+// зачем (идея 1, макет «Нет сети»): сеть управляется из теста — офлайн зов встаёт в очередь, слушатель «сеть вернулась» её отправляет
+type MockNetState = { isConnected: boolean | null; isInternetReachable: boolean | null };
+const mockNetState: MockNetState = { isConnected: true, isInternetReachable: true };
+const mockNetListeners: Array<(state: MockNetState) => void> = [];
+jest.mock('@react-native-community/netinfo', () => ({
+  fetch: jest.fn(async () => ({ ...mockNetState })),
+  addEventListener: jest.fn((listener: (state: MockNetState) => void) => {
+    mockNetListeners.push(listener);
+    return () => {
+      const index = mockNetListeners.indexOf(listener);
+      if (index >= 0) mockNetListeners.splice(index, 1);
+    };
+  }),
+}));
+
+const QUEUE_KEY = 'friends_nudge_queue_v1';
+const requestIdOf = (call: unknown[] | undefined): string => (call?.[0] as { requestId: string }).requestId;
+
 beforeEach(() => {
   jest.resetModules();
   jest.clearAllMocks();
   for (const key of Object.keys(mockStorage)) delete mockStorage[key];
   mockCallableInvoker.mockReset().mockImplementation(async () => ({ data: { ok: true } }));
+  mockNetState.isConnected = true;
+  mockNetState.isInternetReachable = true;
+  mockNetListeners.splice(0, mockNetListeners.length);
 });
 
 describe('nudgeFriend', () => {
@@ -101,7 +122,7 @@ describe('nudgeFriend', () => {
     expect(await nudgeFriend('e')).toEqual({ ok: false, reason: 'not_friends' });
   });
 
-  it('retries once on a network error and keeps the optimistic mark if it still fails', async () => {
+  it('retries once on a network error, then rolls back to «Позвать» and the next tap reuses the same requestId', async () => {
     mockCallableInvoker.mockImplementation(async () => { throw new Error('unavailable network'); });
     const { nudgeFriend, isNudgedToday, primeNudgedTodayCache } = await import('../app/friends_together/nudge_client');
     await primeNudgedTodayCache();
@@ -110,9 +131,37 @@ describe('nudgeFriend', () => {
 
     expect(result).toEqual({ ok: false, reason: 'network' });
     expect(mockCallableInvoker).toHaveBeenCalledTimes(2); // 1 attempt + 1 retry
-    // Network outcome is ambiguous — we do NOT know if the server applied it, so the
-    // optimistic mark stays to avoid double-nudging in the same day.
+    const firstRequestId = requestIdOf(mockCallableInvoker.mock.calls[0]);
+    expect(requestIdOf(mockCallableInvoker.mock.calls[1])).toBe(firstRequestId);
+    // Макет «Нет сети — попробуй ещё раз» + «Повторить» (владелец 21.10): кнопка снова «Позвать».
+    // Двойного зова нет: повтор идёт тем же requestId (сервер отвечает nudge:replay без пуша), лимит «раз в день» сервер держит сам.
+    expect(isNudgedToday('friend-3')).toBe(false);
+
+    mockCallableInvoker.mockReset().mockImplementation(async () => ({ data: { ok: true } }));
+    const retry = await nudgeFriend('friend-3');
+
+    expect(retry).toEqual({ ok: true });
+    expect(requestIdOf(mockCallableInvoker.mock.calls[0])).toBe(firstRequestId);
     expect(isNudgedToday('friend-3')).toBe(true);
+  });
+
+  it('a definitive error does not keep a retry id — the next tap gets a fresh requestId', async () => {
+    let calls = 0;
+    mockCallableInvoker.mockImplementation(async () => {
+      calls += 1;
+      if (calls <= 2) throw new Error('unavailable network');
+      if (calls === 3) throw new Error('failed-precondition quiet_hours');
+      return { data: { ok: true } };
+    });
+    const { nudgeFriend } = await import('../app/friends_together/nudge_client');
+
+    await nudgeFriend('friend-7'); // network ×2 → rollback, id remembered
+    expect(await nudgeFriend('friend-7')).toEqual({ ok: false, reason: 'quiet_hours' }); // same id → definitive
+    const quietId = requestIdOf(mockCallableInvoker.mock.calls[2]);
+    expect(quietId).toBe(requestIdOf(mockCallableInvoker.mock.calls[0]));
+    await nudgeFriend('friend-7');
+
+    expect(requestIdOf(mockCallableInvoker.mock.calls[3])).not.toBe(quietId);
   });
 
   it('recovers on the retry after an initial network failure', async () => {
@@ -161,5 +210,109 @@ describe('nudgeFriend', () => {
 
     expect(second).toEqual({ ok: true });
     expect(mockCallableInvoker).not.toHaveBeenCalled();
+  });
+});
+
+describe('nudge offline queue (идея 1, макет «Нет сети»: «В очереди»)', () => {
+  const goOffline = (): void => { mockNetState.isConnected = false; };
+  const goOnline = (): void => {
+    mockNetState.isConnected = true;
+    mockNetListeners.slice().forEach((listener) => listener({ isConnected: true, isInternetReachable: true }));
+  };
+
+  it('offline: marks the friend, queues the call and sends nothing yet', async () => {
+    goOffline();
+    const { nudgeFriend, isNudgedToday, isNudgeQueuedToday, primeNudgedTodayCache } = await import('../app/friends_together/nudge_client');
+    await primeNudgedTodayCache();
+
+    const result = await nudgeFriend('friend-q');
+
+    expect(result).toEqual({ ok: true, queued: true });
+    expect(mockCallableInvoker).not.toHaveBeenCalled();
+    expect(mockPrepareTogetherSender).not.toHaveBeenCalled(); // офлайн связку аккаунта не собрать — отправителя готовим при отправке
+    expect(isNudgedToday('friend-q')).toBe(true);
+    expect(isNudgeQueuedToday('friend-q')).toBe(true);
+    expect(JSON.parse(mockStorage[QUEUE_KEY])).toEqual([expect.objectContaining({ friendUid: 'friend-q', dayKey: '2026-08-17' })]);
+    // повторный тап, пока зов ждёт сети, — тот же ответ, без вызова
+    expect(await nudgeFriend('friend-q')).toEqual({ ok: true, queued: true });
+    expect(mockCallableInvoker).not.toHaveBeenCalled();
+  });
+
+  it('network back: sends the queued call with its own requestId, clears the queue and reports the outcome', async () => {
+    goOffline();
+    const mod = await import('../app/friends_together/nudge_client');
+    await mod.primeNudgedTodayCache();
+    await mod.nudgeFriend('friend-q');
+    const queuedId = JSON.parse(mockStorage[QUEUE_KEY])[0].requestId as string;
+    const outcomes: unknown[] = [];
+    mod.subscribeQueuedNudgeOutcomes((outcome) => outcomes.push(outcome));
+
+    goOnline();
+    await mod.flushNudgeQueue('test_await');
+
+    expect(mockCallableInvoker).toHaveBeenCalledTimes(1);
+    expect(mockCallableInvoker).toHaveBeenCalledWith(expect.objectContaining({ friendUid: 'friend-q', requestId: queuedId, stableId: 'me-stable' }));
+    expect(outcomes).toEqual([{ friendUid: 'friend-q', result: { ok: true } }]);
+    expect(mockStorage[QUEUE_KEY]).toBeUndefined();
+    expect(mod.isNudgeQueuedToday('friend-q')).toBe(false);
+    expect(mod.isNudgedToday('friend-q')).toBe(true);
+  });
+
+  it('a definitive answer from the queue (quiet hours) rolls the mark back and leaves the queue', async () => {
+    goOffline();
+    const mod = await import('../app/friends_together/nudge_client');
+    await mod.primeNudgedTodayCache();
+    await mod.nudgeFriend('friend-q');
+    const outcomes: unknown[] = [];
+    mod.subscribeQueuedNudgeOutcomes((outcome) => outcomes.push(outcome));
+    mockCallableInvoker.mockImplementation(async () => { throw new Error('failed-precondition quiet_hours'); });
+
+    goOnline();
+    await mod.flushNudgeQueue('test_await');
+
+    expect(outcomes).toEqual([{ friendUid: 'friend-q', result: { ok: false, reason: 'quiet_hours' } }]);
+    expect(mod.isNudgedToday('friend-q')).toBe(false);
+    expect(mockStorage[QUEUE_KEY]).toBeUndefined();
+  });
+
+  it('a network failure while flushing keeps the call queued for the next chance', async () => {
+    goOffline();
+    const mod = await import('../app/friends_together/nudge_client');
+    await mod.primeNudgedTodayCache();
+    await mod.nudgeFriend('friend-q');
+    const outcomes: unknown[] = [];
+    mod.subscribeQueuedNudgeOutcomes((outcome) => outcomes.push(outcome));
+    mockCallableInvoker.mockImplementation(async () => { throw new Error('unavailable network'); });
+
+    goOnline();
+    await mod.flushNudgeQueue('test_await');
+
+    expect(mockCallableInvoker).toHaveBeenCalledTimes(2); // попытка + повтор тем же requestId
+    expect(outcomes).toEqual([]);
+    expect(mod.isNudgeQueuedToday('friend-q')).toBe(true);
+    expect(mod.isNudgedToday('friend-q')).toBe(true);
+  });
+
+  it('drops a call queued on a previous day without sending it', async () => {
+    mockStorage[QUEUE_KEY] = JSON.stringify([{ friendUid: 'old-friend', requestId: 'ftn_old', dayKey: '2026-08-16', queuedAt: 1 }]);
+    const mod = await import('../app/friends_together/nudge_client');
+
+    await mod.primeNudgedTodayCache(); // prime запускает отправку очереди
+    await mod.flushNudgeQueue('test_await');
+
+    expect(mockCallableInvoker).not.toHaveBeenCalled();
+    expect(mockStorage[QUEUE_KEY]).toBeUndefined();
+  });
+
+  it('while still offline a flush keeps everything in place', async () => {
+    goOffline();
+    const mod = await import('../app/friends_together/nudge_client');
+    await mod.primeNudgedTodayCache();
+    await mod.nudgeFriend('friend-q');
+
+    await mod.flushNudgeQueue('test_offline');
+
+    expect(mockCallableInvoker).not.toHaveBeenCalled();
+    expect(mod.isNudgeQueuedToday('friend-q')).toBe(true);
   });
 });

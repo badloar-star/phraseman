@@ -18,6 +18,9 @@ const SETTINGS_FILE = path.join(process.cwd(), 'app/settings_notifications.tsx')
 const COMPONENT_FILES = [
   'FriendTogetherSheet.tsx',
   'FriendListRow.tsx',
+  // зачем (идея 1, владелец 21.10): новые шторки «Вместе» 2.0 под теми же правилами — без рамок, без ужатия шрифта, все языки
+  'FriendPairSheet.tsx',
+  'FriendPairMilestoneSheet.tsx',
 ];
 
 function readComponent(name: string): string {

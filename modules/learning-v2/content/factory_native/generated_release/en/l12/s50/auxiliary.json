@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-50",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-50:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-50:intro1:r2": {
+          "ru": "В прошлом нужна found.",
+          "uk": "У минулому потрібна found."
+        },
+        "en:lesson-12:session-50:intro1:r3": {
+          "ru": "Finds не обозначает прошлое.",
+          "uk": "Finds не позначає минуле."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-50:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-50:intro2:r2": {
+          "ru": "Washed — постирал.",
+          "uk": "Washed — виправ."
+        },
+        "en:lesson-12:session-50:intro2:r3": {
+          "ru": "Для прошлого нужна ironed.",
+          "uk": "Для минулого потрібна ironed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-50:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-50:intro3:r2": {
+          "ru": "Здесь сказано, что её не стирали.",
+          "uk": "Тут сказано, що її не прали."
+        },
+        "en:lesson-12:session-50:intro3:r3": {
+          "ru": "Is — сейчас, а нужно was.",
+          "uk": "Is — зараз, а потрібно was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e2b66b91ed98faff7794f321594d41735f9fa77a6b0dd1ab350349cd809f97c6"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "review: added, filled, used, washed",
+    "uk": "review: added, filled, used, washed"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кубик льда",
+        "uk": "Кубик льоду"
+      },
+      "bodyByLocale": {
+        "ru": "Ice cube — кубик льда. I added an ice cube — я добавил кубик льда. В added окончание звучит /ɪd/. Выберите прошлое действие.",
+        "uk": "Ice cube — кубик льоду. I added an ice cube — я додав кубик льоду. У added закінчення звучить /ɪd/. Виберіть минулу дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-51:intro1:r1",
+              "text": "I added an ice cube."
+            },
+            {
+              "responseId": "en:lesson-12:session-51:intro1:r2",
+              "text": "I add an ice cube yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-51:intro1:r3",
+              "text": "I adds an ice cube yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-51:intro1:r1",
+              "text": "I added an ice cube."
+            },
+            {
+              "responseId": "en:lesson-12:session-51:intro1:r2",
+              "text": "I add an ice cube yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-51:intro1:r3",
+              "text": "I adds an ice cube yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Форма для льда",
+        "uk": "Форма для льоду"
+      },
+      "bodyByLocale": {
+        "ru": "Ice tray — форма для льда. I filled the ice tray — я наполнил форму для льда. В filled окончание /d/. Выберите наполнение формы.",
+        "uk": "Ice tray — форма для льоду. I filled the ice tray — я наповнив форму для льоду. У filled закінчення /d/. Виберіть наповнення форми."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-51:intro2:r1",
+              "text": "I filled the ice tray."
+            },
+            {
+              "responseId": "en:lesson-12:session-51:intro2:r2",
+              "text": "I washed the ice tray."
+            },
+            {
+              "responseId": "en:lesson-12:session-51:intro2:r3",
+              "text": "I fill the ice tray yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-51:intro2:r1",
+              "text": "I filled the ice tray."
+            },
+            {
+              "responseId": "en:lesson-12:session-51:intro2:r2",
+              "text": "I washed the ice tray."
+            },
+            {
+              "responseId": "en:lesson-12:session-51:intro2:r3",
+              "text": "I fill the ice tray yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пакет и контейнер",
+        "uk": "Пакет і контейнер"
+      },
+      "bodyByLocale": {
+        "ru": "Freezer bag — пакет для замораживания продуктов; food container — контейнер для еды. I washed the food container — я вымыл контейнер для еды. Выберите контейнер.",
+        "uk": "Freezer bag — пакет для заморожування продуктів; food container — контейнер для їжі. I washed the food container — я вимив контейнер для їжі. Виберіть контейнер."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-51:intro3:r1",
+              "text": "I washed the food container."
+            },
+            {
+              "responseId": "en:lesson-12:session-51:intro3:r2",
+              "text": "I washed the freezer bag."
+            },
+            {
+              "responseId": "en:lesson-12:session-51:intro3:r3",
+              "text": "I wash the food container yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-51:intro3:r1",
+              "text": "I washed the food container."
+            },
+            {
+              "responseId": "en:lesson-12:session-51:intro3:r2",
+              "text": "I washed the freezer bag."
+            },
+            {
+              "responseId": "en:lesson-12:session-51:intro3:r3",
+              "text": "I wash the food container yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3fbada5984caac77788a114fa51a5013c4413af4b6c5f833f94e18aa3fbdb8f4"
+}

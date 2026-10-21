@@ -1,0 +1,2317 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-12:session-50",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-12:session-50:word:unused",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — unused",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:word:unused:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — unused",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:word:unused:audio",
+            "transcript": "unused"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-50:word:unused:r1",
+              "targetText": "unused",
+              "meaningByLocale": {
+                "ru": "неиспользованный.",
+                "uk": "невикористаний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unused",
+            "definitionByLocale": {
+              "ru": "неиспользованный.",
+              "uk": "невикористаний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я нашёл неиспользованное полотенце",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я нашёл неиспользованное полотенце",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I found an unused towel.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я нашёл неиспользованное полотенце",
+            "uk": "Скажіть: Я знайшов невикористаний рушник"
+          },
+          "orderedTokens": [
+            "I",
+            "found",
+            "an",
+            "unused",
+            "towel"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-50:i02:r1",
+            "text": "I found an unused towel."
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i02:r2",
+            "text": "I find an unused towel."
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i02:r3",
+            "text": "She found an unused towel."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:i02:audio",
+            "transcript": "I found an unused towel."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-50:i02:r1",
+              "targetText": "I found an unused towel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i02:r2",
+              "targetText": "I find an unused towel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i02:r3",
+              "targetText": "She found an unused towel.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-50:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I found an unused towel.",
+                "uk": "У записі звучить I found an unused towel."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I found an unused towel.",
+                "uk": "У записі звучить I found an unused towel."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-50:i03:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i03:r2",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i03:r3",
+            "text": "finds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ an unused towel.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-50:i03:r1",
+              "text": "found"
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i03:r2",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i03:r3",
+              "text": "finds"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-50:i03:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма found.",
+                "uk": "Для минулого потрібна форма found."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i03:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна found.",
+                "uk": "Це не форма минулого. Потрібна found."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:word:creased",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — creased",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:word:creased:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — creased",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:word:creased:audio",
+            "transcript": "creased"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-50:word:creased:r1",
+              "targetText": "creased",
+              "meaningByLocale": {
+                "ru": "мятый, со складками.",
+                "uk": "зім’ятий, зі складками."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "creased",
+            "definitionByLocale": {
+              "ru": "мятый, со складками.",
+              "uk": "зім’ятий, зі складками."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я погладил мятую рубашку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я погладил мятую рубашку",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I ironed the creased shirt.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я погладил мятую рубашку",
+            "uk": "Скажіть: Я попрасував зім’яту сорочку"
+          },
+          "orderedTokens": [
+            "I",
+            "ironed",
+            "the",
+            "creased",
+            "shirt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-50:i05:r1",
+            "text": "I ironed the creased shirt."
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i05:r2",
+            "text": "I iron the creased shirt."
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i05:r3",
+            "text": "She ironed the creased shirt."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:i05:audio",
+            "transcript": "I ironed the creased shirt."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-50:i05:r1",
+              "targetText": "I ironed the creased shirt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i05:r2",
+              "targetText": "I iron the creased shirt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i05:r3",
+              "targetText": "She ironed the creased shirt.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-50:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I ironed the creased shirt.",
+                "uk": "У записі звучить I ironed the creased shirt."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I ironed the creased shirt.",
+                "uk": "У записі звучить I ironed the creased shirt."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-50:i06:r1",
+            "text": "ironed"
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i06:r2",
+            "text": "iron"
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i06:r3",
+            "text": "irons"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ the creased shirt.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-50:i06:r1",
+              "text": "ironed"
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i06:r2",
+              "text": "iron"
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i06:r3",
+              "text": "irons"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-50:i06:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма ironed.",
+                "uk": "Для минулого потрібна форма ironed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i06:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна ironed.",
+                "uk": "Це не форма минулого. Потрібна ironed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:word:unwashed",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — unwashed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:word:unwashed:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — unwashed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:word:unwashed:audio",
+            "transcript": "unwashed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-50:word:unwashed:r1",
+              "targetText": "unwashed",
+              "meaningByLocale": {
+                "ru": "нестиранный.",
+                "uk": "невипраний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unwashed",
+            "definitionByLocale": {
+              "ru": "нестиранный.",
+              "uk": "невипраний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я постирал нестиранную одежду",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я постирал нестиранную одежду",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I washed the unwashed clothes.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я постирал нестиранную одежду",
+            "uk": "Скажіть: Я виправ невипраний одяг"
+          },
+          "orderedTokens": [
+            "I",
+            "washed",
+            "the",
+            "unwashed",
+            "clothes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-50:i08:r1",
+            "text": "I washed the unwashed clothes."
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i08:r2",
+            "text": "I wash the unwashed clothes."
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i08:r3",
+            "text": "She washed the unwashed clothes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:i08:audio",
+            "transcript": "I washed the unwashed clothes."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-50:i08:r1",
+              "targetText": "I washed the unwashed clothes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i08:r2",
+              "targetText": "I wash the unwashed clothes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i08:r3",
+              "targetText": "She washed the unwashed clothes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-50:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I washed the unwashed clothes.",
+                "uk": "У записі звучить I washed the unwashed clothes."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I washed the unwashed clothes.",
+                "uk": "У записі звучить I washed the unwashed clothes."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-50:i09:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i09:r2",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i09:r3",
+            "text": "washes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ the unwashed clothes.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-50:i09:r1",
+              "text": "washed"
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i09:r2",
+              "text": "wash"
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i09:r3",
+              "text": "washes"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-50:i09:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма washed.",
+                "uk": "Для минулого потрібна форма washed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i09:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна washed.",
+                "uk": "Це не форма минулого. Потрібна washed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:word:unironed",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — unironed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:word:unironed:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — unironed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:word:unironed:audio",
+            "transcript": "unironed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-50:word:unironed:r1",
+              "targetText": "unironed",
+              "meaningByLocale": {
+                "ru": "неглаженый.",
+                "uk": "непрасований."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unironed",
+            "definitionByLocale": {
+              "ru": "неглаженый.",
+              "uk": "непрасований."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я нашёл неглаженую рубашку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я нашёл неглаженую рубашку",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I found an unironed shirt.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я нашёл неглаженую рубашку",
+            "uk": "Скажіть: Я знайшов непрасовану сорочку"
+          },
+          "orderedTokens": [
+            "I",
+            "found",
+            "an",
+            "unironed",
+            "shirt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-50:i11:r1",
+            "text": "I found an unironed shirt."
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i11:r2",
+            "text": "I find an unironed shirt."
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i11:r3",
+            "text": "She found an unironed shirt."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:i11:audio",
+            "transcript": "I found an unironed shirt."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-50:i11:r1",
+              "targetText": "I found an unironed shirt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i11:r2",
+              "targetText": "I find an unironed shirt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i11:r3",
+              "targetText": "She found an unironed shirt.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-50:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I found an unironed shirt.",
+                "uk": "У записі звучить I found an unironed shirt."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I found an unironed shirt.",
+                "uk": "У записі звучить I found an unironed shirt."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-50:i12:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i12:r2",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i12:r3",
+            "text": "finds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ an unironed shirt.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-50:i12:r1",
+              "text": "found"
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i12:r2",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i12:r3",
+              "text": "finds"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-50:i12:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма found.",
+                "uk": "Для минулого потрібна форма found."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i12:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна found.",
+                "uk": "Це не форма минулого. Потрібна found."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-50:i13:p1",
+              "target": "unused",
+              "meaningByLocale": {
+                "ru": "неиспользованный",
+                "uk": "невикористаний"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-50:i13:p2",
+              "target": "creased",
+              "meaningByLocale": {
+                "ru": "мятый, со складками",
+                "uk": "зім’ятий, зі складками"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-50:i13:p3",
+              "target": "unwashed",
+              "meaningByLocale": {
+                "ru": "нестиранный",
+                "uk": "невипраний"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-50:i13:p4",
+              "target": "unironed",
+              "meaningByLocale": {
+                "ru": "неглаженый",
+                "uk": "непрасований"
+              }
+            }
+          ],
+          "leftColumn": [
+            "unused",
+            "creased",
+            "unwashed",
+            "unironed"
+          ],
+          "rightColumn": [
+            "неиспользованный",
+            "мятый, со складками",
+            "нестиранный",
+            "неглаженый"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:i14:audio",
+            "transcript": "The towel was clean."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The towel was clean.",
+          "orderedTokens": [
+            "The",
+            "towel",
+            "was",
+            "clean"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:i15:audio",
+            "transcript": "She washed the clothes yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She washed the clothes yesterday.",
+          "orderedTokens": [
+            "She",
+            "washed",
+            "the",
+            "clothes",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: рубашка была мятой",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: рубашка была мятой",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:i16:audio",
+            "transcript": "The shirt was creased."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The shirt was creased.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: я нашёл неиспользованное полотенце вчера",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: я нашёл неиспользованное полотенце вчера",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:i17:audio",
+            "transcript": "I found an unused towel yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I found an unused towel yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-12:session-50:word:unused",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — unused",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:word:unused:audio"
+        ],
+        "accessibilityLabel": "Картка слова — unused",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:word:unused:audio",
+            "transcript": "unused"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-50:word:unused:r1",
+              "targetText": "unused",
+              "meaningByLocale": {
+                "ru": "неиспользованный.",
+                "uk": "невикористаний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unused",
+            "definitionByLocale": {
+              "ru": "неиспользованный.",
+              "uk": "невикористаний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я знайшов невикористаний рушник",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я знайшов невикористаний рушник",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I found an unused towel.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я нашёл неиспользованное полотенце",
+            "uk": "Скажіть: Я знайшов невикористаний рушник"
+          },
+          "orderedTokens": [
+            "I",
+            "found",
+            "an",
+            "unused",
+            "towel"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-50:i02:r1",
+            "text": "I found an unused towel."
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i02:r2",
+            "text": "I find an unused towel."
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i02:r3",
+            "text": "She found an unused towel."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:i02:audio",
+            "transcript": "I found an unused towel."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-50:i02:r1",
+              "targetText": "I found an unused towel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i02:r2",
+              "targetText": "I find an unused towel.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i02:r3",
+              "targetText": "She found an unused towel.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-50:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I found an unused towel.",
+                "uk": "У записі звучить I found an unused towel."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I found an unused towel.",
+                "uk": "У записі звучить I found an unused towel."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-50:i03:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i03:r2",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i03:r3",
+            "text": "finds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ an unused towel.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-50:i03:r1",
+              "text": "found"
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i03:r2",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i03:r3",
+              "text": "finds"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-50:i03:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма found.",
+                "uk": "Для минулого потрібна форма found."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i03:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна found.",
+                "uk": "Це не форма минулого. Потрібна found."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:word:creased",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — creased",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:word:creased:audio"
+        ],
+        "accessibilityLabel": "Картка слова — creased",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:word:creased:audio",
+            "transcript": "creased"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-50:word:creased:r1",
+              "targetText": "creased",
+              "meaningByLocale": {
+                "ru": "мятый, со складками.",
+                "uk": "зім’ятий, зі складками."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "creased",
+            "definitionByLocale": {
+              "ru": "мятый, со складками.",
+              "uk": "зім’ятий, зі складками."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я попрасував зім’яту сорочку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я попрасував зім’яту сорочку",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I ironed the creased shirt.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я погладил мятую рубашку",
+            "uk": "Скажіть: Я попрасував зім’яту сорочку"
+          },
+          "orderedTokens": [
+            "I",
+            "ironed",
+            "the",
+            "creased",
+            "shirt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-50:i05:r1",
+            "text": "I ironed the creased shirt."
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i05:r2",
+            "text": "I iron the creased shirt."
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i05:r3",
+            "text": "She ironed the creased shirt."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:i05:audio",
+            "transcript": "I ironed the creased shirt."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-50:i05:r1",
+              "targetText": "I ironed the creased shirt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i05:r2",
+              "targetText": "I iron the creased shirt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i05:r3",
+              "targetText": "She ironed the creased shirt.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-50:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I ironed the creased shirt.",
+                "uk": "У записі звучить I ironed the creased shirt."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I ironed the creased shirt.",
+                "uk": "У записі звучить I ironed the creased shirt."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-50:i06:r1",
+            "text": "ironed"
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i06:r2",
+            "text": "iron"
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i06:r3",
+            "text": "irons"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ the creased shirt.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-50:i06:r1",
+              "text": "ironed"
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i06:r2",
+              "text": "iron"
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i06:r3",
+              "text": "irons"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-50:i06:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма ironed.",
+                "uk": "Для минулого потрібна форма ironed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i06:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна ironed.",
+                "uk": "Це не форма минулого. Потрібна ironed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:word:unwashed",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — unwashed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:word:unwashed:audio"
+        ],
+        "accessibilityLabel": "Картка слова — unwashed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:word:unwashed:audio",
+            "transcript": "unwashed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-50:word:unwashed:r1",
+              "targetText": "unwashed",
+              "meaningByLocale": {
+                "ru": "нестиранный.",
+                "uk": "невипраний."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unwashed",
+            "definitionByLocale": {
+              "ru": "нестиранный.",
+              "uk": "невипраний."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я виправ невипраний одяг",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я виправ невипраний одяг",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I washed the unwashed clothes.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я постирал нестиранную одежду",
+            "uk": "Скажіть: Я виправ невипраний одяг"
+          },
+          "orderedTokens": [
+            "I",
+            "washed",
+            "the",
+            "unwashed",
+            "clothes"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-50:i08:r1",
+            "text": "I washed the unwashed clothes."
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i08:r2",
+            "text": "I wash the unwashed clothes."
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i08:r3",
+            "text": "She washed the unwashed clothes."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:i08:audio",
+            "transcript": "I washed the unwashed clothes."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-50:i08:r1",
+              "targetText": "I washed the unwashed clothes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i08:r2",
+              "targetText": "I wash the unwashed clothes.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i08:r3",
+              "targetText": "She washed the unwashed clothes.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-50:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I washed the unwashed clothes.",
+                "uk": "У записі звучить I washed the unwashed clothes."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I washed the unwashed clothes.",
+                "uk": "У записі звучить I washed the unwashed clothes."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-50:i09:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i09:r2",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i09:r3",
+            "text": "washes"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ the unwashed clothes.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-50:i09:r1",
+              "text": "washed"
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i09:r2",
+              "text": "wash"
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i09:r3",
+              "text": "washes"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-50:i09:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма washed.",
+                "uk": "Для минулого потрібна форма washed."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i09:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна washed.",
+                "uk": "Це не форма минулого. Потрібна washed."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:word:unironed",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — unironed",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:word:unironed:audio"
+        ],
+        "accessibilityLabel": "Картка слова — unironed",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:word:unironed:audio",
+            "transcript": "unironed"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-50:word:unironed:r1",
+              "targetText": "unironed",
+              "meaningByLocale": {
+                "ru": "неглаженый.",
+                "uk": "непрасований."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "unironed",
+            "definitionByLocale": {
+              "ru": "неглаженый.",
+              "uk": "непрасований."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я знайшов непрасовану сорочку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я знайшов непрасовану сорочку",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I found an unironed shirt.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я нашёл неглаженую рубашку",
+            "uk": "Скажіть: Я знайшов непрасовану сорочку"
+          },
+          "orderedTokens": [
+            "I",
+            "found",
+            "an",
+            "unironed",
+            "shirt"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-50:i11:r1",
+            "text": "I found an unironed shirt."
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i11:r2",
+            "text": "I find an unironed shirt."
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i11:r3",
+            "text": "She found an unironed shirt."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:i11:audio",
+            "transcript": "I found an unironed shirt."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-50:i11:r1",
+              "targetText": "I found an unironed shirt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i11:r2",
+              "targetText": "I find an unironed shirt.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i11:r3",
+              "targetText": "She found an unironed shirt.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-50:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I found an unironed shirt.",
+                "uk": "У записі звучить I found an unironed shirt."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I found an unironed shirt.",
+                "uk": "У записі звучить I found an unironed shirt."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-50:i12:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i12:r2",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-12:session-50:i12:r3",
+            "text": "finds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ an unironed shirt.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-50:i12:r1",
+              "text": "found"
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i12:r2",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i12:r3",
+              "text": "finds"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-50:i12:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма found.",
+                "uk": "Для минулого потрібна форма found."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-50:i12:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна found.",
+                "uk": "Це не форма минулого. Потрібна found."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-50:i13:p1",
+              "target": "unused",
+              "meaningByLocale": {
+                "ru": "неиспользованный",
+                "uk": "невикористаний"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-50:i13:p2",
+              "target": "creased",
+              "meaningByLocale": {
+                "ru": "мятый, со складками",
+                "uk": "зім’ятий, зі складками"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-50:i13:p3",
+              "target": "unwashed",
+              "meaningByLocale": {
+                "ru": "нестиранный",
+                "uk": "невипраний"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-50:i13:p4",
+              "target": "unironed",
+              "meaningByLocale": {
+                "ru": "неглаженый",
+                "uk": "непрасований"
+              }
+            }
+          ],
+          "leftColumn": [
+            "unused",
+            "creased",
+            "unwashed",
+            "unironed"
+          ],
+          "rightColumn": [
+            "невикористаний",
+            "зім’ятий, зі складками",
+            "невипраний",
+            "непрасований"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:i14:audio",
+            "transcript": "The towel was clean."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The towel was clean.",
+          "orderedTokens": [
+            "The",
+            "towel",
+            "was",
+            "clean"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:i15:audio",
+            "transcript": "She washed the clothes yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She washed the clothes yesterday.",
+          "orderedTokens": [
+            "She",
+            "washed",
+            "the",
+            "clothes",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: сорочка була зім’ятою",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: сорочка була зім’ятою",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:i16:audio",
+            "transcript": "The shirt was creased."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The shirt was creased.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-50:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: я знайшов невикористаний рушник учора",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-50:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: я знайшов невикористаний рушник учора",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-50:i17:audio",
+            "transcript": "I found an unused towel yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I found an unused towel yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-12:session-50:word:unused",
+      "correctText": "unused",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-50:i01",
+      "correctText": "I found an unused towel.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-50:i02",
+      "correctText": "I found an unused towel.",
+      "correctResponseId": "en:lesson-12:session-50:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-50:i03",
+      "correctText": "found",
+      "correctResponseId": "en:lesson-12:session-50:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-50:word:creased",
+      "correctText": "creased",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-50:i04",
+      "correctText": "I ironed the creased shirt.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-50:i05",
+      "correctText": "I ironed the creased shirt.",
+      "correctResponseId": "en:lesson-12:session-50:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-50:i06",
+      "correctText": "ironed",
+      "correctResponseId": "en:lesson-12:session-50:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-50:word:unwashed",
+      "correctText": "unwashed",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-50:i07",
+      "correctText": "I washed the unwashed clothes.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-50:i08",
+      "correctText": "I washed the unwashed clothes.",
+      "correctResponseId": "en:lesson-12:session-50:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-50:i09",
+      "correctText": "washed",
+      "correctResponseId": "en:lesson-12:session-50:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-50:word:unironed",
+      "correctText": "unironed",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-50:i10",
+      "correctText": "I found an unironed shirt.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-50:i11",
+      "correctText": "I found an unironed shirt.",
+      "correctResponseId": "en:lesson-12:session-50:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-50:i12",
+      "correctText": "found",
+      "correctResponseId": "en:lesson-12:session-50:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-50:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-50:i14",
+      "correctText": "The towel was clean.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-50:i15",
+      "correctText": "She washed the clothes yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-50:i16",
+      "correctText": "The shirt was creased.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-50:i17",
+      "correctText": "I found an unused towel yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

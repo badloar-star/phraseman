@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "review: found, used, packed; was/were",
+    "uk": "review: found, used, packed; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Резинка для волос",
+        "uk": "Гумка для волосся"
+      },
+      "bodyByLocale": {
+        "ru": "Hair tie — резинка для волос. I found a hair tie — я нашёл резинку для волос. Find → found. Выберите прошлое действие.",
+        "uk": "Hair tie — гумка для волосся. I found a hair tie — я знайшов гумку для волосся. Find → found. Виберіть минулу дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-56:intro1:r1",
+              "text": "I found a hair tie."
+            },
+            {
+              "responseId": "en:lesson-12:session-56:intro1:r2",
+              "text": "I find a hair tie yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-56:intro1:r3",
+              "text": "I finds a hair tie yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-56:intro1:r1",
+              "text": "I found a hair tie."
+            },
+            {
+              "responseId": "en:lesson-12:session-56:intro1:r2",
+              "text": "I find a hair tie yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-56:intro1:r3",
+              "text": "I finds a hair tie yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Заколка и шпилька",
+        "uk": "Заколка й шпилька"
+      },
+      "bodyByLocale": {
+        "ru": "Hair clip — заколка-зажим для волос; hairpin — шпилька для волос. В этом занятии различаем зажим и шпильку. Выберите: я использовал шпильку.",
+        "uk": "Hair clip — заколка-затискач для волосся; hairpin — шпилька для волосся. У цьому занятті розрізняємо затискач і шпильку. Виберіть: я використав шпильку."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-56:intro2:r1",
+              "text": "I used a hairpin."
+            },
+            {
+              "responseId": "en:lesson-12:session-56:intro2:r2",
+              "text": "I used a hair clip."
+            },
+            {
+              "responseId": "en:lesson-12:session-56:intro2:r3",
+              "text": "I use a hairpin yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-56:intro2:r1",
+              "text": "I used a hairpin."
+            },
+            {
+              "responseId": "en:lesson-12:session-56:intro2:r2",
+              "text": "I used a hair clip."
+            },
+            {
+              "responseId": "en:lesson-12:session-56:intro2:r3",
+              "text": "I use a hairpin yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Шапочка для душа",
+        "uk": "Шапочка для душу"
+      },
+      "bodyByLocale": {
+        "ru": "Shower cap — шапочка для душа: она защищает волосы от воды. I packed my shower cap — я упаковал свою шапочку для душа. Выберите шапочку, не резинку.",
+        "uk": "Shower cap — шапочка для душу: вона захищає волосся від води. I packed my shower cap — я спакував свою шапочку для душу. Виберіть шапочку, не гумку."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-56:intro3:r1",
+              "text": "I packed my shower cap."
+            },
+            {
+              "responseId": "en:lesson-12:session-56:intro3:r2",
+              "text": "I packed my hair tie."
+            },
+            {
+              "responseId": "en:lesson-12:session-56:intro3:r3",
+              "text": "I pack my shower cap yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-56:intro3:r1",
+              "text": "I packed my shower cap."
+            },
+            {
+              "responseId": "en:lesson-12:session-56:intro3:r2",
+              "text": "I packed my hair tie."
+            },
+            {
+              "responseId": "en:lesson-12:session-56:intro3:r3",
+              "text": "I pack my shower cap yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a4e58b5152b846a2206e4fd8f778e47ff03e96b951e869bbdc2cf1b54bf8a890"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "review: found, ironed, washed; was/were",
+    "uk": "review: found, ironed, washed; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ещё не использовали",
+        "uk": "Ще не використовували"
+      },
+      "bodyByLocale": {
+        "ru": "Unused — неиспользованный. Это не то же самое, что unwanted: вещь может быть нужна, но её ещё не использовали. I found an unused towel — я нашёл неиспользованное полотенце. Find → found. Выберите прошлое действие.",
+        "uk": "Unused — невикористаний. Це не те саме, що unwanted: річ може бути потрібна, але її ще не використовували. I found an unused towel — я знайшов невикористаний рушник. Find → found. Виберіть минулу дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-50:intro1:r1",
+              "text": "I found an unused towel."
+            },
+            {
+              "responseId": "en:lesson-12:session-50:intro1:r2",
+              "text": "I find an unused towel yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-50:intro1:r3",
+              "text": "I finds an unused towel yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-50:intro1:r1",
+              "text": "I found an unused towel."
+            },
+            {
+              "responseId": "en:lesson-12:session-50:intro1:r2",
+              "text": "I find an unused towel yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-50:intro1:r3",
+              "text": "I finds an unused towel yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Мятая рубашка",
+        "uk": "Зім’ята сорочка"
+      },
+      "bodyByLocale": {
+        "ru": "Creased — мятый, со складками. I ironed the creased shirt — я погладил мятую рубашку. Выберите глажку, не стирку.",
+        "uk": "Creased — зім’ятий, зі складками. I ironed the creased shirt — я попрасував зім’яту сорочку. Виберіть прасування, не прання."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-50:intro2:r1",
+              "text": "I ironed the creased shirt."
+            },
+            {
+              "responseId": "en:lesson-12:session-50:intro2:r2",
+              "text": "I washed the creased shirt."
+            },
+            {
+              "responseId": "en:lesson-12:session-50:intro2:r3",
+              "text": "I iron the creased shirt yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-50:intro2:r1",
+              "text": "I ironed the creased shirt."
+            },
+            {
+              "responseId": "en:lesson-12:session-50:intro2:r2",
+              "text": "I washed the creased shirt."
+            },
+            {
+              "responseId": "en:lesson-12:session-50:intro2:r3",
+              "text": "I iron the creased shirt yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что ещё не сделано",
+        "uk": "Що ще не зроблено"
+      },
+      "bodyByLocale": {
+        "ru": "Unwashed — нестиранный; unironed — неглаженый. Неглаженая вещь не обязательно сильно мятая: слово говорит, что её не гладили. Выберите: рубашка была неглаженой.",
+        "uk": "Unwashed — невипраний; unironed — непрасований. Непрасована річ не обов’язково дуже зім’ята: слово означає, що її не прасували. Виберіть: сорочка була непрасованою."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-50:intro3:r1",
+              "text": "The shirt was unironed."
+            },
+            {
+              "responseId": "en:lesson-12:session-50:intro3:r2",
+              "text": "The shirt was unwashed."
+            },
+            {
+              "responseId": "en:lesson-12:session-50:intro3:r3",
+              "text": "The shirt is unironed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-50:intro3:r1",
+              "text": "The shirt was unironed."
+            },
+            {
+              "responseId": "en:lesson-12:session-50:intro3:r2",
+              "text": "The shirt was unwashed."
+            },
+            {
+              "responseId": "en:lesson-12:session-50:intro3:r3",
+              "text": "The shirt is unironed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "82d566140bb847cc626a95b59ea3fa49866feb1541f179fd12d8dedd8562e489"
+}

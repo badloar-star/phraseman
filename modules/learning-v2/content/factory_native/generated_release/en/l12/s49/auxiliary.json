@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-49",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-49:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-49:intro1:r2": {
+          "ru": "Для прошлого нужна used.",
+          "uk": "Для минулого потрібна used."
+        },
+        "en:lesson-12:session-49:intro1:r3": {
+          "ru": "С I и в прошлом нужна used.",
+          "uk": "З I та в минулому потрібна used."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-49:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-49:intro2:r2": {
+          "ru": "Washed — постирал, а нужно упаковал.",
+          "uk": "Washed — виправ, а потрібно спакував."
+        },
+        "en:lesson-12:session-49:intro2:r3": {
+          "ru": "Для прошлого нужна packed.",
+          "uk": "Для минулого потрібна packed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-49:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-49:intro3:r2": {
+          "ru": "Worn-out — изношенное.",
+          "uk": "Worn-out — зношене."
+        },
+        "en:lesson-12:session-49:intro3:r3": {
+          "ru": "В прошлом choose превращается в chose.",
+          "uk": "У минулому choose перетворюється на chose."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5663466643c5c8bc852121e9f3ee95aafb459e1f6ed29a115b4ef7f9ce472a4f"
+}

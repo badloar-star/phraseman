@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-56",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-56:word:hair-tie",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hair tie",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-56:word:hair-tie:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hair tie",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-56:word:hair-tie:audio",
+          "transcript": "hair tie"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-56:word:hair-tie:r1",
+            "targetText": "hair tie",
+            "meaningByLocale": {
+              "ru": "резинка для волос.",
+              "uk": "гумка для волосся."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hair tie",
+          "definitionByLocale": {
+            "ru": "резинка для волос.",
+            "uk": "гумка для волосся."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-56:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я знайшов гумку для волосся",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я знайшов гумку для волосся",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I found a hair tie.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я нашёл резинку для волос",
+          "uk": "Скажіть: Я знайшов гумку для волосся"
+        },
+        "orderedTokens": [
+          "I",
+          "found",
+          "a",
+          "hair",
+          "tie"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-56:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-56:i02:r1",
+          "text": "I found a hair tie."
+        },
+        {
+          "responseId": "en:lesson-12:session-56:i02:r2",
+          "text": "I find a hair tie."
+        },
+        {
+          "responseId": "en:lesson-12:session-56:i02:r3",
+          "text": "She found a hair tie."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-56:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-56:i02:audio",
+          "transcript": "I found a hair tie."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-56:i02:r1",
+            "targetText": "I found a hair tie.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i02:r2",
+            "targetText": "I find a hair tie.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i02:r3",
+            "targetText": "She found a hair tie.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-56:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I found a hair tie.",
+              "uk": "У записі звучить I found a hair tie."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I found a hair tie.",
+              "uk": "У записі звучить I found a hair tie."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-56:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-56:i03:r1",
+          "text": "found"
+        },
+        {
+          "responseId": "en:lesson-12:session-56:i03:r2",
+          "text": "find"
+        },
+        {
+          "responseId": "en:lesson-12:session-56:i03:r3",
+          "text": "finds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "I ___ a hair tie.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-56:i03:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i03:r2",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i03:r3",
+            "text": "finds"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-56:i03:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма found.",
+              "uk": "Для минулого потрібна форма found."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i03:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна found.",
+              "uk": "Це не форма минулого. Потрібна found."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-56:word:hair-clip",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hair clip",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-56:word:hair-clip:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hair clip",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-56:word:hair-clip:audio",
+          "transcript": "hair clip"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-56:word:hair-clip:r1",
+            "targetText": "hair clip",
+            "meaningByLocale": {
+              "ru": "заколка-зажим для волос.",
+              "uk": "заколка-затискач для волосся."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hair clip",
+          "definitionByLocale": {
+            "ru": "заколка-зажим для волос.",
+            "uk": "заколка-затискач для волосся."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-56:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я використав заколку-затискач для волосся",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я використав заколку-затискач для волосся",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I used a hair clip.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я использовал заколку-зажим для волос",
+          "uk": "Скажіть: Я використав заколку-затискач для волосся"
+        },
+        "orderedTokens": [
+          "I",
+          "used",
+          "a",
+          "hair",
+          "clip"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-56:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-56:i05:r1",
+          "text": "I used a hair clip."
+        },
+        {
+          "responseId": "en:lesson-12:session-56:i05:r2",
+          "text": "I use a hair clip."
+        },
+        {
+          "responseId": "en:lesson-12:session-56:i05:r3",
+          "text": "She used a hair clip."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-56:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-56:i05:audio",
+          "transcript": "I used a hair clip."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-56:i05:r1",
+            "targetText": "I used a hair clip.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i05:r2",
+            "targetText": "I use a hair clip.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i05:r3",
+            "targetText": "She used a hair clip.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-56:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used a hair clip.",
+              "uk": "У записі звучить I used a hair clip."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used a hair clip.",
+              "uk": "У записі звучить I used a hair clip."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-56:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-56:i06:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-12:session-56:i06:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-12:session-56:i06:r3",
+          "text": "uses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "I ___ a hair clip.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-56:i06:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i06:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i06:r3",
+            "text": "uses"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-56:i06:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма used.",
+              "uk": "Для минулого потрібна форма used."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i06:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна used.",
+              "uk": "Це не форма минулого. Потрібна used."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-56:word:hairpin",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — hairpin",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-56:word:hairpin:audio"
+      ],
+      "accessibilityLabel": "Картка слова — hairpin",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-56:word:hairpin:audio",
+          "transcript": "hairpin"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-56:word:hairpin:r1",
+            "targetText": "hairpin",
+            "meaningByLocale": {
+              "ru": "шпилька для волос.",
+              "uk": "шпилька для волосся."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hairpin",
+          "definitionByLocale": {
+            "ru": "шпилька для волос.",
+            "uk": "шпилька для волосся."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-56:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я використав шпильку для волосся",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я використав шпильку для волосся",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I used a hairpin.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я использовал шпильку для волос",
+          "uk": "Скажіть: Я використав шпильку для волосся"
+        },
+        "orderedTokens": [
+          "I",
+          "used",
+          "a",
+          "hairpin"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-56:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-56:i08:r1",
+          "text": "I used a hairpin."
+        },
+        {
+          "responseId": "en:lesson-12:session-56:i08:r2",
+          "text": "I use a hairpin."
+        },
+        {
+          "responseId": "en:lesson-12:session-56:i08:r3",
+          "text": "She used a hairpin."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-56:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-56:i08:audio",
+          "transcript": "I used a hairpin."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-56:i08:r1",
+            "targetText": "I used a hairpin.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i08:r2",
+            "targetText": "I use a hairpin.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i08:r3",
+            "targetText": "She used a hairpin.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-56:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used a hairpin.",
+              "uk": "У записі звучить I used a hairpin."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used a hairpin.",
+              "uk": "У записі звучить I used a hairpin."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-56:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-56:i09:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-12:session-56:i09:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-12:session-56:i09:r3",
+          "text": "uses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "I ___ a hairpin.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-56:i09:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i09:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i09:r3",
+            "text": "uses"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-56:i09:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма used.",
+              "uk": "Для минулого потрібна форма used."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i09:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна used.",
+              "uk": "Це не форма минулого. Потрібна used."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-56:word:shower-cap",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shower cap",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-56:word:shower-cap:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shower cap",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-56:word:shower-cap:audio",
+          "transcript": "shower cap"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-56:word:shower-cap:r1",
+            "targetText": "shower cap",
+            "meaningByLocale": {
+              "ru": "шапочка для душа.",
+              "uk": "шапочка для душу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shower cap",
+          "definitionByLocale": {
+            "ru": "шапочка для душа.",
+            "uk": "шапочка для душу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-56:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я спакував свою шапочку для душу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я спакував свою шапочку для душу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I packed my shower cap.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я упаковал свою шапочку для душа",
+          "uk": "Скажіть: Я спакував свою шапочку для душу"
+        },
+        "orderedTokens": [
+          "I",
+          "packed",
+          "my",
+          "shower",
+          "cap"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-56:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-56:i11:r1",
+          "text": "I packed my shower cap."
+        },
+        {
+          "responseId": "en:lesson-12:session-56:i11:r2",
+          "text": "I pack my shower cap."
+        },
+        {
+          "responseId": "en:lesson-12:session-56:i11:r3",
+          "text": "She packed my shower cap."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-56:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-56:i11:audio",
+          "transcript": "I packed my shower cap."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-56:i11:r1",
+            "targetText": "I packed my shower cap.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i11:r2",
+            "targetText": "I pack my shower cap.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i11:r3",
+            "targetText": "She packed my shower cap.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-56:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I packed my shower cap.",
+              "uk": "У записі звучить I packed my shower cap."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I packed my shower cap.",
+              "uk": "У записі звучить I packed my shower cap."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-56:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-56:i12:r1",
+          "text": "packed"
+        },
+        {
+          "responseId": "en:lesson-12:session-56:i12:r2",
+          "text": "pack"
+        },
+        {
+          "responseId": "en:lesson-12:session-56:i12:r3",
+          "text": "packs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "I ___ my shower cap.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-56:i12:r1",
+            "text": "packed"
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i12:r2",
+            "text": "pack"
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i12:r3",
+            "text": "packs"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-56:i12:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма packed.",
+              "uk": "Для минулого потрібна форма packed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-56:i12:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна packed.",
+              "uk": "Це не форма минулого. Потрібна packed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-56:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-56:i13:p1",
+            "target": "hair tie",
+            "meaningByLocale": {
+              "ru": "резинка для волос",
+              "uk": "гумка для волосся"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-56:i13:p2",
+            "target": "hair clip",
+            "meaningByLocale": {
+              "ru": "заколка-зажим для волос",
+              "uk": "заколка-затискач для волосся"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-56:i13:p3",
+            "target": "hairpin",
+            "meaningByLocale": {
+              "ru": "шпилька для волос",
+              "uk": "шпилька для волосся"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-56:i13:p4",
+            "target": "shower cap",
+            "meaningByLocale": {
+              "ru": "шапочка для душа",
+              "uk": "шапочка для душу"
+            }
+          }
+        ],
+        "leftColumn": [
+          "hair tie",
+          "hair clip",
+          "hairpin",
+          "shower cap"
+        ],
+        "rightColumn": [
+          "гумка для волосся",
+          "заколка-затискач для волосся",
+          "шпилька для волосся",
+          "шапочка для душу"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-56:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-56:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-56:i14:audio",
+          "transcript": "The bag was on the chair."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bag was on the chair.",
+        "orderedTokens": [
+          "The",
+          "bag",
+          "was",
+          "on",
+          "the",
+          "chair"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-56:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-56:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-56:i15:audio",
+          "transcript": "She found her keys yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She found her keys yesterday.",
+        "orderedTokens": [
+          "She",
+          "found",
+          "her",
+          "keys",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-56:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: гумка для волосся була в сумці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-56:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: гумка для волосся була в сумці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-56:i16:audio",
+          "transcript": "The hair tie was in the bag."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The hair tie was in the bag.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-56:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: я спакував свою шапочку для душу учора",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-56:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: я спакував свою шапочку для душу учора",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-56:i17:audio",
+          "transcript": "I packed my shower cap yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I packed my shower cap yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "df619de67f0eaf06cc860443db15f1bfa46a54d9b4d1c4c0dbfa9a28f321f643"
+}

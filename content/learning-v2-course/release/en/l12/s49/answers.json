@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-49:word:reusable",
+    "correctText": "reusable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-49:i01",
+    "correctText": "I used a reusable bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-49:i02",
+    "correctText": "I used a reusable bag.",
+    "correctResponseId": "en:lesson-12:session-49:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-49:i03",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-49:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-49:word:unwanted",
+    "correctText": "unwanted",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-49:i04",
+    "correctText": "I packed the unwanted clothes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-49:i05",
+    "correctText": "I packed the unwanted clothes.",
+    "correctResponseId": "en:lesson-12:session-49:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-49:i06",
+    "correctText": "packed",
+    "correctResponseId": "en:lesson-12:session-49:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-49:word:brand-new",
+    "correctText": "brand-new",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-49:i07",
+    "correctText": "I chose a brand-new coat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-49:i08",
+    "correctText": "I chose a brand-new coat.",
+    "correctResponseId": "en:lesson-12:session-49:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-49:i09",
+    "correctText": "chose",
+    "correctResponseId": "en:lesson-12:session-49:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-49:word:worn-out",
+    "correctText": "worn-out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-49:i10",
+    "correctText": "I checked the worn-out shoes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-49:i11",
+    "correctText": "I checked the worn-out shoes.",
+    "correctResponseId": "en:lesson-12:session-49:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-49:i12",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-49:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-49:i13",
+    "correctText": "en:lesson-12:session-49:i13:p1=reusable\nen:lesson-12:session-49:i13:p2=unwanted\nen:lesson-12:session-49:i13:p3=brand-new\nen:lesson-12:session-49:i13:p4=worn-out",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-49:i14",
+    "correctText": "The bag was on the floor.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-49:i15",
+    "correctText": "We packed the clothes yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-49:i16",
+    "correctText": "The coat was brand-new.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-49:i17",
+    "correctText": "I used a reusable bag yesterday.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-52:word:sticky-note",
+    "correctText": "sticky note",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-52:i01",
+    "correctText": "I used a sticky note.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-52:i02",
+    "correctText": "I used a sticky note.",
+    "correctResponseId": "en:lesson-12:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-52:i03",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-52:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-52:word:paper-clip",
+    "correctText": "paper clip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-52:i04",
+    "correctText": "I found a paper clip.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-52:i05",
+    "correctText": "I found a paper clip.",
+    "correctResponseId": "en:lesson-12:session-52:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-52:i06",
+    "correctText": "found",
+    "correctResponseId": "en:lesson-12:session-52:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-52:word:rubber-band",
+    "correctText": "rubber band",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-52:i07",
+    "correctText": "I used a rubber band.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-52:i08",
+    "correctText": "I used a rubber band.",
+    "correctResponseId": "en:lesson-12:session-52:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-52:i09",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-52:word:drawing-pin",
+    "correctText": "drawing pin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-52:i10",
+    "correctText": "I found a drawing pin.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-52:i11",
+    "correctText": "I found a drawing pin.",
+    "correctResponseId": "en:lesson-12:session-52:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-52:i12",
+    "correctText": "found",
+    "correctResponseId": "en:lesson-12:session-52:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-52:i13",
+    "correctText": "en:lesson-12:session-52:i13:p1=sticky note\nen:lesson-12:session-52:i13:p2=paper clip\nen:lesson-12:session-52:i13:p3=rubber band\nen:lesson-12:session-52:i13:p4=drawing pin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-52:i14",
+    "correctText": "The papers were on the desk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-52:i15",
+    "correctText": "She wrote a short note.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-52:i16",
+    "correctText": "I used a rubber band yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-52:i17",
+    "correctText": "The paper clip was on the table.",
+    "correctResponseId": null
+  }
+]

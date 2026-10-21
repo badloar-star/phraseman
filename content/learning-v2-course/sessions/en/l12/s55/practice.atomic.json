@@ -1,0 +1,2317 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-12:session-55",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-12:session-55:word:town-centre",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — town centre",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:word:town-centre:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — town centre",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:word:town-centre:audio",
+            "transcript": "town centre"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-55:word:town-centre:r1",
+              "targetText": "town centre",
+              "meaningByLocale": {
+                "ru": "центр города.",
+                "uk": "центр міста."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "town centre",
+            "definitionByLocale": {
+              "ru": "центр города.",
+              "uk": "центр міста."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я побывал в центре города",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я побывал в центре города",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I visited the town centre.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я побывал в центре города",
+            "uk": "Скажіть: Я побував у центрі міста"
+          },
+          "orderedTokens": [
+            "I",
+            "visited",
+            "the",
+            "town",
+            "centre"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-55:i02:r1",
+            "text": "I visited the town centre."
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i02:r2",
+            "text": "I visit the town centre."
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i02:r3",
+            "text": "She visited the town centre."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:i02:audio",
+            "transcript": "I visited the town centre."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-55:i02:r1",
+              "targetText": "I visited the town centre.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i02:r2",
+              "targetText": "I visit the town centre.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i02:r3",
+              "targetText": "She visited the town centre.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-55:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I visited the town centre.",
+                "uk": "У записі звучить I visited the town centre."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I visited the town centre.",
+                "uk": "У записі звучить I visited the town centre."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-55:i03:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i03:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i03:r3",
+            "text": "visits"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ the town centre.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-55:i03:r1",
+              "text": "visited"
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i03:r2",
+              "text": "visit"
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i03:r3",
+              "text": "visits"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-55:i03:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма visited.",
+                "uk": "Для минулого потрібна форма visited."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i03:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна visited.",
+                "uk": "Це не форма минулого. Потрібна visited."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:word:high-street",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — high street",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:word:high-street:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — high street",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:word:high-street:audio",
+            "transcript": "high street"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-55:word:high-street:r1",
+              "targetText": "high street",
+              "meaningByLocale": {
+                "ru": "главная торговая улица города.",
+                "uk": "головна торговельна вулиця міста."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "high street",
+            "definitionByLocale": {
+              "ru": "главная торговая улица города.",
+              "uk": "головна торговельна вулиця міста."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я побывал на главной торговой улице",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я побывал на главной торговой улице",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I visited the high street.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я побывал на главной торговой улице",
+            "uk": "Скажіть: Я побував на головній торговельній вулиці"
+          },
+          "orderedTokens": [
+            "I",
+            "visited",
+            "the",
+            "high",
+            "street"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-55:i05:r1",
+            "text": "I visited the high street."
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i05:r2",
+            "text": "I visit the high street."
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i05:r3",
+            "text": "She visited the high street."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:i05:audio",
+            "transcript": "I visited the high street."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-55:i05:r1",
+              "targetText": "I visited the high street.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i05:r2",
+              "targetText": "I visit the high street.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i05:r3",
+              "targetText": "She visited the high street.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-55:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I visited the high street.",
+                "uk": "У записі звучить I visited the high street."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I visited the high street.",
+                "uk": "У записі звучить I visited the high street."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-55:i06:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i06:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i06:r3",
+            "text": "visits"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ the high street.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-55:i06:r1",
+              "text": "visited"
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i06:r2",
+              "text": "visit"
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i06:r3",
+              "text": "visits"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-55:i06:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма visited.",
+                "uk": "Для минулого потрібна форма visited."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i06:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна visited.",
+                "uk": "Це не форма минулого. Потрібна visited."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:word:town-square",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — town square",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:word:town-square:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — town square",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:word:town-square:audio",
+            "transcript": "town square"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-55:word:town-square:r1",
+              "targetText": "town square",
+              "meaningByLocale": {
+                "ru": "городская площадь.",
+                "uk": "міська площа."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "town square",
+            "definitionByLocale": {
+              "ru": "городская площадь.",
+              "uk": "міська площа."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я побывал на городской площади",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я побывал на городской площади",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I visited the town square.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я побывал на городской площади",
+            "uk": "Скажіть: Я побував на міській площі"
+          },
+          "orderedTokens": [
+            "I",
+            "visited",
+            "the",
+            "town",
+            "square"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-55:i08:r1",
+            "text": "I visited the town square."
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i08:r2",
+            "text": "I visit the town square."
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i08:r3",
+            "text": "She visited the town square."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:i08:audio",
+            "transcript": "I visited the town square."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-55:i08:r1",
+              "targetText": "I visited the town square.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i08:r2",
+              "targetText": "I visit the town square.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i08:r3",
+              "targetText": "She visited the town square.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I visited the town square.",
+                "uk": "У записі звучить I visited the town square."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I visited the town square.",
+                "uk": "У записі звучить I visited the town square."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-55:i09:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i09:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i09:r3",
+            "text": "visits"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ the town square.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-55:i09:r1",
+              "text": "visited"
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i09:r2",
+              "text": "visit"
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i09:r3",
+              "text": "visits"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-55:i09:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма visited.",
+                "uk": "Для минулого потрібна форма visited."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i09:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна visited.",
+                "uk": "Це не форма минулого. Потрібна visited."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:word:street-market",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — street market",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:word:street-market:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — street market",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:word:street-market:audio",
+            "transcript": "street market"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-55:word:street-market:r1",
+              "targetText": "street market",
+              "meaningByLocale": {
+                "ru": "уличный рынок.",
+                "uk": "вуличний ринок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "street market",
+            "definitionByLocale": {
+              "ru": "уличный рынок.",
+              "uk": "вуличний ринок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я побывал на уличном рынке",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я побывал на уличном рынке",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I visited the street market.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я побывал на уличном рынке",
+            "uk": "Скажіть: Я побував на вуличному ринку"
+          },
+          "orderedTokens": [
+            "I",
+            "visited",
+            "the",
+            "street",
+            "market"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-55:i11:r1",
+            "text": "I visited the street market."
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i11:r2",
+            "text": "I visit the street market."
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i11:r3",
+            "text": "She visited the street market."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:i11:audio",
+            "transcript": "I visited the street market."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-55:i11:r1",
+              "targetText": "I visited the street market.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i11:r2",
+              "targetText": "I visit the street market.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i11:r3",
+              "targetText": "She visited the street market.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-55:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I visited the street market.",
+                "uk": "У записі звучить I visited the street market."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I visited the street market.",
+                "uk": "У записі звучить I visited the street market."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-55:i12:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i12:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i12:r3",
+            "text": "visits"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ the street market.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-55:i12:r1",
+              "text": "visited"
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i12:r2",
+              "text": "visit"
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i12:r3",
+              "text": "visits"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-55:i12:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма visited.",
+                "uk": "Для минулого потрібна форма visited."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i12:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна visited.",
+                "uk": "Це не форма минулого. Потрібна visited."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-55:i13:p1",
+              "target": "town centre",
+              "meaningByLocale": {
+                "ru": "центр города",
+                "uk": "центр міста"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-55:i13:p2",
+              "target": "high street",
+              "meaningByLocale": {
+                "ru": "главная торговая улица города",
+                "uk": "головна торговельна вулиця міста"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-55:i13:p3",
+              "target": "town square",
+              "meaningByLocale": {
+                "ru": "городская площадь",
+                "uk": "міська площа"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-55:i13:p4",
+              "target": "street market",
+              "meaningByLocale": {
+                "ru": "уличный рынок",
+                "uk": "вуличний ринок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "town centre",
+            "high street",
+            "town square",
+            "street market"
+          ],
+          "rightColumn": [
+            "центр города",
+            "главная торговая улица города",
+            "городская площадь",
+            "уличный рынок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:i14:audio",
+            "transcript": "The shops were open."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The shops were open.",
+          "orderedTokens": [
+            "The",
+            "shops",
+            "were",
+            "open"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:i15:audio",
+            "transcript": "We bought some fruit yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We bought some fruit yesterday.",
+          "orderedTokens": [
+            "We",
+            "bought",
+            "some",
+            "fruit",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: на главной торговой улице было оживлённо",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: на главной торговой улице было оживлённо",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:i16:audio",
+            "transcript": "The high street was busy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The high street was busy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: я побывал на уличном рынке вчера",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: я побывал на уличном рынке вчера",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:i17:audio",
+            "transcript": "I visited the street market yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I visited the street market yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-12:session-55:word:town-centre",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — town centre",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:word:town-centre:audio"
+        ],
+        "accessibilityLabel": "Картка слова — town centre",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:word:town-centre:audio",
+            "transcript": "town centre"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-55:word:town-centre:r1",
+              "targetText": "town centre",
+              "meaningByLocale": {
+                "ru": "центр города.",
+                "uk": "центр міста."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "town centre",
+            "definitionByLocale": {
+              "ru": "центр города.",
+              "uk": "центр міста."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я побував у центрі міста",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я побував у центрі міста",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I visited the town centre.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я побывал в центре города",
+            "uk": "Скажіть: Я побував у центрі міста"
+          },
+          "orderedTokens": [
+            "I",
+            "visited",
+            "the",
+            "town",
+            "centre"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-55:i02:r1",
+            "text": "I visited the town centre."
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i02:r2",
+            "text": "I visit the town centre."
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i02:r3",
+            "text": "She visited the town centre."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:i02:audio",
+            "transcript": "I visited the town centre."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-55:i02:r1",
+              "targetText": "I visited the town centre.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i02:r2",
+              "targetText": "I visit the town centre.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i02:r3",
+              "targetText": "She visited the town centre.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-55:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I visited the town centre.",
+                "uk": "У записі звучить I visited the town centre."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I visited the town centre.",
+                "uk": "У записі звучить I visited the town centre."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-55:i03:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i03:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i03:r3",
+            "text": "visits"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ the town centre.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-55:i03:r1",
+              "text": "visited"
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i03:r2",
+              "text": "visit"
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i03:r3",
+              "text": "visits"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-55:i03:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма visited.",
+                "uk": "Для минулого потрібна форма visited."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i03:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна visited.",
+                "uk": "Це не форма минулого. Потрібна visited."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:word:high-street",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — high street",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:word:high-street:audio"
+        ],
+        "accessibilityLabel": "Картка слова — high street",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:word:high-street:audio",
+            "transcript": "high street"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-55:word:high-street:r1",
+              "targetText": "high street",
+              "meaningByLocale": {
+                "ru": "главная торговая улица города.",
+                "uk": "головна торговельна вулиця міста."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "high street",
+            "definitionByLocale": {
+              "ru": "главная торговая улица города.",
+              "uk": "головна торговельна вулиця міста."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я побував на головній торговельній вулиці",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я побував на головній торговельній вулиці",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I visited the high street.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я побывал на главной торговой улице",
+            "uk": "Скажіть: Я побував на головній торговельній вулиці"
+          },
+          "orderedTokens": [
+            "I",
+            "visited",
+            "the",
+            "high",
+            "street"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-55:i05:r1",
+            "text": "I visited the high street."
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i05:r2",
+            "text": "I visit the high street."
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i05:r3",
+            "text": "She visited the high street."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:i05:audio",
+            "transcript": "I visited the high street."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-55:i05:r1",
+              "targetText": "I visited the high street.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i05:r2",
+              "targetText": "I visit the high street.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i05:r3",
+              "targetText": "She visited the high street.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-55:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I visited the high street.",
+                "uk": "У записі звучить I visited the high street."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I visited the high street.",
+                "uk": "У записі звучить I visited the high street."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-55:i06:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i06:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i06:r3",
+            "text": "visits"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ the high street.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-55:i06:r1",
+              "text": "visited"
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i06:r2",
+              "text": "visit"
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i06:r3",
+              "text": "visits"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-55:i06:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма visited.",
+                "uk": "Для минулого потрібна форма visited."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i06:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна visited.",
+                "uk": "Це не форма минулого. Потрібна visited."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:word:town-square",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — town square",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:word:town-square:audio"
+        ],
+        "accessibilityLabel": "Картка слова — town square",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:word:town-square:audio",
+            "transcript": "town square"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-55:word:town-square:r1",
+              "targetText": "town square",
+              "meaningByLocale": {
+                "ru": "городская площадь.",
+                "uk": "міська площа."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "town square",
+            "definitionByLocale": {
+              "ru": "городская площадь.",
+              "uk": "міська площа."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я побував на міській площі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я побував на міській площі",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I visited the town square.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я побывал на городской площади",
+            "uk": "Скажіть: Я побував на міській площі"
+          },
+          "orderedTokens": [
+            "I",
+            "visited",
+            "the",
+            "town",
+            "square"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-55:i08:r1",
+            "text": "I visited the town square."
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i08:r2",
+            "text": "I visit the town square."
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i08:r3",
+            "text": "She visited the town square."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:i08:audio",
+            "transcript": "I visited the town square."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-55:i08:r1",
+              "targetText": "I visited the town square.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i08:r2",
+              "targetText": "I visit the town square.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i08:r3",
+              "targetText": "She visited the town square.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I visited the town square.",
+                "uk": "У записі звучить I visited the town square."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I visited the town square.",
+                "uk": "У записі звучить I visited the town square."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-55:i09:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i09:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i09:r3",
+            "text": "visits"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ the town square.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-55:i09:r1",
+              "text": "visited"
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i09:r2",
+              "text": "visit"
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i09:r3",
+              "text": "visits"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-55:i09:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма visited.",
+                "uk": "Для минулого потрібна форма visited."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i09:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна visited.",
+                "uk": "Це не форма минулого. Потрібна visited."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:word:street-market",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — street market",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:word:street-market:audio"
+        ],
+        "accessibilityLabel": "Картка слова — street market",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:word:street-market:audio",
+            "transcript": "street market"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-55:word:street-market:r1",
+              "targetText": "street market",
+              "meaningByLocale": {
+                "ru": "уличный рынок.",
+                "uk": "вуличний ринок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "street market",
+            "definitionByLocale": {
+              "ru": "уличный рынок.",
+              "uk": "вуличний ринок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я побував на вуличному ринку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я побував на вуличному ринку",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I visited the street market.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я побывал на уличном рынке",
+            "uk": "Скажіть: Я побував на вуличному ринку"
+          },
+          "orderedTokens": [
+            "I",
+            "visited",
+            "the",
+            "street",
+            "market"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-55:i11:r1",
+            "text": "I visited the street market."
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i11:r2",
+            "text": "I visit the street market."
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i11:r3",
+            "text": "She visited the street market."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:i11:audio",
+            "transcript": "I visited the street market."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-55:i11:r1",
+              "targetText": "I visited the street market.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i11:r2",
+              "targetText": "I visit the street market.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i11:r3",
+              "targetText": "She visited the street market.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-55:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I visited the street market.",
+                "uk": "У записі звучить I visited the street market."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I visited the street market.",
+                "uk": "У записі звучить I visited the street market."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-55:i12:r1",
+            "text": "visited"
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i12:r2",
+            "text": "visit"
+          },
+          {
+            "responseId": "en:lesson-12:session-55:i12:r3",
+            "text": "visits"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ the street market.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-55:i12:r1",
+              "text": "visited"
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i12:r2",
+              "text": "visit"
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i12:r3",
+              "text": "visits"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-55:i12:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма visited.",
+                "uk": "Для минулого потрібна форма visited."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-55:i12:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна visited.",
+                "uk": "Це не форма минулого. Потрібна visited."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-55:i13:p1",
+              "target": "town centre",
+              "meaningByLocale": {
+                "ru": "центр города",
+                "uk": "центр міста"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-55:i13:p2",
+              "target": "high street",
+              "meaningByLocale": {
+                "ru": "главная торговая улица города",
+                "uk": "головна торговельна вулиця міста"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-55:i13:p3",
+              "target": "town square",
+              "meaningByLocale": {
+                "ru": "городская площадь",
+                "uk": "міська площа"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-55:i13:p4",
+              "target": "street market",
+              "meaningByLocale": {
+                "ru": "уличный рынок",
+                "uk": "вуличний ринок"
+              }
+            }
+          ],
+          "leftColumn": [
+            "town centre",
+            "high street",
+            "town square",
+            "street market"
+          ],
+          "rightColumn": [
+            "центр міста",
+            "головна торговельна вулиця міста",
+            "міська площа",
+            "вуличний ринок"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:i14:audio",
+            "transcript": "The shops were open."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The shops were open.",
+          "orderedTokens": [
+            "The",
+            "shops",
+            "were",
+            "open"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:i15:audio",
+            "transcript": "We bought some fruit yesterday."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We bought some fruit yesterday.",
+          "orderedTokens": [
+            "We",
+            "bought",
+            "some",
+            "fruit",
+            "yesterday"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: на головній торговельній вулиці було жваво",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: на головній торговельній вулиці було жваво",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:i16:audio",
+            "transcript": "The high street was busy."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The high street was busy.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-55:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: я побував на вуличному ринку учора",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-55:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: я побував на вуличному ринку учора",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-55:i17:audio",
+            "transcript": "I visited the street market yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I visited the street market yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-12:session-55:word:town-centre",
+      "correctText": "town centre",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-55:i01",
+      "correctText": "I visited the town centre.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-55:i02",
+      "correctText": "I visited the town centre.",
+      "correctResponseId": "en:lesson-12:session-55:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-55:i03",
+      "correctText": "visited",
+      "correctResponseId": "en:lesson-12:session-55:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-55:word:high-street",
+      "correctText": "high street",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-55:i04",
+      "correctText": "I visited the high street.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-55:i05",
+      "correctText": "I visited the high street.",
+      "correctResponseId": "en:lesson-12:session-55:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-55:i06",
+      "correctText": "visited",
+      "correctResponseId": "en:lesson-12:session-55:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-55:word:town-square",
+      "correctText": "town square",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-55:i07",
+      "correctText": "I visited the town square.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-55:i08",
+      "correctText": "I visited the town square.",
+      "correctResponseId": "en:lesson-12:session-55:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-55:i09",
+      "correctText": "visited",
+      "correctResponseId": "en:lesson-12:session-55:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-55:word:street-market",
+      "correctText": "street market",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-55:i10",
+      "correctText": "I visited the street market.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-55:i11",
+      "correctText": "I visited the street market.",
+      "correctResponseId": "en:lesson-12:session-55:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-55:i12",
+      "correctText": "visited",
+      "correctResponseId": "en:lesson-12:session-55:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-55:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-55:i14",
+      "correctText": "The shops were open.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-55:i15",
+      "correctText": "We bought some fruit yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-55:i16",
+      "correctText": "The high street was busy.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-55:i17",
+      "correctText": "I visited the street market yesterday.",
+      "correctResponseId": null
+    }
+  ]
+}

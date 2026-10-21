@@ -1,0 +1,1113 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-54",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-54:word:sofa-cushion",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sofa cushion",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-54:word:sofa-cushion:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sofa cushion",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-54:word:sofa-cushion:audio",
+          "transcript": "sofa cushion"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-54:word:sofa-cushion:r1",
+            "targetText": "sofa cushion",
+            "meaningByLocale": {
+              "ru": "диванная подушка.",
+              "uk": "диванна подушка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sofa cushion",
+          "definitionByLocale": {
+            "ru": "диванная подушка.",
+            "uk": "диванна подушка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-54:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я переклав диванну подушку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я переклав диванну подушку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I moved the sofa cushion.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я переложил диванную подушку",
+          "uk": "Скажіть: Я переклав диванну подушку"
+        },
+        "orderedTokens": [
+          "I",
+          "moved",
+          "the",
+          "sofa",
+          "cushion"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-54:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-54:i02:r1",
+          "text": "I moved the sofa cushion."
+        },
+        {
+          "responseId": "en:lesson-12:session-54:i02:r2",
+          "text": "I move the sofa cushion."
+        },
+        {
+          "responseId": "en:lesson-12:session-54:i02:r3",
+          "text": "She moved the sofa cushion."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-54:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-54:i02:audio",
+          "transcript": "I moved the sofa cushion."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-54:i02:r1",
+            "targetText": "I moved the sofa cushion.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i02:r2",
+            "targetText": "I move the sofa cushion.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i02:r3",
+            "targetText": "She moved the sofa cushion.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-54:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I moved the sofa cushion.",
+              "uk": "У записі звучить I moved the sofa cushion."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I moved the sofa cushion.",
+              "uk": "У записі звучить I moved the sofa cushion."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-54:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-54:i03:r1",
+          "text": "moved"
+        },
+        {
+          "responseId": "en:lesson-12:session-54:i03:r2",
+          "text": "move"
+        },
+        {
+          "responseId": "en:lesson-12:session-54:i03:r3",
+          "text": "moves"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "I ___ the sofa cushion.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-54:i03:r1",
+            "text": "moved"
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i03:r2",
+            "text": "move"
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i03:r3",
+            "text": "moves"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-54:i03:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма moved.",
+              "uk": "Для минулого потрібна форма moved."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i03:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна moved.",
+              "uk": "Це не форма минулого. Потрібна moved."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-54:word:cushion-cover",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cushion cover",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-54:word:cushion-cover:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cushion cover",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-54:word:cushion-cover:audio",
+          "transcript": "cushion cover"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-54:word:cushion-cover:r1",
+            "targetText": "cushion cover",
+            "meaningByLocale": {
+              "ru": "чехол для декоративной подушки.",
+              "uk": "чохол для декоративної подушки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cushion cover",
+          "definitionByLocale": {
+            "ru": "чехол для декоративной подушки.",
+            "uk": "чохол для декоративної подушки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-54:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я виправ чохол для подушки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я виправ чохол для подушки",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I washed the cushion cover.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я постирал чехол для подушки",
+          "uk": "Скажіть: Я виправ чохол для подушки"
+        },
+        "orderedTokens": [
+          "I",
+          "washed",
+          "the",
+          "cushion",
+          "cover"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-54:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-54:i05:r1",
+          "text": "I washed the cushion cover."
+        },
+        {
+          "responseId": "en:lesson-12:session-54:i05:r2",
+          "text": "I wash the cushion cover."
+        },
+        {
+          "responseId": "en:lesson-12:session-54:i05:r3",
+          "text": "She washed the cushion cover."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-54:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-54:i05:audio",
+          "transcript": "I washed the cushion cover."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-54:i05:r1",
+            "targetText": "I washed the cushion cover.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i05:r2",
+            "targetText": "I wash the cushion cover.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i05:r3",
+            "targetText": "She washed the cushion cover.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-54:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I washed the cushion cover.",
+              "uk": "У записі звучить I washed the cushion cover."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I washed the cushion cover.",
+              "uk": "У записі звучить I washed the cushion cover."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-54:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-54:i06:r1",
+          "text": "washed"
+        },
+        {
+          "responseId": "en:lesson-12:session-54:i06:r2",
+          "text": "wash"
+        },
+        {
+          "responseId": "en:lesson-12:session-54:i06:r3",
+          "text": "washes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "I ___ the cushion cover.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-54:i06:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i06:r2",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i06:r3",
+            "text": "washes"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-54:i06:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма washed.",
+              "uk": "Для минулого потрібна форма washed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i06:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна washed.",
+              "uk": "Це не форма минулого. Потрібна washed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-54:word:footstool",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — footstool",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-54:word:footstool:audio"
+      ],
+      "accessibilityLabel": "Картка слова — footstool",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-54:word:footstool:audio",
+          "transcript": "footstool"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-54:word:footstool:r1",
+            "targetText": "footstool",
+            "meaningByLocale": {
+              "ru": "подставка для ног.",
+              "uk": "підставка для ніг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "footstool",
+          "definitionByLocale": {
+            "ru": "подставка для ног.",
+            "uk": "підставка для ніг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-54:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я переставив підставку для ніг",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я переставив підставку для ніг",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I moved the footstool.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я переставил подставку для ног",
+          "uk": "Скажіть: Я переставив підставку для ніг"
+        },
+        "orderedTokens": [
+          "I",
+          "moved",
+          "the",
+          "footstool"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-54:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-54:i08:r1",
+          "text": "I moved the footstool."
+        },
+        {
+          "responseId": "en:lesson-12:session-54:i08:r2",
+          "text": "I move the footstool."
+        },
+        {
+          "responseId": "en:lesson-12:session-54:i08:r3",
+          "text": "She moved the footstool."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-54:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-54:i08:audio",
+          "transcript": "I moved the footstool."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-54:i08:r1",
+            "targetText": "I moved the footstool.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i08:r2",
+            "targetText": "I move the footstool.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i08:r3",
+            "targetText": "She moved the footstool.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I moved the footstool.",
+              "uk": "У записі звучить I moved the footstool."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I moved the footstool.",
+              "uk": "У записі звучить I moved the footstool."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-54:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-54:i09:r1",
+          "text": "moved"
+        },
+        {
+          "responseId": "en:lesson-12:session-54:i09:r2",
+          "text": "move"
+        },
+        {
+          "responseId": "en:lesson-12:session-54:i09:r3",
+          "text": "moves"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "I ___ the footstool.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-54:i09:r1",
+            "text": "moved"
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i09:r2",
+            "text": "move"
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i09:r3",
+            "text": "moves"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-54:i09:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма moved.",
+              "uk": "Для минулого потрібна форма moved."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i09:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна moved.",
+              "uk": "Це не форма минулого. Потрібна moved."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-54:word:rocking-chair",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rocking chair",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-54:word:rocking-chair:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rocking chair",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-54:word:rocking-chair:audio",
+          "transcript": "rocking chair"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-54:word:rocking-chair:r1",
+            "targetText": "rocking chair",
+            "meaningByLocale": {
+              "ru": "кресло-качалка.",
+              "uk": "крісло-гойдалка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rocking chair",
+          "definitionByLocale": {
+            "ru": "кресло-качалка.",
+            "uk": "крісло-гойдалка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-54:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я переставив крісло-гойдалку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я переставив крісло-гойдалку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I moved the rocking chair.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я переставил кресло-качалку",
+          "uk": "Скажіть: Я переставив крісло-гойдалку"
+        },
+        "orderedTokens": [
+          "I",
+          "moved",
+          "the",
+          "rocking",
+          "chair"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-54:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-54:i11:r1",
+          "text": "I moved the rocking chair."
+        },
+        {
+          "responseId": "en:lesson-12:session-54:i11:r2",
+          "text": "I move the rocking chair."
+        },
+        {
+          "responseId": "en:lesson-12:session-54:i11:r3",
+          "text": "She moved the rocking chair."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-54:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-54:i11:audio",
+          "transcript": "I moved the rocking chair."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-54:i11:r1",
+            "targetText": "I moved the rocking chair.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i11:r2",
+            "targetText": "I move the rocking chair.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i11:r3",
+            "targetText": "She moved the rocking chair.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-54:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I moved the rocking chair.",
+              "uk": "У записі звучить I moved the rocking chair."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I moved the rocking chair.",
+              "uk": "У записі звучить I moved the rocking chair."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-54:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-54:i12:r1",
+          "text": "moved"
+        },
+        {
+          "responseId": "en:lesson-12:session-54:i12:r2",
+          "text": "move"
+        },
+        {
+          "responseId": "en:lesson-12:session-54:i12:r3",
+          "text": "moves"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "I ___ the rocking chair.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-54:i12:r1",
+            "text": "moved"
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i12:r2",
+            "text": "move"
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i12:r3",
+            "text": "moves"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-54:i12:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма moved.",
+              "uk": "Для минулого потрібна форма moved."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-54:i12:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна moved.",
+              "uk": "Це не форма минулого. Потрібна moved."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-54:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-54:i13:p1",
+            "target": "sofa cushion",
+            "meaningByLocale": {
+              "ru": "диванная подушка",
+              "uk": "диванна подушка"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-54:i13:p2",
+            "target": "cushion cover",
+            "meaningByLocale": {
+              "ru": "чехол для декоративной подушки",
+              "uk": "чохол для декоративної подушки"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-54:i13:p3",
+            "target": "footstool",
+            "meaningByLocale": {
+              "ru": "подставка для ног",
+              "uk": "підставка для ніг"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-54:i13:p4",
+            "target": "rocking chair",
+            "meaningByLocale": {
+              "ru": "кресло-качалка",
+              "uk": "крісло-гойдалка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sofa cushion",
+          "cushion cover",
+          "footstool",
+          "rocking chair"
+        ],
+        "rightColumn": [
+          "диванна подушка",
+          "чохол для декоративної подушки",
+          "підставка для ніг",
+          "крісло-гойдалка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-54:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-54:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-54:i14:audio",
+          "transcript": "The room was warm."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The room was warm.",
+        "orderedTokens": [
+          "The",
+          "room",
+          "was",
+          "warm"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-54:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-54:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-54:i15:audio",
+          "transcript": "She washed the cover yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She washed the cover yesterday.",
+        "orderedTokens": [
+          "She",
+          "washed",
+          "the",
+          "cover",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-54:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: підставка для ніг була біля дивана",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-54:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: підставка для ніг була біля дивана",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-54:i16:audio",
+          "transcript": "The footstool was by the sofa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The footstool was by the sofa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-54:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: я виправ чохол для подушки учора",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-54:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: я виправ чохол для подушки учора",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-54:i17:audio",
+          "transcript": "I washed the cushion cover yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I washed the cushion cover yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a3a05d721d4a1b56835d9ad6050323fafcace0c8a34ba87b06f40dd207fcf451"
+}

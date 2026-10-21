@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-51:word:ice-cube",
+    "correctText": "ice cube",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-51:i01",
+    "correctText": "I added an ice cube.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-51:i02",
+    "correctText": "I added an ice cube.",
+    "correctResponseId": "en:lesson-12:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-51:i03",
+    "correctText": "added",
+    "correctResponseId": "en:lesson-12:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-51:word:ice-tray",
+    "correctText": "ice tray",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-51:i04",
+    "correctText": "I filled the ice tray.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-51:i05",
+    "correctText": "I filled the ice tray.",
+    "correctResponseId": "en:lesson-12:session-51:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-51:i06",
+    "correctText": "filled",
+    "correctResponseId": "en:lesson-12:session-51:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-51:word:freezer-bag",
+    "correctText": "freezer bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-51:i07",
+    "correctText": "I used a freezer bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-51:i08",
+    "correctText": "I used a freezer bag.",
+    "correctResponseId": "en:lesson-12:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-51:i09",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-51:word:food-container",
+    "correctText": "food container",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-51:i10",
+    "correctText": "I washed the food container.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-51:i11",
+    "correctText": "I washed the food container.",
+    "correctResponseId": "en:lesson-12:session-51:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-51:i12",
+    "correctText": "washed",
+    "correctResponseId": "en:lesson-12:session-51:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-51:i13",
+    "correctText": "en:lesson-12:session-51:i13:p1=ice cube\nen:lesson-12:session-51:i13:p2=ice tray\nen:lesson-12:session-51:i13:p3=freezer bag\nen:lesson-12:session-51:i13:p4=food container",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-51:i14",
+    "correctText": "The water was cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-51:i15",
+    "correctText": "She washed the bowl.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-51:i16",
+    "correctText": "The food container was empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-51:i17",
+    "correctText": "I filled the ice tray yesterday.",
+    "correctResponseId": null
+  }
+]

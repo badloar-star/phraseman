@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-51",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-51:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-51:intro1:r2": {
+          "ru": "Для прошлого нужна added.",
+          "uk": "Для минулого потрібна added."
+        },
+        "en:lesson-12:session-51:intro1:r3": {
+          "ru": "С I и в прошлом нужна added.",
+          "uk": "З I та в минулому потрібна added."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-51:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-51:intro2:r2": {
+          "ru": "Washed — вымыл, не наполнил.",
+          "uk": "Washed — вимив, не наповнив."
+        },
+        "en:lesson-12:session-51:intro2:r3": {
+          "ru": "Для прошлого нужна filled.",
+          "uk": "Для минулого потрібна filled."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-51:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-51:intro3:r2": {
+          "ru": "Это пакет, не контейнер.",
+          "uk": "Це пакет, не контейнер."
+        },
+        "en:lesson-12:session-51:intro3:r3": {
+          "ru": "Для прошлого нужна washed.",
+          "uk": "Для минулого потрібна washed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6b13aefea3025d93dde3e1fd5ee2aa0d9bab65c04ad9bfd71dfa085f5353a1e9"
+}

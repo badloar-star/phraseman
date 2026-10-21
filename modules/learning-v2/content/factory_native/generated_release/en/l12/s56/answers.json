@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-56:word:hair-tie",
+    "correctText": "hair tie",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-56:i01",
+    "correctText": "I found a hair tie.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-56:i02",
+    "correctText": "I found a hair tie.",
+    "correctResponseId": "en:lesson-12:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-56:i03",
+    "correctText": "found",
+    "correctResponseId": "en:lesson-12:session-56:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-56:word:hair-clip",
+    "correctText": "hair clip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-56:i04",
+    "correctText": "I used a hair clip.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-56:i05",
+    "correctText": "I used a hair clip.",
+    "correctResponseId": "en:lesson-12:session-56:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-56:i06",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-56:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-56:word:hairpin",
+    "correctText": "hairpin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-56:i07",
+    "correctText": "I used a hairpin.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-56:i08",
+    "correctText": "I used a hairpin.",
+    "correctResponseId": "en:lesson-12:session-56:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-56:i09",
+    "correctText": "used",
+    "correctResponseId": "en:lesson-12:session-56:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-56:word:shower-cap",
+    "correctText": "shower cap",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-56:i10",
+    "correctText": "I packed my shower cap.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-56:i11",
+    "correctText": "I packed my shower cap.",
+    "correctResponseId": "en:lesson-12:session-56:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-56:i12",
+    "correctText": "packed",
+    "correctResponseId": "en:lesson-12:session-56:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-56:i13",
+    "correctText": "en:lesson-12:session-56:i13:p1=hair tie\nen:lesson-12:session-56:i13:p2=hair clip\nen:lesson-12:session-56:i13:p3=hairpin\nen:lesson-12:session-56:i13:p4=shower cap",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-56:i14",
+    "correctText": "The bag was on the chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-56:i15",
+    "correctText": "She found her keys yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-56:i16",
+    "correctText": "The hair tie was in the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-56:i17",
+    "correctText": "I packed my shower cap yesterday.",
+    "correctResponseId": null
+  }
+]

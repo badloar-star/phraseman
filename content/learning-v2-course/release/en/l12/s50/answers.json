@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-50:word:unused",
+    "correctText": "unused",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-50:i01",
+    "correctText": "I found an unused towel.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-50:i02",
+    "correctText": "I found an unused towel.",
+    "correctResponseId": "en:lesson-12:session-50:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-50:i03",
+    "correctText": "found",
+    "correctResponseId": "en:lesson-12:session-50:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-50:word:creased",
+    "correctText": "creased",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-50:i04",
+    "correctText": "I ironed the creased shirt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-50:i05",
+    "correctText": "I ironed the creased shirt.",
+    "correctResponseId": "en:lesson-12:session-50:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-50:i06",
+    "correctText": "ironed",
+    "correctResponseId": "en:lesson-12:session-50:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-50:word:unwashed",
+    "correctText": "unwashed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-50:i07",
+    "correctText": "I washed the unwashed clothes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-50:i08",
+    "correctText": "I washed the unwashed clothes.",
+    "correctResponseId": "en:lesson-12:session-50:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-50:i09",
+    "correctText": "washed",
+    "correctResponseId": "en:lesson-12:session-50:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-50:word:unironed",
+    "correctText": "unironed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-50:i10",
+    "correctText": "I found an unironed shirt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-50:i11",
+    "correctText": "I found an unironed shirt.",
+    "correctResponseId": "en:lesson-12:session-50:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-50:i12",
+    "correctText": "found",
+    "correctResponseId": "en:lesson-12:session-50:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-50:i13",
+    "correctText": "en:lesson-12:session-50:i13:p1=unused\nen:lesson-12:session-50:i13:p2=creased\nen:lesson-12:session-50:i13:p3=unwashed\nen:lesson-12:session-50:i13:p4=unironed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-50:i14",
+    "correctText": "The towel was clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-50:i15",
+    "correctText": "She washed the clothes yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-50:i16",
+    "correctText": "The shirt was creased.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-50:i17",
+    "correctText": "I found an unused towel yesterday.",
+    "correctResponseId": null
+  }
+]

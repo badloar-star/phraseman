@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-55:word:town-centre",
+    "correctText": "town centre",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-55:i01",
+    "correctText": "I visited the town centre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-55:i02",
+    "correctText": "I visited the town centre.",
+    "correctResponseId": "en:lesson-12:session-55:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-55:i03",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-12:session-55:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-55:word:high-street",
+    "correctText": "high street",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-55:i04",
+    "correctText": "I visited the high street.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-55:i05",
+    "correctText": "I visited the high street.",
+    "correctResponseId": "en:lesson-12:session-55:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-55:i06",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-12:session-55:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-55:word:town-square",
+    "correctText": "town square",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-55:i07",
+    "correctText": "I visited the town square.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-55:i08",
+    "correctText": "I visited the town square.",
+    "correctResponseId": "en:lesson-12:session-55:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-55:i09",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-12:session-55:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-55:word:street-market",
+    "correctText": "street market",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-55:i10",
+    "correctText": "I visited the street market.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-55:i11",
+    "correctText": "I visited the street market.",
+    "correctResponseId": "en:lesson-12:session-55:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-55:i12",
+    "correctText": "visited",
+    "correctResponseId": "en:lesson-12:session-55:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-55:i13",
+    "correctText": "en:lesson-12:session-55:i13:p1=town centre\nen:lesson-12:session-55:i13:p2=high street\nen:lesson-12:session-55:i13:p3=town square\nen:lesson-12:session-55:i13:p4=street market",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-55:i14",
+    "correctText": "The shops were open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-55:i15",
+    "correctText": "We bought some fruit yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-55:i16",
+    "correctText": "The high street was busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-55:i17",
+    "correctText": "I visited the street market yesterday.",
+    "correctResponseId": null
+  }
+]

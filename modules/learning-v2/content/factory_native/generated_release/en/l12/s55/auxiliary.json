@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-55",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-55:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-55:intro1:r2": {
+          "ru": "Для прошлого нужна visited.",
+          "uk": "Для минулого потрібна visited."
+        },
+        "en:lesson-12:session-55:intro1:r3": {
+          "ru": "Visits не обозначает прошлое.",
+          "uk": "Visits не позначає минуле."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-55:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-55:intro2:r2": {
+          "ru": "Is — настоящее время.",
+          "uk": "Is — теперішній час."
+        },
+        "en:lesson-12:session-55:intro2:r3": {
+          "ru": "С одной улицей нужна was.",
+          "uk": "З однією вулицею потрібна was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-55:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-55:intro3:r2": {
+          "ru": "Это городская площадь.",
+          "uk": "Це міська площа."
+        },
+        "en:lesson-12:session-55:intro3:r3": {
+          "ru": "Для прошлого нужна visited.",
+          "uk": "Для минулого потрібна visited."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dd16cd45b00f6332e857e5ffa3b1526ba0a7b59d960c0f050a0ff98b9dc282e2"
+}

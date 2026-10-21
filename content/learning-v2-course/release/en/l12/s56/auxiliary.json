@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-56",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-56:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-56:intro1:r2": {
+          "ru": "Для прошлого нужна found.",
+          "uk": "Для минулого потрібна found."
+        },
+        "en:lesson-12:session-56:intro1:r3": {
+          "ru": "Finds не обозначает прошлое.",
+          "uk": "Finds не позначає минуле."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-56:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-56:intro2:r2": {
+          "ru": "Это заколка-зажим.",
+          "uk": "Це заколка-затискач."
+        },
+        "en:lesson-12:session-56:intro2:r3": {
+          "ru": "Для прошлого нужна used.",
+          "uk": "Для минулого потрібна used."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-56:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-56:intro3:r2": {
+          "ru": "Это резинка для волос.",
+          "uk": "Це гумка для волосся."
+        },
+        "en:lesson-12:session-56:intro3:r3": {
+          "ru": "Для прошлого нужна packed.",
+          "uk": "Для минулого потрібна packed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "23cebf2fc3a4972a145ee1768011aac1c46247da01ffdae30f018294379d89d1"
+}

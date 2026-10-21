@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-53:word:sleeping-bag",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sleeping bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-53:word:sleeping-bag:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sleeping bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-53:word:sleeping-bag:audio",
+          "transcript": "sleeping bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-53:word:sleeping-bag:r1",
+            "targetText": "sleeping bag",
+            "meaningByLocale": {
+              "ru": "спальный мешок.",
+              "uk": "спальний мішок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sleeping bag",
+          "definitionByLocale": {
+            "ru": "спальный мешок.",
+            "uk": "спальний мішок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-53:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я спакував свій спальний мішок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я спакував свій спальний мішок",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I packed my sleeping bag.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я упаковал свой спальный мешок",
+          "uk": "Скажіть: Я спакував свій спальний мішок"
+        },
+        "orderedTokens": [
+          "I",
+          "packed",
+          "my",
+          "sleeping",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-53:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-53:i02:r1",
+          "text": "I packed my sleeping bag."
+        },
+        {
+          "responseId": "en:lesson-12:session-53:i02:r2",
+          "text": "I pack my sleeping bag."
+        },
+        {
+          "responseId": "en:lesson-12:session-53:i02:r3",
+          "text": "She packed my sleeping bag."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-53:i02:audio",
+          "transcript": "I packed my sleeping bag."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-53:i02:r1",
+            "targetText": "I packed my sleeping bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i02:r2",
+            "targetText": "I pack my sleeping bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i02:r3",
+            "targetText": "She packed my sleeping bag.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I packed my sleeping bag.",
+              "uk": "У записі звучить I packed my sleeping bag."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I packed my sleeping bag.",
+              "uk": "У записі звучить I packed my sleeping bag."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-53:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-53:i03:r1",
+          "text": "packed"
+        },
+        {
+          "responseId": "en:lesson-12:session-53:i03:r2",
+          "text": "pack"
+        },
+        {
+          "responseId": "en:lesson-12:session-53:i03:r3",
+          "text": "packs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "I ___ my sleeping bag.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-53:i03:r1",
+            "text": "packed"
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i03:r2",
+            "text": "pack"
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i03:r3",
+            "text": "packs"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма packed.",
+              "uk": "Для минулого потрібна форма packed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i03:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна packed.",
+              "uk": "Це не форма минулого. Потрібна packed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-53:word:airbed",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — airbed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-53:word:airbed:audio"
+      ],
+      "accessibilityLabel": "Картка слова — airbed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-53:word:airbed:audio",
+          "transcript": "airbed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-53:word:airbed:r1",
+            "targetText": "airbed",
+            "meaningByLocale": {
+              "ru": "надувной матрас для сна.",
+              "uk": "надувний матрац для сну."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "airbed",
+          "definitionByLocale": {
+            "ru": "надувной матрас для сна.",
+            "uk": "надувний матрац для сну."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-53:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я перевірив надувний матрац",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я перевірив надувний матрац",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I checked the airbed.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я проверил надувной матрас",
+          "uk": "Скажіть: Я перевірив надувний матрац"
+        },
+        "orderedTokens": [
+          "I",
+          "checked",
+          "the",
+          "airbed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-53:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-53:i05:r1",
+          "text": "I checked the airbed."
+        },
+        {
+          "responseId": "en:lesson-12:session-53:i05:r2",
+          "text": "I check the airbed."
+        },
+        {
+          "responseId": "en:lesson-12:session-53:i05:r3",
+          "text": "She checked the airbed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-53:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-53:i05:audio",
+          "transcript": "I checked the airbed."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-53:i05:r1",
+            "targetText": "I checked the airbed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i05:r2",
+            "targetText": "I check the airbed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i05:r3",
+            "targetText": "She checked the airbed.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-53:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I checked the airbed.",
+              "uk": "У записі звучить I checked the airbed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I checked the airbed.",
+              "uk": "У записі звучить I checked the airbed."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-53:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-53:i06:r1",
+          "text": "checked"
+        },
+        {
+          "responseId": "en:lesson-12:session-53:i06:r2",
+          "text": "check"
+        },
+        {
+          "responseId": "en:lesson-12:session-53:i06:r3",
+          "text": "checks"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "I ___ the airbed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-53:i06:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i06:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i06:r3",
+            "text": "checks"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-53:i06:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма checked.",
+              "uk": "Для минулого потрібна форма checked."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i06:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна checked.",
+              "uk": "Це не форма минулого. Потрібна checked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-53:word:tent-peg",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — tent peg",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-53:word:tent-peg:audio"
+      ],
+      "accessibilityLabel": "Картка слова — tent peg",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-53:word:tent-peg:audio",
+          "transcript": "tent peg"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-53:word:tent-peg:r1",
+            "targetText": "tent peg",
+            "meaningByLocale": {
+              "ru": "колышек для палатки.",
+              "uk": "кілочок для намету."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tent peg",
+          "definitionByLocale": {
+            "ru": "колышек для палатки.",
+            "uk": "кілочок для намету."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-53:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я знайшов кілочок для намету",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я знайшов кілочок для намету",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I found a tent peg.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я нашёл колышек для палатки",
+          "uk": "Скажіть: Я знайшов кілочок для намету"
+        },
+        "orderedTokens": [
+          "I",
+          "found",
+          "a",
+          "tent",
+          "peg"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-53:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-53:i08:r1",
+          "text": "I found a tent peg."
+        },
+        {
+          "responseId": "en:lesson-12:session-53:i08:r2",
+          "text": "I find a tent peg."
+        },
+        {
+          "responseId": "en:lesson-12:session-53:i08:r3",
+          "text": "She found a tent peg."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-53:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-53:i08:audio",
+          "transcript": "I found a tent peg."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-53:i08:r1",
+            "targetText": "I found a tent peg.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i08:r2",
+            "targetText": "I find a tent peg.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i08:r3",
+            "targetText": "She found a tent peg.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I found a tent peg.",
+              "uk": "У записі звучить I found a tent peg."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I found a tent peg.",
+              "uk": "У записі звучить I found a tent peg."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-53:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-53:i09:r1",
+          "text": "found"
+        },
+        {
+          "responseId": "en:lesson-12:session-53:i09:r2",
+          "text": "find"
+        },
+        {
+          "responseId": "en:lesson-12:session-53:i09:r3",
+          "text": "finds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "I ___ a tent peg.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-53:i09:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i09:r2",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i09:r3",
+            "text": "finds"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-53:i09:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма found.",
+              "uk": "Для минулого потрібна форма found."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i09:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна found.",
+              "uk": "Це не форма минулого. Потрібна found."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-53:word:camping-stove",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — camping stove",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-53:word:camping-stove:audio"
+      ],
+      "accessibilityLabel": "Картка слова — camping stove",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-53:word:camping-stove:audio",
+          "transcript": "camping stove"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-53:word:camping-stove:r1",
+            "targetText": "camping stove",
+            "meaningByLocale": {
+              "ru": "походная плитка.",
+              "uk": "похідна плитка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "camping stove",
+          "definitionByLocale": {
+            "ru": "походная плитка.",
+            "uk": "похідна плитка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-53:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я почистив похідну плитку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я почистив похідну плитку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I cleaned the camping stove.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я почистил походную плитку",
+          "uk": "Скажіть: Я почистив похідну плитку"
+        },
+        "orderedTokens": [
+          "I",
+          "cleaned",
+          "the",
+          "camping",
+          "stove"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-53:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-53:i11:r1",
+          "text": "I cleaned the camping stove."
+        },
+        {
+          "responseId": "en:lesson-12:session-53:i11:r2",
+          "text": "I clean the camping stove."
+        },
+        {
+          "responseId": "en:lesson-12:session-53:i11:r3",
+          "text": "She cleaned the camping stove."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-53:i11:audio",
+          "transcript": "I cleaned the camping stove."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-53:i11:r1",
+            "targetText": "I cleaned the camping stove.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i11:r2",
+            "targetText": "I clean the camping stove.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i11:r3",
+            "targetText": "She cleaned the camping stove.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-53:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I cleaned the camping stove.",
+              "uk": "У записі звучить I cleaned the camping stove."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I cleaned the camping stove.",
+              "uk": "У записі звучить I cleaned the camping stove."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-53:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-53:i12:r1",
+          "text": "cleaned"
+        },
+        {
+          "responseId": "en:lesson-12:session-53:i12:r2",
+          "text": "clean"
+        },
+        {
+          "responseId": "en:lesson-12:session-53:i12:r3",
+          "text": "cleans"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "I ___ the camping stove.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-53:i12:r1",
+            "text": "cleaned"
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i12:r2",
+            "text": "clean"
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i12:r3",
+            "text": "cleans"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-53:i12:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма cleaned.",
+              "uk": "Для минулого потрібна форма cleaned."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-53:i12:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна cleaned.",
+              "uk": "Це не форма минулого. Потрібна cleaned."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-53:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-53:i13:p1",
+            "target": "sleeping bag",
+            "meaningByLocale": {
+              "ru": "спальный мешок",
+              "uk": "спальний мішок"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-53:i13:p2",
+            "target": "airbed",
+            "meaningByLocale": {
+              "ru": "надувной матрас для сна",
+              "uk": "надувний матрац для сну"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-53:i13:p3",
+            "target": "tent peg",
+            "meaningByLocale": {
+              "ru": "колышек для палатки",
+              "uk": "кілочок для намету"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-53:i13:p4",
+            "target": "camping stove",
+            "meaningByLocale": {
+              "ru": "походная плитка",
+              "uk": "похідна плитка"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sleeping bag",
+          "airbed",
+          "tent peg",
+          "camping stove"
+        ],
+        "rightColumn": [
+          "спальний мішок",
+          "надувний матрац для сну",
+          "кілочок для намету",
+          "похідна плитка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-53:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-53:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-53:i14:audio",
+          "transcript": "The tent was in the car."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The tent was in the car.",
+        "orderedTokens": [
+          "The",
+          "tent",
+          "was",
+          "in",
+          "the",
+          "car"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-53:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-53:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-53:i15:audio",
+          "transcript": "We packed our bags yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We packed our bags yesterday.",
+        "orderedTokens": [
+          "We",
+          "packed",
+          "our",
+          "bags",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-53:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: я перелічив кілочки для намету",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-53:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: я перелічив кілочки для намету",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-53:i16:audio",
+          "transcript": "I counted the tent pegs."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I counted the tent pegs.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-53:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: спальний мішок був теплим",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-53:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: спальний мішок був теплим",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-53:i17:audio",
+          "transcript": "The sleeping bag was warm."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The sleeping bag was warm.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "da7c78a652d0d915a024d7996f2bc6a555a2d54eabfccc6648f85d6505beef66"
+}

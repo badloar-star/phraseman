@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "review: moved, washed; was/were",
+    "uk": "review: moved, washed; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подушка на диване",
+        "uk": "Подушка на дивані"
+      },
+      "bodyByLocale": {
+        "ru": "Sofa cushion — диванная подушка. I moved the sofa cushion — я переложил диванную подушку. Выберите прошлое действие.",
+        "uk": "Sofa cushion — диванна подушка. I moved the sofa cushion — я переклав диванну подушку. Виберіть минулу дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-54:intro1:r1",
+              "text": "I moved the sofa cushion."
+            },
+            {
+              "responseId": "en:lesson-12:session-54:intro1:r2",
+              "text": "I move the sofa cushion yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-54:intro1:r3",
+              "text": "I moves the sofa cushion yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-54:intro1:r1",
+              "text": "I moved the sofa cushion."
+            },
+            {
+              "responseId": "en:lesson-12:session-54:intro1:r2",
+              "text": "I move the sofa cushion yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-54:intro1:r3",
+              "text": "I moves the sofa cushion yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Чехол для подушки",
+        "uk": "Чохол для подушки"
+      },
+      "bodyByLocale": {
+        "ru": "Cushion cover — чехол для диванной или декоративной подушки. I washed the cushion cover — я постирал чехол для подушки. Выберите стирку чехла.",
+        "uk": "Cushion cover — чохол для диванної або декоративної подушки. I washed the cushion cover — я виправ чохол для подушки. Виберіть прання чохла."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-54:intro2:r1",
+              "text": "I washed the cushion cover."
+            },
+            {
+              "responseId": "en:lesson-12:session-54:intro2:r2",
+              "text": "I moved the sofa cushion."
+            },
+            {
+              "responseId": "en:lesson-12:session-54:intro2:r3",
+              "text": "I wash the cushion cover yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-54:intro2:r1",
+              "text": "I washed the cushion cover."
+            },
+            {
+              "responseId": "en:lesson-12:session-54:intro2:r2",
+              "text": "I moved the sofa cushion."
+            },
+            {
+              "responseId": "en:lesson-12:session-54:intro2:r3",
+              "text": "I wash the cushion cover yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Где отдохнуть",
+        "uk": "Де відпочити"
+      },
+      "bodyByLocale": {
+        "ru": "Footstool — подставка для ног; rocking chair — кресло-качалка. The rocking chair was by the window — кресло-качалка было у окна. Выберите кресло у окна.",
+        "uk": "Footstool — підставка для ніг; rocking chair — крісло-гойдалка. The rocking chair was by the window — крісло-гойдалка було біля вікна. Виберіть крісло біля вікна."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-54:intro3:r1",
+              "text": "The rocking chair was by the window."
+            },
+            {
+              "responseId": "en:lesson-12:session-54:intro3:r2",
+              "text": "The footstool was by the window."
+            },
+            {
+              "responseId": "en:lesson-12:session-54:intro3:r3",
+              "text": "The rocking chair is by the window."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-54:intro3:r1",
+              "text": "The rocking chair was by the window."
+            },
+            {
+              "responseId": "en:lesson-12:session-54:intro3:r2",
+              "text": "The footstool was by the window."
+            },
+            {
+              "responseId": "en:lesson-12:session-54:intro3:r3",
+              "text": "The rocking chair is by the window."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7d4ae24dc4ff7ead85a7b54bb9d0e2d4517becd25bc313f707ed96659346e57f"
+}

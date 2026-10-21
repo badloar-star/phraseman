@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-12:session-53:word:sleeping-bag",
+    "correctText": "sleeping bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-53:i01",
+    "correctText": "I packed my sleeping bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-53:i02",
+    "correctText": "I packed my sleeping bag.",
+    "correctResponseId": "en:lesson-12:session-53:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-53:i03",
+    "correctText": "packed",
+    "correctResponseId": "en:lesson-12:session-53:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-53:word:airbed",
+    "correctText": "airbed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-53:i04",
+    "correctText": "I checked the airbed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-53:i05",
+    "correctText": "I checked the airbed.",
+    "correctResponseId": "en:lesson-12:session-53:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-53:i06",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-12:session-53:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-53:word:tent-peg",
+    "correctText": "tent peg",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-53:i07",
+    "correctText": "I found a tent peg.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-53:i08",
+    "correctText": "I found a tent peg.",
+    "correctResponseId": "en:lesson-12:session-53:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-53:i09",
+    "correctText": "found",
+    "correctResponseId": "en:lesson-12:session-53:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-53:word:camping-stove",
+    "correctText": "camping stove",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-53:i10",
+    "correctText": "I cleaned the camping stove.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-53:i11",
+    "correctText": "I cleaned the camping stove.",
+    "correctResponseId": "en:lesson-12:session-53:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-53:i12",
+    "correctText": "cleaned",
+    "correctResponseId": "en:lesson-12:session-53:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-12:session-53:i13",
+    "correctText": "en:lesson-12:session-53:i13:p1=sleeping bag\nen:lesson-12:session-53:i13:p2=airbed\nen:lesson-12:session-53:i13:p3=tent peg\nen:lesson-12:session-53:i13:p4=camping stove",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-53:i14",
+    "correctText": "The tent was in the car.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-53:i15",
+    "correctText": "We packed our bags yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-53:i16",
+    "correctText": "I counted the tent pegs.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-12:session-53:i17",
+    "correctText": "The sleeping bag was warm.",
+    "correctResponseId": null
+  }
+]

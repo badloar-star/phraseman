@@ -1,0 +1,1113 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-12:session-51",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-12:session-51:word:ice-cube",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ice cube",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-51:word:ice-cube:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ice cube",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-51:word:ice-cube:audio",
+          "transcript": "ice cube"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-51:word:ice-cube:r1",
+            "targetText": "ice cube",
+            "meaningByLocale": {
+              "ru": "кубик льда.",
+              "uk": "кубик льоду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ice cube",
+          "definitionByLocale": {
+            "ru": "кубик льда.",
+            "uk": "кубик льоду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-51:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я додав кубик льоду",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я додав кубик льоду",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I added an ice cube.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я добавил кубик льда",
+          "uk": "Скажіть: Я додав кубик льоду"
+        },
+        "orderedTokens": [
+          "I",
+          "added",
+          "an",
+          "ice",
+          "cube"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-51:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-51:i02:r1",
+          "text": "I added an ice cube."
+        },
+        {
+          "responseId": "en:lesson-12:session-51:i02:r2",
+          "text": "I add an ice cube."
+        },
+        {
+          "responseId": "en:lesson-12:session-51:i02:r3",
+          "text": "She added an ice cube."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-51:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-51:i02:audio",
+          "transcript": "I added an ice cube."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-51:i02:r1",
+            "targetText": "I added an ice cube.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i02:r2",
+            "targetText": "I add an ice cube.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i02:r3",
+            "targetText": "She added an ice cube.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-51:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I added an ice cube.",
+              "uk": "У записі звучить I added an ice cube."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I added an ice cube.",
+              "uk": "У записі звучить I added an ice cube."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-51:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-51:i03:r1",
+          "text": "added"
+        },
+        {
+          "responseId": "en:lesson-12:session-51:i03:r2",
+          "text": "add"
+        },
+        {
+          "responseId": "en:lesson-12:session-51:i03:r3",
+          "text": "adds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "I ___ an ice cube.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-51:i03:r1",
+            "text": "added"
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i03:r2",
+            "text": "add"
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i03:r3",
+            "text": "adds"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-51:i03:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма added.",
+              "uk": "Для минулого потрібна форма added."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i03:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна added.",
+              "uk": "Це не форма минулого. Потрібна added."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-51:word:ice-tray",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — ice tray",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-51:word:ice-tray:audio"
+      ],
+      "accessibilityLabel": "Картка слова — ice tray",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-51:word:ice-tray:audio",
+          "transcript": "ice tray"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-51:word:ice-tray:r1",
+            "targetText": "ice tray",
+            "meaningByLocale": {
+              "ru": "форма для льда.",
+              "uk": "форма для льоду."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ice tray",
+          "definitionByLocale": {
+            "ru": "форма для льда.",
+            "uk": "форма для льоду."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-51:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я наповнив форму для льоду",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я наповнив форму для льоду",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I filled the ice tray.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я наполнил форму для льда",
+          "uk": "Скажіть: Я наповнив форму для льоду"
+        },
+        "orderedTokens": [
+          "I",
+          "filled",
+          "the",
+          "ice",
+          "tray"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-51:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-51:i05:r1",
+          "text": "I filled the ice tray."
+        },
+        {
+          "responseId": "en:lesson-12:session-51:i05:r2",
+          "text": "I fill the ice tray."
+        },
+        {
+          "responseId": "en:lesson-12:session-51:i05:r3",
+          "text": "She filled the ice tray."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-51:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-51:i05:audio",
+          "transcript": "I filled the ice tray."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-51:i05:r1",
+            "targetText": "I filled the ice tray.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i05:r2",
+            "targetText": "I fill the ice tray.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i05:r3",
+            "targetText": "She filled the ice tray.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-51:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I filled the ice tray.",
+              "uk": "У записі звучить I filled the ice tray."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I filled the ice tray.",
+              "uk": "У записі звучить I filled the ice tray."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-51:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-51:i06:r1",
+          "text": "filled"
+        },
+        {
+          "responseId": "en:lesson-12:session-51:i06:r2",
+          "text": "fill"
+        },
+        {
+          "responseId": "en:lesson-12:session-51:i06:r3",
+          "text": "fills"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "I ___ the ice tray.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-51:i06:r1",
+            "text": "filled"
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i06:r2",
+            "text": "fill"
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i06:r3",
+            "text": "fills"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-51:i06:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма filled.",
+              "uk": "Для минулого потрібна форма filled."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i06:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна filled.",
+              "uk": "Це не форма минулого. Потрібна filled."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-51:word:freezer-bag",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — freezer bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-51:word:freezer-bag:audio"
+      ],
+      "accessibilityLabel": "Картка слова — freezer bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-51:word:freezer-bag:audio",
+          "transcript": "freezer bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-51:word:freezer-bag:r1",
+            "targetText": "freezer bag",
+            "meaningByLocale": {
+              "ru": "пакет для замораживания продуктов.",
+              "uk": "пакет для заморожування продуктів."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "freezer bag",
+          "definitionByLocale": {
+            "ru": "пакет для замораживания продуктов.",
+            "uk": "пакет для заморожування продуктів."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-51:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я використав пакет для заморожування продуктів",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я використав пакет для заморожування продуктів",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I used a freezer bag.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я использовал пакет для замораживания продуктов",
+          "uk": "Скажіть: Я використав пакет для заморожування продуктів"
+        },
+        "orderedTokens": [
+          "I",
+          "used",
+          "a",
+          "freezer",
+          "bag"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-51:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-51:i08:r1",
+          "text": "I used a freezer bag."
+        },
+        {
+          "responseId": "en:lesson-12:session-51:i08:r2",
+          "text": "I use a freezer bag."
+        },
+        {
+          "responseId": "en:lesson-12:session-51:i08:r3",
+          "text": "She used a freezer bag."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-51:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-51:i08:audio",
+          "transcript": "I used a freezer bag."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-51:i08:r1",
+            "targetText": "I used a freezer bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i08:r2",
+            "targetText": "I use a freezer bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i08:r3",
+            "targetText": "She used a freezer bag.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-51:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used a freezer bag.",
+              "uk": "У записі звучить I used a freezer bag."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I used a freezer bag.",
+              "uk": "У записі звучить I used a freezer bag."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-51:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-51:i09:r1",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-12:session-51:i09:r2",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-12:session-51:i09:r3",
+          "text": "uses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "I ___ a freezer bag.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-51:i09:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i09:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i09:r3",
+            "text": "uses"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-51:i09:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма used.",
+              "uk": "Для минулого потрібна форма used."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i09:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна used.",
+              "uk": "Це не форма минулого. Потрібна used."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-51:word:food-container",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — food container",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-51:word:food-container:audio"
+      ],
+      "accessibilityLabel": "Картка слова — food container",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-51:word:food-container:audio",
+          "transcript": "food container"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-51:word:food-container:r1",
+            "targetText": "food container",
+            "meaningByLocale": {
+              "ru": "контейнер для еды.",
+              "uk": "контейнер для їжі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "food container",
+          "definitionByLocale": {
+            "ru": "контейнер для еды.",
+            "uk": "контейнер для їжі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-51:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Я вимив контейнер для їжі",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Я вимив контейнер для їжі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I washed the food container.",
+        "localizedMeaning": {
+          "ru": "Скажите: Я вымыл контейнер для еды",
+          "uk": "Скажіть: Я вимив контейнер для їжі"
+        },
+        "orderedTokens": [
+          "I",
+          "washed",
+          "the",
+          "food",
+          "container"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-51:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-51:i11:r1",
+          "text": "I washed the food container."
+        },
+        {
+          "responseId": "en:lesson-12:session-51:i11:r2",
+          "text": "I wash the food container."
+        },
+        {
+          "responseId": "en:lesson-12:session-51:i11:r3",
+          "text": "She washed the food container."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-51:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-51:i11:audio",
+          "transcript": "I washed the food container."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-12:session-51:i11:r1",
+            "targetText": "I washed the food container.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i11:r2",
+            "targetText": "I wash the food container.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i11:r3",
+            "targetText": "She washed the food container.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-51:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I washed the food container.",
+              "uk": "У записі звучить I washed the food container."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I washed the food container.",
+              "uk": "У записі звучить I washed the food container."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-51:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Йдеться про минуле. Виберіть форму",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-12:session-51:i12:r1",
+          "text": "washed"
+        },
+        {
+          "responseId": "en:lesson-12:session-51:i12:r2",
+          "text": "wash"
+        },
+        {
+          "responseId": "en:lesson-12:session-51:i12:r3",
+          "text": "washes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь о прошлом. Выберите форму",
+          "uk": "Йдеться про минуле. Виберіть форму"
+        },
+        "gappedTargetPhrase": "I ___ the food container.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-12:session-51:i12:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i12:r2",
+            "text": "wash"
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i12:r3",
+            "text": "washes"
+          }
+        ],
+        "testedDimension": "Йдеться про минуле. Виберіть форму",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-12:session-51:i12:r2",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма washed.",
+              "uk": "Для минулого потрібна форма washed."
+            }
+          },
+          {
+            "responseId": "en:lesson-12:session-51:i12:r3",
+            "correct": false,
+            "testedDimension": "Йдеться про минуле. Виберіть форму",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна washed.",
+              "uk": "Це не форма минулого. Потрібна washed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-51:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-12:session-51:i13:p1",
+            "target": "ice cube",
+            "meaningByLocale": {
+              "ru": "кубик льда",
+              "uk": "кубик льоду"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-51:i13:p2",
+            "target": "ice tray",
+            "meaningByLocale": {
+              "ru": "форма для льда",
+              "uk": "форма для льоду"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-51:i13:p3",
+            "target": "freezer bag",
+            "meaningByLocale": {
+              "ru": "пакет для замораживания продуктов",
+              "uk": "пакет для заморожування продуктів"
+            }
+          },
+          {
+            "pairId": "en:lesson-12:session-51:i13:p4",
+            "target": "food container",
+            "meaningByLocale": {
+              "ru": "контейнер для еды",
+              "uk": "контейнер для їжі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "ice cube",
+          "ice tray",
+          "freezer bag",
+          "food container"
+        ],
+        "rightColumn": [
+          "кубик льоду",
+          "форма для льоду",
+          "пакет для заморожування продуктів",
+          "контейнер для їжі"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-51:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-51:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-51:i14:audio",
+          "transcript": "The water was cold."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The water was cold.",
+        "orderedTokens": [
+          "The",
+          "water",
+          "was",
+          "cold"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-51:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-51:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-51:i15:audio",
+          "transcript": "She washed the bowl."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She washed the bowl.",
+        "orderedTokens": [
+          "She",
+          "washed",
+          "the",
+          "bowl"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-51:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: контейнер для їжі був порожнім",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-51:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: контейнер для їжі був порожнім",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-51:i16:audio",
+          "transcript": "The food container was empty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The food container was empty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-51:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: я наповнив форму для льоду учора",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-12:session-51:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: я наповнив форму для льоду учора",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-12:session-51:i17:audio",
+          "transcript": "I filled the ice tray yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I filled the ice tray yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8b75a692a39864a2ae36a74c22ebbc3fe4647e9e277142cfa13a7336413325bc"
+}

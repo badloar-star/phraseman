@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "review: used, packed, chose, checked; was/were",
+    "uk": "review: used, packed, chose, checked; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вещь для повторного использования",
+        "uk": "Річ для повторного використання"
+      },
+      "bodyByLocale": {
+        "ru": "Reusable — многоразовый: такую сумку можно использовать снова. I used a reusable bag — я использовал многоразовую сумку. Выберите прошлое действие.",
+        "uk": "Reusable — багаторазовий: таку сумку можна використовувати знову. I used a reusable bag — я використав багаторазову сумку. Виберіть минулу дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-49:intro1:r1",
+              "text": "I used a reusable bag."
+            },
+            {
+              "responseId": "en:lesson-12:session-49:intro1:r2",
+              "text": "I use a reusable bag yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-49:intro1:r3",
+              "text": "I uses a reusable bag yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-49:intro1:r1",
+              "text": "I used a reusable bag."
+            },
+            {
+              "responseId": "en:lesson-12:session-49:intro1:r2",
+              "text": "I use a reusable bag yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-49:intro1:r3",
+              "text": "I uses a reusable bag yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Больше не нужна",
+        "uk": "Більше не потрібна"
+      },
+      "bodyByLocale": {
+        "ru": "Unwanted — ненужный, такой, который больше не хотят оставлять. Вещь при этом может быть хорошей. I packed the unwanted clothes — я упаковал ненужную одежду. Выберите упаковку одежды.",
+        "uk": "Unwanted — непотрібний, такий, який більше не хочуть залишати. Річ водночас може бути доброю. I packed the unwanted clothes — я спакував непотрібний одяг. Виберіть пакування одягу."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-49:intro2:r1",
+              "text": "I packed the unwanted clothes."
+            },
+            {
+              "responseId": "en:lesson-12:session-49:intro2:r2",
+              "text": "I washed the unwanted clothes."
+            },
+            {
+              "responseId": "en:lesson-12:session-49:intro2:r3",
+              "text": "I pack the unwanted clothes yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-49:intro2:r1",
+              "text": "I packed the unwanted clothes."
+            },
+            {
+              "responseId": "en:lesson-12:session-49:intro2:r2",
+              "text": "I washed the unwanted clothes."
+            },
+            {
+              "responseId": "en:lesson-12:session-49:intro2:r3",
+              "text": "I pack the unwanted clothes yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Новая или изношенная",
+        "uk": "Нова чи зношена"
+      },
+      "bodyByLocale": {
+        "ru": "Brand-new — совершенно новый; worn-out — изношенный от долгого использования, а не просто грязный. I chose a brand-new coat — я выбрал совершенно новое пальто. Choose → chose. Выберите новое пальто.",
+        "uk": "Brand-new — зовсім новий; worn-out — зношений від тривалого використання, а не просто брудний. I chose a brand-new coat — я вибрав зовсім нове пальто. Choose → chose. Виберіть нове пальто."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-49:intro3:r1",
+              "text": "I chose a brand-new coat."
+            },
+            {
+              "responseId": "en:lesson-12:session-49:intro3:r2",
+              "text": "I chose a worn-out coat."
+            },
+            {
+              "responseId": "en:lesson-12:session-49:intro3:r3",
+              "text": "I choose a brand-new coat yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-49:intro3:r1",
+              "text": "I chose a brand-new coat."
+            },
+            {
+              "responseId": "en:lesson-12:session-49:intro3:r2",
+              "text": "I chose a worn-out coat."
+            },
+            {
+              "responseId": "en:lesson-12:session-49:intro3:r3",
+              "text": "I choose a brand-new coat yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "25e0e7f5af71af11d4d56c0b0d57102e5fd9f19ad084a1626499e140f6f5e2bd"
+}

@@ -1,0 +1,2321 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-12:session-52",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-12:session-52:word:sticky-note",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — sticky note",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:word:sticky-note:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — sticky note",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:word:sticky-note:audio",
+            "transcript": "sticky note"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-52:word:sticky-note:r1",
+              "targetText": "sticky note",
+              "meaningByLocale": {
+                "ru": "клейкий листок для записок.",
+                "uk": "клейкий аркушик для записок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sticky note",
+            "definitionByLocale": {
+              "ru": "клейкий листок для записок.",
+              "uk": "клейкий аркушик для записок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я использовал клейкий листок для записок",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я использовал клейкий листок для записок",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used a sticky note.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я использовал клейкий листок для записок",
+            "uk": "Скажіть: Я використав клейкий аркушик для записок"
+          },
+          "orderedTokens": [
+            "I",
+            "used",
+            "a",
+            "sticky",
+            "note"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-52:i02:r1",
+            "text": "I used a sticky note."
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i02:r2",
+            "text": "I use a sticky note."
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i02:r3",
+            "text": "She used a sticky note."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:i02:audio",
+            "transcript": "I used a sticky note."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-52:i02:r1",
+              "targetText": "I used a sticky note.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i02:r2",
+              "targetText": "I use a sticky note.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i02:r3",
+              "targetText": "She used a sticky note.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-52:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used a sticky note.",
+                "uk": "У записі звучить I used a sticky note."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used a sticky note.",
+                "uk": "У записі звучить I used a sticky note."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-52:i03:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i03:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i03:r3",
+            "text": "uses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ a sticky note.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-52:i03:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i03:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i03:r3",
+              "text": "uses"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-52:i03:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма used.",
+                "uk": "Для минулого потрібна форма used."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i03:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна used.",
+                "uk": "Це не форма минулого. Потрібна used."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:word:paper-clip",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — paper clip",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:word:paper-clip:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — paper clip",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:word:paper-clip:audio",
+            "transcript": "paper clip"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-52:word:paper-clip:r1",
+              "targetText": "paper clip",
+              "meaningByLocale": {
+                "ru": "металлический зажим для бумаг.",
+                "uk": "металевий затискач для паперу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "paper clip",
+            "definitionByLocale": {
+              "ru": "металлический зажим для бумаг.",
+              "uk": "металевий затискач для паперу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я нашёл металлический зажим для бумаг",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я нашёл металлический зажим для бумаг",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I found a paper clip.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я нашёл металлический зажим для бумаг",
+            "uk": "Скажіть: Я знайшов металевий затискач для паперу"
+          },
+          "orderedTokens": [
+            "I",
+            "found",
+            "a",
+            "paper",
+            "clip"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-52:i05:r1",
+            "text": "I found a paper clip."
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i05:r2",
+            "text": "I find a paper clip."
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i05:r3",
+            "text": "She found a paper clip."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:i05:audio",
+            "transcript": "I found a paper clip."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-52:i05:r1",
+              "targetText": "I found a paper clip.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i05:r2",
+              "targetText": "I find a paper clip.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i05:r3",
+              "targetText": "She found a paper clip.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-52:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I found a paper clip.",
+                "uk": "У записі звучить I found a paper clip."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I found a paper clip.",
+                "uk": "У записі звучить I found a paper clip."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-52:i06:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i06:r2",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i06:r3",
+            "text": "finds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ a paper clip.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-52:i06:r1",
+              "text": "found"
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i06:r2",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i06:r3",
+              "text": "finds"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-52:i06:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма found.",
+                "uk": "Для минулого потрібна форма found."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i06:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна found.",
+                "uk": "Це не форма минулого. Потрібна found."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:word:rubber-band",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rubber band",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:word:rubber-band:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rubber band",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:word:rubber-band:audio",
+            "transcript": "rubber band"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-52:word:rubber-band:r1",
+              "targetText": "rubber band",
+              "meaningByLocale": {
+                "ru": "канцелярская резинка.",
+                "uk": "канцелярська гумка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rubber band",
+            "definitionByLocale": {
+              "ru": "канцелярская резинка.",
+              "uk": "канцелярська гумка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я использовал канцелярскую резинку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я использовал канцелярскую резинку",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used a rubber band.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я использовал канцелярскую резинку",
+            "uk": "Скажіть: Я використав канцелярську гумку"
+          },
+          "orderedTokens": [
+            "I",
+            "used",
+            "a",
+            "rubber",
+            "band"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-52:i08:r1",
+            "text": "I used a rubber band."
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i08:r2",
+            "text": "I use a rubber band."
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i08:r3",
+            "text": "She used a rubber band."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:i08:audio",
+            "transcript": "I used a rubber band."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-52:i08:r1",
+              "targetText": "I used a rubber band.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i08:r2",
+              "targetText": "I use a rubber band.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i08:r3",
+              "targetText": "She used a rubber band.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-52:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used a rubber band.",
+                "uk": "У записі звучить I used a rubber band."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used a rubber band.",
+                "uk": "У записі звучить I used a rubber band."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-52:i09:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i09:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i09:r3",
+            "text": "uses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ a rubber band.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-52:i09:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i09:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i09:r3",
+              "text": "uses"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-52:i09:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма used.",
+                "uk": "Для минулого потрібна форма used."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i09:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна used.",
+                "uk": "Це не форма минулого. Потрібна used."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:word:drawing-pin",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — drawing pin",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:word:drawing-pin:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — drawing pin",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:word:drawing-pin:audio",
+            "transcript": "drawing pin"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-52:word:drawing-pin:r1",
+              "targetText": "drawing pin",
+              "meaningByLocale": {
+                "ru": "канцелярская кнопка.",
+                "uk": "канцелярська кнопка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "drawing pin",
+            "definitionByLocale": {
+              "ru": "канцелярская кнопка.",
+              "uk": "канцелярська кнопка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: Я нашёл канцелярскую кнопку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: Я нашёл канцелярскую кнопку",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I found a drawing pin.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я нашёл канцелярскую кнопку",
+            "uk": "Скажіть: Я знайшов канцелярську кнопку"
+          },
+          "orderedTokens": [
+            "I",
+            "found",
+            "a",
+            "drawing",
+            "pin"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-52:i11:r1",
+            "text": "I found a drawing pin."
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i11:r2",
+            "text": "I find a drawing pin."
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i11:r3",
+            "text": "She found a drawing pin."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:i11:audio",
+            "transcript": "I found a drawing pin."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-52:i11:r1",
+              "targetText": "I found a drawing pin.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i11:r2",
+              "targetText": "I find a drawing pin.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i11:r3",
+              "targetText": "She found a drawing pin.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-52:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I found a drawing pin.",
+                "uk": "У записі звучить I found a drawing pin."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I found a drawing pin.",
+                "uk": "У записі звучить I found a drawing pin."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Речь о прошлом. Выберите форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-52:i12:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i12:r2",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i12:r3",
+            "text": "finds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Речь о прошлом. Выберите форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ a drawing pin.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-52:i12:r1",
+              "text": "found"
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i12:r2",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i12:r3",
+              "text": "finds"
+            }
+          ],
+          "testedDimension": "Речь о прошлом. Выберите форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-52:i12:r2",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма found.",
+                "uk": "Для минулого потрібна форма found."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i12:r3",
+              "correct": false,
+              "testedDimension": "Речь о прошлом. Выберите форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна found.",
+                "uk": "Це не форма минулого. Потрібна found."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините выражения с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините выражения с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-52:i13:p1",
+              "target": "sticky note",
+              "meaningByLocale": {
+                "ru": "клейкий листок для записок",
+                "uk": "клейкий аркушик для записок"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-52:i13:p2",
+              "target": "paper clip",
+              "meaningByLocale": {
+                "ru": "металлический зажим для бумаг",
+                "uk": "металевий затискач для паперу"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-52:i13:p3",
+              "target": "rubber band",
+              "meaningByLocale": {
+                "ru": "канцелярская резинка",
+                "uk": "канцелярська гумка"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-52:i13:p4",
+              "target": "drawing pin",
+              "meaningByLocale": {
+                "ru": "канцелярская кнопка",
+                "uk": "канцелярська кнопка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sticky note",
+            "paper clip",
+            "rubber band",
+            "drawing pin"
+          ],
+          "rightColumn": [
+            "клейкий листок для записок",
+            "металлический зажим для бумаг",
+            "канцелярская резинка",
+            "канцелярская кнопка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:i14:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:i14:audio",
+            "transcript": "The papers were on the desk."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The papers were on the desk.",
+          "orderedTokens": [
+            "The",
+            "papers",
+            "were",
+            "on",
+            "the",
+            "desk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите услышанную фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:i15:audio"
+        ],
+        "accessibilityLabel": "Соберите услышанную фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:i15:audio",
+            "transcript": "She wrote a short note."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She wrote a short note.",
+          "orderedTokens": [
+            "She",
+            "wrote",
+            "a",
+            "short",
+            "note"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: я использовал канцелярскую резинку вчера",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:i16:audio"
+        ],
+        "accessibilityLabel": "Скажите: я использовал канцелярскую резинку вчера",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:i16:audio",
+            "transcript": "I used a rubber band yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I used a rubber band yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите: металлический зажим для бумаг был на столе",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:i17:audio"
+        ],
+        "accessibilityLabel": "Скажите: металлический зажим для бумаг был на столе",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:i17:audio",
+            "transcript": "The paper clip was on the table."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The paper clip was on the table.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-12:session-52:word:sticky-note",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — sticky note",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:word:sticky-note:audio"
+        ],
+        "accessibilityLabel": "Картка слова — sticky note",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:word:sticky-note:audio",
+            "transcript": "sticky note"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-52:word:sticky-note:r1",
+              "targetText": "sticky note",
+              "meaningByLocale": {
+                "ru": "клейкий листок для записок.",
+                "uk": "клейкий аркушик для записок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "sticky note",
+            "definitionByLocale": {
+              "ru": "клейкий листок для записок.",
+              "uk": "клейкий аркушик для записок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я використав клейкий аркушик для записок",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я використав клейкий аркушик для записок",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used a sticky note.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я использовал клейкий листок для записок",
+            "uk": "Скажіть: Я використав клейкий аркушик для записок"
+          },
+          "orderedTokens": [
+            "I",
+            "used",
+            "a",
+            "sticky",
+            "note"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-52:i02:r1",
+            "text": "I used a sticky note."
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i02:r2",
+            "text": "I use a sticky note."
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i02:r3",
+            "text": "She used a sticky note."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:i02:audio",
+            "transcript": "I used a sticky note."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-52:i02:r1",
+              "targetText": "I used a sticky note.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i02:r2",
+              "targetText": "I use a sticky note.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i02:r3",
+              "targetText": "She used a sticky note.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-52:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used a sticky note.",
+                "uk": "У записі звучить I used a sticky note."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used a sticky note.",
+                "uk": "У записі звучить I used a sticky note."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-52:i03:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i03:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i03:r3",
+            "text": "uses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ a sticky note.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-52:i03:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i03:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i03:r3",
+              "text": "uses"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-52:i03:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма used.",
+                "uk": "Для минулого потрібна форма used."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i03:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна used.",
+                "uk": "Це не форма минулого. Потрібна used."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:word:paper-clip",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — paper clip",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:word:paper-clip:audio"
+        ],
+        "accessibilityLabel": "Картка слова — paper clip",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:word:paper-clip:audio",
+            "transcript": "paper clip"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-52:word:paper-clip:r1",
+              "targetText": "paper clip",
+              "meaningByLocale": {
+                "ru": "металлический зажим для бумаг.",
+                "uk": "металевий затискач для паперу."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "paper clip",
+            "definitionByLocale": {
+              "ru": "металлический зажим для бумаг.",
+              "uk": "металевий затискач для паперу."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я знайшов металевий затискач для паперу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я знайшов металевий затискач для паперу",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I found a paper clip.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я нашёл металлический зажим для бумаг",
+            "uk": "Скажіть: Я знайшов металевий затискач для паперу"
+          },
+          "orderedTokens": [
+            "I",
+            "found",
+            "a",
+            "paper",
+            "clip"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-52:i05:r1",
+            "text": "I found a paper clip."
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i05:r2",
+            "text": "I find a paper clip."
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i05:r3",
+            "text": "She found a paper clip."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:i05:audio",
+            "transcript": "I found a paper clip."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-52:i05:r1",
+              "targetText": "I found a paper clip.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i05:r2",
+              "targetText": "I find a paper clip.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i05:r3",
+              "targetText": "She found a paper clip.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-52:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I found a paper clip.",
+                "uk": "У записі звучить I found a paper clip."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I found a paper clip.",
+                "uk": "У записі звучить I found a paper clip."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-52:i06:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i06:r2",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i06:r3",
+            "text": "finds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ a paper clip.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-52:i06:r1",
+              "text": "found"
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i06:r2",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i06:r3",
+              "text": "finds"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-52:i06:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма found.",
+                "uk": "Для минулого потрібна форма found."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i06:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна found.",
+                "uk": "Це не форма минулого. Потрібна found."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:word:rubber-band",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rubber band",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:word:rubber-band:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rubber band",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:word:rubber-band:audio",
+            "transcript": "rubber band"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-52:word:rubber-band:r1",
+              "targetText": "rubber band",
+              "meaningByLocale": {
+                "ru": "канцелярская резинка.",
+                "uk": "канцелярська гумка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rubber band",
+            "definitionByLocale": {
+              "ru": "канцелярская резинка.",
+              "uk": "канцелярська гумка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я використав канцелярську гумку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я використав канцелярську гумку",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I used a rubber band.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я использовал канцелярскую резинку",
+            "uk": "Скажіть: Я використав канцелярську гумку"
+          },
+          "orderedTokens": [
+            "I",
+            "used",
+            "a",
+            "rubber",
+            "band"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-52:i08:r1",
+            "text": "I used a rubber band."
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i08:r2",
+            "text": "I use a rubber band."
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i08:r3",
+            "text": "She used a rubber band."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:i08:audio",
+            "transcript": "I used a rubber band."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-52:i08:r1",
+              "targetText": "I used a rubber band.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i08:r2",
+              "targetText": "I use a rubber band.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i08:r3",
+              "targetText": "She used a rubber band.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-52:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used a rubber band.",
+                "uk": "У записі звучить I used a rubber band."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I used a rubber band.",
+                "uk": "У записі звучить I used a rubber band."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-52:i09:r1",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i09:r2",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i09:r3",
+            "text": "uses"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ a rubber band.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-52:i09:r1",
+              "text": "used"
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i09:r2",
+              "text": "use"
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i09:r3",
+              "text": "uses"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-52:i09:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма used.",
+                "uk": "Для минулого потрібна форма used."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i09:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна used.",
+                "uk": "Це не форма минулого. Потрібна used."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:word:drawing-pin",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — drawing pin",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:word:drawing-pin:audio"
+        ],
+        "accessibilityLabel": "Картка слова — drawing pin",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:word:drawing-pin:audio",
+            "transcript": "drawing pin"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-52:word:drawing-pin:r1",
+              "targetText": "drawing pin",
+              "meaningByLocale": {
+                "ru": "канцелярская кнопка.",
+                "uk": "канцелярська кнопка."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "drawing pin",
+            "definitionByLocale": {
+              "ru": "канцелярская кнопка.",
+              "uk": "канцелярська кнопка."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: Я знайшов канцелярську кнопку",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: Я знайшов канцелярську кнопку",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I found a drawing pin.",
+          "localizedMeaning": {
+            "ru": "Скажите: Я нашёл канцелярскую кнопку",
+            "uk": "Скажіть: Я знайшов канцелярську кнопку"
+          },
+          "orderedTokens": [
+            "I",
+            "found",
+            "a",
+            "drawing",
+            "pin"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-52:i11:r1",
+            "text": "I found a drawing pin."
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i11:r2",
+            "text": "I find a drawing pin."
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i11:r3",
+            "text": "She found a drawing pin."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:i11:audio",
+            "transcript": "I found a drawing pin."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-12:session-52:i11:r1",
+              "targetText": "I found a drawing pin.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i11:r2",
+              "targetText": "I find a drawing pin.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i11:r3",
+              "targetText": "She found a drawing pin.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-52:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I found a drawing pin.",
+                "uk": "У записі звучить I found a drawing pin."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I found a drawing pin.",
+                "uk": "У записі звучить I found a drawing pin."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Йдеться про минуле. Виберіть форму",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-12:session-52:i12:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i12:r2",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-12:session-52:i12:r3",
+            "text": "finds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Йдеться про минуле. Виберіть форму",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Речь о прошлом. Выберите форму",
+            "uk": "Йдеться про минуле. Виберіть форму"
+          },
+          "gappedTargetPhrase": "I ___ a drawing pin.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-12:session-52:i12:r1",
+              "text": "found"
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i12:r2",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i12:r3",
+              "text": "finds"
+            }
+          ],
+          "testedDimension": "Йдеться про минуле. Виберіть форму",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-12:session-52:i12:r2",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна форма found.",
+                "uk": "Для минулого потрібна форма found."
+              }
+            },
+            {
+              "responseId": "en:lesson-12:session-52:i12:r3",
+              "correct": false,
+              "testedDimension": "Йдеться про минуле. Виберіть форму",
+              "feedbackByLocale": {
+                "ru": "Это не форма прошлого. Нужна found.",
+                "uk": "Це не форма минулого. Потрібна found."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте вирази з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте вирази з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-12:session-52:i13:p1",
+              "target": "sticky note",
+              "meaningByLocale": {
+                "ru": "клейкий листок для записок",
+                "uk": "клейкий аркушик для записок"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-52:i13:p2",
+              "target": "paper clip",
+              "meaningByLocale": {
+                "ru": "металлический зажим для бумаг",
+                "uk": "металевий затискач для паперу"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-52:i13:p3",
+              "target": "rubber band",
+              "meaningByLocale": {
+                "ru": "канцелярская резинка",
+                "uk": "канцелярська гумка"
+              }
+            },
+            {
+              "pairId": "en:lesson-12:session-52:i13:p4",
+              "target": "drawing pin",
+              "meaningByLocale": {
+                "ru": "канцелярская кнопка",
+                "uk": "канцелярська кнопка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "sticky note",
+            "paper clip",
+            "rubber band",
+            "drawing pin"
+          ],
+          "rightColumn": [
+            "клейкий аркушик для записок",
+            "металевий затискач для паперу",
+            "канцелярська гумка",
+            "канцелярська кнопка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:i14:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:i14:audio",
+            "transcript": "The papers were on the desk."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The papers were on the desk.",
+          "orderedTokens": [
+            "The",
+            "papers",
+            "were",
+            "on",
+            "the",
+            "desk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть почуту фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:i15:audio"
+        ],
+        "accessibilityLabel": "Складіть почуту фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:i15:audio",
+            "transcript": "She wrote a short note."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She wrote a short note.",
+          "orderedTokens": [
+            "She",
+            "wrote",
+            "a",
+            "short",
+            "note"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: я використав канцелярську гумку учора",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:i16:audio"
+        ],
+        "accessibilityLabel": "Скажіть: я використав канцелярську гумку учора",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:i16:audio",
+            "transcript": "I used a rubber band yesterday."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I used a rubber band yesterday.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-12:session-52:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть: металевий затискач для паперу був на столі",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-12:session-52:i17:audio"
+        ],
+        "accessibilityLabel": "Скажіть: металевий затискач для паперу був на столі",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-12:session-52:i17:audio",
+            "transcript": "The paper clip was on the table."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "The paper clip was on the table.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-12:session-52:word:sticky-note",
+      "correctText": "sticky note",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-52:i01",
+      "correctText": "I used a sticky note.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-52:i02",
+      "correctText": "I used a sticky note.",
+      "correctResponseId": "en:lesson-12:session-52:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-52:i03",
+      "correctText": "used",
+      "correctResponseId": "en:lesson-12:session-52:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-52:word:paper-clip",
+      "correctText": "paper clip",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-52:i04",
+      "correctText": "I found a paper clip.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-52:i05",
+      "correctText": "I found a paper clip.",
+      "correctResponseId": "en:lesson-12:session-52:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-52:i06",
+      "correctText": "found",
+      "correctResponseId": "en:lesson-12:session-52:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-52:word:rubber-band",
+      "correctText": "rubber band",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-52:i07",
+      "correctText": "I used a rubber band.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-52:i08",
+      "correctText": "I used a rubber band.",
+      "correctResponseId": "en:lesson-12:session-52:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-52:i09",
+      "correctText": "used",
+      "correctResponseId": "en:lesson-12:session-52:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-52:word:drawing-pin",
+      "correctText": "drawing pin",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-52:i10",
+      "correctText": "I found a drawing pin.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-52:i11",
+      "correctText": "I found a drawing pin.",
+      "correctResponseId": "en:lesson-12:session-52:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-52:i12",
+      "correctText": "found",
+      "correctResponseId": "en:lesson-12:session-52:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-12:session-52:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-52:i14",
+      "correctText": "The papers were on the desk.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-52:i15",
+      "correctText": "She wrote a short note.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-52:i16",
+      "correctText": "I used a rubber band yesterday.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-12:session-52:i17",
+      "correctText": "The paper clip was on the table.",
+      "correctResponseId": null
+    }
+  ]
+}

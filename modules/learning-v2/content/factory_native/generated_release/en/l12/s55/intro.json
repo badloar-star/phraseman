@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-12:session-55",
+  "learningOutcomeByLocale": {
+    "ru": "review: visited; was/were",
+    "uk": "review: visited; was/were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-12:session-55:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Центр города",
+        "uk": "Центр міста"
+      },
+      "bodyByLocale": {
+        "ru": "Town centre — центр города. I visited the town centre — я побывал в центре города. В visited окончание /ɪd/. Выберите прошлое действие.",
+        "uk": "Town centre — центр міста. I visited the town centre — я побував у центрі міста. У visited закінчення /ɪd/. Виберіть минулу дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-55:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-55:intro1:r1",
+              "text": "I visited the town centre."
+            },
+            {
+              "responseId": "en:lesson-12:session-55:intro1:r2",
+              "text": "I visit the town centre yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-55:intro1:r3",
+              "text": "I visits the town centre yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-55:intro1:r1",
+              "text": "I visited the town centre."
+            },
+            {
+              "responseId": "en:lesson-12:session-55:intro1:r2",
+              "text": "I visit the town centre yesterday."
+            },
+            {
+              "responseId": "en:lesson-12:session-55:intro1:r3",
+              "text": "I visits the town centre yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-12:session-55:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Улица с магазинами",
+        "uk": "Вулиця з крамницями"
+      },
+      "bodyByLocale": {
+        "ru": "High street — главная торговая улица города, обычное британское выражение. The high street was busy — на главной торговой улице было оживлённо. Выберите описание прошлого.",
+        "uk": "High street — головна торговельна вулиця міста, звичний британський вираз. The high street was busy — на головній торговельній вулиці було жваво. Виберіть опис минулого."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-55:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-55:intro2:r1",
+              "text": "The high street was busy."
+            },
+            {
+              "responseId": "en:lesson-12:session-55:intro2:r2",
+              "text": "The high street is busy."
+            },
+            {
+              "responseId": "en:lesson-12:session-55:intro2:r3",
+              "text": "The high street were busy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-55:intro2:r1",
+              "text": "The high street was busy."
+            },
+            {
+              "responseId": "en:lesson-12:session-55:intro2:r2",
+              "text": "The high street is busy."
+            },
+            {
+              "responseId": "en:lesson-12:session-55:intro2:r3",
+              "text": "The high street were busy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-12:session-55:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Площадь и рынок",
+        "uk": "Площа й ринок"
+      },
+      "bodyByLocale": {
+        "ru": "Town square — городская площадь; street market — уличный рынок. I visited the street market — я побывал на уличном рынке. Выберите рынок.",
+        "uk": "Town square — міська площа; street market — вуличний ринок. I visited the street market — я побував на вуличному ринку. Виберіть ринок."
+      },
+      "question": {
+        "interactionId": "en:lesson-12:session-55:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-12:session-55:intro3:r1",
+              "text": "I visited the street market."
+            },
+            {
+              "responseId": "en:lesson-12:session-55:intro3:r2",
+              "text": "I visited the town square."
+            },
+            {
+              "responseId": "en:lesson-12:session-55:intro3:r3",
+              "text": "I visit the street market yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-12:session-55:intro3:r1",
+              "text": "I visited the street market."
+            },
+            {
+              "responseId": "en:lesson-12:session-55:intro3:r2",
+              "text": "I visited the town square."
+            },
+            {
+              "responseId": "en:lesson-12:session-55:intro3:r3",
+              "text": "I visit the street market yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "21a6016bb3291063bbcb56d2082688ededdeaaa0eeb4dbe5e1553650816ddcea"
+}

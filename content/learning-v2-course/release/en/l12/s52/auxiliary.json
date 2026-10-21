@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-52:intro1:r2": {
+          "ru": "Для прошлого нужна used.",
+          "uk": "Для минулого потрібна used."
+        },
+        "en:lesson-12:session-52:intro1:r3": {
+          "ru": "Uses не обозначает прошлое.",
+          "uk": "Uses не позначає минуле."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-52:intro2:r2": {
+          "ru": "Bought — купил.",
+          "uk": "Bought — купив."
+        },
+        "en:lesson-12:session-52:intro2:r3": {
+          "ru": "Для прошлого нужна found.",
+          "uk": "Для минулого потрібна found."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-52:intro3:r2": {
+          "ru": "Это резинка.",
+          "uk": "Це гумка."
+        },
+        "en:lesson-12:session-52:intro3:r3": {
+          "ru": "В прошлом нужна found.",
+          "uk": "У минулому потрібна found."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ad4452f130d7248a7f60b8cd45d6078d9f77a83809ef4f3a7228b3e4c9b20ad2"
+}

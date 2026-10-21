@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-12:session-54",
+  "entries": [
+    {
+      "interactionId": "en:lesson-12:session-54:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-54:intro1:r2": {
+          "ru": "Для прошлого нужна moved.",
+          "uk": "Для минулого потрібна moved."
+        },
+        "en:lesson-12:session-54:intro1:r3": {
+          "ru": "Moves не обозначает прошлое.",
+          "uk": "Moves не позначає минуле."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-54:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-54:intro2:r2": {
+          "ru": "Здесь переложили подушку.",
+          "uk": "Тут переклали подушку."
+        },
+        "en:lesson-12:session-54:intro2:r3": {
+          "ru": "Для прошлого нужна washed.",
+          "uk": "Для минулого потрібна washed."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-12:session-54:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-12:session-54:intro3:r2": {
+          "ru": "Это подставка для ног.",
+          "uk": "Це підставка для ніг."
+        },
+        "en:lesson-12:session-54:intro3:r3": {
+          "ru": "Is — сейчас, was — в прошлом.",
+          "uk": "Is — зараз, was — у минулому."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1529d4b412afa4804d37bca58841c28b6c05d34a8352ed9038188321fee772ba"
+}

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Пик — собери перевод</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+/* зачем (D170): у энергии в шапке Пика нет капсулы — гасим и общий блик-обводку стиля «Тень» (::after из kit.css) */
+.pill.encap.bare::after { display: none; }
+/* Локальные детали Пика. Ничего из kit.* не переопределяем — только добавляем. */
+.tview { position: relative; height: 400px; overflow-y: auto; overflow-x: hidden; border-radius: 22px; background: #131315; border: 1px solid var(--line); scrollbar-width: none; }
+.tview::-webkit-scrollbar { display: none; }
+.tview.tall { height: 470px; }
+.tview svg { display: block; width: 100%; }
+svg[data-tower] .fl { cursor: pointer; }
+svg[data-tower] .fl .selr { opacity: 0; transition: opacity 200ms; }
+svg[data-tower] .fl.sel .selr { opacity: 1; }
+svg[data-tower] .fl .face { transition: filter 300ms; }
+svg[data-tower] .fl.sel .face { filter: brightness(1.12); }
+svg[data-tower] .win { transition: fill 500ms; }
+svg[data-tower] .win.lit { fill: #EEF0F6; }
+svg[data-tower] .win.past { fill: #3A3A40; }
+svg[data-tower] .win.dark { fill: #0B0B0D; }
+svg[data-tower] .fl:not(.mine) .wglow { opacity: 0; }
+svg[data-tower] .fl .halo2 { transition: opacity 500ms; }
+svg[data-tower] .fl:not(.mine) .halo2 { opacity: 0; }
+svg[data-tower] .wglow { transition: opacity 500ms; }
+svg[data-tower] .mk { transition: transform 900ms cubic-bezier(.2,.9,.2,1); }
+svg[data-tower] .mk.jump { animation: mkjump 900ms cubic-bezier(.2,.9,.2,1); }
+@keyframes mkjump { 0% { filter: none; } 40% { filter: drop-shadow(0 0 10px rgba(255,255,255,.7)); } 100% { filter: none; } }
+svg[data-tower] .halo { animation: halo 2.4s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+@keyframes halo { 0%,100% { opacity: .55; transform: scale(1); } 50% { opacity: 1; transform: scale(1.12); } }
+svg[data-tower] .celeb { animation: celeb 1.6s ease-in-out infinite; }
+@keyframes celeb { 0%,100% { opacity: .35; } 50% { opacity: .8; } }
+.finfo { display: flex; align-items: center; gap: 14px; padding: 14px 16px; margin-top: 12px; background: var(--card-2); border: 1px solid var(--line); border-radius: 16px; min-height: 72px; }
+.finfo .tt { font-size: 17px; line-height: 22px; font-weight: 700; }
+.finfo .st { font-size: 15px; line-height: 19px; color: var(--sec); margin-top: 2px; }
+.finfo .who { display: flex; align-items: center; flex: none; }
+.finfo .who img { border-radius: 50%; box-shadow: 0 0 0 2px #1A1A1C; margin-left: -8px; }
+.finfo .who img:first-child { margin-left: 0; }
+.friends { -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent); mask-image: linear-gradient(90deg, #000 82%, transparent); display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; margin: 0 -20px; padding: 0 20px; }
+.friends::-webkit-scrollbar { display: none; }
+.fr { flex: none; display: flex; align-items: center; gap: 10px; height: 46px; padding: 0 14px 0 8px; border-radius: 23px; background: var(--control); font-size: 15px; font-weight: 600; white-space: nowrap; }
+.fr .fl-n { color: var(--sec); font-weight: 600; }
+.podium { display: flex; align-items: flex-end; justify-content: center; gap: 12px; margin-top: 18px; }
+.pd { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.pd .nm { font-size: 15px; font-weight: 600; text-align: center; max-width: 110px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pd .sp { font-size: 14px; color: var(--sec); }
+.pd .blk { width: 100%; border-radius: 14px 14px 6px 6px; background: linear-gradient(180deg, #2E2E32, #1E1E21); border: 1px solid var(--line); display: flex; align-items: flex-start; justify-content: center; padding-top: 10px; font-size: 20px; font-weight: 700; color: #D6D6D8; }
+.pd.p1 .blk { height: 88px; background: linear-gradient(180deg, #3A3A3F, #232326); }
+.pd.p2 .blk { height: 66px; }
+.pd.p3 .blk { height: 50px; }
+.pd img { border-radius: 50%; display: block; }
+.bp { position: absolute; left: 20px; right: 20px; bottom: 40px; z-index: 20; }
+.bp.scrim::before { content: ""; position: absolute; left: -20px; right: -20px; bottom: -40px; height: 150px; background: linear-gradient(180deg, rgba(12,13,16,0), rgba(12,13,16,.96) 32%, #0C0D10); z-index: -1; pointer-events: none; }
+.panel { background: var(--sheet); border: 1px solid var(--line); border-radius: 26px; padding: 22px 20px 20px; box-shadow: 0 20px 60px rgba(0,0,0,.6); }
+.panel .ti { font-size: 26px; line-height: 32px; font-weight: 700; letter-spacing: -.3px; text-align: center; }
+.panel .su { font-size: 15px; line-height: 20px; color: var(--sec); text-align: center; margin-top: 6px; }
+.panel .pills { display: flex; justify-content: center; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+.ring { position: relative; width: 132px; height: 132px; margin: 0 auto; }
+.ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+.ring .tm { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -.3px; }
+.ring .pz { position: absolute; left: 0; right: 0; bottom: -26px; text-align: center; font-size: 13px; color: var(--sec); font-weight: 600; }
+.ovl { display: flex; align-items: center; gap: 14px; color: var(--sec); }
+.ovl::before, .ovl::after { content: ""; flex: 1; height: 1px; background: var(--line-2); }
+/* зачем (код, SpireTaskView): у заданий «выбери перевод» кнопки озвучки нет (она только у заданий «на слух»); карточка вопроса minHeight 96, отступы 20/22 */
+.qc.sp { position: relative; padding: 20px 22px; min-height: 96px; }
+.qc.sp .snd { position: absolute; right: 16px; top: 50%; margin-top: -19px; }
+.hint { font-size: 15px; line-height: 20px; color: var(--sec); text-align: center; margin-top: 14px; }
+.hint b { color: var(--good); font-weight: 600; }
+.zone { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin: 22px 2px 10px; }
+.zone::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.zone.up { color: var(--good); } .zone.dn { color: var(--bad); } .zone.sf { color: var(--sec); }
+.mrow { display: flex; align-items: center; gap: 14px; min-height: 62px; padding: 8px 14px 8px 12px; border-radius: 14px; }
+.mrow.me { background: var(--card-2); border: 1px solid var(--line-2); }
+.mrow .pl { width: 26px; text-align: center; font-size: 16px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
+.mrow .nm { font-size: 17px; font-weight: 600; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; align-items: center; gap: 8px; }
+.mrow .you { font-size: 11px; font-weight: 700; height: 20px; padding: 0 8px; border-radius: 10px; background: var(--cta); color: var(--cta-ink); display: inline-flex; align-items: center; }
+.mrow .sp { font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.mrow .sp span { font-size: 13px; color: var(--sec); font-weight: 600; margin-left: 4px; }
+.tourimg::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 90px; background: linear-gradient(180deg, rgba(19,19,21,0), #131315); pointer-events: none; }
+/* зачем (закон «пик башни и свет без обрезки»): верхушка тура прижата к верху окна — раньше по центру и срезалась на 17 px, низ гаснет ::after */
+.tourimg { height: 300px; border-radius: 24px; background: #131315; border: 1px solid var(--line); display: flex; align-items: flex-start; justify-content: center; overflow: hidden; position: relative; margin-top: 18px; }
+.dots { display: flex; justify-content: center; gap: 7px; margin-top: 26px; }
+.dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--track); display: block; }
+.dots i.on { background: #fff; width: 22px; border-radius: 4px; }
+.week { padding: 18px 18px 18px 20px; border-radius: 22px; background: linear-gradient(135deg, #222226, #161618); border: 1px solid var(--line-2); margin-top: 18px; display: flex; gap: 16px; align-items: center; }
+.week .ti { font-size: 21px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; }
+.week .su { font-size: 15px; line-height: 20px; color: var(--sec); margin-top: 4px; }
+.note { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 14px; background: var(--card-2); border: 1px solid var(--line); font-size: 14.5px; line-height: 19px; color: var(--sec); margin-top: 14px; }
+.note svg { color: var(--text); }
+.pgbtn { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 16px; border-radius: 19px; border: 1px solid var(--line-2); background: #161618; color: var(--text); font: 600 14px Inter, sans-serif; cursor: pointer; margin-top: 4px; }
+.demo { display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 14px; border-radius: 17px; border: 1px dashed var(--outline); color: var(--sec); font-size: 14px; font-weight: 600; margin-top: 12px; }
+/* зачем (координатор 12.10): Пик берёт общий фон темы «Затмение» (graphite): bg #0C0D10, bgTop #181A1F — утверждённая палитра, закреплена тестами (liquidGlassThemePalette.ts) */
+.ph { --bg: #0C0D10; --bg-top: #181A1F; }
+</style>
+<style>
+/* зачем (владелец 21.10): ячейки по числу слов + «Проверить». Токены — как в коде BuildTask: высота 44, радиус 12, поля 14, 16/700. */
+.ans0 { min-height: 64px; border-radius: 16px; padding: 10px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; background: var(--card); margin-top: 18px; }
+.bank { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 13px; }
+.tk { min-height: 44px; border-radius: 12px; padding: 0 14px; display: inline-flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: #FFFFFF; background: var(--control); box-shadow: 0 2px 0 rgba(0,0,0,.35); }
+.tk.up { background: #2C2C2F; }
+.tk.used { opacity: .3; }
+/* A · ячейки-плашки */
+.cells { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.cell { flex: 1 1 22%; min-width: 64px; min-height: 52px; border-radius: 12px; background: rgba(255,255,255,.05); box-shadow: inset 0 2px 6px rgba(0,0,0,.45); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #5E5E63; }
+.cell .tk { width: 100%; min-height: 44px; margin: 4px; }
+.cell.bad .tk { background: rgba(255,92,92,.18); color: #FF9A98; }
+.cell.ok .tk { background: rgba(76,201,140,.18); color: #7FE0A8; }
+/* B · линии */
+.lines { display: flex; flex-wrap: wrap; gap: 10px 12px; margin-top: 22px; align-items: flex-end; }
+.ln { flex: 1 1 20%; min-width: 60px; min-height: 48px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; }
+.ln::after { content: ''; display: block; width: 100%; height: 2px; border-radius: 1px; background: #4A4A4E; margin-top: 4px; }
+.ln .tk { min-height: 40px; }
+.chk { margin-top: 20px; height: 54px; border-radius: 27px; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 700; background: #F2F1F6; color: #0B0C0E; }
+.chk.off { background: #2A2A2D; color: #75757A; }
+.cnt { text-align: center; font-size: 13px; line-height: 17px; color: var(--sec); font-weight: 600; margin-top: 10px; }
+.errp { margin-top: 18px; border-radius: 18px; padding: 14px 16px 16px; background: #2A1C1D; }
+.note { margin: 18px 0 0; max-width: 1000px; font-size: 15px; line-height: 23px; color: #A6A6AE; } .note b { color: #F2F2F4; }
+.rec { display: inline-block; margin-left: 10px; padding: 3px 10px; border-radius: 9px; background: rgba(110,200,140,.16); color: #5FD08E; font-size: 13px; font-weight: 700; vertical-align: middle; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Пик — «Собери перевод»: ячейки по числу слов и «Проверить»</h1>
+  <p class="page-lead">Решение владельца 21.10. Сейчас ответ собирается в свободную строку и уходит сам, как только набрано нужное число слов, — поправить порядок нельзя (SpireTaskView.tsx, BuildTask). Предлагаем: сразу видно, сколько слов в ответе (ячейки), слова можно переставлять и снимать, проверка — только по кнопке «Проверить», она активна, когда все ячейки заполнены. Таймер ступени идёт как прежде. Экран — по эталону spire.html.</p>
+  <div id="root"></div>
+  <p class="note"><b>Рекомендация: A (ячейки-плашки).</b> Число слов видно сразу, пустая ячейка — понятная цель для тапа. Тап по слову в ячейке возвращает его в банк; тап по слову в банке ставит его в первую пустую ячейку. При ошибке неверные ячейки подсвечиваются, ниже — «Правильно: …» и «Дальше», как в нынешней ошибке ступени.</p>
+</div>
+<script src="kit.js"></script>
+<script>
+(() => {
+const { icon, phone, block, col } = K;
+const stepHead = (hearts = 3, e = 2) => `<div class="flex" style="gap:8px;margin-top:6px"><span class="rb l t" style="margin-right:8px">${icon('back', 's20')}</span><div class="grow"><div style="font-size:20px;font-weight:700">Ступень 8</div><div style="font-size:15px;color:var(--sec);margin-top:2px;white-space:nowrap">Этаж 4 · Гранит</div></div>
+  <span class="pill" style="height:37px;gap:8px;padding:0 13px">${[0, 1, 2].map((i) => `<span style="color:${i < hearts ? '#fff' : '#48484C'}">${icon('heartF', 's18')}</span>`).join('')}</span></div>`;
+const ring = (left = '3:25', frac = .75, paused = false) => `<div class="ring" style="margin-top:34px"><svg viewBox="0 0 132 132"><circle cx="66" cy="66" r="59" fill="none" stroke="var(--track)" stroke-width="7"/><circle cx="66" cy="66" r="59" fill="none" stroke="${paused ? '#8E8E92' : '#E9E9EB'}" stroke-width="7" stroke-linecap="round" stroke-dasharray="370.7" stroke-dashoffset="${(370.7 * (1 - frac)).toFixed(1)}"/></svg><div class="tm">${left}</div>${paused ? '<div class="pz">таймер на паузе</div>' : ''}</div>`;
+const stepFoot = (n = 3) => `<div class="center" style="margin-top:22px;color:var(--sec);font-size:15px;font-weight:600">${n} / 10</div>`;
+const ask = (ru) => `<div class="ovl" style="margin-top:44px"><span class="ov" style="color:var(--sec)">СОБЕРИ ПЕРЕВОД</span></div><div class="qc sp" style="margin-top:20px"><div class="q" style="margin-top:0">${ru}</div></div>`;
+const tk = (w, x = '') => `<span class="tk${x}">${w}</span>`;
+const BANK = ['am', 'sure', 'I', 'not', 'is'];
+const bank = (used) => `<div class="bank">${BANK.map((w) => tk(w, used.includes(w) ? ' used' : '')).join('')}</div>`;
+const cells = (arr, st = []) => `<div class="cells">${arr.map((w, i) => `<div class="cell${st[i] ? ' ' + st[i] : ''}">${w ? tk(w, ' up') : i + 1}</div>`).join('')}</div>`;
+const lines = (arr) => `<div class="lines">${arr.map((w) => `<div class="ln">${w ? tk(w, ' up') : ''}</div>`).join('')}</div>`;
+const chk = (on) => `<div class="chk${on ? '' : ' off'}">Проверить</div>`;
+const S = (body) => phone(`${stepHead()}${ring()}${body}${stepFoot(4)}`);
+
+const now = () => S(`${ask('Я не уверен.')}<div class="ans0">${tk('I', ' up')}${tk('am', ' up')}</div>${bank(['I', 'am'])}<div class="cnt">Ответ уйдёт сам, когда выбрано 4 слова</div>`);
+const a1 = () => S(`${ask('Я не уверен.')}${cells(['I', 'am', '', ''])}${bank(['I', 'am'])}${chk(false)}<div class="cnt">2 из 4 слов</div>`);
+const a2 = () => S(`${ask('Я не уверен.')}${cells(['I', 'am', 'not', 'sure'])}${bank(['I', 'am', 'not', 'sure'])}${chk(true)}<div class="cnt">Можно переставить: тап по слову вернёт его</div>`);
+const a3 = () => phone(`${stepHead(2)}${ring('3:25', .75, true)}${ask('Я не уверен.')}${cells(['I', 'is', 'not', 'sure'], ['ok', 'bad', 'ok', 'ok'])}
+  <div class="errp"><div style="font-size:16px;line-height:22px">Правильно: <b>I am not sure.</b></div><div style="font-size:13px;line-height:18px;color:var(--sec);margin-top:4px">Ошибка сохранена в «Мои ошибки»</div><div class="cta t" style="margin-top:12px">Дальше<span class="ar">${icon('arrowR', 's20')}</span></div></div>`);
+const aLong = () => S(`${ask('Мы не уверены, что он здесь.')}${cells(['We', 'are', 'not', '', '', '', '', ''])}<div class="bank">${['sure', 'here', 'We', 'is', 'he', 'that', 'not', 'are', 'am'].map((w) => tk(w, ['We', 'are', 'not'].includes(w) ? ' used' : '')).join('')}</div>${chk(false)}<div class="cnt">3 из 8 слов</div>`);
+const b1 = () => S(`${ask('Я не уверен.')}${lines(['I', 'am', '', ''])}${bank(['I', 'am'])}${chk(false)}<div class="cnt">2 из 4 слов</div>`);
+const b2 = () => S(`${ask('Мы не уверены, что он здесь.')}${lines(['We', 'are', 'not', '', '', '', '', ''])}<div class="bank">${['sure', 'here', 'We', 'is', 'he', 'that', 'not', 'are', 'am'].map((w) => tk(w, ['We', 'are', 'not'].includes(w) ? ' used' : '')).join('')}</div>${chk(false)}`);
+document.getElementById('root').innerHTML =
+  block('now', 'Сейчас — как в приложении', 'Свободная строка ответа; ответ уходит сам на 4-м слове.', [col('Сейчас', now())]) +
+  block('a', 'A · Ячейки-плашки<span class="rec">рекомендую</span>', 'Ячеек столько, сколько слов в ответе; пустая ячейка показывает номер. «Проверить» активна, когда все заполнены.', [col('Собрано 2 из 4', a1()), col('Всё собрано — можно проверить', a2()), col('Ошибка после проверки', a3()), col('Длинная фраза — 8 ячеек в 2 ряда', aLong())]) +
+  block('b', 'B · Линии под словами', 'То же поведение, но вместо плашек — линии, как пропуски в тетради. Легче на вид, но пустое место менее заметно.', [col('Собрано 2 из 4', b1()), col('Длинная фраза', b2())]);
+K.init();
+})();
+</script>
+</body>
+</html>

@@ -229,3 +229,66 @@ export function friendsTogetherConfigFromNumbers(
     ),
   };
 }
+
+/* ------------------------------- pair streak ------------------------------- */
+
+/**
+ * «Серия вдвоём» (идея 1, решение владельца 21.10; клиентский двойник — app/friends_together/pair_streak.ts).
+ * Подряд дни, когда активны оба, по день-ориентир (если он общий) или по вчера относительно него.
+ * зачем: пуш «Позвать» говорит о серии пары, если она есть; считаем из active_days_v1, которые friendsNudge
+ * и так читает в транзакции, — новых чтений нет.
+ */
+export function pairStreakDays(
+  a: ActiveDaysState | null | undefined,
+  b: ActiveDaysState | null | undefined,
+  referenceDayKey: string,
+): number {
+  if (!isValidDayKey(referenceDayKey)) return 0;
+  const setA = decodeActiveDays(a);
+  const setB = decodeActiveDays(b);
+  if (setA.size === 0 || setB.size === 0) return 0;
+  const both = (dayKey: string) => setA.has(dayKey) && setB.has(dayKey);
+  let day = both(referenceDayKey) ? referenceDayKey : shiftDayKey(referenceDayKey, -1);
+  let count = 0;
+  while (count < MAX_ACTIVE_DAYS_WINDOW && both(day)) {
+    count += 1;
+    day = shiftDayKey(day, -1);
+  }
+  return count;
+}
+
+/**
+ * День-ориентир для серии: локальный день отправителя (anchor его active_days_v1), если он не старше вчерашнего UTC,
+ * иначе сегодняшний UTC. зачем: active_days_v1 пишется по локальной дате телефона — у человека в UTC+3 после 21:00
+ * UTC уже «завтра», и серия по чистому UTC теряла бы сегодняшний общий день.
+ */
+export function pairStreakReferenceDay(senderDays: ActiveDaysState | null | undefined, nowMs: number): string {
+  const utcToday = new Date(nowMs).toISOString().slice(0, 10);
+  const anchor = senderDays && isValidDayKey(senderDays.anchor) ? senderDays.anchor : '';
+  if (anchor && anchor >= shiftDayKey(utcToday, -1) && anchor <= shiftDayKey(utcToday, 1)) return anchor > utcToday ? anchor : utcToday;
+  return utcToday;
+}
+
+/** Серия от двух дней — уже «серия вдвоём» в тексте пуша (один общий день — ещё обычный зов). */
+export const PAIR_STREAK_PUSH_MIN = 2;
+
+function ruDaysWord(n: number): string {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return 'день';
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return 'дня';
+  return 'дней';
+}
+
+/** Текст пуша «Позвать»: с серией вдвоём — про огонь пары, без серии — прежний зов. */
+export function friendNudgePushCopy(senderName: string, pairStreak: number): { title: string; body: string } {
+  const name = String(senderName || '').trim() || 'Friend';
+  const streak = Number.isFinite(pairStreak) ? Math.max(0, Math.floor(pairStreak)) : 0;
+  if (streak >= PAIR_STREAK_PUSH_MIN) {
+    return {
+      title: `${name}: серия вдвоём ждёт`,
+      body: `${streak} ${ruDaysWord(streak)} подряд. Одно маленькое занятие — и огонь не погаснет.`,
+    };
+  }
+  return { title: `${name}: пять минут практики?`, body: 'Одно маленькое занятие.' };
+}

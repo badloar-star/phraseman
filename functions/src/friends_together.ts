@@ -14,11 +14,15 @@ import { ensureStableLinkForAuth } from './auth_identity';
 import { buildUserNotification, userNotificationRef } from './user_notifications';
 import { sendExpoPush, type ExpoPushTransport } from './expo_push';
 import {
+  type ActiveDaysState,
   type FriendsTogetherConfig,
   FRIENDS_TOGETHER_DEFAULTS,
+  friendNudgePushCopy,
   friendsTogetherConfigFromNumbers,
   isQuietHours,
   nudgeLimitBlockReason,
+  pairStreakDays,
+  pairStreakReferenceDay,
 } from './friends_together_core';
 
 const REGION = 'us-central1';
@@ -63,6 +67,18 @@ function getProgress(data: FirebaseFirestore.DocumentData | undefined): Record<s
 function getField(data: FirebaseFirestore.DocumentData | undefined, key: string): unknown {
   const progress = getProgress(data);
   return data?.[key] ?? progress[key];
+}
+
+/** active_days_v1 из документа пользователя (строка JSON или объект) → кодек дней; мусор → null. */
+function activeDaysFromUser(data: FirebaseFirestore.DocumentData | undefined): ActiveDaysState | null {
+  const raw = parseJsonObject(getField(data, 'active_days_v1'));
+  return typeof raw.anchor === 'string' && typeof raw.bits === 'string' ? { anchor: raw.anchor, bits: raw.bits } : null;
+}
+
+/** зачем (1 · ЯДРО 21.10): каждый ранний выход «Друзей» пишет причину в журнал под одним префиксом. */
+function rejectNudge(code: ConstructorParameters<typeof HttpsError>[0], reason: string, ctx: Record<string, unknown> = {}): never {
+  console.warn(`[FRIENDS-TOGETHER] nudge:reject reason=${reason} ${JSON.stringify(ctx)}`);
+  throw new HttpsError(code, reason);
 }
 
 function userMatchesAuth(
@@ -145,26 +161,28 @@ export const friendsNudge = onCall(CALLABLE_BASE, async (request) => {
 
     if (receiptSnap.exists) {
       const receipt = receiptSnap.data() ?? {};
-      if (receipt.friendUid !== friendUid) throw new HttpsError('already-exists', 'request_id_reused');
+      if (receipt.friendUid !== friendUid) rejectNudge('already-exists', 'request_id_reused', { requestId });
+      console.log(`[FRIENDS-TOGETHER] nudge:replay requestId=${requestId} friend=${friendUid}`);
       return receipt.response as Record<string, unknown>;
     }
 
-    if (!userSnap.exists || !friendSnap.exists) throw new HttpsError('not-found', 'user_not_found');
+    const ctx = { from: stableUid, friend: friendUid, requestId };
+    if (!userSnap.exists || !friendSnap.exists) rejectNudge('not-found', 'user_not_found', { ...ctx, userExists: userSnap.exists, friendExists: friendSnap.exists });
     if (!userMatchesAuth(stableUid, userSnap.data(), request.auth!.uid)) {
-      throw new HttpsError('permission-denied', 'user_does_not_match_auth');
+      rejectNudge('permission-denied', 'user_does_not_match_auth', ctx);
     }
     if (!ownFriend.exists || !reciprocal.exists) {
-      throw new HttpsError('failed-precondition', 'not_friends');
+      rejectNudge('failed-precondition', 'not_friends', { ...ctx, ownFriend: ownFriend.exists, reciprocal: reciprocal.exists });
     }
 
     const friendPush = parseJsonObject(getField(friendSnap.data(), 'friends_push_v1'));
     if (friendPush.enabled === false) {
-      throw new HttpsError('failed-precondition', 'disabled');
+      rejectNudge('failed-precondition', 'disabled', ctx);
     }
     const tzRaw = friendPush.tz;
     const tzOffsetMinutes = typeof tzRaw === 'number' && Number.isFinite(tzRaw) ? tzRaw : null;
     if (isQuietHours(now, tzOffsetMinutes, config.nudgeQuietStartHour, config.nudgeQuietEndHour, config.nudgeDefaultTzOffsetMinutes)) {
-      throw new HttpsError('failed-precondition', 'quiet_hours');
+      rejectNudge('failed-precondition', 'quiet_hours', { ...ctx, tzOffsetMinutes });
     }
 
     const senderData = senderNudgeSnap.data() ?? {};
@@ -178,7 +196,11 @@ export const friendsNudge = onCall(CALLABLE_BASE, async (request) => {
       maxSender: config.nudgeMaxSenderPerDay,
       maxReceiver: config.nudgeMaxReceiverPerDay,
     });
-    if (blockReason) throw new HttpsError('resource-exhausted', blockReason);
+    if (blockReason) rejectNudge('resource-exhausted', blockReason, ctx);
+
+    // зачем (идея 1 «Серия вдвоём», владелец 21.10): серия пары — из active_days_v1 уже прочитанных документов, без новых чтений.
+    const senderDays = activeDaysFromUser(userSnap.data());
+    const pairStreak = pairStreakDays(senderDays, activeDaysFromUser(friendSnap.data()), pairStreakReferenceDay(senderDays, now));
 
     const senderName =
       String(request.data?.senderDisplayName ?? '').trim().slice(0, 80) ||
@@ -207,11 +229,14 @@ export const friendsNudge = onCall(CALLABLE_BASE, async (request) => {
         actorStableUid: stableUid,
         eventId: notificationId,
         action: 'study_invite',
+        // зачем: окно приглашения у друга показывает строку «Серия вдвоём · N дней» (макет friends-full.html#streak)
+        pairStreak,
       },
     }, now));
 
-    const response = { ok: true, requestId, sentAtMs: now };
+    const response = { ok: true, requestId, sentAtMs: now, pairStreak };
     tx.set(receiptRef, { friendUid, response, createdAt: now });
+    console.log(`[FRIENDS-TOGETHER] nudge:sent ${JSON.stringify({ ...ctx, pairStreak })}`);
 
     return {
       ...response,
@@ -222,11 +247,13 @@ export const friendsNudge = onCall(CALLABLE_BASE, async (request) => {
 
   const pushToken = (result as { _friendPushToken?: string })._friendPushToken;
   const senderName = (result as { _senderName?: string })._senderName ?? 'Friend';
+  const pushPairStreak = Number((result as { pairStreak?: unknown }).pairStreak) || 0;
   if (pushToken) {
+    const copy = friendNudgePushCopy(senderName, pushPairStreak);
     void sendExpoPush(
       pushToken,
-      `${senderName}: пять минут практики?`,
-      'Одно маленькое занятие.',
+      copy.title,
+      copy.body,
       {
         type: 'friend_nudge',
         fromName: senderName,

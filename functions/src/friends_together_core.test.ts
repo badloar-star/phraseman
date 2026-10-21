@@ -258,3 +258,36 @@ describe('friends_together_core: remote_config overlay (friendsTogetherConfigFro
   });
 
 });
+
+// зачем (идея 1 «Серия вдвоём», владелец 21.10): пуш «Позвать» говорит о серии пары; серия — из active_days_v1 обоих.
+import * as core from './friends_together_core';
+
+describe('friends_together_core: серия вдвоём для пуша', () => {
+  const enc = (anchor: string, back: number[]) => core.encodeActiveDays(anchor, back.map((n) => core.shiftDayKey(anchor, -n)));
+
+  test('оба сегодня 7 дней подряд → 7', () => {
+    expect(core.pairStreakDays(enc('2026-10-21', [0, 1, 2, 3, 4, 5, 6]), enc('2026-10-21', [0, 1, 2, 3, 4, 5, 6]), '2026-10-21')).toBe(7);
+  });
+
+  test('друг сегодня ещё нет → серия по вчера', () => {
+    expect(core.pairStreakDays(enc('2026-10-21', [0, 1, 2]), enc('2026-10-20', [0, 1]), '2026-10-21')).toBe(2);
+  });
+
+  test('пропущен вчерашний день → 0', () => {
+    expect(core.pairStreakDays(enc('2026-10-21', [0, 2, 3]), enc('2026-10-21', [2, 3]), '2026-10-21')).toBe(0);
+  });
+
+  test('день-ориентир — локальный день отправителя, если он рядом с UTC', () => {
+    const now = Date.parse('2026-10-21T22:30:00.000Z');
+    expect(core.pairStreakReferenceDay({ anchor: '2026-10-22', bits: '1' }, now)).toBe('2026-10-22');
+    expect(core.pairStreakReferenceDay({ anchor: '2026-10-10', bits: '1' }, now)).toBe('2026-10-21');
+    expect(core.pairStreakReferenceDay(null, now)).toBe('2026-10-21');
+  });
+
+  test('текст пуша: с серией — про огонь пары, без серии — прежний зов', () => {
+    expect(core.friendNudgePushCopy('Алекс', 7)).toEqual({ title: 'Алекс: серия вдвоём ждёт', body: '7 дней подряд. Одно маленькое занятие — и огонь не погаснет.' });
+    expect(core.friendNudgePushCopy('Алекс', 22).body.startsWith('22 дня подряд')).toBe(true);
+    expect(core.friendNudgePushCopy('Алекс', 1)).toEqual({ title: 'Алекс: пять минут практики?', body: 'Одно маленькое занятие.' });
+    expect(core.friendNudgePushCopy('', 0).title).toBe('Friend: пять минут практики?');
+  });
+});

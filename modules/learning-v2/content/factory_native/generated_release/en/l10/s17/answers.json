@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-17:word:admire",
-    "correctText": "admire",
+    "interactionId": "en:lesson-10:session-17:word:once",
+    "correctText": "once",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-17:i01",
-    "correctText": "I admire her.",
+    "correctText": "I swim once a week.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-17:i02",
-    "correctText": "I admire her.",
+    "correctText": "She swims once a week.",
     "correctResponseId": "en:lesson-10:session-17:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-17:i03",
-    "correctText": "admires",
+    "correctText": "swim",
     "correctResponseId": "en:lesson-10:session-17:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-17:word:courage",
-    "correctText": "courage",
+    "interactionId": "en:lesson-10:session-17:word:twice",
+    "correctText": "twice",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-17:i04",
-    "correctText": "I admire her courage.",
+    "correctText": "I swim twice a week.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-17:i05",
-    "correctText": "He admires her courage.",
+    "correctText": "We swim twice a week.",
     "correctResponseId": "en:lesson-10:session-17:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-17:i06",
-    "correctText": "her",
+    "correctText": "twice",
     "correctResponseId": "en:lesson-10:session-17:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-17:word:dedication",
-    "correctText": "dedication",
+    "interactionId": "en:lesson-10:session-17:word:else",
+    "correctText": "else",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-17:i07",
-    "correctText": "He admires her dedication.",
+    "correctText": "What else do you need?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-17:i08",
-    "correctText": "We admire her dedication.",
+    "correctText": "What else do we need?",
     "correctResponseId": "en:lesson-10:session-17:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-17:i09",
-    "correctText": "admire",
+    "correctText": "do",
     "correctResponseId": "en:lesson-10:session-17:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-17:word:integrity",
-    "correctText": "integrity",
+    "interactionId": "en:lesson-10:session-17:word:only",
+    "correctText": "only",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-17:i10",
-    "correctText": "I admire her integrity.",
+    "correctText": "I only need milk.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-17:i11",
-    "correctText": "Do you admire her integrity?",
+    "correctText": "We only need milk.",
     "correctResponseId": "en:lesson-10:session-17:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-17:i12",
-    "correctText": "Do",
+    "correctText": "need",
     "correctResponseId": "en:lesson-10:session-17:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-17:i13",
-    "correctText": "en:lesson-10:session-17:i13:p1=admire\nen:lesson-10:session-17:i13:p2=courage\nen:lesson-10:session-17:i13:p3=dedication\nen:lesson-10:session-17:i13:p4=integrity",
+    "correctText": "en:lesson-10:session-17:i13:p1=once\nen:lesson-10:session-17:i13:p2=twice\nen:lesson-10:session-17:i13:p3=else\nen:lesson-10:session-17:i13:p4=only",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-17:i14",
-    "correctText": "Does he admire her dedication?",
+    "correctText": "I swim twice a week.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-17:i15",
-    "correctText": "I admire her courage.",
+    "correctText": "What else do you need?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-17:i16",
-    "correctText": "I admire her dedication.",
+    "correctText": "I visit my friend once a week.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-17:i17",
-    "correctText": "I admire her integrity.",
+    "correctText": "I only need milk.",
     "correctResponseId": null
   }
 ]

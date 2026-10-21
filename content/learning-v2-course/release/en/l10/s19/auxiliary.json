@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-19:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-19:intro1:r2": {
-          "ru": "С I нужна doubt без s.",
-          "uk": "З I потрібна doubt без s."
+          "ru": "После want перед действием нужен to.",
+          "uk": "Після want перед дією потрібне to."
         },
         "en:lesson-10:session-19:intro1:r3": {
-          "ru": "Am doubt неверно; здесь говорим I doubt it.",
-          "uk": "Am doubt неправильно; тут кажемо I doubt it."
+          "ru": "После to нужна apologise без s на конце.",
+          "uk": "Після to потрібна apologise без s у кінці."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-19:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-19:intro2:r2": {
-          "ru": "С she нужна doubts.",
-          "uk": "З she потрібна doubts."
+          "ru": "После can не нужно to.",
+          "uk": "Після can не потрібне to."
         },
         "en:lesson-10:session-19:intro2:r3": {
-          "ru": "Is doubt неверно; здесь нужна doubts.",
-          "uk": "Is doubt неправильно; тут потрібна doubts."
+          "ru": "После can нужна introduce без s.",
+          "uk": "Після can потрібна introduce без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-19:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-19:intro3:r2": {
-          "ru": "Evidence неисчисляемое; здесь any evidence, не an evidence.",
-          "uk": "Evidence незлічуване; тут any evidence, не an evidence."
+          "ru": "После can нужна repeat без s.",
+          "uk": "Після can потрібна repeat без s."
         },
         "en:lesson-10:session-19:intro3:r3": {
-          "ru": "После do нужна have, не has.",
-          "uk": "Після do потрібна have, не has."
+          "ru": "После can не нужно to.",
+          "uk": "Після can не потрібне to."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "0bc7287171e075f7e5e881d287fd7ebd8d8eb551cedba831a422d5afd01f69ed"
+  "auxiliaryFingerprint": "df7ba7e4b63b6d2455f5ce2b362af19aa90e617a15c7e80d7c237c2a8febebb8"
 }

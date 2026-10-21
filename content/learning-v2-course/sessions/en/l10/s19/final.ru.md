@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 19 — Сомнение в неподтверждённом сообщении
+# Английский · Урок 10 · Занятие 19 — Вежливый разговор
 
-**Ситуация.** Выразить сомнение и отличить утверждение, доказательства и слух.
+**Ситуация.** Извиниться, поблагодарить, представить друга и попросить повторить.
 
-**Что вы освоите:** I doubt it; She doubts the claim; Do you have any evidence?
-**Новые слова:** doubt, claim, evidence, rumour
+**Что вы освоите:** I want to apologise; Thank you for your help; Can I introduce my friend?; Can you repeat that?
+**Новые слова:** apologise, thank, introduce, repeat
 
 ## Интро 1
 
-### Сомнение — ваше отношение
+### Извинение и благодарность
 
-Коллега уверяет, что весь отчёт можно закончить за минуту. Вы в этом сомневаетесь. Doubt — «сомневаться». I doubt it — «Я в этом сомневаюсь». Здесь doubt описывает ваше отношение к сказанному, а не действие в процессе. Для такого сомнения обычно используем Present Simple, даже когда говорим о нём сейчас.
+Вы опоздали и хотите начать с извинения. Apologise — «извиняться»: I want to apologise — «Я хочу извиниться». После want перед действием нужен to. Позже друг помог вам с сумкой: Thank you for your help — «Спасибо за помощь». Thank — «благодарить»; thank you — готовое выражение благодарности. В apologise используем британское написание с s.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I doubt it.**
-- ❌ I doubts it. — *С I нужна doubt без s.*
-- ❌ I am doubt it. — *Am doubt неверно; здесь говорим I doubt it.*
+- ✅ **I want to apologise.**
+- ❌ I want apologise. — *После want перед действием нужен to.*
+- ❌ I want to apologises. — *После to нужна apologise без s на конце.*
 
 ---
 
 ## Интро 2
 
-### Что именно вызывает сомнение
+### Познакомить людей
 
-Claim — «утверждение»: здесь слова о том, что нечто верно. В рекламе обещают выполнить большой заказ за час. Ваша коллега сомневается в этом утверждении. She doubts the claim — «Она сомневается в этом утверждении». С she нужна doubts. В английском после doubt можно сразу поставить the claim, без предлога.
+Вы пришли с другом и хотите познакомить его с хозяином дома. Introduce — «представлять, знакомить»: Can I introduce my friend? — «Можно представить моего друга?» После can нужна introduce без to. Вы предлагаете знакомство, а не объясняете профессию друга.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **She doubts the claim.**
-- ❌ She doubt the claim. — *С she нужна doubts.*
-- ❌ She is doubt the claim. — *Is doubt неверно; здесь нужна doubts.*
+- ✅ **Can I introduce my friend?**
+- ❌ Can I to introduce my friend? — *После can не нужно to.*
+- ❌ Can I introduces my friend? — *После can нужна introduce без s.*
 
 ---
 
 ## Интро 3
 
-### Попросить подтверждение
+### Вы не расслышали
 
-Evidence — «доказательства»: здесь факты или материалы, которые помогают проверить утверждение. Вы не объявляете сообщение ложным, а просите подтверждение. Do you have any evidence? — «У тебя есть какие-нибудь доказательства?» Evidence в этом значении неисчисляемое: не добавляем s и не ставим a.
+Собеседник назвал адрес, но рядом проехала машина. Repeat — «повторять»: Can you repeat that? — «Можешь повторить?» That здесь — то, что человек только что сказал. После can нужна repeat без s и без to.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **Do you have any evidence?**
-- ❌ Do you have an evidence? — *Evidence неисчисляемое; здесь any evidence, не an evidence.*
-- ❌ Do you has any evidence? — *После do нужна have, не has.*
+- ✅ **Can you repeat that?**
+- ❌ Can you repeats that? — *После can нужна repeat без s.*
+- ❌ Can you to repeat that? — *После can не нужно to.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — doubt**
-<!-- interaction_id: en:lesson-10:session-19:word:doubt; family: word_card -->
-> **doubt** — «сомневаться». I doubt it. — «Я в этом сомневаюсь». Здесь не быть уверенным, что сказанное верно.
+**1 · Карточка слова — apologise**
+<!-- interaction_id: en:lesson-10:session-19:word:apologise; family: word_card -->
+> **apologise** — «извиняться». I want to apologise. — «Я хочу извиниться».
 
-**2 · Коллега обещает закончить большой отчёт за минуту. Скажите: «Я в этом сомневаюсь»**
+**2 · Вы опоздали. Скажите: «Я хочу извиниться»**
 <!-- interaction_id: en:lesson-10:session-19:i01; family: phrase_builder -->
-Плитки: `it` `doubt` `I` → **I doubt it.**
+Плитки: `apologise` `to` `want` `I` → **I want to apologise.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-19:i02; family: listen_choose -->
-🔊 *I doubt it.* → **I doubt it.** · We doubt it. · I know it.
-- We doubt it. — *В записи звучит I doubt it.*
-- I know it. — *В записи звучит I doubt it.*
+🔊 *We want to apologise.* → **We want to apologise.** · I want to apologise. · They want to apologise.
+- I want to apologise. — *В записи звучит We want to apologise.*
+- They want to apologise. — *В записи звучит We want to apologise.*
 
-**4 · Выберите форму doubt с she**
+**4 · Выберите слово перед действием после want**
 <!-- interaction_id: en:lesson-10:session-19:i03; family: context_gap_grammar -->
-She ___ it. → **doubts** · doubt · is doubt
-- doubt — *С she нужна doubts.*
-- is doubt — *Is doubt неверно; здесь нужна doubts.*
+I want ___ apologise. → **to** · at · for
+- at — *После want перед действием нужен to.*
+- for — *Здесь want to apologise.*
 
-**5 · Карточка слова — claim**
-<!-- interaction_id: en:lesson-10:session-19:word:claim; family: word_card -->
-> **claim** — «утверждение». She doubts the claim. — «Она сомневается в этом утверждении». Здесь заявление о том, что нечто верно.
+**5 · Карточка слова — thank**
+<!-- interaction_id: en:lesson-10:session-19:word:thank; family: word_card -->
+> **thank** — «благодарить». Thank you for your help. — «Спасибо за помощь».
 
-**6 · Реклама обещает выполнить большой заказ за час. Коллега сомневается. Скажите: «Она сомневается в этом утверждении»**
+**6 · Друг помог с сумкой. Поблагодарите его за помощь**
 <!-- interaction_id: en:lesson-10:session-19:i04; family: phrase_builder -->
-Плитки: `claim` `the` `doubts` `She` → **She doubts the claim.**
+Плитки: `help` `your` `for` `you` `Thank` → **Thank you for your help.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-19:i05; family: listen_choose -->
-🔊 *Do you doubt the claim?* → **Do you doubt the claim?** · Do they doubt the claim? · Do you know the claim?
-- Do they doubt the claim? — *В записи звучит Do you doubt the claim?*
-- Do you know the claim? — *В записи звучит Do you doubt the claim?*
+🔊 *Thank you for your help.* → **Thank you for your help.** · Thank you for your time. · Thank you for your gift.
+- Thank you for your time. — *В записи звучит Thank you for your help.*
+- Thank you for your gift. — *В записи звучит Thank you for your help.*
 
-**8 · Выберите форму doubt после does**
+**8 · Выберите предлог: поблагодарить за помощь**
 <!-- interaction_id: en:lesson-10:session-19:i06; family: context_gap_grammar -->
-Does she ___ the claim? → **doubt** · doubts · doubting
-- doubts — *После does глагол без s: doubt.*
-- doubting — *После does нужна базовая форма doubt.*
+Thank you ___ your help. → **for** · at · with
+- at — *Thank you for — спасибо за.*
+- with — *Здесь нужен for.*
 
-**9 · Карточка слова — evidence**
-<!-- interaction_id: en:lesson-10:session-19:word:evidence; family: word_card -->
-> **evidence** — «доказательства». Do you have any evidence? — «У тебя есть какие-нибудь доказательства?» Здесь факты или материалы для проверки утверждения; слово без s.
+**9 · Карточка слова — introduce**
+<!-- interaction_id: en:lesson-10:session-19:word:introduce; family: word_card -->
+> **introduce** — «представлять, знакомить». Can I introduce my friend? — «Можно представить моего друга?»
 
-**10 · Коллега повторяет неподтверждённое утверждение. Спросите: «У тебя есть какие-нибудь доказательства?»**
+**10 · Вы хотите познакомить хозяина с другом. Спросите, можно ли представить друга**
 <!-- interaction_id: en:lesson-10:session-19:i07; family: phrase_builder -->
-Плитки: `evidence` `any` `have` `you` `Do` → **Do you have any evidence?**
+Плитки: `friend` `my` `introduce` `I` `Can` → **Can I introduce my friend?**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-19:i08; family: listen_choose -->
-🔊 *We need more evidence.* → **We need more evidence.** · They need more evidence. · We need more time.
-- They need more evidence. — *В записи звучит We need more evidence.*
-- We need more time. — *В записи звучит We need more evidence.*
+🔊 *Can I introduce my sister?* → **Can I introduce my sister?** · Can I introduce my brother? · Can I introduce my friend?
+- Can I introduce my brother? — *В записи звучит Can I introduce my sister?*
+- Can I introduce my friend? — *В записи звучит Can I introduce my sister?*
 
-**12 · Выберите форму have после do**
+**12 · Выберите форму introduce после can**
 <!-- interaction_id: en:lesson-10:session-19:i09; family: context_gap_grammar -->
-Do you ___ any evidence? → **have** · has · having
-- has — *После do нужна have.*
-- having — *После do нужна базовая форма have.*
+Can I ___ my friend? → **introduce** · introduces · introducing
+- introduces — *После can нужна introduce без s.*
+- introducing — *После can нужна introduce.*
 
-**13 · Карточка слова — rumour**
-<!-- interaction_id: en:lesson-10:session-19:word:rumour; family: word_card -->
-> **rumour** — «слух». It is a rumour. — «Это слух». Неподтверждённое сообщение, которое передают друг другу; британское написание rumour.
+**13 · Карточка слова — repeat**
+<!-- interaction_id: en:lesson-10:session-19:word:repeat; family: word_card -->
+> **repeat** — «повторять». Can you repeat that? — «Можешь повторить?»
 
-**14 · Коллега спрашивает, подтверждено ли сообщение. Вы знаете лишь пересказ без подтверждения. Скажите: «Это слух»**
+**14 · Вы не расслышали адрес. Попросите собеседника повторить**
 <!-- interaction_id: en:lesson-10:session-19:i10; family: phrase_builder -->
-Плитки: `rumour` `a` `is` `It` → **It is a rumour.**
+Плитки: `that` `repeat` `you` `Can` → **Can you repeat that?**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-19:i11; family: listen_choose -->
-🔊 *The rumour is about the office.* → **The rumour is about the office.** · The rumour is about the school. · The report is about the office.
-- The rumour is about the school. — *В записи звучит The rumour is about the office.*
-- The report is about the office. — *В записи звучит The rumour is about the office.*
+🔊 *Can you repeat that?* → **Can you repeat that?** · Can I repeat that? · Can she repeat that?
+- Can I repeat that? — *В записи звучит Can you repeat that?*
+- Can she repeat that? — *В записи звучит Can you repeat that?*
 
-**16 · Выберите артикль перед rumour**
+**16 · Выберите форму repeat после can**
 <!-- interaction_id: en:lesson-10:session-19:i12; family: context_gap_grammar -->
-It is ___ rumour. → **a** · an · are
-- an — *Rumour начинается с согласного звука: a.*
-- are — *Are — глагол; здесь нужен артикль a.*
+Can you ___ that? → **repeat** · repeats · repeating
+- repeats — *После can нужна repeat без s.*
+- repeating — *После can нужна repeat.*
 
-**17 · Соедините новые слова со значениями**
+**17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-10:session-19:i13; family: speed_match -->
-doubt — сомневаться · claim — утверждение · evidence — доказательства · rumour — слух
+apologise — извиняться · thank — благодарить · introduce — представлять человека · repeat — повторять
 
-**18 · Послушайте и соберите вопрос**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-19:i14; family: listen_build_dictation -->
-🔊 *Does she doubt the claim?* Плитки: `claim` `the` `doubt` `she` `Does` → **Does she doubt the claim?**
+🔊 *Can I introduce my friend?* Плитки: `friend` `my` `introduce` `I` `Can` → **Can I introduce my friend?**
 
-**19 · Друг передаёт неподтверждённое сообщение. Выражая сомнение, скажите: «Я в этом сомневаюсь»**
-<!-- interaction_id: en:lesson-10:session-19:i15; family: scripted_repeat_compare -->
-🎙 **I doubt it.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-19:i15; family: listen_build_dictation -->
+🔊 *Can you repeat that?* Плитки: `that` `repeat` `you` `Can` → **Can you repeat that?**
 
-**20 · Коллега хочет проверить утверждение, а материалов пока мало. Скажите: «Нам нужно больше доказательств»**
-<!-- interaction_id: en:lesson-10:session-19:i16; family: phrase_builder -->
-Плитки: `evidence` `more` `need` `We` → **We need more evidence.**
+**20 · Поблагодарите друга за подарок**
+<!-- interaction_id: en:lesson-10:session-19:i16; family: scripted_repeat_compare -->
+🎙 **Thank you for your gift.**
 
-**21 · Коллега утверждает, что большой заказ выполнят за минуту, но не приводит подтверждения. Сейчас он спрашивает ваше мнение. Выражая сомнение, скажите: «Я в этом сомневаюсь»**
-<!-- interaction_id: en:lesson-10:session-19:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I doubt it.**
+**21 · Вы опоздали. Скажите, что хотите извиниться**
+<!-- interaction_id: en:lesson-10:session-19:i17; family: scripted_repeat_compare -->
+🎙 **I want to apologise.**
 

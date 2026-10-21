@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-19:word:doubt",
-    "correctText": "doubt",
+    "interactionId": "en:lesson-10:session-19:word:apologise",
+    "correctText": "apologise",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-19:i01",
-    "correctText": "I doubt it.",
+    "correctText": "I want to apologise.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-19:i02",
-    "correctText": "I doubt it.",
+    "correctText": "We want to apologise.",
     "correctResponseId": "en:lesson-10:session-19:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-19:i03",
-    "correctText": "doubts",
+    "correctText": "to",
     "correctResponseId": "en:lesson-10:session-19:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-19:word:claim",
-    "correctText": "claim",
+    "interactionId": "en:lesson-10:session-19:word:thank",
+    "correctText": "thank",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-19:i04",
-    "correctText": "She doubts the claim.",
+    "correctText": "Thank you for your help.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-19:i05",
-    "correctText": "Do you doubt the claim?",
+    "correctText": "Thank you for your help.",
     "correctResponseId": "en:lesson-10:session-19:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-19:i06",
-    "correctText": "doubt",
+    "correctText": "for",
     "correctResponseId": "en:lesson-10:session-19:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-19:word:evidence",
-    "correctText": "evidence",
+    "interactionId": "en:lesson-10:session-19:word:introduce",
+    "correctText": "introduce",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-19:i07",
-    "correctText": "Do you have any evidence?",
+    "correctText": "Can I introduce my friend?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-19:i08",
-    "correctText": "We need more evidence.",
+    "correctText": "Can I introduce my sister?",
     "correctResponseId": "en:lesson-10:session-19:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-19:i09",
-    "correctText": "have",
+    "correctText": "introduce",
     "correctResponseId": "en:lesson-10:session-19:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-19:word:rumour",
-    "correctText": "rumour",
+    "interactionId": "en:lesson-10:session-19:word:repeat",
+    "correctText": "repeat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-19:i10",
-    "correctText": "It is a rumour.",
+    "correctText": "Can you repeat that?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-19:i11",
-    "correctText": "The rumour is about the office.",
+    "correctText": "Can you repeat that?",
     "correctResponseId": "en:lesson-10:session-19:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-19:i12",
-    "correctText": "a",
+    "correctText": "repeat",
     "correctResponseId": "en:lesson-10:session-19:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-19:i13",
-    "correctText": "en:lesson-10:session-19:i13:p1=doubt\nen:lesson-10:session-19:i13:p2=claim\nen:lesson-10:session-19:i13:p3=evidence\nen:lesson-10:session-19:i13:p4=rumour",
+    "correctText": "en:lesson-10:session-19:i13:p1=apologise\nen:lesson-10:session-19:i13:p2=thank\nen:lesson-10:session-19:i13:p3=introduce\nen:lesson-10:session-19:i13:p4=repeat",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-19:i14",
-    "correctText": "Does she doubt the claim?",
+    "correctText": "Can I introduce my friend?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-19:i15",
-    "correctText": "I doubt it.",
+    "correctText": "Can you repeat that?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-19:i16",
-    "correctText": "We need more evidence.",
+    "correctText": "Thank you for your gift.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-19:i17",
-    "correctText": "I doubt it.",
+    "correctText": "I want to apologise.",
     "correctResponseId": null
   }
 ]

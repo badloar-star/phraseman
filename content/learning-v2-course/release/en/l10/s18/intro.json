@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-18",
   "learningOutcomeByLocale": {
-    "ru": "He deserves recognition; She deserves praise; Does he deserve a reward?",
-    "uk": "He deserves recognition; She deserves praise; Does he deserve a reward?"
+    "ru": "I earn money; I cannot afford this coat; I do not waste food; We are winning",
+    "uk": "I earn money; I cannot afford this coat; I do not waste food; We are winning"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-18:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Заслуга, а не действие",
-        "uk": "Заслуга, а не дія"
+        "ru": "Заработать и купить",
+        "uk": "Заробити й купити"
       },
       "bodyByLocale": {
-        "ru": "Коллега нашёл ошибку до отправки заказа и помог команде избежать проблемы. Deserve — «заслуживать», recognition — «признание заслуг». He deserves recognition — «Он заслуживает признания». Здесь deserves выражает оценку его заслуг, а не действие в процессе. Поэтому используем Present Simple, даже если оцениваем поступок сейчас. С he нужна deserves.",
-        "uk": "Колега знайшов помилку до відправлення замовлення й допоміг команді уникнути проблеми. Deserve — «заслуговувати», recognition — «визнання заслуг». He deserves recognition — «Він заслуговує на визнання». Тут deserves виражає оцінку його заслуг, а не дію в процесі. Тому використовуємо Present Simple, навіть якщо оцінюємо вчинок зараз. З he потрібна deserves."
+        "ru": "Вы рассказываете, что подрабатываете: I earn money — «Я зарабатываю деньги». Earn — «зарабатывать». В магазине понравилось пальто, но денег на него не хватает: I cannot afford this coat — «Я не могу позволить себе это пальто». Afford — «быть в состоянии позволить себе по цене». После cannot нужна afford без to.",
+        "uk": "Ви розповідаєте, що підробляєте: I earn money — «Я заробляю гроші». Earn — «заробляти». У магазині сподобалося пальто, але грошей на нього не вистачає: I cannot afford this coat — «Я не можу дозволити собі це пальто». Afford — «мати змогу дозволити собі за ціною». Після cannot потрібна afford без to."
       },
       "question": {
         "interactionId": "en:lesson-10:session-18:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-18:intro1:r1",
-              "text": "He deserves recognition."
+              "text": "I cannot afford this coat."
             },
             {
               "responseId": "en:lesson-10:session-18:intro1:r2",
-              "text": "He deserve recognition."
+              "text": "I cannot to afford this coat."
             },
             {
               "responseId": "en:lesson-10:session-18:intro1:r3",
-              "text": "He is deserve recognition."
+              "text": "I cannot affords this coat."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-18:intro1:r1",
-              "text": "He deserves recognition."
+              "text": "I cannot afford this coat."
             },
             {
               "responseId": "en:lesson-10:session-18:intro1:r2",
-              "text": "He deserve recognition."
+              "text": "I cannot to afford this coat."
             },
             {
               "responseId": "en:lesson-10:session-18:intro1:r3",
-              "text": "He is deserve recognition."
+              "text": "I cannot affords this coat."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-18:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Слова одобрения",
-        "uk": "Слова схвалення"
+        "ru": "Не тратить впустую",
+        "uk": "Не витрачати марно"
       },
       "bodyByLocale": {
-        "ru": "Сотрудница спокойно объяснила новичку сложную задачу. Praise — «похвала». She deserves praise — «Она заслуживает похвалы». В английском после deserve можно сразу поставить существительное: deserves praise, без предлога. Praise здесь неисчисляемое, поэтому артикль a не нужен.",
-        "uk": "Працівниця спокійно пояснила новачку складне завдання. Praise — «похвала». She deserves praise — «Вона заслуговує на похвалу». В англійській після deserve можна відразу поставити іменник: deserves praise, без прийменника. Praise тут незлічуване, тому артикль a не потрібен."
+        "ru": "Друг спрашивает, зачем вы убираете оставшуюся еду в холодильник. Вы съедите её позже: I do not waste food — «Я не выбрасываю еду зря». Waste — «тратить впустую, растрачивать». Waste food — давать еде пропадать, waste water — тратить воду впустую. Вы описываете привычку: do not waste.",
+        "uk": "Друг запитує, навіщо ви прибираєте їжу, що залишилася, у холодильник. Ви з’їсте її пізніше: I do not waste food — «Я не марную їжу». Waste — «марнувати, витрачати даремно». Waste food — давати їжі пропадати, waste water — марнувати воду. Ви описуєте звичку: do not waste."
       },
       "question": {
         "interactionId": "en:lesson-10:session-18:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-18:intro2:r1",
-              "text": "She deserves praise."
+              "text": "I do not waste food."
             },
             {
               "responseId": "en:lesson-10:session-18:intro2:r2",
-              "text": "She deserves to praise."
+              "text": "I does not waste food."
             },
             {
               "responseId": "en:lesson-10:session-18:intro2:r3",
-              "text": "She deserves a praise."
+              "text": "I do not wastes food."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-18:intro2:r1",
-              "text": "She deserves praise."
+              "text": "I do not waste food."
             },
             {
               "responseId": "en:lesson-10:session-18:intro2:r2",
-              "text": "She deserves to praise."
+              "text": "I does not waste food."
             },
             {
               "responseId": "en:lesson-10:session-18:intro2:r3",
-              "text": "She deserves a praise."
+              "text": "I do not wastes food."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-18:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Награда за помощь",
-        "uk": "Нагорода за допомогу"
+        "ru": "Вести в игре",
+        "uk": "Вести у грі"
       },
       "bodyByLocale": {
-        "ru": "Сотрудник несколько раз помог команде закончить работу вовремя. Reward — «награда» за помощь или усилия. Вы обсуждаете это с руководителем: Does he deserve a reward? — «Он заслуживает награды?» В вопросе с he используем does, а deserve остаётся без s. Здесь reward — одна возможная награда, поэтому a reward.",
-        "uk": "Працівник кілька разів допоміг команді закінчити роботу вчасно. Reward — «нагорода» за допомогу або зусилля. Ви обговорюєте це з керівником: Does he deserve a reward? — «Він заслуговує на нагороду?» У запитанні з he використовуємо does, а deserve залишається без s. Тут reward — одна можлива нагорода, тому a reward."
+        "ru": "Матч ещё идёт, и ваша команда впереди по счёту. Win — «побеждать, выигрывать»: We are winning — «Мы выигрываем». Вы говорите о ходе игры сейчас, а не об окончательном результате. В win удваиваем n: winning.",
+        "uk": "Матч ще триває, і ваша команда попереду за рахунком. Win — «перемагати, вигравати»: We are winning — «Ми виграємо». Ви говорите про перебіг гри зараз, а не про остаточний результат. У win подвоюємо n: winning."
       },
       "question": {
         "interactionId": "en:lesson-10:session-18:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-18:intro3:r1",
-              "text": "Does he deserve a reward?"
+              "text": "We are winning."
             },
             {
               "responseId": "en:lesson-10:session-18:intro3:r2",
-              "text": "Does he deserves a reward?"
+              "text": "We winning."
             },
             {
               "responseId": "en:lesson-10:session-18:intro3:r3",
-              "text": "Do he deserve a reward?"
+              "text": "We are win."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-18:intro3:r1",
-              "text": "Does he deserve a reward?"
+              "text": "We are winning."
             },
             {
               "responseId": "en:lesson-10:session-18:intro3:r2",
-              "text": "Does he deserves a reward?"
+              "text": "We winning."
             },
             {
               "responseId": "en:lesson-10:session-18:intro3:r3",
-              "text": "Do he deserve a reward?"
+              "text": "We are win."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bf38769fb4ef4dba4bd4844e95ebb61257172fd1c0bdb08c35d3b91ecbb66a96"
+  "introFingerprint": "ddcb70a2c611e567ce5551a5abe2466ed37b9e68da76db6ec1ae2caeb4234b50"
 }

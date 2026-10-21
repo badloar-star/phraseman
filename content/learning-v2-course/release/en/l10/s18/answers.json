@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-18:word:deserve",
-    "correctText": "deserve",
+    "interactionId": "en:lesson-10:session-18:word:earn",
+    "correctText": "earn",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-18:i01",
-    "correctText": "You deserve a break.",
+    "correctText": "I earn money.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-18:i02",
-    "correctText": "You deserve a break.",
+    "correctText": "She earns money.",
     "correctResponseId": "en:lesson-10:session-18:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-18:i03",
-    "correctText": "deserves",
+    "correctText": "earn",
     "correctResponseId": "en:lesson-10:session-18:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-18:word:recognition",
-    "correctText": "recognition",
+    "interactionId": "en:lesson-10:session-18:word:afford",
+    "correctText": "afford",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-18:i04",
-    "correctText": "He deserves recognition.",
+    "correctText": "I cannot afford this coat.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-18:i05",
-    "correctText": "They deserve recognition.",
+    "correctText": "We cannot afford this coat.",
     "correctResponseId": "en:lesson-10:session-18:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-18:i06",
-    "correctText": "deserve",
+    "correctText": "afford",
     "correctResponseId": "en:lesson-10:session-18:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-18:word:praise",
-    "correctText": "praise",
+    "interactionId": "en:lesson-10:session-18:word:waste",
+    "correctText": "waste",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-18:i07",
-    "correctText": "She deserves praise.",
+    "correctText": "I do not waste food.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-18:i08",
-    "correctText": "We deserve praise.",
+    "correctText": "We do not waste water.",
     "correctResponseId": "en:lesson-10:session-18:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-18:i09",
-    "correctText": "deserves",
+    "correctText": "waste",
     "correctResponseId": "en:lesson-10:session-18:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-18:word:reward",
-    "correctText": "reward",
+    "interactionId": "en:lesson-10:session-18:word:win",
+    "correctText": "win",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-18:i10",
-    "correctText": "He deserves a reward.",
+    "correctText": "I want to win.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-18:i11",
-    "correctText": "Does she deserve a reward?",
+    "correctText": "They are winning.",
     "correctResponseId": "en:lesson-10:session-18:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-18:i12",
-    "correctText": "a",
+    "correctText": "winning",
     "correctResponseId": "en:lesson-10:session-18:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-18:i13",
-    "correctText": "en:lesson-10:session-18:i13:p1=deserve\nen:lesson-10:session-18:i13:p2=recognition\nen:lesson-10:session-18:i13:p3=praise\nen:lesson-10:session-18:i13:p4=reward",
+    "correctText": "en:lesson-10:session-18:i13:p1=earn\nen:lesson-10:session-18:i13:p2=afford\nen:lesson-10:session-18:i13:p3=waste\nen:lesson-10:session-18:i13:p4=win",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-18:i14",
-    "correctText": "Does he deserve a reward?",
+    "correctText": "I cannot afford this coat.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-18:i15",
-    "correctText": "She deserves praise.",
+    "correctText": "We are winning.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-18:i16",
-    "correctText": "They deserve recognition.",
+    "correctText": "I do not waste water.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-18:i17",
-    "correctText": "He deserves recognition.",
+    "correctText": "We are winning.",
     "correctResponseId": null
   }
 ]

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-17",
   "learningOutcomeByLocale": {
-    "ru": "I admire her courage; He admires her dedication; Do you admire her integrity?",
-    "uk": "I admire her courage; He admires her dedication; Do you admire her integrity?"
+    "ru": "I swim once a week; I swim twice a week; What else do you need?; I only need milk",
+    "uk": "I swim once a week; I swim twice a week; What else do you need?; I only need milk"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-17:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Отношение, а не действие",
-        "uk": "Ставлення, а не дія"
+        "ru": "Один или два раза",
+        "uk": "Один або два рази"
       },
       "bodyByLocale": {
-        "ru": "Коллега заступилась за сотрудника, которого несправедливо обвинили. Admire — «восхищаться», courage — «смелость». I admire her courage — «Я восхищаюсь её смелостью». Здесь admire выражает ваше отношение, а не действие, которое разворачивается на глазах. В этом значении обычно выбираем Present Simple, даже когда говорим о своём отношении сейчас.",
-        "uk": "Колега заступилася за працівника, якого несправедливо звинуватили. Admire — «захоплюватися», courage — «сміливість». I admire her courage — «Я захоплююся її сміливістю». Тут admire виражає ваше ставлення, а не дію, яка розгортається на очах. У цьому значенні зазвичай вибираємо Present Simple, навіть коли говоримо про своє ставлення зараз."
+        "ru": "Друг спрашивает, как часто вы ходите в бассейн. Once — «один раз»: I swim once a week — «Я плаваю раз в неделю». Twice — «два раза»: I swim twice a week — «Я плаваю два раза в неделю». Это привычка, поэтому swim, а не am swimming. A week в этих выражениях значит «в неделю».",
+        "uk": "Друг запитує, як часто ви ходите в басейн. Once — «один раз»: I swim once a week — «Я плаваю раз на тиждень». Twice — «два рази»: I swim twice a week — «Я плаваю двічі на тиждень». Це звичка, тому swim, а не am swimming. A week у цих висловах означає «на тиждень»."
       },
       "question": {
         "interactionId": "en:lesson-10:session-17:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-17:intro1:r1",
-              "text": "I admire her courage."
+              "text": "I swim once a week."
             },
             {
               "responseId": "en:lesson-10:session-17:intro1:r2",
-              "text": "I admires her courage."
+              "text": "I swims once a week."
             },
             {
               "responseId": "en:lesson-10:session-17:intro1:r3",
-              "text": "I admire she courage."
+              "text": "I am swim once a week."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-17:intro1:r1",
-              "text": "I admire her courage."
+              "text": "I swim once a week."
             },
             {
               "responseId": "en:lesson-10:session-17:intro1:r2",
-              "text": "I admires her courage."
+              "text": "I swims once a week."
             },
             {
               "responseId": "en:lesson-10:session-17:intro1:r3",
-              "text": "I admire she courage."
+              "text": "I am swim once a week."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-17:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Преданность делу",
-        "uk": "Відданість справі"
+        "ru": "Что ещё купить",
+        "uk": "Що ще купити"
       },
       "bodyByLocale": {
-        "ru": "Ваша знакомая каждую неделю помогает ученикам готовиться к экзаменам. Dedication — «преданность делу». Её коллега ценит эту постоянную заботу. He admires her dedication — «Он восхищается её преданностью делу». С he в Present Simple нужна admires. Мы описываем отношение человека к её работе.",
-        "uk": "Ваша знайома щотижня допомагає учням готуватися до іспитів. Dedication — «відданість справі». Її колега цінує цю постійну турботу. He admires her dedication — «Він захоплюється її відданістю справі». З he у Present Simple потрібна admires. Ми описуємо ставлення людини до її роботи."
+        "ru": "Вы записали хлеб в список и спрашиваете друга, нужны ли другие продукты. Else — «ещё, другое»: What else do you need? — «Что тебе ещё нужно?» Else ставим сразу после what. В вопросе с need и you нужен do.",
+        "uk": "Ви записали хліб у список і запитуєте друга, чи потрібні інші продукти. Else — «ще, інше»: What else do you need? — «Що тобі ще потрібно?» Else ставимо відразу після what. У запитанні з need і you потрібне do."
       },
       "question": {
         "interactionId": "en:lesson-10:session-17:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-17:intro2:r1",
-              "text": "He admires her dedication."
+              "text": "What else do you need?"
             },
             {
               "responseId": "en:lesson-10:session-17:intro2:r2",
-              "text": "He admire her dedication."
+              "text": "What else does you need?"
             },
             {
               "responseId": "en:lesson-10:session-17:intro2:r3",
-              "text": "He is admire her dedication."
+              "text": "What else do you needs?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-17:intro2:r1",
-              "text": "He admires her dedication."
+              "text": "What else do you need?"
             },
             {
               "responseId": "en:lesson-10:session-17:intro2:r2",
-              "text": "He admire her dedication."
+              "text": "What else does you need?"
             },
             {
               "responseId": "en:lesson-10:session-17:intro2:r3",
-              "text": "He is admire her dedication."
+              "text": "What else do you needs?"
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-17:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Принципиальность",
-        "uk": "Принциповість"
+        "ru": "Больше ничего",
+        "uk": "Більше нічого"
       },
       "bodyByLocale": {
-        "ru": "Сотрудница заметила ошибку в свою пользу и попросила её исправить. Integrity — «принципиальность»: здесь честность и верность своим принципам, даже когда это невыгодно. Вы спрашиваете друга: Do you admire her integrity? — «Ты восхищаешься её принципиальностью?» Для вопроса в Present Simple используем do + you + admire.",
-        "uk": "Працівниця помітила помилку на свою користь і попросила її виправити. Integrity — «принциповість»: тут чесність і вірність своїм принципам, навіть коли це невигідно. Ви запитуєте друга: Do you admire her integrity? — «Ти захоплюєшся її принциповістю?» Для запитання в Present Simple використовуємо do + you + admire."
+        "ru": "Друг предлагает купить вам несколько продуктов. Вам нужно только молоко. Only — «только»: I only need milk — «Мне нужно только молоко». В этом ответе only означает, что других покупок для вас не нужно. Здесь ставим only перед need.",
+        "uk": "Друг пропонує купити вам кілька продуктів. Вам потрібне лише молоко. Only — «лише, тільки»: I only need milk — «Мені потрібне лише молоко». У цій відповіді only означає, що інших покупок для вас не потрібно. Тут ставимо only перед need."
       },
       "question": {
         "interactionId": "en:lesson-10:session-17:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-17:intro3:r1",
-              "text": "Do you admire her integrity?"
+              "text": "I only need milk."
             },
             {
               "responseId": "en:lesson-10:session-17:intro3:r2",
-              "text": "Do you admires her integrity?"
+              "text": "I only needs milk."
             },
             {
               "responseId": "en:lesson-10:session-17:intro3:r3",
-              "text": "Are you admire her integrity?"
+              "text": "I am only need milk."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-17:intro3:r1",
-              "text": "Do you admire her integrity?"
+              "text": "I only need milk."
             },
             {
               "responseId": "en:lesson-10:session-17:intro3:r2",
-              "text": "Do you admires her integrity?"
+              "text": "I only needs milk."
             },
             {
               "responseId": "en:lesson-10:session-17:intro3:r3",
-              "text": "Are you admire her integrity?"
+              "text": "I am only need milk."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c19dc6b44de6dda730bc366cb73aef6fc50882000c89467f25dc5e561970162a"
+  "introFingerprint": "28a33ab5de64286dda68f8062b0712c96db6894080d8cac81837d8ff137472bf"
 }

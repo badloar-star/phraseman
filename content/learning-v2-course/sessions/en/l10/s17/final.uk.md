@@ -1,151 +1,151 @@
-# Англійська · Урок 10 · Заняття 17 — За що ви поважаєте колегу
+# Англійська · Урок 10 · Заняття 17 — Як часто й що ще
 
-**Ситуація.** Висловити захоплення рисами людини, використовуючи дієслово стану в Present Simple.
+**Ситуація.** Розповісти про звички й уточнити список покупок.
 
-**Що ви опануєте:** I admire her courage; He admires her dedication; Do you admire her integrity?
-**Нові слова:** admire, courage, dedication, integrity
+**Що ви опануєте:** I swim once a week; I swim twice a week; What else do you need?; I only need milk
+**Нові слова:** once, twice, else, only
 
 ## Інтро 1
 
-### Ставлення, а не дія
+### Один або два рази
 
-Колега заступилася за працівника, якого несправедливо звинуватили. Admire — «захоплюватися», courage — «сміливість». I admire her courage — «Я захоплююся її сміливістю». Тут admire виражає ваше ставлення, а не дію, яка розгортається на очах. У цьому значенні зазвичай вибираємо Present Simple, навіть коли говоримо про своє ставлення зараз.
+Друг запитує, як часто ви ходите в басейн. Once — «один раз»: I swim once a week — «Я плаваю раз на тиждень». Twice — «два рази»: I swim twice a week — «Я плаваю двічі на тиждень». Це звичка, тому swim, а не am swimming. A week у цих висловах означає «на тиждень».
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **I admire her courage.**
-- ❌ I admires her courage. — *З I потрібна admire без s.*
-- ❌ I admire she courage. — *Її сміливість — her courage, не she courage.*
+- ✅ **I swim once a week.**
+- ❌ I swims once a week. — *З I потрібна swim без s.*
+- ❌ I am swim once a week. — *Для звички тут потрібна swim без am.*
 
 ---
 
 ## Інтро 2
 
-### Відданість справі
+### Що ще купити
 
-Ваша знайома щотижня допомагає учням готуватися до іспитів. Dedication — «відданість справі». Її колега цінує цю постійну турботу. He admires her dedication — «Він захоплюється її відданістю справі». З he у Present Simple потрібна admires. Ми описуємо ставлення людини до її роботи.
+Ви записали хліб у список і запитуєте друга, чи потрібні інші продукти. Else — «ще, інше»: What else do you need? — «Що тобі ще потрібно?» Else ставимо відразу після what. У запитанні з need і you потрібне do.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **He admires her dedication.**
-- ❌ He admire her dedication. — *З he потрібна admires.*
-- ❌ He is admire her dedication. — *Is admire неправильно; тут ставлення виражено формою admires.*
+- ✅ **What else do you need?**
+- ❌ What else does you need? — *З you потрібне do.*
+- ❌ What else do you needs? — *Після do потрібна need без s.*
 
 ---
 
 ## Інтро 3
 
-### Принциповість
+### Більше нічого
 
-Працівниця помітила помилку на свою користь і попросила її виправити. Integrity — «принциповість»: тут чесність і вірність своїм принципам, навіть коли це невигідно. Ви запитуєте друга: Do you admire her integrity? — «Ти захоплюєшся її принциповістю?» Для запитання в Present Simple використовуємо do + you + admire.
+Друг пропонує купити вам кілька продуктів. Вам потрібне лише молоко. Only — «лише, тільки»: I only need milk — «Мені потрібне лише молоко». У цій відповіді only означає, що інших покупок для вас не потрібно. Тут ставимо only перед need.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **Do you admire her integrity?**
-- ❌ Do you admires her integrity? — *Після do потрібна admire без s.*
-- ❌ Are you admire her integrity? — *Запитання про ставлення з admire будуємо через do.*
+- ✅ **I only need milk.**
+- ❌ I only needs milk. — *З I потрібна need без s.*
+- ❌ I am only need milk. — *Тут потрібна need без am.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — admire**
-<!-- interaction_id: en:lesson-10:session-17:word:admire; family: word_card -->
-> **admire** — «захоплюватися». I admire her. — «Я захоплююся нею». Тут відчувати повагу й захоплення людиною.
+**1 · Картка слова — once**
+<!-- interaction_id: en:lesson-10:session-17:word:once; family: word_card -->
+> **once** — «один раз». once a week — «раз на тиждень».
 
-**2 · Подруга розповідає про колегу, яка допомогла всій команді. Скажіть: «Я захоплююся нею»**
+**2 · Скажіть, що плаваєте раз на тиждень. Once a week поставте в кінці**
 <!-- interaction_id: en:lesson-10:session-17:i01; family: phrase_builder -->
-Плитки: `her` `admire` `I` → **I admire her.**
+Плитки: `week` `a` `once` `swim` `I` → **I swim once a week.**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-17:i02; family: listen_choose -->
-🔊 *I admire her.* → **I admire her.** · We admire her. · I admire him.
-- We admire her. — *У записі звучить I admire her.*
-- I admire him. — *У записі звучить I admire her.*
+🔊 *She swims once a week.* → **She swims once a week.** · He swims once a week. · She swims once a day.
+- He swims once a week. — *У записі звучить She swims once a week.*
+- She swims once a day. — *У записі звучить She swims once a week.*
 
-**4 · Виберіть форму admire з he для ставлення до людини**
+**4 · Виберіть форму swim для звички з I**
 <!-- interaction_id: en:lesson-10:session-17:i03; family: context_gap_grammar -->
-He ___ her. → **admires** · admire · is admire
-- admire — *З he потрібна admires.*
-- is admire — *Is admire не утворює правильної форми.*
+I ___ once a week. → **swim** · swims · swimming
+- swims — *З I потрібна swim без s.*
+- swimming — *Для звички тут потрібна swim.*
 
-**5 · Картка слова — courage**
-<!-- interaction_id: en:lesson-10:session-17:word:courage; family: word_card -->
-> **courage** — «сміливість». I admire her courage. — «Я захоплююся її сміливістю». Тут готовність діяти сміливо, попри страх.
+**5 · Картка слова — twice**
+<!-- interaction_id: en:lesson-10:session-17:word:twice; family: word_card -->
+> **twice** — «два рази». twice a week — «двічі на тиждень».
 
-**6 · Колега заступилася за несправедливо звинуваченого працівника. Скажіть: «Я захоплююся її сміливістю»**
+**6 · Скажіть, що плаваєте двічі на тиждень. Twice a week поставте в кінці**
 <!-- interaction_id: en:lesson-10:session-17:i04; family: phrase_builder -->
-Плитки: `courage` `her` `admire` `I` → **I admire her courage.**
+Плитки: `week` `a` `twice` `swim` `I` → **I swim twice a week.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-17:i05; family: listen_choose -->
-🔊 *He admires her courage.* → **He admires her courage.** · She admires her courage. · He admires her work.
-- She admires her courage. — *У записі звучить He admires her courage.*
-- He admires her work. — *У записі звучить He admires her courage.*
+🔊 *We swim twice a week.* → **We swim twice a week.** · I swim twice a week. · We swim once a week.
+- I swim twice a week. — *У записі звучить We swim twice a week.*
+- We swim once a week. — *У записі звучить We swim twice a week.*
 
-**8 · Виберіть слово для «її сміливість»**
+**8 · Ви плаваєте в понеділок і п’ятницю: двічі на тиждень. Виберіть слово частоти**
 <!-- interaction_id: en:lesson-10:session-17:i06; family: context_gap_grammar -->
-I admire ___ courage. → **her** · she · hers
-- she — *Перед courage потрібне her, не she.*
-- hers — *Перед іменником використовуємо her; hers стоїть самостійно.*
+I swim ___ a week. → **twice** · once · never
+- once — *Once — один раз, тут два.*
+- never — *Never — ніколи, але ви ходите двічі.*
 
-**9 · Картка слова — dedication**
-<!-- interaction_id: en:lesson-10:session-17:word:dedication; family: word_card -->
-> **dedication** — «відданість справі». He admires her dedication. — «Він захоплюється її відданістю справі». Тут постійні зусилля й турбота про роботу.
+**9 · Картка слова — else**
+<!-- interaction_id: en:lesson-10:session-17:word:else; family: word_card -->
+> **else** — «ще, інше». What else do you need? — «Що тобі ще потрібно?»
 
-**10 · Викладачка щотижня допомагає учням. Її колега захоплений. Скажіть: «Він захоплюється її відданістю справі»**
+**10 · Хліб уже в списку. Запитайте друга, що йому ще потрібно**
 <!-- interaction_id: en:lesson-10:session-17:i07; family: phrase_builder -->
-Плитки: `dedication` `her` `admires` `He` → **He admires her dedication.**
+Плитки: `need` `you` `do` `else` `What` → **What else do you need?**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-17:i08; family: listen_choose -->
-🔊 *We admire her dedication.* → **We admire her dedication.** · They admire her dedication. · We admire her courage.
-- They admire her dedication. — *У записі звучить We admire her dedication.*
-- We admire her courage. — *У записі звучить We admire her dedication.*
+🔊 *What else do we need?* → **What else do we need?** · What else do you need? · What else does she need?
+- What else do you need? — *У записі звучить What else do we need?*
+- What else does she need? — *У записі звучить What else do we need?*
 
-**12 · Виберіть форму admire після does**
+**12 · Виберіть допоміжне дієслово з you**
 <!-- interaction_id: en:lesson-10:session-17:i09; family: context_gap_grammar -->
-Does he ___ her dedication? → **admire** · admires · admiring
-- admires — *Після does дієслово без s: admire.*
-- admiring — *Після does потрібна початкова форма admire.*
+What else ___ you need? → **do** · does · are
+- does — *З you потрібне do.*
+- are — *Запитання з need будуємо через do.*
 
-**13 · Картка слова — integrity**
-<!-- interaction_id: en:lesson-10:session-17:word:integrity; family: word_card -->
-> **integrity** — «принциповість». I admire her integrity. — «Я захоплююся її принциповістю». Тут чесність і вірність своїм принципам.
+**13 · Картка слова — only**
+<!-- interaction_id: en:lesson-10:session-17:word:only; family: word_card -->
+> **only** — «лише, тільки». I only need milk. — «Мені потрібне лише молоко».
 
-**14 · Працівниця помітила помилку, яка була їй вигідна, але попросила усунути її. Скажіть: «Я захоплююся її принциповістю»**
+**14 · Вам потрібне лише молоко. Скажіть це, поставивши only перед need**
 <!-- interaction_id: en:lesson-10:session-17:i10; family: phrase_builder -->
-Плитки: `integrity` `her` `admire` `I` → **I admire her integrity.**
+Плитки: `milk` `need` `only` `I` → **I only need milk.**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-17:i11; family: listen_choose -->
-🔊 *Do you admire her integrity?* → **Do you admire her integrity?** · Do they admire her integrity? · Do you admire her courage?
-- Do they admire her integrity? — *У записі звучить Do you admire her integrity?*
-- Do you admire her courage? — *У записі звучить Do you admire her integrity?*
+🔊 *We only need milk.* → **We only need milk.** · I only need milk. · We only need bread.
+- I only need milk. — *У записі звучить We only need milk.*
+- We only need bread. — *У записі звучить We only need milk.*
 
-**16 · Виберіть допоміжне дієслово для запитання з you**
+**16 · Виберіть форму need з I**
 <!-- interaction_id: en:lesson-10:session-17:i12; family: context_gap_grammar -->
-___ you admire her integrity? → **Do** · Does · Are
-- Does — *З you потрібне do, не does.*
-- Are — *З admire в цьому запитанні використовуємо do.*
+I only ___ milk. → **need** · needs · needing
+- needs — *З I потрібна need без s.*
+- needing — *Тут потрібна need.*
 
-**17 · З’єднайте нові слова зі значеннями**
+**17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-10:session-17:i13; family: speed_match -->
-admire — захоплюватися · courage — сміливість · dedication — відданість справі · integrity — принциповість
+once — один раз · twice — два рази · else — ще · only — лише
 
-**18 · Послухайте й складіть запитання**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-17:i14; family: listen_build_dictation -->
-🔊 *Does he admire her dedication?* Плитки: `dedication` `her` `admire` `he` `Does` → **Does he admire her dedication?**
+🔊 *I swim twice a week.* Плитки: `week` `a` `twice` `swim` `I` → **I swim twice a week.**
 
-**19 · Друг запитує, як ви ставитеся до сміливого вчинку колеги. Скажіть: «Я захоплююся її сміливістю»**
-<!-- interaction_id: en:lesson-10:session-17:i15; family: scripted_repeat_compare -->
-🎙 **I admire her courage.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-17:i15; family: listen_build_dictation -->
+🔊 *What else do you need?* Плитки: `need` `you` `do` `else` `What` → **What else do you need?**
 
-**20 · Колега запитує про ваше ставлення до викладачки, яка постійно допомагає учням. Скажіть: «Я захоплююся її відданістю справі»**
-<!-- interaction_id: en:lesson-10:session-17:i16; family: phrase_builder -->
-Плитки: `dedication` `her` `admire` `I` → **I admire her dedication.**
+**20 · Скажіть: «Я відвідую друга раз на тиждень»**
+<!-- interaction_id: en:lesson-10:session-17:i16; family: scripted_repeat_compare -->
+🎙 **I visit my friend once a week.**
 
-**21 · Ваша колега відмовилася приховати помилку, хоча приховати її було б вигідно. Друг запитує, як ви ставитеся до її принциповості. Висловлюючи своє ставлення, скажіть: «Я захоплююся її принциповістю»**
-<!-- interaction_id: en:lesson-10:session-17:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **I admire her integrity.**
+**21 · Друг іде до магазину. Скажіть, що вам потрібне лише молоко**
+<!-- interaction_id: en:lesson-10:session-17:i17; family: scripted_repeat_compare -->
+🎙 **I only need milk.**
 

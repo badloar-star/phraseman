@@ -1,151 +1,151 @@
-# Англійська · Урок 10 · Заняття 18 — Відзначити внесок колеги
+# Англійська · Урок 10 · Заняття 18 — Гроші, їжа та гра
 
-**Ситуація.** Сказати, що людина заслуговує на похвалу, визнання або нагороду.
+**Ситуація.** Сказати про заробіток, пояснити відмову від покупки й описати перебіг гри.
 
-**Що ви опануєте:** He deserves recognition; She deserves praise; Does he deserve a reward?
-**Нові слова:** deserve, recognition, praise, reward
+**Що ви опануєте:** I earn money; I cannot afford this coat; I do not waste food; We are winning
+**Нові слова:** earn, afford, waste, win
 
 ## Інтро 1
 
-### Заслуга, а не дія
+### Заробити й купити
 
-Колега знайшов помилку до відправлення замовлення й допоміг команді уникнути проблеми. Deserve — «заслуговувати», recognition — «визнання заслуг». He deserves recognition — «Він заслуговує на визнання». Тут deserves виражає оцінку його заслуг, а не дію в процесі. Тому використовуємо Present Simple, навіть якщо оцінюємо вчинок зараз. З he потрібна deserves.
+Ви розповідаєте, що підробляєте: I earn money — «Я заробляю гроші». Earn — «заробляти». У магазині сподобалося пальто, але грошей на нього не вистачає: I cannot afford this coat — «Я не можу дозволити собі це пальто». Afford — «мати змогу дозволити собі за ціною». Після cannot потрібна afford без to.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **He deserves recognition.**
-- ❌ He deserve recognition. — *З he потрібна deserves.*
-- ❌ He is deserve recognition. — *Is deserve неправильно; оцінку виражаємо формою deserves.*
+- ✅ **I cannot afford this coat.**
+- ❌ I cannot to afford this coat. — *Після cannot не потрібне to.*
+- ❌ I cannot affords this coat. — *Після cannot потрібна afford без s.*
 
 ---
 
 ## Інтро 2
 
-### Слова схвалення
+### Не витрачати марно
 
-Працівниця спокійно пояснила новачку складне завдання. Praise — «похвала». She deserves praise — «Вона заслуговує на похвалу». В англійській після deserve можна відразу поставити іменник: deserves praise, без прийменника. Praise тут незлічуване, тому артикль a не потрібен.
+Друг запитує, навіщо ви прибираєте їжу, що залишилася, у холодильник. Ви з’їсте її пізніше: I do not waste food — «Я не марную їжу». Waste — «марнувати, витрачати даремно». Waste food — давати їжі пропадати, waste water — марнувати воду. Ви описуєте звичку: do not waste.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **She deserves praise.**
-- ❌ She deserves to praise. — *To praise означає «похвалити», а тут вона заслуговує на похвалу: deserves praise.*
-- ❌ She deserves a praise. — *Praise тут незлічуване, без a.*
+- ✅ **I do not waste food.**
+- ❌ I does not waste food. — *З I потрібне do.*
+- ❌ I do not wastes food. — *Після do not потрібна waste без s.*
 
 ---
 
 ## Інтро 3
 
-### Нагорода за допомогу
+### Вести у грі
 
-Працівник кілька разів допоміг команді закінчити роботу вчасно. Reward — «нагорода» за допомогу або зусилля. Ви обговорюєте це з керівником: Does he deserve a reward? — «Він заслуговує на нагороду?» У запитанні з he використовуємо does, а deserve залишається без s. Тут reward — одна можлива нагорода, тому a reward.
+Матч ще триває, і ваша команда попереду за рахунком. Win — «перемагати, вигравати»: We are winning — «Ми виграємо». Ви говорите про перебіг гри зараз, а не про остаточний результат. У win подвоюємо n: winning.
 
 **Виберіть фразу для цієї ситуації.**
 
-- ✅ **Does he deserve a reward?**
-- ❌ Does he deserves a reward? — *Після does потрібна deserve без s.*
-- ❌ Do he deserve a reward? — *З he у цьому запитанні потрібне does.*
+- ✅ **We are winning.**
+- ❌ We winning. — *Перед winning потрібна are.*
+- ❌ We are win. — *Після are потрібна winning.*
 
 ---
 
 ## Практика (21 завдання)
 
-**1 · Картка слова — deserve**
-<!-- interaction_id: en:lesson-10:session-18:word:deserve; family: word_card -->
-> **deserve** — «заслуговувати». You deserve a break. — «Ти заслуговуєш на перерву». Тут людина заслуговує на відпочинок після зусиль.
+**1 · Картка слова — earn**
+<!-- interaction_id: en:lesson-10:session-18:word:earn; family: word_card -->
+> **earn** — «заробляти». I earn money. — «Я заробляю гроші».
 
-**2 · Колега довго допомагав готувати зустріч. Скажіть: «Ти заслуговуєш на перерву»**
+**2 · Скажіть, що ви заробляєте гроші**
 <!-- interaction_id: en:lesson-10:session-18:i01; family: phrase_builder -->
-Плитки: `break` `a` `deserve` `You` → **You deserve a break.**
+Плитки: `money` `earn` `I` → **I earn money.**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-18:i02; family: listen_choose -->
-🔊 *You deserve a break.* → **You deserve a break.** · We deserve a break. · You need a break.
-- We deserve a break. — *У записі звучить You deserve a break.*
-- You need a break. — *У записі звучить You deserve a break.*
+🔊 *She earns money.* → **She earns money.** · He earns money. · She saves money.
+- He earns money. — *У записі звучить She earns money.*
+- She saves money. — *У записі звучить She earns money.*
 
-**4 · Виберіть форму deserve з he**
+**4 · Виберіть форму earn з I**
 <!-- interaction_id: en:lesson-10:session-18:i03; family: context_gap_grammar -->
-He ___ a break. → **deserves** · deserve · is deserve
-- deserve — *З he потрібна deserves.*
-- is deserve — *Is deserve неправильно; тут потрібна deserves.*
+I ___ money. → **earn** · earns · earning
+- earns — *З I потрібна earn без s.*
+- earning — *Для цього повідомлення потрібна earn.*
 
-**5 · Картка слова — recognition**
-<!-- interaction_id: en:lesson-10:session-18:word:recognition; family: word_card -->
-> **recognition** — «визнання заслуг». He deserves recognition. — «Він заслуговує на визнання». Тут визнання внеску людини.
+**5 · Картка слова — afford**
+<!-- interaction_id: en:lesson-10:session-18:word:afford; family: word_card -->
+> **afford** — «дозволити собі за ціною». I cannot afford this coat. — «Я не можу дозволити собі це пальто».
 
-**6 · Колега вчасно знайшов помилку й допоміг команді. Скажіть: «Він заслуговує на визнання»**
+**6 · Пальто надто дороге для вас. Скажіть, що не можете його собі дозволити**
 <!-- interaction_id: en:lesson-10:session-18:i04; family: phrase_builder -->
-Плитки: `recognition` `deserves` `He` → **He deserves recognition.**
+Плитки: `coat` `this` `afford` `cannot` `I` → **I cannot afford this coat.**
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-18:i05; family: listen_choose -->
-🔊 *They deserve recognition.* → **They deserve recognition.** · We deserve recognition. · They deserve a break.
-- We deserve recognition. — *У записі звучить They deserve recognition.*
-- They deserve a break. — *У записі звучить They deserve recognition.*
+🔊 *We cannot afford this coat.* → **We cannot afford this coat.** · I cannot afford this coat. · We can afford this coat.
+- I cannot afford this coat. — *У записі звучить We cannot afford this coat.*
+- We can afford this coat. — *У записі звучить We cannot afford this coat.*
 
-**8 · Виберіть форму deserve після does**
+**8 · Виберіть форму afford після cannot**
 <!-- interaction_id: en:lesson-10:session-18:i06; family: context_gap_grammar -->
-Does he ___ recognition? → **deserve** · deserves · deserving
-- deserves — *Після does дієслово без s: deserve.*
-- deserving — *Після does потрібна початкова форма deserve.*
+I cannot ___ this coat. → **afford** · affords · affording
+- affords — *Після cannot потрібна afford без s.*
+- affording — *Після cannot потрібна afford.*
 
-**9 · Картка слова — praise**
-<!-- interaction_id: en:lesson-10:session-18:word:praise; family: word_card -->
-> **praise** — «похвала». She deserves praise. — «Вона заслуговує на похвалу». Тут слова схвалення, без артикля a.
+**9 · Картка слова — waste**
+<!-- interaction_id: en:lesson-10:session-18:word:waste; family: word_card -->
+> **waste** — «марнувати, витрачати даремно». I do not waste food. — «Я не марную їжу».
 
-**10 · Працівниця терпляче допомогла новачку розібратися із завданням. Скажіть: «Вона заслуговує на похвалу»**
+**10 · Ви зберігаєте їжу на завтра. Скажіть, що не марнуєте їжу**
 <!-- interaction_id: en:lesson-10:session-18:i07; family: phrase_builder -->
-Плитки: `praise` `deserves` `She` → **She deserves praise.**
+Плитки: `food` `waste` `not` `do` `I` → **I do not waste food.**
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-18:i08; family: listen_choose -->
-🔊 *We deserve praise.* → **We deserve praise.** · They deserve praise. · We deserve recognition.
-- They deserve praise. — *У записі звучить We deserve praise.*
-- We deserve recognition. — *У записі звучить We deserve praise.*
+🔊 *We do not waste water.* → **We do not waste water.** · I do not waste water. · We do not waste food.
+- I do not waste water. — *У записі звучить We do not waste water.*
+- We do not waste food. — *У записі звучить We do not waste water.*
 
-**12 · Виберіть форму deserve з she**
+**12 · Виберіть форму waste після do not**
 <!-- interaction_id: en:lesson-10:session-18:i09; family: context_gap_grammar -->
-She ___ praise. → **deserves** · deserve · is deserve
-- deserve — *З she потрібна deserves.*
-- is deserve — *Is deserve неправильно; оцінку виражаємо через deserves.*
+I do not ___ food. → **waste** · wastes · wasting
+- wastes — *Після do not потрібна waste без s.*
+- wasting — *Після do not потрібна waste.*
 
-**13 · Картка слова — reward**
-<!-- interaction_id: en:lesson-10:session-18:word:reward; family: word_card -->
-> **reward** — «нагорода». He deserves a reward. — «Він заслуговує на нагороду». Тут нагорода за допомогу або зусилля.
+**13 · Картка слова — win**
+<!-- interaction_id: en:lesson-10:session-18:word:win; family: word_card -->
+> **win** — «вигравати, перемагати». We are winning. — «Ми виграємо».
 
-**14 · Колега неодноразово допоміг команді закінчити роботу вчасно. Скажіть: «Він заслуговує на нагороду»**
+**14 · Перед грою скажіть: «Я хочу виграти»**
 <!-- interaction_id: en:lesson-10:session-18:i10; family: phrase_builder -->
-Плитки: `reward` `a` `deserves` `He` → **He deserves a reward.**
+Плитки: `win` `to` `want` `I` → **I want to win.**
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-10:session-18:i11; family: listen_choose -->
-🔊 *Does she deserve a reward?* → **Does she deserve a reward?** · Does he deserve a reward? · Does she deserve a break?
-- Does he deserve a reward? — *У записі звучить Does she deserve a reward?*
-- Does she deserve a break? — *У записі звучить Does she deserve a reward?*
+🔊 *They are winning.* → **They are winning.** · We are winning. · He is winning.
+- We are winning. — *У записі звучить They are winning.*
+- He is winning. — *У записі звучить They are winning.*
 
-**16 · Виберіть артикль для однієї нагороди**
+**16 · Виберіть форму win для дії зараз після are**
 <!-- interaction_id: en:lesson-10:session-18:i12; family: context_gap_grammar -->
-He deserves ___ reward. → **a** · an · are
-- an — *Reward починається з приголосного звука: a.*
-- are — *Are — дієслово; тут потрібен артикль a.*
+We are ___. → **winning** · win · wins
+- win — *Після are потрібна winning.*
+- wins — *Після are потрібна winning, не wins.*
 
-**17 · З’єднайте нові слова зі значеннями**
+**17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-10:session-18:i13; family: speed_match -->
-deserve — заслуговувати · recognition — визнання заслуг · praise — похвала · reward — нагорода
+earn — заробляти · afford — дозволити собі за ціною · waste — марнувати · win — вигравати
 
-**18 · Послухайте й складіть запитання**
+**18 · Складіть почуту фразу**
 <!-- interaction_id: en:lesson-10:session-18:i14; family: listen_build_dictation -->
-🔊 *Does he deserve a reward?* Плитки: `reward` `a` `deserve` `he` `Does` → **Does he deserve a reward?**
+🔊 *I cannot afford this coat.* Плитки: `coat` `this` `afford` `cannot` `I` → **I cannot afford this coat.**
 
-**19 · Керівник обговорює допомогу працівниці новачку. Скажіть: «Вона заслуговує на похвалу»**
-<!-- interaction_id: en:lesson-10:session-18:i15; family: scripted_repeat_compare -->
-🎙 **She deserves praise.**
+**19 · Складіть почуту фразу**
+<!-- interaction_id: en:lesson-10:session-18:i15; family: listen_build_dictation -->
+🔊 *We are winning.* Плитки: `winning` `are` `We` → **We are winning.**
 
-**20 · Колега запитує, чи варто відзначити зусилля всієї команди. Скажіть: «Вони заслуговують на визнання»**
-<!-- interaction_id: en:lesson-10:session-18:i16; family: phrase_builder -->
-Плитки: `recognition` `deserve` `They` → **They deserve recognition.**
+**20 · Скажіть, що не марнуєте воду**
+<!-- interaction_id: en:lesson-10:session-18:i16; family: scripted_repeat_compare -->
+🎙 **I do not waste water.**
 
-**21 · Працівник знайшов помилку до відправлення замовлення. Зараз керівник запитує вашу думку про його заслуги. Висловлюючи оцінку, скажіть: «Він заслуговує на визнання»**
-<!-- interaction_id: en:lesson-10:session-18:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **He deserves recognition.**
+**21 · Ваша команда зараз попереду. Скажіть: «Ми виграємо»**
+<!-- interaction_id: en:lesson-10:session-18:i17; family: scripted_repeat_compare -->
+🎙 **We are winning.**
 

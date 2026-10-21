@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-19:word:doubt",
+      "interactionId": "en:lesson-10:session-19:word:apologise",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — doubt",
+      "prompt": "Картка слова — apologise",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-19:word:doubt:audio"
+        "en:lesson-10:session-19:word:apologise:audio"
       ],
-      "accessibilityLabel": "Картка слова — doubt",
+      "accessibilityLabel": "Картка слова — apologise",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-19:word:doubt:audio",
-          "transcript": "doubt"
+          "audioTargetId": "en:lesson-10:session-19:word:apologise:audio",
+          "transcript": "apologise"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-19:word:doubt:r1",
-            "targetText": "doubt",
+            "responseId": "en:lesson-10:session-19:word:apologise:r1",
+            "targetText": "apologise",
             "meaningByLocale": {
-              "ru": "«сомневаться». I doubt it. — «Я в этом сомневаюсь». Здесь не быть уверенным, что сказанное верно.",
-              "uk": "«сумніватися». I doubt it. — «Я в цьому сумніваюся». Тут не бути впевненим, що сказане є правдою."
+              "ru": "«извиняться». I want to apologise. — «Я хочу извиниться».",
+              "uk": "«вибачатися». I want to apologise. — «Я хочу вибачитися»."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "doubt",
+          "word": "apologise",
           "definitionByLocale": {
-            "ru": "«сомневаться». I doubt it. — «Я в этом сомневаюсь». Здесь не быть уверенным, что сказанное верно.",
-            "uk": "«сумніватися». I doubt it. — «Я в цьому сумніваюся». Тут не бути впевненим, що сказане є правдою."
+            "ru": "«извиняться». I want to apologise. — «Я хочу извиниться».",
+            "uk": "«вибачатися». I want to apologise. — «Я хочу вибачитися»."
           }
         }
       },
@@ -52,22 +52,23 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Колега обіцяє закінчити великий звіт за хвилину. Скажіть: «Я в цьому сумніваюся»",
+      "prompt": "Ви запізнилися. Скажіть: «Я хочу вибачитися»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Колега обіцяє закінчити великий звіт за хвилину. Скажіть: «Я в цьому сумніваюся»",
+      "accessibilityLabel": "Ви запізнилися. Скажіть: «Я хочу вибачитися»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I doubt it.",
+        "targetPhrase": "I want to apologise.",
         "localizedMeaning": {
-          "ru": "Коллега обещает закончить большой отчёт за минуту. Скажите: «Я в этом сомневаюсь»",
-          "uk": "Колега обіцяє закінчити великий звіт за хвилину. Скажіть: «Я в цьому сумніваюся»"
+          "ru": "Вы опоздали. Скажите: «Я хочу извиниться»",
+          "uk": "Ви запізнилися. Скажіть: «Я хочу вибачитися»"
         },
         "orderedTokens": [
           "I",
-          "doubt",
-          "it"
+          "want",
+          "to",
+          "apologise"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -88,15 +89,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-19:i02:r1",
-          "text": "I doubt it."
+          "text": "We want to apologise."
         },
         {
           "responseId": "en:lesson-10:session-19:i02:r2",
-          "text": "We doubt it."
+          "text": "I want to apologise."
         },
         {
           "responseId": "en:lesson-10:session-19:i02:r3",
-          "text": "I know it."
+          "text": "They want to apologise."
         }
       ],
       "mediaIds": [],
@@ -108,23 +109,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-19:i02:audio",
-          "transcript": "I doubt it."
+          "transcript": "We want to apologise."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-19:i02:r1",
-            "targetText": "I doubt it.",
+            "targetText": "We want to apologise.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-19:i02:r2",
-            "targetText": "We doubt it.",
+            "targetText": "I want to apologise.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-19:i02:r3",
-            "targetText": "I know it.",
+            "targetText": "They want to apologise.",
             "meaningByLocale": null
           }
         ],
@@ -135,8 +136,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I doubt it.",
-              "uk": "У записі звучить I doubt it."
+              "ru": "В записи звучит We want to apologise.",
+              "uk": "У записі звучить We want to apologise."
             }
           },
           {
@@ -144,8 +145,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I doubt it.",
-              "uk": "У записі звучить I doubt it."
+              "ru": "В записи звучит We want to apologise.",
+              "uk": "У записі звучить We want to apologise."
             }
           }
         ],
@@ -160,63 +161,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму doubt з she",
+      "prompt": "Виберіть слово перед дією після want",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-19:i03:r1",
-          "text": "doubts"
+          "text": "to"
         },
         {
           "responseId": "en:lesson-10:session-19:i03:r2",
-          "text": "doubt"
+          "text": "at"
         },
         {
           "responseId": "en:lesson-10:session-19:i03:r3",
-          "text": "is doubt"
+          "text": "for"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму doubt з she",
+      "accessibilityLabel": "Виберіть слово перед дією після want",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму doubt с she",
-          "uk": "Виберіть форму doubt з she"
+          "ru": "Выберите слово перед действием после want",
+          "uk": "Виберіть слово перед дією після want"
         },
-        "gappedTargetPhrase": "She ___ it.",
+        "gappedTargetPhrase": "I want ___ apologise.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-19:i03:r1",
-            "text": "doubts"
+            "text": "to"
           },
           {
             "responseId": "en:lesson-10:session-19:i03:r2",
-            "text": "doubt"
+            "text": "at"
           },
           {
             "responseId": "en:lesson-10:session-19:i03:r3",
-            "text": "is doubt"
+            "text": "for"
           }
         ],
-        "testedDimension": "Виберіть форму doubt з she",
+        "testedDimension": "Виберіть слово перед дією після want",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-19:i03:r2",
             "correct": false,
-            "testedDimension": "Виберіть форму doubt з she",
+            "testedDimension": "Виберіть слово перед дією після want",
             "feedbackByLocale": {
-              "ru": "С she нужна doubts.",
-              "uk": "З she потрібна doubts."
+              "ru": "После want перед действием нужен to.",
+              "uk": "Після want перед дією потрібне to."
             }
           },
           {
             "responseId": "en:lesson-10:session-19:i03:r3",
             "correct": false,
-            "testedDimension": "Виберіть форму doubt з she",
+            "testedDimension": "Виберіть слово перед дією після want",
             "feedbackByLocale": {
-              "ru": "Is doubt неверно; здесь нужна doubts.",
-              "uk": "Is doubt неправильно; тут потрібна doubts."
+              "ru": "Здесь want to apologise.",
+              "uk": "Тут want to apologise."
             }
           }
         ]
@@ -224,32 +225,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-19:word:claim",
+      "interactionId": "en:lesson-10:session-19:word:thank",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — claim",
+      "prompt": "Картка слова — thank",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-19:word:claim:audio"
+        "en:lesson-10:session-19:word:thank:audio"
       ],
-      "accessibilityLabel": "Картка слова — claim",
+      "accessibilityLabel": "Картка слова — thank",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-19:word:claim:audio",
-          "transcript": "claim"
+          "audioTargetId": "en:lesson-10:session-19:word:thank:audio",
+          "transcript": "thank"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-19:word:claim:r1",
-            "targetText": "claim",
+            "responseId": "en:lesson-10:session-19:word:thank:r1",
+            "targetText": "thank",
             "meaningByLocale": {
-              "ru": "«утверждение». She doubts the claim. — «Она сомневается в этом утверждении». Здесь заявление о том, что нечто верно.",
-              "uk": "«твердження». She doubts the claim. — «Вона сумнівається в цьому твердженні». Тут заява про те, що щось є правдою."
+              "ru": "«благодарить». Thank you for your help. — «Спасибо за помощь».",
+              "uk": "«дякувати». Thank you for your help. — «Дякую за допомогу»."
             }
           }
         ],
@@ -257,10 +258,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "claim",
+          "word": "thank",
           "definitionByLocale": {
-            "ru": "«утверждение». She doubts the claim. — «Она сомневается в этом утверждении». Здесь заявление о том, что нечто верно.",
-            "uk": "«твердження». She doubts the claim. — «Вона сумнівається в цьому твердженні». Тут заява про те, що щось є правдою."
+            "ru": "«благодарить». Thank you for your help. — «Спасибо за помощь».",
+            "uk": "«дякувати». Thank you for your help. — «Дякую за допомогу»."
           }
         }
       },
@@ -272,23 +273,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Реклама обіцяє виконати велике замовлення за годину. Колега сумнівається. Скажіть: «Вона сумнівається в цьому твердженні»",
+      "prompt": "Друг допоміг із сумкою. Подякуйте йому за допомогу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Реклама обіцяє виконати велике замовлення за годину. Колега сумнівається. Скажіть: «Вона сумнівається в цьому твердженні»",
+      "accessibilityLabel": "Друг допоміг із сумкою. Подякуйте йому за допомогу",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She doubts the claim.",
+        "targetPhrase": "Thank you for your help.",
         "localizedMeaning": {
-          "ru": "Реклама обещает выполнить большой заказ за час. Коллега сомневается. Скажите: «Она сомневается в этом утверждении»",
-          "uk": "Реклама обіцяє виконати велике замовлення за годину. Колега сумнівається. Скажіть: «Вона сумнівається в цьому твердженні»"
+          "ru": "Друг помог с сумкой. Поблагодарите его за помощь",
+          "uk": "Друг допоміг із сумкою. Подякуйте йому за допомогу"
         },
         "orderedTokens": [
-          "She",
-          "doubts",
-          "the",
-          "claim"
+          "Thank",
+          "you",
+          "for",
+          "your",
+          "help"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -309,15 +311,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-19:i05:r1",
-          "text": "Do you doubt the claim?"
+          "text": "Thank you for your help."
         },
         {
           "responseId": "en:lesson-10:session-19:i05:r2",
-          "text": "Do they doubt the claim?"
+          "text": "Thank you for your time."
         },
         {
           "responseId": "en:lesson-10:session-19:i05:r3",
-          "text": "Do you know the claim?"
+          "text": "Thank you for your gift."
         }
       ],
       "mediaIds": [],
@@ -329,23 +331,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-19:i05:audio",
-          "transcript": "Do you doubt the claim?"
+          "transcript": "Thank you for your help."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-19:i05:r1",
-            "targetText": "Do you doubt the claim?",
+            "targetText": "Thank you for your help.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-19:i05:r2",
-            "targetText": "Do they doubt the claim?",
+            "targetText": "Thank you for your time.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-19:i05:r3",
-            "targetText": "Do you know the claim?",
+            "targetText": "Thank you for your gift.",
             "meaningByLocale": null
           }
         ],
@@ -356,8 +358,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит Do you doubt the claim?",
-              "uk": "У записі звучить Do you doubt the claim?"
+              "ru": "В записи звучит Thank you for your help.",
+              "uk": "У записі звучить Thank you for your help."
             }
           },
           {
@@ -365,8 +367,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит Do you doubt the claim?",
-              "uk": "У записі звучить Do you doubt the claim?"
+              "ru": "В записи звучит Thank you for your help.",
+              "uk": "У записі звучить Thank you for your help."
             }
           }
         ],
@@ -381,63 +383,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму doubt після does",
+      "prompt": "Виберіть прийменник: подякувати за допомогу",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-19:i06:r1",
-          "text": "doubt"
+          "text": "for"
         },
         {
           "responseId": "en:lesson-10:session-19:i06:r2",
-          "text": "doubts"
+          "text": "at"
         },
         {
           "responseId": "en:lesson-10:session-19:i06:r3",
-          "text": "doubting"
+          "text": "with"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму doubt після does",
+      "accessibilityLabel": "Виберіть прийменник: подякувати за допомогу",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму doubt после does",
-          "uk": "Виберіть форму doubt після does"
+          "ru": "Выберите предлог: поблагодарить за помощь",
+          "uk": "Виберіть прийменник: подякувати за допомогу"
         },
-        "gappedTargetPhrase": "Does she ___ the claim?",
+        "gappedTargetPhrase": "Thank you ___ your help.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-19:i06:r1",
-            "text": "doubt"
+            "text": "for"
           },
           {
             "responseId": "en:lesson-10:session-19:i06:r2",
-            "text": "doubts"
+            "text": "at"
           },
           {
             "responseId": "en:lesson-10:session-19:i06:r3",
-            "text": "doubting"
+            "text": "with"
           }
         ],
-        "testedDimension": "Виберіть форму doubt після does",
+        "testedDimension": "Виберіть прийменник: подякувати за допомогу",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-19:i06:r2",
             "correct": false,
-            "testedDimension": "Виберіть форму doubt після does",
+            "testedDimension": "Виберіть прийменник: подякувати за допомогу",
             "feedbackByLocale": {
-              "ru": "После does глагол без s: doubt.",
-              "uk": "Після does дієслово без s: doubt."
+              "ru": "Thank you for — спасибо за.",
+              "uk": "Thank you for — дякую за."
             }
           },
           {
             "responseId": "en:lesson-10:session-19:i06:r3",
             "correct": false,
-            "testedDimension": "Виберіть форму doubt після does",
+            "testedDimension": "Виберіть прийменник: подякувати за допомогу",
             "feedbackByLocale": {
-              "ru": "После does нужна базовая форма doubt.",
-              "uk": "Після does потрібна початкова форма doubt."
+              "ru": "Здесь нужен for.",
+              "uk": "Тут потрібне for."
             }
           }
         ]
@@ -445,32 +447,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-19:word:evidence",
+      "interactionId": "en:lesson-10:session-19:word:introduce",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — evidence",
+      "prompt": "Картка слова — introduce",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-19:word:evidence:audio"
+        "en:lesson-10:session-19:word:introduce:audio"
       ],
-      "accessibilityLabel": "Картка слова — evidence",
+      "accessibilityLabel": "Картка слова — introduce",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-19:word:evidence:audio",
-          "transcript": "evidence"
+          "audioTargetId": "en:lesson-10:session-19:word:introduce:audio",
+          "transcript": "introduce"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-19:word:evidence:r1",
-            "targetText": "evidence",
+            "responseId": "en:lesson-10:session-19:word:introduce:r1",
+            "targetText": "introduce",
             "meaningByLocale": {
-              "ru": "«доказательства». Do you have any evidence? — «У тебя есть какие-нибудь доказательства?» Здесь факты или материалы для проверки утверждения; слово без s.",
-              "uk": "«докази». Do you have any evidence? — «У тебе є якісь докази?» Тут факти або матеріали для перевірки твердження; слово без s."
+              "ru": "«представлять, знакомить». Can I introduce my friend? — «Можно представить моего друга?»",
+              "uk": "«представляти, знайомити». Can I introduce my friend? — «Можна представити мого друга?»"
             }
           }
         ],
@@ -478,10 +480,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "evidence",
+          "word": "introduce",
           "definitionByLocale": {
-            "ru": "«доказательства». Do you have any evidence? — «У тебя есть какие-нибудь доказательства?» Здесь факты или материалы для проверки утверждения; слово без s.",
-            "uk": "«докази». Do you have any evidence? — «У тебе є якісь докази?» Тут факти або матеріали для перевірки твердження; слово без s."
+            "ru": "«представлять, знакомить». Can I introduce my friend? — «Можно представить моего друга?»",
+            "uk": "«представляти, знайомити». Can I introduce my friend? — «Можна представити мого друга?»"
           }
         }
       },
@@ -493,24 +495,24 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Колега повторює непідтверджене твердження. Запитайте: «У тебе є якісь докази?»",
+      "prompt": "Ви хочете познайомити господаря з другом. Запитайте, чи можна представити друга",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Колега повторює непідтверджене твердження. Запитайте: «У тебе є якісь докази?»",
+      "accessibilityLabel": "Ви хочете познайомити господаря з другом. Запитайте, чи можна представити друга",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Do you have any evidence?",
+        "targetPhrase": "Can I introduce my friend?",
         "localizedMeaning": {
-          "ru": "Коллега повторяет неподтверждённое утверждение. Спросите: «У тебя есть какие-нибудь доказательства?»",
-          "uk": "Колега повторює непідтверджене твердження. Запитайте: «У тебе є якісь докази?»"
+          "ru": "Вы хотите познакомить хозяина с другом. Спросите, можно ли представить друга",
+          "uk": "Ви хочете познайомити господаря з другом. Запитайте, чи можна представити друга"
         },
         "orderedTokens": [
-          "Do",
-          "you",
-          "have",
-          "any",
-          "evidence"
+          "Can",
+          "I",
+          "introduce",
+          "my",
+          "friend"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -531,15 +533,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-19:i08:r1",
-          "text": "We need more evidence."
+          "text": "Can I introduce my sister?"
         },
         {
           "responseId": "en:lesson-10:session-19:i08:r2",
-          "text": "They need more evidence."
+          "text": "Can I introduce my brother?"
         },
         {
           "responseId": "en:lesson-10:session-19:i08:r3",
-          "text": "We need more time."
+          "text": "Can I introduce my friend?"
         }
       ],
       "mediaIds": [],
@@ -551,23 +553,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-19:i08:audio",
-          "transcript": "We need more evidence."
+          "transcript": "Can I introduce my sister?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-19:i08:r1",
-            "targetText": "We need more evidence.",
+            "targetText": "Can I introduce my sister?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-19:i08:r2",
-            "targetText": "They need more evidence.",
+            "targetText": "Can I introduce my brother?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-19:i08:r3",
-            "targetText": "We need more time.",
+            "targetText": "Can I introduce my friend?",
             "meaningByLocale": null
           }
         ],
@@ -578,8 +580,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит We need more evidence.",
-              "uk": "У записі звучить We need more evidence."
+              "ru": "В записи звучит Can I introduce my sister?",
+              "uk": "У записі звучить Can I introduce my sister?"
             }
           },
           {
@@ -587,8 +589,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит We need more evidence.",
-              "uk": "У записі звучить We need more evidence."
+              "ru": "В записи звучит Can I introduce my sister?",
+              "uk": "У записі звучить Can I introduce my sister?"
             }
           }
         ],
@@ -603,63 +605,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму have після do",
+      "prompt": "Виберіть форму introduce після can",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-19:i09:r1",
-          "text": "have"
+          "text": "introduce"
         },
         {
           "responseId": "en:lesson-10:session-19:i09:r2",
-          "text": "has"
+          "text": "introduces"
         },
         {
           "responseId": "en:lesson-10:session-19:i09:r3",
-          "text": "having"
+          "text": "introducing"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму have після do",
+      "accessibilityLabel": "Виберіть форму introduce після can",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму have после do",
-          "uk": "Виберіть форму have після do"
+          "ru": "Выберите форму introduce после can",
+          "uk": "Виберіть форму introduce після can"
         },
-        "gappedTargetPhrase": "Do you ___ any evidence?",
+        "gappedTargetPhrase": "Can I ___ my friend?",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-19:i09:r1",
-            "text": "have"
+            "text": "introduce"
           },
           {
             "responseId": "en:lesson-10:session-19:i09:r2",
-            "text": "has"
+            "text": "introduces"
           },
           {
             "responseId": "en:lesson-10:session-19:i09:r3",
-            "text": "having"
+            "text": "introducing"
           }
         ],
-        "testedDimension": "Виберіть форму have після do",
+        "testedDimension": "Виберіть форму introduce після can",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-19:i09:r2",
             "correct": false,
-            "testedDimension": "Виберіть форму have після do",
+            "testedDimension": "Виберіть форму introduce після can",
             "feedbackByLocale": {
-              "ru": "После do нужна have.",
-              "uk": "Після do потрібна have."
+              "ru": "После can нужна introduce без s.",
+              "uk": "Після can потрібна introduce без s."
             }
           },
           {
             "responseId": "en:lesson-10:session-19:i09:r3",
             "correct": false,
-            "testedDimension": "Виберіть форму have після do",
+            "testedDimension": "Виберіть форму introduce після can",
             "feedbackByLocale": {
-              "ru": "После do нужна базовая форма have.",
-              "uk": "Після do потрібна початкова форма have."
+              "ru": "После can нужна introduce.",
+              "uk": "Після can потрібна introduce."
             }
           }
         ]
@@ -667,32 +669,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-19:word:rumour",
+      "interactionId": "en:lesson-10:session-19:word:repeat",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — rumour",
+      "prompt": "Картка слова — repeat",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-19:word:rumour:audio"
+        "en:lesson-10:session-19:word:repeat:audio"
       ],
-      "accessibilityLabel": "Картка слова — rumour",
+      "accessibilityLabel": "Картка слова — repeat",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-19:word:rumour:audio",
-          "transcript": "rumour"
+          "audioTargetId": "en:lesson-10:session-19:word:repeat:audio",
+          "transcript": "repeat"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-19:word:rumour:r1",
-            "targetText": "rumour",
+            "responseId": "en:lesson-10:session-19:word:repeat:r1",
+            "targetText": "repeat",
             "meaningByLocale": {
-              "ru": "«слух». It is a rumour. — «Это слух». Неподтверждённое сообщение, которое передают друг другу; британское написание rumour.",
-              "uk": "«чутка». It is a rumour. — «Це чутка». Непідтверджене повідомлення, яке передають одне одному; британське написання rumour."
+              "ru": "«повторять». Can you repeat that? — «Можешь повторить?»",
+              "uk": "«повторювати». Can you repeat that? — «Можеш повторити?»"
             }
           }
         ],
@@ -700,10 +702,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "rumour",
+          "word": "repeat",
           "definitionByLocale": {
-            "ru": "«слух». It is a rumour. — «Это слух». Неподтверждённое сообщение, которое передают друг другу; британское написание rumour.",
-            "uk": "«чутка». It is a rumour. — «Це чутка». Непідтверджене повідомлення, яке передають одне одному; британське написання rumour."
+            "ru": "«повторять». Can you repeat that? — «Можешь повторить?»",
+            "uk": "«повторювати». Can you repeat that? — «Можеш повторити?»"
           }
         }
       },
@@ -715,23 +717,23 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Колега запитує, чи підтверджено повідомлення. Ви знаєте лише переказ без підтвердження. Скажіть: «Це чутка»",
+      "prompt": "Ви не розчули адресу. Попросіть співрозмовника повторити",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Колега запитує, чи підтверджено повідомлення. Ви знаєте лише переказ без підтвердження. Скажіть: «Це чутка»",
+      "accessibilityLabel": "Ви не розчули адресу. Попросіть співрозмовника повторити",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is a rumour.",
+        "targetPhrase": "Can you repeat that?",
         "localizedMeaning": {
-          "ru": "Коллега спрашивает, подтверждено ли сообщение. Вы знаете лишь пересказ без подтверждения. Скажите: «Это слух»",
-          "uk": "Колега запитує, чи підтверджено повідомлення. Ви знаєте лише переказ без підтвердження. Скажіть: «Це чутка»"
+          "ru": "Вы не расслышали адрес. Попросите собеседника повторить",
+          "uk": "Ви не розчули адресу. Попросіть співрозмовника повторити"
         },
         "orderedTokens": [
-          "It",
-          "is",
-          "a",
-          "rumour"
+          "Can",
+          "you",
+          "repeat",
+          "that"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -752,15 +754,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-19:i11:r1",
-          "text": "The rumour is about the office."
+          "text": "Can you repeat that?"
         },
         {
           "responseId": "en:lesson-10:session-19:i11:r2",
-          "text": "The rumour is about the school."
+          "text": "Can I repeat that?"
         },
         {
           "responseId": "en:lesson-10:session-19:i11:r3",
-          "text": "The report is about the office."
+          "text": "Can she repeat that?"
         }
       ],
       "mediaIds": [],
@@ -772,23 +774,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-19:i11:audio",
-          "transcript": "The rumour is about the office."
+          "transcript": "Can you repeat that?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-19:i11:r1",
-            "targetText": "The rumour is about the office.",
+            "targetText": "Can you repeat that?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-19:i11:r2",
-            "targetText": "The rumour is about the school.",
+            "targetText": "Can I repeat that?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-19:i11:r3",
-            "targetText": "The report is about the office.",
+            "targetText": "Can she repeat that?",
             "meaningByLocale": null
           }
         ],
@@ -799,8 +801,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The rumour is about the office.",
-              "uk": "У записі звучить The rumour is about the office."
+              "ru": "В записи звучит Can you repeat that?",
+              "uk": "У записі звучить Can you repeat that?"
             }
           },
           {
@@ -808,8 +810,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The rumour is about the office.",
-              "uk": "У записі звучить The rumour is about the office."
+              "ru": "В записи звучит Can you repeat that?",
+              "uk": "У записі звучить Can you repeat that?"
             }
           }
         ],
@@ -824,63 +826,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть артикль перед rumour",
+      "prompt": "Виберіть форму repeat після can",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-19:i12:r1",
-          "text": "a"
+          "text": "repeat"
         },
         {
           "responseId": "en:lesson-10:session-19:i12:r2",
-          "text": "an"
+          "text": "repeats"
         },
         {
           "responseId": "en:lesson-10:session-19:i12:r3",
-          "text": "are"
+          "text": "repeating"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть артикль перед rumour",
+      "accessibilityLabel": "Виберіть форму repeat після can",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите артикль перед rumour",
-          "uk": "Виберіть артикль перед rumour"
+          "ru": "Выберите форму repeat после can",
+          "uk": "Виберіть форму repeat після can"
         },
-        "gappedTargetPhrase": "It is ___ rumour.",
+        "gappedTargetPhrase": "Can you ___ that?",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-19:i12:r1",
-            "text": "a"
+            "text": "repeat"
           },
           {
             "responseId": "en:lesson-10:session-19:i12:r2",
-            "text": "an"
+            "text": "repeats"
           },
           {
             "responseId": "en:lesson-10:session-19:i12:r3",
-            "text": "are"
+            "text": "repeating"
           }
         ],
-        "testedDimension": "Виберіть артикль перед rumour",
+        "testedDimension": "Виберіть форму repeat після can",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-19:i12:r2",
             "correct": false,
-            "testedDimension": "Виберіть артикль перед rumour",
+            "testedDimension": "Виберіть форму repeat після can",
             "feedbackByLocale": {
-              "ru": "Rumour начинается с согласного звука: a.",
-              "uk": "Rumour починається з приголосного звука: a."
+              "ru": "После can нужна repeat без s.",
+              "uk": "Після can потрібна repeat без s."
             }
           },
           {
             "responseId": "en:lesson-10:session-19:i12:r3",
             "correct": false,
-            "testedDimension": "Виберіть артикль перед rumour",
+            "testedDimension": "Виберіть форму repeat після can",
             "feedbackByLocale": {
-              "ru": "Are — глагол; здесь нужен артикль a.",
-              "uk": "Are — дієслово; тут потрібен артикль a."
+              "ru": "После can нужна repeat.",
+              "uk": "Після can потрібна repeat."
             }
           }
         ]
@@ -893,58 +895,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте нові слова зі значеннями",
+      "prompt": "Поєднайте слова з перекладом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "accessibilityLabel": "Поєднайте слова з перекладом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-19:i13:p1",
-            "target": "doubt",
+            "target": "apologise",
             "meaningByLocale": {
-              "ru": "сомневаться",
-              "uk": "сумніватися"
+              "ru": "извиняться",
+              "uk": "вибачатися"
             }
           },
           {
             "pairId": "en:lesson-10:session-19:i13:p2",
-            "target": "claim",
+            "target": "thank",
             "meaningByLocale": {
-              "ru": "утверждение",
-              "uk": "твердження"
+              "ru": "благодарить",
+              "uk": "дякувати"
             }
           },
           {
             "pairId": "en:lesson-10:session-19:i13:p3",
-            "target": "evidence",
+            "target": "introduce",
             "meaningByLocale": {
-              "ru": "доказательства",
-              "uk": "докази"
+              "ru": "представлять человека",
+              "uk": "представляти людину"
             }
           },
           {
             "pairId": "en:lesson-10:session-19:i13:p4",
-            "target": "rumour",
+            "target": "repeat",
             "meaningByLocale": {
-              "ru": "слух",
-              "uk": "чутка"
+              "ru": "повторять",
+              "uk": "повторювати"
             }
           }
         ],
         "leftColumn": [
-          "doubt",
-          "claim",
-          "evidence",
-          "rumour"
+          "apologise",
+          "thank",
+          "introduce",
+          "repeat"
         ],
         "rightColumn": [
-          "сумніватися",
-          "твердження",
-          "докази",
-          "чутка"
+          "вибачатися",
+          "дякувати",
+          "представляти людину",
+          "повторювати"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -966,27 +968,27 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-19:i14:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Складіть почуту фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-19:i14:audio",
-          "transcript": "Does she doubt the claim?"
+          "transcript": "Can I introduce my friend?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Does she doubt the claim?",
+        "hiddenTargetPhrase": "Can I introduce my friend?",
         "orderedTokens": [
-          "Does",
-          "she",
-          "doubt",
-          "the",
-          "claim"
+          "Can",
+          "I",
+          "introduce",
+          "my",
+          "friend"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1000,24 +1002,60 @@
     {
       "interactionId": "en:lesson-10:session-19:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Друг переказує непідтверджене повідомлення. Висловлюючи сумнів, скажіть: «Я в цьому сумніваюся»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-19:i15:audio"
       ],
-      "accessibilityLabel": "Друг переказує непідтверджене повідомлення. Висловлюючи сумнів, скажіть: «Я в цьому сумніваюся»",
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-19:i15:audio",
+          "transcript": "Can you repeat that?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Can you repeat that?",
+        "orderedTokens": [
+          "Can",
+          "you",
+          "repeat",
+          "that"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-19:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подякуйте другу за подарунок",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-19:i16:audio"
+      ],
+      "accessibilityLabel": "Подякуйте другу за подарунок",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-19:i15:audio",
-          "transcript": "I doubt it."
+          "audioTargetId": "en:lesson-10:session-19:i16:audio",
+          "transcript": "Thank you for your gift."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I doubt it.",
+        "targetPhrase": "Thank you for your gift.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1031,70 +1069,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-19:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Колега хоче перевірити твердження, а матеріалів поки мало. Скажіть: «Нам потрібно більше доказів»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Колега хоче перевірити твердження, а матеріалів поки мало. Скажіть: «Нам потрібно більше доказів»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "We need more evidence.",
-        "localizedMeaning": {
-          "ru": "Коллега хочет проверить утверждение, а материалов пока мало. Скажите: «Нам нужно больше доказательств»",
-          "uk": "Колега хоче перевірити твердження, а матеріалів поки мало. Скажіть: «Нам потрібно більше доказів»"
-        },
-        "orderedTokens": [
-          "We",
-          "need",
-          "more",
-          "evidence"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-19:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Колега стверджує, що велике замовлення виконають за хвилину, але не наводить підтвердження. Зараз він запитує вашу думку. Висловлюючи сумнів, скажіть: «Я в цьому сумніваюся»",
+      "prompt": "Ви запізнилися. Скажіть, що хочете вибачитися",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-19:i17:audio"
       ],
-      "accessibilityLabel": "Колега стверджує, що велике замовлення виконають за хвилину, але не наводить підтвердження. Зараз він запитує вашу думку. Висловлюючи сумнів, скажіть: «Я в цьому сумніваюся»",
+      "accessibilityLabel": "Ви запізнилися. Скажіть, що хочете вибачитися",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-19:i17:audio",
-          "transcript": "I doubt it."
+          "transcript": "I want to apologise."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I doubt it.",
+        "targetPhrase": "I want to apologise.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1111,5 +1108,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1836dc165e6f96bc5196f4912f7b63fef4c27350956a186a48c292fe40755de2"
+  "learnerFingerprint": "5e58d5949eafa375ce7fe0fe75cc67704aa33b00fe9ee5844fc93c8c43ddf375"
 }

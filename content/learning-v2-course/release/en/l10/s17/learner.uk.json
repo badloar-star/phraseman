@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-17:word:admire",
+      "interactionId": "en:lesson-10:session-17:word:once",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — admire",
+      "prompt": "Картка слова — once",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-17:word:admire:audio"
+        "en:lesson-10:session-17:word:once:audio"
       ],
-      "accessibilityLabel": "Картка слова — admire",
+      "accessibilityLabel": "Картка слова — once",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-17:word:admire:audio",
-          "transcript": "admire"
+          "audioTargetId": "en:lesson-10:session-17:word:once:audio",
+          "transcript": "once"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-17:word:admire:r1",
-            "targetText": "admire",
+            "responseId": "en:lesson-10:session-17:word:once:r1",
+            "targetText": "once",
             "meaningByLocale": {
-              "ru": "«восхищаться». I admire her. — «Я восхищаюсь ею». Здесь испытывать уважение и восхищение человеком.",
-              "uk": "«захоплюватися». I admire her. — «Я захоплююся нею». Тут відчувати повагу й захоплення людиною."
+              "ru": "«один раз». once a week — «раз в неделю».",
+              "uk": "«один раз». once a week — «раз на тиждень»."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "admire",
+          "word": "once",
           "definitionByLocale": {
-            "ru": "«восхищаться». I admire her. — «Я восхищаюсь ею». Здесь испытывать уважение и восхищение человеком.",
-            "uk": "«захоплюватися». I admire her. — «Я захоплююся нею». Тут відчувати повагу й захоплення людиною."
+            "ru": "«один раз». once a week — «раз в неделю».",
+            "uk": "«один раз». once a week — «раз на тиждень»."
           }
         }
       },
@@ -52,22 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Подруга розповідає про колегу, яка допомогла всій команді. Скажіть: «Я захоплююся нею»",
+      "prompt": "Скажіть, що плаваєте раз на тиждень. Once a week поставте в кінці",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подруга розповідає про колегу, яка допомогла всій команді. Скажіть: «Я захоплююся нею»",
+      "accessibilityLabel": "Скажіть, що плаваєте раз на тиждень. Once a week поставте в кінці",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I admire her.",
+        "targetPhrase": "I swim once a week.",
         "localizedMeaning": {
-          "ru": "Подруга рассказывает о коллеге, которая помогла всей команде. Скажите: «Я восхищаюсь ею»",
-          "uk": "Подруга розповідає про колегу, яка допомогла всій команді. Скажіть: «Я захоплююся нею»"
+          "ru": "Скажите, что плаваете раз в неделю. Once a week поставьте в конце",
+          "uk": "Скажіть, що плаваєте раз на тиждень. Once a week поставте в кінці"
         },
         "orderedTokens": [
           "I",
-          "admire",
-          "her"
+          "swim",
+          "once",
+          "a",
+          "week"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -88,15 +90,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-17:i02:r1",
-          "text": "I admire her."
+          "text": "She swims once a week."
         },
         {
           "responseId": "en:lesson-10:session-17:i02:r2",
-          "text": "We admire her."
+          "text": "He swims once a week."
         },
         {
           "responseId": "en:lesson-10:session-17:i02:r3",
-          "text": "I admire him."
+          "text": "She swims once a day."
         }
       ],
       "mediaIds": [],
@@ -108,23 +110,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-17:i02:audio",
-          "transcript": "I admire her."
+          "transcript": "She swims once a week."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-17:i02:r1",
-            "targetText": "I admire her.",
+            "targetText": "She swims once a week.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-17:i02:r2",
-            "targetText": "We admire her.",
+            "targetText": "He swims once a week.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-17:i02:r3",
-            "targetText": "I admire him.",
+            "targetText": "She swims once a day.",
             "meaningByLocale": null
           }
         ],
@@ -135,8 +137,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I admire her.",
-              "uk": "У записі звучить I admire her."
+              "ru": "В записи звучит She swims once a week.",
+              "uk": "У записі звучить She swims once a week."
             }
           },
           {
@@ -144,8 +146,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I admire her.",
-              "uk": "У записі звучить I admire her."
+              "ru": "В записи звучит She swims once a week.",
+              "uk": "У записі звучить She swims once a week."
             }
           }
         ],
@@ -160,63 +162,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму admire з he для ставлення до людини",
+      "prompt": "Виберіть форму swim для звички з I",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-17:i03:r1",
-          "text": "admires"
+          "text": "swim"
         },
         {
           "responseId": "en:lesson-10:session-17:i03:r2",
-          "text": "admire"
+          "text": "swims"
         },
         {
           "responseId": "en:lesson-10:session-17:i03:r3",
-          "text": "is admire"
+          "text": "swimming"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму admire з he для ставлення до людини",
+      "accessibilityLabel": "Виберіть форму swim для звички з I",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму admire с he для отношения к человеку",
-          "uk": "Виберіть форму admire з he для ставлення до людини"
+          "ru": "Выберите форму swim для привычки с I",
+          "uk": "Виберіть форму swim для звички з I"
         },
-        "gappedTargetPhrase": "He ___ her.",
+        "gappedTargetPhrase": "I ___ once a week.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-17:i03:r1",
-            "text": "admires"
+            "text": "swim"
           },
           {
             "responseId": "en:lesson-10:session-17:i03:r2",
-            "text": "admire"
+            "text": "swims"
           },
           {
             "responseId": "en:lesson-10:session-17:i03:r3",
-            "text": "is admire"
+            "text": "swimming"
           }
         ],
-        "testedDimension": "Виберіть форму admire з he для ставлення до людини",
+        "testedDimension": "Виберіть форму swim для звички з I",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-17:i03:r2",
             "correct": false,
-            "testedDimension": "Виберіть форму admire з he для ставлення до людини",
+            "testedDimension": "Виберіть форму swim для звички з I",
             "feedbackByLocale": {
-              "ru": "С he нужна admires.",
-              "uk": "З he потрібна admires."
+              "ru": "С I нужна swim без s.",
+              "uk": "З I потрібна swim без s."
             }
           },
           {
             "responseId": "en:lesson-10:session-17:i03:r3",
             "correct": false,
-            "testedDimension": "Виберіть форму admire з he для ставлення до людини",
+            "testedDimension": "Виберіть форму swim для звички з I",
             "feedbackByLocale": {
-              "ru": "Is admire не образует правильную форму.",
-              "uk": "Is admire не утворює правильної форми."
+              "ru": "Для привычки здесь нужна swim.",
+              "uk": "Для звички тут потрібна swim."
             }
           }
         ]
@@ -224,32 +226,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-17:word:courage",
+      "interactionId": "en:lesson-10:session-17:word:twice",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — courage",
+      "prompt": "Картка слова — twice",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-17:word:courage:audio"
+        "en:lesson-10:session-17:word:twice:audio"
       ],
-      "accessibilityLabel": "Картка слова — courage",
+      "accessibilityLabel": "Картка слова — twice",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-17:word:courage:audio",
-          "transcript": "courage"
+          "audioTargetId": "en:lesson-10:session-17:word:twice:audio",
+          "transcript": "twice"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-17:word:courage:r1",
-            "targetText": "courage",
+            "responseId": "en:lesson-10:session-17:word:twice:r1",
+            "targetText": "twice",
             "meaningByLocale": {
-              "ru": "«смелость». I admire her courage. — «Я восхищаюсь её смелостью». Здесь готовность поступить смело, несмотря на страх.",
-              "uk": "«сміливість». I admire her courage. — «Я захоплююся її сміливістю». Тут готовність діяти сміливо, попри страх."
+              "ru": "«два раза». twice a week — «два раза в неделю».",
+              "uk": "«два рази». twice a week — «двічі на тиждень»."
             }
           }
         ],
@@ -257,10 +259,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "courage",
+          "word": "twice",
           "definitionByLocale": {
-            "ru": "«смелость». I admire her courage. — «Я восхищаюсь её смелостью». Здесь готовность поступить смело, несмотря на страх.",
-            "uk": "«сміливість». I admire her courage. — «Я захоплююся її сміливістю». Тут готовність діяти сміливо, попри страх."
+            "ru": "«два раза». twice a week — «два раза в неделю».",
+            "uk": "«два рази». twice a week — «двічі на тиждень»."
           }
         }
       },
@@ -272,23 +274,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Колега заступилася за несправедливо звинуваченого працівника. Скажіть: «Я захоплююся її сміливістю»",
+      "prompt": "Скажіть, що плаваєте двічі на тиждень. Twice a week поставте в кінці",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Колега заступилася за несправедливо звинуваченого працівника. Скажіть: «Я захоплююся її сміливістю»",
+      "accessibilityLabel": "Скажіть, що плаваєте двічі на тиждень. Twice a week поставте в кінці",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I admire her courage.",
+        "targetPhrase": "I swim twice a week.",
         "localizedMeaning": {
-          "ru": "Коллега заступилась за несправедливо обвинённого сотрудника. Скажите: «Я восхищаюсь её смелостью»",
-          "uk": "Колега заступилася за несправедливо звинуваченого працівника. Скажіть: «Я захоплююся її сміливістю»"
+          "ru": "Скажите, что плаваете два раза в неделю. Twice a week поставьте в конце",
+          "uk": "Скажіть, що плаваєте двічі на тиждень. Twice a week поставте в кінці"
         },
         "orderedTokens": [
           "I",
-          "admire",
-          "her",
-          "courage"
+          "swim",
+          "twice",
+          "a",
+          "week"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -309,15 +312,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-17:i05:r1",
-          "text": "He admires her courage."
+          "text": "We swim twice a week."
         },
         {
           "responseId": "en:lesson-10:session-17:i05:r2",
-          "text": "She admires her courage."
+          "text": "I swim twice a week."
         },
         {
           "responseId": "en:lesson-10:session-17:i05:r3",
-          "text": "He admires her work."
+          "text": "We swim once a week."
         }
       ],
       "mediaIds": [],
@@ -329,23 +332,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-17:i05:audio",
-          "transcript": "He admires her courage."
+          "transcript": "We swim twice a week."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-17:i05:r1",
-            "targetText": "He admires her courage.",
+            "targetText": "We swim twice a week.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-17:i05:r2",
-            "targetText": "She admires her courage.",
+            "targetText": "I swim twice a week.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-17:i05:r3",
-            "targetText": "He admires her work.",
+            "targetText": "We swim once a week.",
             "meaningByLocale": null
           }
         ],
@@ -356,8 +359,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит He admires her courage.",
-              "uk": "У записі звучить He admires her courage."
+              "ru": "В записи звучит We swim twice a week.",
+              "uk": "У записі звучить We swim twice a week."
             }
           },
           {
@@ -365,8 +368,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит He admires her courage.",
-              "uk": "У записі звучить He admires her courage."
+              "ru": "В записи звучит We swim twice a week.",
+              "uk": "У записі звучить We swim twice a week."
             }
           }
         ],
@@ -381,63 +384,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово для «її сміливість»",
+      "prompt": "Ви плаваєте в понеділок і п’ятницю: двічі на тиждень. Виберіть слово частоти",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-17:i06:r1",
-          "text": "her"
+          "text": "twice"
         },
         {
           "responseId": "en:lesson-10:session-17:i06:r2",
-          "text": "she"
+          "text": "once"
         },
         {
           "responseId": "en:lesson-10:session-17:i06:r3",
-          "text": "hers"
+          "text": "never"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово для «її сміливість»",
+      "accessibilityLabel": "Ви плаваєте в понеділок і п’ятницю: двічі на тиждень. Виберіть слово частоти",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово для «её смелость»",
-          "uk": "Виберіть слово для «її сміливість»"
+          "ru": "Вы плаваете в понедельник и пятницу: два раза в неделю. Выберите слово частоты",
+          "uk": "Ви плаваєте в понеділок і п’ятницю: двічі на тиждень. Виберіть слово частоти"
         },
-        "gappedTargetPhrase": "I admire ___ courage.",
+        "gappedTargetPhrase": "I swim ___ a week.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-17:i06:r1",
-            "text": "her"
+            "text": "twice"
           },
           {
             "responseId": "en:lesson-10:session-17:i06:r2",
-            "text": "she"
+            "text": "once"
           },
           {
             "responseId": "en:lesson-10:session-17:i06:r3",
-            "text": "hers"
+            "text": "never"
           }
         ],
-        "testedDimension": "Виберіть слово для «її сміливість»",
+        "testedDimension": "Ви плаваєте в понеділок і п’ятницю: двічі на тиждень. Виберіть слово частоти",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-17:i06:r2",
             "correct": false,
-            "testedDimension": "Виберіть слово для «її сміливість»",
+            "testedDimension": "Ви плаваєте в понеділок і п’ятницю: двічі на тиждень. Виберіть слово частоти",
             "feedbackByLocale": {
-              "ru": "Перед courage нужно her, не she.",
-              "uk": "Перед courage потрібне her, не she."
+              "ru": "Once — один раз, здесь два.",
+              "uk": "Once — один раз, тут два."
             }
           },
           {
             "responseId": "en:lesson-10:session-17:i06:r3",
             "correct": false,
-            "testedDimension": "Виберіть слово для «її сміливість»",
+            "testedDimension": "Ви плаваєте в понеділок і п’ятницю: двічі на тиждень. Виберіть слово частоти",
             "feedbackByLocale": {
-              "ru": "Перед существительным используем her; hers стоит самостоятельно.",
-              "uk": "Перед іменником використовуємо her; hers стоїть самостійно."
+              "ru": "Never — никогда, но вы ходите дважды.",
+              "uk": "Never — ніколи, але ви ходите двічі."
             }
           }
         ]
@@ -445,32 +448,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-17:word:dedication",
+      "interactionId": "en:lesson-10:session-17:word:else",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — dedication",
+      "prompt": "Картка слова — else",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-17:word:dedication:audio"
+        "en:lesson-10:session-17:word:else:audio"
       ],
-      "accessibilityLabel": "Картка слова — dedication",
+      "accessibilityLabel": "Картка слова — else",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-17:word:dedication:audio",
-          "transcript": "dedication"
+          "audioTargetId": "en:lesson-10:session-17:word:else:audio",
+          "transcript": "else"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-17:word:dedication:r1",
-            "targetText": "dedication",
+            "responseId": "en:lesson-10:session-17:word:else:r1",
+            "targetText": "else",
             "meaningByLocale": {
-              "ru": "«преданность делу». He admires her dedication. — «Он восхищается её преданностью делу». Здесь постоянные усилия и забота о работе.",
-              "uk": "«відданість справі». He admires her dedication. — «Він захоплюється її відданістю справі». Тут постійні зусилля й турбота про роботу."
+              "ru": "«ещё, другое». What else do you need? — «Что тебе ещё нужно?»",
+              "uk": "«ще, інше». What else do you need? — «Що тобі ще потрібно?»"
             }
           }
         ],
@@ -478,10 +481,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "dedication",
+          "word": "else",
           "definitionByLocale": {
-            "ru": "«преданность делу». He admires her dedication. — «Он восхищается её преданностью делу». Здесь постоянные усилия и забота о работе.",
-            "uk": "«відданість справі». He admires her dedication. — «Він захоплюється її відданістю справі». Тут постійні зусилля й турбота про роботу."
+            "ru": "«ещё, другое». What else do you need? — «Что тебе ещё нужно?»",
+            "uk": "«ще, інше». What else do you need? — «Що тобі ще потрібно?»"
           }
         }
       },
@@ -493,23 +496,24 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Викладачка щотижня допомагає учням. Її колега захоплений. Скажіть: «Він захоплюється її відданістю справі»",
+      "prompt": "Хліб уже в списку. Запитайте друга, що йому ще потрібно",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Викладачка щотижня допомагає учням. Її колега захоплений. Скажіть: «Він захоплюється її відданістю справі»",
+      "accessibilityLabel": "Хліб уже в списку. Запитайте друга, що йому ще потрібно",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He admires her dedication.",
+        "targetPhrase": "What else do you need?",
         "localizedMeaning": {
-          "ru": "Преподавательница каждую неделю помогает ученикам. Её коллега восхищён. Скажите: «Он восхищается её преданностью делу»",
-          "uk": "Викладачка щотижня допомагає учням. Її колега захоплений. Скажіть: «Він захоплюється її відданістю справі»"
+          "ru": "Хлеб уже в списке. Спросите друга, что ему ещё нужно",
+          "uk": "Хліб уже в списку. Запитайте друга, що йому ще потрібно"
         },
         "orderedTokens": [
-          "He",
-          "admires",
-          "her",
-          "dedication"
+          "What",
+          "else",
+          "do",
+          "you",
+          "need"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -530,15 +534,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-17:i08:r1",
-          "text": "We admire her dedication."
+          "text": "What else do we need?"
         },
         {
           "responseId": "en:lesson-10:session-17:i08:r2",
-          "text": "They admire her dedication."
+          "text": "What else do you need?"
         },
         {
           "responseId": "en:lesson-10:session-17:i08:r3",
-          "text": "We admire her courage."
+          "text": "What else does she need?"
         }
       ],
       "mediaIds": [],
@@ -550,23 +554,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-17:i08:audio",
-          "transcript": "We admire her dedication."
+          "transcript": "What else do we need?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-17:i08:r1",
-            "targetText": "We admire her dedication.",
+            "targetText": "What else do we need?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-17:i08:r2",
-            "targetText": "They admire her dedication.",
+            "targetText": "What else do you need?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-17:i08:r3",
-            "targetText": "We admire her courage.",
+            "targetText": "What else does she need?",
             "meaningByLocale": null
           }
         ],
@@ -577,8 +581,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит We admire her dedication.",
-              "uk": "У записі звучить We admire her dedication."
+              "ru": "В записи звучит What else do we need?",
+              "uk": "У записі звучить What else do we need?"
             }
           },
           {
@@ -586,8 +590,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит We admire her dedication.",
-              "uk": "У записі звучить We admire her dedication."
+              "ru": "В записи звучит What else do we need?",
+              "uk": "У записі звучить What else do we need?"
             }
           }
         ],
@@ -602,63 +606,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму admire після does",
+      "prompt": "Виберіть допоміжне дієслово з you",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-17:i09:r1",
-          "text": "admire"
+          "text": "do"
         },
         {
           "responseId": "en:lesson-10:session-17:i09:r2",
-          "text": "admires"
+          "text": "does"
         },
         {
           "responseId": "en:lesson-10:session-17:i09:r3",
-          "text": "admiring"
+          "text": "are"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму admire після does",
+      "accessibilityLabel": "Виберіть допоміжне дієслово з you",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму admire после does",
-          "uk": "Виберіть форму admire після does"
+          "ru": "Выберите вспомогательный глагол с you",
+          "uk": "Виберіть допоміжне дієслово з you"
         },
-        "gappedTargetPhrase": "Does he ___ her dedication?",
+        "gappedTargetPhrase": "What else ___ you need?",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-17:i09:r1",
-            "text": "admire"
+            "text": "do"
           },
           {
             "responseId": "en:lesson-10:session-17:i09:r2",
-            "text": "admires"
+            "text": "does"
           },
           {
             "responseId": "en:lesson-10:session-17:i09:r3",
-            "text": "admiring"
+            "text": "are"
           }
         ],
-        "testedDimension": "Виберіть форму admire після does",
+        "testedDimension": "Виберіть допоміжне дієслово з you",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-17:i09:r2",
             "correct": false,
-            "testedDimension": "Виберіть форму admire після does",
+            "testedDimension": "Виберіть допоміжне дієслово з you",
             "feedbackByLocale": {
-              "ru": "После does глагол без s: admire.",
-              "uk": "Після does дієслово без s: admire."
+              "ru": "С you нужен do.",
+              "uk": "З you потрібне do."
             }
           },
           {
             "responseId": "en:lesson-10:session-17:i09:r3",
             "correct": false,
-            "testedDimension": "Виберіть форму admire після does",
+            "testedDimension": "Виберіть допоміжне дієслово з you",
             "feedbackByLocale": {
-              "ru": "После does нужна базовая форма admire.",
-              "uk": "Після does потрібна початкова форма admire."
+              "ru": "Вопрос с need строим через do.",
+              "uk": "Запитання з need будуємо через do."
             }
           }
         ]
@@ -666,32 +670,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-17:word:integrity",
+      "interactionId": "en:lesson-10:session-17:word:only",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — integrity",
+      "prompt": "Картка слова — only",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-17:word:integrity:audio"
+        "en:lesson-10:session-17:word:only:audio"
       ],
-      "accessibilityLabel": "Картка слова — integrity",
+      "accessibilityLabel": "Картка слова — only",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-17:word:integrity:audio",
-          "transcript": "integrity"
+          "audioTargetId": "en:lesson-10:session-17:word:only:audio",
+          "transcript": "only"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-17:word:integrity:r1",
-            "targetText": "integrity",
+            "responseId": "en:lesson-10:session-17:word:only:r1",
+            "targetText": "only",
             "meaningByLocale": {
-              "ru": "«принципиальность». I admire her integrity. — «Я восхищаюсь её принципиальностью». Здесь честность и верность своим принципам.",
-              "uk": "«принциповість». I admire her integrity. — «Я захоплююся її принциповістю». Тут чесність і вірність своїм принципам."
+              "ru": "«только». I only need milk. — «Мне нужно только молоко».",
+              "uk": "«лише, тільки». I only need milk. — «Мені потрібне лише молоко»."
             }
           }
         ],
@@ -699,10 +703,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "integrity",
+          "word": "only",
           "definitionByLocale": {
-            "ru": "«принципиальность». I admire her integrity. — «Я восхищаюсь её принципиальностью». Здесь честность и верность своим принципам.",
-            "uk": "«принциповість». I admire her integrity. — «Я захоплююся її принциповістю». Тут чесність і вірність своїм принципам."
+            "ru": "«только». I only need milk. — «Мне нужно только молоко».",
+            "uk": "«лише, тільки». I only need milk. — «Мені потрібне лише молоко»."
           }
         }
       },
@@ -714,23 +718,23 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Працівниця помітила помилку, яка була їй вигідна, але попросила усунути її. Скажіть: «Я захоплююся її принциповістю»",
+      "prompt": "Вам потрібне лише молоко. Скажіть це, поставивши only перед need",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Працівниця помітила помилку, яка була їй вигідна, але попросила усунути її. Скажіть: «Я захоплююся її принциповістю»",
+      "accessibilityLabel": "Вам потрібне лише молоко. Скажіть це, поставивши only перед need",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I admire her integrity.",
+        "targetPhrase": "I only need milk.",
         "localizedMeaning": {
-          "ru": "Сотрудница заметила ошибку, которая была ей выгодна, но попросила устранить её. Скажите: «Я восхищаюсь её принципиальностью»",
-          "uk": "Працівниця помітила помилку, яка була їй вигідна, але попросила усунути її. Скажіть: «Я захоплююся її принциповістю»"
+          "ru": "Вам нужно только молоко. Скажите это, поставив only перед need",
+          "uk": "Вам потрібне лише молоко. Скажіть це, поставивши only перед need"
         },
         "orderedTokens": [
           "I",
-          "admire",
-          "her",
-          "integrity"
+          "only",
+          "need",
+          "milk"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -751,15 +755,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-17:i11:r1",
-          "text": "Do you admire her integrity?"
+          "text": "We only need milk."
         },
         {
           "responseId": "en:lesson-10:session-17:i11:r2",
-          "text": "Do they admire her integrity?"
+          "text": "I only need milk."
         },
         {
           "responseId": "en:lesson-10:session-17:i11:r3",
-          "text": "Do you admire her courage?"
+          "text": "We only need bread."
         }
       ],
       "mediaIds": [],
@@ -771,23 +775,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-17:i11:audio",
-          "transcript": "Do you admire her integrity?"
+          "transcript": "We only need milk."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-17:i11:r1",
-            "targetText": "Do you admire her integrity?",
+            "targetText": "We only need milk.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-17:i11:r2",
-            "targetText": "Do they admire her integrity?",
+            "targetText": "I only need milk.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-17:i11:r3",
-            "targetText": "Do you admire her courage?",
+            "targetText": "We only need bread.",
             "meaningByLocale": null
           }
         ],
@@ -798,8 +802,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит Do you admire her integrity?",
-              "uk": "У записі звучить Do you admire her integrity?"
+              "ru": "В записи звучит We only need milk.",
+              "uk": "У записі звучить We only need milk."
             }
           },
           {
@@ -807,8 +811,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит Do you admire her integrity?",
-              "uk": "У записі звучить Do you admire her integrity?"
+              "ru": "В записи звучит We only need milk.",
+              "uk": "У записі звучить We only need milk."
             }
           }
         ],
@@ -823,63 +827,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть допоміжне дієслово для запитання з you",
+      "prompt": "Виберіть форму need з I",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-17:i12:r1",
-          "text": "Do"
+          "text": "need"
         },
         {
           "responseId": "en:lesson-10:session-17:i12:r2",
-          "text": "Does"
+          "text": "needs"
         },
         {
           "responseId": "en:lesson-10:session-17:i12:r3",
-          "text": "Are"
+          "text": "needing"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть допоміжне дієслово для запитання з you",
+      "accessibilityLabel": "Виберіть форму need з I",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите вспомогательный глагол для вопроса с you",
-          "uk": "Виберіть допоміжне дієслово для запитання з you"
+          "ru": "Выберите форму need с I",
+          "uk": "Виберіть форму need з I"
         },
-        "gappedTargetPhrase": "___ you admire her integrity?",
+        "gappedTargetPhrase": "I only ___ milk.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-17:i12:r1",
-            "text": "Do"
+            "text": "need"
           },
           {
             "responseId": "en:lesson-10:session-17:i12:r2",
-            "text": "Does"
+            "text": "needs"
           },
           {
             "responseId": "en:lesson-10:session-17:i12:r3",
-            "text": "Are"
+            "text": "needing"
           }
         ],
-        "testedDimension": "Виберіть допоміжне дієслово для запитання з you",
+        "testedDimension": "Виберіть форму need з I",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-17:i12:r2",
             "correct": false,
-            "testedDimension": "Виберіть допоміжне дієслово для запитання з you",
+            "testedDimension": "Виберіть форму need з I",
             "feedbackByLocale": {
-              "ru": "С you нужно do, не does.",
-              "uk": "З you потрібне do, не does."
+              "ru": "С I нужна need без s.",
+              "uk": "З I потрібна need без s."
             }
           },
           {
             "responseId": "en:lesson-10:session-17:i12:r3",
             "correct": false,
-            "testedDimension": "Виберіть допоміжне дієслово для запитання з you",
+            "testedDimension": "Виберіть форму need з I",
             "feedbackByLocale": {
-              "ru": "С admire в этом вопросе используем do.",
-              "uk": "З admire в цьому запитанні використовуємо do."
+              "ru": "Здесь нужна need.",
+              "uk": "Тут потрібна need."
             }
           }
         ]
@@ -892,58 +896,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте нові слова зі значеннями",
+      "prompt": "Поєднайте слова з перекладом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "accessibilityLabel": "Поєднайте слова з перекладом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-17:i13:p1",
-            "target": "admire",
+            "target": "once",
             "meaningByLocale": {
-              "ru": "восхищаться",
-              "uk": "захоплюватися"
+              "ru": "один раз",
+              "uk": "один раз"
             }
           },
           {
             "pairId": "en:lesson-10:session-17:i13:p2",
-            "target": "courage",
+            "target": "twice",
             "meaningByLocale": {
-              "ru": "смелость",
-              "uk": "сміливість"
+              "ru": "два раза",
+              "uk": "два рази"
             }
           },
           {
             "pairId": "en:lesson-10:session-17:i13:p3",
-            "target": "dedication",
+            "target": "else",
             "meaningByLocale": {
-              "ru": "преданность делу",
-              "uk": "відданість справі"
+              "ru": "ещё",
+              "uk": "ще"
             }
           },
           {
             "pairId": "en:lesson-10:session-17:i13:p4",
-            "target": "integrity",
+            "target": "only",
             "meaningByLocale": {
-              "ru": "принципиальность",
-              "uk": "принциповість"
+              "ru": "только",
+              "uk": "лише"
             }
           }
         ],
         "leftColumn": [
-          "admire",
-          "courage",
-          "dedication",
-          "integrity"
+          "once",
+          "twice",
+          "else",
+          "only"
         ],
         "rightColumn": [
-          "захоплюватися",
-          "сміливість",
-          "відданість справі",
-          "принциповість"
+          "один раз",
+          "два рази",
+          "ще",
+          "лише"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -965,27 +969,27 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть запитання",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-17:i14:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть запитання",
+      "accessibilityLabel": "Складіть почуту фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-17:i14:audio",
-          "transcript": "Does he admire her dedication?"
+          "transcript": "I swim twice a week."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Does he admire her dedication?",
+        "hiddenTargetPhrase": "I swim twice a week.",
         "orderedTokens": [
-          "Does",
-          "he",
-          "admire",
-          "her",
-          "dedication"
+          "I",
+          "swim",
+          "twice",
+          "a",
+          "week"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -999,24 +1003,61 @@
     {
       "interactionId": "en:lesson-10:session-17:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, як ви ставитеся до сміливого вчинку колеги. Скажіть: «Я захоплююся її сміливістю»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-17:i15:audio"
       ],
-      "accessibilityLabel": "Друг запитує, як ви ставитеся до сміливого вчинку колеги. Скажіть: «Я захоплююся її сміливістю»",
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-17:i15:audio",
+          "transcript": "What else do you need?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "What else do you need?",
+        "orderedTokens": [
+          "What",
+          "else",
+          "do",
+          "you",
+          "need"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-17:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: «Я відвідую друга раз на тиждень»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-17:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть: «Я відвідую друга раз на тиждень»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-17:i15:audio",
-          "transcript": "I admire her courage."
+          "audioTargetId": "en:lesson-10:session-17:i16:audio",
+          "transcript": "I visit my friend once a week."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I admire her courage.",
+        "targetPhrase": "I visit my friend once a week.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1030,70 +1071,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-17:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Колега запитує про ваше ставлення до викладачки, яка постійно допомагає учням. Скажіть: «Я захоплююся її відданістю справі»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Колега запитує про ваше ставлення до викладачки, яка постійно допомагає учням. Скажіть: «Я захоплююся її відданістю справі»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I admire her dedication.",
-        "localizedMeaning": {
-          "ru": "Коллега спрашивает о вашем отношении к преподавательнице, которая постоянно помогает ученикам. Скажите: «Я восхищаюсь её преданностью делу»",
-          "uk": "Колега запитує про ваше ставлення до викладачки, яка постійно допомагає учням. Скажіть: «Я захоплююся її відданістю справі»"
-        },
-        "orderedTokens": [
-          "I",
-          "admire",
-          "her",
-          "dedication"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-17:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ваша колега відмовилася приховати помилку, хоча приховати її було б вигідно. Друг запитує, як ви ставитеся до її принциповості. Висловлюючи своє ставлення, скажіть: «Я захоплююся її принциповістю»",
+      "prompt": "Друг іде до магазину. Скажіть, що вам потрібне лише молоко",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-17:i17:audio"
       ],
-      "accessibilityLabel": "Ваша колега відмовилася приховати помилку, хоча приховати її було б вигідно. Друг запитує, як ви ставитеся до її принциповості. Висловлюючи своє ставлення, скажіть: «Я захоплююся її принциповістю»",
+      "accessibilityLabel": "Друг іде до магазину. Скажіть, що вам потрібне лише молоко",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-17:i17:audio",
-          "transcript": "I admire her integrity."
+          "transcript": "I only need milk."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "I admire her integrity.",
+        "targetPhrase": "I only need milk.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1110,5 +1110,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9e4c9852dbef4fe5bed15ca2db0b58d48d1467a167add40e428ea8f647734e55"
+  "learnerFingerprint": "a33ec3f9c5900d62f9f0490ca03463b5be0853f6ae7930bd5aba8dadce80a759"
 }

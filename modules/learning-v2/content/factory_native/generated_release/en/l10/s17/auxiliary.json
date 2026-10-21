@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-17:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-17:intro1:r2": {
-          "ru": "С I нужна admire без s.",
-          "uk": "З I потрібна admire без s."
+          "ru": "С I нужна swim без s.",
+          "uk": "З I потрібна swim без s."
         },
         "en:lesson-10:session-17:intro1:r3": {
-          "ru": "Её смелость — her courage, не she courage.",
-          "uk": "Її сміливість — her courage, не she courage."
+          "ru": "Для привычки здесь нужна swim без am.",
+          "uk": "Для звички тут потрібна swim без am."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-17:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-17:intro2:r2": {
-          "ru": "С he нужна admires.",
-          "uk": "З he потрібна admires."
+          "ru": "С you нужен do.",
+          "uk": "З you потрібне do."
         },
         "en:lesson-10:session-17:intro2:r3": {
-          "ru": "Is admire неверно; здесь отношение выражено формой admires.",
-          "uk": "Is admire неправильно; тут ставлення виражено формою admires."
+          "ru": "После do нужна need без s.",
+          "uk": "Після do потрібна need без s."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-17:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-17:intro3:r2": {
-          "ru": "После do нужна admire без s.",
-          "uk": "Після do потрібна admire без s."
+          "ru": "С I нужна need без s.",
+          "uk": "З I потрібна need без s."
         },
         "en:lesson-10:session-17:intro3:r3": {
-          "ru": "Вопрос об отношении с admire строим через do.",
-          "uk": "Запитання про ставлення з admire будуємо через do."
+          "ru": "Здесь нужна need без am.",
+          "uk": "Тут потрібна need без am."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "3a23253f9fab9f0b38ca5a96dc951251422e3d859ba72d9b7c6e5637ead81116"
+  "auxiliaryFingerprint": "8621bebd9a7d10b3dfb331cf575c66b9c2d2455d15967c48b58a92041d898ea3"
 }

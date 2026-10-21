@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-19",
   "learningOutcomeByLocale": {
-    "ru": "I doubt it; She doubts the claim; Do you have any evidence?",
-    "uk": "I doubt it; She doubts the claim; Do you have any evidence?"
+    "ru": "I want to apologise; Thank you for your help; Can I introduce my friend?; Can you repeat that?",
+    "uk": "I want to apologise; Thank you for your help; Can I introduce my friend?; Can you repeat that?"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-19:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сомнение — ваше отношение",
-        "uk": "Сумнів — ваше ставлення"
+        "ru": "Извинение и благодарность",
+        "uk": "Вибачення й подяка"
       },
       "bodyByLocale": {
-        "ru": "Коллега уверяет, что весь отчёт можно закончить за минуту. Вы в этом сомневаетесь. Doubt — «сомневаться». I doubt it — «Я в этом сомневаюсь». Здесь doubt описывает ваше отношение к сказанному, а не действие в процессе. Для такого сомнения обычно используем Present Simple, даже когда говорим о нём сейчас.",
-        "uk": "Колега запевняє, що весь звіт можна закінчити за хвилину. Ви в цьому сумніваєтеся. Doubt — «сумніватися». I doubt it — «Я в цьому сумніваюся». Тут doubt описує ваше ставлення до сказаного, а не дію в процесі. Для такого сумніву зазвичай використовуємо Present Simple, навіть коли говоримо про нього зараз."
+        "ru": "Вы опоздали и хотите начать с извинения. Apologise — «извиняться»: I want to apologise — «Я хочу извиниться». После want перед действием нужен to. Позже друг помог вам с сумкой: Thank you for your help — «Спасибо за помощь». Thank — «благодарить»; thank you — готовое выражение благодарности. В apologise используем британское написание с s.",
+        "uk": "Ви запізнилися й хочете почати з вибачення. Apologise — «вибачатися»: I want to apologise — «Я хочу вибачитися». Після want перед дією потрібне to. Пізніше друг допоміг вам із сумкою: Thank you for your help — «Дякую за допомогу». Thank — «дякувати»; thank you — готовий вислів подяки. В apologise використовуємо британське написання із s."
       },
       "question": {
         "interactionId": "en:lesson-10:session-19:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-19:intro1:r1",
-              "text": "I doubt it."
+              "text": "I want to apologise."
             },
             {
               "responseId": "en:lesson-10:session-19:intro1:r2",
-              "text": "I doubts it."
+              "text": "I want apologise."
             },
             {
               "responseId": "en:lesson-10:session-19:intro1:r3",
-              "text": "I am doubt it."
+              "text": "I want to apologises."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-19:intro1:r1",
-              "text": "I doubt it."
+              "text": "I want to apologise."
             },
             {
               "responseId": "en:lesson-10:session-19:intro1:r2",
-              "text": "I doubts it."
+              "text": "I want apologise."
             },
             {
               "responseId": "en:lesson-10:session-19:intro1:r3",
-              "text": "I am doubt it."
+              "text": "I want to apologises."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-19:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Что именно вызывает сомнение",
-        "uk": "Що саме викликає сумнів"
+        "ru": "Познакомить людей",
+        "uk": "Познайомити людей"
       },
       "bodyByLocale": {
-        "ru": "Claim — «утверждение»: здесь слова о том, что нечто верно. В рекламе обещают выполнить большой заказ за час. Ваша коллега сомневается в этом утверждении. She doubts the claim — «Она сомневается в этом утверждении». С she нужна doubts. В английском после doubt можно сразу поставить the claim, без предлога.",
-        "uk": "Claim — «твердження»: тут слова про те, що щось є правдою. У рекламі обіцяють виконати велике замовлення за годину. Ваша колега сумнівається в цьому твердженні. She doubts the claim — «Вона сумнівається в цьому твердженні». З she потрібна doubts. В англійській після doubt можна відразу поставити the claim, без прийменника."
+        "ru": "Вы пришли с другом и хотите познакомить его с хозяином дома. Introduce — «представлять, знакомить»: Can I introduce my friend? — «Можно представить моего друга?» После can нужна introduce без to. Вы предлагаете знакомство, а не объясняете профессию друга.",
+        "uk": "Ви прийшли з другом і хочете познайомити його з господарем будинку. Introduce — «представляти, знайомити»: Can I introduce my friend? — «Можна представити мого друга?» Після can потрібна introduce без to. Ви пропонуєте знайомство, а не пояснюєте професію друга."
       },
       "question": {
         "interactionId": "en:lesson-10:session-19:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-19:intro2:r1",
-              "text": "She doubts the claim."
+              "text": "Can I introduce my friend?"
             },
             {
               "responseId": "en:lesson-10:session-19:intro2:r2",
-              "text": "She doubt the claim."
+              "text": "Can I to introduce my friend?"
             },
             {
               "responseId": "en:lesson-10:session-19:intro2:r3",
-              "text": "She is doubt the claim."
+              "text": "Can I introduces my friend?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-19:intro2:r1",
-              "text": "She doubts the claim."
+              "text": "Can I introduce my friend?"
             },
             {
               "responseId": "en:lesson-10:session-19:intro2:r2",
-              "text": "She doubt the claim."
+              "text": "Can I to introduce my friend?"
             },
             {
               "responseId": "en:lesson-10:session-19:intro2:r3",
-              "text": "She is doubt the claim."
+              "text": "Can I introduces my friend?"
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-19:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Попросить подтверждение",
-        "uk": "Попросити підтвердження"
+        "ru": "Вы не расслышали",
+        "uk": "Ви не розчули"
       },
       "bodyByLocale": {
-        "ru": "Evidence — «доказательства»: здесь факты или материалы, которые помогают проверить утверждение. Вы не объявляете сообщение ложным, а просите подтверждение. Do you have any evidence? — «У тебя есть какие-нибудь доказательства?» Evidence в этом значении неисчисляемое: не добавляем s и не ставим a.",
-        "uk": "Evidence — «докази»: тут факти або матеріали, які допомагають перевірити твердження. Ви не оголошуєте повідомлення хибним, а просите підтвердження. Do you have any evidence? — «У тебе є якісь докази?» Evidence у цьому значенні незлічуване: не додаємо s і не ставимо a."
+        "ru": "Собеседник назвал адрес, но рядом проехала машина. Repeat — «повторять»: Can you repeat that? — «Можешь повторить?» That здесь — то, что человек только что сказал. После can нужна repeat без s и без to.",
+        "uk": "Співрозмовник назвав адресу, але поруч проїхала машина. Repeat — «повторювати»: Can you repeat that? — «Можеш повторити?» That тут — те, що людина щойно сказала. Після can потрібна repeat без s і без to."
       },
       "question": {
         "interactionId": "en:lesson-10:session-19:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-19:intro3:r1",
-              "text": "Do you have any evidence?"
+              "text": "Can you repeat that?"
             },
             {
               "responseId": "en:lesson-10:session-19:intro3:r2",
-              "text": "Do you have an evidence?"
+              "text": "Can you repeats that?"
             },
             {
               "responseId": "en:lesson-10:session-19:intro3:r3",
-              "text": "Do you has any evidence?"
+              "text": "Can you to repeat that?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-19:intro3:r1",
-              "text": "Do you have any evidence?"
+              "text": "Can you repeat that?"
             },
             {
               "responseId": "en:lesson-10:session-19:intro3:r2",
-              "text": "Do you have an evidence?"
+              "text": "Can you repeats that?"
             },
             {
               "responseId": "en:lesson-10:session-19:intro3:r3",
-              "text": "Do you has any evidence?"
+              "text": "Can you to repeat that?"
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d5ddf1e8e1a4fe58bd6f78156e873c8b46da6cc5dc3b67f539c16651aed71979"
+  "introFingerprint": "53164288356a331f0ef8f9c4c475a41dfcb624150773b8385bc1787502316916"
 }

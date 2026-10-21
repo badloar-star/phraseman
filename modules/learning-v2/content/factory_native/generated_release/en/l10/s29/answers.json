@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-29:word:midnight",
-    "correctText": "midnight",
+    "interactionId": "en:lesson-10:session-29:word:follow",
+    "correctText": "follow",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-29:i01",
-    "correctText": "It is midnight.",
+    "correctText": "Follow me.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-29:i02",
-    "correctText": "We meet at midnight.",
+    "correctText": "Please follow me.",
     "correctResponseId": "en:lesson-10:session-29:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-29:i03",
-    "correctText": "at",
+    "correctText": "follow",
     "correctResponseId": "en:lesson-10:session-29:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-29:word:chime",
-    "correctText": "chime",
+    "interactionId": "en:lesson-10:session-29:word:reach",
+    "correctText": "reach",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-29:i04",
-    "correctText": "I can hear a chime.",
+    "correctText": "We reach the station at nine.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-29:i05",
-    "correctText": "The chime is loud.",
+    "correctText": "We reach the station at ten.",
     "correctResponseId": "en:lesson-10:session-29:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-29:i06",
-    "correctText": "hear",
+    "correctText": "reach",
     "correctResponseId": "en:lesson-10:session-29:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-29:word:countdown",
-    "correctText": "countdown",
+    "interactionId": "en:lesson-10:session-29:word:enter",
+    "correctText": "enter",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-29:i07",
-    "correctText": "The countdown is starting.",
+    "correctText": "Please enter.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-29:i08",
-    "correctText": "We are watching the countdown.",
+    "correctText": "You can enter.",
     "correctResponseId": "en:lesson-10:session-29:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-29:i09",
-    "correctText": "is",
+    "correctText": "enter",
     "correctResponseId": "en:lesson-10:session-29:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-29:word:sparkler",
-    "correctText": "sparkler",
+    "interactionId": "en:lesson-10:session-29:word:get-lost",
+    "correctText": "get lost",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-29:i10",
-    "correctText": "The sparkler is bright.",
+    "correctText": "I often get lost.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-29:i11",
-    "correctText": "I can see a sparkler.",
+    "correctText": "We often get lost.",
     "correctResponseId": "en:lesson-10:session-29:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-29:i12",
-    "correctText": "go",
+    "correctText": "get",
     "correctResponseId": "en:lesson-10:session-29:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-29:i13",
-    "correctText": "en:lesson-10:session-29:i13:p1=midnight\nen:lesson-10:session-29:i13:p2=chime\nen:lesson-10:session-29:i13:p3=countdown\nen:lesson-10:session-29:i13:p4=sparkler",
+    "correctText": "en:lesson-10:session-29:i13:p1=follow\nen:lesson-10:session-29:i13:p2=reach\nen:lesson-10:session-29:i13:p3=enter\nen:lesson-10:session-29:i13:p4=get lost",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-29:i14",
-    "correctText": "We are watching the countdown.",
+    "correctText": "We reach the station at nine.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-29:i15",
-    "correctText": "I usually go to bed before midnight.",
+    "correctText": "I often get lost.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-29:i16",
-    "correctText": "We are watching the countdown.",
+    "correctText": "I am following my friend.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-29:i17",
-    "correctText": "The countdown is starting.",
+    "correctText": "Follow me, please.",
     "correctResponseId": null
   }
 ]

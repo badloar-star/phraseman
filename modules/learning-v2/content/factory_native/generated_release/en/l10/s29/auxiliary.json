@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-29:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-29:intro1:r2": {
-          "ru": "С I нужна go без s.",
-          "uk": "З I потрібна go без s."
+          "ru": "В указании нужна Follow без s.",
+          "uk": "У вказівці потрібна Follow без s."
         },
         "en:lesson-10:session-29:intro1:r3": {
-          "ru": "Для этой привычки нужна go.",
-          "uk": "Для цієї звички потрібна go."
+          "ru": "Самостоятельное указание начинаем с Follow.",
+          "uk": "Самостійну вказівку починаємо з Follow."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-29:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-29:intro2:r2": {
-          "ru": "После can нужна hear без s.",
-          "uk": "Після can потрібна hear без s."
+          "ru": "С we нужна reach без s.",
+          "uk": "З we потрібна reach без s."
         },
         "en:lesson-10:session-29:intro2:r3": {
-          "ru": "После can нужна базовая форма hear.",
-          "uk": "Після can потрібна початкова форма hear."
+          "ru": "После reach перед местом не нужна to.",
+          "uk": "Після reach перед місцем не потрібна to."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-29:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-29:intro3:r2": {
-          "ru": "Перед starting нужен is.",
-          "uk": "Перед starting потрібне is."
+          "ru": "С I нужна get без s.",
+          "uk": "З I потрібна get без s."
         },
         "en:lesson-10:session-29:intro3:r3": {
-          "ru": "Countdown здесь единственное число: is.",
-          "uk": "Countdown тут однина: is."
+          "ru": "Для привычной ситуации здесь нужна get.",
+          "uk": "Для звичної ситуації тут потрібна get."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "5115f88d6adeb765ba7cde129a4fc0abed9fe066a5dd26688aa3890f5882b084"
+  "auxiliaryFingerprint": "0d58f5a40217c5d2b0bdde05973ca21b3a89dd1a747df3a3df361c780b403699"
 }

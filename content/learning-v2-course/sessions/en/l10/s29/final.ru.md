@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 29 — Встретить полночь
+# Английский · Урок 10 · Занятие 29 — Не потеряться по дороге
 
-**Ситуация.** Рассказать, когда вы обычно ложитесь спать, и описать праздничный вечер сейчас.
+**Ситуация.** Идти за другом, дойти до места и войти в здание.
 
-**Что вы освоите:** I usually go to bed before midnight; The countdown is starting; I can hear a chime
-**Новые слова:** midnight, chime, countdown, sparkler
+**Что вы освоите:** Follow me; We reach the station at nine; Please enter; I often get lost
+**Новые слова:** follow, reach, enter, get lost
 
 ## Интро 1
 
-### До полуночи
+### Идите за мной
 
-Midnight — «полночь», двенадцать часов ночи. I usually go to bed before midnight — «Я обычно ложусь спать до полуночи». Usually указывает на привычку, поэтому используем Present Simple. Before midnight — до полуночи; at midnight — ровно в полночь.
+Вы знаете дорогу и предлагаете другу идти за вами: Follow me — «Иди за мной». Follow — «следовать за, идти за». Это простое указание: follow без to и без s.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I usually go to bed before midnight.**
-- ❌ I usually goes to bed before midnight. — *С I нужна go без s.*
-- ❌ I usually going to bed before midnight. — *Для этой привычки нужна go.*
+- ✅ **Follow me.**
+- ❌ Follows me. — *В указании нужна Follow без s.*
+- ❌ Following me. — *Самостоятельное указание начинаем с Follow.*
 
 ---
 
 ## Интро 2
 
-### Звон часов
+### Дойти и войти
 
-Chime — «мелодичный звон», например звук часов или колокольчика. На праздничной площади вы слышите часы: I can hear a chime — «Я слышу мелодичный звон». После can нужна hear. Хотя звук слышен сейчас, не нужно автоматически ставить Continuous.
+Вы с другом обычно доходите до станции в девять: We reach the station at nine. Reach — «достигать, добираться до». Перед the station после reach не ставим to. У входа сотрудник говорит: Please enter — «Входите, пожалуйста». Enter — «входить».
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I can hear a chime.**
-- ❌ I can hears a chime. — *После can нужна hear без s.*
-- ❌ I can hearing a chime. — *После can нужна базовая форма hear.*
+- ✅ **We reach the station at nine.**
+- ❌ We reaches the station at nine. — *С we нужна reach без s.*
+- ❌ We reach to the station at nine. — *После reach перед местом не нужна to.*
 
 ---
 
 ## Интро 3
 
-### Начинается обратный отсчёт
+### Когда трудно найти дорогу
 
-Countdown — «обратный отсчёт». На экране появляются последние секунды до полуночи. The countdown is starting — «Обратный отсчёт начинается». Для события, начинающегося сейчас, используем is + starting. Слово midnight называет момент времени; грамматическую форму выбираем по смыслу происходящего.
+В незнакомом городе вы часто теряетесь: I often get lost — «Я часто теряюсь». Get lost — «заблудиться, потеряться». Учим выражение целиком. Often стоит перед get lost. Вы говорите о себе, а не обращаетесь к собеседнику с командой.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **The countdown is starting.**
-- ❌ The countdown starting. — *Перед starting нужен is.*
-- ❌ The countdown are starting. — *Countdown здесь единственное число: is.*
+- ✅ **I often get lost.**
+- ❌ I often gets lost. — *С I нужна get без s.*
+- ❌ I often getting lost. — *Для привычной ситуации здесь нужна get.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — midnight**
-<!-- interaction_id: en:lesson-10:session-29:word:midnight; family: word_card -->
-> **midnight** — «полночь». It is midnight. — «Сейчас полночь». Двенадцать часов ночи.
+**1 · Карточка слова — follow**
+<!-- interaction_id: en:lesson-10:session-29:word:follow; family: word_card -->
+> **follow** — «идти за, следовать за». Follow me. — «Иди за мной».
 
-**2 · Часы показывают двенадцать ночи. Скажите другу: «Сейчас полночь»**
+**2 · Предложите другу идти за вами**
 <!-- interaction_id: en:lesson-10:session-29:i01; family: phrase_builder -->
-Плитки: `midnight` `is` `It` → **It is midnight.**
+Плитки: `me` `Follow` → **Follow me.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-29:i02; family: listen_choose -->
-🔊 *We meet at midnight.* → **We meet at midnight.** · They meet at midnight. · We leave at midnight.
-- They meet at midnight. — *В записи звучит We meet at midnight.*
-- We leave at midnight. — *В записи звучит We meet at midnight.*
+🔊 *Please follow me.* → **Please follow me.** · Please follow him. · Please follow her.
+- Please follow him. — *В записи звучит Please follow me.*
+- Please follow her. — *В записи звучит Please follow me.*
 
-**4 · Выберите предлог для «в полночь»**
+**4 · Вы даёте другу указание идти за вами. Выберите форму глагола**
 <!-- interaction_id: en:lesson-10:session-29:i03; family: context_gap_grammar -->
-We meet ___ midnight. → **at** · on · in
-- on — *Перед midnight нужно at.*
-- in — *Перед midnight нужно at.*
+Please ___ me. → **follow** · follows · following
+- follows — *В указании follow без s.*
+- following — *В указании нужна follow.*
 
-**5 · Карточка слова — chime**
-<!-- interaction_id: en:lesson-10:session-29:word:chime; family: word_card -->
-> **chime** — «мелодичный звон». I can hear a chime. — «Я слышу мелодичный звон». Здесь звук часов.
+**5 · Карточка слова — reach**
+<!-- interaction_id: en:lesson-10:session-29:word:reach; family: word_card -->
+> **reach** — «достигать, добираться до». We reach the station at nine. — «Мы добираемся до станции в девять».
 
-**6 · На площади зазвучали часы. Скажите другу: «Я слышу мелодичный звон»**
+**6 · Обычно вы доходите до станции в девять. Время поставьте в конце**
 <!-- interaction_id: en:lesson-10:session-29:i04; family: phrase_builder -->
-Плитки: `chime` `a` `hear` `can` `I` → **I can hear a chime.**
+Плитки: `nine` `at` `station` `the` `reach` `We` → **We reach the station at nine.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-29:i05; family: listen_choose -->
-🔊 *The chime is loud.* → **The chime is loud.** · The chime is quiet. · The music is loud.
-- The chime is quiet. — *В записи звучит The chime is loud.*
-- The music is loud. — *В записи звучит The chime is loud.*
+🔊 *We reach the station at ten.* → **We reach the station at ten.** · We reach the station at nine. · We reach the station at eight.
+- We reach the station at nine. — *В записи звучит We reach the station at ten.*
+- We reach the station at eight. — *В записи звучит We reach the station at ten.*
 
-**8 · Выберите форму hear после can**
+**8 · Выберите форму reach с we**
 <!-- interaction_id: en:lesson-10:session-29:i06; family: context_gap_grammar -->
-We can ___ a chime. → **hear** · hears · hearing
-- hears — *После can нужна hear без s.*
-- hearing — *После can нужна базовая форма hear.*
+We ___ the station at nine. → **reach** · reaches · reaching
+- reaches — *С we нужна reach без s.*
+- reaching — *Для привычного действия здесь нужна reach.*
 
-**9 · Карточка слова — countdown**
-<!-- interaction_id: en:lesson-10:session-29:word:countdown; family: word_card -->
-> **countdown** — «обратный отсчёт». The countdown is starting. — «Обратный отсчёт начинается». Счёт секунд в обратном порядке до события.
+**9 · Карточка слова — enter**
+<!-- interaction_id: en:lesson-10:session-29:word:enter; family: word_card -->
+> **enter** — «входить». Please enter. — «Входите, пожалуйста».
 
-**10 · На праздничном экране появились последние секунды до полуночи. Скажите другу: «Обратный отсчёт начинается»**
+**10 · Вежливо предложите войти. Начните с please**
 <!-- interaction_id: en:lesson-10:session-29:i07; family: phrase_builder -->
-Плитки: `starting` `is` `countdown` `The` → **The countdown is starting.**
+Плитки: `enter` `Please` → **Please enter.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-29:i08; family: listen_choose -->
-🔊 *We are watching the countdown.* → **We are watching the countdown.** · They are watching the countdown. · We are watching the clock.
-- They are watching the countdown. — *В записи звучит We are watching the countdown.*
-- We are watching the clock. — *В записи звучит We are watching the countdown.*
+🔊 *You can enter.* → **You can enter.** · We can enter. · They can enter.
+- We can enter. — *В записи звучит You can enter.*
+- They can enter. — *В записи звучит You can enter.*
 
-**12 · Отсчёт начинается сейчас. Выберите вспомогательный глагол**
+**12 · Выберите форму enter после can**
 <!-- interaction_id: en:lesson-10:session-29:i09; family: context_gap_grammar -->
-The countdown ___ starting. → **is** · are · does
-- are — *С countdown в единственном числе нужно is.*
-- does — *Перед starting здесь нужно is.*
+You can ___. → **enter** · enters · entering
+- enters — *После can нужна enter без s.*
+- entering — *После can нужна enter без ing.*
 
-**13 · Карточка слова — sparkler**
-<!-- interaction_id: en:lesson-10:session-29:word:sparkler; family: word_card -->
-> **sparkler** — «бенгальский огонь». The sparkler is bright. — «Бенгальский огонь яркий». Тонкая палочка, которая при горении даёт яркие искры.
+**13 · Карточка слова — get lost**
+<!-- interaction_id: en:lesson-10:session-29:word:get-lost; family: word_card -->
+> **get lost** — «заблудиться, потеряться». I often get lost. — «Я часто теряюсь».
 
-**14 · На праздничной фотографии виден яркий бенгальский огонь. Скажите другу: «Бенгальский огонь яркий»**
+**14 · Скажите, что часто теряетесь. Often поставьте перед get lost**
 <!-- interaction_id: en:lesson-10:session-29:i10; family: phrase_builder -->
-Плитки: `bright` `is` `sparkler` `The` → **The sparkler is bright.**
+Плитки: `lost` `get` `often` `I` → **I often get lost.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-29:i11; family: listen_choose -->
-🔊 *I can see a sparkler.* → **I can see a sparkler.** · We can see a sparkler. · I can see a candle.
-- We can see a sparkler. — *В записи звучит I can see a sparkler.*
-- I can see a candle. — *В записи звучит I can see a sparkler.*
+🔊 *We often get lost.* → **We often get lost.** · I often get lost. · They often get lost.
+- I often get lost. — *В записи звучит We often get lost.*
+- They often get lost. — *В записи звучит We often get lost.*
 
-**16 · Вы обычно ложитесь спать до полуночи. Выберите форму go**
+**16 · Выберите форму get с I**
 <!-- interaction_id: en:lesson-10:session-29:i12; family: context_gap_grammar -->
-I usually ___ to bed before midnight. → **go** · goes · going
-- goes — *С I нужна go без s.*
-- going — *Для этой привычки нужна go.*
+I often ___ lost. → **get** · gets · getting
+- gets — *С I нужна get без s.*
+- getting — *Для привычной ситуации здесь нужна get.*
 
-**17 · Соедините новые слова со значениями**
+**17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-10:session-29:i13; family: speed_match -->
-midnight — полночь · chime — мелодичный звон · countdown — обратный отсчёт · sparkler — бенгальский огонь
+follow — идти за · reach — добираться до · enter — входить · get lost — заблудиться
 
-**18 · Послушайте и соберите фразу**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-29:i14; family: listen_build_dictation -->
-🔊 *We are watching the countdown.* Плитки: `countdown` `the` `watching` `are` `We` → **We are watching the countdown.**
+🔊 *We reach the station at nine.* Плитки: `nine` `at` `station` `the` `reach` `We` → **We reach the station at nine.**
 
-**19 · Друг спрашивает о вашем обычном времени сна. Скажите: «Я обычно ложусь спать до полуночи»**
-<!-- interaction_id: en:lesson-10:session-29:i15; family: scripted_repeat_compare -->
-🎙 **I usually go to bed before midnight.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-29:i15; family: listen_build_dictation -->
+🔊 *I often get lost.* Плитки: `lost` `get` `often` `I` → **I often get lost.**
 
-**20 · Вы звоните другу с праздника и сообщаете: «Мы смотрим обратный отсчёт»**
-<!-- interaction_id: en:lesson-10:session-29:i16; family: phrase_builder -->
-Плитки: `countdown` `the` `watching` `are` `We` → **We are watching the countdown.**
+**20 · Скажите, что идёте за другом прямо сейчас**
+<!-- interaction_id: en:lesson-10:session-29:i16; family: scripted_repeat_compare -->
+🎙 **I am following my friend.**
 
-**21 · Друг спрашивает, что происходит на экране. Появились последние секунды до полуночи. Скажите: «Обратный отсчёт начинается»**
-<!-- interaction_id: en:lesson-10:session-29:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **The countdown is starting.**
+**21 · Попросите друга идти за вами. Please поставьте в конце**
+<!-- interaction_id: en:lesson-10:session-29:i17; family: scripted_repeat_compare -->
+🎙 **Follow me, please.**
 

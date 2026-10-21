@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-30",
   "learningOutcomeByLocale": {
-    "ru": "I take the bus on weekdays; The commuter is waiting for a bus; It is rush hour",
-    "uk": "I take the bus on weekdays; The commuter is waiting for a bus; It is rush hour"
+    "ru": "I work in January; We meet in February; I travel in July; We visit our friends in August",
+    "uk": "I work in January; We meet in February; I travel in July; We visit our friends in August"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-30:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "По будням",
-        "uk": "У будні"
+        "ru": "Январь",
+        "uk": "Січень"
       },
       "bodyByLocale": {
-        "ru": "Weekday — «будний день»: день с понедельника по пятницу, в отличие от выходных. Это название дней, а не утверждение, что все люди работают именно тогда. I take the bus on weekdays — «Я езжу на автобусе по будням». Повторяющуюся поездку описываем в Present Simple. Для «по будням» используем on weekdays.",
-        "uk": "Weekday — «будній день»: день із понеділка до п’ятниці, на відміну від вихідних. Це назва днів, а не твердження, що всі люди працюють саме тоді. I take the bus on weekdays — «Я їжджу автобусом у будні». Повторювану поїздку описуємо в Present Simple. Для «у будні» використовуємо on weekdays."
+        "ru": "Друг спрашивает, свободны ли вы обычно в начале года. January — «январь»: I work in January — «Я работаю в январе». Когда называем месяц, перед ним ставим in. Названия месяцев в английском пишутся с большой буквы.",
+        "uk": "Друг запитує, чи ви зазвичай вільні на початку року. January — «січень»: I work in January — «Я працюю в січні». Коли називаємо місяць, перед ним ставимо in. Назви місяців в англійській пишуться з великої літери."
       },
       "question": {
         "interactionId": "en:lesson-10:session-30:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-30:intro1:r1",
-              "text": "I take the bus on weekdays."
+              "text": "I work in January."
             },
             {
               "responseId": "en:lesson-10:session-30:intro1:r2",
-              "text": "I takes the bus on weekdays."
+              "text": "I work on January."
             },
             {
               "responseId": "en:lesson-10:session-30:intro1:r3",
-              "text": "I take the bus at weekdays."
+              "text": "I works in January."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-30:intro1:r1",
-              "text": "I take the bus on weekdays."
+              "text": "I work in January."
             },
             {
               "responseId": "en:lesson-10:session-30:intro1:r2",
-              "text": "I takes the bus on weekdays."
+              "text": "I work on January."
             },
             {
               "responseId": "en:lesson-10:session-30:intro1:r3",
-              "text": "I take the bus at weekdays."
+              "text": "I works in January."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-30:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Пассажир ждёт сейчас",
-        "uk": "Пасажир чекає зараз"
+        "ru": "Февраль",
+        "uk": "Лютий"
       },
       "bodyByLocale": {
-        "ru": "Commuter — «человек, регулярно ездящий на работу или учёбу». Он может ехать на поезде, автобусе или машине. Сейчас вы видите такого пассажира на остановке: The commuter is waiting for a bus — «Человек, который регулярно ездит на работу, ждёт автобус». Для ожидания сейчас используем is + waiting.",
-        "uk": "Commuter — «людина, яка регулярно їздить на роботу або навчання». Вона може їхати потягом, автобусом чи машиною. Зараз ви бачите такого пасажира на зупинці: The commuter is waiting for a bus — «Людина, яка регулярно їздить на роботу, чекає на автобус». Для очікування зараз використовуємо is + waiting."
+        "ru": "Вы с другом встречаетесь каждый год в феврале. February — «февраль»: We meet in February — «Мы встречаемся в феврале». Снова in перед месяцем. Это обычная ежегодная встреча, поэтому meet.",
+        "uk": "Ви з другом зустрічаєтеся щороку в лютому. February — «лютий»: We meet in February — «Ми зустрічаємося в лютому». Знову in перед місяцем. Це звична щорічна зустріч, тому meet."
       },
       "question": {
         "interactionId": "en:lesson-10:session-30:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-30:intro2:r1",
-              "text": "The commuter is waiting for a bus."
+              "text": "We meet in February."
             },
             {
               "responseId": "en:lesson-10:session-30:intro2:r2",
-              "text": "The commuter waiting for a bus."
+              "text": "We meets in February."
             },
             {
               "responseId": "en:lesson-10:session-30:intro2:r3",
-              "text": "The commuter are waiting for a bus."
+              "text": "We meet at February."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-30:intro2:r1",
-              "text": "The commuter is waiting for a bus."
+              "text": "We meet in February."
             },
             {
               "responseId": "en:lesson-10:session-30:intro2:r2",
-              "text": "The commuter waiting for a bus."
+              "text": "We meets in February."
             },
             {
               "responseId": "en:lesson-10:session-30:intro2:r3",
-              "text": "The commuter are waiting for a bus."
+              "text": "We meet at February."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-30:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Час пик",
-        "uk": "Година пік"
+        "ru": "Июль и август",
+        "uk": "Липень і серпень"
       },
       "bodyByLocale": {
-        "ru": "Rush hour — «час пик», время особенно интенсивного движения, часто утром или вечером. It is rush hour — «Сейчас час пик». Здесь называем текущий период, поэтому используем is. Now и ситуация «сейчас» не требуют Continuous во всех предложениях. Для конкретного действия: We are waiting for a bus now.",
-        "uk": "Rush hour — «година пік», час особливо інтенсивного руху, часто вранці або ввечері. It is rush hour — «Зараз година пік». Тут називаємо поточний період, тому використовуємо is. Now і ситуація «зараз» не вимагають Continuous в усіх реченнях. Для конкретної дії: We are waiting for a bus now."
+        "ru": "Каждое лето вы путешествуете в июле, а в августе навещаете друзей. July — «июль»: I travel in July. August — «август»: We visit our friends in August. Это повторяющиеся дела, поэтому travel и visit. Перед обоими месяцами используем in.",
+        "uk": "Щоліта ви подорожуєте в липні, а в серпні відвідуєте друзів. July — «липень»: I travel in July. August — «серпень»: We visit our friends in August. Це повторювані справи, тому travel і visit. Перед обома місяцями вживаємо in."
       },
       "question": {
         "interactionId": "en:lesson-10:session-30:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-30:intro3:r1",
-              "text": "It is rush hour."
+              "text": "I travel in July."
             },
             {
               "responseId": "en:lesson-10:session-30:intro3:r2",
-              "text": "It rush hour."
+              "text": "I travels in July."
             },
             {
               "responseId": "en:lesson-10:session-30:intro3:r3",
-              "text": "It are rush hour."
+              "text": "I travel on July."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-30:intro3:r1",
-              "text": "It is rush hour."
+              "text": "I travel in July."
             },
             {
               "responseId": "en:lesson-10:session-30:intro3:r2",
-              "text": "It rush hour."
+              "text": "I travels in July."
             },
             {
               "responseId": "en:lesson-10:session-30:intro3:r3",
-              "text": "It are rush hour."
+              "text": "I travel on July."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7bc1d12b9e94a44e232cf2caa979503e6c1a5e56e8c753e3862e06a6696542ee"
+  "introFingerprint": "4b4c7461cbbe4b907aad00c3c7c0811f1f31dedfdc062ddb7ca87435e7418e1b"
 }

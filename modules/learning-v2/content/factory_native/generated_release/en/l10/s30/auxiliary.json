@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-10:session-30:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-30:intro1:r2": {
-          "ru": "С I нужна take без s.",
-          "uk": "З I потрібна take без s."
+          "ru": "С месяцем нужна in.",
+          "uk": "Із місяцем потрібна in."
         },
         "en:lesson-10:session-30:intro1:r3": {
-          "ru": "Говорим on weekdays, не at weekdays.",
-          "uk": "Кажемо on weekdays, не at weekdays."
+          "ru": "С I нужна work без s.",
+          "uk": "З I потрібна work без s."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-10:session-30:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-30:intro2:r2": {
-          "ru": "Перед waiting нужен is.",
-          "uk": "Перед waiting потрібне is."
+          "ru": "С we нужна meet без s.",
+          "uk": "З we потрібна meet без s."
         },
         "en:lesson-10:session-30:intro2:r3": {
-          "ru": "Commuter здесь один человек: is.",
-          "uk": "Commuter тут одна людина: is."
+          "ru": "С месяцем нужна in, не at.",
+          "uk": "Із місяцем потрібна in, не at."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-10:session-30:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-30:intro3:r2": {
-          "ru": "После it нужна связка is.",
-          "uk": "Після it потрібна зв’язка is."
+          "ru": "С I нужна travel без s.",
+          "uk": "З I потрібна travel без s."
         },
         "en:lesson-10:session-30:intro3:r3": {
-          "ru": "С it нужно is.",
-          "uk": "З it потрібне is."
+          "ru": "С месяцем нужна in.",
+          "uk": "Із місяцем потрібна in."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "b624d760f613318c104f163da542b83f01c9013706a29e2fa3894cf53a08e19e"
+  "auxiliaryFingerprint": "9aa4fbc516e73dc1368bbbaa5ce5c8da8529f7b8ebb87e8c5d14e1b1a10c1c36"
 }

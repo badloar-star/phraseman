@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-29",
   "learningOutcomeByLocale": {
-    "ru": "I usually go to bed before midnight; The countdown is starting; I can hear a chime",
-    "uk": "I usually go to bed before midnight; The countdown is starting; I can hear a chime"
+    "ru": "Follow me; We reach the station at nine; Please enter; I often get lost",
+    "uk": "Follow me; We reach the station at nine; Please enter; I often get lost"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-29:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "До полуночи",
-        "uk": "До півночі"
+        "ru": "Идите за мной",
+        "uk": "Ідіть за мною"
       },
       "bodyByLocale": {
-        "ru": "Midnight — «полночь», двенадцать часов ночи. I usually go to bed before midnight — «Я обычно ложусь спать до полуночи». Usually указывает на привычку, поэтому используем Present Simple. Before midnight — до полуночи; at midnight — ровно в полночь.",
-        "uk": "Midnight — «північ», дванадцята година ночі. I usually go to bed before midnight — «Я зазвичай лягаю спати до півночі». Usually вказує на звичку, тому використовуємо Present Simple. Before midnight — до півночі; at midnight — рівно опівночі."
+        "ru": "Вы знаете дорогу и предлагаете другу идти за вами: Follow me — «Иди за мной». Follow — «следовать за, идти за». Это простое указание: follow без to и без s.",
+        "uk": "Ви знаєте дорогу й пропонуєте другу йти за вами: Follow me — «Іди за мною». Follow — «слідувати за, іти за». Це проста вказівка: follow без to і без s."
       },
       "question": {
         "interactionId": "en:lesson-10:session-29:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-29:intro1:r1",
-              "text": "I usually go to bed before midnight."
+              "text": "Follow me."
             },
             {
               "responseId": "en:lesson-10:session-29:intro1:r2",
-              "text": "I usually goes to bed before midnight."
+              "text": "Follows me."
             },
             {
               "responseId": "en:lesson-10:session-29:intro1:r3",
-              "text": "I usually going to bed before midnight."
+              "text": "Following me."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-29:intro1:r1",
-              "text": "I usually go to bed before midnight."
+              "text": "Follow me."
             },
             {
               "responseId": "en:lesson-10:session-29:intro1:r2",
-              "text": "I usually goes to bed before midnight."
+              "text": "Follows me."
             },
             {
               "responseId": "en:lesson-10:session-29:intro1:r3",
-              "text": "I usually going to bed before midnight."
+              "text": "Following me."
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-29:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Звон часов",
-        "uk": "Дзвін годинника"
+        "ru": "Дойти и войти",
+        "uk": "Дістатися й увійти"
       },
       "bodyByLocale": {
-        "ru": "Chime — «мелодичный звон», например звук часов или колокольчика. На праздничной площади вы слышите часы: I can hear a chime — «Я слышу мелодичный звон». После can нужна hear. Хотя звук слышен сейчас, не нужно автоматически ставить Continuous.",
-        "uk": "Chime — «мелодійний дзвін», наприклад звук годинника або дзвіночка. На святковій площі ви чуєте годинник: I can hear a chime — «Я чую мелодійний дзвін». Після can потрібна hear. Хоча звук чути зараз, не потрібно автоматично ставити Continuous."
+        "ru": "Вы с другом обычно доходите до станции в девять: We reach the station at nine. Reach — «достигать, добираться до». Перед the station после reach не ставим to. У входа сотрудник говорит: Please enter — «Входите, пожалуйста». Enter — «входить».",
+        "uk": "Ви з другом зазвичай дістаєтеся станції о дев’ятій: We reach the station at nine. Reach — «досягати, діставатися до». Перед the station після reach не ставимо to. Біля входу працівник каже: Please enter — «Заходьте, будь ласка». Enter — «входити»."
       },
       "question": {
         "interactionId": "en:lesson-10:session-29:intro2:q",
@@ -82,29 +82,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-29:intro2:r1",
-              "text": "I can hear a chime."
+              "text": "We reach the station at nine."
             },
             {
               "responseId": "en:lesson-10:session-29:intro2:r2",
-              "text": "I can hears a chime."
+              "text": "We reaches the station at nine."
             },
             {
               "responseId": "en:lesson-10:session-29:intro2:r3",
-              "text": "I can hearing a chime."
+              "text": "We reach to the station at nine."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-29:intro2:r1",
-              "text": "I can hear a chime."
+              "text": "We reach the station at nine."
             },
             {
               "responseId": "en:lesson-10:session-29:intro2:r2",
-              "text": "I can hears a chime."
+              "text": "We reaches the station at nine."
             },
             {
               "responseId": "en:lesson-10:session-29:intro2:r3",
-              "text": "I can hearing a chime."
+              "text": "We reach to the station at nine."
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-29:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Начинается обратный отсчёт",
-        "uk": "Починається зворотний відлік"
+        "ru": "Когда трудно найти дорогу",
+        "uk": "Коли важко знайти дорогу"
       },
       "bodyByLocale": {
-        "ru": "Countdown — «обратный отсчёт». На экране появляются последние секунды до полуночи. The countdown is starting — «Обратный отсчёт начинается». Для события, начинающегося сейчас, используем is + starting. Слово midnight называет момент времени; грамматическую форму выбираем по смыслу происходящего.",
-        "uk": "Countdown — «зворотний відлік». На екрані з’являються останні секунди до півночі. The countdown is starting — «Зворотний відлік починається». Для події, що починається зараз, використовуємо is + starting. Слово midnight називає момент часу; граматичну форму обираємо за змістом того, що відбувається."
+        "ru": "В незнакомом городе вы часто теряетесь: I often get lost — «Я часто теряюсь». Get lost — «заблудиться, потеряться». Учим выражение целиком. Often стоит перед get lost. Вы говорите о себе, а не обращаетесь к собеседнику с командой.",
+        "uk": "У незнайомому місті ви часто губитеся: I often get lost — «Я часто гублюся». Get lost — «заблукати, загубитися». Вчимо вислів цілком. Often стоїть перед get lost. Ви говорите про себе, а не звертаєтеся до співрозмовника з командою."
       },
       "question": {
         "interactionId": "en:lesson-10:session-29:intro3:q",
@@ -136,29 +136,29 @@
           "ru": [
             {
               "responseId": "en:lesson-10:session-29:intro3:r1",
-              "text": "The countdown is starting."
+              "text": "I often get lost."
             },
             {
               "responseId": "en:lesson-10:session-29:intro3:r2",
-              "text": "The countdown starting."
+              "text": "I often gets lost."
             },
             {
               "responseId": "en:lesson-10:session-29:intro3:r3",
-              "text": "The countdown are starting."
+              "text": "I often getting lost."
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-10:session-29:intro3:r1",
-              "text": "The countdown is starting."
+              "text": "I often get lost."
             },
             {
               "responseId": "en:lesson-10:session-29:intro3:r2",
-              "text": "The countdown starting."
+              "text": "I often gets lost."
             },
             {
               "responseId": "en:lesson-10:session-29:intro3:r3",
-              "text": "The countdown are starting."
+              "text": "I often getting lost."
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "853527fd856dadf908fe54048ec9ebdc07bb8b81e6bf0e109a3c0dd54f3127ab"
+  "introFingerprint": "e499a007a45e2bc5335e3bee37d53e1de5c1d1ec7321ad4865b7cf94ce7087f6"
 }

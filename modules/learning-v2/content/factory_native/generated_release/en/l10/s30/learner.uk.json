@@ -4,32 +4,32 @@
   "targetLanguage": "en",
   "interactions": [
     {
-      "interactionId": "en:lesson-10:session-30:word:weekday",
+      "interactionId": "en:lesson-10:session-30:word:January",
       "ordinal": 4,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — weekday",
+      "prompt": "Картка слова — January",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-30:word:weekday:audio"
+        "en:lesson-10:session-30:word:January:audio"
       ],
-      "accessibilityLabel": "Картка слова — weekday",
+      "accessibilityLabel": "Картка слова — January",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-30:word:weekday:audio",
-          "transcript": "weekday"
+          "audioTargetId": "en:lesson-10:session-30:word:January:audio",
+          "transcript": "January"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-30:word:weekday:r1",
-            "targetText": "weekday",
+            "responseId": "en:lesson-10:session-30:word:January:r1",
+            "targetText": "January",
             "meaningByLocale": {
-              "ru": "«будний день». Today is a weekday. — «Сегодня будний день». Один из дней с понедельника по пятницу.",
-              "uk": "«будній день». Today is a weekday. — «Сьогодні будній день». Один із днів із понеділка до п’ятниці."
+              "ru": "«январь». I work in January. — «Я работаю в январе».",
+              "uk": "«січень». I work in January. — «Я працюю в січні»."
             }
           }
         ],
@@ -37,10 +37,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "weekday",
+          "word": "January",
           "definitionByLocale": {
-            "ru": "«будний день». Today is a weekday. — «Сегодня будний день». Один из дней с понедельника по пятницу.",
-            "uk": "«будній день». Today is a weekday. — «Сьогодні будній день». Один із днів із понеділка до п’ятниці."
+            "ru": "«январь». I work in January. — «Я работаю в январе».",
+            "uk": "«січень». I work in January. — «Я працюю в січні»."
           }
         }
       },
@@ -52,23 +52,23 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Сьогодні вівторок. Друг запитує, чи це вихідний. Скажіть: «Сьогодні будній день»",
+      "prompt": "Скажіть, що працюєте в січні. Місяць поставте в кінці",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сьогодні вівторок. Друг запитує, чи це вихідний. Скажіть: «Сьогодні будній день»",
+      "accessibilityLabel": "Скажіть, що працюєте в січні. Місяць поставте в кінці",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Today is a weekday.",
+        "targetPhrase": "I work in January.",
         "localizedMeaning": {
-          "ru": "Сегодня вторник. Друг спрашивает, выходной ли это. Скажите: «Сегодня будний день»",
-          "uk": "Сьогодні вівторок. Друг запитує, чи це вихідний. Скажіть: «Сьогодні будній день»"
+          "ru": "Скажите, что работаете в январе. Месяц поставьте в конце",
+          "uk": "Скажіть, що працюєте в січні. Місяць поставте в кінці"
         },
         "orderedTokens": [
-          "Today",
-          "is",
-          "a",
-          "weekday"
+          "I",
+          "work",
+          "in",
+          "January"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -89,15 +89,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-30:i02:r1",
-          "text": "I work every weekday."
+          "text": "She works in January."
         },
         {
           "responseId": "en:lesson-10:session-30:i02:r2",
-          "text": "We work every weekday."
+          "text": "He works in January."
         },
         {
           "responseId": "en:lesson-10:session-30:i02:r3",
-          "text": "I walk every weekday."
+          "text": "We work in January."
         }
       ],
       "mediaIds": [],
@@ -109,23 +109,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-30:i02:audio",
-          "transcript": "I work every weekday."
+          "transcript": "She works in January."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-30:i02:r1",
-            "targetText": "I work every weekday.",
+            "targetText": "She works in January.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-30:i02:r2",
-            "targetText": "We work every weekday.",
+            "targetText": "He works in January.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-30:i02:r3",
-            "targetText": "I walk every weekday.",
+            "targetText": "We work in January.",
             "meaningByLocale": null
           }
         ],
@@ -136,8 +136,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I work every weekday.",
-              "uk": "У записі звучить I work every weekday."
+              "ru": "В записи звучит She works in January.",
+              "uk": "У записі звучить She works in January."
             }
           },
           {
@@ -145,8 +145,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит I work every weekday.",
-              "uk": "У записі звучить I work every weekday."
+              "ru": "В записи звучит She works in January.",
+              "uk": "У записі звучить She works in January."
             }
           }
         ],
@@ -161,63 +161,63 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть прийменник для «у будні»",
+      "prompt": "Виберіть прийменник перед місяцем",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-30:i03:r1",
-          "text": "on"
+          "text": "in"
         },
         {
           "responseId": "en:lesson-10:session-30:i03:r2",
-          "text": "at"
+          "text": "on"
         },
         {
           "responseId": "en:lesson-10:session-30:i03:r3",
-          "text": "in"
+          "text": "at"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть прийменник для «у будні»",
+      "accessibilityLabel": "Виберіть прийменник перед місяцем",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите предлог для «по будням»",
-          "uk": "Виберіть прийменник для «у будні»"
+          "ru": "Выберите предлог перед месяцем",
+          "uk": "Виберіть прийменник перед місяцем"
         },
-        "gappedTargetPhrase": "I take the bus ___ weekdays.",
+        "gappedTargetPhrase": "I work ___ January.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-30:i03:r1",
-            "text": "on"
+            "text": "in"
           },
           {
             "responseId": "en:lesson-10:session-30:i03:r2",
-            "text": "at"
+            "text": "on"
           },
           {
             "responseId": "en:lesson-10:session-30:i03:r3",
-            "text": "in"
+            "text": "at"
           }
         ],
-        "testedDimension": "Виберіть прийменник для «у будні»",
+        "testedDimension": "Виберіть прийменник перед місяцем",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-30:i03:r2",
             "correct": false,
-            "testedDimension": "Виберіть прийменник для «у будні»",
+            "testedDimension": "Виберіть прийменник перед місяцем",
             "feedbackByLocale": {
-              "ru": "С weekdays используем on.",
-              "uk": "З weekdays використовуємо on."
+              "ru": "Перед месяцем нужна in, не on.",
+              "uk": "Перед місяцем потрібна in, не on."
             }
           },
           {
             "responseId": "en:lesson-10:session-30:i03:r3",
             "correct": false,
-            "testedDimension": "Виберіть прийменник для «у будні»",
+            "testedDimension": "Виберіть прийменник перед місяцем",
             "feedbackByLocale": {
-              "ru": "С weekdays используем on.",
-              "uk": "З weekdays використовуємо on."
+              "ru": "Перед месяцем нужна in, не at.",
+              "uk": "Перед місяцем потрібна in, не at."
             }
           }
         ]
@@ -225,32 +225,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-30:word:commuter",
+      "interactionId": "en:lesson-10:session-30:word:February",
       "ordinal": 8,
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — commuter",
+      "prompt": "Картка слова — February",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-30:word:commuter:audio"
+        "en:lesson-10:session-30:word:February:audio"
       ],
-      "accessibilityLabel": "Картка слова — commuter",
+      "accessibilityLabel": "Картка слова — February",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-30:word:commuter:audio",
-          "transcript": "commuter"
+          "audioTargetId": "en:lesson-10:session-30:word:February:audio",
+          "transcript": "February"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-30:word:commuter:r1",
-            "targetText": "commuter",
+            "responseId": "en:lesson-10:session-30:word:February:r1",
+            "targetText": "February",
             "meaningByLocale": {
-              "ru": "«человек, регулярно ездящий на работу или учёбу». The commuter is waiting. — «Пассажир, который регулярно ездит на работу, ждёт». Здесь человек по дороге на работу.",
-              "uk": "«людина, яка регулярно їздить на роботу або навчання». The commuter is waiting. — «Пасажир, який регулярно їздить на роботу, чекає». Тут людина дорогою на роботу."
+              "ru": "«февраль». We meet in February. — «Мы встречаемся в феврале».",
+              "uk": "«лютий». We meet in February. — «Ми зустрічаємося в лютому»."
             }
           }
         ],
@@ -258,10 +258,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "commuter",
+          "word": "February",
           "definitionByLocale": {
-            "ru": "«человек, регулярно ездящий на работу или учёбу». The commuter is waiting. — «Пассажир, который регулярно ездит на работу, ждёт». Здесь человек по дороге на работу.",
-            "uk": "«людина, яка регулярно їздить на роботу або навчання». The commuter is waiting. — «Пасажир, який регулярно їздить на роботу, чекає». Тут людина дорогою на роботу."
+            "ru": "«февраль». We meet in February. — «Мы встречаемся в феврале».",
+            "uk": "«лютий». We meet in February. — «Ми зустрічаємося в лютому»."
           }
         }
       },
@@ -273,23 +273,23 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви бачите на зупинці знайомого пасажира, який щодня їздить на роботу. Скажіть: «Цей пасажир чекає»",
+      "prompt": "Скажіть, що зустрічаєтеся в лютому. Місяць поставте в кінці",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви бачите на зупинці знайомого пасажира, який щодня їздить на роботу. Скажіть: «Цей пасажир чекає»",
+      "accessibilityLabel": "Скажіть, що зустрічаєтеся в лютому. Місяць поставте в кінці",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "The commuter is waiting.",
+        "targetPhrase": "We meet in February.",
         "localizedMeaning": {
-          "ru": "Вы видите на остановке знакомого пассажира, который каждый день ездит на работу. Скажите: «Этот пассажир ждёт»",
-          "uk": "Ви бачите на зупинці знайомого пасажира, який щодня їздить на роботу. Скажіть: «Цей пасажир чекає»"
+          "ru": "Скажите, что встречаетесь в феврале. Месяц поставьте в конце",
+          "uk": "Скажіть, що зустрічаєтеся в лютому. Місяць поставте в кінці"
         },
         "orderedTokens": [
-          "The",
-          "commuter",
-          "is",
-          "waiting"
+          "We",
+          "meet",
+          "in",
+          "February"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -310,15 +310,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-30:i05:r1",
-          "text": "The commuter is on the train."
+          "text": "They meet in February."
         },
         {
           "responseId": "en:lesson-10:session-30:i05:r2",
-          "text": "The commuter is on the bus."
+          "text": "We meet in February."
         },
         {
           "responseId": "en:lesson-10:session-30:i05:r3",
-          "text": "The driver is on the train."
+          "text": "They meet in January."
         }
       ],
       "mediaIds": [],
@@ -330,23 +330,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-30:i05:audio",
-          "transcript": "The commuter is on the train."
+          "transcript": "They meet in February."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-30:i05:r1",
-            "targetText": "The commuter is on the train.",
+            "targetText": "They meet in February.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-30:i05:r2",
-            "targetText": "The commuter is on the bus.",
+            "targetText": "We meet in February.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-30:i05:r3",
-            "targetText": "The driver is on the train.",
+            "targetText": "They meet in January.",
             "meaningByLocale": null
           }
         ],
@@ -357,8 +357,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The commuter is on the train.",
-              "uk": "У записі звучить The commuter is on the train."
+              "ru": "В записи звучит They meet in February.",
+              "uk": "У записі звучить They meet in February."
             }
           },
           {
@@ -366,8 +366,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The commuter is on the train.",
-              "uk": "У записі звучить The commuter is on the train."
+              "ru": "В записи звучит They meet in February.",
+              "uk": "У записі звучить They meet in February."
             }
           }
         ],
@@ -382,63 +382,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Пасажир чекає зараз. Виберіть допоміжне дієслово",
+      "prompt": "Виберіть форму meet з we",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-30:i06:r1",
-          "text": "is"
+          "text": "meet"
         },
         {
           "responseId": "en:lesson-10:session-30:i06:r2",
-          "text": "are"
+          "text": "meets"
         },
         {
           "responseId": "en:lesson-10:session-30:i06:r3",
-          "text": "does"
+          "text": "meeting"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Пасажир чекає зараз. Виберіть допоміжне дієслово",
+      "accessibilityLabel": "Виберіть форму meet з we",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Пассажир ждёт сейчас. Выберите вспомогательный глагол",
-          "uk": "Пасажир чекає зараз. Виберіть допоміжне дієслово"
+          "ru": "Выберите форму meet с we",
+          "uk": "Виберіть форму meet з we"
         },
-        "gappedTargetPhrase": "The commuter ___ waiting.",
+        "gappedTargetPhrase": "We ___ in February.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-30:i06:r1",
-            "text": "is"
+            "text": "meet"
           },
           {
             "responseId": "en:lesson-10:session-30:i06:r2",
-            "text": "are"
+            "text": "meets"
           },
           {
             "responseId": "en:lesson-10:session-30:i06:r3",
-            "text": "does"
+            "text": "meeting"
           }
         ],
-        "testedDimension": "Пасажир чекає зараз. Виберіть допоміжне дієслово",
+        "testedDimension": "Виберіть форму meet з we",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-30:i06:r2",
             "correct": false,
-            "testedDimension": "Пасажир чекає зараз. Виберіть допоміжне дієслово",
+            "testedDimension": "Виберіть форму meet з we",
             "feedbackByLocale": {
-              "ru": "Один commuter: is.",
-              "uk": "Один commuter: is."
+              "ru": "С we нужна meet без s.",
+              "uk": "З we потрібна meet без s."
             }
           },
           {
             "responseId": "en:lesson-10:session-30:i06:r3",
             "correct": false,
-            "testedDimension": "Пасажир чекає зараз. Виберіть допоміжне дієслово",
+            "testedDimension": "Виберіть форму meet з we",
             "feedbackByLocale": {
-              "ru": "Перед waiting здесь нужно is.",
-              "uk": "Перед waiting тут потрібне is."
+              "ru": "Для привычной встречи здесь нужна meet.",
+              "uk": "Для звичної зустрічі тут потрібна meet."
             }
           }
         ]
@@ -446,32 +446,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-30:word:carpool",
+      "interactionId": "en:lesson-10:session-30:word:July",
       "ordinal": 12,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — carpool",
+      "prompt": "Картка слова — July",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-30:word:carpool:audio"
+        "en:lesson-10:session-30:word:July:audio"
       ],
-      "accessibilityLabel": "Картка слова — carpool",
+      "accessibilityLabel": "Картка слова — July",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-30:word:carpool:audio",
-          "transcript": "carpool"
+          "audioTargetId": "en:lesson-10:session-30:word:July:audio",
+          "transcript": "July"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-30:word:carpool:r1",
-            "targetText": "carpool",
+            "responseId": "en:lesson-10:session-30:word:July:r1",
+            "targetText": "July",
             "meaningByLocale": {
-              "ru": "«группа для совместных поездок на машине». Our carpool has four people. — «В нашей группе для совместных поездок четыре человека». Люди договариваются ехать вместе, например на работу.",
-              "uk": "«група для спільних поїздок машиною». Our carpool has four people. — «У нашій групі для спільних поїздок чотири людини». Люди домовляються їхати разом, наприклад на роботу."
+              "ru": "«июль». I travel in July. — «Я путешествую в июле».",
+              "uk": "«липень». I travel in July. — «Я подорожую в липні»."
             }
           }
         ],
@@ -479,10 +479,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "carpool",
+          "word": "July",
           "definitionByLocale": {
-            "ru": "«группа для совместных поездок на машине». Our carpool has four people. — «В нашей группе для совместных поездок четыре человека». Люди договариваются ехать вместе, например на работу.",
-            "uk": "«група для спільних поїздок машиною». Our carpool has four people. — «У нашій групі для спільних поїздок чотири людини». Люди домовляються їхати разом, наприклад на роботу."
+            "ru": "«июль». I travel in July. — «Я путешествую в июле».",
+            "uk": "«липень». I travel in July. — «Я подорожую в липні»."
           }
         }
       },
@@ -494,24 +494,23 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви з колегами їздите на роботу разом. Скажіть другу: «У нашій групі для спільних поїздок чотири людини»",
+      "prompt": "Скажіть, що подорожуєте в липні. Місяць поставте в кінці",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви з колегами їздите на роботу разом. Скажіть другу: «У нашій групі для спільних поїздок чотири людини»",
+      "accessibilityLabel": "Скажіть, що подорожуєте в липні. Місяць поставте в кінці",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Our carpool has four people.",
+        "targetPhrase": "I travel in July.",
         "localizedMeaning": {
-          "ru": "Вы с коллегами ездите на работу вместе. Скажите другу: «В нашей группе для совместных поездок четыре человека»",
-          "uk": "Ви з колегами їздите на роботу разом. Скажіть другу: «У нашій групі для спільних поїздок чотири людини»"
+          "ru": "Скажите, что путешествуете в июле. Месяц поставьте в конце",
+          "uk": "Скажіть, що подорожуєте в липні. Місяць поставте в кінці"
         },
         "orderedTokens": [
-          "Our",
-          "carpool",
-          "has",
-          "four",
-          "people"
+          "I",
+          "travel",
+          "in",
+          "July"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -532,15 +531,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-30:i08:r1",
-          "text": "Our carpool has four people."
+          "text": "We travel in July."
         },
         {
           "responseId": "en:lesson-10:session-30:i08:r2",
-          "text": "Our carpool has three people."
+          "text": "I travel in July."
         },
         {
           "responseId": "en:lesson-10:session-30:i08:r3",
-          "text": "Their carpool has four people."
+          "text": "We travel in February."
         }
       ],
       "mediaIds": [],
@@ -552,23 +551,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-30:i08:audio",
-          "transcript": "Our carpool has four people."
+          "transcript": "We travel in July."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-30:i08:r1",
-            "targetText": "Our carpool has four people.",
+            "targetText": "We travel in July.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-30:i08:r2",
-            "targetText": "Our carpool has three people.",
+            "targetText": "I travel in July.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-30:i08:r3",
-            "targetText": "Their carpool has four people.",
+            "targetText": "We travel in February.",
             "meaningByLocale": null
           }
         ],
@@ -579,8 +578,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит Our carpool has four people.",
-              "uk": "У записі звучить Our carpool has four people."
+              "ru": "В записи звучит We travel in July.",
+              "uk": "У записі звучить We travel in July."
             }
           },
           {
@@ -588,8 +587,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит Our carpool has four people.",
-              "uk": "У записі звучить Our carpool has four people."
+              "ru": "В записи звучит We travel in July.",
+              "uk": "У записі звучить We travel in July."
             }
           }
         ],
@@ -604,63 +603,63 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму have для однієї групи",
+      "prompt": "Виберіть прийменник перед July",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-30:i09:r1",
-          "text": "has"
+          "text": "in"
         },
         {
           "responseId": "en:lesson-10:session-30:i09:r2",
-          "text": "have"
+          "text": "on"
         },
         {
           "responseId": "en:lesson-10:session-30:i09:r3",
-          "text": "having"
+          "text": "at"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму have для однієї групи",
+      "accessibilityLabel": "Виберіть прийменник перед July",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму have для одной группы",
-          "uk": "Виберіть форму have для однієї групи"
+          "ru": "Выберите предлог перед July",
+          "uk": "Виберіть прийменник перед July"
         },
-        "gappedTargetPhrase": "Our carpool ___ four people.",
+        "gappedTargetPhrase": "I travel ___ July.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-30:i09:r1",
-            "text": "has"
+            "text": "in"
           },
           {
             "responseId": "en:lesson-10:session-30:i09:r2",
-            "text": "have"
+            "text": "on"
           },
           {
             "responseId": "en:lesson-10:session-30:i09:r3",
-            "text": "having"
+            "text": "at"
           }
         ],
-        "testedDimension": "Виберіть форму have для однієї групи",
+        "testedDimension": "Виберіть прийменник перед July",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-30:i09:r2",
             "correct": false,
-            "testedDimension": "Виберіть форму have для однієї групи",
+            "testedDimension": "Виберіть прийменник перед July",
             "feedbackByLocale": {
-              "ru": "Carpool здесь одна группа: has.",
-              "uk": "Carpool тут одна група: has."
+              "ru": "Перед месяцем нужна in.",
+              "uk": "Перед місяцем потрібна in."
             }
           },
           {
             "responseId": "en:lesson-10:session-30:i09:r3",
             "correct": false,
-            "testedDimension": "Виберіть форму have для однієї групи",
+            "testedDimension": "Виберіть прийменник перед July",
             "feedbackByLocale": {
-              "ru": "Здесь нужна личная форма has.",
-              "uk": "Тут потрібна особова форма has."
+              "ru": "Перед месяцем нужна in.",
+              "uk": "Перед місяцем потрібна in."
             }
           }
         ]
@@ -668,32 +667,32 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-30:word:rush-hour",
+      "interactionId": "en:lesson-10:session-30:word:August",
       "ordinal": 16,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Картка слова — rush hour",
+      "prompt": "Картка слова — August",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-10:session-30:word:rush-hour:audio"
+        "en:lesson-10:session-30:word:August:audio"
       ],
-      "accessibilityLabel": "Картка слова — rush hour",
+      "accessibilityLabel": "Картка слова — August",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-30:word:rush-hour:audio",
-          "transcript": "rush hour"
+          "audioTargetId": "en:lesson-10:session-30:word:August:audio",
+          "transcript": "August"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-10:session-30:word:rush-hour:r1",
-            "targetText": "rush hour",
+            "responseId": "en:lesson-10:session-30:word:August:r1",
+            "targetText": "August",
             "meaningByLocale": {
-              "ru": "«час пик». It is rush hour. — «Сейчас час пик». Период особенно интенсивного движения.",
-              "uk": "«година пік». It is rush hour. — «Зараз година пік». Період особливо інтенсивного руху."
+              "ru": "«август». We visit our friends in August. — «Мы навещаем друзей в августе».",
+              "uk": "«серпень». We visit our friends in August. — «Ми відвідуємо друзів у серпні»."
             }
           }
         ],
@@ -701,10 +700,10 @@
         "choiceFeedback": [],
         "isWordCard": true,
         "wordCard": {
-          "word": "rush hour",
+          "word": "August",
           "definitionByLocale": {
-            "ru": "«час пик». It is rush hour. — «Сейчас час пик». Период особенно интенсивного движения.",
-            "uk": "«година пік». It is rush hour. — «Зараз година пік». Період особливо інтенсивного руху."
+            "ru": "«август». We visit our friends in August. — «Мы навещаем друзей в августе».",
+            "uk": "«серпень». We visit our friends in August. — «Ми відвідуємо друзів у серпні»."
           }
         }
       },
@@ -716,23 +715,25 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг дивується, чому на дорозі так багато машин. Скажіть: «Зараз година пік»",
+      "prompt": "Скажіть, що відвідуєте друзів у серпні. Місяць поставте в кінці",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг дивується, чому на дорозі так багато машин. Скажіть: «Зараз година пік»",
+      "accessibilityLabel": "Скажіть, що відвідуєте друзів у серпні. Місяць поставте в кінці",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "It is rush hour.",
+        "targetPhrase": "We visit our friends in August.",
         "localizedMeaning": {
-          "ru": "Друг удивляется, почему на дороге так много машин. Скажите: «Сейчас час пик»",
-          "uk": "Друг дивується, чому на дорозі так багато машин. Скажіть: «Зараз година пік»"
+          "ru": "Скажите, что навещаете друзей в августе. Месяц поставьте в конце",
+          "uk": "Скажіть, що відвідуєте друзів у серпні. Місяць поставте в кінці"
         },
         "orderedTokens": [
-          "It",
-          "is",
-          "rush",
-          "hour"
+          "We",
+          "visit",
+          "our",
+          "friends",
+          "in",
+          "August"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -753,15 +754,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-30:i11:r1",
-          "text": "The buses are busy at rush hour."
+          "text": "I work in August."
         },
         {
           "responseId": "en:lesson-10:session-30:i11:r2",
-          "text": "The trains are busy at rush hour."
+          "text": "I work in July."
         },
         {
           "responseId": "en:lesson-10:session-30:i11:r3",
-          "text": "The buses are quiet at rush hour."
+          "text": "We work in August."
         }
       ],
       "mediaIds": [],
@@ -773,23 +774,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-30:i11:audio",
-          "transcript": "The buses are busy at rush hour."
+          "transcript": "I work in August."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-10:session-30:i11:r1",
-            "targetText": "The buses are busy at rush hour.",
+            "targetText": "I work in August.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-30:i11:r2",
-            "targetText": "The trains are busy at rush hour.",
+            "targetText": "I work in July.",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-10:session-30:i11:r3",
-            "targetText": "The buses are quiet at rush hour.",
+            "targetText": "We work in August.",
             "meaningByLocale": null
           }
         ],
@@ -800,8 +801,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The buses are busy at rush hour.",
-              "uk": "У записі звучить The buses are busy at rush hour."
+              "ru": "В записи звучит I work in August.",
+              "uk": "У записі звучить I work in August."
             }
           },
           {
@@ -809,8 +810,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит The buses are busy at rush hour.",
-              "uk": "У записі звучить The buses are busy at rush hour."
+              "ru": "В записи звучит I work in August.",
+              "uk": "У записі звучить I work in August."
             }
           }
         ],
@@ -825,63 +826,63 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви описуєте звичну поїздку. Виберіть форму take",
+      "prompt": "Виберіть форму visit з we",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-30:i12:r1",
-          "text": "take"
+          "text": "visit"
         },
         {
           "responseId": "en:lesson-10:session-30:i12:r2",
-          "text": "takes"
+          "text": "visits"
         },
         {
           "responseId": "en:lesson-10:session-30:i12:r3",
-          "text": "taking"
+          "text": "visiting"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви описуєте звичну поїздку. Виберіть форму take",
+      "accessibilityLabel": "Виберіть форму visit з we",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы описываете обычную поездку. Выберите форму take",
-          "uk": "Ви описуєте звичну поїздку. Виберіть форму take"
+          "ru": "Выберите форму visit с we",
+          "uk": "Виберіть форму visit з we"
         },
-        "gappedTargetPhrase": "I usually ___ the bus.",
+        "gappedTargetPhrase": "We ___ our friends in August.",
         "gapOptions": [
           {
             "responseId": "en:lesson-10:session-30:i12:r1",
-            "text": "take"
+            "text": "visit"
           },
           {
             "responseId": "en:lesson-10:session-30:i12:r2",
-            "text": "takes"
+            "text": "visits"
           },
           {
             "responseId": "en:lesson-10:session-30:i12:r3",
-            "text": "taking"
+            "text": "visiting"
           }
         ],
-        "testedDimension": "Ви описуєте звичну поїздку. Виберіть форму take",
+        "testedDimension": "Виберіть форму visit з we",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-10:session-30:i12:r2",
             "correct": false,
-            "testedDimension": "Ви описуєте звичну поїздку. Виберіть форму take",
+            "testedDimension": "Виберіть форму visit з we",
             "feedbackByLocale": {
-              "ru": "С I нужна take без s.",
-              "uk": "З I потрібна take без s."
+              "ru": "С we нужна visit без s.",
+              "uk": "З we потрібна visit без s."
             }
           },
           {
             "responseId": "en:lesson-10:session-30:i12:r3",
             "correct": false,
-            "testedDimension": "Ви описуєте звичну поїздку. Виберіть форму take",
+            "testedDimension": "Виберіть форму visit з we",
             "feedbackByLocale": {
-              "ru": "Для этой привычки нужна take.",
-              "uk": "Для цієї звички потрібна take."
+              "ru": "Для привычного действия здесь нужна visit.",
+              "uk": "Для звичної дії тут потрібна visit."
             }
           }
         ]
@@ -894,58 +895,58 @@
       "purpose": "retrieval_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "З’єднайте нові слова зі значеннями",
+      "prompt": "Поєднайте місяці з перекладом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "З’єднайте нові слова зі значеннями",
+      "accessibilityLabel": "Поєднайте місяці з перекладом",
       "modePayload": {
         "family": "speed_match",
         "pairGrid": [
           {
             "pairId": "en:lesson-10:session-30:i13:p1",
-            "target": "weekday",
+            "target": "January",
             "meaningByLocale": {
-              "ru": "будний день",
-              "uk": "будній день"
+              "ru": "январь",
+              "uk": "січень"
             }
           },
           {
             "pairId": "en:lesson-10:session-30:i13:p2",
-            "target": "commuter",
+            "target": "February",
             "meaningByLocale": {
-              "ru": "человек, регулярно ездящий на работу или учёбу",
-              "uk": "людина, яка регулярно їздить на роботу або навчання"
+              "ru": "февраль",
+              "uk": "лютий"
             }
           },
           {
             "pairId": "en:lesson-10:session-30:i13:p3",
-            "target": "carpool",
+            "target": "July",
             "meaningByLocale": {
-              "ru": "группа для совместных поездок на машине",
-              "uk": "група для спільних поїздок машиною"
+              "ru": "июль",
+              "uk": "липень"
             }
           },
           {
             "pairId": "en:lesson-10:session-30:i13:p4",
-            "target": "rush hour",
+            "target": "August",
             "meaningByLocale": {
-              "ru": "час пик",
-              "uk": "година пік"
+              "ru": "август",
+              "uk": "серпень"
             }
           }
         ],
         "leftColumn": [
-          "weekday",
-          "commuter",
-          "carpool",
-          "rush hour"
+          "January",
+          "February",
+          "July",
+          "August"
         ],
         "rightColumn": [
-          "будній день",
-          "людина, яка регулярно їздить на роботу або навчання",
-          "група для спільних поїздок машиною",
-          "година пік"
+          "січень",
+          "лютий",
+          "липень",
+          "серпень"
         ],
         "pairingKey": "pair_id",
         "timerPolicy": {
@@ -967,28 +968,26 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть фразу",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-30:i14:audio"
       ],
-      "accessibilityLabel": "Послухайте й складіть фразу",
+      "accessibilityLabel": "Складіть почуту фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-30:i14:audio",
-          "transcript": "I take the bus on weekdays."
+          "transcript": "We meet in February."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "I take the bus on weekdays.",
+        "hiddenTargetPhrase": "We meet in February.",
         "orderedTokens": [
-          "I",
-          "take",
-          "the",
-          "bus",
-          "on",
-          "weekdays"
+          "We",
+          "meet",
+          "in",
+          "February"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1002,24 +1001,60 @@
     {
       "interactionId": "en:lesson-10:session-30:i15",
       "ordinal": 22,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Друг телефонує вам на зупинку. Скажіть, що ви з колегою робите зараз: «Ми чекаємо на автобус»",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-30:i15:audio"
       ],
-      "accessibilityLabel": "Друг телефонує вам на зупинку. Скажіть, що ви з колегою робите зараз: «Ми чекаємо на автобус»",
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-30:i15:audio",
+          "transcript": "I travel in July."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I travel in July.",
+        "orderedTokens": [
+          "I",
+          "travel",
+          "in",
+          "July"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-30:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що плаваєте в серпні",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-30:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що плаваєте в серпні",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-10:session-30:i15:audio",
-          "transcript": "We are waiting for a bus."
+          "audioTargetId": "en:lesson-10:session-30:i16:audio",
+          "transcript": "I swim in August."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are waiting for a bus.",
+        "targetPhrase": "I swim in August.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1033,72 +1068,29 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-10:session-30:i16",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Друг запитує, як ви зазвичай дістаєтеся на роботу в будні. Скажіть: «Я їжджу автобусом у будні». Поставте on weekdays у кінці",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Друг запитує, як ви зазвичай дістаєтеся на роботу в будні. Скажіть: «Я їжджу автобусом у будні». Поставте on weekdays у кінці",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I take the bus on weekdays.",
-        "localizedMeaning": {
-          "ru": "Друг спрашивает, как вы обычно добираетесь на работу по будням. Скажите: «Я езжу на автобусе по будням». Поставьте on weekdays в конце",
-          "uk": "Друг запитує, як ви зазвичай дістаєтеся на роботу в будні. Скажіть: «Я їжджу автобусом у будні». Поставте on weekdays у кінці"
-        },
-        "orderedTokens": [
-          "I",
-          "take",
-          "the",
-          "bus",
-          "on",
-          "weekdays"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-10:session-30:i17",
       "ordinal": 24,
-      "purpose": "independent_check",
+      "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Друг запитує, чому вранці так багато машин. Ви знаєте, що почався найжвавіший період руху. Скажіть: «Зараз година пік»",
+      "prompt": "Скажіть, що відвідуєте сестру в січні",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-10:session-30:i17:audio"
       ],
-      "accessibilityLabel": "Друг запитує, чому вранці так багато машин. Ви знаєте, що почався найжвавіший період руху. Скажіть: «Зараз година пік»",
+      "accessibilityLabel": "Скажіть, що відвідуєте сестру в січні",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-10:session-30:i17:audio",
-          "transcript": "It is rush hour."
+          "transcript": "I visit my sister in January."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It is rush hour.",
+        "targetPhrase": "I visit my sister in January.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
-        "scriptedRepeatRevealPolicy": {
-          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
-          "revealAfter": "first_submitted_attempt",
-          "answerExposedBeforeAttempt": false,
-          "targetPhraseVisibleBeforeAttempt": false,
-          "referenceAudioAvailableBeforeAttempt": false,
-          "modelPlaybackAvailableBeforeAttempt": false
-        },
         "honestOutcomeStates": [
           "PASS_CONFIDENT",
           "NEEDS_WORK_CONFIDENT",
@@ -1115,5 +1107,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "336a8039e43334816ae8742533030d086b6feb1ad9445b4ec8d049c61b71742f"
+  "learnerFingerprint": "209ef8694f95b3eb70c968dbef9f4546568607bb1323a831be8e6a1b5e4ccd0e"
 }

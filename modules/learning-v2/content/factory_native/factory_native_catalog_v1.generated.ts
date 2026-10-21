@@ -3733,16 +3733,16 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 29,
-    sourceFingerprint: "84afdbe6ec8ebfc334d58d47647764944e3f1872cb4255a608f8a1765e98fc51",
+    sourceFingerprint: "a9d4b8285378ff8b3d3f3f0c293e93cd6248eb640b0c655bb44b3d842b0fd479",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I usually go to bed before midnight; The countdown is starting; I can hear a chime","uk":"I usually go to bed before midnight; The countdown is starting; I can hear a chime"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"Follow me; We reach the station at nine; Please enter; I often get lost","uk":"Follow me; We reach the station at nine; Please enter; I often get lost"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({
     lessonOrdinal: 10, sessionOrdinal: 30,
-    sourceFingerprint: "6f3824225897779abfef64d7fecddf340f1c53bcc575f868d5e9040d66af71ac",
+    sourceFingerprint: "cdb84627888dc596b8127f62b2e45c7b8e81600dccc4398b6be78924e1c62e69",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I take the bus on weekdays; The commuter is waiting for a bus; It is rush hour","uk":"I take the bus on weekdays; The commuter is waiting for a bus; It is rush hour"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"I work in January; We meet in February; I travel in July; We visit our friends in August","uk":"I work in January; We meet in February; I travel in July; We visit our friends in August"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze({

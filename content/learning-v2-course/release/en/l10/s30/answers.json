@@ -1,107 +1,107 @@
 [
   {
-    "interactionId": "en:lesson-10:session-30:word:weekday",
-    "correctText": "weekday",
+    "interactionId": "en:lesson-10:session-30:word:January",
+    "correctText": "January",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-30:i01",
-    "correctText": "Today is a weekday.",
+    "correctText": "I work in January.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-30:i02",
-    "correctText": "I work every weekday.",
+    "correctText": "She works in January.",
     "correctResponseId": "en:lesson-10:session-30:i02:r1"
   },
   {
     "interactionId": "en:lesson-10:session-30:i03",
-    "correctText": "on",
+    "correctText": "in",
     "correctResponseId": "en:lesson-10:session-30:i03:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-30:word:commuter",
-    "correctText": "commuter",
+    "interactionId": "en:lesson-10:session-30:word:February",
+    "correctText": "February",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-30:i04",
-    "correctText": "The commuter is waiting.",
+    "correctText": "We meet in February.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-30:i05",
-    "correctText": "The commuter is on the train.",
+    "correctText": "They meet in February.",
     "correctResponseId": "en:lesson-10:session-30:i05:r1"
   },
   {
     "interactionId": "en:lesson-10:session-30:i06",
-    "correctText": "is",
+    "correctText": "meet",
     "correctResponseId": "en:lesson-10:session-30:i06:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-30:word:carpool",
-    "correctText": "carpool",
+    "interactionId": "en:lesson-10:session-30:word:July",
+    "correctText": "July",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-30:i07",
-    "correctText": "Our carpool has four people.",
+    "correctText": "I travel in July.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-30:i08",
-    "correctText": "Our carpool has four people.",
+    "correctText": "We travel in July.",
     "correctResponseId": "en:lesson-10:session-30:i08:r1"
   },
   {
     "interactionId": "en:lesson-10:session-30:i09",
-    "correctText": "has",
+    "correctText": "in",
     "correctResponseId": "en:lesson-10:session-30:i09:r1"
   },
   {
-    "interactionId": "en:lesson-10:session-30:word:rush-hour",
-    "correctText": "rush hour",
+    "interactionId": "en:lesson-10:session-30:word:August",
+    "correctText": "August",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-30:i10",
-    "correctText": "It is rush hour.",
+    "correctText": "We visit our friends in August.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-30:i11",
-    "correctText": "The buses are busy at rush hour.",
+    "correctText": "I work in August.",
     "correctResponseId": "en:lesson-10:session-30:i11:r1"
   },
   {
     "interactionId": "en:lesson-10:session-30:i12",
-    "correctText": "take",
+    "correctText": "visit",
     "correctResponseId": "en:lesson-10:session-30:i12:r1"
   },
   {
     "interactionId": "en:lesson-10:session-30:i13",
-    "correctText": "en:lesson-10:session-30:i13:p1=weekday\nen:lesson-10:session-30:i13:p2=commuter\nen:lesson-10:session-30:i13:p3=carpool\nen:lesson-10:session-30:i13:p4=rush hour",
+    "correctText": "en:lesson-10:session-30:i13:p1=January\nen:lesson-10:session-30:i13:p2=February\nen:lesson-10:session-30:i13:p3=July\nen:lesson-10:session-30:i13:p4=August",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-30:i14",
-    "correctText": "I take the bus on weekdays.",
+    "correctText": "We meet in February.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-30:i15",
-    "correctText": "We are waiting for a bus.",
+    "correctText": "I travel in July.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-30:i16",
-    "correctText": "I take the bus on weekdays.",
+    "correctText": "I swim in August.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-10:session-30:i17",
-    "correctText": "It is rush hour.",
+    "correctText": "I visit my sister in January.",
     "correctResponseId": null
   }
 ]

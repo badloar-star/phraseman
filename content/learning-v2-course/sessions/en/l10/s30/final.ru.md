@@ -1,151 +1,151 @@
-# Английский · Урок 10 · Занятие 30 — В будний день
+# Английский · Урок 10 · Занятие 30 — Назвать месяц
 
-**Ситуация.** Рассказать о своей обычной дороге на работу и о поездке сейчас.
+**Ситуация.** Сказать, в каком месяце вы работаете, отдыхаете и навещаете друзей.
 
-**Что вы освоите:** I take the bus on weekdays; The commuter is waiting for a bus; It is rush hour
-**Новые слова:** weekday, commuter, carpool, rush hour
+**Что вы освоите:** I work in January; We meet in February; I travel in July; We visit our friends in August
+**Новые слова:** January, February, July, August
 
 ## Интро 1
 
-### По будням
+### Январь
 
-Weekday — «будний день»: день с понедельника по пятницу, в отличие от выходных. Это название дней, а не утверждение, что все люди работают именно тогда. I take the bus on weekdays — «Я езжу на автобусе по будням». Повторяющуюся поездку описываем в Present Simple. Для «по будням» используем on weekdays.
+Друг спрашивает, свободны ли вы обычно в начале года. January — «январь»: I work in January — «Я работаю в январе». Когда называем месяц, перед ним ставим in. Названия месяцев в английском пишутся с большой буквы.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **I take the bus on weekdays.**
-- ❌ I takes the bus on weekdays. — *С I нужна take без s.*
-- ❌ I take the bus at weekdays. — *Говорим on weekdays, не at weekdays.*
+- ✅ **I work in January.**
+- ❌ I work on January. — *С месяцем нужна in.*
+- ❌ I works in January. — *С I нужна work без s.*
 
 ---
 
 ## Интро 2
 
-### Пассажир ждёт сейчас
+### Февраль
 
-Commuter — «человек, регулярно ездящий на работу или учёбу». Он может ехать на поезде, автобусе или машине. Сейчас вы видите такого пассажира на остановке: The commuter is waiting for a bus — «Человек, который регулярно ездит на работу, ждёт автобус». Для ожидания сейчас используем is + waiting.
+Вы с другом встречаетесь каждый год в феврале. February — «февраль»: We meet in February — «Мы встречаемся в феврале». Снова in перед месяцем. Это обычная ежегодная встреча, поэтому meet.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **The commuter is waiting for a bus.**
-- ❌ The commuter waiting for a bus. — *Перед waiting нужен is.*
-- ❌ The commuter are waiting for a bus. — *Commuter здесь один человек: is.*
+- ✅ **We meet in February.**
+- ❌ We meets in February. — *С we нужна meet без s.*
+- ❌ We meet at February. — *С месяцем нужна in, не at.*
 
 ---
 
 ## Интро 3
 
-### Час пик
+### Июль и август
 
-Rush hour — «час пик», время особенно интенсивного движения, часто утром или вечером. It is rush hour — «Сейчас час пик». Здесь называем текущий период, поэтому используем is. Now и ситуация «сейчас» не требуют Continuous во всех предложениях. Для конкретного действия: We are waiting for a bus now.
+Каждое лето вы путешествуете в июле, а в августе навещаете друзей. July — «июль»: I travel in July. August — «август»: We visit our friends in August. Это повторяющиеся дела, поэтому travel и visit. Перед обоими месяцами используем in.
 
 **Выберите фразу для этой ситуации.**
 
-- ✅ **It is rush hour.**
-- ❌ It rush hour. — *После it нужна связка is.*
-- ❌ It are rush hour. — *С it нужно is.*
+- ✅ **I travel in July.**
+- ❌ I travels in July. — *С I нужна travel без s.*
+- ❌ I travel on July. — *С месяцем нужна in.*
 
 ---
 
 ## Практика (21 задание)
 
-**1 · Карточка слова — weekday**
-<!-- interaction_id: en:lesson-10:session-30:word:weekday; family: word_card -->
-> **weekday** — «будний день». Today is a weekday. — «Сегодня будний день». Один из дней с понедельника по пятницу.
+**1 · Карточка слова — January**
+<!-- interaction_id: en:lesson-10:session-30:word:January; family: word_card -->
+> **January** — «январь». I work in January. — «Я работаю в январе».
 
-**2 · Сегодня вторник. Друг спрашивает, выходной ли это. Скажите: «Сегодня будний день»**
+**2 · Скажите, что работаете в январе. Месяц поставьте в конце**
 <!-- interaction_id: en:lesson-10:session-30:i01; family: phrase_builder -->
-Плитки: `weekday` `a` `is` `Today` → **Today is a weekday.**
+Плитки: `January` `in` `work` `I` → **I work in January.**
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-30:i02; family: listen_choose -->
-🔊 *I work every weekday.* → **I work every weekday.** · We work every weekday. · I walk every weekday.
-- We work every weekday. — *В записи звучит I work every weekday.*
-- I walk every weekday. — *В записи звучит I work every weekday.*
+🔊 *She works in January.* → **She works in January.** · He works in January. · We work in January.
+- He works in January. — *В записи звучит She works in January.*
+- We work in January. — *В записи звучит She works in January.*
 
-**4 · Выберите предлог для «по будням»**
+**4 · Выберите предлог перед месяцем**
 <!-- interaction_id: en:lesson-10:session-30:i03; family: context_gap_grammar -->
-I take the bus ___ weekdays. → **on** · at · in
-- at — *С weekdays используем on.*
-- in — *С weekdays используем on.*
+I work ___ January. → **in** · on · at
+- on — *Перед месяцем нужна in, не on.*
+- at — *Перед месяцем нужна in, не at.*
 
-**5 · Карточка слова — commuter**
-<!-- interaction_id: en:lesson-10:session-30:word:commuter; family: word_card -->
-> **commuter** — «человек, регулярно ездящий на работу или учёбу». The commuter is waiting. — «Пассажир, который регулярно ездит на работу, ждёт». Здесь человек по дороге на работу.
+**5 · Карточка слова — February**
+<!-- interaction_id: en:lesson-10:session-30:word:February; family: word_card -->
+> **February** — «февраль». We meet in February. — «Мы встречаемся в феврале».
 
-**6 · Вы видите на остановке знакомого пассажира, который каждый день ездит на работу. Скажите: «Этот пассажир ждёт»**
+**6 · Скажите, что встречаетесь в феврале. Месяц поставьте в конце**
 <!-- interaction_id: en:lesson-10:session-30:i04; family: phrase_builder -->
-Плитки: `waiting` `is` `commuter` `The` → **The commuter is waiting.**
+Плитки: `February` `in` `meet` `We` → **We meet in February.**
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-30:i05; family: listen_choose -->
-🔊 *The commuter is on the train.* → **The commuter is on the train.** · The commuter is on the bus. · The driver is on the train.
-- The commuter is on the bus. — *В записи звучит The commuter is on the train.*
-- The driver is on the train. — *В записи звучит The commuter is on the train.*
+🔊 *They meet in February.* → **They meet in February.** · We meet in February. · They meet in January.
+- We meet in February. — *В записи звучит They meet in February.*
+- They meet in January. — *В записи звучит They meet in February.*
 
-**8 · Пассажир ждёт сейчас. Выберите вспомогательный глагол**
+**8 · Выберите форму meet с we**
 <!-- interaction_id: en:lesson-10:session-30:i06; family: context_gap_grammar -->
-The commuter ___ waiting. → **is** · are · does
-- are — *Один commuter: is.*
-- does — *Перед waiting здесь нужно is.*
+We ___ in February. → **meet** · meets · meeting
+- meets — *С we нужна meet без s.*
+- meeting — *Для привычной встречи здесь нужна meet.*
 
-**9 · Карточка слова — carpool**
-<!-- interaction_id: en:lesson-10:session-30:word:carpool; family: word_card -->
-> **carpool** — «группа для совместных поездок на машине». Our carpool has four people. — «В нашей группе для совместных поездок четыре человека». Люди договариваются ехать вместе, например на работу.
+**9 · Карточка слова — July**
+<!-- interaction_id: en:lesson-10:session-30:word:July; family: word_card -->
+> **July** — «июль». I travel in July. — «Я путешествую в июле».
 
-**10 · Вы с коллегами ездите на работу вместе. Скажите другу: «В нашей группе для совместных поездок четыре человека»**
+**10 · Скажите, что путешествуете в июле. Месяц поставьте в конце**
 <!-- interaction_id: en:lesson-10:session-30:i07; family: phrase_builder -->
-Плитки: `people` `four` `has` `carpool` `Our` → **Our carpool has four people.**
+Плитки: `July` `in` `travel` `I` → **I travel in July.**
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-30:i08; family: listen_choose -->
-🔊 *Our carpool has four people.* → **Our carpool has four people.** · Our carpool has three people. · Their carpool has four people.
-- Our carpool has three people. — *В записи звучит Our carpool has four people.*
-- Their carpool has four people. — *В записи звучит Our carpool has four people.*
+🔊 *We travel in July.* → **We travel in July.** · I travel in July. · We travel in February.
+- I travel in July. — *В записи звучит We travel in July.*
+- We travel in February. — *В записи звучит We travel in July.*
 
-**12 · Выберите форму have для одной группы**
+**12 · Выберите предлог перед July**
 <!-- interaction_id: en:lesson-10:session-30:i09; family: context_gap_grammar -->
-Our carpool ___ four people. → **has** · have · having
-- have — *Carpool здесь одна группа: has.*
-- having — *Здесь нужна личная форма has.*
+I travel ___ July. → **in** · on · at
+- on — *Перед месяцем нужна in.*
+- at — *Перед месяцем нужна in.*
 
-**13 · Карточка слова — rush hour**
-<!-- interaction_id: en:lesson-10:session-30:word:rush-hour; family: word_card -->
-> **rush hour** — «час пик». It is rush hour. — «Сейчас час пик». Период особенно интенсивного движения.
+**13 · Карточка слова — August**
+<!-- interaction_id: en:lesson-10:session-30:word:August; family: word_card -->
+> **August** — «август». We visit our friends in August. — «Мы навещаем друзей в августе».
 
-**14 · Друг удивляется, почему на дороге так много машин. Скажите: «Сейчас час пик»**
+**14 · Скажите, что навещаете друзей в августе. Месяц поставьте в конце**
 <!-- interaction_id: en:lesson-10:session-30:i10; family: phrase_builder -->
-Плитки: `hour` `rush` `is` `It` → **It is rush hour.**
+Плитки: `August` `in` `friends` `our` `visit` `We` → **We visit our friends in August.**
 
 **15 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-10:session-30:i11; family: listen_choose -->
-🔊 *The buses are busy at rush hour.* → **The buses are busy at rush hour.** · The trains are busy at rush hour. · The buses are quiet at rush hour.
-- The trains are busy at rush hour. — *В записи звучит The buses are busy at rush hour.*
-- The buses are quiet at rush hour. — *В записи звучит The buses are busy at rush hour.*
+🔊 *I work in August.* → **I work in August.** · I work in July. · We work in August.
+- I work in July. — *В записи звучит I work in August.*
+- We work in August. — *В записи звучит I work in August.*
 
-**16 · Вы описываете обычную поездку. Выберите форму take**
+**16 · Выберите форму visit с we**
 <!-- interaction_id: en:lesson-10:session-30:i12; family: context_gap_grammar -->
-I usually ___ the bus. → **take** · takes · taking
-- takes — *С I нужна take без s.*
-- taking — *Для этой привычки нужна take.*
+We ___ our friends in August. → **visit** · visits · visiting
+- visits — *С we нужна visit без s.*
+- visiting — *Для привычного действия здесь нужна visit.*
 
-**17 · Соедините новые слова со значениями**
+**17 · Соедините месяцы с переводом**
 <!-- interaction_id: en:lesson-10:session-30:i13; family: speed_match -->
-weekday — будний день · commuter — человек, регулярно ездящий на работу или учёбу · carpool — группа для совместных поездок на машине · rush hour — час пик
+January — январь · February — февраль · July — июль · August — август
 
-**18 · Послушайте и соберите фразу**
+**18 · Соберите услышанную фразу**
 <!-- interaction_id: en:lesson-10:session-30:i14; family: listen_build_dictation -->
-🔊 *I take the bus on weekdays.* Плитки: `weekdays` `on` `bus` `the` `take` `I` → **I take the bus on weekdays.**
+🔊 *We meet in February.* Плитки: `February` `in` `meet` `We` → **We meet in February.**
 
-**19 · Друг звонит вам на остановку. Скажите, что вы с коллегой делаете сейчас: «Мы ждём автобус»**
-<!-- interaction_id: en:lesson-10:session-30:i15; family: scripted_repeat_compare -->
-🎙 **We are waiting for a bus.**
+**19 · Соберите услышанную фразу**
+<!-- interaction_id: en:lesson-10:session-30:i15; family: listen_build_dictation -->
+🔊 *I travel in July.* Плитки: `July` `in` `travel` `I` → **I travel in July.**
 
-**20 · Друг спрашивает, как вы обычно добираетесь на работу по будням. Скажите: «Я езжу на автобусе по будням». Поставьте on weekdays в конце**
-<!-- interaction_id: en:lesson-10:session-30:i16; family: phrase_builder -->
-Плитки: `weekdays` `on` `bus` `the` `take` `I` → **I take the bus on weekdays.**
+**20 · Скажите, что плаваете в августе**
+<!-- interaction_id: en:lesson-10:session-30:i16; family: scripted_repeat_compare -->
+🎙 **I swim in August.**
 
-**21 · Друг спрашивает, почему утром так много машин. Вы знаете, что начался самый оживлённый период движения. Скажите: «Сейчас час пик»**
-<!-- interaction_id: en:lesson-10:session-30:i17; family: scripted_repeat_compare; purpose: independent_check -->
-🎙 **It is rush hour.**
+**21 · Скажите, что навещаете сестру в январе**
+<!-- interaction_id: en:lesson-10:session-30:i17; family: scripted_repeat_compare -->
+🎙 **I visit my sister in January.**
 

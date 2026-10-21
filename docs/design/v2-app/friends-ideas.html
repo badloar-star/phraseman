@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Друзья, которые учат</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+/* Макет: страница-отчёт сверху (идеи → оценка → рекомендация), ниже телефоны 2.0 парами «Сумерки» (светлая) · «Океан» (тёмная).
+   Телефоны рисуются токенами liquidGlassTokens приложения (те же, что в vstrechaite-2-0.html), страница — своими токенами в обеих темах. */
+:root {
+  --page: #F4F5FA; --ink: #17181E; --ink-2: #4A4C57; --ink-3: #6B6D78;
+  --panel: #FFFFFF; --rule: rgba(23,24,30,.10); --accent: #5F5CB1; --accent-soft: rgba(95,92,177,.12);
+  --good: #2F8A55; --warn: #A86A12; --bad: #B4443A;
+  --f-ui: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --page: #0D0F14; --ink: #EEF0F6; --ink-2: #B9BCC8; --ink-3: #8D90A0;
+  --panel: #161922; --rule: rgba(238,240,246,.10); --accent: #9C99F0; --accent-soft: rgba(156,153,240,.16);
+  --good: #6FD08C; --warn: #E2B25A; --bad: #F2766B; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --page: #0D0F14; --ink: #EEF0F6; --ink-2: #B9BCC8; --ink-3: #8D90A0;
+  --panel: #161922; --rule: rgba(238,240,246,.10); --accent: #9C99F0; --accent-soft: rgba(156,153,240,.16);
+  --good: #6FD08C; --warn: #E2B25A; --bad: #F2766B; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--page); color: var(--ink); font: 400 15px/1.55 var(--f-ui); -webkit-font-smoothing: antialiased;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1180px; margin: 0 auto; padding-block: 32px 80px; display: grid; gap: 44px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(28px, 4.2vw, 40px); line-height: 1.12; font-weight: 800; letter-spacing: -.02em; }
+h2 { font-size: 22px; line-height: 1.25; font-weight: 700; letter-spacing: -.01em; }
+h3 { font-size: 17px; line-height: 1.3; font-weight: 700; }
+p { margin: 0; max-width: 68ch; }
+.lead { color: var(--ink-2); font-size: 16px; }
+.kicker { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.head { display: grid; gap: 12px; }
+.sec { display: grid; gap: 16px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.fact { background: var(--panel); border-radius: 14px; padding: 14px 16px; display: grid; gap: 4px; min-width: 0; }
+.fact b { font-size: 14px; }
+.fact span { color: var(--ink-2); font-size: 14px; line-height: 1.45; }
+.tablebox { overflow-x: auto; background: var(--panel); border-radius: 16px; }
+table { border-collapse: collapse; width: 100%; min-width: 860px; font-size: 14px; }
+th, td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--rule); }
+th { font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-3); }
+tr:last-child td { border-bottom: 0; }
+td.n { font-variant-numeric: tabular-nums; color: var(--ink-3); width: 32px; }
+td .t { font-weight: 700; display: block; }
+td .d { color: var(--ink-2); }
+.pill { display: inline-flex; align-items: center; height: 22px; padding: 0 9px; border-radius: 11px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+.p-hi { background: color-mix(in srgb, var(--good) 16%, transparent); color: var(--good); }
+.p-mid { background: color-mix(in srgb, var(--warn) 18%, transparent); color: var(--warn); }
+.p-lo { background: color-mix(in srgb, var(--bad) 15%, transparent); color: var(--bad); }
+tr.top td.n { color: var(--accent); font-weight: 800; }
+.reco { background: var(--panel); border-radius: 16px; padding: 18px 20px; display: grid; gap: 10px; }
+.reco ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; max-width: 80ch; }
+.reco li::marker { color: var(--accent); font-weight: 700; }
+.note { color: var(--ink-3); font-size: 13px; }
+
+/* ---------- телефоны ---------- */
+.screen { display: grid; gap: 14px; }
+.screen-head { display: grid; gap: 6px; }
+.pair { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
+.phcol { display: grid; gap: 8px; width: min(380px, 100%); }
+.phlbl { font-size: 12px; font-weight: 700; color: var(--ink-3); letter-spacing: .04em; text-transform: uppercase; }
+.why { display: grid; gap: 6px; flex: 1 1 260px; min-width: 0; max-width: 420px; color: var(--ink-2); font-size: 14px; }
+.why b { color: var(--ink); }
+
+.th-ink { --bg0:#F3F4FD; --bg1:#EAEBFE; --bg2:#ECE4F7; --glowA:#C9CCFDB3; --glowB:#E0CEF899; --glowC:#E0E2FE80;
+  --tx:#17181E; --sc:#595A63; --mu:#5E5F67; --acc:#5F5CB1; --acc-ink:#FFFFFF; --acc-soft:#E6E9FFF7;
+  --cta:#1D1D2F; --cta-ink:#FFFFFF; --card:#FCFCFF; --ctrl:#DBDDEC; --sheet:#FBFBFEFA; --good-c:#2F8A55; --bad-c:#C0453A;
+  --sh: 0 10px 22px -12px #36365929; --sb:#17181E; --flame:#E0742A; }
+.th-marine { --bg0:#002936; --bg1:#000F16; --bg2:#001B17; --glowA:#008AA4C7; --glowB:#008F84B3; --glowC:#00596D85;
+  --tx:#F6FBFD; --sc:#B8CFD6; --mu:#98ACB1; --acc:#5CCFEB; --acc-ink:#001A22; --acc-soft:#006C859E;
+  --cta:#D0EAED; --cta-ink:#010708; --card:#002027; --ctrl:#123037; --sheet:#03171CF5; --good-c:#6FD08C; --bad-c:#F2766B;
+  --sh: 0 16px 28px -14px rgba(0,0,0,.85); --sb:#F6FBFD; --flame:#FFA25C; }
+.ph { position: relative; border-radius: 40px; overflow: hidden; color: var(--tx); font-family: var(--f-ui); min-height: 760px;
+  box-shadow: 0 0 0 7px #121216, 0 0 0 8px #2A2A2E, 0 24px 60px rgba(0,0,0,.28);
+  background: radial-gradient(78% 36% at 6% 2%, var(--glowA), transparent 72%), radial-gradient(62% 32% at 108% 56%, var(--glowB), transparent 74%), radial-gradient(80% 28% at 26% 108%, var(--glowC), transparent 76%), linear-gradient(180deg, var(--bg0), var(--bg1) 55%, var(--bg2));
+  padding: 14px 18px 26px; display: flex; flex-direction: column; gap: 14px; }
+.sb { display: flex; justify-content: space-between; font-size: 14px; font-weight: 600; color: var(--sb); padding: 2px 10px 4px; }
+.tabs3 { display: flex; gap: 20px; } .tabs3 span { font-size: 16px; font-weight: 600; color: var(--sc); padding-bottom: 7px; border-bottom: 3px solid transparent; }
+.tabs3 span.on { color: var(--tx); border-bottom-color: var(--tx); }
+.plate { background: var(--card); border-radius: 18px; box-shadow: var(--sh); padding: 14px; display: grid; gap: 10px; }
+.ov { font-size: 13px; line-height: 17px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--sc); }
+.big { font-size: 22px; line-height: 27px; font-weight: 700; letter-spacing: -.2px; }
+.t16 { font-size: 16px; line-height: 21px; font-weight: 700; }
+.s16 { font-size: 16px; line-height: 21px; color: var(--sc); }
+.s13 { font-size: 13px; line-height: 17px; color: var(--sc); }
+.row { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.grow { flex: 1; min-width: 0; }
+.coin { position: relative; width: 44px; height: 44px; border-radius: 50%; flex: none;
+  background: radial-gradient(circle at 34% 30%, #FFF3D6 0 8%, transparent 9%), radial-gradient(circle at 50% 50%, var(--m1) 0 58%, var(--m2) 59% 70%, var(--m1) 71%); box-shadow: inset 0 -2px 4px rgba(0,0,0,.25); }
+.coin.cu { --m1:#C9774A; --m2:#9E5432; } .coin.ag { --m1:#C9CDD3; --m2:#9EA4AC; } .coin.au { --m1:#E8BE52; --m2:#B88A26; } .coin.pt { --m1:#DDE6EE; --m2:#A9B7C4; }
+.coin.plus::after { content: ""; position: absolute; inset: -5px; border-radius: 50%; border: 2.5px solid var(--acc); }
+.coin.lg { width: 64px; height: 64px; } .coin.lg.plus::after { inset: -6px; border-width: 3px; }
+.chip { display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 10px; border-radius: 13px; background: var(--ctrl); font-size: 13px; font-weight: 700; white-space: nowrap; }
+.chip.acc { background: var(--acc-soft); color: var(--tx); }
+.chip svg { width: 14px; height: 14px; }
+.fl { color: var(--flame); }
+.btn { display: flex; align-items: center; justify-content: center; gap: 8px; height: 52px; border-radius: 26px; background: var(--cta); color: var(--cta-ink); font-size: 16px; font-weight: 700; }
+.btn2 { display: flex; align-items: center; justify-content: center; height: 48px; border-radius: 24px; background: var(--ctrl); color: var(--tx); font-size: 16px; font-weight: 700; }
+.mini { display: inline-flex; align-items: center; height: 34px; padding: 0 14px; border-radius: 17px; background: var(--cta); color: var(--cta-ink); font-size: 14px; font-weight: 700; white-space: nowrap; }
+.mini.soft { background: var(--ctrl); color: var(--tx); }
+.list { display: grid; gap: 8px; }
+.frow { background: var(--card); border-radius: 16px; box-shadow: var(--sh); padding: 10px 12px; }
+.bar { height: 8px; border-radius: 4px; background: var(--ctrl); overflow: hidden; display: flex; }
+.bar i { display: block; height: 100%; }
+.bar .me { background: var(--acc); } .bar .fr { background: color-mix(in srgb, var(--acc) 45%, var(--ctrl)); }
+.dots { display: flex; gap: 6px; }
+.dots i { width: 30px; height: 30px; border-radius: 9px; background: var(--ctrl); display: flex; align-items: center; justify-content: center; font-style: normal; font-size: 11px; font-weight: 700; color: var(--sc); }
+.dots i.both { background: var(--acc); color: var(--acc-ink); } .dots i.half { background: var(--acc-soft); color: var(--tx); }
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tile { background: var(--card); border-radius: 16px; box-shadow: var(--sh); padding: 12px; display: grid; gap: 8px; }
+.ico { width: 46px; height: 46px; border-radius: 12px; background: color-mix(in srgb, var(--tx) 9%, transparent); display: flex; align-items: center; justify-content: center; }
+.ico svg { width: 22px; height: 22px; }
+.sheet { margin-top: auto; background: var(--sheet); border-radius: 26px 26px 0 0; margin-inline: -18px; margin-bottom: -26px; padding: 8px 18px 28px; display: grid; gap: 14px; box-shadow: 0 -18px 40px rgba(0,0,0,.18); }
+.grab { width: 36px; height: 5px; border-radius: 3px; background: color-mix(in srgb, var(--tx) 22%, transparent); margin: 0 auto 2px; }
+.score { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; text-align: center; }
+.score .num { font-size: 40px; line-height: 44px; font-weight: 800; letter-spacing: -.5px; font-variant-numeric: tabular-nums; }
+.vs { font-size: 13px; font-weight: 700; color: var(--sc); }
+.qrow { display: grid; grid-template-columns: 1fr 26px 26px; gap: 8px; align-items: center; padding: 9px 0; border-top: 1px solid color-mix(in srgb, var(--tx) 9%, transparent); }
+.qrow:first-child { border-top: 0; }
+.mk { width: 26px; height: 26px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.mk.ok { background: color-mix(in srgb, var(--good-c) 20%, transparent); color: var(--good-c); }
+.mk.no { background: color-mix(in srgb, var(--bad-c) 18%, transparent); color: var(--bad-c); }
+.mk svg { width: 15px; height: 15px; }
+.colh { display: grid; grid-template-columns: 1fr 26px 26px; gap: 8px; font-size: 12px; font-weight: 700; color: var(--sc); }
+.colh span:not(:first-child) { text-align: center; }
+.bub { max-width: 82%; padding: 10px 13px; border-radius: 18px; font-size: 16px; line-height: 21px; }
+.bub.them { background: var(--card); box-shadow: var(--sh); border-bottom-left-radius: 6px; }
+.bub.me { margin-left: auto; background: var(--acc); color: var(--acc-ink); border-bottom-right-radius: 6px; }
+.bub .ru { display: block; font-size: 13px; line-height: 17px; color: var(--sc); margin-top: 3px; }
+.bub.me .ru { color: color-mix(in srgb, var(--acc-ink) 75%, transparent); }
+.who { font-size: 13px; font-weight: 700; color: var(--sc); margin-bottom: -6px; }
+.opt { background: var(--card); box-shadow: var(--sh); border-radius: 14px; padding: 12px 14px; font-size: 16px; line-height: 21px; font-weight: 600; }
+.opt.sel { background: var(--acc-soft); }
+.mic { width: 56px; height: 56px; border-radius: 50%; background: var(--cta); color: var(--cta-ink); display: flex; align-items: center; justify-content: center; flex: none; }
+.mic svg { width: 24px; height: 24px; }
+.lesson { display: flex; gap: 12px; align-items: center; }
+.reward { display: flex; gap: 10px; align-items: center; background: var(--acc-soft); border-radius: 14px; padding: 10px 12px; font-size: 15px; font-weight: 600; }
+.ph svg { display: block; }
+@media (prefers-reduced-motion: no-preference) { .bar i { transition: width .6s cubic-bezier(.22,1,.36,1); } }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<header class="head">
+  <span class="kicker">PhraseMan 2.0 · решение владельца №43 · 21.10</span>
+  <h1>Друзья, которые учат</h1>
+  <p class="lead">Сейчас «Друзья» — список монет с подписью «N дней вместе», кнопки «Позвать» и «Дать пять». Ниже — 10 идей, как превратить его в способ учить английский вдвоём, с оценкой пользы, цены, риска и стоимости Firebase, рекомендация по порядку и макеты пяти лучших экранов в двух темах. Запрос пользователя из поддержки (#3): «играть или общаться с друзьями на английском».</p>
+</header>
+
+<section class="sec" aria-labelledby="now">
+  <h2 id="now">Что есть сейчас</h2>
+  <div class="facts">
+    <div class="fact"><b>Строка друга</b><span>Монета ранга 44, имя, «N дней вместе». Кольца Plus нет, хотя флаги Plus уже приходят в профиле друга.</span></div>
+    <div class="fact"><b>Действия</b><span>«Позвать» (пуш с лимитами и тихими часами) и «Дать пять» (кулдаун уведомления 6 ч). Чата и общих занятий нет.</span></div>
+    <div class="fact"><b>Заготовки без сервера</b><span>Маркеры «приглашение на урок» и «дуэль» уже рисуются в приложении, но сервер их не создаёт.</span></div>
+    <div class="fact"><b>Данные друга</b><span>Один вызов friendsGetProfiles на до 100 друзей, кэш 5–30 мин: серия, дни активности (activeDays), этаж Пика, Plus.</span></div>
+    <div class="fact"><b>Урок прошлого</b><span>Лента активности друзей удалена: ~9 000 чтений в сутки. Новые идеи строим без живых подписок.</span></div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="ideas">
+  <h2 id="ideas">10 идей</h2>
+  <p class="note">Польза — для удержания и для самого английского. Цена — объём работы клиента и сервера. Firebase — новые чтения и записи на одного пользователя в день при обычном использовании.</p>
+  <div class="tablebox">
+    <table>
+      <thead><tr><th>№</th><th>Идея</th><th>Польза</th><th>Цена</th><th>Риск</th><th>Firebase</th></tr></thead>
+      <tbody>
+        <tr class="top"><td class="n">1</td><td><span class="t">Серия вдвоём</span><span class="d">Огонь пары растёт, если сегодня занимались оба. Пропустил один — пламя тускнеет, кнопка «Позвать» прямо в строке.</span></td><td><span class="pill p-hi">высокая</span></td><td><span class="pill p-hi">низкая</span></td><td><span class="pill p-hi">низкий</span></td><td>0 новых чтений и записей: считается на телефоне из activeDays, которые уже есть в кэше профилей.</td></tr>
+        <tr class="top"><td class="n">2</td><td><span class="t">Урок вместе</span><span class="d">После урока — «Позвать друга на этот урок». Друг проходит его сегодня — оба получают монеты «вместе».</span></td><td><span class="pill p-hi">высокая</span></td><td><span class="pill p-hi">низкая</span></td><td><span class="pill p-hi">низкий</span></td><td>1 вызов функции и 1 уведомление на приглашение (как «Позвать»); маркер приглашения в приложении уже есть.</td></tr>
+        <tr class="top"><td class="n">3</td><td><span class="t">Дуэль на 5 фраз</span><span class="d">Асинхронно: ты переводишь 5 фраз из пройденных уроков, друг — те же 5. Итог по точности и времени, реванш.</span></td><td><span class="pill p-hi">высокая</span></td><td><span class="pill p-mid">средняя</span></td><td><span class="pill p-mid">средний</span></td><td>1 документ дуэли: 2 записи (ходы) + 1 чтение итога. Фразы — id из курса на телефоне, без загрузки текста.</td></tr>
+        <tr class="top"><td class="n">4</td><td><span class="t">Цель недели вдвоём</span><span class="d">10 уроков на двоих за неделю, две полосы в одной: твой вклад и друга. Награда — общая.</span></td><td><span class="pill p-hi">высокая</span></td><td><span class="pill p-mid">средняя</span></td><td><span class="pill p-hi">низкий</span></td><td>0 новых чтений: поле «уроков за неделю» в публичном профиле, пишется в том же пакете, что и итог урока.</td></tr>
+        <tr class="top"><td class="n">5</td><td><span class="t">Диалог по ролям</span><span class="d">Сценка из курса на двоих: ты — бариста, друг — гость. Ходы по очереди, ответы выбираются из готовых, можно сказать вслух.</span></td><td><span class="pill p-hi">высокая</span></td><td><span class="pill p-lo">высокая</span></td><td><span class="pill p-mid">средний</span></td><td>1 запись на ход (≤ 8 ходов) + чтение при открытии уведомления; пуш на ход с теми же лимитами, что у «Позвать».</td></tr>
+        <tr><td class="n">6</td><td><span class="t">Итог недели друга</span><span class="d">Карточка раз в неделю вместо ленты: серия, уроков, этаж Пика. Реакция — существующая «Дать пять».</span></td><td><span class="pill p-mid">средняя</span></td><td><span class="pill p-hi">низкая</span></td><td><span class="pill p-hi">низкий</span></td><td>0 новых чтений: всё из кэша профилей.</td></tr>
+        <tr><td class="n">7</td><td><span class="t">Общий набор карточек</span><span class="d">Отправить свой набор другу; видно, сколько он уже выучил.</span></td><td><span class="pill p-mid">средняя</span></td><td><span class="pill p-mid">средняя</span></td><td><span class="pill p-hi">низкий</span></td><td>1 запись на отправку; прогресс друга — 1 чтение при открытии набора.</td></tr>
+        <tr><td class="n">8</td><td><span class="t">Фраза дня вдвоём</span><span class="d">Поверх «Опроса дня»: оба переводят одну фразу, ответ друга открывается после своего.</span></td><td><span class="pill p-mid">средняя</span></td><td><span class="pill p-hi">низкая</span></td><td><span class="pill p-hi">низкий</span></td><td>1 запись в день; ответы друзей — только счётчик, без чтения каждого.</td></tr>
+        <tr><td class="n">9</td><td><span class="t">Подарок энергии</span><span class="d">«Поддержи друга»: 1 заряд энергии в день.</span></td><td><span class="pill p-mid">средняя</span></td><td><span class="pill p-hi">низкая</span></td><td><span class="pill p-lo">высокий</span></td><td>1 вызов, 2 записи в день. Риск — экономика энергии и Plus: бесплатная энергия заменяет покупку.</td></tr>
+        <tr><td class="n">10</td><td><span class="t">Голосовая фраза</span><span class="d">Записать 5 секунд английской фразы другу, он отвечает голосом.</span></td><td><span class="pill p-hi">высокая</span></td><td><span class="pill p-lo">высокая</span></td><td><span class="pill p-lo">высокий</span></td><td>Хранилище ~50 КБ на сообщение, модерация голоса, правка политики конфиденциальности (микрофон, дети). Отложить.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="reco" aria-labelledby="reco">
+  <h2 id="reco">Рекомендация</h2>
+  <ol>
+    <li><b>Сейчас, почти бесплатно:</b> кольцо Plus и «Серия вдвоём» прямо в строке друга (идея 1). Ноль новых чтений, видно каждый день.</li>
+    <li><b>Следом:</b> «Урок вместе» (2). Маркер приглашения уже в приложении, не хватает только серверного создания приглашения.</li>
+    <li><b>Ответ на «хочу играть»:</b> «Дуэль на 5 фраз» (3). Асинхронно, без живых подписок, фразы из уже пройденного.</li>
+    <li><b>Затем:</b> «Цель недели вдвоём» (4) — одна строка-поле в профиле.</li>
+    <li><b>Ответ на «хочу общаться»:</b> «Диалог по ролям» (5) — только готовые реплики, поэтому без модерации свободного текста.</li>
+  </ol>
+  <p class="note">Не брать до решения владельца: подарок энергии (бьёт по экономике Plus) и голосовые сообщения (модерация, политика конфиденциальности, детские данные).</p>
+</section>
+
+<section class="sec" aria-labelledby="mock">
+  <h2 id="mock">Макеты пяти экранов</h2>
+  <p class="note">Каждый экран — в светлой «Сумерки» и тёмной «Океан». Имена и числа — демонстрационные. Кольцо Plus — акцентное кольцо вокруг монеты (решение владельца). Все действия отвечают мгновенно: отметка ставится на телефоне, сервер догоняет фоном.</p>
+  <div id="screens" class="sec"></div>
+</section>
+
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var S = function (body, w) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' + (w || 1.9) + '" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + body + '</svg>'; };
+  var I = {
+    flame: S('<path d="M12 21c-3.9 0-6.5-2.6-6.5-6.1 0-3.4 2.6-5.5 3.7-8.4.3 1.9 1.4 3 2.5 3.4C11.4 7.3 13 4.6 15.3 3c-.3 3.2 3.2 5.6 3.2 10.4 0 4.6-2.7 7.6-6.5 7.6Z"/>'),
+    check: S('<path d="M5 12.5 10 17.5 19 7.5"/>', 2.6),
+    cross: S('<path d="M7 7l10 10M17 7 7 17"/>', 2.6),
+    duel: S('<path d="M4 20l7-7M9 4l11 11M14 20l-2-2M20 14l-2-2M4 4l4 1 9 9-3 3-9-9Z"/>'),
+    book: S('<path d="M4 5.5C4 4.7 4.7 4 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5Z"/><path d="M20 5.5c0-.8-.7-1.5-1.5-1.5H13v16h5.5c.8 0 1.5-.7 1.5-1.5Z"/>'),
+    chat: S('<path d="M4 5h16v10H9l-5 4Z"/><path d="M8 9h8M8 12h5"/>'),
+    hand: S('<path d="M8 13V6.5a1.5 1.5 0 0 1 3 0V12M11 11V5a1.5 1.5 0 0 1 3 0v6M14 11V6.5a1.5 1.5 0 0 1 3 0V14c0 4-2.5 7-6 7-2.5 0-4-1.2-5.3-3.4L4 14.5a1.5 1.5 0 0 1 2.6-1.5L8 15"/>'),
+    mic: S('<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/>'),
+    play: S('<path d="M8 5l11 7-11 7Z"/>'),
+    coin: S('<circle cx="12" cy="12" r="8"/><path d="M12 8v8M9.5 10h4a1.8 1.8 0 0 1 0 3.6h-3"/>'),
+    chev: S('<path d="M9 6l6 6-6 6"/>'),
+    plus: S('<path d="M12 5v14M5 12h14"/>'),
+    bus: S('<rect x="5" y="4" width="14" height="13" rx="3"/><path d="M5 11h14M8 20v-3M16 20v-3"/>'),
+    cafe: S('<path d="M5 9h11v5a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5Z"/><path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H16M9 3v3M12 3v3"/>')
+  };
+  var coin = function (m, plus, lg) { return '<span class="coin ' + m + (plus ? ' plus' : '') + (lg ? ' lg' : '') + '"' + (plus ? ' aria-label="Plus"' : '') + '></span>'; };
+  var sb = '<div class="sb"><span>9:41</span><span>●●● 100%</span></div>';
+
+  // 1 — список друзей: Plus-кольцо, серия вдвоём в строке, «Позвать» у того, кто сегодня не занимался, дуэль «Ход за тобой»
+  function friendsList() {
+    var row = function (m, plus, name, flame, today, right) {
+      return '<div class="frow row">' + coin(m, plus) + '<div class="grow"><div class="t16">' + name + '</div>' +
+        '<div class="row" style="gap:8px;margin-top:4px"><span class="chip"><span class="fl">' + I.flame + '</span>' + flame + '</span><span class="s13">' + today + '</span></div></div>' + right + '</div>';
+    };
+    return sb + '<div class="tabs3"><span>Пик</span><span class="on">Друзья</span><span>Наборы</span></div>' +
+      '<div class="plate"><div class="ov">Цель недели · с Ирой</div><div class="row"><div class="big grow">7 из 10 уроков</div><span class="s13">ещё 3 дня</span></div>' +
+      '<div class="bar" role="img" aria-label="Ты 4 урока, Ира 3 урока"><i class="me" style="width:40%"></i><i class="fr" style="width:30%"></i></div>' +
+      '<div class="row s13" style="gap:14px"><span>Ты — 4</span><span>Ира — 3</span></div></div>' +
+      '<div class="ov" style="margin-top:4px">Ваши друзья</div><div class="list">' +
+      row('au', true, 'Ира', '12 дней', 'сегодня ✓', '<span class="chip acc">Ход за тобой</span>') +
+      row('ag', false, 'Марк', '5 дней', 'ещё не занимался', '<span class="mini">Позвать</span>') +
+      row('pt', true, 'Олег', '31 день', 'сегодня ✓', '<span class="s16" style="width:20px">' + I.chev + '</span>') +
+      row('cu', false, 'Соня', '—', 'была 3 дня назад', '<span class="mini soft">Позвать</span>') +
+      '</div><div class="btn2" style="margin-top:auto">' + '<span style="width:20px">' + I.plus + '</span>Добавить друга</div>';
+  }
+
+  // 2 — шторка «Вместе»: серия пары по дням, четыре действия
+  function together() {
+    var days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+    var st = ['both', 'both', 'half', 'both', 'both', 'both', ''];
+    var dots = days.map(function (d, i) { return '<i class="' + st[i] + '" title="' + d + '">' + d + '</i>'; }).join('');
+    var tile = function (ic, t, s) { return '<div class="tile"><span class="ico">' + ic + '</span><div class="t16">' + t + '</div><div class="s13">' + s + '</div></div>'; };
+    return sb + '<div class="tabs3"><span>Пик</span><span class="on">Друзья</span><span>Наборы</span></div>' +
+      '<div class="frow row" style="opacity:.55">' + coin('ag', false) + '<div class="grow t16">Марк</div></div>' +
+      '<div class="sheet"><div class="grab"></div>' +
+      '<div class="row">' + coin('au', true, true) + '<div class="grow"><div class="big">Ира</div><div class="s16">Plus · занималась сегодня в 8:40</div></div></div>' +
+      '<div class="plate"><div class="row"><span class="fl" style="width:28px">' + I.flame + '</span><div class="grow"><div class="t16">Серия вдвоём — 12 дней</div><div class="s13">Позанимайтесь оба сегодня, чтобы продлить</div></div></div><div class="dots">' + dots + '</div></div>' +
+      '<div class="tiles">' + tile(I.duel, 'Дуэль', '5 фраз на скорость') + tile(I.book, 'Урок вместе', 'Позвать на урок') + tile(I.chat, 'Диалог', 'Сценка по ролям') + tile(I.hand, 'Дать пять', 'Без слов') + '</div></div>';
+  }
+
+  // 3 — итог дуэли
+  function duel() {
+    var q = function (ru, en, a, b) {
+      var mk = function (ok) { return '<span class="mk ' + (ok ? 'ok' : 'no') + '">' + (ok ? I.check : I.cross) + '</span>'; };
+      return '<div class="qrow"><div><div class="t16" style="font-weight:600">' + en + '</div><div class="s13">' + ru + '</div></div>' + mk(a) + mk(b) + '</div>';
+    };
+    return sb + '<div class="row"><span class="s16" style="width:22px;transform:scaleX(-1)">' + I.chev + '</span><div class="grow t16">Дуэль · 5 фраз</div><span class="s13">Урок 6</span></div>' +
+      '<div class="plate"><div class="score"><div>' + coin('cu', false, true) + '<div class="num">4</div><div class="s13">Ты · 0:48</div></div><div class="vs">против</div>' +
+      '<div>' + coin('au', true, true) + '<div class="num">3</div><div class="s13">Ира · 1:05</div></div></div>' +
+      '<div class="chip acc" style="justify-self:center">Победа · +15 монет</div></div>' +
+      '<div class="plate"><div class="colh"><span>Фраза</span><span>Ты</span><span>Ира</span></div><div>' +
+      q('Я обычно езжу на работу на автобусе.', 'I usually take the bus to work.', true, true) +
+      q('Она встаёт в семь.', 'She gets up at seven.', true, false) +
+      q('Мы обедаем в полдень.', 'We have lunch at noon.', true, true) +
+      q('Он не пьёт кофе.', 'He doesn’t drink coffee.', false, true) +
+      q('Когда ты заканчиваешь?', 'When do you finish?', true, false) + '</div></div>' +
+      '<div style="margin-top:auto;display:grid;gap:10px"><div class="btn">Реванш</div><div class="btn2">Разобрать ошибки</div></div>';
+  }
+
+  // 4 — приглашение «Урок вместе» на стороне друга
+  function invite() {
+    return sb + '<div class="tabs3"><span>Пик</span><span class="on">Друзья</span><span>Наборы</span></div>' +
+      '<div class="frow row" style="opacity:.55">' + coin('ag', false) + '<div class="grow t16">Марк</div></div>' +
+      '<div class="frow row" style="opacity:.55">' + coin('pt', true) + '<div class="grow t16">Олег</div></div>' +
+      '<div class="sheet"><div class="grab"></div>' +
+      '<div class="row">' + coin('au', true) + '<div class="grow"><div class="ov">Урок вместе</div><div class="big">Ира зовёт тебя на урок</div></div></div>' +
+      '<div class="plate lesson"><span class="ico" style="width:55px;height:55px;border-radius:14px">' + I.bus + '</span><div class="grow"><div class="s13">Урок 6 · Распорядок дня</div><div class="t16">Дорога на работу</div><div class="s13">Ира прошла за 6 минут · 3 звезды</div></div></div>' +
+      '<div class="reward"><span style="width:22px">' + I.coin + '</span><span>+20 монет каждому, если пройдёшь сегодня</span></div>' +
+      '<div class="btn">Начать урок</div><div class="btn2">Позже</div></div>';
+  }
+
+  // 5 — диалог по ролям: готовые реплики, без свободного текста
+  function roles() {
+    return sb + '<div class="row"><span class="s16" style="width:22px;transform:scaleX(-1)">' + I.chev + '</span><div class="grow"><div class="t16">В кафе · вдвоём</div><div class="s13">Ты — бариста · Ира — гость</div></div><span class="ico" style="width:40px;height:40px;border-radius:11px">' + I.cafe + '</span></div>' +
+      '<div class="who">Ира</div><div class="bub them">Hi! Can I get a latte, please?<span class="ru">Привет! Можно латте?</span></div>' +
+      '<div class="bub me">Sure! What size would you like?<span class="ru">Конечно! Какой размер?</span></div>' +
+      '<div class="who">Ира</div><div class="bub them">A large one. How much is it?<span class="ru">Большой. Сколько стоит?</span></div>' +
+      '<div class="ov" style="margin-top:6px">Твой ответ</div>' +
+      '<div class="opt sel">It’s four dollars fifty.</div><div class="opt">It is cost four dollars.</div><div class="opt">I don’t know, sorry.</div>' +
+      '<div class="row" style="margin-top:auto"><div class="grow btn">Ответить</div><span class="mic" aria-label="Сказать вслух">' + I.mic + '</span></div>' +
+      '<div class="s13" style="text-align:center">Ход 3 из 8 · Ира ответит, когда откроет уведомление</div>';
+  }
+
+  var SCREENS = [
+    ['FR-1', 'Список друзей: Plus, серия вдвоём, цель недели', friendsList, '<b>Что меняется.</b> У Plus — кольцо вокруг монеты. В строке — огонь серии пары и отметка «сегодня ✓». Кто сегодня не занимался — кнопка «Позвать» прямо в строке. Сверху — цель недели одной полосой на двоих.<br><b>Firebase.</b> Серия и «сегодня» считаются из activeDays и lastActiveDate, которые уже приходят в friendsGetProfiles (кэш 5–30 мин). Новых чтений нет.<br><b>Отклик.</b> «Позвать» сразу меняется на «Позвали», при ошибке возвращается с текстом.'],
+    ['FR-2', 'Шторка «Вместе»: серия по дням и четыре действия', together, '<b>Что меняется.</b> Прежняя шторка «Позвать / Дать пять» становится входом во все общие занятия: дуэль, урок вместе, диалог, «Дать пять». Неделя пары — квадраты: полный — оба занимались, бледный — только один.<br><b>Firebase.</b> 0 новых чтений — данные из того же кэша профиля.'],
+    ['FR-3', 'Дуэль на 5 фраз: итог', duel, '<b>Как играется.</b> Пять фраз из уроков, которые прошли оба. Ты играешь сразу, друг — когда откроет уведомление; итог виден обоим. «Разобрать ошибки» открывает те же фразы в повторении.<br><b>Firebase.</b> 1 документ дуэли: 2 записи хода + 1 чтение итога. Живой подписки нет: результат читается при открытии уведомления. Уведомление — уже существующий маркер дуэли.<br><b>Риск.</b> Подсказки и списывание — только самому себе; награда маленькая и только за победу.'],
+    ['FR-4', 'Урок вместе: приглашение у друга', invite, '<b>Как работает.</b> После урока кнопка «Позвать друга на этот урок». Друг видит урок, время и звёзды пригласившего; если проходит сегодня — монеты обоим.<br><b>Firebase.</b> 1 вызов функции и 1 уведомление на приглашение — та же схема и лимиты, что у «Позвать». Маркер приглашения в приложении уже есть, нужен только серверный источник.'],
+    ['FR-5', 'Диалог по ролям вдвоём', roles, '<b>Как работает.</b> Сценка из курса на двоих: реплики идут по очереди, ответ выбирается из трёх готовых (можно произнести вслух — распознавание уже есть в уроках). Свободного текста нет — нечего модерировать.<br><b>Firebase.</b> 1 запись на ход, до 8 ходов; чтение — когда открыто уведомление о ходе. Пуш на ход с лимитами «Позвать».<br><b>Цена.</b> Самая дорогая из пяти: нужна разметка ролей в сценках.']
+  ];
+  var host = document.getElementById('screens');
+  host.innerHTML = SCREENS.map(function (s) {
+    var phone = function (th, lbl) { return '<div class="phcol"><div class="phlbl">' + lbl + '</div><div class="ph ' + th + '">' + s[2]() + '</div></div>'; };
+    return '<article class="screen" id="' + s[0].toLowerCase() + '"><div class="screen-head"><span class="kicker">' + s[0] + '</span><h3>' + s[1] + '</h3></div>' +
+      '<div class="pair">' + phone('th-ink', '«Сумерки» · светлая') + phone('th-marine', '«Океан» · тёмная') + '<div class="why">' + s[3] + '</div></div></article>';
+  }).join('');
+})();
+</script>
+</body>
+</html>

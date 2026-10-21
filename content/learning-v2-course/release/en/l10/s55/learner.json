@@ -1,0 +1,1124 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-10:session-55",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-10:session-55:word:reminder",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — reminder",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-55:word:reminder:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — reminder",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-55:word:reminder:audio",
+          "transcript": "reminder"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-55:word:reminder:r1",
+            "targetText": "reminder",
+            "meaningByLocale": {
+              "ru": "«напоминание». I set a reminder every evening. — «Я ставлю напоминание каждый вечер». Здесь сообщение, которое помогает не забыть о деле.",
+              "uk": "«нагадування». I set a reminder every evening. — «Я встановлюю нагадування щовечора». Тут повідомлення, яке допомагає не забути про справу."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reminder",
+          "definitionByLocale": {
+            "ru": "«напоминание». I set a reminder every evening. — «Я ставлю напоминание каждый вечер». Здесь сообщение, которое помогает не забыть о деле.",
+            "uk": "«нагадування». I set a reminder every evening. — «Я встановлюю нагадування щовечора». Тут повідомлення, яке допомагає не забути про справу."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-55:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите о привычке: «Я ставлю напоминание каждый вечер». Поставьте every evening в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите о привычке: «Я ставлю напоминание каждый вечер». Поставьте every evening в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I set a reminder every evening.",
+        "localizedMeaning": {
+          "ru": "Скажите о привычке: «Я ставлю напоминание каждый вечер». Поставьте every evening в конце",
+          "uk": "Скажіть про звичку: «Я встановлюю нагадування щовечора». Поставте every evening у кінці"
+        },
+        "orderedTokens": [
+          "I",
+          "set",
+          "a",
+          "reminder",
+          "every",
+          "evening"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-55:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-55:i02:r1",
+          "text": "The reminder is for tomorrow."
+        },
+        {
+          "responseId": "en:lesson-10:session-55:i02:r2",
+          "text": "The reminder is for today."
+        },
+        {
+          "responseId": "en:lesson-10:session-55:i02:r3",
+          "text": "The appointment is for tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-55:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-55:i02:audio",
+          "transcript": "The reminder is for tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-55:i02:r1",
+            "targetText": "The reminder is for tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i02:r2",
+            "targetText": "The reminder is for today.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i02:r3",
+            "targetText": "The appointment is for tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-55:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The reminder is for tomorrow.",
+              "uk": "У записі звучить The reminder is for tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The reminder is for tomorrow.",
+              "uk": "У записі звучить The reminder is for tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-55:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Это привычка. Выберите форму set",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-55:i03:r1",
+          "text": "set"
+        },
+        {
+          "responseId": "en:lesson-10:session-55:i03:r2",
+          "text": "sets"
+        },
+        {
+          "responseId": "en:lesson-10:session-55:i03:r3",
+          "text": "setting"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Это привычка. Выберите форму set",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Это привычка. Выберите форму set",
+          "uk": "Це звичка. Виберіть форму set"
+        },
+        "gappedTargetPhrase": "I ___ a reminder every evening.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-55:i03:r1",
+            "text": "set"
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i03:r2",
+            "text": "sets"
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i03:r3",
+            "text": "setting"
+          }
+        ],
+        "testedDimension": "Это привычка. Выберите форму set",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-55:i03:r2",
+            "correct": false,
+            "testedDimension": "Это привычка. Выберите форму set",
+            "feedbackByLocale": {
+              "ru": "С I нужна set без s.",
+              "uk": "З I потрібна set без s."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i03:r3",
+            "correct": false,
+            "testedDimension": "Это привычка. Выберите форму set",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна set.",
+              "uk": "Тут потрібна set."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-55:word:alert",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — alert",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-55:word:alert:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — alert",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-55:word:alert:audio",
+          "transcript": "alert"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-55:word:alert:r1",
+            "targetText": "alert",
+            "meaningByLocale": {
+              "ru": "«предупреждение». The alert is on my phone. — «Предупреждение на моём телефоне». Здесь сообщение о ситуации, требующей внимания.",
+              "uk": "«попередження». The alert is on my phone. — «Попередження на моєму телефоні». Тут повідомлення про ситуацію, що потребує уваги."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "alert",
+          "definitionByLocale": {
+            "ru": "«предупреждение». The alert is on my phone. — «Предупреждение на моём телефоне». Здесь сообщение о ситуации, требующей внимания.",
+            "uk": "«попередження». The alert is on my phone. — «Попередження на моєму телефоні». Тут повідомлення про ситуацію, що потребує уваги."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-55:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы получили сообщение о задержке поезда. Скажите: «Предупреждение на моём телефоне»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы получили сообщение о задержке поезда. Скажите: «Предупреждение на моём телефоне»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The alert is on my phone.",
+        "localizedMeaning": {
+          "ru": "Вы получили сообщение о задержке поезда. Скажите: «Предупреждение на моём телефоне»",
+          "uk": "Ви отримали повідомлення про затримку потяга. Скажіть: «Попередження на моєму телефоні»"
+        },
+        "orderedTokens": [
+          "The",
+          "alert",
+          "is",
+          "on",
+          "my",
+          "phone"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-55:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-55:i05:r1",
+          "text": "The alert is about the weather."
+        },
+        {
+          "responseId": "en:lesson-10:session-55:i05:r2",
+          "text": "The alert is about the meeting."
+        },
+        {
+          "responseId": "en:lesson-10:session-55:i05:r3",
+          "text": "The reminder is about the weather."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-55:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-55:i05:audio",
+          "transcript": "The alert is about the weather."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-55:i05:r1",
+            "targetText": "The alert is about the weather.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i05:r2",
+            "targetText": "The alert is about the meeting.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i05:r3",
+            "targetText": "The reminder is about the weather.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-55:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The alert is about the weather.",
+              "uk": "У записі звучить The alert is about the weather."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The alert is about the weather.",
+              "uk": "У записі звучить The alert is about the weather."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-55:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Речь об одном предупреждении. Выберите связку",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-55:i06:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-55:i06:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-55:i06:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Речь об одном предупреждении. Выберите связку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Речь об одном предупреждении. Выберите связку",
+          "uk": "Ідеться про одне попередження. Виберіть зв’язку"
+        },
+        "gappedTargetPhrase": "The alert ___ on my phone.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-55:i06:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i06:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i06:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Речь об одном предупреждении. Выберите связку",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-55:i06:r2",
+            "correct": false,
+            "testedDimension": "Речь об одном предупреждении. Выберите связку",
+            "feedbackByLocale": {
+              "ru": "Одно предупреждение: is.",
+              "uk": "Одне попередження: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i06:r3",
+            "correct": false,
+            "testedDimension": "Речь об одном предупреждении. Выберите связку",
+            "feedbackByLocale": {
+              "ru": "Am используется с I.",
+              "uk": "Am уживається з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-55:word:ringtone",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ringtone",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-55:word:ringtone:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ringtone",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-55:word:ringtone:audio",
+          "transcript": "ringtone"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-55:word:ringtone:r1",
+            "targetText": "ringtone",
+            "meaningByLocale": {
+              "ru": "«мелодия звонка». I am changing my ringtone. — «Я меняю мелодию звонка». Звук входящего вызова на телефоне.",
+              "uk": "«мелодія дзвінка». I am changing my ringtone. — «Я змінюю мелодію дзвінка». Звук вхідного виклику на телефоні."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ringtone",
+          "definitionByLocale": {
+            "ru": "«мелодия звонка». I am changing my ringtone. — «Я меняю мелодию звонка». Звук входящего вызова на телефоне.",
+            "uk": "«мелодія дзвінка». I am changing my ringtone. — «Я змінюю мелодію дзвінка». Звук вхідного виклику на телефоні."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-55:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы сейчас выбираете новый звук входящего вызова. Скажите: «Я меняю мелодию звонка»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы сейчас выбираете новый звук входящего вызова. Скажите: «Я меняю мелодию звонка»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am changing my ringtone.",
+        "localizedMeaning": {
+          "ru": "Вы сейчас выбираете новый звук входящего вызова. Скажите: «Я меняю мелодию звонка»",
+          "uk": "Ви зараз вибираєте новий звук вхідного виклику. Скажіть: «Я змінюю мелодію дзвінка»"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "changing",
+          "my",
+          "ringtone"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-55:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-55:i08:r1",
+          "text": "The ringtone is loud."
+        },
+        {
+          "responseId": "en:lesson-10:session-55:i08:r2",
+          "text": "The ringtone is quiet."
+        },
+        {
+          "responseId": "en:lesson-10:session-55:i08:r3",
+          "text": "The music is loud."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-55:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-55:i08:audio",
+          "transcript": "The ringtone is loud."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-55:i08:r1",
+            "targetText": "The ringtone is loud.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i08:r2",
+            "targetText": "The ringtone is quiet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i08:r3",
+            "targetText": "The music is loud.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-55:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The ringtone is loud.",
+              "uk": "У записі звучить The ringtone is loud."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The ringtone is loud.",
+              "uk": "У записі звучить The ringtone is loud."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-55:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Выберите правильное написание формы change",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-55:i09:r1",
+          "text": "changing"
+        },
+        {
+          "responseId": "en:lesson-10:session-55:i09:r2",
+          "text": "changeing"
+        },
+        {
+          "responseId": "en:lesson-10:session-55:i09:r3",
+          "text": "change"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Выберите правильное написание формы change",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите правильное написание формы change",
+          "uk": "Виберіть правильне написання форми change"
+        },
+        "gappedTargetPhrase": "I am ___ my ringtone.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-55:i09:r1",
+            "text": "changing"
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i09:r2",
+            "text": "changeing"
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i09:r3",
+            "text": "change"
+          }
+        ],
+        "testedDimension": "Выберите правильное написание формы change",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-55:i09:r2",
+            "correct": false,
+            "testedDimension": "Выберите правильное написание формы change",
+            "feedbackByLocale": {
+              "ru": "Перед ing убираем e: changing.",
+              "uk": "Перед ing прибираємо e: changing."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i09:r3",
+            "correct": false,
+            "testedDimension": "Выберите правильное написание формы change",
+            "feedbackByLocale": {
+              "ru": "После am для текущей работы нужна changing.",
+              "uk": "Після am для поточної роботи потрібна changing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-55:word:pop-up",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pop-up",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-55:word:pop-up:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pop-up",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-55:word:pop-up:audio",
+          "transcript": "pop-up"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-55:word:pop-up:r1",
+            "targetText": "pop-up",
+            "meaningByLocale": {
+              "ru": "«всплывающее окно». A pop-up is blocking the screen. — «Всплывающее окно закрывает экран». Окно поверх содержимого страницы или приложения.",
+              "uk": "«спливне вікно». A pop-up is blocking the screen. — «Спливне вікно закриває екран». Вікно поверх вмісту сторінки або застосунку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pop-up",
+          "definitionByLocale": {
+            "ru": "«всплывающее окно». A pop-up is blocking the screen. — «Всплывающее окно закрывает экран». Окно поверх содержимого страницы или приложения.",
+            "uk": "«спливне вікно». A pop-up is blocking the screen. — «Спливне вікно закриває екран». Вікно поверх вмісту сторінки або застосунку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-55:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы не видите содержимое из-за появившегося окна. Скажите: «Всплывающее окно закрывает экран»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы не видите содержимое из-за появившегося окна. Скажите: «Всплывающее окно закрывает экран»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "A pop-up is blocking the screen.",
+        "localizedMeaning": {
+          "ru": "Вы не видите содержимое из-за появившегося окна. Скажите: «Всплывающее окно закрывает экран»",
+          "uk": "Ви не бачите вмісту через вікно, що з’явилося. Скажіть: «Спливне вікно закриває екран»"
+        },
+        "orderedTokens": [
+          "A",
+          "pop-up",
+          "is",
+          "blocking",
+          "the",
+          "screen"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-55:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-55:i11:r1",
+          "text": "The pop-up is still there."
+        },
+        {
+          "responseId": "en:lesson-10:session-55:i11:r2",
+          "text": "The pop-up is gone."
+        },
+        {
+          "responseId": "en:lesson-10:session-55:i11:r3",
+          "text": "The alert is still there."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-55:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-55:i11:audio",
+          "transcript": "The pop-up is still there."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-10:session-55:i11:r1",
+            "targetText": "The pop-up is still there.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i11:r2",
+            "targetText": "The pop-up is gone.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i11:r3",
+            "targetText": "The alert is still there.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-55:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The pop-up is still there.",
+              "uk": "У записі звучить The pop-up is still there."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The pop-up is still there.",
+              "uk": "У записі звучить The pop-up is still there."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-55:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Одно окно сейчас закрывает экран. Выберите вспомогательный глагол",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-10:session-55:i12:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-10:session-55:i12:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-10:session-55:i12:r3",
+          "text": "am"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Одно окно сейчас закрывает экран. Выберите вспомогательный глагол",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Одно окно сейчас закрывает экран. Выберите вспомогательный глагол",
+          "uk": "Одне вікно зараз закриває екран. Виберіть допоміжне дієслово"
+        },
+        "gappedTargetPhrase": "A pop-up ___ blocking the screen.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-10:session-55:i12:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i12:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i12:r3",
+            "text": "am"
+          }
+        ],
+        "testedDimension": "Одно окно сейчас закрывает экран. Выберите вспомогательный глагол",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-10:session-55:i12:r2",
+            "correct": false,
+            "testedDimension": "Одно окно сейчас закрывает экран. Выберите вспомогательный глагол",
+            "feedbackByLocale": {
+              "ru": "Одно окно: is.",
+              "uk": "Одне вікно: is."
+            }
+          },
+          {
+            "responseId": "en:lesson-10:session-55:i12:r3",
+            "correct": false,
+            "testedDimension": "Одно окно сейчас закрывает экран. Выберите вспомогательный глагол",
+            "feedbackByLocale": {
+              "ru": "Am используется с I.",
+              "uk": "Am уживається з I."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-55:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините слова со значениями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините слова со значениями",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-10:session-55:i13:p1",
+            "target": "reminder",
+            "meaningByLocale": {
+              "ru": "напоминание",
+              "uk": "нагадування"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-55:i13:p2",
+            "target": "alert",
+            "meaningByLocale": {
+              "ru": "предупреждение",
+              "uk": "попередження"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-55:i13:p3",
+            "target": "ringtone",
+            "meaningByLocale": {
+              "ru": "мелодия звонка",
+              "uk": "мелодія дзвінка"
+            }
+          },
+          {
+            "pairId": "en:lesson-10:session-55:i13:p4",
+            "target": "pop-up",
+            "meaningByLocale": {
+              "ru": "всплывающее окно",
+              "uk": "спливне вікно"
+            }
+          }
+        ],
+        "leftColumn": [
+          "reminder",
+          "alert",
+          "ringtone",
+          "pop-up"
+        ],
+        "rightColumn": [
+          "напоминание",
+          "предупреждение",
+          "мелодия звонка",
+          "всплывающее окно"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-55:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-55:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-55:i14:audio",
+          "transcript": "I am changing my ringtone."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am changing my ringtone.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "changing",
+          "my",
+          "ringtone"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-55:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Друг спрашивает, как вы не забываете о делах. Скажите: «Я ставлю напоминание каждый вечер»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-55:i15:audio"
+      ],
+      "accessibilityLabel": "Друг спрашивает, как вы не забываете о делах. Скажите: «Я ставлю напоминание каждый вечер»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-55:i15:audio",
+          "transcript": "I set a reminder every evening."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I set a reminder every evening.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-55:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг спрашивает, где посмотреть предупреждение. Скажите: «Предупреждение на моём телефоне»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг спрашивает, где посмотреть предупреждение. Скажите: «Предупреждение на моём телефоне»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The alert is on my phone.",
+        "localizedMeaning": {
+          "ru": "Друг спрашивает, где посмотреть предупреждение. Скажите: «Предупреждение на моём телефоне»",
+          "uk": "Друг запитує, де подивитися попередження. Скажіть: «Попередження на моєму телефоні»"
+        },
+        "orderedTokens": [
+          "The",
+          "alert",
+          "is",
+          "on",
+          "my",
+          "phone"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-10:session-55:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы открыли настройки и выбираете другой звук входящего вызова. Друг спрашивает, чем вы заняты сейчас. Скажите: «Я меняю мелодию звонка»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-10:session-55:i17:audio"
+      ],
+      "accessibilityLabel": "Вы открыли настройки и выбираете другой звук входящего вызова. Друг спрашивает, чем вы заняты сейчас. Скажите: «Я меняю мелодию звонка»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-10:session-55:i17:audio",
+          "transcript": "I am changing my ringtone."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am changing my ringtone.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "scriptedRepeatRevealPolicy": {
+          "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+          "revealAfter": "first_submitted_attempt",
+          "answerExposedBeforeAttempt": false,
+          "targetPhraseVisibleBeforeAttempt": false,
+          "referenceAudioAvailableBeforeAttempt": false,
+          "modelPlaybackAvailableBeforeAttempt": false
+        },
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5c4d2d792390339d49cbfc87b81f138a56cfe70f85191ca64a46261460b19b14"
+}

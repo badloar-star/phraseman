@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-10:session-55:word:reminder",
+    "correctText": "reminder",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-55:i01",
+    "correctText": "I set a reminder every evening.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-55:i02",
+    "correctText": "The reminder is for tomorrow.",
+    "correctResponseId": "en:lesson-10:session-55:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-55:i03",
+    "correctText": "set",
+    "correctResponseId": "en:lesson-10:session-55:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-55:word:alert",
+    "correctText": "alert",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-55:i04",
+    "correctText": "The alert is on my phone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-55:i05",
+    "correctText": "The alert is about the weather.",
+    "correctResponseId": "en:lesson-10:session-55:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-55:i06",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-55:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-55:word:ringtone",
+    "correctText": "ringtone",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-55:i07",
+    "correctText": "I am changing my ringtone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-55:i08",
+    "correctText": "The ringtone is loud.",
+    "correctResponseId": "en:lesson-10:session-55:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-55:i09",
+    "correctText": "changing",
+    "correctResponseId": "en:lesson-10:session-55:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-55:word:pop-up",
+    "correctText": "pop-up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-55:i10",
+    "correctText": "A pop-up is blocking the screen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-55:i11",
+    "correctText": "The pop-up is still there.",
+    "correctResponseId": "en:lesson-10:session-55:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-55:i12",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-10:session-55:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-10:session-55:i13",
+    "correctText": "en:lesson-10:session-55:i13:p1=reminder\nen:lesson-10:session-55:i13:p2=alert\nen:lesson-10:session-55:i13:p3=ringtone\nen:lesson-10:session-55:i13:p4=pop-up",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-55:i14",
+    "correctText": "I am changing my ringtone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-55:i15",
+    "correctText": "I set a reminder every evening.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-55:i16",
+    "correctText": "The alert is on my phone.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-10:session-55:i17",
+    "correctText": "I am changing my ringtone.",
+    "correctResponseId": null
+  }
+]

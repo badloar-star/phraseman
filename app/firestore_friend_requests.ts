@@ -205,8 +205,11 @@ export type FriendsCacheSocialVerdict = Readonly<{
   requestsLoadedAt: number | null;
 }>;
 
-/** Самое свежее событие дружбы, по которому уже сбросили кэш (защита от повторного сброса при сдвиге часов). */
-let lastHandledCachedSocialEventAt = 0;
+/**
+ * Самое свежее событие дружбы, по которому уже сбросили кэш (защита от повторного сброса при сдвиге часов), — по владельцу.
+ * зачем (координатор 21.10, дефект 3c45d2b0c): одна отметка на телефон после смены A → B могла скрыть свежее событие B.
+ */
+const lastHandledCachedSocialEventAtByOwner = new Map<string, number>();
 
 /**
  * Решение без чтений: событие дружбы (friend_request / friend_accepted) в уже лежащем кэше уведомлений новее загрузки
@@ -228,10 +231,14 @@ export function decideFriendsCacheAgainstCachedSocialEvent(
   const base = { newestEventAt, friendsLoadedAt, requestsLoadedAt };
   if (friendsLoadedAt === null && requestsLoadedAt === null) return { decision: 'no_cache', ...base };
   if (newestEventAt <= 0) return { decision: 'no_social_event', ...base };
-  if (newestEventAt <= lastHandledCachedSocialEventAt) return { decision: 'already_handled', ...base };
+  // Владелец — stableId из scopeKey кэша (`${stableId}:${authUid}`): кэш сам по владельцу, отметка — тоже.
+  const ownerKey = (friendReadCache ?? incomingRequestsReadCache)?.scopeKey.split(':')[0] ?? '';
+  if (newestEventAt <= (lastHandledCachedSocialEventAtByOwner.get(ownerKey) ?? 0)) {
+    return { decision: 'already_handled', ...base };
+  }
   const oldestLoadedAt = Math.min(friendsLoadedAt ?? Number.MAX_SAFE_INTEGER, requestsLoadedAt ?? Number.MAX_SAFE_INTEGER);
   if (newestEventAt <= oldestLoadedAt) return { decision: 'fresh', ...base };
-  lastHandledCachedSocialEventAt = newestEventAt;
+  lastHandledCachedSocialEventAtByOwner.set(ownerKey, newestEventAt);
   return { decision: 'invalidate', ...base };
 }
 

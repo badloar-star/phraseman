@@ -612,3 +612,25 @@ test('S03: событие дружбы в кэше уведомлений нов
   invalidateFriendsSocialReadCaches('test');
   expect(decideFriendsCacheAgainstCachedSocialEvent([newer]).decision).toBe('no_cache');
 });
+
+// зачем (координатор 21.10, дефект 3c45d2b0c): отметка «уже обработано» была одна на телефон — после смены A → B позднее
+// событие A скрывало свежее для B событие, и кэш друзей B жил до 30 мин. Отметка обязана быть по владельцу.
+test('S04: A → B — отметка обработанного события A не скрывает свежее событие B', async () => {
+  mockDocs.set('users/my-uid-111/friends/friend-uid-555', { createdAt: 800 });
+  mockDocs.set('users/other-uid-222/friends/friend-uid-777', { createdAt: 900 });
+  const {
+    subscribeToFriends,
+    decideFriendsCacheAgainstCachedSocialEvent,
+    invalidateFriendsSocialReadCaches,
+  } = require('../app/firestore_friend_requests');
+  const request = (createdAt: number) => ({ id: `friend_request_${createdAt}`, type: 'friend_request', createdAt });
+
+  await new Promise<void>(resolve => { subscribeToFriends(() => resolve()); });
+  expect(decideFriendsCacheAgainstCachedSocialEvent([request(Date.now() + 60_000)]).decision).toBe('invalidate');
+  invalidateFriendsSocialReadCaches('account_switch_test');
+
+  canonicalUidOverride = 'other-uid-222';
+  await new Promise<void>(resolve => { subscribeToFriends(() => resolve()); });
+  const forB = decideFriendsCacheAgainstCachedSocialEvent([request(Date.now() + 5_000)]);
+  expect(forB.decision).toBe('invalidate');
+});

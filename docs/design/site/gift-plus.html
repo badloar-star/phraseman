@@ -122,7 +122,7 @@
   .mock-bar button.on{background:var(--cta);color:var(--cta-ink)}
   .deliver{display:grid;gap:10px}
   .deliver h3{margin:0;font-size:15px;font-weight:700;color:var(--text)}
-  .seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:5px;border-radius:16px;background:color-mix(in srgb,var(--fill) 6%,var(--card-solid));box-shadow:var(--shadow-sm)}
+  .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:5px;border-radius:16px;background:color-mix(in srgb,var(--fill) 6%,var(--card-solid));box-shadow:var(--shadow-sm)}
   .seg button{all:unset;cursor:pointer;text-align:center;padding:11px 8px;border-radius:12px;font-size:14px;font-weight:650;color:var(--sec);transition:background .16s ease,color .16s ease}
   .seg button:active{transform:scale(.98)}
   .seg button.on{background:var(--card-solid);color:var(--text);box-shadow:var(--shadow-sm),inset 0 0 0 1.5px color-mix(in srgb,var(--fill) 60%,transparent)}
@@ -145,6 +145,9 @@
   .done .card{padding:22px 24px;border-radius:24px;background:var(--card-solid);box-shadow:var(--shadow);text-align:left;display:grid;gap:12px}
   .done .row{display:flex;justify-content:space-between;gap:16px;font-size:14.5px;color:var(--text)}
   .done .row span{color:var(--sec)}
+  .linkbox{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 12px;border-radius:14px;background:color-mix(in srgb,var(--fill) 6%,var(--card-solid));font:600 14px ui-monospace,monospace;color:var(--text)}
+  .linkbox .btn{margin-left:auto}
+  .quiet{font-size:13px;color:var(--sec);text-decoration:underline;text-underline-offset:3px}
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:left}
   .steps div{padding:14px;border-radius:18px;background:var(--card-solid);box-shadow:var(--shadow-sm);font-size:13.5px;color:var(--sec)}
   .steps b{display:block;color:var(--text);font-size:14.5px;margin-bottom:4px}
@@ -158,8 +161,10 @@
 </head><body data-approved-studio="20260908" class="cinema edition route-gift inner-cinema"><div class="mock-bar" role="toolbar" aria-label="Макет">
   <b>МАКЕТ · подарок Plus</b>
   <button type="button" data-view="form" class="on">Форма</button>
-  <button type="button" data-view="email">После оплаты · код</button>
+  <button type="button" data-view="email">После оплаты · письмо</button>
+  <button type="button" data-view="link">После оплаты · ссылка</button>
   <button type="button" data-view="nick">После оплаты · ник</button>
+  <button type="button" data-view="recipient">Получатель открыл ссылку</button>
   <button type="button" id="themeBtn">Светлая / тёмная</button>
 </div><a class="skip" href="#content" data-i18n="v2.skip">К содержанию</a><header class="site-header"><div class="container nav-row"><a class="brand" href="/" aria-label="Phraseman — главная" data-i18n-aria="v2.aria.home"><img src="../../../knowly-www/assets/approved/brand.png" alt="" width="36" height="36"><span>phrase<span class="brand-tail">man</span></span></a><nav id="main-nav" aria-label="Главная навигация" data-i18n-aria="v2.aria.nav"><a href="/app/" data-i18n="approved.0">Приложение</a><a href="/english-level-test/" data-i18n="approved.1">Тест уровня</a><a href="/guides/" data-i18n="approved.2">Журнал</a><a href="/gift/" data-i18n="approved.3">Подарить</a><a href="/contact/" data-i18n="approved.4">Поддержка</a></nav><div class="nav-actions"><a class="language" href="#site-preferences" aria-label="Язык и оформление" data-i18n-aria="v2.aria.langLook" aria-expanded="false" id="site-language">RU <span aria-hidden="true">⌄</span></a><a class="button small primary" href="/download/" data-i18n="v2.start">Начать бесплатно<span aria-hidden="true">→</span></a><button class="menu-button icon-button" aria-label="Открыть меню" data-i18n-aria="v2.aria.menu" aria-controls="main-nav" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div></div><div id="site-preferences" class="site-language-menu" hidden><button type="button" data-lang-btn="ru">Русский</button><button type="button" data-lang-btn="en">English</button><button type="button" id="theme-toggle" data-i18n="v2.themeToggle">Светлая / тёмная тема</button></div></header><main id="content"><section class="edition-gift-top spatial-scene"><div class="container"><span class="eyebrow" data-i18n="v2.gf.eyebrow">ПОДАРОК, КОТОРЫЙ ОСТАНЕТСЯ С ЧЕЛОВЕКОМ</span><h1 data-i18n="v2.gf.h1">Открой близкому<br><em>новый мир.</em></h1><p data-i18n="v2.gf.lead">Именной сертификат Phraseman.<br>Три варианта подарка. Каждый — со своим характером.</p></div></section><section class="container gift-config"><div class="gift-controls"><h2 data-i18n="v2.gf.choose">Выбери подарок</h2><div class="runtime-surface"><div class="gift-options" role="radiogroup" aria-label="Выбор подарка" data-i18n-aria="v2.gf.aria.choice">
         <div class="gift-option" data-plan="monthly" role="radio" aria-checked="false" tabindex="0">
@@ -181,15 +186,17 @@
       </div><form class="gift-form" id="giftForm" novalidate>
         <div class="deliver"><h3>Как вручить</h3>
           <div class="seg" role="radiogroup" aria-label="Как вручить">
-            <button type="button" role="radio" data-mode="email" class="on" aria-checked="true">Код на почту<small>перешлёшь сам</small></button>
+            <button type="button" role="radio" data-mode="email" class="on" aria-checked="true">Письмом<small>код на твою почту</small></button>
+            <button type="button" role="radio" data-mode="link" aria-checked="false">Ссылкой<small>отправишь сам</small></button>
             <button type="button" role="radio" data-mode="nick" aria-checked="false">По нику<small>сразу в приложение</small></button>
           </div>
         </div>
-        <p class="hint" data-show="email">Пришлём на твою почту сертификат с кодом. Получатель введёт код в приложении: Настройки → Промокоды.</p>
+        <p class="hint" data-show="email">Пришлём на твою почту сертификат с кодом. Получатель введёт код в приложении: Настройки → Промокоды. Если Plus уже есть — он продлится. Код можно отменить, пока он не активирован.</p>
+        <p class="hint" data-show="link" hidden>После оплаты дадим ссылку-подарок. Отправь её в любом мессенджере: ссылка откроет Phraseman, и подарок включится одной кнопкой. Если Plus уже есть — он продлится. Ссылку можно отменить, пока её не открыли.</p>
         <div data-show="nick" hidden style="display:grid;gap:12px">
           <div class="field"><label for="nick">Ник или код друга в Phraseman</label><input id="nick" type="text" placeholder="Например: masha_k" autocomplete="off" /></div>
           <div class="who" id="who" hidden><div class="ava"></div><div class="meta"><b id="whoNick">masha_k</b><span id="whoMeta">Ранг «Стажёр» · в Phraseman с июня</span></div><label id="whoConfirm"><input type="checkbox" id="confirmWho" /> Это она</label></div>
-          <p class="hint" id="nickHint">Plus включится сразу после оплаты — получателю ничего вводить не нужно.</p>
+          <p class="hint" id="nickHint">Plus включится сразу после оплаты, а если он уже есть — продлится. Получателю ничего вводить не нужно. <b>Подарок по нику отменить нельзя</b> — проверь, что это он или она.</p>
         </div>
         <div class="field"><label for="giftTo">Кому (имя на сертификате)</label><input type="text" id="giftTo" maxlength="60" placeholder="Например: Маша" autocomplete="off" /></div>
         <div class="field"><label for="giftFrom">От кого</label><input type="text" id="giftFrom" maxlength="60" placeholder="Например: Саша" autocomplete="off" /></div>
@@ -221,9 +228,29 @@
     <div><b>Автопродления нет</b>Когда срок закончится, Plus просто выключится.</div>
   </div>
 </section>
+<section class="container done" id="doneLink" hidden>
+  <h1>Ссылка-подарок готова</h1>
+  <p class="hint" style="font-size:16px">Отправь её <b class="v-to">Маше</b>. Подарок включится, когда ссылку откроют в Phraseman.</p>
+  <div class="card">
+    <div class="linkbox">knowlyapps.com/g/7KQ-2MX-P4D <button class="btn btn-primary" type="button" id="copyLink">Скопировать</button></div>
+    <div class="row"><span>Подарок</span><b class="v-plan">Год Phraseman Plus</b></div>
+    <div class="row"><span>Ссылка действует</span><b>до 21 октября 2027</b></div>
+    <div class="row"><span>Копия</span><b class="v-mail">на sasha@example.com</b></div>
+  </div>
+  <a class="quiet" href="#" id="cancelLink">Отменить ссылку — пока её не открыли</a>
+</section>
+<section class="container done" id="doneRecipient" hidden>
+  <h1><span class="v-from">Саша</span> дарит тебе <span class="v-plan-l">год Plus</span></h1>
+  <p class="hint" style="font-size:16px">Все уроки и темы Phraseman. Если Plus уже есть — он продлится. Банковская карта не нужна.</p>
+  <div class="card" style="text-align:center">
+    <button class="btn btn-primary" type="button" style="width:100%">Открыть в Phraseman</button>
+    <p class="hint">Нет приложения? <a href="#">Скачать Phraseman</a> — после установки снова открой эту ссылку.</p>
+  </div>
+  <p class="hint">Подарок включится на аккаунте, в который ты войдёшь в приложении.</p>
+</section>
 <section class="container done" id="doneNick" hidden>
   <h1>Подарок у <span class="v-to">Маши</span> 🎁</h1>
-  <p class="hint" style="font-size:16px"><b class="v-plan">Год Phraseman Plus</b> уже включён у <b class="v-nick">masha_k</b>. Она увидит подарок при следующем открытии приложения.</p>
+  <p class="hint" style="font-size:16px"><b class="v-plan">Год Phraseman Plus</b> уже включён у <b class="v-nick">masha_k</b>. Если Plus у неё уже был — срок продлён. Она увидит подарок при следующем открытии приложения.</p>
   <div class="card">
     <div class="row"><span>Подарок</span><b class="v-plan">Год Phraseman Plus</b></div>
     <div class="row"><span>Кому</span><b><span class="v-to">Маша</span> · <span class="v-nick">masha_k</span></b></div>
@@ -231,7 +258,7 @@
     <div class="row"><span>Чек</span><b class="v-mail">на sasha@example.com</b></div>
   </div>
   <p class="hint">Так получатель увидит подарок в приложении — один раз, при входе:</p>
-  <div class="app-card"><small>Подарок</small><div class="ring"></div><b><span class="v-from">Саша</span> подарил тебе <span class="v-plan-l">год Plus</span></b><span style="opacity:.75">Все уроки и темы открыты. Автопродления нет.</span></div>
+  <div class="app-card"><small>Подарок</small><div class="ring"></div><b><span class="v-from">Саша</span> подарил тебе <span class="v-plan-l">год Plus</span></b><span style="opacity:.75">Все уроки и темы открыты. Если Plus уже был — срок продлён. Автопродления нет.</span></div>
 </section></main><footer class="footer"><div class="container"><div class="footer-top"><div><a class="brand" href="/" aria-label="Phraseman — главная" data-i18n-aria="v2.aria.home"><img src="../../../knowly-www/assets/approved/brand.png" alt="" width="36" height="36"><span>phrase<span class="brand-tail">man</span></span></a><p data-i18n="approved.13">Чуть больше языка.<br>Чуть больше свободы.</p></div><div class="footer-links"><div><b data-i18n="approved.14">Практиковаться</b><a href="/app/" data-i18n="approved.15">О приложении</a><a href="/download/" data-i18n="approved.16">Скачать Phraseman</a><a href="/english-level-test/" data-i18n="approved.17">Определить уровень</a></div><div><b data-i18n="approved.19">Открывать больше</b><a href="/guides/" data-i18n="approved.20">Гайды и истории</a><a href="/premium/" data-i18n="approved.21">Plus и Pro</a><a href="/gift/" data-i18n="approved.22">Подарить доступ</a><a href="/russia/" data-i18n="approved.23">Оплата в России</a></div><div><b data-i18n="approved.24">Мы рядом</b><a href="/contact/" data-i18n="approved.4">Поддержка</a><a href="/faq/" data-i18n="approved.25">Частые вопросы</a><a href="/#reviews" data-i18n="approved.26">Отзывы</a></div></div></div><div class="footer-bottom"><span>© 2026 Knowly · Phraseman</span><div><a href="/legal/privacy/" data-i18n="approved.27">Конфиденциальность</a><a href="/legal/terms/" data-i18n="v2.footer.terms">Условия</a><a href="/legal/data-deletion/" data-i18n="approved.29">Удаление данных</a><a href="#cookie-settings" data-cookie-settings data-i18n="approved.30">Настройки cookies</a></div></div></div></footer>
 
 
@@ -260,8 +287,8 @@
     var to = $('#giftTo').value.trim(), from = $('#giftFrom').value.trim(), mail = $('#buyerEmail').value.trim();
     $$('[data-show]').forEach(function (el) { el.hidden = el.getAttribute('data-show') !== state.mode; });
     $$('.seg button').forEach(function (b) { var on = b.dataset.mode === state.mode; b.classList.toggle('on', on); b.setAttribute('aria-checked', on ? 'true' : 'false'); });
-    $('#emailLabel').textContent = state.mode === 'email' ? 'Твой email — на него придёт сертификат' : 'Твой email — пришлём чек';
-    $('#terms').textContent = state.mode === 'email' ? 'Разовый платёж, автопродления нет · Код действует 365 дней.' : 'Разовый платёж, автопродления нет · Plus включится у получателя сразу.';
+    $('#emailLabel').textContent = { email: 'Твой email — на него придёт сертификат', link: 'Твой email — пришлём чек и копию ссылки', nick: 'Твой email — пришлём чек' }[state.mode];
+    $('#terms').textContent = { email: 'Разовый платёж, автопродления нет · Код действует 365 дней.', link: 'Разовый платёж, автопродления нет · Ссылка действует 365 дней.', nick: 'Разовый платёж, автопродления нет · Plus включится у получателя сразу.' }[state.mode];
     var nick = $('#nick').value.trim();
     var who = $('#who');
     if (state.mode === 'nick' && nick.length >= 3) {
@@ -274,7 +301,7 @@
       state.found = meta ? nick : null;
       if (!meta) { state.confirmed = false; $('#confirmWho').checked = false; }
     } else { who.hidden = true; state.found = null; }
-    var ready = /.+@.+\..+/.test(mail) && (state.mode === 'email' || (state.found && state.confirmed));
+    var ready = /.+@.+\..+/.test(mail) && (state.mode !== 'nick' || (state.found && state.confirmed));
     $('#payBtn').disabled = !ready;
     // сертификат
     $('#pvTo').textContent = to ? dative(to) : PLAN[state.plan][0];
@@ -292,9 +319,11 @@
   }
   function show(view) {
     $('main .gift-hero') && ($('main .gift-hero').closest('section').hidden = view !== 'form');
-    $$('main > section').forEach(function (s) { if (s.id !== 'doneEmail' && s.id !== 'doneNick') s.hidden = view !== 'form'; });
-    $('#doneEmail').hidden = view !== 'email';
-    $('#doneNick').hidden = view !== 'nick';
+    var DONE = { email: 'doneEmail', link: 'doneLink', nick: 'doneNick', recipient: 'doneRecipient' };
+    $$('main > section').forEach(function (s) {
+      var key = Object.keys(DONE).find(function (k) { return DONE[k] === s.id; });
+      s.hidden = key ? key !== view : view !== 'form';
+    });
     $$('.mock-bar [data-view]').forEach(function (b) { b.classList.toggle('on', b.dataset.view === view); });
     window.scrollTo(0, 0);
   }
@@ -314,6 +343,8 @@
     var r = document.documentElement, next = (r.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
     r.setAttribute('data-theme', next); r.setAttribute('data-mode', next);
   });
+  $('#copyLink').addEventListener('click', function (e) { e.target.textContent = 'Скопировано ✓'; });
+  $('#cancelLink').addEventListener('click', function (e) { e.preventDefault(); e.target.textContent = 'Ссылка отменена — подарок по ней больше не откроется'; });
   $('#giftTo').value = 'Маша'; $('#giftFrom').value = 'Саша'; $('#buyerEmail').value = 'sasha@example.com';
   render();
 })();

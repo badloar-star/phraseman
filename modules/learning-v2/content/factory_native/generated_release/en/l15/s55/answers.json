@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-55:word:pinstripe",
+    "correctText": "pinstripe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-55:i01",
+    "correctText": "I am going to buy a pinstripe suit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-55:i02",
+    "correctText": "I am going to buy a pinstripe suit.",
+    "correctResponseId": "en:lesson-15:session-55:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-55:i03",
+    "correctText": "am going to buy",
+    "correctResponseId": "en:lesson-15:session-55:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-55:word:patchwork",
+    "correctText": "patchwork",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-55:i04",
+    "correctText": "She is going to buy a patchwork blanket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-55:i05",
+    "correctText": "She is going to buy a patchwork blanket.",
+    "correctResponseId": "en:lesson-15:session-55:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-55:i06",
+    "correctText": "is going to buy",
+    "correctResponseId": "en:lesson-15:session-55:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-55:word:gingham",
+    "correctText": "gingham",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-55:i07",
+    "correctText": "We are collecting the gingham shirt tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-55:i08",
+    "correctText": "We are collecting the gingham shirt tomorrow.",
+    "correctResponseId": "en:lesson-15:session-55:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-55:i09",
+    "correctText": "are collecting",
+    "correctResponseId": "en:lesson-15:session-55:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-55:word:houndstooth",
+    "correctText": "houndstooth",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-55:i10",
+    "correctText": "They are collecting the houndstooth coat on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-55:i11",
+    "correctText": "They are collecting the houndstooth coat on Saturday.",
+    "correctResponseId": "en:lesson-15:session-55:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-55:i12",
+    "correctText": "are collecting",
+    "correctResponseId": "en:lesson-15:session-55:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-55:i13",
+    "correctText": "en:lesson-15:session-55:i13:p1=pinstripe\nen:lesson-15:session-55:i13:p2=patchwork\nen:lesson-15:session-55:i13:p3=gingham\nen:lesson-15:session-55:i13:p4=houndstooth",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-55:i14",
+    "correctText": "I am going to buy a suit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-55:i15",
+    "correctText": "We are collecting the coat on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-55:i16",
+    "correctText": "I am buying a pinstripe suit tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-55:i17",
+    "correctText": "We are going to collect the gingham shirt tomorrow.",
+    "correctResponseId": null
+  }
+]

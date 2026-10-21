@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-44:word:creative",
+    "correctText": "creative",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-44:i01",
+    "correctText": "I am going to ask my creative friend for help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-44:i02",
+    "correctText": "I am going to ask my creative friend for help.",
+    "correctResponseId": "en:lesson-15:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-44:i03",
+    "correctText": "am going to ask",
+    "correctResponseId": "en:lesson-15:session-44:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-44:word:artistic",
+    "correctText": "artistic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-44:i04",
+    "correctText": "She is going to visit her artistic cousin.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-44:i05",
+    "correctText": "She is going to visit her artistic cousin.",
+    "correctResponseId": "en:lesson-15:session-44:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-44:i06",
+    "correctText": "is going to visit",
+    "correctResponseId": "en:lesson-15:session-44:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-44:word:musical",
+    "correctText": "musical",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-44:i07",
+    "correctText": "We are meeting our musical neighbour tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-44:i08",
+    "correctText": "We are meeting our musical neighbour tomorrow.",
+    "correctResponseId": "en:lesson-15:session-44:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-44:i09",
+    "correctText": "are meeting",
+    "correctResponseId": "en:lesson-15:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-44:word:athletic",
+    "correctText": "athletic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-44:i10",
+    "correctText": "They are meeting their athletic friend on Sunday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-44:i11",
+    "correctText": "They are meeting their athletic friend on Sunday.",
+    "correctResponseId": "en:lesson-15:session-44:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-44:i12",
+    "correctText": "are meeting",
+    "correctResponseId": "en:lesson-15:session-44:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-44:i13",
+    "correctText": "en:lesson-15:session-44:i13:p1=creative\nen:lesson-15:session-44:i13:p2=artistic\nen:lesson-15:session-44:i13:p3=musical\nen:lesson-15:session-44:i13:p4=athletic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-44:i14",
+    "correctText": "I am going to ask for help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-44:i15",
+    "correctText": "We are meeting our neighbour tomorrow evening.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-44:i16",
+    "correctText": "I am asking my creative friend for help tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-44:i17",
+    "correctText": "We are going to meet our musical neighbour tomorrow.",
+    "correctResponseId": null
+  }
+]

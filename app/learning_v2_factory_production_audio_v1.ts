@@ -38,10 +38,18 @@ const factoryAudioTables = lazyContent("learning_v2_factory_production_audio", (
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const silentList = require("./learning_v2_factory_silent_audio_v1.json") as { entries: readonly { contentHash: string }[] };
   const silent = new Set(silentList.entries.map((entry) => entry.contentHash));
-  // Старые записи keypad, nobody, thin, hard, mean, reach, already, excuse me, pain, blond и gold есть только в авторском архиве, но не в bootstrap/Storage.
+  // Старые записи keypad, nobody, thin, hard, mean, reach, already, excuse me, pain, blond, gold, bossy и downstairs есть только в авторском архиве, но не в bootstrap/Storage.
   // По поручению владельца для отсутствующих записей используется TTS устройства.
   // Удалить соответствующий хеш из исключений после проверенной публикации записи.
   const unpublished = new Set([
+    "3600756e6db8fa33a681786afa388cc3c275de8e58cadc54e485f2b181595d15",
+    "e884dbaaf46d3267fb1078dad728e5dbc33e8cce6cadb8fa1372a57115921fbe",
+    "3fd386d5314bf02ad58b1b6d216b239d0e120f4cd4a416a9ddaa18c5636b41e6",
+    "ed897c5197cc07387d0c965be1b385c504de93a861e31c803c3a95102deaa916",
+    "7b6d442f2f67cd93216283a46c7e53f18df8d9e0f2bfcdcec17272f8360a2f60",
+    "fcf4e1750732f2a34ac4d25c56ab6f6a2f0307e3405fbc3802d7edb9882a2885",
+    "13b83680bf1425f98b32730aca9e9eb639046be2f0ea54bf3b6581fa877cb9b6",
+    "3cf9b32aa4d212ca1cfca33353af75feafaff792f44846b2c57646364fe6dda6",
     "8c7a763d0a4b1b3bb38f596044b3566e4aed95d411655585cb596a88043635ba",
     "7fc2d0764ac545ea64c3703b2bbe3947c5bb4adfa1fc0248f3ceefffa42216af",
     "0b7b7b6a64fe75dc56ce70e452167fdb188ee3cb78b886be281eee192ce4fcfa",

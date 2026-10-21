@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "going to / Present Continuous: intention and arrangement",
+    "uk": "going to / Present Continuous: intention and arrangement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пока намерение",
+        "uk": "Поки намір"
+      },
+      "bodyByLocale": {
+        "ru": "fortnight — две недели. Повторим going to для намерения. Вы решили выделить на поездку две недели; даты ещё не выбраны. I am going to travel for a fortnight. — Я собираюсь путешествовать две недели. Передайте намерение через going to.",
+        "uk": "fortnight — два тижні. Повторімо going to для наміру. Ви вирішили виділити на поїздку два тижні; дат ще не вибрано. I am going to travel for a fortnight. — Я збираюся подорожувати два тижні. Передайте намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-54:intro1:r1",
+              "text": "I am going to travel for a fortnight."
+            },
+            {
+              "responseId": "en:lesson-15:session-54:intro1:r2",
+              "text": "I am travelling for a fortnight."
+            },
+            {
+              "responseId": "en:lesson-15:session-54:intro1:r3",
+              "text": "I is going to travel for a fortnight."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-54:intro1:r1",
+              "text": "I am going to travel for a fortnight."
+            },
+            {
+              "responseId": "en:lesson-15:session-54:intro1:r2",
+              "text": "I am travelling for a fortnight."
+            },
+            {
+              "responseId": "en:lesson-15:session-54:intro1:r3",
+              "text": "I is going to travel for a fortnight."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже договорились",
+        "uk": "Уже домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "half-term — школьные каникулы в середине учебного периода. leap year — високосный год с 29 февраля. Если время уже согласовано, потренируем Present Continuous. Вы купили билеты на ближайшие каникулы в середине учебного периода. We are travelling at half-term. — Мы едем на каникулы в середине учебного периода. Передайте договорённость через Present Continuous.",
+        "uk": "half-term — шкільні канікули посеред навчального періоду. leap year — високосний рік із 29 лютого. Якщо час уже узгоджено, потренуймо Present Continuous. Ви купили квитки на найближчі канікули посеред навчального періоду. We are travelling at half-term. — Ми їдемо на канікули посеред навчального періоду. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-54:intro2:r1",
+              "text": "We are travelling at half-term."
+            },
+            {
+              "responseId": "en:lesson-15:session-54:intro2:r2",
+              "text": "We are going to travel at half-term."
+            },
+            {
+              "responseId": "en:lesson-15:session-54:intro2:r3",
+              "text": "We is travelling at half-term."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-54:intro2:r1",
+              "text": "We are travelling at half-term."
+            },
+            {
+              "responseId": "en:lesson-15:session-54:intro2:r2",
+              "text": "We are going to travel at half-term."
+            },
+            {
+              "responseId": "en:lesson-15:session-54:intro2:r3",
+              "text": "We is travelling at half-term."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Известен день",
+        "uk": "Відомий день"
+      },
+      "bodyByLocale": {
+        "ru": "term time — время учебных занятий, не каникулы. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши дети записаны на школьную экскурсию в музей; она пройдёт во время учебных занятий. They are visiting the museum in term time. — Они посещают музей во время учебного периода. Передайте договорённость через Present Continuous.",
+        "uk": "term time — час навчальних занять, не канікули. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші діти записані на шкільну екскурсію до музею; вона відбудеться під час навчальних занять. They are visiting the museum in term time. — Вони відвідують музей під час навчального періоду. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-54:intro3:r1",
+              "text": "They are visiting the museum in term time."
+            },
+            {
+              "responseId": "en:lesson-15:session-54:intro3:r2",
+              "text": "They are going to visit the museum in term time."
+            },
+            {
+              "responseId": "en:lesson-15:session-54:intro3:r3",
+              "text": "They is visiting the museum in term time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-54:intro3:r1",
+              "text": "They are visiting the museum in term time."
+            },
+            {
+              "responseId": "en:lesson-15:session-54:intro3:r2",
+              "text": "They are going to visit the museum in term time."
+            },
+            {
+              "responseId": "en:lesson-15:session-54:intro3:r3",
+              "text": "They is visiting the museum in term time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4a59bb0e6c5a7dc4a43c4efadef3e402f0d7986181905fc15bbf77de51d7783b"
+}

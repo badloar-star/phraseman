@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-43:word:modest",
+    "correctText": "modest",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-43:i01",
+    "correctText": "I am going to visit my modest friend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-43:i02",
+    "correctText": "I am going to visit my modest friend.",
+    "correctResponseId": "en:lesson-15:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-43:i03",
+    "correctText": "am going to visit",
+    "correctResponseId": "en:lesson-15:session-43:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-43:word:ambitious",
+    "correctText": "ambitious",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-43:i04",
+    "correctText": "She is going to help her ambitious son.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-43:i05",
+    "correctText": "She is going to help her ambitious son.",
+    "correctResponseId": "en:lesson-15:session-43:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-43:i06",
+    "correctText": "is going to help",
+    "correctResponseId": "en:lesson-15:session-43:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-43:word:easy-going",
+    "correctText": "easy-going",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-43:i07",
+    "correctText": "We are travelling with our easy-going friend on Saturday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-43:i08",
+    "correctText": "We are travelling with our easy-going friend on Saturday.",
+    "correctResponseId": "en:lesson-15:session-43:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-43:i09",
+    "correctText": "are travelling",
+    "correctResponseId": "en:lesson-15:session-43:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-43:word:bossy",
+    "correctText": "bossy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-43:i10",
+    "correctText": "They are meeting their bossy cousin tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-43:i11",
+    "correctText": "They are meeting their bossy cousin tomorrow.",
+    "correctResponseId": "en:lesson-15:session-43:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-43:i12",
+    "correctText": "are meeting",
+    "correctResponseId": "en:lesson-15:session-43:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-43:i13",
+    "correctText": "en:lesson-15:session-43:i13:p1=modest\nen:lesson-15:session-43:i13:p2=ambitious\nen:lesson-15:session-43:i13:p3=easy-going\nen:lesson-15:session-43:i13:p4=bossy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-43:i14",
+    "correctText": "I am going to visit my friend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-43:i15",
+    "correctText": "We are travelling on Saturday morning.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-43:i16",
+    "correctText": "I am visiting my modest friend tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-43:i17",
+    "correctText": "We are going to travel with our easy-going friend on Saturday.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-54:word:fortnight",
+    "correctText": "fortnight",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-54:i01",
+    "correctText": "I am going to travel for a fortnight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-54:i02",
+    "correctText": "I am going to travel for a fortnight.",
+    "correctResponseId": "en:lesson-15:session-54:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-54:i03",
+    "correctText": "am going to travel",
+    "correctResponseId": "en:lesson-15:session-54:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-54:word:leap-year",
+    "correctText": "leap year",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-54:i04",
+    "correctText": "She is going to have a party in the next leap year.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-54:i05",
+    "correctText": "She is going to have a party in the next leap year.",
+    "correctResponseId": "en:lesson-15:session-54:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-54:i06",
+    "correctText": "is going to have",
+    "correctResponseId": "en:lesson-15:session-54:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-54:word:half-term",
+    "correctText": "half-term",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-54:i07",
+    "correctText": "We are travelling at half-term.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-54:i08",
+    "correctText": "We are travelling at half-term.",
+    "correctResponseId": "en:lesson-15:session-54:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-54:i09",
+    "correctText": "are travelling",
+    "correctResponseId": "en:lesson-15:session-54:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-54:word:term-time",
+    "correctText": "term time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-54:i10",
+    "correctText": "They are visiting the museum in term time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-54:i11",
+    "correctText": "They are visiting the museum in term time.",
+    "correctResponseId": "en:lesson-15:session-54:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-54:i12",
+    "correctText": "are visiting",
+    "correctResponseId": "en:lesson-15:session-54:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-54:i13",
+    "correctText": "en:lesson-15:session-54:i13:p1=fortnight\nen:lesson-15:session-54:i13:p2=leap year\nen:lesson-15:session-54:i13:p3=half-term\nen:lesson-15:session-54:i13:p4=term time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-54:i14",
+    "correctText": "I am going to travel for two weeks.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-54:i15",
+    "correctText": "We are visiting the museum next month.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-54:i16",
+    "correctText": "I am travelling for a fortnight tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-54:i17",
+    "correctText": "We are going to travel at half-term.",
+    "correctResponseId": null
+  }
+]

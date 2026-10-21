@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "going to / Present Continuous: intention and arrangement",
+    "uk": "going to / Present Continuous: intention and arrangement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пока намерение",
+        "uk": "Поки намір"
+      },
+      "bodyByLocale": {
+        "ru": "clockwise — по часовой стрелке. Повторим going to для намерения. Вы решили повернуть ручку в направлении движения стрелок часов. I am going to turn the handle clockwise. — Я собираюсь повернуть ручку по часовой стрелке. Передайте намерение через going to.",
+        "uk": "clockwise — за годинниковою стрілкою. Повторімо going to для наміру. Ви вирішили повернути ручку в напрямку руху стрілок годинника. I am going to turn the handle clockwise. — Я збираюся повернути ручку за годинниковою стрілкою. Передайте намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-48:intro1:r1",
+              "text": "I am going to turn the handle clockwise."
+            },
+            {
+              "responseId": "en:lesson-15:session-48:intro1:r2",
+              "text": "I am turning the handle clockwise."
+            },
+            {
+              "responseId": "en:lesson-15:session-48:intro1:r3",
+              "text": "I is going to turn the handle clockwise."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-48:intro1:r1",
+              "text": "I am going to turn the handle clockwise."
+            },
+            {
+              "responseId": "en:lesson-15:session-48:intro1:r2",
+              "text": "I am turning the handle clockwise."
+            },
+            {
+              "responseId": "en:lesson-15:session-48:intro1:r3",
+              "text": "I is going to turn the handle clockwise."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже договорились",
+        "uk": "Уже домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "downstairs — внизу, на нижнем этаже. anticlockwise — против часовой стрелки. Если время уже согласовано, потренируем Present Continuous. Вы с друзьями договорились встретиться завтра на нижнем этаже дома. We are meeting downstairs tomorrow. — Мы встречаемся внизу завтра. Передайте договорённость через Present Continuous.",
+        "uk": "downstairs — внизу, на нижньому поверсі. anticlockwise — проти годинникової стрілки. Якщо час уже узгоджено, потренуймо Present Continuous. Ви з друзями домовилися зустрітися завтра на нижньому поверсі будинку. We are meeting downstairs tomorrow. — Ми зустрічаємося внизу завтра. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-48:intro2:r1",
+              "text": "We are meeting downstairs tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-48:intro2:r2",
+              "text": "We are going to meet downstairs tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-48:intro2:r3",
+              "text": "We is meeting downstairs tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-48:intro2:r1",
+              "text": "We are meeting downstairs tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-48:intro2:r2",
+              "text": "We are going to meet downstairs tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-48:intro2:r3",
+              "text": "We is meeting downstairs tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Известен день",
+        "uk": "Відомий день"
+      },
+      "bodyByLocale": {
+        "ru": "overhead — над головой, сверху. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши друзья согласовали завтрашнее украшение зала: огни будут висеть над гостями. They are hanging lights overhead tomorrow. — Они вешают огни над головой завтра. Передайте договорённость через Present Continuous.",
+        "uk": "overhead — над головою, згори. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші друзі узгодили завтрашнє прикрашання зали: вогні висітимуть над гостями. They are hanging lights overhead tomorrow. — Вони вішають вогні над головою завтра. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-48:intro3:r1",
+              "text": "They are hanging lights overhead tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-48:intro3:r2",
+              "text": "They are going to hang lights overhead tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-48:intro3:r3",
+              "text": "They is hanging lights overhead tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-48:intro3:r1",
+              "text": "They are hanging lights overhead tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-48:intro3:r2",
+              "text": "They are going to hang lights overhead tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-48:intro3:r3",
+              "text": "They is hanging lights overhead tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4e801324ba33d34925494c3d4351b8a3ba984001754a946a9706cafd58bc6d35"
+}

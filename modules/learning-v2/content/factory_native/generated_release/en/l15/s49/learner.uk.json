@@ -1,0 +1,1131 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-15:session-49",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-15:session-49:word:coastal",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — coastal",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-49:word:coastal:audio"
+      ],
+      "accessibilityLabel": "Картка слова — coastal",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-49:word:coastal:audio",
+          "transcript": "coastal"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-49:word:coastal:r1",
+            "targetText": "coastal",
+            "meaningByLocale": {
+              "ru": "расположенный у морского побережья.",
+              "uk": "розташований біля морського узбережжя."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coastal",
+          "definitionByLocale": {
+            "ru": "расположенный у морского побережья.",
+            "uk": "розташований біля морського узбережжя."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-49:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви вирішили поїхати до міста біля моря, але ще не вибрали дат. Передайте намір через going to. Скажіть: «Я збираюся відвідати приморське місто».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили поїхати до міста біля моря, але ще не вибрали дат. Передайте намір через going to. Скажіть: «Я збираюся відвідати приморське місто».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am going to visit a coastal town.",
+        "localizedMeaning": {
+          "ru": "Вы решили съездить в город у моря, но ещё не выбрали даты. Передайте намерение через going to. Скажите: «Я собираюсь посетить приморский город».",
+          "uk": "Ви вирішили поїхати до міста біля моря, але ще не вибрали дат. Передайте намір через going to. Скажіть: «Я збираюся відвідати приморське місто»."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "visit",
+          "a",
+          "coastal",
+          "town"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-49:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-49:i02:r1",
+          "text": "I am going to visit a coastal town."
+        },
+        {
+          "responseId": "en:lesson-15:session-49:i02:r2",
+          "text": "I am visiting a coastal town."
+        },
+        {
+          "responseId": "en:lesson-15:session-49:i02:r3",
+          "text": "I is going to visit a coastal town."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-49:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-49:i02:audio",
+          "transcript": "I am going to visit a coastal town."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-49:i02:r1",
+            "targetText": "I am going to visit a coastal town.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i02:r2",
+            "targetText": "I am visiting a coastal town.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i02:r3",
+            "targetText": "I is going to visit a coastal town.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-49:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to visit a coastal town.",
+              "uk": "У записі звучить I am going to visit a coastal town."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am going to visit a coastal town.",
+              "uk": "У записі звучить I am going to visit a coastal town."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-49:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви вирішили поїхати до міста біля моря, але ще не вибрали дат. Передайте намір через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-49:i03:r1",
+          "text": "am going to visit"
+        },
+        {
+          "responseId": "en:lesson-15:session-49:i03:r2",
+          "text": "am visiting"
+        },
+        {
+          "responseId": "en:lesson-15:session-49:i03:r3",
+          "text": "visit"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви вирішили поїхати до міста біля моря, але ще не вибрали дат. Передайте намір через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы решили съездить в город у моря, но ещё не выбрали даты. Передайте намерение через going to.",
+          "uk": "Ви вирішили поїхати до міста біля моря, але ще не вибрали дат. Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "I ___ a coastal town.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-49:i03:r1",
+            "text": "am going to visit"
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i03:r2",
+            "text": "am visiting"
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i03:r3",
+            "text": "visit"
+          }
+        ],
+        "testedDimension": "Ви вирішили поїхати до міста біля моря, але ще не вибрали дат. Передайте намір через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-49:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви вирішили поїхати до міста біля моря, але ще не вибрали дат. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви вирішили поїхати до міста біля моря, але ще не вибрали дат. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: am going to visit.",
+              "uk": "Потрібна повна форма: am going to visit."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-49:word:inland",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — inland",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-49:word:inland:audio"
+      ],
+      "accessibilityLabel": "Картка слова — inland",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-49:word:inland:audio",
+          "transcript": "inland"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-49:word:inland:r1",
+            "targetText": "inland",
+            "meaningByLocale": {
+              "ru": "расположенный в глубине страны, вдали от побережья.",
+              "uk": "розташований усередині країни, далеко від узбережжя."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "inland",
+          "definitionByLocale": {
+            "ru": "расположенный в глубине страны, вдали от побережья.",
+            "uk": "розташований усередині країни, далеко від узбережжя."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-49:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваша сестра вирішила подивитися місто всередині країни; квитків поки немає. Передайте намір через going to. Скажіть: «Вона збирається відвідати місто далеко від узбережжя».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша сестра вирішила подивитися місто всередині країни; квитків поки немає. Передайте намір через going to. Скажіть: «Вона збирається відвідати місто далеко від узбережжя».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She is going to visit an inland town.",
+        "localizedMeaning": {
+          "ru": "Ваша сестра решила посмотреть город в глубине страны; билетов пока нет. Передайте намерение через going to. Скажите: «Она собирается посетить город вдали от побережья».",
+          "uk": "Ваша сестра вирішила подивитися місто всередині країни; квитків поки немає. Передайте намір через going to. Скажіть: «Вона збирається відвідати місто далеко від узбережжя»."
+        },
+        "orderedTokens": [
+          "She",
+          "is",
+          "going",
+          "to",
+          "visit",
+          "an",
+          "inland",
+          "town"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-49:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-49:i05:r1",
+          "text": "She is going to visit an inland town."
+        },
+        {
+          "responseId": "en:lesson-15:session-49:i05:r2",
+          "text": "She is visiting an inland town."
+        },
+        {
+          "responseId": "en:lesson-15:session-49:i05:r3",
+          "text": "She are going to visit an inland town."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-49:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-49:i05:audio",
+          "transcript": "She is going to visit an inland town."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-49:i05:r1",
+            "targetText": "She is going to visit an inland town.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i05:r2",
+            "targetText": "She is visiting an inland town.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i05:r3",
+            "targetText": "She are going to visit an inland town.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-49:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to visit an inland town.",
+              "uk": "У записі звучить She is going to visit an inland town."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is going to visit an inland town.",
+              "uk": "У записі звучить She is going to visit an inland town."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-49:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваша сестра вирішила подивитися місто всередині країни; квитків поки немає. Передайте намір через going to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-49:i06:r1",
+          "text": "is going to visit"
+        },
+        {
+          "responseId": "en:lesson-15:session-49:i06:r2",
+          "text": "is visiting"
+        },
+        {
+          "responseId": "en:lesson-15:session-49:i06:r3",
+          "text": "visit"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваша сестра вирішила подивитися місто всередині країни; квитків поки немає. Передайте намір через going to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваша сестра решила посмотреть город в глубине страны; билетов пока нет. Передайте намерение через going to.",
+          "uk": "Ваша сестра вирішила подивитися місто всередині країни; квитків поки немає. Передайте намір через going to."
+        },
+        "gappedTargetPhrase": "She ___ an inland town.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-49:i06:r1",
+            "text": "is going to visit"
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i06:r2",
+            "text": "is visiting"
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i06:r3",
+            "text": "visit"
+          }
+        ],
+        "testedDimension": "Ваша сестра вирішила подивитися місто всередині країни; квитків поки немає. Передайте намір через going to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-49:i06:r2",
+            "correct": false,
+            "testedDimension": "Ваша сестра вирішила подивитися місто всередині країни; квитків поки немає. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i06:r3",
+            "correct": false,
+            "testedDimension": "Ваша сестра вирішила подивитися місто всередині країни; квитків поки немає. Передайте намір через going to.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: is going to visit.",
+              "uk": "Потрібна повна форма: is going to visit."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-49:word:rural",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — rural",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-49:word:rural:audio"
+      ],
+      "accessibilityLabel": "Картка слова — rural",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-49:word:rural:audio",
+          "transcript": "rural"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-49:word:rural:r1",
+            "targetText": "rural",
+            "meaningByLocale": {
+              "ru": "сельский, относящийся к местности за городами.",
+              "uk": "сільський, що стосується місцевості поза містами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rural",
+          "definitionByLocale": {
+            "ru": "сельский, относящийся к местности за городами.",
+            "uk": "сільський, що стосується місцевості поза містами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-49:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви забронювали будинок за містом на наступний тиждень; господар підтвердив бронювання. Передайте домовленість через Present Continuous. Скажіть: «Ми зупиняємося в сільській місцевості наступного тижня».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви забронювали будинок за містом на наступний тиждень; господар підтвердив бронювання. Передайте домовленість через Present Continuous. Скажіть: «Ми зупиняємося в сільській місцевості наступного тижня».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We are staying in a rural area next week.",
+        "localizedMeaning": {
+          "ru": "Вы забронировали дом за городом на следующую неделю; хозяин подтвердил бронь. Передайте договорённость через Present Continuous. Скажите: «Мы останавливаемся в сельской местности на следующей неделе».",
+          "uk": "Ви забронювали будинок за містом на наступний тиждень; господар підтвердив бронювання. Передайте домовленість через Present Continuous. Скажіть: «Ми зупиняємося в сільській місцевості наступного тижня»."
+        },
+        "orderedTokens": [
+          "We",
+          "are",
+          "staying",
+          "in",
+          "a",
+          "rural",
+          "area",
+          "next",
+          "week"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-49:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-49:i08:r1",
+          "text": "We are staying in a rural area next week."
+        },
+        {
+          "responseId": "en:lesson-15:session-49:i08:r2",
+          "text": "We are going to stay in a rural area next week."
+        },
+        {
+          "responseId": "en:lesson-15:session-49:i08:r3",
+          "text": "We is staying in a rural area next week."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-49:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-49:i08:audio",
+          "transcript": "We are staying in a rural area next week."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-49:i08:r1",
+            "targetText": "We are staying in a rural area next week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i08:r2",
+            "targetText": "We are going to stay in a rural area next week.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i08:r3",
+            "targetText": "We is staying in a rural area next week.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-49:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are staying in a rural area next week.",
+              "uk": "У записі звучить We are staying in a rural area next week."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are staying in a rural area next week.",
+              "uk": "У записі звучить We are staying in a rural area next week."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-49:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви забронювали будинок за містом на наступний тиждень; господар підтвердив бронювання. Передайте домовленість через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-49:i09:r1",
+          "text": "are staying"
+        },
+        {
+          "responseId": "en:lesson-15:session-49:i09:r2",
+          "text": "are going to stay"
+        },
+        {
+          "responseId": "en:lesson-15:session-49:i09:r3",
+          "text": "stay"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви забронювали будинок за містом на наступний тиждень; господар підтвердив бронювання. Передайте домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы забронировали дом за городом на следующую неделю; хозяин подтвердил бронь. Передайте договорённость через Present Continuous.",
+          "uk": "Ви забронювали будинок за містом на наступний тиждень; господар підтвердив бронювання. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "We ___ in a rural area next week.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-49:i09:r1",
+            "text": "are staying"
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i09:r2",
+            "text": "are going to stay"
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i09:r3",
+            "text": "stay"
+          }
+        ],
+        "testedDimension": "Ви забронювали будинок за містом на наступний тиждень; господар підтвердив бронювання. Передайте домовленість через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-49:i09:r2",
+            "correct": false,
+            "testedDimension": "Ви забронювали будинок за містом на наступний тиждень; господар підтвердив бронювання. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i09:r3",
+            "correct": false,
+            "testedDimension": "Ви забронювали будинок за містом на наступний тиждень; господар підтвердив бронювання. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are staying.",
+              "uk": "Потрібна повна форма: are staying."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-49:word:urban",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — urban",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-49:word:urban:audio"
+      ],
+      "accessibilityLabel": "Картка слова — urban",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-49:word:urban:audio",
+          "transcript": "urban"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-49:word:urban:r1",
+            "targetText": "urban",
+            "meaningByLocale": {
+              "ru": "городской, относящийся к городу.",
+              "uk": "міський, що стосується міста."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "urban",
+          "definitionByLocale": {
+            "ru": "городской, относящийся к городу.",
+            "uk": "міський, що стосується міста."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-49:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ваші друзі домовилися про завтрашню прогулянку в парку всередині міста. Передайте домовленість через Present Continuous. Скажіть: «Вони відвідують міський парк завтра».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваші друзі домовилися про завтрашню прогулянку в парку всередині міста. Передайте домовленість через Present Continuous. Скажіть: «Вони відвідують міський парк завтра».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "They are visiting an urban park tomorrow.",
+        "localizedMeaning": {
+          "ru": "Ваши друзья договорились о завтрашней прогулке в парке внутри города. Передайте договорённость через Present Continuous. Скажите: «Они посещают городской парк завтра».",
+          "uk": "Ваші друзі домовилися про завтрашню прогулянку в парку всередині міста. Передайте домовленість через Present Continuous. Скажіть: «Вони відвідують міський парк завтра»."
+        },
+        "orderedTokens": [
+          "They",
+          "are",
+          "visiting",
+          "an",
+          "urban",
+          "park",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-49:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-49:i11:r1",
+          "text": "They are visiting an urban park tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-49:i11:r2",
+          "text": "They are going to visit an urban park tomorrow."
+        },
+        {
+          "responseId": "en:lesson-15:session-49:i11:r3",
+          "text": "They is visiting an urban park tomorrow."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-49:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-49:i11:audio",
+          "transcript": "They are visiting an urban park tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-15:session-49:i11:r1",
+            "targetText": "They are visiting an urban park tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i11:r2",
+            "targetText": "They are going to visit an urban park tomorrow.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i11:r3",
+            "targetText": "They is visiting an urban park tomorrow.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-49:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are visiting an urban park tomorrow.",
+              "uk": "У записі звучить They are visiting an urban park tomorrow."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They are visiting an urban park tomorrow.",
+              "uk": "У записі звучить They are visiting an urban park tomorrow."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-49:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ваші друзі домовилися про завтрашню прогулянку в парку всередині міста. Передайте домовленість через Present Continuous.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-15:session-49:i12:r1",
+          "text": "are visiting"
+        },
+        {
+          "responseId": "en:lesson-15:session-49:i12:r2",
+          "text": "are going to visit"
+        },
+        {
+          "responseId": "en:lesson-15:session-49:i12:r3",
+          "text": "visit"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ваші друзі домовилися про завтрашню прогулянку в парку всередині міста. Передайте домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Ваши друзья договорились о завтрашней прогулке в парке внутри города. Передайте договорённость через Present Continuous.",
+          "uk": "Ваші друзі домовилися про завтрашню прогулянку в парку всередині міста. Передайте домовленість через Present Continuous."
+        },
+        "gappedTargetPhrase": "They ___ an urban park tomorrow.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-15:session-49:i12:r1",
+            "text": "are visiting"
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i12:r2",
+            "text": "are going to visit"
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i12:r3",
+            "text": "visit"
+          }
+        ],
+        "testedDimension": "Ваші друзі домовилися про завтрашню прогулянку в парку всередині міста. Передайте домовленість через Present Continuous.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-15:session-49:i12:r2",
+            "correct": false,
+            "testedDimension": "Ваші друзі домовилися про завтрашню прогулянку в парку всередині міста. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+            }
+          },
+          {
+            "responseId": "en:lesson-15:session-49:i12:r3",
+            "correct": false,
+            "testedDimension": "Ваші друзі домовилися про завтрашню прогулянку в парку всередині міста. Передайте домовленість через Present Continuous.",
+            "feedbackByLocale": {
+              "ru": "Нужна полная форма: are visiting.",
+              "uk": "Потрібна повна форма: are visiting."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-49:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова й вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова й вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-15:session-49:i13:p1",
+            "target": "coastal",
+            "meaningByLocale": {
+              "ru": "расположенный у морского побережья",
+              "uk": "розташований біля морського узбережжя"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-49:i13:p2",
+            "target": "inland",
+            "meaningByLocale": {
+              "ru": "расположенный в глубине страны, вдали от побережья",
+              "uk": "розташований усередині країни, далеко від узбережжя"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-49:i13:p3",
+            "target": "rural",
+            "meaningByLocale": {
+              "ru": "сельский, относящийся к местности за городами",
+              "uk": "сільський, що стосується місцевості поза містами"
+            }
+          },
+          {
+            "pairId": "en:lesson-15:session-49:i13:p4",
+            "target": "urban",
+            "meaningByLocale": {
+              "ru": "городской, относящийся к городу",
+              "uk": "міський, що стосується міста"
+            }
+          }
+        ],
+        "leftColumn": [
+          "coastal",
+          "inland",
+          "rural",
+          "urban"
+        ],
+        "rightColumn": [
+          "розташований біля морського узбережжя",
+          "розташований усередині країни, далеко від узбережжя",
+          "сільський, що стосується місцевості поза містами",
+          "міський, що стосується міста"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-49:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-49:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-49:i14:audio",
+          "transcript": "I am going to visit a new town."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am going to visit a new town.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "going",
+          "to",
+          "visit",
+          "a",
+          "new",
+          "town"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-49:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-49:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-49:i15:audio",
+          "transcript": "We are staying there next week."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are staying there next week.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "staying",
+          "there",
+          "next",
+          "week"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-49:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-49:i16:audio"
+      ],
+      "accessibilityLabel": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-49:i16:audio",
+          "transcript": "I am visiting a coastal town tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am visiting a coastal town tomorrow.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-15:session-49:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-15:session-49:i17:audio"
+      ],
+      "accessibilityLabel": "Тепер це лише ваш намір. Повторіть фразу через going to.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-15:session-49:i17:audio",
+          "transcript": "We are going to stay in a rural area next week."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We are going to stay in a rural area next week.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "422fbfff803851ae622f831302da169aeb5d2a88f5381933e976611817144d6c"
+}

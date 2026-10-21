@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "going to / Present Continuous: intention and arrangement",
+    "uk": "going to / Present Continuous: intention and arrangement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пока намерение",
+        "uk": "Поки намір"
+      },
+      "bodyByLocale": {
+        "ru": "practical — удобный и полезный в повседневном использовании. Повторим going to для намерения. Вы решили выбрать удобное пальто для ежедневной носки, а не только для красоты. I am going to buy a practical coat. — Я собираюсь купить практичное пальто. Передайте намерение через going to.",
+        "uk": "practical — зручний і корисний у повсякденному використанні. Повторімо going to для наміру. Ви вирішили вибрати зручне пальто для щоденного носіння, а не лише для краси. I am going to buy a practical coat. — Я збираюся купити практичне пальто. Передайте намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-47:intro1:r1",
+              "text": "I am going to buy a practical coat."
+            },
+            {
+              "responseId": "en:lesson-15:session-47:intro1:r2",
+              "text": "I am buying a practical coat."
+            },
+            {
+              "responseId": "en:lesson-15:session-47:intro1:r3",
+              "text": "I is going to buy a practical coat."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-47:intro1:r1",
+              "text": "I am going to buy a practical coat."
+            },
+            {
+              "responseId": "en:lesson-15:session-47:intro1:r2",
+              "text": "I am buying a practical coat."
+            },
+            {
+              "responseId": "en:lesson-15:session-47:intro1:r3",
+              "text": "I is going to buy a practical coat."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже договорились",
+        "uk": "Уже домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "affordable — доступный по цене для своего бюджета. economical — экономичный, требующий мало ресурсов или затрат. Если время уже согласовано, потренируем Present Continuous. Цена квартиры укладывается в ваш бюджет; просмотр с хозяином согласован на завтра. We are viewing an affordable flat tomorrow. — Мы смотрим доступную нам по цене квартиру завтра. Передайте договорённость через Present Continuous.",
+        "uk": "affordable — доступний за ціною для свого бюджету. economical — економний, який потребує мало ресурсів або витрат. Якщо час уже узгоджено, потренуймо Present Continuous. Ціна квартири вкладається у ваш бюджет; огляд із господарем узгоджено на завтра. We are viewing an affordable flat tomorrow. — Ми оглядаємо доступну нам за ціною квартиру завтра. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-47:intro2:r1",
+              "text": "We are viewing an affordable flat tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-47:intro2:r2",
+              "text": "We are going to view an affordable flat tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-47:intro2:r3",
+              "text": "We is viewing an affordable flat tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-47:intro2:r1",
+              "text": "We are viewing an affordable flat tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-47:intro2:r2",
+              "text": "We are going to view an affordable flat tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-47:intro2:r3",
+              "text": "We is viewing an affordable flat tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Известен день",
+        "uk": "Відомий день"
+      },
+      "bodyByLocale": {
+        "ru": "overpriced — с завышенной ценой по сравнению с ценностью вещи. Участники заранее согласовали день. Выбираем форму по указанию задания. Друзья считают цену квартиры завышенной, но уже согласовали просмотр на пятницу. They are viewing an overpriced flat on Friday. — Они смотрят квартиру с завышенной ценой в пятницу. Передайте договорённость через Present Continuous.",
+        "uk": "overpriced — із завищеною ціною порівняно з цінністю речі. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Друзі вважають ціну квартири завищеною, але вже узгодили огляд на п’ятницю. They are viewing an overpriced flat on Friday. — Вони оглядають квартиру із завищеною ціною в п’ятницю. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-47:intro3:r1",
+              "text": "They are viewing an overpriced flat on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-47:intro3:r2",
+              "text": "They are going to view an overpriced flat on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-47:intro3:r3",
+              "text": "They is viewing an overpriced flat on Friday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-47:intro3:r1",
+              "text": "They are viewing an overpriced flat on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-47:intro3:r2",
+              "text": "They are going to view an overpriced flat on Friday."
+            },
+            {
+              "responseId": "en:lesson-15:session-47:intro3:r3",
+              "text": "They is viewing an overpriced flat on Friday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7ad914ac5d1eaaedc2a78103dd0b13b3c82df41ebd700f4375cd3aa6390b0914"
+}

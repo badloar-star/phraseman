@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-15:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "going to / Present Continuous: intention and arrangement",
+    "uk": "going to / Present Continuous: intention and arrangement"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-15:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пока намерение",
+        "uk": "Поки намір"
+      },
+      "bodyByLocale": {
+        "ru": "reckless — безрассудный, не учитывающий опасность. Повторим going to для намерения. Вы решили поговорить с братом, который часто рискует, не думая о последствиях. I am going to talk to my reckless brother. — Я собираюсь поговорить с братом, который пренебрегает опасностью. Передайте намерение через going to.",
+        "uk": "reckless — безрозсудний, який не зважає на небезпеку. Повторімо going to для наміру. Ви вирішили поговорити з братом, який часто ризикує, не думаючи про наслідки. I am going to talk to my reckless brother. — Я збираюся поговорити з братом, який нехтує небезпекою. Передайте намір через going to."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-46:intro1:r1",
+              "text": "I am going to talk to my reckless brother."
+            },
+            {
+              "responseId": "en:lesson-15:session-46:intro1:r2",
+              "text": "I am talking to my reckless brother."
+            },
+            {
+              "responseId": "en:lesson-15:session-46:intro1:r3",
+              "text": "I is going to talk to my reckless brother."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-46:intro1:r1",
+              "text": "I am going to talk to my reckless brother."
+            },
+            {
+              "responseId": "en:lesson-15:session-46:intro1:r2",
+              "text": "I am talking to my reckless brother."
+            },
+            {
+              "responseId": "en:lesson-15:session-46:intro1:r3",
+              "text": "I is going to talk to my reckless brother."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-15:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уже договорились",
+        "uk": "Уже домовилися"
+      },
+      "bodyByLocale": {
+        "ru": "narrow-minded — не желающий рассматривать другие взгляды. inflexible — негибкий, не готовый менять решение или правило. Если время уже согласовано, потренируем Present Continuous. Вы договорились о завтрашней встрече с двоюродным братом; он не любит обсуждать чужие взгляды. We are meeting our narrow-minded cousin tomorrow. — Мы встречаемся с двоюродным братом, который не принимает другие взгляды, завтра. Передайте договорённость через Present Continuous.",
+        "uk": "narrow-minded — який не бажає розглядати інші погляди. inflexible — негнучкий, не готовий змінювати рішення чи правило. Якщо час уже узгоджено, потренуймо Present Continuous. Ви домовилися про завтрашню зустріч із двоюрідним братом; він не любить обговорювати чужі погляди. We are meeting our narrow-minded cousin tomorrow. — Ми зустрічаємося з двоюрідним братом, який не приймає інших поглядів, завтра. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-46:intro2:r1",
+              "text": "We are meeting our narrow-minded cousin tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-46:intro2:r2",
+              "text": "We are going to meet our narrow-minded cousin tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-46:intro2:r3",
+              "text": "We is meeting our narrow-minded cousin tomorrow."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-46:intro2:r1",
+              "text": "We are meeting our narrow-minded cousin tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-46:intro2:r2",
+              "text": "We are going to meet our narrow-minded cousin tomorrow."
+            },
+            {
+              "responseId": "en:lesson-15:session-46:intro2:r3",
+              "text": "We is meeting our narrow-minded cousin tomorrow."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-15:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Известен день",
+        "uk": "Відомий день"
+      },
+      "bodyByLocale": {
+        "ru": "ungrateful — неблагодарный, не ценящий сделанное для него. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши друзья согласовали встречу на субботу с другом, который не ценит их помощь. They are meeting their ungrateful friend on Saturday. — Они встречаются с неблагодарным другом в субботу. Передайте договорённость через Present Continuous.",
+        "uk": "ungrateful — невдячний, який не цінує зроблене для нього. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші друзі узгодили зустріч на суботу з другом, який не цінує їхньої допомоги. They are meeting their ungrateful friend on Saturday. — Вони зустрічаються з невдячним другом у суботу. Передайте домовленість через Present Continuous."
+      },
+      "question": {
+        "interactionId": "en:lesson-15:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-15:session-46:intro3:r1",
+              "text": "They are meeting their ungrateful friend on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-46:intro3:r2",
+              "text": "They are going to meet their ungrateful friend on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-46:intro3:r3",
+              "text": "They is meeting their ungrateful friend on Saturday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-15:session-46:intro3:r1",
+              "text": "They are meeting their ungrateful friend on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-46:intro3:r2",
+              "text": "They are going to meet their ungrateful friend on Saturday."
+            },
+            {
+              "responseId": "en:lesson-15:session-46:intro3:r3",
+              "text": "They is meeting their ungrateful friend on Saturday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1f86a88d9e40034b382ca540a9fd9d1f0deeae0813afd2cbba4c6bcc4b9dfec5"
+}

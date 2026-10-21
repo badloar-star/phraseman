@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-50:word:secluded",
+    "correctText": "secluded",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-50:i01",
+    "correctText": "I am going to find a secluded beach.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-50:i02",
+    "correctText": "I am going to find a secluded beach.",
+    "correctResponseId": "en:lesson-15:session-50:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-50:i03",
+    "correctText": "am going to find",
+    "correctResponseId": "en:lesson-15:session-50:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-50:word:airy",
+    "correctText": "airy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-50:i04",
+    "correctText": "She is going to choose an airy room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-50:i05",
+    "correctText": "She is going to choose an airy room.",
+    "correctResponseId": "en:lesson-15:session-50:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-50:i06",
+    "correctText": "is going to choose",
+    "correctResponseId": "en:lesson-15:session-50:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-50:word:leafy",
+    "correctText": "leafy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-50:i07",
+    "correctText": "We are staying on a leafy street next week.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-50:i08",
+    "correctText": "We are staying on a leafy street next week.",
+    "correctResponseId": "en:lesson-15:session-50:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-50:i09",
+    "correctText": "are staying",
+    "correctResponseId": "en:lesson-15:session-50:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-50:word:sheltered",
+    "correctText": "sheltered",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-50:i10",
+    "correctText": "They are meeting in a sheltered garden tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-50:i11",
+    "correctText": "They are meeting in a sheltered garden tomorrow.",
+    "correctResponseId": "en:lesson-15:session-50:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-50:i12",
+    "correctText": "are meeting",
+    "correctResponseId": "en:lesson-15:session-50:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-50:i13",
+    "correctText": "en:lesson-15:session-50:i13:p1=secluded\nen:lesson-15:session-50:i13:p2=airy\nen:lesson-15:session-50:i13:p3=leafy\nen:lesson-15:session-50:i13:p4=sheltered",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-50:i14",
+    "correctText": "I am going to choose a room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-50:i15",
+    "correctText": "We are staying at the house next week.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-50:i16",
+    "correctText": "I am finding a secluded beach tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-50:i17",
+    "correctText": "We are going to stay on a leafy street next week.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-15:session-42:word:optimistic",
+    "correctText": "optimistic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-42:i01",
+    "correctText": "I am going to call my optimistic friend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-42:i02",
+    "correctText": "I am going to call my optimistic friend.",
+    "correctResponseId": "en:lesson-15:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-42:i03",
+    "correctText": "am going to call",
+    "correctResponseId": "en:lesson-15:session-42:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-42:word:pessimistic",
+    "correctText": "pessimistic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-42:i04",
+    "correctText": "She is going to help her pessimistic brother.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-42:i05",
+    "correctText": "She is going to help her pessimistic brother.",
+    "correctResponseId": "en:lesson-15:session-42:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-42:i06",
+    "correctText": "is going to help",
+    "correctResponseId": "en:lesson-15:session-42:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-42:word:indecisive",
+    "correctText": "indecisive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-42:i07",
+    "correctText": "We are meeting our indecisive cousin on Friday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-42:i08",
+    "correctText": "We are meeting our indecisive cousin on Friday.",
+    "correctResponseId": "en:lesson-15:session-42:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-42:i09",
+    "correctText": "are meeting",
+    "correctResponseId": "en:lesson-15:session-42:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-42:word:decisive",
+    "correctText": "decisive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-42:i10",
+    "correctText": "They are meeting their decisive coach tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-42:i11",
+    "correctText": "They are meeting their decisive coach tomorrow.",
+    "correctResponseId": "en:lesson-15:session-42:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-42:i12",
+    "correctText": "are meeting",
+    "correctResponseId": "en:lesson-15:session-42:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-15:session-42:i13",
+    "correctText": "en:lesson-15:session-42:i13:p1=optimistic\nen:lesson-15:session-42:i13:p2=pessimistic\nen:lesson-15:session-42:i13:p3=indecisive\nen:lesson-15:session-42:i13:p4=decisive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-42:i14",
+    "correctText": "I am going to help my friend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-42:i15",
+    "correctText": "We are meeting on Friday afternoon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-42:i16",
+    "correctText": "I am calling my optimistic friend tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-15:session-42:i17",
+    "correctText": "We are going to meet our indecisive cousin on Friday.",
+    "correctResponseId": null
+  }
+]

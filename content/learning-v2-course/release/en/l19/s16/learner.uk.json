@@ -1,0 +1,1128 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-19:session-16",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-19:session-16:word:habit",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — habit",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-16:word:habit:audio"
+      ],
+      "accessibilityLabel": "Картка слова — habit",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-16:word:habit:audio",
+          "transcript": "habit"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-16:word:habit:r1",
+            "targetText": "habit",
+            "meaningByLocale": {
+              "ru": "привычка.",
+              "uk": "звичка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "habit",
+          "definitionByLocale": {
+            "ru": "привычка.",
+            "uk": "звичка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-16:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У двадцять років я міг змінити звичку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «У двадцять років я міг змінити звичку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "At twenty, I could change a habit.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В двадцать лет я мог изменить привычку».",
+          "uk": "Скажіть: «У двадцять років я міг змінити звичку»."
+        },
+        "orderedTokens": [
+          "At",
+          "twenty,",
+          "I",
+          "could",
+          "change",
+          "a",
+          "habit"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-16:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-16:i02:r1",
+          "text": "At twenty, I could change a habit."
+        },
+        {
+          "responseId": "en:lesson-19:session-16:i02:r2",
+          "text": "At twenty, I could not change a habit."
+        },
+        {
+          "responseId": "en:lesson-19:session-16:i02:r3",
+          "text": "At twenty, I could already change a habit."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-16:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-16:i02:audio",
+          "transcript": "At twenty, I could change a habit."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-16:i02:r1",
+            "targetText": "At twenty, I could change a habit.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i02:r2",
+            "targetText": "At twenty, I could not change a habit.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i02:r3",
+            "targetText": "At twenty, I could already change a habit.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-16:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At twenty, I could change a habit.",
+              "uk": "У записі звучить At twenty, I could change a habit."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At twenty, I could change a habit.",
+              "uk": "У записі звучить At twenty, I could change a habit."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-16:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для вміння в минулому.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-16:i03:r1",
+          "text": "could"
+        },
+        {
+          "responseId": "en:lesson-19:session-16:i03:r2",
+          "text": "could to"
+        },
+        {
+          "responseId": "en:lesson-19:session-16:i03:r3",
+          "text": "coulds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для вміння в минулому.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для умения в прошлом.",
+          "uk": "Виберіть форму для вміння в минулому."
+        },
+        "gappedTargetPhrase": "At twenty, I ___ change a habit.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-16:i03:r1",
+            "text": "could"
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i03:r2",
+            "text": "could to"
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i03:r3",
+            "text": "coulds"
+          }
+        ],
+        "testedDimension": "Виберіть форму для вміння в минулому.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-16:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "После could нет to.",
+              "uk": "Після could немає to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "У could нет окончания -s.",
+              "uk": "Could не має закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-16:word:skill",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — skill",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-16:word:skill:audio"
+      ],
+      "accessibilityLabel": "Картка слова — skill",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-16:word:skill:audio",
+          "transcript": "skill"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-16:word:skill:r1",
+            "targetText": "skill",
+            "meaningByLocale": {
+              "ru": "навык, умение.",
+              "uk": "навичка, уміння."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "skill",
+          "definitionByLocale": {
+            "ru": "навык, умение.",
+            "uk": "навичка, уміння."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-16:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У двадцять років я міг опанувати нову навичку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «У двадцять років я міг опанувати нову навичку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "At twenty, I could learn a new skill.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В двадцать лет я мог освоить новый навык».",
+          "uk": "Скажіть: «У двадцять років я міг опанувати нову навичку»."
+        },
+        "orderedTokens": [
+          "At",
+          "twenty,",
+          "I",
+          "could",
+          "learn",
+          "a",
+          "new",
+          "skill"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-16:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-16:i05:r1",
+          "text": "At twenty, I could learn a new skill."
+        },
+        {
+          "responseId": "en:lesson-19:session-16:i05:r2",
+          "text": "At twenty, I could not learn a new skill."
+        },
+        {
+          "responseId": "en:lesson-19:session-16:i05:r3",
+          "text": "At twenty, I could already learn a new skill."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-16:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-16:i05:audio",
+          "transcript": "At twenty, I could learn a new skill."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-16:i05:r1",
+            "targetText": "At twenty, I could learn a new skill.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i05:r2",
+            "targetText": "At twenty, I could not learn a new skill.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i05:r3",
+            "targetText": "At twenty, I could already learn a new skill.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-16:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At twenty, I could learn a new skill.",
+              "uk": "У записі звучить At twenty, I could learn a new skill."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At twenty, I could learn a new skill.",
+              "uk": "У записі звучить At twenty, I could learn a new skill."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-16:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для вміння в минулому.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-16:i06:r1",
+          "text": "could"
+        },
+        {
+          "responseId": "en:lesson-19:session-16:i06:r2",
+          "text": "could to"
+        },
+        {
+          "responseId": "en:lesson-19:session-16:i06:r3",
+          "text": "coulds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для вміння в минулому.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для умения в прошлом.",
+          "uk": "Виберіть форму для вміння в минулому."
+        },
+        "gappedTargetPhrase": "At twenty, I ___ learn a new skill.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-16:i06:r1",
+            "text": "could"
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i06:r2",
+            "text": "could to"
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i06:r3",
+            "text": "coulds"
+          }
+        ],
+        "testedDimension": "Виберіть форму для вміння в минулому.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-16:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "После could нет to.",
+              "uk": "Після could немає to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "У could нет окончания -s.",
+              "uk": "Could не має закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-16:word:talent",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — talent",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-16:word:talent:audio"
+      ],
+      "accessibilityLabel": "Картка слова — talent",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-16:word:talent:audio",
+          "transcript": "talent"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-16:word:talent:r1",
+            "targetText": "talent",
+            "meaningByLocale": {
+              "ru": "талант, заметная способность к чему-либо.",
+              "uk": "талант, помітна здібність до чогось."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "talent",
+          "definitionByLocale": {
+            "ru": "талант, заметная способность к чему-либо.",
+            "uk": "талант, помітна здібність до чогось."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-16:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У двадцять років я міг розпізнати талант».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «У двадцять років я міг розпізнати талант».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "At twenty, I could recognize talent.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В двадцать лет я мог распознать талант».",
+          "uk": "Скажіть: «У двадцять років я міг розпізнати талант»."
+        },
+        "orderedTokens": [
+          "At",
+          "twenty,",
+          "I",
+          "could",
+          "recognize",
+          "talent"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-16:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-16:i08:r1",
+          "text": "At twenty, I could recognize talent."
+        },
+        {
+          "responseId": "en:lesson-19:session-16:i08:r2",
+          "text": "At twenty, I could not recognize talent."
+        },
+        {
+          "responseId": "en:lesson-19:session-16:i08:r3",
+          "text": "At twenty, I could already recognize talent."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-16:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-16:i08:audio",
+          "transcript": "At twenty, I could recognize talent."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-16:i08:r1",
+            "targetText": "At twenty, I could recognize talent.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i08:r2",
+            "targetText": "At twenty, I could not recognize talent.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i08:r3",
+            "targetText": "At twenty, I could already recognize talent.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-16:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At twenty, I could recognize talent.",
+              "uk": "У записі звучить At twenty, I could recognize talent."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At twenty, I could recognize talent.",
+              "uk": "У записі звучить At twenty, I could recognize talent."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-16:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для вміння в минулому.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-16:i09:r1",
+          "text": "could"
+        },
+        {
+          "responseId": "en:lesson-19:session-16:i09:r2",
+          "text": "could to"
+        },
+        {
+          "responseId": "en:lesson-19:session-16:i09:r3",
+          "text": "coulds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для вміння в минулому.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для умения в прошлом.",
+          "uk": "Виберіть форму для вміння в минулому."
+        },
+        "gappedTargetPhrase": "At twenty, I ___ recognize talent.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-16:i09:r1",
+            "text": "could"
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i09:r2",
+            "text": "could to"
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i09:r3",
+            "text": "coulds"
+          }
+        ],
+        "testedDimension": "Виберіть форму для вміння в минулому.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-16:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "После could нет to.",
+              "uk": "Після could немає to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "У could нет окончания -s.",
+              "uk": "Could не має закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-16:word:potential",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — potential",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-16:word:potential:audio"
+      ],
+      "accessibilityLabel": "Картка слова — potential",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-16:word:potential:audio",
+          "transcript": "potential"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-16:word:potential:r1",
+            "targetText": "potential",
+            "meaningByLocale": {
+              "ru": "потенциал, возможности для развития.",
+              "uk": "потенціал, можливості для розвитку."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "potential",
+          "definitionByLocale": {
+            "ru": "потенциал, возможности для развития.",
+            "uk": "потенціал, можливості для розвитку."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-16:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У двадцять років я міг побачити її потенціал».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «У двадцять років я міг побачити її потенціал».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "At twenty, I could see her potential.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В двадцать лет я мог увидеть её потенциал».",
+          "uk": "Скажіть: «У двадцять років я міг побачити її потенціал»."
+        },
+        "orderedTokens": [
+          "At",
+          "twenty,",
+          "I",
+          "could",
+          "see",
+          "her",
+          "potential"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-16:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-16:i11:r1",
+          "text": "At twenty, I could see her potential."
+        },
+        {
+          "responseId": "en:lesson-19:session-16:i11:r2",
+          "text": "At twenty, I could not see her potential."
+        },
+        {
+          "responseId": "en:lesson-19:session-16:i11:r3",
+          "text": "At twenty, I could already see her potential."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-16:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-16:i11:audio",
+          "transcript": "At twenty, I could see her potential."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-16:i11:r1",
+            "targetText": "At twenty, I could see her potential.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i11:r2",
+            "targetText": "At twenty, I could not see her potential.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i11:r3",
+            "targetText": "At twenty, I could already see her potential.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-16:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At twenty, I could see her potential.",
+              "uk": "У записі звучить At twenty, I could see her potential."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At twenty, I could see her potential.",
+              "uk": "У записі звучить At twenty, I could see her potential."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-16:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для вміння в минулому.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-16:i12:r1",
+          "text": "could"
+        },
+        {
+          "responseId": "en:lesson-19:session-16:i12:r2",
+          "text": "could to"
+        },
+        {
+          "responseId": "en:lesson-19:session-16:i12:r3",
+          "text": "coulds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для вміння в минулому.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для умения в прошлом.",
+          "uk": "Виберіть форму для вміння в минулому."
+        },
+        "gappedTargetPhrase": "At twenty, I ___ see her potential.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-16:i12:r1",
+            "text": "could"
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i12:r2",
+            "text": "could to"
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i12:r3",
+            "text": "coulds"
+          }
+        ],
+        "testedDimension": "Виберіть форму для вміння в минулому.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-16:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "После could нет to.",
+              "uk": "Після could немає to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-16:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "У could нет окончания -s.",
+              "uk": "Could не має закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-16:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-19:session-16:i13:p1",
+            "target": "habit",
+            "meaningByLocale": {
+              "ru": "привычка",
+              "uk": "звичка"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-16:i13:p2",
+            "target": "skill",
+            "meaningByLocale": {
+              "ru": "навык, умение",
+              "uk": "навичка, уміння"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-16:i13:p3",
+            "target": "talent",
+            "meaningByLocale": {
+              "ru": "талант, заметная способность к чему-либо",
+              "uk": "талант, помітна здібність до чогось"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-16:i13:p4",
+            "target": "potential",
+            "meaningByLocale": {
+              "ru": "потенциал, возможности для развития",
+              "uk": "потенціал, можливості для розвитку"
+            }
+          }
+        ],
+        "leftColumn": [
+          "habit",
+          "skill",
+          "talent",
+          "potential"
+        ],
+        "rightColumn": [
+          "звичка",
+          "навичка, уміння",
+          "талант, помітна здібність до чогось",
+          "потенціал, можливості для розвитку"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-16:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-16:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-16:i14:audio",
+          "transcript": "We are going to learn a new skill."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to learn a new skill.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "learn",
+          "a",
+          "new",
+          "skill"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-16:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий узгоджений план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий узгоджений план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-16:i15:audio",
+          "transcript": "We are meeting at the library tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting at the library tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "at",
+          "the",
+          "library",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-16:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: скажіть, що вмієте робити зараз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-16:i16:audio"
+      ],
+      "accessibilityLabel": "Повторення: скажіть, що вмієте робити зараз",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-16:i16:audio",
+          "transcript": "I can change this habit."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can change this habit.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-16:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: підкресліть якість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "Повторення: підкресліть якість",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-16:i17:audio",
+          "transcript": "This is such a useful skill."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is such a useful skill.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ab594d678fe5df2bc80ac1788a8271f0372065e6cde0c4857a0b6db66e0f342c"
+}

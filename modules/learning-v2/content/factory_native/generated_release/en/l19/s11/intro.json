@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "could + base verb for general past ability",
+    "uk": "could + base verb for general past ability"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что уже получалось",
+        "uk": "Що вже виходило"
+      },
+      "bodyByLocale": {
+        "ru": "Sentence — предложение: законченная мысль, выраженная словами. Вы вспоминаете, как в школе уже умели писать целые предложения. Could + начальная форма глагола описывает общее умение в прошлом. Речь о том, что человек уже умел в этом возрасте, а не об одном удачном случае. После could нет to и окончания -s. At ten здесь значит «в десять лет».",
+        "uk": "Sentence — речення: завершена думка, висловлена словами. Ви згадуєте, як у школі вже вміли писати цілі речення. Could + початкова форма дієслова описує загальне вміння в минулому. Ідеться про те, що людина вже вміла в цьому віці, а не про один вдалий випадок. Після could немає to й закінчення -s. At ten тут означає «у десять років»."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-11:intro1:r1",
+              "text": "At ten, I could write a sentence."
+            },
+            {
+              "responseId": "en:lesson-19:session-11:intro1:r2",
+              "text": "At ten, I could to write a sentence."
+            },
+            {
+              "responseId": "en:lesson-19:session-11:intro1:r3",
+              "text": "At ten, I coulds write a sentence."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-11:intro1:r1",
+              "text": "At ten, I could write a sentence."
+            },
+            {
+              "responseId": "en:lesson-19:session-11:intro1:r2",
+              "text": "At ten, I could to write a sentence."
+            },
+            {
+              "responseId": "en:lesson-19:session-11:intro1:r3",
+              "text": "At ten, I coulds write a sentence."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ещё одно умение",
+        "uk": "Ще одне вміння"
+      },
+      "bodyByLocale": {
+        "ru": "Paragraph — абзац, отдельная часть текста. Вы говорите о своём обычном умении читать такие части текста в десять лет. Could + начальная форма глагола описывает общее умение в прошлом. Речь о том, что человек уже умел в этом возрасте, а не об одном удачном случае. После could нет to и окончания -s. At ten здесь значит «в десять лет».",
+        "uk": "Paragraph — абзац, окрема частина тексту. Ви говорите про своє звичайне вміння читати такі частини тексту в десять років. Could + початкова форма дієслова описує загальне вміння в минулому. Ідеться про те, що людина вже вміла в цьому віці, а не про один вдалий випадок. Після could немає to й закінчення -s. At ten тут означає «у десять років»."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-11:intro2:r1",
+              "text": "At ten, I could read a paragraph."
+            },
+            {
+              "responseId": "en:lesson-19:session-11:intro2:r2",
+              "text": "At ten, I could to read a paragraph."
+            },
+            {
+              "responseId": "en:lesson-19:session-11:intro2:r3",
+              "text": "At ten, I coulds read a paragraph."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-11:intro2:r1",
+              "text": "At ten, I could read a paragraph."
+            },
+            {
+              "responseId": "en:lesson-19:session-11:intro2:r2",
+              "text": "At ten, I could to read a paragraph."
+            },
+            {
+              "responseId": "en:lesson-19:session-11:intro2:r3",
+              "text": "At ten, I coulds read a paragraph."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Понимать и проверять",
+        "uk": "Розуміти й перевіряти"
+      },
+      "bodyByLocale": {
+        "ru": "Spelling — написание слов. Punctuation — знаки препинания и их употребление. Вы уже умели проверять слова и понимали, зачем нужны точки и запятые. Could + начальная форма глагола описывает общее умение в прошлом. Речь о том, что человек уже умел в этом возрасте, а не об одном удачном случае. После could нет to и окончания -s. At ten здесь значит «в десять лет».",
+        "uk": "Spelling — написання слів. Punctuation — розділові знаки та їх уживання. Ви вже вміли перевіряти слова й розуміли, навіщо потрібні крапки та коми. Could + початкова форма дієслова описує загальне вміння в минулому. Ідеться про те, що людина вже вміла в цьому віці, а не про один вдалий випадок. Після could немає to й закінчення -s. At ten тут означає «у десять років»."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-11:intro3:r1",
+              "text": "At ten, I could understand punctuation."
+            },
+            {
+              "responseId": "en:lesson-19:session-11:intro3:r2",
+              "text": "At ten, I could to understand punctuation."
+            },
+            {
+              "responseId": "en:lesson-19:session-11:intro3:r3",
+              "text": "At ten, I coulds understand punctuation."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-11:intro3:r1",
+              "text": "At ten, I could understand punctuation."
+            },
+            {
+              "responseId": "en:lesson-19:session-11:intro3:r2",
+              "text": "At ten, I could to understand punctuation."
+            },
+            {
+              "responseId": "en:lesson-19:session-11:intro3:r3",
+              "text": "At ten, I coulds understand punctuation."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "05de3a4334d35353f4d470fef64f1858120586fcccb75fcf5ba138db99aa2775"
+}

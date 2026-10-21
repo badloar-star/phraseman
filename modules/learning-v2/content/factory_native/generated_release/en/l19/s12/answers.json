@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-12:word:translation",
+    "correctText": "translation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-12:i01",
+    "correctText": "At ten, I could read a translation.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-12:i02",
+    "correctText": "At ten, I could read a translation.",
+    "correctResponseId": "en:lesson-19:session-12:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-12:i03",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-12:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-12:word:instruction",
+    "correctText": "instruction",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-12:i04",
+    "correctText": "At ten, I could read an instruction.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-12:i05",
+    "correctText": "At ten, I could read an instruction.",
+    "correctResponseId": "en:lesson-19:session-12:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-12:i06",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-12:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-12:word:example",
+    "correctText": "example",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-12:i07",
+    "correctText": "At ten, I could understand an example.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-12:i08",
+    "correctText": "At ten, I could understand an example.",
+    "correctResponseId": "en:lesson-19:session-12:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-12:i09",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-12:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-12:word:explanation",
+    "correctText": "explanation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-12:i10",
+    "correctText": "At ten, I could understand an explanation.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-12:i11",
+    "correctText": "At ten, I could understand an explanation.",
+    "correctResponseId": "en:lesson-19:session-12:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-12:i12",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-12:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-12:i13",
+    "correctText": "en:lesson-19:session-12:i13:p1=translation\nen:lesson-19:session-12:i13:p2=instruction\nen:lesson-19:session-12:i13:p3=example\nen:lesson-19:session-12:i13:p4=explanation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-12:i14",
+    "correctText": "We are going to read the explanation.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-12:i15",
+    "correctText": "We are meeting at the library tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-12:i16",
+    "correctText": "I can understand this example.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-12:i17",
+    "correctText": "This is such a clear explanation.",
+    "correctResponseId": null
+  }
+]

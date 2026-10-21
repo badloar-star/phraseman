@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-19:session-11",
+  "entries": [
+    {
+      "interactionId": "en:lesson-19:session-11:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-11:intro1:r2": {
+          "ru": "После could нет to.",
+          "uk": "Після could немає to."
+        },
+        "en:lesson-19:session-11:intro1:r3": {
+          "ru": "Форма could не меняется по лицам.",
+          "uk": "Форма could не змінюється за особами."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-19:session-11:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-11:intro2:r2": {
+          "ru": "После could нет to.",
+          "uk": "Після could немає to."
+        },
+        "en:lesson-19:session-11:intro2:r3": {
+          "ru": "Форма could не меняется по лицам.",
+          "uk": "Форма could не змінюється за особами."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-19:session-11:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-19:session-11:intro3:r2": {
+          "ru": "После could нет to.",
+          "uk": "Після could немає to."
+        },
+        "en:lesson-19:session-11:intro3:r3": {
+          "ru": "Форма could не меняется по лицам.",
+          "uk": "Форма could не змінюється за особами."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "957a2e96ec8594508722bf3cd8cae85699e5f848d154d0f53d5b69013b745964"
+}

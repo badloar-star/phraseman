@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-09:word:fluently",
+    "correctText": "fluently",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-09:i01",
+    "correctText": "At ten, I could read fluently.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-09:i02",
+    "correctText": "At ten, I could read fluently.",
+    "correctResponseId": "en:lesson-19:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-09:i03",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-09:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-09:word:accurately",
+    "correctText": "accurately",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-09:i04",
+    "correctText": "At ten, I could count accurately.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-09:i05",
+    "correctText": "At ten, I could count accurately.",
+    "correctResponseId": "en:lesson-19:session-09:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-09:i06",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-09:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-09:word:confidently",
+    "correctText": "confidently",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-09:i07",
+    "correctText": "At twelve, she could speak confidently.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-09:i08",
+    "correctText": "At twelve, she could speak confidently.",
+    "correctResponseId": "en:lesson-19:session-09:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-09:i09",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-09:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-09:word:independently",
+    "correctText": "independently",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-09:i10",
+    "correctText": "At twelve, we could travel independently.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-09:i11",
+    "correctText": "At twelve, we could travel independently.",
+    "correctResponseId": "en:lesson-19:session-09:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-09:i12",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-09:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-09:i13",
+    "correctText": "en:lesson-19:session-09:i13:p1=fluently\nen:lesson-19:session-09:i13:p2=accurately\nen:lesson-19:session-09:i13:p3=confidently\nen:lesson-19:session-09:i13:p4=independently",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-09:i14",
+    "correctText": "At ten, I could read fluently.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-09:i15",
+    "correctText": "At ten, I could count accurately.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-09:i16",
+    "correctText": "At twelve, she could speak confidently.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-09:i17",
+    "correctText": "At twelve, we could travel independently.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,1122 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-19:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-19:session-15:word:neatly",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — neatly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-15:word:neatly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — neatly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-15:word:neatly:audio",
+          "transcript": "neatly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-15:word:neatly:r1",
+            "targetText": "neatly",
+            "meaningByLocale": {
+              "ru": "аккуратно, опрятно.",
+              "uk": "акуратно, охайно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "neatly",
+          "definitionByLocale": {
+            "ru": "аккуратно, опрятно.",
+            "uk": "акуратно, охайно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-15:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У двадцять років я вмів писати охайно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «У двадцять років я вмів писати охайно».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "At twenty, I could write neatly.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В двадцать лет я умел писать аккуратно».",
+          "uk": "Скажіть: «У двадцять років я вмів писати охайно»."
+        },
+        "orderedTokens": [
+          "At",
+          "twenty,",
+          "I",
+          "could",
+          "write",
+          "neatly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-15:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-15:i02:r1",
+          "text": "At twenty, I could write neatly."
+        },
+        {
+          "responseId": "en:lesson-19:session-15:i02:r2",
+          "text": "At twenty, I could not write neatly."
+        },
+        {
+          "responseId": "en:lesson-19:session-15:i02:r3",
+          "text": "At twenty, I could already write neatly."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-15:i02:audio",
+          "transcript": "At twenty, I could write neatly."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-15:i02:r1",
+            "targetText": "At twenty, I could write neatly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i02:r2",
+            "targetText": "At twenty, I could not write neatly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i02:r3",
+            "targetText": "At twenty, I could already write neatly.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At twenty, I could write neatly.",
+              "uk": "У записі звучить At twenty, I could write neatly."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At twenty, I could write neatly.",
+              "uk": "У записі звучить At twenty, I could write neatly."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-15:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для вміння в минулому.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-15:i03:r1",
+          "text": "could"
+        },
+        {
+          "responseId": "en:lesson-19:session-15:i03:r2",
+          "text": "could to"
+        },
+        {
+          "responseId": "en:lesson-19:session-15:i03:r3",
+          "text": "coulds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для вміння в минулому.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для умения в прошлом.",
+          "uk": "Виберіть форму для вміння в минулому."
+        },
+        "gappedTargetPhrase": "At twenty, I ___ write neatly.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-15:i03:r1",
+            "text": "could"
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i03:r2",
+            "text": "could to"
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i03:r3",
+            "text": "coulds"
+          }
+        ],
+        "testedDimension": "Виберіть форму для вміння в минулому.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-15:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "После could нет to.",
+              "uk": "Після could немає to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "У could нет окончания -s.",
+              "uk": "Could не має закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-15:word:correctly",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — correctly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-15:word:correctly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — correctly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-15:word:correctly:audio",
+          "transcript": "correctly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-15:word:correctly:r1",
+            "targetText": "correctly",
+            "meaningByLocale": {
+              "ru": "правильно.",
+              "uk": "правильно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "correctly",
+          "definitionByLocale": {
+            "ru": "правильно.",
+            "uk": "правильно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-15:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У двадцять років я вмів рахувати правильно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «У двадцять років я вмів рахувати правильно».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "At twenty, I could count correctly.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В двадцать лет я умел считать правильно».",
+          "uk": "Скажіть: «У двадцять років я вмів рахувати правильно»."
+        },
+        "orderedTokens": [
+          "At",
+          "twenty,",
+          "I",
+          "could",
+          "count",
+          "correctly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-15:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-15:i05:r1",
+          "text": "At twenty, I could count correctly."
+        },
+        {
+          "responseId": "en:lesson-19:session-15:i05:r2",
+          "text": "At twenty, I could not count correctly."
+        },
+        {
+          "responseId": "en:lesson-19:session-15:i05:r3",
+          "text": "At twenty, I could already count correctly."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-15:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-15:i05:audio",
+          "transcript": "At twenty, I could count correctly."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-15:i05:r1",
+            "targetText": "At twenty, I could count correctly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i05:r2",
+            "targetText": "At twenty, I could not count correctly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i05:r3",
+            "targetText": "At twenty, I could already count correctly.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-15:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At twenty, I could count correctly.",
+              "uk": "У записі звучить At twenty, I could count correctly."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At twenty, I could count correctly.",
+              "uk": "У записі звучить At twenty, I could count correctly."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-15:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для вміння в минулому.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-15:i06:r1",
+          "text": "could"
+        },
+        {
+          "responseId": "en:lesson-19:session-15:i06:r2",
+          "text": "could to"
+        },
+        {
+          "responseId": "en:lesson-19:session-15:i06:r3",
+          "text": "coulds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для вміння в минулому.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для умения в прошлом.",
+          "uk": "Виберіть форму для вміння в минулому."
+        },
+        "gappedTargetPhrase": "At twenty, I ___ count correctly.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-15:i06:r1",
+            "text": "could"
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i06:r2",
+            "text": "could to"
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i06:r3",
+            "text": "coulds"
+          }
+        ],
+        "testedDimension": "Виберіть форму для вміння в минулому.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-15:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "После could нет to.",
+              "uk": "Після could немає to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "У could нет окончания -s.",
+              "uk": "Could не має закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-15:word:smoothly",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — smoothly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-15:word:smoothly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — smoothly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-15:word:smoothly:audio",
+          "transcript": "smoothly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-15:word:smoothly:r1",
+            "targetText": "smoothly",
+            "meaningByLocale": {
+              "ru": "плавно, без резких движений или помех.",
+              "uk": "плавно, без різких рухів або перешкод."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "smoothly",
+          "definitionByLocale": {
+            "ru": "плавно, без резких движений или помех.",
+            "uk": "плавно, без різких рухів або перешкод."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-15:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У двадцять років я вмів керувати автомобілем плавно».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «У двадцять років я вмів керувати автомобілем плавно».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "At twenty, I could drive smoothly.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В двадцать лет я умел водить плавно».",
+          "uk": "Скажіть: «У двадцять років я вмів керувати автомобілем плавно»."
+        },
+        "orderedTokens": [
+          "At",
+          "twenty,",
+          "I",
+          "could",
+          "drive",
+          "smoothly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-15:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-15:i08:r1",
+          "text": "At twenty, I could drive smoothly."
+        },
+        {
+          "responseId": "en:lesson-19:session-15:i08:r2",
+          "text": "At twenty, I could not drive smoothly."
+        },
+        {
+          "responseId": "en:lesson-19:session-15:i08:r3",
+          "text": "At twenty, I could already drive smoothly."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-15:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-15:i08:audio",
+          "transcript": "At twenty, I could drive smoothly."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-15:i08:r1",
+            "targetText": "At twenty, I could drive smoothly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i08:r2",
+            "targetText": "At twenty, I could not drive smoothly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i08:r3",
+            "targetText": "At twenty, I could already drive smoothly.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-15:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At twenty, I could drive smoothly.",
+              "uk": "У записі звучить At twenty, I could drive smoothly."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At twenty, I could drive smoothly.",
+              "uk": "У записі звучить At twenty, I could drive smoothly."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-15:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для вміння в минулому.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-15:i09:r1",
+          "text": "could"
+        },
+        {
+          "responseId": "en:lesson-19:session-15:i09:r2",
+          "text": "could to"
+        },
+        {
+          "responseId": "en:lesson-19:session-15:i09:r3",
+          "text": "coulds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для вміння в минулому.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для умения в прошлом.",
+          "uk": "Виберіть форму для вміння в минулому."
+        },
+        "gappedTargetPhrase": "At twenty, I ___ drive smoothly.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-15:i09:r1",
+            "text": "could"
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i09:r2",
+            "text": "could to"
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i09:r3",
+            "text": "coulds"
+          }
+        ],
+        "testedDimension": "Виберіть форму для вміння в минулому.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-15:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "После could нет to.",
+              "uk": "Після could немає to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "У could нет окончания -s.",
+              "uk": "Could не має закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-15:word:comfortably",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — comfortably",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-15:word:comfortably:audio"
+      ],
+      "accessibilityLabel": "Картка слова — comfortably",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-15:word:comfortably:audio",
+          "transcript": "comfortably"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-15:word:comfortably:r1",
+            "targetText": "comfortably",
+            "meaningByLocale": {
+              "ru": "с комфортом, удобно.",
+              "uk": "з комфортом, зручно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "comfortably",
+          "definitionByLocale": {
+            "ru": "с комфортом, удобно.",
+            "uk": "з комфортом, зручно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-15:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У двадцять років я міг подорожувати з комфортом».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «У двадцять років я міг подорожувати з комфортом».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "At twenty, I could travel comfortably.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В двадцать лет я мог путешествовать с комфортом».",
+          "uk": "Скажіть: «У двадцять років я міг подорожувати з комфортом»."
+        },
+        "orderedTokens": [
+          "At",
+          "twenty,",
+          "I",
+          "could",
+          "travel",
+          "comfortably"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-15:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-15:i11:r1",
+          "text": "At twenty, I could travel comfortably."
+        },
+        {
+          "responseId": "en:lesson-19:session-15:i11:r2",
+          "text": "At twenty, I could not travel comfortably."
+        },
+        {
+          "responseId": "en:lesson-19:session-15:i11:r3",
+          "text": "At twenty, I could already travel comfortably."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-15:i11:audio",
+          "transcript": "At twenty, I could travel comfortably."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-15:i11:r1",
+            "targetText": "At twenty, I could travel comfortably.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i11:r2",
+            "targetText": "At twenty, I could not travel comfortably.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i11:r3",
+            "targetText": "At twenty, I could already travel comfortably.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-15:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At twenty, I could travel comfortably.",
+              "uk": "У записі звучить At twenty, I could travel comfortably."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At twenty, I could travel comfortably.",
+              "uk": "У записі звучить At twenty, I could travel comfortably."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-15:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для вміння в минулому.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-15:i12:r1",
+          "text": "could"
+        },
+        {
+          "responseId": "en:lesson-19:session-15:i12:r2",
+          "text": "could to"
+        },
+        {
+          "responseId": "en:lesson-19:session-15:i12:r3",
+          "text": "coulds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для вміння в минулому.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для умения в прошлом.",
+          "uk": "Виберіть форму для вміння в минулому."
+        },
+        "gappedTargetPhrase": "At twenty, I ___ travel comfortably.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-15:i12:r1",
+            "text": "could"
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i12:r2",
+            "text": "could to"
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i12:r3",
+            "text": "coulds"
+          }
+        ],
+        "testedDimension": "Виберіть форму для вміння в минулому.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-15:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "После could нет to.",
+              "uk": "Після could немає to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-15:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "У could нет окончания -s.",
+              "uk": "Could не має закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-15:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-19:session-15:i13:p1",
+            "target": "neatly",
+            "meaningByLocale": {
+              "ru": "аккуратно, опрятно",
+              "uk": "акуратно, охайно"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-15:i13:p2",
+            "target": "correctly",
+            "meaningByLocale": {
+              "ru": "правильно",
+              "uk": "правильно"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-15:i13:p3",
+            "target": "smoothly",
+            "meaningByLocale": {
+              "ru": "плавно, без резких движений или помех",
+              "uk": "плавно, без різких рухів або перешкод"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-15:i13:p4",
+            "target": "comfortably",
+            "meaningByLocale": {
+              "ru": "с комфортом, удобно",
+              "uk": "з комфортом, зручно"
+            }
+          }
+        ],
+        "leftColumn": [
+          "neatly",
+          "correctly",
+          "smoothly",
+          "comfortably"
+        ],
+        "rightColumn": [
+          "акуратно, охайно",
+          "правильно",
+          "плавно, без різких рухів або перешкод",
+          "з комфортом, зручно"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-15:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-15:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-15:i14:audio",
+          "transcript": "We are going to travel comfortably."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to travel comfortably.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "travel",
+          "comfortably"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-15:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий узгоджений план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-15:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий узгоджений план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-15:i15:audio",
+          "transcript": "We are meeting at the library tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting at the library tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "at",
+          "the",
+          "library",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-15:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: скажіть, що вмієте робити зараз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-15:i16:audio"
+      ],
+      "accessibilityLabel": "Повторення: скажіть, що вмієте робити зараз",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-15:i16:audio",
+          "transcript": "I can write neatly."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can write neatly.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-15:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: підкресліть якість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-15:i17:audio"
+      ],
+      "accessibilityLabel": "Повторення: підкресліть якість",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-15:i17:audio",
+          "transcript": "This car is so comfortable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This car is so comfortable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0b392d8e154414eb8deb5da865a33573ee362bcce4cfa347caaa62e42930dbe1"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "could + base verb for general past ability",
+    "uk": "could + base verb for general past ability"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что уже получалось",
+        "uk": "Що вже виходило"
+      },
+      "bodyByLocale": {
+        "ru": "Habit — привычка, действие, которое вы часто повторяете. Вы описываете свою общую способность менять привычки в тот период, а не один удачный случай. Could + начальная форма глагола описывает общее умение в прошлом. Речь о том, что человек уже умел в этом возрасте, а не об одном удачном случае. После could нет to и окончания -s. At twenty здесь значит «в двадцать лет».",
+        "uk": "Habit — звичка, дія, яку ви часто повторюєте. Ви описуєте свою загальну здатність змінювати звички в той період, а не один вдалий випадок. Could + початкова форма дієслова описує загальне вміння в минулому. Ідеться про те, що людина вже вміла в цьому віці, а не про один вдалий випадок. Після could немає to й закінчення -s. At twenty тут означає «у двадцять років»."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-16:intro1:r1",
+              "text": "At twenty, I could change a habit."
+            },
+            {
+              "responseId": "en:lesson-19:session-16:intro1:r2",
+              "text": "At twenty, I could to change a habit."
+            },
+            {
+              "responseId": "en:lesson-19:session-16:intro1:r3",
+              "text": "At twenty, I coulds change a habit."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-16:intro1:r1",
+              "text": "At twenty, I could change a habit."
+            },
+            {
+              "responseId": "en:lesson-19:session-16:intro1:r2",
+              "text": "At twenty, I could to change a habit."
+            },
+            {
+              "responseId": "en:lesson-19:session-16:intro1:r3",
+              "text": "At twenty, I coulds change a habit."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ещё одно умение",
+        "uk": "Ще одне вміння"
+      },
+      "bodyByLocale": {
+        "ru": "Skill — навык, которому можно научиться. В двадцать лет вы уже умели осваивать новые занятия, например работу с обычными инструментами. Could + начальная форма глагола описывает общее умение в прошлом. Речь о том, что человек уже умел в этом возрасте, а не об одном удачном случае. После could нет to и окончания -s. At twenty здесь значит «в двадцать лет».",
+        "uk": "Skill — навичка, якої можна навчитися. У двадцять років ви вже вміли опановувати нові заняття, наприклад роботу зі звичайними інструментами. Could + початкова форма дієслова описує загальне вміння в минулому. Ідеться про те, що людина вже вміла в цьому віці, а не про один вдалий випадок. Після could немає to й закінчення -s. At twenty тут означає «у двадцять років»."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-16:intro2:r1",
+              "text": "At twenty, I could learn a new skill."
+            },
+            {
+              "responseId": "en:lesson-19:session-16:intro2:r2",
+              "text": "At twenty, I could to learn a new skill."
+            },
+            {
+              "responseId": "en:lesson-19:session-16:intro2:r3",
+              "text": "At twenty, I coulds learn a new skill."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-16:intro2:r1",
+              "text": "At twenty, I could learn a new skill."
+            },
+            {
+              "responseId": "en:lesson-19:session-16:intro2:r2",
+              "text": "At twenty, I could to learn a new skill."
+            },
+            {
+              "responseId": "en:lesson-19:session-16:intro2:r3",
+              "text": "At twenty, I coulds learn a new skill."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Понимать и проверять",
+        "uk": "Розуміти й перевіряти"
+      },
+      "bodyByLocale": {
+        "ru": "Talent — заметная способность хорошо что-то делать. Potential — возможности для дальнейшего развития. Вы вспоминаете, что уже замечали способности подруги и понимали, как она может развиваться. Could + начальная форма глагола описывает общее умение в прошлом. Речь о том, что человек уже умел в этом возрасте, а не об одном удачном случае. После could нет to и окончания -s. At twenty здесь значит «в двадцать лет».",
+        "uk": "Talent — помітна здібність добре щось робити. Potential — можливості для подальшого розвитку. Ви згадуєте, що вже помічали здібності подруги й розуміли, як вона може розвиватися. Could + початкова форма дієслова описує загальне вміння в минулому. Ідеться про те, що людина вже вміла в цьому віці, а не про один вдалий випадок. Після could немає to й закінчення -s. At twenty тут означає «у двадцять років»."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-16:intro3:r1",
+              "text": "At twenty, I could see her potential."
+            },
+            {
+              "responseId": "en:lesson-19:session-16:intro3:r2",
+              "text": "At twenty, I could to see her potential."
+            },
+            {
+              "responseId": "en:lesson-19:session-16:intro3:r3",
+              "text": "At twenty, I coulds see her potential."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-16:intro3:r1",
+              "text": "At twenty, I could see her potential."
+            },
+            {
+              "responseId": "en:lesson-19:session-16:intro3:r2",
+              "text": "At twenty, I could to see her potential."
+            },
+            {
+              "responseId": "en:lesson-19:session-16:intro3:r3",
+              "text": "At twenty, I coulds see her potential."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e28952ce10ea527618e2c1fabcb71c6180c5b31cdaf518316cbf9fa8d82d27e0"
+}

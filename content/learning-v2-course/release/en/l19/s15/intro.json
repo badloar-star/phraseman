@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "could + base verb for general past ability",
+    "uk": "could + base verb for general past ability"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что уже получалось",
+        "uk": "Що вже виходило"
+      },
+      "bodyByLocale": {
+        "ru": "Neatly — аккуратно: записи легко читать, они не выглядят неряшливо. Вы рассказываете, как уже умели писать в двадцать лет. Could + начальная форма глагола описывает общее умение в прошлом. Речь о том, что человек уже умел в этом возрасте, а не об одном удачном случае. После could нет to и окончания -s. At twenty здесь значит «в двадцать лет».",
+        "uk": "Neatly — охайно: записи легко читати, вони не виглядають неохайно. Ви розповідаєте, як уже вміли писати у двадцять років. Could + початкова форма дієслова описує загальне вміння в минулому. Ідеться про те, що людина вже вміла в цьому віці, а не про один вдалий випадок. Після could немає to й закінчення -s. At twenty тут означає «у двадцять років»."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-15:intro1:r1",
+              "text": "At twenty, I could write neatly."
+            },
+            {
+              "responseId": "en:lesson-19:session-15:intro1:r2",
+              "text": "At twenty, I could to write neatly."
+            },
+            {
+              "responseId": "en:lesson-19:session-15:intro1:r3",
+              "text": "At twenty, I coulds write neatly."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-15:intro1:r1",
+              "text": "At twenty, I could write neatly."
+            },
+            {
+              "responseId": "en:lesson-19:session-15:intro1:r2",
+              "text": "At twenty, I could to write neatly."
+            },
+            {
+              "responseId": "en:lesson-19:session-15:intro1:r3",
+              "text": "At twenty, I coulds write neatly."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ещё одно умение",
+        "uk": "Ще одне вміння"
+      },
+      "bodyByLocale": {
+        "ru": "Correctly — правильно. Вы уже могли посчитать сдачу без ошибок. Это обычное умение в тот период. Could + начальная форма глагола описывает общее умение в прошлом. Речь о том, что человек уже умел в этом возрасте, а не об одном удачном случае. После could нет to и окончания -s. At twenty здесь значит «в двадцать лет».",
+        "uk": "Correctly — правильно. Ви вже могли порахувати решту без помилок. Це звичайне вміння в той період. Could + початкова форма дієслова описує загальне вміння в минулому. Ідеться про те, що людина вже вміла в цьому віці, а не про один вдалий випадок. Після could немає to й закінчення -s. At twenty тут означає «у двадцять років»."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-15:intro2:r1",
+              "text": "At twenty, I could count correctly."
+            },
+            {
+              "responseId": "en:lesson-19:session-15:intro2:r2",
+              "text": "At twenty, I could to count correctly."
+            },
+            {
+              "responseId": "en:lesson-19:session-15:intro2:r3",
+              "text": "At twenty, I coulds count correctly."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-15:intro2:r1",
+              "text": "At twenty, I could count correctly."
+            },
+            {
+              "responseId": "en:lesson-19:session-15:intro2:r2",
+              "text": "At twenty, I could to count correctly."
+            },
+            {
+              "responseId": "en:lesson-19:session-15:intro2:r3",
+              "text": "At twenty, I coulds count correctly."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Понимать и проверять",
+        "uk": "Розуміти й перевіряти"
+      },
+      "bodyByLocale": {
+        "ru": "Smoothly — плавно, например вести машину без резких движений. Comfortably — с комфортом; у вас уже была возможность выбирать удобные поездки. Could + начальная форма глагола описывает общее умение в прошлом. Речь о том, что человек уже умел в этом возрасте, а не об одном удачном случае. После could нет to и окончания -s. At twenty здесь значит «в двадцать лет».",
+        "uk": "Smoothly — плавно, наприклад керувати машиною без різких рухів. Comfortably — з комфортом; у вас уже була можливість вибирати зручні поїздки. Could + початкова форма дієслова описує загальне вміння в минулому. Ідеться про те, що людина вже вміла в цьому віці, а не про один вдалий випадок. Після could немає to й закінчення -s. At twenty тут означає «у двадцять років»."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-15:intro3:r1",
+              "text": "At twenty, I could travel comfortably."
+            },
+            {
+              "responseId": "en:lesson-19:session-15:intro3:r2",
+              "text": "At twenty, I could to travel comfortably."
+            },
+            {
+              "responseId": "en:lesson-19:session-15:intro3:r3",
+              "text": "At twenty, I coulds travel comfortably."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-15:intro3:r1",
+              "text": "At twenty, I could travel comfortably."
+            },
+            {
+              "responseId": "en:lesson-19:session-15:intro3:r2",
+              "text": "At twenty, I could to travel comfortably."
+            },
+            {
+              "responseId": "en:lesson-19:session-15:intro3:r3",
+              "text": "At twenty, I coulds travel comfortably."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "21bdc9353d8859e7076d0e45f98721a7d761fbb0d4db534dfc320b0900fe7ec7"
+}

@@ -1,0 +1,1127 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-19:session-12",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-19:session-12:word:translation",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — translation",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-12:word:translation:audio"
+      ],
+      "accessibilityLabel": "Картка слова — translation",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-12:word:translation:audio",
+          "transcript": "translation"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-12:word:translation:r1",
+            "targetText": "translation",
+            "meaningByLocale": {
+              "ru": "перевод текста или речи.",
+              "uk": "переклад тексту або мовлення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "translation",
+          "definitionByLocale": {
+            "ru": "перевод текста или речи.",
+            "uk": "переклад тексту або мовлення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-12:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У десять років я міг прочитати переклад».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «У десять років я міг прочитати переклад».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "At ten, I could read a translation.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В десять лет я мог прочитать перевод».",
+          "uk": "Скажіть: «У десять років я міг прочитати переклад»."
+        },
+        "orderedTokens": [
+          "At",
+          "ten,",
+          "I",
+          "could",
+          "read",
+          "a",
+          "translation"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-12:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-12:i02:r1",
+          "text": "At ten, I could read a translation."
+        },
+        {
+          "responseId": "en:lesson-19:session-12:i02:r2",
+          "text": "At ten, I could not read a translation."
+        },
+        {
+          "responseId": "en:lesson-19:session-12:i02:r3",
+          "text": "At ten, I could already read a translation."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-12:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-12:i02:audio",
+          "transcript": "At ten, I could read a translation."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-12:i02:r1",
+            "targetText": "At ten, I could read a translation.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i02:r2",
+            "targetText": "At ten, I could not read a translation.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i02:r3",
+            "targetText": "At ten, I could already read a translation.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-12:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At ten, I could read a translation.",
+              "uk": "У записі звучить At ten, I could read a translation."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At ten, I could read a translation.",
+              "uk": "У записі звучить At ten, I could read a translation."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-12:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для вміння в минулому.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-12:i03:r1",
+          "text": "could"
+        },
+        {
+          "responseId": "en:lesson-19:session-12:i03:r2",
+          "text": "could to"
+        },
+        {
+          "responseId": "en:lesson-19:session-12:i03:r3",
+          "text": "coulds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для вміння в минулому.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для умения в прошлом.",
+          "uk": "Виберіть форму для вміння в минулому."
+        },
+        "gappedTargetPhrase": "At ten, I ___ read a translation.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-12:i03:r1",
+            "text": "could"
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i03:r2",
+            "text": "could to"
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i03:r3",
+            "text": "coulds"
+          }
+        ],
+        "testedDimension": "Виберіть форму для вміння в минулому.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-12:i03:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "После could нет to.",
+              "uk": "Після could немає to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i03:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "У could нет окончания -s.",
+              "uk": "Could не має закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-12:word:instruction",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — instruction",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-12:word:instruction:audio"
+      ],
+      "accessibilityLabel": "Картка слова — instruction",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-12:word:instruction:audio",
+          "transcript": "instruction"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-12:word:instruction:r1",
+            "targetText": "instruction",
+            "meaningByLocale": {
+              "ru": "указание, инструкция.",
+              "uk": "вказівка, інструкція."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "instruction",
+          "definitionByLocale": {
+            "ru": "указание, инструкция.",
+            "uk": "вказівка, інструкція."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-12:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У десять років я міг прочитати вказівку».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «У десять років я міг прочитати вказівку».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "At ten, I could read an instruction.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В десять лет я мог прочитать указание».",
+          "uk": "Скажіть: «У десять років я міг прочитати вказівку»."
+        },
+        "orderedTokens": [
+          "At",
+          "ten,",
+          "I",
+          "could",
+          "read",
+          "an",
+          "instruction"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-12:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-12:i05:r1",
+          "text": "At ten, I could read an instruction."
+        },
+        {
+          "responseId": "en:lesson-19:session-12:i05:r2",
+          "text": "At ten, I could not read an instruction."
+        },
+        {
+          "responseId": "en:lesson-19:session-12:i05:r3",
+          "text": "At ten, I could already read an instruction."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-12:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-12:i05:audio",
+          "transcript": "At ten, I could read an instruction."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-12:i05:r1",
+            "targetText": "At ten, I could read an instruction.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i05:r2",
+            "targetText": "At ten, I could not read an instruction.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i05:r3",
+            "targetText": "At ten, I could already read an instruction.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-12:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At ten, I could read an instruction.",
+              "uk": "У записі звучить At ten, I could read an instruction."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At ten, I could read an instruction.",
+              "uk": "У записі звучить At ten, I could read an instruction."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-12:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для вміння в минулому.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-12:i06:r1",
+          "text": "could"
+        },
+        {
+          "responseId": "en:lesson-19:session-12:i06:r2",
+          "text": "could to"
+        },
+        {
+          "responseId": "en:lesson-19:session-12:i06:r3",
+          "text": "coulds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для вміння в минулому.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для умения в прошлом.",
+          "uk": "Виберіть форму для вміння в минулому."
+        },
+        "gappedTargetPhrase": "At ten, I ___ read an instruction.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-12:i06:r1",
+            "text": "could"
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i06:r2",
+            "text": "could to"
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i06:r3",
+            "text": "coulds"
+          }
+        ],
+        "testedDimension": "Виберіть форму для вміння в минулому.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-12:i06:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "После could нет to.",
+              "uk": "Після could немає to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i06:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "У could нет окончания -s.",
+              "uk": "Could не має закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-12:word:example",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — example",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-12:word:example:audio"
+      ],
+      "accessibilityLabel": "Картка слова — example",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-12:word:example:audio",
+          "transcript": "example"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-12:word:example:r1",
+            "targetText": "example",
+            "meaningByLocale": {
+              "ru": "пример.",
+              "uk": "приклад."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "example",
+          "definitionByLocale": {
+            "ru": "пример.",
+            "uk": "приклад."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-12:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У десять років я міг зрозуміти приклад».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «У десять років я міг зрозуміти приклад».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "At ten, I could understand an example.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В десять лет я мог понять пример».",
+          "uk": "Скажіть: «У десять років я міг зрозуміти приклад»."
+        },
+        "orderedTokens": [
+          "At",
+          "ten,",
+          "I",
+          "could",
+          "understand",
+          "an",
+          "example"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-12:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-12:i08:r1",
+          "text": "At ten, I could understand an example."
+        },
+        {
+          "responseId": "en:lesson-19:session-12:i08:r2",
+          "text": "At ten, I could not understand an example."
+        },
+        {
+          "responseId": "en:lesson-19:session-12:i08:r3",
+          "text": "At ten, I could already understand an example."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-12:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-12:i08:audio",
+          "transcript": "At ten, I could understand an example."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-12:i08:r1",
+            "targetText": "At ten, I could understand an example.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i08:r2",
+            "targetText": "At ten, I could not understand an example.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i08:r3",
+            "targetText": "At ten, I could already understand an example.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-12:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At ten, I could understand an example.",
+              "uk": "У записі звучить At ten, I could understand an example."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At ten, I could understand an example.",
+              "uk": "У записі звучить At ten, I could understand an example."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-12:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для вміння в минулому.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-12:i09:r1",
+          "text": "could"
+        },
+        {
+          "responseId": "en:lesson-19:session-12:i09:r2",
+          "text": "could to"
+        },
+        {
+          "responseId": "en:lesson-19:session-12:i09:r3",
+          "text": "coulds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для вміння в минулому.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для умения в прошлом.",
+          "uk": "Виберіть форму для вміння в минулому."
+        },
+        "gappedTargetPhrase": "At ten, I ___ understand an example.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-12:i09:r1",
+            "text": "could"
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i09:r2",
+            "text": "could to"
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i09:r3",
+            "text": "coulds"
+          }
+        ],
+        "testedDimension": "Виберіть форму для вміння в минулому.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-12:i09:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "После could нет to.",
+              "uk": "Після could немає to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i09:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "У could нет окончания -s.",
+              "uk": "Could не має закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-12:word:explanation",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — explanation",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-12:word:explanation:audio"
+      ],
+      "accessibilityLabel": "Картка слова — explanation",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-12:word:explanation:audio",
+          "transcript": "explanation"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-12:word:explanation:r1",
+            "targetText": "explanation",
+            "meaningByLocale": {
+              "ru": "объяснение.",
+              "uk": "пояснення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "explanation",
+          "definitionByLocale": {
+            "ru": "объяснение.",
+            "uk": "пояснення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-12:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: «У десять років я міг зрозуміти пояснення».",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: «У десять років я міг зрозуміти пояснення».",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "At ten, I could understand an explanation.",
+        "localizedMeaning": {
+          "ru": "Скажите: «В десять лет я мог понять объяснение».",
+          "uk": "Скажіть: «У десять років я міг зрозуміти пояснення»."
+        },
+        "orderedTokens": [
+          "At",
+          "ten,",
+          "I",
+          "could",
+          "understand",
+          "an",
+          "explanation"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-12:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-12:i11:r1",
+          "text": "At ten, I could understand an explanation."
+        },
+        {
+          "responseId": "en:lesson-19:session-12:i11:r2",
+          "text": "At ten, I could not understand an explanation."
+        },
+        {
+          "responseId": "en:lesson-19:session-12:i11:r3",
+          "text": "At ten, I could already understand an explanation."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-12:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-12:i11:audio",
+          "transcript": "At ten, I could understand an explanation."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-19:session-12:i11:r1",
+            "targetText": "At ten, I could understand an explanation.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i11:r2",
+            "targetText": "At ten, I could not understand an explanation.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i11:r3",
+            "targetText": "At ten, I could already understand an explanation.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-12:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At ten, I could understand an explanation.",
+              "uk": "У записі звучить At ten, I could understand an explanation."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит At ten, I could understand an explanation.",
+              "uk": "У записі звучить At ten, I could understand an explanation."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-12:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Виберіть форму для вміння в минулому.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-19:session-12:i12:r1",
+          "text": "could"
+        },
+        {
+          "responseId": "en:lesson-19:session-12:i12:r2",
+          "text": "could to"
+        },
+        {
+          "responseId": "en:lesson-19:session-12:i12:r3",
+          "text": "coulds"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Виберіть форму для вміння в минулому.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Выберите форму для умения в прошлом.",
+          "uk": "Виберіть форму для вміння в минулому."
+        },
+        "gappedTargetPhrase": "At ten, I ___ understand an explanation.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-19:session-12:i12:r1",
+            "text": "could"
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i12:r2",
+            "text": "could to"
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i12:r3",
+            "text": "coulds"
+          }
+        ],
+        "testedDimension": "Виберіть форму для вміння в минулому.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-19:session-12:i12:r2",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "После could нет to.",
+              "uk": "Після could немає to."
+            }
+          },
+          {
+            "responseId": "en:lesson-19:session-12:i12:r3",
+            "correct": false,
+            "testedDimension": "Виберіть форму для вміння в минулому.",
+            "feedbackByLocale": {
+              "ru": "У could нет окончания -s.",
+              "uk": "Could не має закінчення -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-12:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте слова з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте слова з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-19:session-12:i13:p1",
+            "target": "translation",
+            "meaningByLocale": {
+              "ru": "перевод текста или речи",
+              "uk": "переклад тексту або мовлення"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-12:i13:p2",
+            "target": "instruction",
+            "meaningByLocale": {
+              "ru": "указание, инструкция",
+              "uk": "вказівка, інструкція"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-12:i13:p3",
+            "target": "example",
+            "meaningByLocale": {
+              "ru": "пример",
+              "uk": "приклад"
+            }
+          },
+          {
+            "pairId": "en:lesson-19:session-12:i13:p4",
+            "target": "explanation",
+            "meaningByLocale": {
+              "ru": "объяснение",
+              "uk": "пояснення"
+            }
+          }
+        ],
+        "leftColumn": [
+          "translation",
+          "instruction",
+          "example",
+          "explanation"
+        ],
+        "rightColumn": [
+          "переклад тексту або мовлення",
+          "вказівка, інструкція",
+          "приклад",
+          "пояснення"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-12:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий намір",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-12:i14:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий намір",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-12:i14:audio",
+          "transcript": "We are going to read the explanation."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are going to read the explanation.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "going",
+          "to",
+          "read",
+          "the",
+          "explanation"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-12:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повторення: почутий узгоджений план",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-12:i15:audio"
+      ],
+      "accessibilityLabel": "Повторення: почутий узгоджений план",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-12:i15:audio",
+          "transcript": "We are meeting at the library tomorrow."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are meeting at the library tomorrow.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "meeting",
+          "at",
+          "the",
+          "library",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-12:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: скажіть, що вмієте робити зараз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-12:i16:audio"
+      ],
+      "accessibilityLabel": "Повторення: скажіть, що вмієте робити зараз",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-12:i16:audio",
+          "transcript": "I can understand this example."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I can understand this example.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-12:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Повторення: підкресліть якість",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-19:session-12:i17:audio"
+      ],
+      "accessibilityLabel": "Повторення: підкресліть якість",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-19:session-12:i17:audio",
+          "transcript": "This is such a clear explanation."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This is such a clear explanation.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f256d6da1a239d3f4277597bc7ab3a7d7396542fc93099861ab3149fb610cc2f"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-14:word:distance",
+    "correctText": "distance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-14:i01",
+    "correctText": "At ten, I could measure the distance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-14:i02",
+    "correctText": "At ten, I could measure the distance.",
+    "correctResponseId": "en:lesson-19:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-14:i03",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-14:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-14:word:weight",
+    "correctText": "weight",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-14:i04",
+    "correctText": "At ten, I could check the weight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-14:i05",
+    "correctText": "At ten, I could check the weight.",
+    "correctResponseId": "en:lesson-19:session-14:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-14:i06",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-14:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-14:word:direction",
+    "correctText": "direction",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-14:i07",
+    "correctText": "At ten, I could find the right direction.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-14:i08",
+    "correctText": "At ten, I could find the right direction.",
+    "correctResponseId": "en:lesson-19:session-14:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-14:i09",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-14:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-14:word:volume",
+    "correctText": "volume",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-14:i10",
+    "correctText": "At ten, I could change the volume.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-14:i11",
+    "correctText": "At ten, I could change the volume.",
+    "correctResponseId": "en:lesson-19:session-14:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-14:i12",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-14:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-14:i13",
+    "correctText": "en:lesson-19:session-14:i13:p1=distance\nen:lesson-19:session-14:i13:p2=weight\nen:lesson-19:session-14:i13:p3=direction\nen:lesson-19:session-14:i13:p4=volume",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-14:i14",
+    "correctText": "We are going to check the weight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-14:i15",
+    "correctText": "We are meeting at the library tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-14:i16",
+    "correctText": "I can change the volume.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-14:i17",
+    "correctText": "This distance is so short.",
+    "correctResponseId": null
+  }
+]

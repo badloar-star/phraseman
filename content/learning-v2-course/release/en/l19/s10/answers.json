@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-10:word:alphabet",
+    "correctText": "alphabet",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-10:i01",
+    "correctText": "At six, I could write the alphabet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-10:i02",
+    "correctText": "At six, I could write the alphabet.",
+    "correctResponseId": "en:lesson-19:session-10:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-10:i03",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-10:word:rhyme",
+    "correctText": "rhyme",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-10:i04",
+    "correctText": "At six, I could remember a rhyme.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-10:i05",
+    "correctText": "At six, I could remember a rhyme.",
+    "correctResponseId": "en:lesson-19:session-10:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-10:i06",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-10:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-10:word:cartoon",
+    "correctText": "cartoon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-10:i07",
+    "correctText": "At ten, I could understand a cartoon.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-10:i08",
+    "correctText": "At ten, I could understand a cartoon.",
+    "correctResponseId": "en:lesson-19:session-10:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-10:i09",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-10:word:poem",
+    "correctText": "poem",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-10:i10",
+    "correctText": "At ten, I could read a poem.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-10:i11",
+    "correctText": "At ten, I could read a poem.",
+    "correctResponseId": "en:lesson-19:session-10:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-10:i12",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-10:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-10:i13",
+    "correctText": "en:lesson-19:session-10:i13:p1=alphabet\nen:lesson-19:session-10:i13:p2=rhyme\nen:lesson-19:session-10:i13:p3=cartoon\nen:lesson-19:session-10:i13:p4=poem",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-10:i14",
+    "correctText": "We are going to read a poem.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-10:i15",
+    "correctText": "We are meeting at the library tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-10:i16",
+    "correctText": "I can read this poem.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-10:i17",
+    "correctText": "This cartoon is so funny.",
+    "correctResponseId": null
+  }
+]

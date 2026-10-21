@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-13:word:circle",
+    "correctText": "circle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-13:i01",
+    "correctText": "At six, I could draw a circle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-13:i02",
+    "correctText": "At six, I could draw a circle.",
+    "correctResponseId": "en:lesson-19:session-13:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-13:i03",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-13:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-13:word:triangle",
+    "correctText": "triangle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-13:i04",
+    "correctText": "At six, I could draw a triangle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-13:i05",
+    "correctText": "At six, I could draw a triangle.",
+    "correctResponseId": "en:lesson-19:session-13:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-13:i06",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-13:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-13:word:rectangle",
+    "correctText": "rectangle",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-13:i07",
+    "correctText": "At six, I could draw a rectangle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-13:i08",
+    "correctText": "At six, I could draw a rectangle.",
+    "correctResponseId": "en:lesson-19:session-13:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-13:i09",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-13:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-13:word:curve",
+    "correctText": "curve",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-13:i10",
+    "correctText": "At six, I could draw a curve.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-13:i11",
+    "correctText": "At six, I could draw a curve.",
+    "correctResponseId": "en:lesson-19:session-13:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-13:i12",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-13:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-13:i13",
+    "correctText": "en:lesson-19:session-13:i13:p1=circle\nen:lesson-19:session-13:i13:p2=triangle\nen:lesson-19:session-13:i13:p3=rectangle\nen:lesson-19:session-13:i13:p4=curve",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-13:i14",
+    "correctText": "We are going to draw a circle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-13:i15",
+    "correctText": "We are meeting at the library tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-13:i16",
+    "correctText": "I can draw this triangle.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-13:i17",
+    "correctText": "This rectangle is so small.",
+    "correctResponseId": null
+  }
+]

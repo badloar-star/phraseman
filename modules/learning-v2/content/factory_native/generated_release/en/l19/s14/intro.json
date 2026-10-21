@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "could + base verb for general past ability",
+    "uk": "could + base verb for general past ability"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что уже получалось",
+        "uk": "Що вже виходило"
+      },
+      "bodyByLocale": {
+        "ru": "Distance — расстояние между местами или предметами. Вы вспоминаете, как уже умели измерить расстояние между двумя отметками. Could + начальная форма глагола описывает общее умение в прошлом. Речь о том, что человек уже умел в этом возрасте, а не об одном удачном случае. После could нет to и окончания -s. At ten здесь значит «в десять лет».",
+        "uk": "Distance — відстань між місцями або предметами. Ви згадуєте, як уже вміли виміряти відстань між двома позначками. Could + початкова форма дієслова описує загальне вміння в минулому. Ідеться про те, що людина вже вміла в цьому віці, а не про один вдалий випадок. Після could немає to й закінчення -s. At ten тут означає «у десять років»."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-14:intro1:r1",
+              "text": "At ten, I could measure the distance."
+            },
+            {
+              "responseId": "en:lesson-19:session-14:intro1:r2",
+              "text": "At ten, I could to measure the distance."
+            },
+            {
+              "responseId": "en:lesson-19:session-14:intro1:r3",
+              "text": "At ten, I coulds measure the distance."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-14:intro1:r1",
+              "text": "At ten, I could measure the distance."
+            },
+            {
+              "responseId": "en:lesson-19:session-14:intro1:r2",
+              "text": "At ten, I could to measure the distance."
+            },
+            {
+              "responseId": "en:lesson-19:session-14:intro1:r3",
+              "text": "At ten, I coulds measure the distance."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ещё одно умение",
+        "uk": "Ще одне вміння"
+      },
+      "bodyByLocale": {
+        "ru": "Weight — вес. Вы уже умели посмотреть на весы и проверить вес сумки. Could + начальная форма глагола описывает общее умение в прошлом. Речь о том, что человек уже умел в этом возрасте, а не об одном удачном случае. После could нет to и окончания -s. At ten здесь значит «в десять лет».",
+        "uk": "Weight — вага. Ви вже вміли подивитися на ваги й перевірити вагу сумки. Could + початкова форма дієслова описує загальне вміння в минулому. Ідеться про те, що людина вже вміла в цьому віці, а не про один вдалий випадок. Після could немає to й закінчення -s. At ten тут означає «у десять років»."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-14:intro2:r1",
+              "text": "At ten, I could check the weight."
+            },
+            {
+              "responseId": "en:lesson-19:session-14:intro2:r2",
+              "text": "At ten, I could to check the weight."
+            },
+            {
+              "responseId": "en:lesson-19:session-14:intro2:r3",
+              "text": "At ten, I coulds check the weight."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-14:intro2:r1",
+              "text": "At ten, I could check the weight."
+            },
+            {
+              "responseId": "en:lesson-19:session-14:intro2:r2",
+              "text": "At ten, I could to check the weight."
+            },
+            {
+              "responseId": "en:lesson-19:session-14:intro2:r3",
+              "text": "At ten, I coulds check the weight."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Понимать и проверять",
+        "uk": "Розуміти й перевіряти"
+      },
+      "bodyByLocale": {
+        "ru": "Direction — направление движения. Volume здесь — громкость звука. Вы вспоминаете, что уже могли выбирать направление и менять громкость радио. Could + начальная форма глагола описывает общее умение в прошлом. Речь о том, что человек уже умел в этом возрасте, а не об одном удачном случае. После could нет to и окончания -s. At ten здесь значит «в десять лет».",
+        "uk": "Direction — напрямок руху. Volume тут — гучність звуку. Ви згадуєте, що вже могли вибирати напрямок і змінювати гучність радіо. Could + початкова форма дієслова описує загальне вміння в минулому. Ідеться про те, що людина вже вміла в цьому віці, а не про один вдалий випадок. Після could немає to й закінчення -s. At ten тут означає «у десять років»."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-14:intro3:r1",
+              "text": "At ten, I could change the volume."
+            },
+            {
+              "responseId": "en:lesson-19:session-14:intro3:r2",
+              "text": "At ten, I could to change the volume."
+            },
+            {
+              "responseId": "en:lesson-19:session-14:intro3:r3",
+              "text": "At ten, I coulds change the volume."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-14:intro3:r1",
+              "text": "At ten, I could change the volume."
+            },
+            {
+              "responseId": "en:lesson-19:session-14:intro3:r2",
+              "text": "At ten, I could to change the volume."
+            },
+            {
+              "responseId": "en:lesson-19:session-14:intro3:r3",
+              "text": "At ten, I coulds change the volume."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "00263268e8ed4cd9e9a5629eaf7689446a333800b3f3bf5950aeba5958a32dff"
+}

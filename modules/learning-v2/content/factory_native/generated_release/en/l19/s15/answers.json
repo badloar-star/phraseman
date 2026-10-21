@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-15:word:neatly",
+    "correctText": "neatly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-15:i01",
+    "correctText": "At twenty, I could write neatly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-15:i02",
+    "correctText": "At twenty, I could write neatly.",
+    "correctResponseId": "en:lesson-19:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-15:i03",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-15:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-15:word:correctly",
+    "correctText": "correctly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-15:i04",
+    "correctText": "At twenty, I could count correctly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-15:i05",
+    "correctText": "At twenty, I could count correctly.",
+    "correctResponseId": "en:lesson-19:session-15:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-15:i06",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-15:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-15:word:smoothly",
+    "correctText": "smoothly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-15:i07",
+    "correctText": "At twenty, I could drive smoothly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-15:i08",
+    "correctText": "At twenty, I could drive smoothly.",
+    "correctResponseId": "en:lesson-19:session-15:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-15:i09",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-15:word:comfortably",
+    "correctText": "comfortably",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-15:i10",
+    "correctText": "At twenty, I could travel comfortably.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-15:i11",
+    "correctText": "At twenty, I could travel comfortably.",
+    "correctResponseId": "en:lesson-19:session-15:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-15:i12",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-15:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-15:i13",
+    "correctText": "en:lesson-19:session-15:i13:p1=neatly\nen:lesson-19:session-15:i13:p2=correctly\nen:lesson-19:session-15:i13:p3=smoothly\nen:lesson-19:session-15:i13:p4=comfortably",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-15:i14",
+    "correctText": "We are going to travel comfortably.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-15:i15",
+    "correctText": "We are meeting at the library tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-15:i16",
+    "correctText": "I can write neatly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-15:i17",
+    "correctText": "This car is so comfortable.",
+    "correctResponseId": null
+  }
+]

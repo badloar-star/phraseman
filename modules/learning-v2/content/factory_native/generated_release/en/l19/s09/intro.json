@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-19:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "could + base verb for general past ability",
+    "uk": "could + base verb for general past ability"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-19:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Умение в прошлом",
+        "uk": "Уміння в минулому"
+      },
+      "bodyByLocale": {
+        "ru": "Fluently — бегло, без частых остановок. Вы вспоминаете, что в десять лет уже умели свободно читать. Could + начальная форма глагола описывает общее умение в прошлом. Речь о том, что человек уже умел в этом возрасте, а не об одном удачном случае. После could нет to и окончания -s. At ten здесь значит «в десять лет».",
+        "uk": "Fluently — вільно, без частих зупинок. Ви згадуєте, що в десять років уже вміли вільно читати. Could + початкова форма дієслова описує загальне вміння в минулому. Ідеться про те, що людина вже вміла в цьому віці, а не про один вдалий випадок. Після could немає to й закінчення -s. At ten тут означає «у десять років»."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-09:intro1:r1",
+              "text": "At ten, I could read fluently."
+            },
+            {
+              "responseId": "en:lesson-19:session-09:intro1:r2",
+              "text": "At ten, I could to read fluently."
+            },
+            {
+              "responseId": "en:lesson-19:session-09:intro1:r3",
+              "text": "At ten, I coulds read fluently."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-09:intro1:r1",
+              "text": "At ten, I could read fluently."
+            },
+            {
+              "responseId": "en:lesson-19:session-09:intro1:r2",
+              "text": "At ten, I could to read fluently."
+            },
+            {
+              "responseId": "en:lesson-19:session-09:intro1:r3",
+              "text": "At ten, I coulds read fluently."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-19:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Считать точно",
+        "uk": "Рахувати точно"
+      },
+      "bodyByLocale": {
+        "ru": "Accurately — точно, без ошибок. Это описание привычного умения считать в детстве, не результата одной контрольной. Could + начальная форма глагола описывает общее умение в прошлом. Речь о том, что человек уже умел в этом возрасте, а не об одном удачном случае. После could нет to и окончания -s. At ten здесь значит «в десять лет».",
+        "uk": "Accurately — точно, без помилок. Це опис звичного вміння рахувати в дитинстві, не результату однієї контрольної. Could + початкова форма дієслова описує загальне вміння в минулому. Ідеться про те, що людина вже вміла в цьому віці, а не про один вдалий випадок. Після could немає to й закінчення -s. At ten тут означає «у десять років»."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-09:intro2:r1",
+              "text": "At ten, I could count accurately."
+            },
+            {
+              "responseId": "en:lesson-19:session-09:intro2:r2",
+              "text": "At ten, I could to count accurately."
+            },
+            {
+              "responseId": "en:lesson-19:session-09:intro2:r3",
+              "text": "At ten, I coulds count accurately."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-09:intro2:r1",
+              "text": "At ten, I could count accurately."
+            },
+            {
+              "responseId": "en:lesson-19:session-09:intro2:r2",
+              "text": "At ten, I could to count accurately."
+            },
+            {
+              "responseId": "en:lesson-19:session-09:intro2:r3",
+              "text": "At ten, I coulds count accurately."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-19:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уверенно и без помощи",
+        "uk": "Упевнено й без допомоги"
+      },
+      "bodyByLocale": {
+        "ru": "Confidently — уверенно. Independently — без посторонней помощи. Вы вспоминаете, что уже умели сами пользоваться знакомым транспортом. Could + начальная форма глагола описывает общее умение в прошлом. Речь о том, что человек уже умел в этом возрасте, а не об одном удачном случае. После could нет to и окончания -s. At ten здесь значит «в десять лет».",
+        "uk": "Confidently — упевнено. Independently — без сторонньої допомоги. Ви згадуєте, що вже вміли самі користуватися знайомим транспортом. Could + початкова форма дієслова описує загальне вміння в минулому. Ідеться про те, що людина вже вміла в цьому віці, а не про один вдалий випадок. Після could немає to й закінчення -s. At ten тут означає «у десять років»."
+      },
+      "question": {
+        "interactionId": "en:lesson-19:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-19:session-09:intro3:r1",
+              "text": "At twelve, we could travel independently."
+            },
+            {
+              "responseId": "en:lesson-19:session-09:intro3:r2",
+              "text": "At twelve, we could to travel independently."
+            },
+            {
+              "responseId": "en:lesson-19:session-09:intro3:r3",
+              "text": "At twelve, we coulds travel independently."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-19:session-09:intro3:r1",
+              "text": "At twelve, we could travel independently."
+            },
+            {
+              "responseId": "en:lesson-19:session-09:intro3:r2",
+              "text": "At twelve, we could to travel independently."
+            },
+            {
+              "responseId": "en:lesson-19:session-09:intro3:r3",
+              "text": "At twelve, we coulds travel independently."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bd72e1a2966342374e23cc17f4bcb0796ebfccf7309b00e1ca6a2c6d011baf46"
+}

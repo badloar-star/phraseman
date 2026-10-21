@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-11:word:sentence",
+    "correctText": "sentence",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-11:i01",
+    "correctText": "At ten, I could write a sentence.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-11:i02",
+    "correctText": "At ten, I could write a sentence.",
+    "correctResponseId": "en:lesson-19:session-11:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-11:i03",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-11:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-11:word:paragraph",
+    "correctText": "paragraph",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-11:i04",
+    "correctText": "At ten, I could read a paragraph.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-11:i05",
+    "correctText": "At ten, I could read a paragraph.",
+    "correctResponseId": "en:lesson-19:session-11:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-11:i06",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-11:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-11:word:spelling",
+    "correctText": "spelling",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-11:i07",
+    "correctText": "At ten, I could check my spelling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-11:i08",
+    "correctText": "At ten, I could check my spelling.",
+    "correctResponseId": "en:lesson-19:session-11:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-11:i09",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-11:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-11:word:punctuation",
+    "correctText": "punctuation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-11:i10",
+    "correctText": "At ten, I could understand punctuation.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-11:i11",
+    "correctText": "At ten, I could understand punctuation.",
+    "correctResponseId": "en:lesson-19:session-11:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-11:i12",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-11:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-11:i13",
+    "correctText": "en:lesson-19:session-11:i13:p1=sentence\nen:lesson-19:session-11:i13:p2=paragraph\nen:lesson-19:session-11:i13:p3=spelling\nen:lesson-19:session-11:i13:p4=punctuation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-11:i14",
+    "correctText": "We are going to read this paragraph.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-11:i15",
+    "correctText": "We are meeting at the library tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-11:i16",
+    "correctText": "I can check my spelling.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-11:i17",
+    "correctText": "This sentence is so short.",
+    "correctResponseId": null
+  }
+]

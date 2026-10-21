@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-19:session-16:word:habit",
+    "correctText": "habit",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-16:i01",
+    "correctText": "At twenty, I could change a habit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-16:i02",
+    "correctText": "At twenty, I could change a habit.",
+    "correctResponseId": "en:lesson-19:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-16:i03",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-16:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-16:word:skill",
+    "correctText": "skill",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-16:i04",
+    "correctText": "At twenty, I could learn a new skill.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-16:i05",
+    "correctText": "At twenty, I could learn a new skill.",
+    "correctResponseId": "en:lesson-19:session-16:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-16:i06",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-16:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-16:word:talent",
+    "correctText": "talent",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-16:i07",
+    "correctText": "At twenty, I could recognize talent.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-16:i08",
+    "correctText": "At twenty, I could recognize talent.",
+    "correctResponseId": "en:lesson-19:session-16:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-16:i09",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-16:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-16:word:potential",
+    "correctText": "potential",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-16:i10",
+    "correctText": "At twenty, I could see her potential.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-16:i11",
+    "correctText": "At twenty, I could see her potential.",
+    "correctResponseId": "en:lesson-19:session-16:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-16:i12",
+    "correctText": "could",
+    "correctResponseId": "en:lesson-19:session-16:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-19:session-16:i13",
+    "correctText": "en:lesson-19:session-16:i13:p1=habit\nen:lesson-19:session-16:i13:p2=skill\nen:lesson-19:session-16:i13:p3=talent\nen:lesson-19:session-16:i13:p4=potential",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-16:i14",
+    "correctText": "We are going to learn a new skill.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-16:i15",
+    "correctText": "We are meeting at the library tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-16:i16",
+    "correctText": "I can change this habit.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-19:session-16:i17",
+    "correctText": "This is such a useful skill.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,2343 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-19:session-13",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-19:session-13:word:circle",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — circle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:word:circle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — circle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:word:circle:audio",
+            "transcript": "circle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-13:word:circle:r1",
+              "targetText": "circle",
+              "meaningByLocale": {
+                "ru": "круг, окружность.",
+                "uk": "коло, круг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "circle",
+            "definitionByLocale": {
+              "ru": "круг, окружность.",
+              "uk": "коло, круг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «В шесть лет я умел нарисовать круг».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «В шесть лет я умел нарисовать круг».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "At six, I could draw a circle.",
+          "localizedMeaning": {
+            "ru": "Скажите: «В шесть лет я умел нарисовать круг».",
+            "uk": "Скажіть: «У шість років я вмів намалювати коло»."
+          },
+          "orderedTokens": [
+            "At",
+            "six,",
+            "I",
+            "could",
+            "draw",
+            "a",
+            "circle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-13:i02:r1",
+            "text": "At six, I could draw a circle."
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i02:r2",
+            "text": "At six, I could not draw a circle."
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i02:r3",
+            "text": "At six, I could already draw a circle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:i02:audio",
+            "transcript": "At six, I could draw a circle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-13:i02:r1",
+              "targetText": "At six, I could draw a circle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i02:r2",
+              "targetText": "At six, I could not draw a circle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i02:r3",
+              "targetText": "At six, I could already draw a circle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-13:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At six, I could draw a circle.",
+                "uk": "У записі звучить At six, I could draw a circle."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At six, I could draw a circle.",
+                "uk": "У записі звучить At six, I could draw a circle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для умения в прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-13:i03:r1",
+            "text": "could"
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i03:r2",
+            "text": "could to"
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i03:r3",
+            "text": "coulds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для умения в прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для умения в прошлом.",
+            "uk": "Виберіть форму для вміння в минулому."
+          },
+          "gappedTargetPhrase": "At six, I ___ draw a circle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-13:i03:r1",
+              "text": "could"
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i03:r2",
+              "text": "could to"
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i03:r3",
+              "text": "coulds"
+            }
+          ],
+          "testedDimension": "Выберите форму для умения в прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-13:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для умения в прошлом.",
+              "feedbackByLocale": {
+                "ru": "После could нет to.",
+                "uk": "Після could немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для умения в прошлом.",
+              "feedbackByLocale": {
+                "ru": "У could нет окончания -s.",
+                "uk": "Could не має закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:word:triangle",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — triangle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:word:triangle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — triangle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:word:triangle:audio",
+            "transcript": "triangle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-13:word:triangle:r1",
+              "targetText": "triangle",
+              "meaningByLocale": {
+                "ru": "треугольник.",
+                "uk": "трикутник."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "triangle",
+            "definitionByLocale": {
+              "ru": "треугольник.",
+              "uk": "трикутник."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «В шесть лет я умел нарисовать треугольник».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «В шесть лет я умел нарисовать треугольник».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "At six, I could draw a triangle.",
+          "localizedMeaning": {
+            "ru": "Скажите: «В шесть лет я умел нарисовать треугольник».",
+            "uk": "Скажіть: «У шість років я вмів намалювати трикутник»."
+          },
+          "orderedTokens": [
+            "At",
+            "six,",
+            "I",
+            "could",
+            "draw",
+            "a",
+            "triangle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-13:i05:r1",
+            "text": "At six, I could draw a triangle."
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i05:r2",
+            "text": "At six, I could not draw a triangle."
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i05:r3",
+            "text": "At six, I could already draw a triangle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:i05:audio",
+            "transcript": "At six, I could draw a triangle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-13:i05:r1",
+              "targetText": "At six, I could draw a triangle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i05:r2",
+              "targetText": "At six, I could not draw a triangle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i05:r3",
+              "targetText": "At six, I could already draw a triangle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-13:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At six, I could draw a triangle.",
+                "uk": "У записі звучить At six, I could draw a triangle."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At six, I could draw a triangle.",
+                "uk": "У записі звучить At six, I could draw a triangle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для умения в прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-13:i06:r1",
+            "text": "could"
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i06:r2",
+            "text": "could to"
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i06:r3",
+            "text": "coulds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для умения в прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для умения в прошлом.",
+            "uk": "Виберіть форму для вміння в минулому."
+          },
+          "gappedTargetPhrase": "At six, I ___ draw a triangle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-13:i06:r1",
+              "text": "could"
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i06:r2",
+              "text": "could to"
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i06:r3",
+              "text": "coulds"
+            }
+          ],
+          "testedDimension": "Выберите форму для умения в прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-13:i06:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для умения в прошлом.",
+              "feedbackByLocale": {
+                "ru": "После could нет to.",
+                "uk": "Після could немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i06:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для умения в прошлом.",
+              "feedbackByLocale": {
+                "ru": "У could нет окончания -s.",
+                "uk": "Could не має закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:word:rectangle",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rectangle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:word:rectangle:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rectangle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:word:rectangle:audio",
+            "transcript": "rectangle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-13:word:rectangle:r1",
+              "targetText": "rectangle",
+              "meaningByLocale": {
+                "ru": "прямоугольник.",
+                "uk": "прямокутник."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rectangle",
+            "definitionByLocale": {
+              "ru": "прямоугольник.",
+              "uk": "прямокутник."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «В шесть лет я умел нарисовать прямоугольник».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «В шесть лет я умел нарисовать прямоугольник».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "At six, I could draw a rectangle.",
+          "localizedMeaning": {
+            "ru": "Скажите: «В шесть лет я умел нарисовать прямоугольник».",
+            "uk": "Скажіть: «У шість років я вмів намалювати прямокутник»."
+          },
+          "orderedTokens": [
+            "At",
+            "six,",
+            "I",
+            "could",
+            "draw",
+            "a",
+            "rectangle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-13:i08:r1",
+            "text": "At six, I could draw a rectangle."
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i08:r2",
+            "text": "At six, I could not draw a rectangle."
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i08:r3",
+            "text": "At six, I could already draw a rectangle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:i08:audio",
+            "transcript": "At six, I could draw a rectangle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-13:i08:r1",
+              "targetText": "At six, I could draw a rectangle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i08:r2",
+              "targetText": "At six, I could not draw a rectangle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i08:r3",
+              "targetText": "At six, I could already draw a rectangle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-13:i08:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At six, I could draw a rectangle.",
+                "uk": "У записі звучить At six, I could draw a rectangle."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i08:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At six, I could draw a rectangle.",
+                "uk": "У записі звучить At six, I could draw a rectangle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для умения в прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-13:i09:r1",
+            "text": "could"
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i09:r2",
+            "text": "could to"
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i09:r3",
+            "text": "coulds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для умения в прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для умения в прошлом.",
+            "uk": "Виберіть форму для вміння в минулому."
+          },
+          "gappedTargetPhrase": "At six, I ___ draw a rectangle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-13:i09:r1",
+              "text": "could"
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i09:r2",
+              "text": "could to"
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i09:r3",
+              "text": "coulds"
+            }
+          ],
+          "testedDimension": "Выберите форму для умения в прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-13:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для умения в прошлом.",
+              "feedbackByLocale": {
+                "ru": "После could нет to.",
+                "uk": "Після could немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i09:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для умения в прошлом.",
+              "feedbackByLocale": {
+                "ru": "У could нет окончания -s.",
+                "uk": "Could не має закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:word:curve",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — curve",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:word:curve:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — curve",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:word:curve:audio",
+            "transcript": "curve"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-13:word:curve:r1",
+              "targetText": "curve",
+              "meaningByLocale": {
+                "ru": "изогнутая линия, изгиб.",
+                "uk": "вигнута лінія, вигин."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "curve",
+            "definitionByLocale": {
+              "ru": "изогнутая линия, изгиб.",
+              "uk": "вигнута лінія, вигин."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите: «В шесть лет я умел нарисовать изогнутую линию».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите: «В шесть лет я умел нарисовать изогнутую линию».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "At six, I could draw a curve.",
+          "localizedMeaning": {
+            "ru": "Скажите: «В шесть лет я умел нарисовать изогнутую линию».",
+            "uk": "Скажіть: «У шість років я вмів намалювати вигнуту лінію»."
+          },
+          "orderedTokens": [
+            "At",
+            "six,",
+            "I",
+            "could",
+            "draw",
+            "a",
+            "curve"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-13:i11:r1",
+            "text": "At six, I could draw a curve."
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i11:r2",
+            "text": "At six, I could not draw a curve."
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i11:r3",
+            "text": "At six, I could already draw a curve."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:i11:audio",
+            "transcript": "At six, I could draw a curve."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-13:i11:r1",
+              "targetText": "At six, I could draw a curve.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i11:r2",
+              "targetText": "At six, I could not draw a curve.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i11:r3",
+              "targetText": "At six, I could already draw a curve.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-13:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At six, I could draw a curve.",
+                "uk": "У записі звучить At six, I could draw a curve."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At six, I could draw a curve.",
+                "uk": "У записі звучить At six, I could draw a curve."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для умения в прошлом.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-13:i12:r1",
+            "text": "could"
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i12:r2",
+            "text": "could to"
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i12:r3",
+            "text": "coulds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для умения в прошлом.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для умения в прошлом.",
+            "uk": "Виберіть форму для вміння в минулому."
+          },
+          "gappedTargetPhrase": "At six, I ___ draw a curve.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-13:i12:r1",
+              "text": "could"
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i12:r2",
+              "text": "could to"
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i12:r3",
+              "text": "coulds"
+            }
+          ],
+          "testedDimension": "Выберите форму для умения в прошлом.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-13:i12:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для умения в прошлом.",
+              "feedbackByLocale": {
+                "ru": "После could нет to.",
+                "uk": "Після could немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i12:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для умения в прошлом.",
+              "feedbackByLocale": {
+                "ru": "У could нет окончания -s.",
+                "uk": "Could не має закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова с переводом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова с переводом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-13:i13:p1",
+              "target": "circle",
+              "meaningByLocale": {
+                "ru": "круг, окружность",
+                "uk": "коло, круг"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-13:i13:p2",
+              "target": "triangle",
+              "meaningByLocale": {
+                "ru": "треугольник",
+                "uk": "трикутник"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-13:i13:p3",
+              "target": "rectangle",
+              "meaningByLocale": {
+                "ru": "прямоугольник",
+                "uk": "прямокутник"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-13:i13:p4",
+              "target": "curve",
+              "meaningByLocale": {
+                "ru": "изогнутая линия, изгиб",
+                "uk": "вигнута лінія, вигин"
+              }
+            }
+          ],
+          "leftColumn": [
+            "circle",
+            "triangle",
+            "rectangle",
+            "curve"
+          ],
+          "rightColumn": [
+            "круг, окружность",
+            "треугольник",
+            "прямоугольник",
+            "изогнутая линия, изгиб"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанное намерение",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:i14:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанное намерение",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:i14:audio",
+            "transcript": "We are going to draw a circle."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to draw a circle.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "draw",
+            "a",
+            "circle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторение: услышанный согласованный план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:i15:audio"
+        ],
+        "accessibilityLabel": "Повторение: услышанный согласованный план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:i15:audio",
+            "transcript": "We are meeting at the library tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting at the library tomorrow.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "at",
+            "the",
+            "library",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: скажите, что умеете делать сейчас",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:i16:audio"
+        ],
+        "accessibilityLabel": "Повторение: скажите, что умеете делать сейчас",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:i16:audio",
+            "transcript": "I can draw this triangle."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can draw this triangle.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторение: подчеркните качество",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:i17:audio"
+        ],
+        "accessibilityLabel": "Повторение: подчеркните качество",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:i17:audio",
+            "transcript": "This rectangle is so small."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This rectangle is so small.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-19:session-13:word:circle",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — circle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:word:circle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — circle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:word:circle:audio",
+            "transcript": "circle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-13:word:circle:r1",
+              "targetText": "circle",
+              "meaningByLocale": {
+                "ru": "круг, окружность.",
+                "uk": "коло, круг."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "circle",
+            "definitionByLocale": {
+              "ru": "круг, окружность.",
+              "uk": "коло, круг."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «У шість років я вмів намалювати коло».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «У шість років я вмів намалювати коло».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "At six, I could draw a circle.",
+          "localizedMeaning": {
+            "ru": "Скажите: «В шесть лет я умел нарисовать круг».",
+            "uk": "Скажіть: «У шість років я вмів намалювати коло»."
+          },
+          "orderedTokens": [
+            "At",
+            "six,",
+            "I",
+            "could",
+            "draw",
+            "a",
+            "circle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-13:i02:r1",
+            "text": "At six, I could draw a circle."
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i02:r2",
+            "text": "At six, I could not draw a circle."
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i02:r3",
+            "text": "At six, I could already draw a circle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:i02:audio",
+            "transcript": "At six, I could draw a circle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-13:i02:r1",
+              "targetText": "At six, I could draw a circle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i02:r2",
+              "targetText": "At six, I could not draw a circle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i02:r3",
+              "targetText": "At six, I could already draw a circle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-13:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At six, I could draw a circle.",
+                "uk": "У записі звучить At six, I could draw a circle."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At six, I could draw a circle.",
+                "uk": "У записі звучить At six, I could draw a circle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для вміння в минулому.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-13:i03:r1",
+            "text": "could"
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i03:r2",
+            "text": "could to"
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i03:r3",
+            "text": "coulds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для вміння в минулому.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для умения в прошлом.",
+            "uk": "Виберіть форму для вміння в минулому."
+          },
+          "gappedTargetPhrase": "At six, I ___ draw a circle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-13:i03:r1",
+              "text": "could"
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i03:r2",
+              "text": "could to"
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i03:r3",
+              "text": "coulds"
+            }
+          ],
+          "testedDimension": "Виберіть форму для вміння в минулому.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-13:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вміння в минулому.",
+              "feedbackByLocale": {
+                "ru": "После could нет to.",
+                "uk": "Після could немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вміння в минулому.",
+              "feedbackByLocale": {
+                "ru": "У could нет окончания -s.",
+                "uk": "Could не має закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:word:triangle",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — triangle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:word:triangle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — triangle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:word:triangle:audio",
+            "transcript": "triangle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-13:word:triangle:r1",
+              "targetText": "triangle",
+              "meaningByLocale": {
+                "ru": "треугольник.",
+                "uk": "трикутник."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "triangle",
+            "definitionByLocale": {
+              "ru": "треугольник.",
+              "uk": "трикутник."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «У шість років я вмів намалювати трикутник».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «У шість років я вмів намалювати трикутник».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "At six, I could draw a triangle.",
+          "localizedMeaning": {
+            "ru": "Скажите: «В шесть лет я умел нарисовать треугольник».",
+            "uk": "Скажіть: «У шість років я вмів намалювати трикутник»."
+          },
+          "orderedTokens": [
+            "At",
+            "six,",
+            "I",
+            "could",
+            "draw",
+            "a",
+            "triangle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-13:i05:r1",
+            "text": "At six, I could draw a triangle."
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i05:r2",
+            "text": "At six, I could not draw a triangle."
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i05:r3",
+            "text": "At six, I could already draw a triangle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:i05:audio",
+            "transcript": "At six, I could draw a triangle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-13:i05:r1",
+              "targetText": "At six, I could draw a triangle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i05:r2",
+              "targetText": "At six, I could not draw a triangle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i05:r3",
+              "targetText": "At six, I could already draw a triangle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-13:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At six, I could draw a triangle.",
+                "uk": "У записі звучить At six, I could draw a triangle."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At six, I could draw a triangle.",
+                "uk": "У записі звучить At six, I could draw a triangle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для вміння в минулому.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-13:i06:r1",
+            "text": "could"
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i06:r2",
+            "text": "could to"
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i06:r3",
+            "text": "coulds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для вміння в минулому.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для умения в прошлом.",
+            "uk": "Виберіть форму для вміння в минулому."
+          },
+          "gappedTargetPhrase": "At six, I ___ draw a triangle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-13:i06:r1",
+              "text": "could"
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i06:r2",
+              "text": "could to"
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i06:r3",
+              "text": "coulds"
+            }
+          ],
+          "testedDimension": "Виберіть форму для вміння в минулому.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-13:i06:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вміння в минулому.",
+              "feedbackByLocale": {
+                "ru": "После could нет to.",
+                "uk": "Після could немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i06:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вміння в минулому.",
+              "feedbackByLocale": {
+                "ru": "У could нет окончания -s.",
+                "uk": "Could не має закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:word:rectangle",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rectangle",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:word:rectangle:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rectangle",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:word:rectangle:audio",
+            "transcript": "rectangle"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-13:word:rectangle:r1",
+              "targetText": "rectangle",
+              "meaningByLocale": {
+                "ru": "прямоугольник.",
+                "uk": "прямокутник."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rectangle",
+            "definitionByLocale": {
+              "ru": "прямоугольник.",
+              "uk": "прямокутник."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «У шість років я вмів намалювати прямокутник».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «У шість років я вмів намалювати прямокутник».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "At six, I could draw a rectangle.",
+          "localizedMeaning": {
+            "ru": "Скажите: «В шесть лет я умел нарисовать прямоугольник».",
+            "uk": "Скажіть: «У шість років я вмів намалювати прямокутник»."
+          },
+          "orderedTokens": [
+            "At",
+            "six,",
+            "I",
+            "could",
+            "draw",
+            "a",
+            "rectangle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-13:i08:r1",
+            "text": "At six, I could draw a rectangle."
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i08:r2",
+            "text": "At six, I could not draw a rectangle."
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i08:r3",
+            "text": "At six, I could already draw a rectangle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:i08:audio",
+            "transcript": "At six, I could draw a rectangle."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-13:i08:r1",
+              "targetText": "At six, I could draw a rectangle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i08:r2",
+              "targetText": "At six, I could not draw a rectangle.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i08:r3",
+              "targetText": "At six, I could already draw a rectangle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-13:i08:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At six, I could draw a rectangle.",
+                "uk": "У записі звучить At six, I could draw a rectangle."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i08:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At six, I could draw a rectangle.",
+                "uk": "У записі звучить At six, I could draw a rectangle."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для вміння в минулому.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-13:i09:r1",
+            "text": "could"
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i09:r2",
+            "text": "could to"
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i09:r3",
+            "text": "coulds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для вміння в минулому.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для умения в прошлом.",
+            "uk": "Виберіть форму для вміння в минулому."
+          },
+          "gappedTargetPhrase": "At six, I ___ draw a rectangle.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-13:i09:r1",
+              "text": "could"
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i09:r2",
+              "text": "could to"
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i09:r3",
+              "text": "coulds"
+            }
+          ],
+          "testedDimension": "Виберіть форму для вміння в минулому.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-13:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вміння в минулому.",
+              "feedbackByLocale": {
+                "ru": "После could нет to.",
+                "uk": "Після could немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i09:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вміння в минулому.",
+              "feedbackByLocale": {
+                "ru": "У could нет окончания -s.",
+                "uk": "Could не має закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:word:curve",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — curve",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:word:curve:audio"
+        ],
+        "accessibilityLabel": "Картка слова — curve",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:word:curve:audio",
+            "transcript": "curve"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-13:word:curve:r1",
+              "targetText": "curve",
+              "meaningByLocale": {
+                "ru": "изогнутая линия, изгиб.",
+                "uk": "вигнута лінія, вигин."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "curve",
+            "definitionByLocale": {
+              "ru": "изогнутая линия, изгиб.",
+              "uk": "вигнута лінія, вигин."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть: «У шість років я вмів намалювати вигнуту лінію».",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть: «У шість років я вмів намалювати вигнуту лінію».",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "At six, I could draw a curve.",
+          "localizedMeaning": {
+            "ru": "Скажите: «В шесть лет я умел нарисовать изогнутую линию».",
+            "uk": "Скажіть: «У шість років я вмів намалювати вигнуту лінію»."
+          },
+          "orderedTokens": [
+            "At",
+            "six,",
+            "I",
+            "could",
+            "draw",
+            "a",
+            "curve"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-13:i11:r1",
+            "text": "At six, I could draw a curve."
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i11:r2",
+            "text": "At six, I could not draw a curve."
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i11:r3",
+            "text": "At six, I could already draw a curve."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:i11:audio",
+            "transcript": "At six, I could draw a curve."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-19:session-13:i11:r1",
+              "targetText": "At six, I could draw a curve.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i11:r2",
+              "targetText": "At six, I could not draw a curve.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i11:r3",
+              "targetText": "At six, I could already draw a curve.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-13:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At six, I could draw a curve.",
+                "uk": "У записі звучить At six, I could draw a curve."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит At six, I could draw a curve.",
+                "uk": "У записі звучить At six, I could draw a curve."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для вміння в минулому.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-19:session-13:i12:r1",
+            "text": "could"
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i12:r2",
+            "text": "could to"
+          },
+          {
+            "responseId": "en:lesson-19:session-13:i12:r3",
+            "text": "coulds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для вміння в минулому.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для умения в прошлом.",
+            "uk": "Виберіть форму для вміння в минулому."
+          },
+          "gappedTargetPhrase": "At six, I ___ draw a curve.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-19:session-13:i12:r1",
+              "text": "could"
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i12:r2",
+              "text": "could to"
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i12:r3",
+              "text": "coulds"
+            }
+          ],
+          "testedDimension": "Виберіть форму для вміння в минулому.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-19:session-13:i12:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вміння в минулому.",
+              "feedbackByLocale": {
+                "ru": "После could нет to.",
+                "uk": "Після could немає to."
+              }
+            },
+            {
+              "responseId": "en:lesson-19:session-13:i12:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вміння в минулому.",
+              "feedbackByLocale": {
+                "ru": "У could нет окончания -s.",
+                "uk": "Could не має закінчення -s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Поєднайте слова з перекладом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поєднайте слова з перекладом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-19:session-13:i13:p1",
+              "target": "circle",
+              "meaningByLocale": {
+                "ru": "круг, окружность",
+                "uk": "коло, круг"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-13:i13:p2",
+              "target": "triangle",
+              "meaningByLocale": {
+                "ru": "треугольник",
+                "uk": "трикутник"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-13:i13:p3",
+              "target": "rectangle",
+              "meaningByLocale": {
+                "ru": "прямоугольник",
+                "uk": "прямокутник"
+              }
+            },
+            {
+              "pairId": "en:lesson-19:session-13:i13:p4",
+              "target": "curve",
+              "meaningByLocale": {
+                "ru": "изогнутая линия, изгиб",
+                "uk": "вигнута лінія, вигин"
+              }
+            }
+          ],
+          "leftColumn": [
+            "circle",
+            "triangle",
+            "rectangle",
+            "curve"
+          ],
+          "rightColumn": [
+            "коло, круг",
+            "трикутник",
+            "прямокутник",
+            "вигнута лінія, вигин"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий намір",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:i14:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий намір",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:i14:audio",
+            "transcript": "We are going to draw a circle."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are going to draw a circle.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "going",
+            "to",
+            "draw",
+            "a",
+            "circle"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повторення: почутий узгоджений план",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:i15:audio"
+        ],
+        "accessibilityLabel": "Повторення: почутий узгоджений план",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:i15:audio",
+            "transcript": "We are meeting at the library tomorrow."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We are meeting at the library tomorrow.",
+          "orderedTokens": [
+            "We",
+            "are",
+            "meeting",
+            "at",
+            "the",
+            "library",
+            "tomorrow"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i16",
+        "ordinal": 23,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: скажіть, що вмієте робити зараз",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:i16:audio"
+        ],
+        "accessibilityLabel": "Повторення: скажіть, що вмієте робити зараз",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:i16:audio",
+            "transcript": "I can draw this triangle."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can draw this triangle.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-19:session-13:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повторення: підкресліть якість",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-19:session-13:i17:audio"
+        ],
+        "accessibilityLabel": "Повторення: підкресліть якість",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-19:session-13:i17:audio",
+            "transcript": "This rectangle is so small."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This rectangle is so small.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-19:session-13:word:circle",
+      "correctText": "circle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-13:i01",
+      "correctText": "At six, I could draw a circle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-13:i02",
+      "correctText": "At six, I could draw a circle.",
+      "correctResponseId": "en:lesson-19:session-13:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-13:i03",
+      "correctText": "could",
+      "correctResponseId": "en:lesson-19:session-13:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-13:word:triangle",
+      "correctText": "triangle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-13:i04",
+      "correctText": "At six, I could draw a triangle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-13:i05",
+      "correctText": "At six, I could draw a triangle.",
+      "correctResponseId": "en:lesson-19:session-13:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-13:i06",
+      "correctText": "could",
+      "correctResponseId": "en:lesson-19:session-13:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-13:word:rectangle",
+      "correctText": "rectangle",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-13:i07",
+      "correctText": "At six, I could draw a rectangle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-13:i08",
+      "correctText": "At six, I could draw a rectangle.",
+      "correctResponseId": "en:lesson-19:session-13:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-13:i09",
+      "correctText": "could",
+      "correctResponseId": "en:lesson-19:session-13:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-13:word:curve",
+      "correctText": "curve",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-13:i10",
+      "correctText": "At six, I could draw a curve.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-13:i11",
+      "correctText": "At six, I could draw a curve.",
+      "correctResponseId": "en:lesson-19:session-13:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-13:i12",
+      "correctText": "could",
+      "correctResponseId": "en:lesson-19:session-13:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-19:session-13:i13",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-13:i14",
+      "correctText": "We are going to draw a circle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-13:i15",
+      "correctText": "We are meeting at the library tomorrow.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-13:i16",
+      "correctText": "I can draw this triangle.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-19:session-13:i17",
+      "correctText": "This rectangle is so small.",
+      "correctResponseId": null
+    }
+  ]
+}

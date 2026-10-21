@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "review: past questions and event sequence",
+    "uk": "review: past questions and event sequence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Праздничный выходной",
+        "uk": "Святковий вихідний"
+      },
+      "bodyByLocale": {
+        "ru": "Bank holiday — официальный праздничный выходной в Великобритании. Это не просто выходной только для банков. Was Monday a bank holiday? — Понедельник был праздничным выходным? Выберите вопрос о прошлом.",
+        "uk": "Bank holiday — офіційний святковий вихідний у Великій Британії. Це не просто вихідний лише для банків. Was Monday a bank holiday? — Понеділок був святковим вихідним? Виберіть запитання про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-51:intro1:r1",
+              "text": "Was Monday a bank holiday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-51:intro1:r2",
+              "text": "Is Monday a bank holiday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-51:intro1:r3",
+              "text": "Did Monday was a bank holiday?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-51:intro1:r1",
+              "text": "Was Monday a bank holiday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-51:intro1:r2",
+              "text": "Is Monday a bank holiday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-51:intro1:r3",
+              "text": "Did Monday was a bank holiday?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Рабочий день и сверхурочная работа",
+        "uk": "Робочий день і понаднормова робота"
+      },
+      "bodyByLocale": {
+        "ru": "Working day — рабочий день; overtime — сверхурочная работа, время сверх обычного рабочего дня. Did you work overtime? — Ты работал сверхурочно? Выберите этот вопрос.",
+        "uk": "Working day — робочий день; overtime — понаднормова робота, час понад звичайний робочий день. Did you work overtime? — Ти працював понаднормово? Виберіть це запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-51:intro2:r1",
+              "text": "Did you work overtime?"
+            },
+            {
+              "responseId": "en:lesson-13:session-51:intro2:r2",
+              "text": "Was Friday a working day?"
+            },
+            {
+              "responseId": "en:lesson-13:session-51:intro2:r3",
+              "text": "Did you worked overtime?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-51:intro2:r1",
+              "text": "Did you work overtime?"
+            },
+            {
+              "responseId": "en:lesson-13:session-51:intro2:r2",
+              "text": "Was Friday a working day?"
+            },
+            {
+              "responseId": "en:lesson-13:session-51:intro2:r3",
+              "text": "Did you worked overtime?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Свободное время",
+        "uk": "Вільний час"
+      },
+      "bodyByLocale": {
+        "ru": "Spare time — свободное время. Did you have any spare time? — У тебя было свободное время? После did нужна have, не had. Выберите вопрос.",
+        "uk": "Spare time — вільний час. Did you have any spare time? — У тебе був вільний час? Після did потрібна have, не had. Виберіть запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-51:intro3:r1",
+              "text": "Did you have any spare time?"
+            },
+            {
+              "responseId": "en:lesson-13:session-51:intro3:r2",
+              "text": "Did you had any spare time?"
+            },
+            {
+              "responseId": "en:lesson-13:session-51:intro3:r3",
+              "text": "You had some spare time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-51:intro3:r1",
+              "text": "Did you have any spare time?"
+            },
+            {
+              "responseId": "en:lesson-13:session-51:intro3:r2",
+              "text": "Did you had any spare time?"
+            },
+            {
+              "responseId": "en:lesson-13:session-51:intro3:r3",
+              "text": "You had some spare time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "00d3751acfe38f724c95ad2b8bb592e3f05940833c50f07861025c9f75233b91"
+}

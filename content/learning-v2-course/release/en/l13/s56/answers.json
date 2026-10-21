@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-56:word:outward-journey",
+    "correctText": "outward journey",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-56:i01",
+    "correctText": "Did you enjoy the outward journey?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-56:i02",
+    "correctText": "Did she enjoy the outward journey?",
+    "correctResponseId": "en:lesson-13:session-56:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-56:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-56:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-56:word:return-journey",
+    "correctText": "return journey",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-56:i04",
+    "correctText": "Did you enjoy the return journey?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-56:i05",
+    "correctText": "Did she enjoy the return journey?",
+    "correctResponseId": "en:lesson-13:session-56:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-56:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-56:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-56:word:connecting-flight",
+    "correctText": "connecting flight",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-56:i07",
+    "correctText": "Did you catch your connecting flight?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-56:i08",
+    "correctText": "Did she catch your connecting flight?",
+    "correctResponseId": "en:lesson-13:session-56:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-56:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-56:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-56:word:overnight-stay",
+    "correctText": "overnight stay",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-56:i10",
+    "correctText": "Did you book an overnight stay?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-56:i11",
+    "correctText": "Did she book an overnight stay?",
+    "correctResponseId": "en:lesson-13:session-56:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-56:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-56:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-56:i13",
+    "correctText": "en:lesson-13:session-56:i13:p1=outward journey\nen:lesson-13:session-56:i13:p2=return journey\nen:lesson-13:session-56:i13:p3=connecting flight\nen:lesson-13:session-56:i13:p4=overnight stay",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-56:i14",
+    "correctText": "First we caught our connecting flight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-56:i15",
+    "correctText": "Then we went home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-56:i16",
+    "correctText": "Did you book an overnight stay yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-56:i17",
+    "correctText": "Then we enjoyed the return journey.",
+    "correctResponseId": null
+  }
+]

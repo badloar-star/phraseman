@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-53",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-53:word:sightseeing",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sightseeing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-53:word:sightseeing:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sightseeing",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-53:word:sightseeing:audio",
+          "transcript": "sightseeing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-53:word:sightseeing:r1",
+            "targetText": "sightseeing",
+            "meaningByLocale": {
+              "ru": "осмотр достопримечательностей.",
+              "uk": "огляд визначних місць."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sightseeing",
+          "definitionByLocale": {
+            "ru": "осмотр достопримечательностей.",
+            "uk": "огляд визначних місць."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-53:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты ходил смотреть достопримечательности?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты ходил смотреть достопримечательности?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you go sightseeing?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты ходил смотреть достопримечательности?",
+          "uk": "Скажіть: Ти ходив оглядати визначні місця?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "go",
+          "sightseeing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-53:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-53:i02:r1",
+          "text": "Did she go sightseeing?"
+        },
+        {
+          "responseId": "en:lesson-13:session-53:i02:r2",
+          "text": "Did you go sightseeing?"
+        },
+        {
+          "responseId": "en:lesson-13:session-53:i02:r3",
+          "text": "Did they go sightseeing?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-53:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-53:i02:audio",
+          "transcript": "Did she go sightseeing?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-53:i02:r1",
+            "targetText": "Did she go sightseeing?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i02:r2",
+            "targetText": "Did you go sightseeing?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i02:r3",
+            "targetText": "Did they go sightseeing?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she go sightseeing?",
+              "uk": "У записі звучить Did she go sightseeing?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she go sightseeing?",
+              "uk": "У записі звучить Did she go sightseeing?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-53:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-53:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-53:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-53:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you go sightseeing?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-53:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-53:i03:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i03:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-53:word:coach-tour",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — coach tour",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-53:word:coach-tour:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — coach tour",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-53:word:coach-tour:audio",
+          "transcript": "coach tour"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-53:word:coach-tour:r1",
+            "targetText": "coach tour",
+            "meaningByLocale": {
+              "ru": "автобусная экскурсия.",
+              "uk": "автобусна екскурсія."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coach tour",
+          "definitionByLocale": {
+            "ru": "автобусная экскурсия.",
+            "uk": "автобусна екскурсія."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-53:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты забронировал автобусную экскурсию?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты забронировал автобусную экскурсию?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you book a coach tour?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты забронировал автобусную экскурсию?",
+          "uk": "Скажіть: Ти забронював автобусну екскурсію?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "book",
+          "a",
+          "coach",
+          "tour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-53:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-53:i05:r1",
+          "text": "Did she book a coach tour?"
+        },
+        {
+          "responseId": "en:lesson-13:session-53:i05:r2",
+          "text": "Did you book a coach tour?"
+        },
+        {
+          "responseId": "en:lesson-13:session-53:i05:r3",
+          "text": "Did they book a coach tour?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-53:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-53:i05:audio",
+          "transcript": "Did she book a coach tour?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-53:i05:r1",
+            "targetText": "Did she book a coach tour?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i05:r2",
+            "targetText": "Did you book a coach tour?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i05:r3",
+            "targetText": "Did they book a coach tour?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-53:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she book a coach tour?",
+              "uk": "У записі звучить Did she book a coach tour?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she book a coach tour?",
+              "uk": "У записі звучить Did she book a coach tour?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-53:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-53:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-53:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-53:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you book a coach tour?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-53:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-53:i06:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i06:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-53:word:walking-tour",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — walking tour",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-53:word:walking-tour:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — walking tour",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-53:word:walking-tour:audio",
+          "transcript": "walking tour"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-53:word:walking-tour:r1",
+            "targetText": "walking tour",
+            "meaningByLocale": {
+              "ru": "пешая экскурсия.",
+              "uk": "піша екскурсія."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "walking tour",
+          "definitionByLocale": {
+            "ru": "пешая экскурсия.",
+            "uk": "піша екскурсія."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-53:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Тебе понравилась пешая экскурсия?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Тебе понравилась пешая экскурсия?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you enjoy the walking tour?",
+        "localizedMeaning": {
+          "ru": "Скажите: Тебе понравилась пешая экскурсия?",
+          "uk": "Скажіть: Тобі сподобалася піша екскурсія?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "enjoy",
+          "the",
+          "walking",
+          "tour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-53:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-53:i08:r1",
+          "text": "Did she enjoy the walking tour?"
+        },
+        {
+          "responseId": "en:lesson-13:session-53:i08:r2",
+          "text": "Did you enjoy the walking tour?"
+        },
+        {
+          "responseId": "en:lesson-13:session-53:i08:r3",
+          "text": "Did they enjoy the walking tour?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-53:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-53:i08:audio",
+          "transcript": "Did she enjoy the walking tour?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-53:i08:r1",
+            "targetText": "Did she enjoy the walking tour?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i08:r2",
+            "targetText": "Did you enjoy the walking tour?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i08:r3",
+            "targetText": "Did they enjoy the walking tour?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she enjoy the walking tour?",
+              "uk": "У записі звучить Did she enjoy the walking tour?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she enjoy the walking tour?",
+              "uk": "У записі звучить Did she enjoy the walking tour?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-53:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-53:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-53:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-53:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you enjoy the walking tour?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-53:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-53:i09:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i09:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-53:word:round-trip",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — round trip",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-53:word:round-trip:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — round trip",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-53:word:round-trip:audio",
+          "transcript": "round trip"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-53:word:round-trip:r1",
+            "targetText": "round trip",
+            "meaningByLocale": {
+              "ru": "поездка туда и обратно целиком.",
+              "uk": "поїздка туди й назад цілком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "round trip",
+          "definitionByLocale": {
+            "ru": "поездка туда и обратно целиком.",
+            "uk": "поїздка туди й назад цілком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-53:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Тебе понравилась поездка туда и обратно?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Тебе понравилась поездка туда и обратно?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you enjoy the round trip?",
+        "localizedMeaning": {
+          "ru": "Скажите: Тебе понравилась поездка туда и обратно?",
+          "uk": "Скажіть: Тобі сподобалася поїздка туди й назад?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "enjoy",
+          "the",
+          "round",
+          "trip"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-53:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-53:i11:r1",
+          "text": "Did she enjoy the round trip?"
+        },
+        {
+          "responseId": "en:lesson-13:session-53:i11:r2",
+          "text": "Did you enjoy the round trip?"
+        },
+        {
+          "responseId": "en:lesson-13:session-53:i11:r3",
+          "text": "Did they enjoy the round trip?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-53:i11:audio",
+          "transcript": "Did she enjoy the round trip?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-53:i11:r1",
+            "targetText": "Did she enjoy the round trip?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i11:r2",
+            "targetText": "Did you enjoy the round trip?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i11:r3",
+            "targetText": "Did they enjoy the round trip?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-53:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she enjoy the round trip?",
+              "uk": "У записі звучить Did she enjoy the round trip?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she enjoy the round trip?",
+              "uk": "У записі звучить Did she enjoy the round trip?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-53:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-53:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-53:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-53:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you enjoy the round trip?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-53:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-53:i12:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-53:i12:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-53:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-53:i13:p1",
+            "target": "sightseeing",
+            "meaningByLocale": {
+              "ru": "осмотр достопримечательностей",
+              "uk": "огляд визначних місць"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-53:i13:p2",
+            "target": "coach tour",
+            "meaningByLocale": {
+              "ru": "автобусная экскурсия",
+              "uk": "автобусна екскурсія"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-53:i13:p3",
+            "target": "walking tour",
+            "meaningByLocale": {
+              "ru": "пешая экскурсия",
+              "uk": "піша екскурсія"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-53:i13:p4",
+            "target": "round trip",
+            "meaningByLocale": {
+              "ru": "поездка туда и обратно целиком",
+              "uk": "поїздка туди й назад цілком"
+            }
+          }
+        ],
+        "leftColumn": [
+          "sightseeing",
+          "coach tour",
+          "walking tour",
+          "round trip"
+        ],
+        "rightColumn": [
+          "осмотр достопримечательностей",
+          "автобусная экскурсия",
+          "пешая экскурсия",
+          "поездка туда и обратно целиком"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-53:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-53:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-53:i14:audio",
+          "transcript": "First we went sightseeing."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "First we went sightseeing.",
+        "orderedTokens": [
+          "First",
+          "we",
+          "went",
+          "sightseeing"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-53:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-53:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-53:i15:audio",
+          "transcript": "Then we had lunch."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Then we had lunch.",
+        "orderedTokens": [
+          "Then",
+          "we",
+          "had",
+          "lunch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-53:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите: ты вчера забронировал автобусную экскурсию?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-53:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите: ты вчера забронировал автобусную экскурсию?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-53:i16:audio",
+          "transcript": "Did you book a coach tour yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you book a coach tour yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-53:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: затем нам понравилась пешая экскурсия",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-53:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: затем нам понравилась пешая экскурсия",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-53:i17:audio",
+          "transcript": "Then we enjoyed the walking tour."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Then we enjoyed the walking tour.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "34021e52790dcd0ab084d9d61480aba7e74999fc2f101b531cade8a74bf8ec59"
+}

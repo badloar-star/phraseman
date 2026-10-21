@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-55:word:family-room",
+    "correctText": "family room",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-55:i01",
+    "correctText": "Did you book a family room?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-55:i02",
+    "correctText": "Did she book a family room?",
+    "correctResponseId": "en:lesson-13:session-55:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-55:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-55:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-55:word:sea-view",
+    "correctText": "sea view",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-55:i04",
+    "correctText": "Did you ask for a sea view?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-55:i05",
+    "correctText": "Did she ask for a sea view?",
+    "correctResponseId": "en:lesson-13:session-55:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-55:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-55:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-55:word:wake-up-call",
+    "correctText": "wake-up call",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-55:i07",
+    "correctText": "Did you request a wake-up call?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-55:i08",
+    "correctText": "Did she request a wake-up call?",
+    "correctResponseId": "en:lesson-13:session-55:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-55:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-55:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-55:word:late-checkout",
+    "correctText": "late checkout",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-55:i10",
+    "correctText": "Did you request late checkout?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-55:i11",
+    "correctText": "Did she request late checkout?",
+    "correctResponseId": "en:lesson-13:session-55:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-55:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-55:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-55:i13",
+    "correctText": "en:lesson-13:session-55:i13:p1=family room\nen:lesson-13:session-55:i13:p2=sea view\nen:lesson-13:session-55:i13:p3=wake-up call\nen:lesson-13:session-55:i13:p4=late checkout",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-55:i14",
+    "correctText": "First we booked a family room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-55:i15",
+    "correctText": "Then we asked for a sea view.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-55:i16",
+    "correctText": "Did you request late checkout yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-55:i17",
+    "correctText": "Then I requested a wake-up call.",
+    "correctResponseId": null
+  }
+]

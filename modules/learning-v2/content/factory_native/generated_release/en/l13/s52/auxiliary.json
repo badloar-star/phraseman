@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-52:intro1:r2": {
+          "ru": "Do не обозначает прошлое.",
+          "uk": "Do не позначає минуле."
+        },
+        "en:lesson-13:session-52:intro1:r3": {
+          "ru": "После did нужна split, без s.",
+          "uk": "Після did потрібна split, без s."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-52:intro2:r2": {
+          "ru": "Это оплата наличными.",
+          "uk": "Це оплата готівкою."
+        },
+        "en:lesson-13:session-52:intro2:r3": {
+          "ru": "После did нужна pay.",
+          "uk": "Після did потрібна pay."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-52:intro3:r2": {
+          "ru": "Здесь другая фраза — спасибо.",
+          "uk": "Тут інша фраза — дякую."
+        },
+        "en:lesson-13:session-52:intro3:r3": {
+          "ru": "После did нужна say.",
+          "uk": "Після did потрібна say."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bf8ca7b03575a11a1e6e8ecc79be68c026acf7c94f46e09a583098d6eb7d7b0c"
+}

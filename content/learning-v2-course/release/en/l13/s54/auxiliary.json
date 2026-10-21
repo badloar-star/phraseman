@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-54",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-54:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-54:intro1:r2": {
+          "ru": "После did нужна choose.",
+          "uk": "Після did потрібна choose."
+        },
+        "en:lesson-13:session-54:intro1:r3": {
+          "ru": "Это сообщение.",
+          "uk": "Це повідомлення."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-54:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-54:intro2:r2": {
+          "ru": "Half board — два приёма пищи.",
+          "uk": "Half board — два прийоми їжі."
+        },
+        "en:lesson-13:session-54:intro2:r3": {
+          "ru": "После did нужна choose.",
+          "uk": "Після did потрібна choose."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-54:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-54:intro3:r2": {
+          "ru": "Это питание три раза в день.",
+          "uk": "Це харчування тричі на день."
+        },
+        "en:lesson-13:session-54:intro3:r3": {
+          "ru": "После did нужна choose.",
+          "uk": "Після did потрібна choose."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a4fd4b08fe2a5c9e8ffebeb01624fb6e2b4c6c1a7cbc2628bf646a19528b384f"
+}

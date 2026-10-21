@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-56",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-56:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-56:intro1:r2": {
+          "ru": "Это обратная дорога.",
+          "uk": "Це зворотна дорога."
+        },
+        "en:lesson-13:session-56:intro1:r3": {
+          "ru": "После did нужна enjoy.",
+          "uk": "Після did потрібна enjoy."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-56:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-56:intro2:r2": {
+          "ru": "После did нужна catch.",
+          "uk": "Після did потрібна catch."
+        },
+        "en:lesson-13:session-56:intro2:r3": {
+          "ru": "Это сообщение.",
+          "uk": "Це повідомлення."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-56:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-56:intro3:r2": {
+          "ru": "Это вопрос об обратной дороге.",
+          "uk": "Це запитання про зворотну дорогу."
+        },
+        "en:lesson-13:session-56:intro3:r3": {
+          "ru": "После did нужна book.",
+          "uk": "Після did потрібна book."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "486559a96a03e3314755e8cc223c961708cf70fa8382f66f8f35718284faa49e"
+}

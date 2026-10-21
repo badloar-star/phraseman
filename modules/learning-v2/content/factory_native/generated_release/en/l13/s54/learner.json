@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-54",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-54:word:self-catering",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — self-catering",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-54:word:self-catering:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — self-catering",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-54:word:self-catering:audio",
+          "transcript": "self-catering"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-54:word:self-catering:r1",
+            "targetText": "self-catering",
+            "meaningByLocale": {
+              "ru": "проживание с самостоятельным приготовлением еды.",
+              "uk": "проживання із самостійним приготуванням їжі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "self-catering",
+          "definitionByLocale": {
+            "ru": "проживание с самостоятельным приготовлением еды.",
+            "uk": "проживання із самостійним приготуванням їжі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-54:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты выбрал проживание, где готовишь сам?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты выбрал проживание, где готовишь сам?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you choose self-catering?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты выбрал проживание, где готовишь сам?",
+          "uk": "Скажіть: Ти обрав проживання, де готуєш сам?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "choose",
+          "self-catering"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-54:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-54:i02:r1",
+          "text": "Did she choose self-catering?"
+        },
+        {
+          "responseId": "en:lesson-13:session-54:i02:r2",
+          "text": "Did you choose self-catering?"
+        },
+        {
+          "responseId": "en:lesson-13:session-54:i02:r3",
+          "text": "Did they choose self-catering?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-54:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-54:i02:audio",
+          "transcript": "Did she choose self-catering?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-54:i02:r1",
+            "targetText": "Did she choose self-catering?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i02:r2",
+            "targetText": "Did you choose self-catering?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i02:r3",
+            "targetText": "Did they choose self-catering?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-54:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she choose self-catering?",
+              "uk": "У записі звучить Did she choose self-catering?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she choose self-catering?",
+              "uk": "У записі звучить Did she choose self-catering?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-54:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-54:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-54:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-54:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you choose self-catering?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-54:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-54:i03:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i03:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-54:word:half-board",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — half board",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-54:word:half-board:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — half board",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-54:word:half-board:audio",
+          "transcript": "half board"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-54:word:half-board:r1",
+            "targetText": "half board",
+            "meaningByLocale": {
+              "ru": "проживание с завтраком и ещё одним основным приёмом пищи.",
+              "uk": "проживання зі сніданком і ще одним основним прийомом їжі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "half board",
+          "definitionByLocale": {
+            "ru": "проживание с завтраком и ещё одним основным приёмом пищи.",
+            "uk": "проживання зі сніданком і ще одним основним прийомом їжі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-54:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты выбрал проживание с двумя приёмами пищи?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты выбрал проживание с двумя приёмами пищи?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you choose half board?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты выбрал проживание с двумя приёмами пищи?",
+          "uk": "Скажіть: Ти обрав проживання з двома прийомами їжі?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "choose",
+          "half",
+          "board"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-54:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-54:i05:r1",
+          "text": "Did she choose half board?"
+        },
+        {
+          "responseId": "en:lesson-13:session-54:i05:r2",
+          "text": "Did you choose half board?"
+        },
+        {
+          "responseId": "en:lesson-13:session-54:i05:r3",
+          "text": "Did they choose half board?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-54:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-54:i05:audio",
+          "transcript": "Did she choose half board?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-54:i05:r1",
+            "targetText": "Did she choose half board?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i05:r2",
+            "targetText": "Did you choose half board?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i05:r3",
+            "targetText": "Did they choose half board?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-54:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she choose half board?",
+              "uk": "У записі звучить Did she choose half board?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she choose half board?",
+              "uk": "У записі звучить Did she choose half board?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-54:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-54:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-54:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-54:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you choose half board?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-54:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-54:i06:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i06:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-54:word:full-board",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — full board",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-54:word:full-board:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — full board",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-54:word:full-board:audio",
+          "transcript": "full board"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-54:word:full-board:r1",
+            "targetText": "full board",
+            "meaningByLocale": {
+              "ru": "проживание с завтраком, обедом и ужином.",
+              "uk": "проживання зі сніданком, обідом і вечерею."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "full board",
+          "definitionByLocale": {
+            "ru": "проживание с завтраком, обедом и ужином.",
+            "uk": "проживання зі сніданком, обідом і вечерею."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-54:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты выбрал проживание с трёхразовым питанием?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты выбрал проживание с трёхразовым питанием?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you choose full board?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты выбрал проживание с трёхразовым питанием?",
+          "uk": "Скажіть: Ти обрав проживання з триразовим харчуванням?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "choose",
+          "full",
+          "board"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-54:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-54:i08:r1",
+          "text": "Did she choose full board?"
+        },
+        {
+          "responseId": "en:lesson-13:session-54:i08:r2",
+          "text": "Did you choose full board?"
+        },
+        {
+          "responseId": "en:lesson-13:session-54:i08:r3",
+          "text": "Did they choose full board?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-54:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-54:i08:audio",
+          "transcript": "Did she choose full board?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-54:i08:r1",
+            "targetText": "Did she choose full board?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i08:r2",
+            "targetText": "Did you choose full board?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i08:r3",
+            "targetText": "Did they choose full board?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she choose full board?",
+              "uk": "У записі звучить Did she choose full board?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she choose full board?",
+              "uk": "У записі звучить Did she choose full board?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-54:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-54:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-54:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-54:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you choose full board?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-54:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-54:i09:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i09:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-54:word:bed-and-breakfast",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bed and breakfast",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-54:word:bed-and-breakfast:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bed and breakfast",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-54:word:bed-and-breakfast:audio",
+          "transcript": "bed and breakfast"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-54:word:bed-and-breakfast:r1",
+            "targetText": "bed and breakfast",
+            "meaningByLocale": {
+              "ru": "проживание с завтраком.",
+              "uk": "проживання зі сніданком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bed and breakfast",
+          "definitionByLocale": {
+            "ru": "проживание с завтраком.",
+            "uk": "проживання зі сніданком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-54:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты выбрал проживание с завтраком?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты выбрал проживание с завтраком?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you choose bed and breakfast?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты выбрал проживание с завтраком?",
+          "uk": "Скажіть: Ти обрав проживання зі сніданком?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "choose",
+          "bed",
+          "and",
+          "breakfast"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-54:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-54:i11:r1",
+          "text": "Did she choose bed and breakfast?"
+        },
+        {
+          "responseId": "en:lesson-13:session-54:i11:r2",
+          "text": "Did you choose bed and breakfast?"
+        },
+        {
+          "responseId": "en:lesson-13:session-54:i11:r3",
+          "text": "Did they choose bed and breakfast?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-54:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-54:i11:audio",
+          "transcript": "Did she choose bed and breakfast?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-54:i11:r1",
+            "targetText": "Did she choose bed and breakfast?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i11:r2",
+            "targetText": "Did you choose bed and breakfast?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i11:r3",
+            "targetText": "Did they choose bed and breakfast?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-54:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she choose bed and breakfast?",
+              "uk": "У записі звучить Did she choose bed and breakfast?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she choose bed and breakfast?",
+              "uk": "У записі звучить Did she choose bed and breakfast?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-54:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-54:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-54:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-54:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you choose bed and breakfast?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-54:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-54:i12:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-54:i12:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-54:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-54:i13:p1",
+            "target": "self-catering",
+            "meaningByLocale": {
+              "ru": "проживание с самостоятельным приготовлением еды",
+              "uk": "проживання із самостійним приготуванням їжі"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-54:i13:p2",
+            "target": "half board",
+            "meaningByLocale": {
+              "ru": "проживание с завтраком и ещё одним основным приёмом пищи",
+              "uk": "проживання зі сніданком і ще одним основним прийомом їжі"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-54:i13:p3",
+            "target": "full board",
+            "meaningByLocale": {
+              "ru": "проживание с завтраком, обедом и ужином",
+              "uk": "проживання зі сніданком, обідом і вечерею"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-54:i13:p4",
+            "target": "bed and breakfast",
+            "meaningByLocale": {
+              "ru": "проживание с завтраком",
+              "uk": "проживання зі сніданком"
+            }
+          }
+        ],
+        "leftColumn": [
+          "self-catering",
+          "half board",
+          "full board",
+          "bed and breakfast"
+        ],
+        "rightColumn": [
+          "проживание с самостоятельным приготовлением еды",
+          "проживание с завтраком и ещё одним основным приёмом пищи",
+          "проживание с завтраком, обедом и ужином",
+          "проживание с завтраком"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-54:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-54:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-54:i14:audio",
+          "transcript": "First we chose the hotel."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "First we chose the hotel.",
+        "orderedTokens": [
+          "First",
+          "we",
+          "chose",
+          "the",
+          "hotel"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-54:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-54:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-54:i15:audio",
+          "transcript": "Then we chose half board."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Then we chose half board.",
+        "orderedTokens": [
+          "Then",
+          "we",
+          "chose",
+          "half",
+          "board"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-54:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите: ты вчера выбрал проживание с завтраком?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-54:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите: ты вчера выбрал проживание с завтраком?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-54:i16:audio",
+          "transcript": "Did you choose bed and breakfast yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you choose bed and breakfast yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-54:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: затем мы выбрали самостоятельное приготовление еды",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-54:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: затем мы выбрали самостоятельное приготовление еды",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-54:i17:audio",
+          "transcript": "Then we chose self-catering."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Then we chose self-catering.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "849e6de92198eed4e95ba27e09657ef657a319f15965983486ebdbd6473b95c7"
+}

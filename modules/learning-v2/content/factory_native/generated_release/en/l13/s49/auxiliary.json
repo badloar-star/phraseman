@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-49",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-49:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-49:intro1:r2": {
+          "ru": "После did нужна buy.",
+          "uk": "Після did потрібна buy."
+        },
+        "en:lesson-13:session-49:intro1:r3": {
+          "ru": "Это сообщение.",
+          "uk": "Це повідомлення."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-49:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-49:intro2:r2": {
+          "ru": "Здесь спрашивают, нашли ли предложение.",
+          "uk": "Тут запитують, чи знайшли пропозицію."
+        },
+        "en:lesson-13:session-49:intro2:r3": {
+          "ru": "После did нужна pay.",
+          "uk": "Після did потрібна pay."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-49:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-49:intro3:r2": {
+          "ru": "Is относится к настоящему.",
+          "uk": "Is стосується теперішнього."
+        },
+        "en:lesson-13:session-49:intro3:r3": {
+          "ru": "Достаточно Was the milk…",
+          "uk": "Достатньо Was the milk…"
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b0cc40e32f6a8f9d15112fcb5d749f77147c266834272dec7bd3eae17b1c9edf"
+}

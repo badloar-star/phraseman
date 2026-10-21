@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-51",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-51:word:bank-holiday",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bank holiday",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-51:word:bank-holiday:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bank holiday",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-51:word:bank-holiday:audio",
+          "transcript": "bank holiday"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-51:word:bank-holiday:r1",
+            "targetText": "bank holiday",
+            "meaningByLocale": {
+              "ru": "официальный праздничный выходной в Великобритании.",
+              "uk": "офіційний святковий вихідний у Великій Британії."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bank holiday",
+          "definitionByLocale": {
+            "ru": "официальный праздничный выходной в Великобритании.",
+            "uk": "офіційний святковий вихідний у Великій Британії."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-51:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Понедельник был праздничным выходным?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Понедельник был праздничным выходным?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was Monday a bank holiday?",
+        "localizedMeaning": {
+          "ru": "Скажите: Понедельник был праздничным выходным?",
+          "uk": "Скажіть: Понеділок був святковим вихідним?"
+        },
+        "orderedTokens": [
+          "Was",
+          "Monday",
+          "a",
+          "bank",
+          "holiday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-51:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-51:i02:r1",
+          "text": "Was Monday a bank holiday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-51:i02:r2",
+          "text": "Was Friday a bank holiday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-51:i02:r3",
+          "text": "Is Monday a bank holiday?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-51:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-51:i02:audio",
+          "transcript": "Was Monday a bank holiday?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-51:i02:r1",
+            "targetText": "Was Monday a bank holiday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i02:r2",
+            "targetText": "Was Friday a bank holiday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i02:r3",
+            "targetText": "Is Monday a bank holiday?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-51:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was Monday a bank holiday?",
+              "uk": "У записі звучить Was Monday a bank holiday?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was Monday a bank holiday?",
+              "uk": "У записі звучить Was Monday a bank holiday?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-51:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-51:i03:r1",
+          "text": "Was"
+        },
+        {
+          "responseId": "en:lesson-13:session-51:i03:r2",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-13:session-51:i03:r3",
+          "text": "Are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ Monday a bank holiday last week?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-51:i03:r1",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i03:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-51:i03:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Was.",
+              "uk": "Для минулого потрібна форма Was."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i03:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Was.",
+              "uk": "Це не форма минулого. Потрібна Was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-51:word:working-day",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — working day",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-51:word:working-day:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — working day",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-51:word:working-day:audio",
+          "transcript": "working day"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-51:word:working-day:r1",
+            "targetText": "working day",
+            "meaningByLocale": {
+              "ru": "рабочий день.",
+              "uk": "робочий день."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "working day",
+          "definitionByLocale": {
+            "ru": "рабочий день.",
+            "uk": "робочий день."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-51:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Пятница была рабочим днём?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Пятница была рабочим днём?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was Friday a working day?",
+        "localizedMeaning": {
+          "ru": "Скажите: Пятница была рабочим днём?",
+          "uk": "Скажіть: П’ятниця була робочим днем?"
+        },
+        "orderedTokens": [
+          "Was",
+          "Friday",
+          "a",
+          "working",
+          "day"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-51:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-51:i05:r1",
+          "text": "Was Friday a working day?"
+        },
+        {
+          "responseId": "en:lesson-13:session-51:i05:r2",
+          "text": "Was Monday a working day?"
+        },
+        {
+          "responseId": "en:lesson-13:session-51:i05:r3",
+          "text": "Is Friday a working day?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-51:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-51:i05:audio",
+          "transcript": "Was Friday a working day?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-51:i05:r1",
+            "targetText": "Was Friday a working day?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i05:r2",
+            "targetText": "Was Monday a working day?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i05:r3",
+            "targetText": "Is Friday a working day?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-51:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was Friday a working day?",
+              "uk": "У записі звучить Was Friday a working day?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was Friday a working day?",
+              "uk": "У записі звучить Was Friday a working day?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-51:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-51:i06:r1",
+          "text": "Was"
+        },
+        {
+          "responseId": "en:lesson-13:session-51:i06:r2",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-13:session-51:i06:r3",
+          "text": "Are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ Friday a working day last week?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-51:i06:r1",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i06:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i06:r3",
+            "text": "Are"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-51:i06:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Was.",
+              "uk": "Для минулого потрібна форма Was."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i06:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Was.",
+              "uk": "Це не форма минулого. Потрібна Was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-51:word:overtime",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — overtime",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-51:word:overtime:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — overtime",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-51:word:overtime:audio",
+          "transcript": "overtime"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-51:word:overtime:r1",
+            "targetText": "overtime",
+            "meaningByLocale": {
+              "ru": "сверхурочная работа.",
+              "uk": "понаднормова робота."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overtime",
+          "definitionByLocale": {
+            "ru": "сверхурочная работа.",
+            "uk": "понаднормова робота."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-51:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты работал сверхурочно?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты работал сверхурочно?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you work overtime?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты работал сверхурочно?",
+          "uk": "Скажіть: Ти працював понаднормово?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "work",
+          "overtime"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-51:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-51:i08:r1",
+          "text": "Did she work overtime?"
+        },
+        {
+          "responseId": "en:lesson-13:session-51:i08:r2",
+          "text": "Did you work overtime?"
+        },
+        {
+          "responseId": "en:lesson-13:session-51:i08:r3",
+          "text": "Did they work overtime?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-51:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-51:i08:audio",
+          "transcript": "Did she work overtime?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-51:i08:r1",
+            "targetText": "Did she work overtime?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i08:r2",
+            "targetText": "Did you work overtime?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i08:r3",
+            "targetText": "Did they work overtime?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-51:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she work overtime?",
+              "uk": "У записі звучить Did she work overtime?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she work overtime?",
+              "uk": "У записі звучить Did she work overtime?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-51:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-51:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-51:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-51:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you work overtime?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-51:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-51:i09:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i09:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-51:word:spare-time",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — spare time",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-51:word:spare-time:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — spare time",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-51:word:spare-time:audio",
+          "transcript": "spare time"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-51:word:spare-time:r1",
+            "targetText": "spare time",
+            "meaningByLocale": {
+              "ru": "свободное время.",
+              "uk": "вільний час."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "spare time",
+          "definitionByLocale": {
+            "ru": "свободное время.",
+            "uk": "вільний час."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-51:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: У тебя было свободное время?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: У тебя было свободное время?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you have any spare time?",
+        "localizedMeaning": {
+          "ru": "Скажите: У тебя было свободное время?",
+          "uk": "Скажіть: У тебе був вільний час?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "have",
+          "any",
+          "spare",
+          "time"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-51:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-51:i11:r1",
+          "text": "Did she have any spare time?"
+        },
+        {
+          "responseId": "en:lesson-13:session-51:i11:r2",
+          "text": "Did you have any spare time?"
+        },
+        {
+          "responseId": "en:lesson-13:session-51:i11:r3",
+          "text": "Did they have any spare time?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-51:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-51:i11:audio",
+          "transcript": "Did she have any spare time?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-51:i11:r1",
+            "targetText": "Did she have any spare time?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i11:r2",
+            "targetText": "Did you have any spare time?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i11:r3",
+            "targetText": "Did they have any spare time?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-51:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she have any spare time?",
+              "uk": "У записі звучить Did she have any spare time?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she have any spare time?",
+              "uk": "У записі звучить Did she have any spare time?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-51:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-51:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-51:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-51:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you have any spare time?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-51:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-51:i12:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-51:i12:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-51:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-51:i13:p1",
+            "target": "bank holiday",
+            "meaningByLocale": {
+              "ru": "официальный праздничный выходной в Великобритании",
+              "uk": "офіційний святковий вихідний у Великій Британії"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-51:i13:p2",
+            "target": "working day",
+            "meaningByLocale": {
+              "ru": "рабочий день",
+              "uk": "робочий день"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-51:i13:p3",
+            "target": "overtime",
+            "meaningByLocale": {
+              "ru": "сверхурочная работа",
+              "uk": "понаднормова робота"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-51:i13:p4",
+            "target": "spare time",
+            "meaningByLocale": {
+              "ru": "свободное время",
+              "uk": "вільний час"
+            }
+          }
+        ],
+        "leftColumn": [
+          "bank holiday",
+          "working day",
+          "overtime",
+          "spare time"
+        ],
+        "rightColumn": [
+          "официальный праздничный выходной в Великобритании",
+          "рабочий день",
+          "сверхурочная работа",
+          "свободное время"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-51:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-51:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-51:i14:audio",
+          "transcript": "First I finished my work."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "First I finished my work.",
+        "orderedTokens": [
+          "First",
+          "I",
+          "finished",
+          "my",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-51:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-51:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-51:i15:audio",
+          "transcript": "Then I had some spare time."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Then I had some spare time.",
+        "orderedTokens": [
+          "Then",
+          "I",
+          "had",
+          "some",
+          "spare",
+          "time"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-51:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите: ты вчера работал сверхурочно?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-51:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите: ты вчера работал сверхурочно?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-51:i16:audio",
+          "transcript": "Did you work overtime yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you work overtime yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-51:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: вчера у меня было свободное время",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-51:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: вчера у меня было свободное время",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-51:i17:audio",
+          "transcript": "I had some spare time yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I had some spare time yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "99c658a84c824214789d20e1317e8c145212230c21d73e00f5352cd4bdd24007"
+}

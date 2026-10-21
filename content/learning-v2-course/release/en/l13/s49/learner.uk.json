@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-49",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-49:word:half-price",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — half-price",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-49:word:half-price:audio"
+      ],
+      "accessibilityLabel": "Картка слова — half-price",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-49:word:half-price:audio",
+          "transcript": "half-price"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-49:word:half-price:r1",
+            "targetText": "half-price",
+            "meaningByLocale": {
+              "ru": "за полцены.",
+              "uk": "за пів ціни."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "half-price",
+          "definitionByLocale": {
+            "ru": "за полцены.",
+            "uk": "за пів ціни."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-49:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти купив хліб за пів ціни?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти купив хліб за пів ціни?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you buy the half-price bread?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты купил хлеб за полцены?",
+          "uk": "Скажіть: Ти купив хліб за пів ціни?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "buy",
+          "the",
+          "half-price",
+          "bread"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-49:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-49:i02:r1",
+          "text": "Did she buy the half-price bread?"
+        },
+        {
+          "responseId": "en:lesson-13:session-49:i02:r2",
+          "text": "Did you buy the half-price bread?"
+        },
+        {
+          "responseId": "en:lesson-13:session-49:i02:r3",
+          "text": "Did they buy the half-price bread?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-49:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-49:i02:audio",
+          "transcript": "Did she buy the half-price bread?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-49:i02:r1",
+            "targetText": "Did she buy the half-price bread?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i02:r2",
+            "targetText": "Did you buy the half-price bread?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i02:r3",
+            "targetText": "Did they buy the half-price bread?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-49:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she buy the half-price bread?",
+              "uk": "У записі звучить Did she buy the half-price bread?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she buy the half-price bread?",
+              "uk": "У записі звучить Did she buy the half-price bread?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-49:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-49:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-49:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-49:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you buy the half-price bread?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-49:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-49:i03:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i03:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-49:word:full-price",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — full price",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-49:word:full-price:audio"
+      ],
+      "accessibilityLabel": "Картка слова — full price",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-49:word:full-price:audio",
+          "transcript": "full price"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-49:word:full-price:r1",
+            "targetText": "full price",
+            "meaningByLocale": {
+              "ru": "полная цена без скидки.",
+              "uk": "повна ціна без знижки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "full price",
+          "definitionByLocale": {
+            "ru": "полная цена без скидки.",
+            "uk": "повна ціна без знижки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-49:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти заплатив повну ціну?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти заплатив повну ціну?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you pay full price?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты заплатил полную цену?",
+          "uk": "Скажіть: Ти заплатив повну ціну?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "pay",
+          "full",
+          "price"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-49:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-49:i05:r1",
+          "text": "Did she pay full price?"
+        },
+        {
+          "responseId": "en:lesson-13:session-49:i05:r2",
+          "text": "Did you pay full price?"
+        },
+        {
+          "responseId": "en:lesson-13:session-49:i05:r3",
+          "text": "Did they pay full price?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-49:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-49:i05:audio",
+          "transcript": "Did she pay full price?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-49:i05:r1",
+            "targetText": "Did she pay full price?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i05:r2",
+            "targetText": "Did you pay full price?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i05:r3",
+            "targetText": "Did they pay full price?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-49:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she pay full price?",
+              "uk": "У записі звучить Did she pay full price?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she pay full price?",
+              "uk": "У записі звучить Did she pay full price?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-49:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-49:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-49:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-49:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you pay full price?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-49:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-49:i06:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i06:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-49:word:special-offer",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — special offer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-49:word:special-offer:audio"
+      ],
+      "accessibilityLabel": "Картка слова — special offer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-49:word:special-offer:audio",
+          "transcript": "special offer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-49:word:special-offer:r1",
+            "targetText": "special offer",
+            "meaningByLocale": {
+              "ru": "специальное предложение в магазине.",
+              "uk": "спеціальна пропозиція в магазині."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "special offer",
+          "definitionByLocale": {
+            "ru": "специальное предложение в магазине.",
+            "uk": "спеціальна пропозиція в магазині."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-49:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Ти знайшов спеціальну пропозицію?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Ти знайшов спеціальну пропозицію?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you find a special offer?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты нашёл специальное предложение?",
+          "uk": "Скажіть: Ти знайшов спеціальну пропозицію?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "find",
+          "a",
+          "special",
+          "offer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-49:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-49:i08:r1",
+          "text": "Did she find a special offer?"
+        },
+        {
+          "responseId": "en:lesson-13:session-49:i08:r2",
+          "text": "Did you find a special offer?"
+        },
+        {
+          "responseId": "en:lesson-13:session-49:i08:r3",
+          "text": "Did they find a special offer?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-49:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-49:i08:audio",
+          "transcript": "Did she find a special offer?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-49:i08:r1",
+            "targetText": "Did she find a special offer?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i08:r2",
+            "targetText": "Did you find a special offer?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i08:r3",
+            "targetText": "Did they find a special offer?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-49:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she find a special offer?",
+              "uk": "У записі звучить Did she find a special offer?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she find a special offer?",
+              "uk": "У записі звучить Did she find a special offer?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-49:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-49:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-49:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-49:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you find a special offer?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-49:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-49:i09:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i09:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-49:word:out-of-stock",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — out of stock",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-49:word:out-of-stock:audio"
+      ],
+      "accessibilityLabel": "Картка слова — out of stock",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-49:word:out-of-stock:audio",
+          "transcript": "out of stock"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-49:word:out-of-stock:r1",
+            "targetText": "out of stock",
+            "meaningByLocale": {
+              "ru": "нет в наличии.",
+              "uk": "немає в наявності."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "out of stock",
+          "definitionByLocale": {
+            "ru": "нет в наличии.",
+            "uk": "немає в наявності."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-49:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть: Молока не було в наявності?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть: Молока не було в наявності?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was the milk out of stock?",
+        "localizedMeaning": {
+          "ru": "Скажите: Молока не было в наличии?",
+          "uk": "Скажіть: Молока не було в наявності?"
+        },
+        "orderedTokens": [
+          "Was",
+          "the",
+          "milk",
+          "out",
+          "of",
+          "stock"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-49:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-49:i11:r1",
+          "text": "Was the milk out of stock?"
+        },
+        {
+          "responseId": "en:lesson-13:session-49:i11:r2",
+          "text": "Was the bread out of stock?"
+        },
+        {
+          "responseId": "en:lesson-13:session-49:i11:r3",
+          "text": "Is the milk out of stock?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-49:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-49:i11:audio",
+          "transcript": "Was the milk out of stock?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-49:i11:r1",
+            "targetText": "Was the milk out of stock?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i11:r2",
+            "targetText": "Was the bread out of stock?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i11:r3",
+            "targetText": "Is the milk out of stock?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-49:i11:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was the milk out of stock?",
+              "uk": "У записі звучить Was the milk out of stock?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i11:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was the milk out of stock?",
+              "uk": "У записі звучить Was the milk out of stock?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-49:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-49:i12:r1",
+          "text": "Was"
+        },
+        {
+          "responseId": "en:lesson-13:session-49:i12:r2",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-13:session-49:i12:r3",
+          "text": "Are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ the milk out of stock yesterday?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-49:i12:r1",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i12:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i12:r3",
+            "text": "Are"
+          }
+        ],
+        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-49:i12:r2",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Was.",
+              "uk": "Для минулого потрібна форма Was."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-49:i12:r3",
+            "correct": false,
+            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Was.",
+              "uk": "Це не форма минулого. Потрібна Was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-49:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Поєднайте вирази з перекладом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-49:i13:p1",
+            "target": "half-price",
+            "meaningByLocale": {
+              "ru": "за полцены",
+              "uk": "за пів ціни"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-49:i13:p2",
+            "target": "full price",
+            "meaningByLocale": {
+              "ru": "полная цена без скидки",
+              "uk": "повна ціна без знижки"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-49:i13:p3",
+            "target": "special offer",
+            "meaningByLocale": {
+              "ru": "специальное предложение в магазине",
+              "uk": "спеціальна пропозиція в магазині"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-49:i13:p4",
+            "target": "out of stock",
+            "meaningByLocale": {
+              "ru": "нет в наличии",
+              "uk": "немає в наявності"
+            }
+          }
+        ],
+        "leftColumn": [
+          "half-price",
+          "full price",
+          "special offer",
+          "out of stock"
+        ],
+        "rightColumn": [
+          "за пів ціни",
+          "повна ціна без знижки",
+          "спеціальна пропозиція в магазині",
+          "немає в наявності"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-49:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-49:i14:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-49:i14:audio",
+          "transcript": "First I checked the price."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "First I checked the price.",
+        "orderedTokens": [
+          "First",
+          "I",
+          "checked",
+          "the",
+          "price"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-49:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть почуту фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-49:i15:audio"
+      ],
+      "accessibilityLabel": "Складіть почуту фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-49:i15:audio",
+          "transcript": "Then I bought the half-price bread."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Then I bought the half-price bread.",
+        "orderedTokens": [
+          "Then",
+          "I",
+          "bought",
+          "the",
+          "half-price",
+          "bread"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-49:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте: ти вчора заплатив повну ціну?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-49:i16:audio"
+      ],
+      "accessibilityLabel": "Запитайте: ти вчора заплатив повну ціну?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-49:i16:audio",
+          "transcript": "Did you pay full price yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you pay full price yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-49:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть: молока вчора не було в наявності",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-49:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть: молока вчора не було в наявності",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-49:i17:audio",
+          "transcript": "The milk was out of stock yesterday."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The milk was out of stock yesterday.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b7cf8dc13d05a6445da42e5f352e9b5d71f20150b1242bb2086d53631c8ae723"
+}

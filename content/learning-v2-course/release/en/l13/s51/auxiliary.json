@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-51",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-51:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-51:intro1:r2": {
+          "ru": "Is спрашивает о настоящем или расписании, здесь вспоминаем прошлое.",
+          "uk": "Is запитує про теперішнє або розклад, тут згадуємо минуле."
+        },
+        "en:lesson-13:session-51:intro1:r3": {
+          "ru": "Достаточно was.",
+          "uk": "Достатньо was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-51:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-51:intro2:r2": {
+          "ru": "Это вопрос о том, был ли день рабочим.",
+          "uk": "Це запитання про те, чи був день робочим."
+        },
+        "en:lesson-13:session-51:intro2:r3": {
+          "ru": "После did нужна work.",
+          "uk": "Після did потрібна work."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-51:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-51:intro3:r2": {
+          "ru": "После did нужна have.",
+          "uk": "Після did потрібна have."
+        },
+        "en:lesson-13:session-51:intro3:r3": {
+          "ru": "Это сообщение.",
+          "uk": "Це повідомлення."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d6068b31b5337b756a1f9d804a9aae8519a0935bf1a4749c4dd0d511c0455805"
+}

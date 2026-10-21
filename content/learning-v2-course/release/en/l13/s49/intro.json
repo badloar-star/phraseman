@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "review: past questions and event sequence",
+    "uk": "review: past questions and event sequence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "За полцены",
+        "uk": "За пів ціни"
+      },
+      "bodyByLocale": {
+        "ru": "Half-price — за полцены, со скидкой в половину цены. Did you buy the half-price bread? — Ты купил хлеб за полцены? Выберите вопрос о хлебе со скидкой.",
+        "uk": "Half-price — за пів ціни, зі знижкою в половину ціни. Did you buy the half-price bread? — Ти купив хліб за пів ціни? Виберіть запитання про хліб зі знижкою."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-49:intro1:r1",
+              "text": "Did you buy the half-price bread?"
+            },
+            {
+              "responseId": "en:lesson-13:session-49:intro1:r2",
+              "text": "Did you bought the half-price bread?"
+            },
+            {
+              "responseId": "en:lesson-13:session-49:intro1:r3",
+              "text": "You bought the half-price bread."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-49:intro1:r1",
+              "text": "Did you buy the half-price bread?"
+            },
+            {
+              "responseId": "en:lesson-13:session-49:intro1:r2",
+              "text": "Did you bought the half-price bread?"
+            },
+            {
+              "responseId": "en:lesson-13:session-49:intro1:r3",
+              "text": "You bought the half-price bread."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Полная цена и предложение",
+        "uk": "Повна ціна й пропозиція"
+      },
+      "bodyByLocale": {
+        "ru": "Full price — полная цена без скидки; special offer — специальное предложение, например сниженная цена. Did you pay full price? — Ты заплатил полную цену? Выберите вопрос об оплате.",
+        "uk": "Full price — повна ціна без знижки; special offer — спеціальна пропозиція, наприклад знижена ціна. Did you pay full price? — Ти заплатив повну ціну? Виберіть запитання про оплату."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-49:intro2:r1",
+              "text": "Did you pay full price?"
+            },
+            {
+              "responseId": "en:lesson-13:session-49:intro2:r2",
+              "text": "Did you find a special offer?"
+            },
+            {
+              "responseId": "en:lesson-13:session-49:intro2:r3",
+              "text": "Did you paid full price?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-49:intro2:r1",
+              "text": "Did you pay full price?"
+            },
+            {
+              "responseId": "en:lesson-13:session-49:intro2:r2",
+              "text": "Did you find a special offer?"
+            },
+            {
+              "responseId": "en:lesson-13:session-49:intro2:r3",
+              "text": "Did you paid full price?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Нет в наличии",
+        "uk": "Немає в наявності"
+      },
+      "bodyByLocale": {
+        "ru": "Out of stock — нет в наличии, товар закончился. Was the milk out of stock? — Молока не было в наличии? Повторяем was для состояния в прошлом; did сюда не добавляем.",
+        "uk": "Out of stock — немає в наявності, товар закінчився. Was the milk out of stock? — Молока не було в наявності? Повторюємо was для стану в минулому; did сюди не додаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-49:intro3:r1",
+              "text": "Was the milk out of stock?"
+            },
+            {
+              "responseId": "en:lesson-13:session-49:intro3:r2",
+              "text": "Is the milk out of stock?"
+            },
+            {
+              "responseId": "en:lesson-13:session-49:intro3:r3",
+              "text": "Did the milk was out of stock?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-49:intro3:r1",
+              "text": "Was the milk out of stock?"
+            },
+            {
+              "responseId": "en:lesson-13:session-49:intro3:r2",
+              "text": "Is the milk out of stock?"
+            },
+            {
+              "responseId": "en:lesson-13:session-49:intro3:r3",
+              "text": "Did the milk was out of stock?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6ed18852feafb4507df81adbd372497c50f499da36125593cdc4305b18055012"
+}

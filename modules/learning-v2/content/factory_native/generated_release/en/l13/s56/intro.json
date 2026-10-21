@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "review: past questions and event sequence",
+    "uk": "review: past questions and event sequence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Два направления",
+        "uk": "Два напрямки"
+      },
+      "bodyByLocale": {
+        "ru": "Outward journey — дорога из дома к месту поездки; return journey — обратная дорога домой. Это две части round trip, всей поездки туда и обратно. Did you enjoy the outward journey? — Тебе понравилась дорога туда?",
+        "uk": "Outward journey — дорога з дому до місця поїздки; return journey — зворотна дорога додому. Це дві частини round trip, усієї поїздки туди й назад. Did you enjoy the outward journey? — Тобі сподобалася дорога туди?"
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-56:intro1:r1",
+              "text": "Did you enjoy the outward journey?"
+            },
+            {
+              "responseId": "en:lesson-13:session-56:intro1:r2",
+              "text": "Did you enjoy the return journey?"
+            },
+            {
+              "responseId": "en:lesson-13:session-56:intro1:r3",
+              "text": "Did you enjoyed the outward journey?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-56:intro1:r1",
+              "text": "Did you enjoy the outward journey?"
+            },
+            {
+              "responseId": "en:lesson-13:session-56:intro1:r2",
+              "text": "Did you enjoy the return journey?"
+            },
+            {
+              "responseId": "en:lesson-13:session-56:intro1:r3",
+              "text": "Did you enjoyed the outward journey?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Следующий рейс",
+        "uk": "Наступний рейс"
+      },
+      "bodyByLocale": {
+        "ru": "Connecting flight — стыковочный рейс, на который пересаживаются после предыдущего самолёта. Did you catch your connecting flight? — Ты успел на свой стыковочный рейс? Выберите вопрос.",
+        "uk": "Connecting flight — стикувальний рейс, на який пересідають після попереднього літака. Did you catch your connecting flight? — Ти встиг на свій стикувальний рейс? Виберіть запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-56:intro2:r1",
+              "text": "Did you catch your connecting flight?"
+            },
+            {
+              "responseId": "en:lesson-13:session-56:intro2:r2",
+              "text": "Did you caught your connecting flight?"
+            },
+            {
+              "responseId": "en:lesson-13:session-56:intro2:r3",
+              "text": "You caught your connecting flight."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-56:intro2:r1",
+              "text": "Did you catch your connecting flight?"
+            },
+            {
+              "responseId": "en:lesson-13:session-56:intro2:r2",
+              "text": "Did you caught your connecting flight?"
+            },
+            {
+              "responseId": "en:lesson-13:session-56:intro2:r3",
+              "text": "You caught your connecting flight."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Остановиться на ночь",
+        "uk": "Зупинитися на ніч"
+      },
+      "bodyByLocale": {
+        "ru": "Overnight stay — ночёвка, пребывание где-то на одну ночь. Did you book an overnight stay? — Ты забронировал ночёвку? Сначала переночевали, затем поехали домой. Выберите вопрос о бронировании.",
+        "uk": "Overnight stay — ночівля, перебування десь на одну ніч. Did you book an overnight stay? — Ти забронював ночівлю? Спочатку переночували, потім поїхали додому. Виберіть запитання про бронювання."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-56:intro3:r1",
+              "text": "Did you book an overnight stay?"
+            },
+            {
+              "responseId": "en:lesson-13:session-56:intro3:r2",
+              "text": "Did you enjoy the return journey?"
+            },
+            {
+              "responseId": "en:lesson-13:session-56:intro3:r3",
+              "text": "Did you booked an overnight stay?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-56:intro3:r1",
+              "text": "Did you book an overnight stay?"
+            },
+            {
+              "responseId": "en:lesson-13:session-56:intro3:r2",
+              "text": "Did you enjoy the return journey?"
+            },
+            {
+              "responseId": "en:lesson-13:session-56:intro3:r3",
+              "text": "Did you booked an overnight stay?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "86c39fb74c5d61e6903daf9197064441813ea4c6f357b8dbe6a465c32e91bf87"
+}

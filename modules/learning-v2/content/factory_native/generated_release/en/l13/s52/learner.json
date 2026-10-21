@@ -1,0 +1,1116 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-52",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-52:word:split-the-bill",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — split the bill",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-52:word:split-the-bill:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — split the bill",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-52:word:split-the-bill:audio",
+          "transcript": "split the bill"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-52:word:split-the-bill:r1",
+            "targetText": "split the bill",
+            "meaningByLocale": {
+              "ru": "разделить счёт между людьми.",
+              "uk": "розділити рахунок між людьми."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "split the bill",
+          "definitionByLocale": {
+            "ru": "разделить счёт между людьми.",
+            "uk": "розділити рахунок між людьми."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-52:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Вы разделили счёт?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Вы разделили счёт?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you split the bill?",
+        "localizedMeaning": {
+          "ru": "Скажите: Вы разделили счёт?",
+          "uk": "Скажіть: Ви розділили рахунок?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "split",
+          "the",
+          "bill"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-52:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-52:i02:r1",
+          "text": "Did she split the bill?"
+        },
+        {
+          "responseId": "en:lesson-13:session-52:i02:r2",
+          "text": "Did you split the bill?"
+        },
+        {
+          "responseId": "en:lesson-13:session-52:i02:r3",
+          "text": "Did they split the bill?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-52:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-52:i02:audio",
+          "transcript": "Did she split the bill?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-52:i02:r1",
+            "targetText": "Did she split the bill?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i02:r2",
+            "targetText": "Did you split the bill?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i02:r3",
+            "targetText": "Did they split the bill?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-52:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she split the bill?",
+              "uk": "У записі звучить Did she split the bill?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she split the bill?",
+              "uk": "У записі звучить Did she split the bill?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-52:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-52:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-52:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-52:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you split the bill?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-52:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-52:i03:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i03:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-52:word:pay-by-card",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pay by card",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-52:word:pay-by-card:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pay by card",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-52:word:pay-by-card:audio",
+          "transcript": "pay by card"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-52:word:pay-by-card:r1",
+            "targetText": "pay by card",
+            "meaningByLocale": {
+              "ru": "платить картой.",
+              "uk": "платити карткою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pay by card",
+          "definitionByLocale": {
+            "ru": "платить картой.",
+            "uk": "платити карткою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-52:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты заплатил картой?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты заплатил картой?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you pay by card?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты заплатил картой?",
+          "uk": "Скажіть: Ти заплатив карткою?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "pay",
+          "by",
+          "card"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-52:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-52:i05:r1",
+          "text": "Did she pay by card?"
+        },
+        {
+          "responseId": "en:lesson-13:session-52:i05:r2",
+          "text": "Did you pay by card?"
+        },
+        {
+          "responseId": "en:lesson-13:session-52:i05:r3",
+          "text": "Did they pay by card?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-52:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-52:i05:audio",
+          "transcript": "Did she pay by card?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-52:i05:r1",
+            "targetText": "Did she pay by card?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i05:r2",
+            "targetText": "Did you pay by card?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i05:r3",
+            "targetText": "Did they pay by card?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-52:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she pay by card?",
+              "uk": "У записі звучить Did she pay by card?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she pay by card?",
+              "uk": "У записі звучить Did she pay by card?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-52:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-52:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-52:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-52:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you pay by card?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-52:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-52:i06:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i06:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-52:word:pay-in-cash",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pay in cash",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-52:word:pay-in-cash:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pay in cash",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-52:word:pay-in-cash:audio",
+          "transcript": "pay in cash"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-52:word:pay-in-cash:r1",
+            "targetText": "pay in cash",
+            "meaningByLocale": {
+              "ru": "платить наличными.",
+              "uk": "платити готівкою."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pay in cash",
+          "definitionByLocale": {
+            "ru": "платить наличными.",
+            "uk": "платити готівкою."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-52:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты заплатил наличными?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты заплатил наличными?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you pay in cash?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты заплатил наличными?",
+          "uk": "Скажіть: Ти заплатив готівкою?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "pay",
+          "in",
+          "cash"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-52:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-52:i08:r1",
+          "text": "Did she pay in cash?"
+        },
+        {
+          "responseId": "en:lesson-13:session-52:i08:r2",
+          "text": "Did you pay in cash?"
+        },
+        {
+          "responseId": "en:lesson-13:session-52:i08:r3",
+          "text": "Did they pay in cash?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-52:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-52:i08:audio",
+          "transcript": "Did she pay in cash?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-52:i08:r1",
+            "targetText": "Did she pay in cash?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i08:r2",
+            "targetText": "Did you pay in cash?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i08:r3",
+            "targetText": "Did they pay in cash?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-52:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she pay in cash?",
+              "uk": "У записі звучить Did she pay in cash?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she pay in cash?",
+              "uk": "У записі звучить Did she pay in cash?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-52:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-52:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-52:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-52:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you pay in cash?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-52:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-52:i09:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i09:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-52:word:keep-the-change",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — keep the change",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-52:word:keep-the-change:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — keep the change",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-52:word:keep-the-change:audio",
+          "transcript": "keep the change"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-52:word:keep-the-change:r1",
+            "targetText": "keep the change",
+            "meaningByLocale": {
+              "ru": "оставьте сдачу себе.",
+              "uk": "залиште решту собі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "keep the change",
+          "definitionByLocale": {
+            "ru": "оставьте сдачу себе.",
+            "uk": "залиште решту собі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-52:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты сказал «Сдачу оставьте себе»?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты сказал «Сдачу оставьте себе»?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you say “keep the change”?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты сказал «Сдачу оставьте себе»?",
+          "uk": "Скажіть: Ти сказав «Решту залиште собі»?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "say",
+          "“keep",
+          "the",
+          "change”"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-52:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-52:i11:r1",
+          "text": "Did she say “keep the change”?"
+        },
+        {
+          "responseId": "en:lesson-13:session-52:i11:r2",
+          "text": "Did you say “keep the change”?"
+        },
+        {
+          "responseId": "en:lesson-13:session-52:i11:r3",
+          "text": "Did they say “keep the change”?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-52:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-52:i11:audio",
+          "transcript": "Did she say “keep the change”?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-52:i11:r1",
+            "targetText": "Did she say “keep the change”?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i11:r2",
+            "targetText": "Did you say “keep the change”?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i11:r3",
+            "targetText": "Did they say “keep the change”?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-52:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she say “keep the change”?",
+              "uk": "У записі звучить Did she say “keep the change”?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she say “keep the change”?",
+              "uk": "У записі звучить Did she say “keep the change”?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-52:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-52:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-52:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-52:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you say “keep the change”?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-52:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-52:i12:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-52:i12:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-52:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-52:i13:p1",
+            "target": "split the bill",
+            "meaningByLocale": {
+              "ru": "разделить счёт между людьми",
+              "uk": "розділити рахунок між людьми"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-52:i13:p2",
+            "target": "pay by card",
+            "meaningByLocale": {
+              "ru": "платить картой",
+              "uk": "платити карткою"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-52:i13:p3",
+            "target": "pay in cash",
+            "meaningByLocale": {
+              "ru": "платить наличными",
+              "uk": "платити готівкою"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-52:i13:p4",
+            "target": "keep the change",
+            "meaningByLocale": {
+              "ru": "оставьте сдачу себе",
+              "uk": "залиште решту собі"
+            }
+          }
+        ],
+        "leftColumn": [
+          "split the bill",
+          "pay by card",
+          "pay in cash",
+          "keep the change"
+        ],
+        "rightColumn": [
+          "разделить счёт между людьми",
+          "платить картой",
+          "платить наличными",
+          "оставьте сдачу себе"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-52:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-52:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-52:i14:audio",
+          "transcript": "First we split the bill."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "First we split the bill.",
+        "orderedTokens": [
+          "First",
+          "we",
+          "split",
+          "the",
+          "bill"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-52:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-52:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-52:i15:audio",
+          "transcript": "Then I paid by card."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Then I paid by card.",
+        "orderedTokens": [
+          "Then",
+          "I",
+          "paid",
+          "by",
+          "card"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-52:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите: ты вчера заплатил наличными?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-52:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите: ты вчера заплатил наличными?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-52:i16:audio",
+          "transcript": "Did you pay in cash yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you pay in cash yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-52:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: затем мы разделили счёт",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-52:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: затем мы разделили счёт",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-52:i17:audio",
+          "transcript": "Then we split the bill."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Then we split the bill.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "138e9d5e71ec51d59e3be262e78d94525b4177a907d95fd59cd9907e12d56986"
+}

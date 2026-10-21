@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "review: past questions and event sequence",
+    "uk": "review: past questions and event sequence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "День зарплаты",
+        "uk": "День зарплати"
+      },
+      "bodyByLocale": {
+        "ru": "Payday — день выплаты зарплаты. Was yesterday payday? — Вчера был день зарплаты? Повторяем was: речь о том, каким был день.",
+        "uk": "Payday — день виплати зарплати. Was yesterday payday? — Учора був день зарплати? Повторюємо was: ідеться про те, яким був день."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-50:intro1:r1",
+              "text": "Was yesterday payday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-50:intro1:r2",
+              "text": "Is yesterday payday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-50:intro1:r3",
+              "text": "Did yesterday was payday?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-50:intro1:r1",
+              "text": "Was yesterday payday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-50:intro1:r2",
+              "text": "Is yesterday payday?"
+            },
+            {
+              "responseId": "en:lesson-13:session-50:intro1:r3",
+              "text": "Did yesterday was payday?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Карманные деньги и копилка",
+        "uk": "Кишенькові гроші й скарбничка"
+      },
+      "bodyByLocale": {
+        "ru": "Pocket money — карманные деньги; piggy bank — копилка, часто в форме поросёнка. Did you save your pocket money? — Ты отложил свои карманные деньги? Выберите вопрос о деньгах.",
+        "uk": "Pocket money — кишенькові гроші; piggy bank — скарбничка, часто у формі поросятка. Did you save your pocket money? — Ти відклав свої кишенькові гроші? Виберіть запитання про гроші."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-50:intro2:r1",
+              "text": "Did you save your pocket money?"
+            },
+            {
+              "responseId": "en:lesson-13:session-50:intro2:r2",
+              "text": "Did you buy a piggy bank?"
+            },
+            {
+              "responseId": "en:lesson-13:session-50:intro2:r3",
+              "text": "Did you saved your pocket money?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-50:intro2:r1",
+              "text": "Did you save your pocket money?"
+            },
+            {
+              "responseId": "en:lesson-13:session-50:intro2:r2",
+              "text": "Did you buy a piggy bank?"
+            },
+            {
+              "responseId": "en:lesson-13:session-50:intro2:r3",
+              "text": "Did you saved your pocket money?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Мелочь в кармане",
+        "uk": "Дрібні гроші в кишені"
+      },
+      "bodyByLocale": {
+        "ru": "Loose change — мелочь, небольшая сумма монетами. Did you find any loose change? — Ты нашёл немного мелочи? Выберите вопрос о прошлом.",
+        "uk": "Loose change — дрібні гроші, невелика сума монетами. Did you find any loose change? — Ти знайшов трохи дрібних грошей? Виберіть запитання про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-50:intro3:r1",
+              "text": "Did you find any loose change?"
+            },
+            {
+              "responseId": "en:lesson-13:session-50:intro3:r2",
+              "text": "Do you find any loose change?"
+            },
+            {
+              "responseId": "en:lesson-13:session-50:intro3:r3",
+              "text": "Did you found any loose change?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-50:intro3:r1",
+              "text": "Did you find any loose change?"
+            },
+            {
+              "responseId": "en:lesson-13:session-50:intro3:r2",
+              "text": "Do you find any loose change?"
+            },
+            {
+              "responseId": "en:lesson-13:session-50:intro3:r3",
+              "text": "Did you found any loose change?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "eff86d63859e44fab2bcb92dcb3cdcdfcde52cb9a5b25982258da0db568c02fb"
+}

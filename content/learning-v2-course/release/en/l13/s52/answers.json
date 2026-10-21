@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-52:word:split-the-bill",
+    "correctText": "split the bill",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-52:i01",
+    "correctText": "Did you split the bill?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-52:i02",
+    "correctText": "Did she split the bill?",
+    "correctResponseId": "en:lesson-13:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-52:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-52:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-52:word:pay-by-card",
+    "correctText": "pay by card",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-52:i04",
+    "correctText": "Did you pay by card?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-52:i05",
+    "correctText": "Did she pay by card?",
+    "correctResponseId": "en:lesson-13:session-52:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-52:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-52:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-52:word:pay-in-cash",
+    "correctText": "pay in cash",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-52:i07",
+    "correctText": "Did you pay in cash?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-52:i08",
+    "correctText": "Did she pay in cash?",
+    "correctResponseId": "en:lesson-13:session-52:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-52:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-52:word:keep-the-change",
+    "correctText": "keep the change",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-52:i10",
+    "correctText": "Did you say “keep the change”?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-52:i11",
+    "correctText": "Did she say “keep the change”?",
+    "correctResponseId": "en:lesson-13:session-52:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-52:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-52:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-52:i13",
+    "correctText": "en:lesson-13:session-52:i13:p1=split the bill\nen:lesson-13:session-52:i13:p2=pay by card\nen:lesson-13:session-52:i13:p3=pay in cash\nen:lesson-13:session-52:i13:p4=keep the change",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-52:i14",
+    "correctText": "First we split the bill.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-52:i15",
+    "correctText": "Then I paid by card.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-52:i16",
+    "correctText": "Did you pay in cash yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-52:i17",
+    "correctText": "Then we split the bill.",
+    "correctResponseId": null
+  }
+]

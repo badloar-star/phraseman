@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-55",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-55:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-55:intro1:r2": {
+          "ru": "После did нужна book.",
+          "uk": "Після did потрібна book."
+        },
+        "en:lesson-13:session-55:intro1:r3": {
+          "ru": "Это сообщение.",
+          "uk": "Це повідомлення."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-55:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-55:intro2:r2": {
+          "ru": "Это вопрос о семейном номере.",
+          "uk": "Це запитання про сімейний номер."
+        },
+        "en:lesson-13:session-55:intro2:r3": {
+          "ru": "После did нужна ask.",
+          "uk": "Після did потрібна ask."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-55:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-55:intro3:r2": {
+          "ru": "Это просьба разбудить звонком.",
+          "uk": "Це прохання розбудити дзвінком."
+        },
+        "en:lesson-13:session-55:intro3:r3": {
+          "ru": "После did нужна request.",
+          "uk": "Після did потрібна request."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0b06b5d3f9115441a74322e0ad0ed6188427ce6403e95ca5d1043763a23c95bf"
+}

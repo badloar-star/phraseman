@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-50:word:payday",
+    "correctText": "payday",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-50:i01",
+    "correctText": "Was yesterday payday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-50:i02",
+    "correctText": "Was yesterday payday?",
+    "correctResponseId": "en:lesson-13:session-50:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-50:i03",
+    "correctText": "Was",
+    "correctResponseId": "en:lesson-13:session-50:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-50:word:pocket-money",
+    "correctText": "pocket money",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-50:i04",
+    "correctText": "Did you save your pocket money?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-50:i05",
+    "correctText": "Did she save your pocket money?",
+    "correctResponseId": "en:lesson-13:session-50:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-50:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-50:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-50:word:piggy-bank",
+    "correctText": "piggy bank",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-50:i07",
+    "correctText": "Did you buy a piggy bank?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-50:i08",
+    "correctText": "Did she buy a piggy bank?",
+    "correctResponseId": "en:lesson-13:session-50:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-50:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-50:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-50:word:loose-change",
+    "correctText": "loose change",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-50:i10",
+    "correctText": "Did you find any loose change?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-50:i11",
+    "correctText": "Did she find any loose change?",
+    "correctResponseId": "en:lesson-13:session-50:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-50:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-50:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-50:i13",
+    "correctText": "en:lesson-13:session-50:i13:p1=payday\nen:lesson-13:session-50:i13:p2=pocket money\nen:lesson-13:session-50:i13:p3=piggy bank\nen:lesson-13:session-50:i13:p4=loose change",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-50:i14",
+    "correctText": "First I counted the coins.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-50:i15",
+    "correctText": "Then I put them in my piggy bank.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-50:i16",
+    "correctText": "Did you buy a piggy bank yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-50:i17",
+    "correctText": "Then I found some loose change.",
+    "correctResponseId": null
+  }
+]

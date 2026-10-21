@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-50",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-50:word:payday",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — payday",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-50:word:payday:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — payday",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-50:word:payday:audio",
+          "transcript": "payday"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-50:word:payday:r1",
+            "targetText": "payday",
+            "meaningByLocale": {
+              "ru": "день выплаты зарплаты.",
+              "uk": "день виплати зарплати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "payday",
+          "definitionByLocale": {
+            "ru": "день выплаты зарплаты.",
+            "uk": "день виплати зарплати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-50:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Вчера был день зарплаты?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Вчера был день зарплаты?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Was yesterday payday?",
+        "localizedMeaning": {
+          "ru": "Скажите: Вчера был день зарплаты?",
+          "uk": "Скажіть: Учора був день зарплати?"
+        },
+        "orderedTokens": [
+          "Was",
+          "yesterday",
+          "payday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-50:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-50:i02:r1",
+          "text": "Was yesterday payday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-50:i02:r2",
+          "text": "Is today payday?"
+        },
+        {
+          "responseId": "en:lesson-13:session-50:i02:r3",
+          "text": "Was Monday payday?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-50:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-50:i02:audio",
+          "transcript": "Was yesterday payday?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-50:i02:r1",
+            "targetText": "Was yesterday payday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i02:r2",
+            "targetText": "Is today payday?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i02:r3",
+            "targetText": "Was Monday payday?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was yesterday payday?",
+              "uk": "У записі звучить Was yesterday payday?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Was yesterday payday?",
+              "uk": "У записі звучить Was yesterday payday?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-50:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-50:i03:r1",
+          "text": "Was"
+        },
+        {
+          "responseId": "en:lesson-13:session-50:i03:r2",
+          "text": "Is"
+        },
+        {
+          "responseId": "en:lesson-13:session-50:i03:r3",
+          "text": "Are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ yesterday payday?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-50:i03:r1",
+            "text": "Was"
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i03:r2",
+            "text": "Is"
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i03:r3",
+            "text": "Are"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-50:i03:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Was.",
+              "uk": "Для минулого потрібна форма Was."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i03:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Was.",
+              "uk": "Це не форма минулого. Потрібна Was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-50:word:pocket-money",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pocket money",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-50:word:pocket-money:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pocket money",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-50:word:pocket-money:audio",
+          "transcript": "pocket money"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-50:word:pocket-money:r1",
+            "targetText": "pocket money",
+            "meaningByLocale": {
+              "ru": "карманные деньги.",
+              "uk": "кишенькові гроші."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pocket money",
+          "definitionByLocale": {
+            "ru": "карманные деньги.",
+            "uk": "кишенькові гроші."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-50:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты отложил свои карманные деньги?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты отложил свои карманные деньги?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you save your pocket money?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты отложил свои карманные деньги?",
+          "uk": "Скажіть: Ти відклав свої кишенькові гроші?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "save",
+          "your",
+          "pocket",
+          "money"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-50:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-50:i05:r1",
+          "text": "Did she save your pocket money?"
+        },
+        {
+          "responseId": "en:lesson-13:session-50:i05:r2",
+          "text": "Did you save your pocket money?"
+        },
+        {
+          "responseId": "en:lesson-13:session-50:i05:r3",
+          "text": "Did they save your pocket money?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-50:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-50:i05:audio",
+          "transcript": "Did she save your pocket money?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-50:i05:r1",
+            "targetText": "Did she save your pocket money?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i05:r2",
+            "targetText": "Did you save your pocket money?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i05:r3",
+            "targetText": "Did they save your pocket money?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-50:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she save your pocket money?",
+              "uk": "У записі звучить Did she save your pocket money?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she save your pocket money?",
+              "uk": "У записі звучить Did she save your pocket money?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-50:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-50:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-50:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-50:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you save your pocket money?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-50:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-50:i06:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i06:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-50:word:piggy-bank",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — piggy bank",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-50:word:piggy-bank:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — piggy bank",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-50:word:piggy-bank:audio",
+          "transcript": "piggy bank"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-50:word:piggy-bank:r1",
+            "targetText": "piggy bank",
+            "meaningByLocale": {
+              "ru": "копилка, часто в форме поросёнка.",
+              "uk": "скарбничка, часто у формі поросятка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "piggy bank",
+          "definitionByLocale": {
+            "ru": "копилка, часто в форме поросёнка.",
+            "uk": "скарбничка, часто у формі поросятка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-50:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты купил копилку?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты купил копилку?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you buy a piggy bank?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты купил копилку?",
+          "uk": "Скажіть: Ти купив скарбничку?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "buy",
+          "a",
+          "piggy",
+          "bank"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-50:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-50:i08:r1",
+          "text": "Did she buy a piggy bank?"
+        },
+        {
+          "responseId": "en:lesson-13:session-50:i08:r2",
+          "text": "Did you buy a piggy bank?"
+        },
+        {
+          "responseId": "en:lesson-13:session-50:i08:r3",
+          "text": "Did they buy a piggy bank?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-50:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-50:i08:audio",
+          "transcript": "Did she buy a piggy bank?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-50:i08:r1",
+            "targetText": "Did she buy a piggy bank?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i08:r2",
+            "targetText": "Did you buy a piggy bank?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i08:r3",
+            "targetText": "Did they buy a piggy bank?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-50:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she buy a piggy bank?",
+              "uk": "У записі звучить Did she buy a piggy bank?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she buy a piggy bank?",
+              "uk": "У записі звучить Did she buy a piggy bank?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-50:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-50:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-50:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-50:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you buy a piggy bank?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-50:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-50:i09:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i09:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-50:word:loose-change",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — loose change",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-50:word:loose-change:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — loose change",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-50:word:loose-change:audio",
+          "transcript": "loose change"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-50:word:loose-change:r1",
+            "targetText": "loose change",
+            "meaningByLocale": {
+              "ru": "мелочь — небольшая сумма монетами.",
+              "uk": "дрібні гроші — невелика сума монетами."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "loose change",
+          "definitionByLocale": {
+            "ru": "мелочь — небольшая сумма монетами.",
+            "uk": "дрібні гроші — невелика сума монетами."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-50:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты нашёл немного мелочи?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты нашёл немного мелочи?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you find any loose change?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты нашёл немного мелочи?",
+          "uk": "Скажіть: Ти знайшов трохи дрібних грошей?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "find",
+          "any",
+          "loose",
+          "change"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-50:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-50:i11:r1",
+          "text": "Did she find any loose change?"
+        },
+        {
+          "responseId": "en:lesson-13:session-50:i11:r2",
+          "text": "Did you find any loose change?"
+        },
+        {
+          "responseId": "en:lesson-13:session-50:i11:r3",
+          "text": "Did they find any loose change?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-50:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-50:i11:audio",
+          "transcript": "Did she find any loose change?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-50:i11:r1",
+            "targetText": "Did she find any loose change?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i11:r2",
+            "targetText": "Did you find any loose change?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i11:r3",
+            "targetText": "Did they find any loose change?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-50:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she find any loose change?",
+              "uk": "У записі звучить Did she find any loose change?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she find any loose change?",
+              "uk": "У записі звучить Did she find any loose change?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-50:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-50:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-50:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-50:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you find any loose change?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-50:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-50:i12:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-50:i12:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-50:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-50:i13:p1",
+            "target": "payday",
+            "meaningByLocale": {
+              "ru": "день выплаты зарплаты",
+              "uk": "день виплати зарплати"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-50:i13:p2",
+            "target": "pocket money",
+            "meaningByLocale": {
+              "ru": "карманные деньги",
+              "uk": "кишенькові гроші"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-50:i13:p3",
+            "target": "piggy bank",
+            "meaningByLocale": {
+              "ru": "копилка, часто в форме поросёнка",
+              "uk": "скарбничка, часто у формі поросятка"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-50:i13:p4",
+            "target": "loose change",
+            "meaningByLocale": {
+              "ru": "мелочь",
+              "uk": "дрібні гроші"
+            }
+          }
+        ],
+        "leftColumn": [
+          "payday",
+          "pocket money",
+          "piggy bank",
+          "loose change"
+        ],
+        "rightColumn": [
+          "день выплаты зарплаты",
+          "карманные деньги",
+          "копилка, часто в форме поросёнка",
+          "мелочь"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-50:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-50:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-50:i14:audio",
+          "transcript": "First I counted the coins."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "First I counted the coins.",
+        "orderedTokens": [
+          "First",
+          "I",
+          "counted",
+          "the",
+          "coins"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-50:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-50:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-50:i15:audio",
+          "transcript": "Then I put them in my piggy bank."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Then I put them in my piggy bank.",
+        "orderedTokens": [
+          "Then",
+          "I",
+          "put",
+          "them",
+          "in",
+          "my",
+          "piggy",
+          "bank"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-50:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите: ты вчера купил копилку?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-50:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите: ты вчера купил копилку?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-50:i16:audio",
+          "transcript": "Did you buy a piggy bank yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you buy a piggy bank yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-50:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: затем я нашёл немного мелочи",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-50:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: затем я нашёл немного мелочи",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-50:i17:audio",
+          "transcript": "Then I found some loose change."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Then I found some loose change.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "30fd7817bfc0ed2a735d876fdad3657552d2677cfbf07763f5ba955c6979a3bc"
+}

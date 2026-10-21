@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "review: past questions and event sequence",
+    "uk": "review: past questions and event sequence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Разделить счёт",
+        "uk": "Розділити рахунок"
+      },
+      "bodyByLocale": {
+        "ru": "Split the bill — разделить счёт между людьми. Did you split the bill? — Вы разделили счёт? Split в прошлом тоже split, но вопрос всё равно начинается с did.",
+        "uk": "Split the bill — розділити рахунок між людьми. Did you split the bill? — Ви розділили рахунок? Split у минулому теж split, але запитання все одно починається з did."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-52:intro1:r1",
+              "text": "Did you split the bill?"
+            },
+            {
+              "responseId": "en:lesson-13:session-52:intro1:r2",
+              "text": "Do you split the bill?"
+            },
+            {
+              "responseId": "en:lesson-13:session-52:intro1:r3",
+              "text": "Did you splits the bill?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-52:intro1:r1",
+              "text": "Did you split the bill?"
+            },
+            {
+              "responseId": "en:lesson-13:session-52:intro1:r2",
+              "text": "Do you split the bill?"
+            },
+            {
+              "responseId": "en:lesson-13:session-52:intro1:r3",
+              "text": "Did you splits the bill?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Карта или наличные",
+        "uk": "Картка чи готівка"
+      },
+      "bodyByLocale": {
+        "ru": "Pay by card — платить картой; pay in cash — платить наличными. Did you pay by card? — Ты заплатил картой? Выберите оплату картой.",
+        "uk": "Pay by card — платити карткою; pay in cash — платити готівкою. Did you pay by card? — Ти заплатив карткою? Виберіть оплату карткою."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-52:intro2:r1",
+              "text": "Did you pay by card?"
+            },
+            {
+              "responseId": "en:lesson-13:session-52:intro2:r2",
+              "text": "Did you pay in cash?"
+            },
+            {
+              "responseId": "en:lesson-13:session-52:intro2:r3",
+              "text": "Did you paid by card?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-52:intro2:r1",
+              "text": "Did you pay by card?"
+            },
+            {
+              "responseId": "en:lesson-13:session-52:intro2:r2",
+              "text": "Did you pay in cash?"
+            },
+            {
+              "responseId": "en:lesson-13:session-52:intro2:r3",
+              "text": "Did you paid by card?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сдачу оставьте себе",
+        "uk": "Решту залиште собі"
+      },
+      "bodyByLocale": {
+        "ru": "Keep the change — оставьте сдачу себе. Так клиент предлагает официанту оставить сдачу. Did you say “Keep the change”? — Ты сказал «Сдачу оставьте себе»? Выберите вопрос об этой фразе.",
+        "uk": "Keep the change — залиште решту собі. Так клієнт пропонує офіціантові залишити решту. Did you say “Keep the change”? — Ти сказав «Решту залиште собі»? Виберіть запитання про цю фразу."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-52:intro3:r1",
+              "text": "Did you say “Keep the change”?"
+            },
+            {
+              "responseId": "en:lesson-13:session-52:intro3:r2",
+              "text": "Did you say “Thank you”?"
+            },
+            {
+              "responseId": "en:lesson-13:session-52:intro3:r3",
+              "text": "Did you said “Keep the change”?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-52:intro3:r1",
+              "text": "Did you say “Keep the change”?"
+            },
+            {
+              "responseId": "en:lesson-13:session-52:intro3:r2",
+              "text": "Did you say “Thank you”?"
+            },
+            {
+              "responseId": "en:lesson-13:session-52:intro3:r3",
+              "text": "Did you said “Keep the change”?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0443a469dcc3e46f3406e9857022b0f9b86c5628857b7c9f91d09ff0793cba1e"
+}

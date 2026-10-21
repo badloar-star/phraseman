@@ -1,0 +1,1119 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-13:session-56",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-13:session-56:word:outward-journey",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — outward journey",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-56:word:outward-journey:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — outward journey",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-56:word:outward-journey:audio",
+          "transcript": "outward journey"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-56:word:outward-journey:r1",
+            "targetText": "outward journey",
+            "meaningByLocale": {
+              "ru": "дорога из дома к месту поездки.",
+              "uk": "дорога з дому до місця поїздки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "outward journey",
+          "definitionByLocale": {
+            "ru": "дорога из дома к месту поездки.",
+            "uk": "дорога з дому до місця поїздки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-56:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Тебе понравилась дорога туда?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Тебе понравилась дорога туда?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you enjoy the outward journey?",
+        "localizedMeaning": {
+          "ru": "Скажите: Тебе понравилась дорога туда?",
+          "uk": "Скажіть: Тобі сподобалася дорога туди?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "enjoy",
+          "the",
+          "outward",
+          "journey"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-56:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-56:i02:r1",
+          "text": "Did she enjoy the outward journey?"
+        },
+        {
+          "responseId": "en:lesson-13:session-56:i02:r2",
+          "text": "Did you enjoy the outward journey?"
+        },
+        {
+          "responseId": "en:lesson-13:session-56:i02:r3",
+          "text": "Did they enjoy the outward journey?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-56:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-56:i02:audio",
+          "transcript": "Did she enjoy the outward journey?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-56:i02:r1",
+            "targetText": "Did she enjoy the outward journey?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i02:r2",
+            "targetText": "Did you enjoy the outward journey?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i02:r3",
+            "targetText": "Did they enjoy the outward journey?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-56:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she enjoy the outward journey?",
+              "uk": "У записі звучить Did she enjoy the outward journey?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she enjoy the outward journey?",
+              "uk": "У записі звучить Did she enjoy the outward journey?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-56:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-56:i03:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-56:i03:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-56:i03:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you enjoy the outward journey?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-56:i03:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i03:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i03:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-56:i03:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i03:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-56:word:return-journey",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — return journey",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-56:word:return-journey:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — return journey",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-56:word:return-journey:audio",
+          "transcript": "return journey"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-56:word:return-journey:r1",
+            "targetText": "return journey",
+            "meaningByLocale": {
+              "ru": "обратная дорога домой.",
+              "uk": "зворотна дорога додому."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "return journey",
+          "definitionByLocale": {
+            "ru": "обратная дорога домой.",
+            "uk": "зворотна дорога додому."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-56:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Тебе понравилась обратная дорога?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Тебе понравилась обратная дорога?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you enjoy the return journey?",
+        "localizedMeaning": {
+          "ru": "Скажите: Тебе понравилась обратная дорога?",
+          "uk": "Скажіть: Тобі сподобалася зворотна дорога?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "enjoy",
+          "the",
+          "return",
+          "journey"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-56:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-56:i05:r1",
+          "text": "Did she enjoy the return journey?"
+        },
+        {
+          "responseId": "en:lesson-13:session-56:i05:r2",
+          "text": "Did you enjoy the return journey?"
+        },
+        {
+          "responseId": "en:lesson-13:session-56:i05:r3",
+          "text": "Did they enjoy the return journey?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-56:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-56:i05:audio",
+          "transcript": "Did she enjoy the return journey?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-56:i05:r1",
+            "targetText": "Did she enjoy the return journey?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i05:r2",
+            "targetText": "Did you enjoy the return journey?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i05:r3",
+            "targetText": "Did they enjoy the return journey?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-56:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she enjoy the return journey?",
+              "uk": "У записі звучить Did she enjoy the return journey?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she enjoy the return journey?",
+              "uk": "У записі звучить Did she enjoy the return journey?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-56:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-56:i06:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-56:i06:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-56:i06:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you enjoy the return journey?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-56:i06:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i06:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i06:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-56:i06:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i06:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-56:word:connecting-flight",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — connecting flight",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-56:word:connecting-flight:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — connecting flight",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-56:word:connecting-flight:audio",
+          "transcript": "connecting flight"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-56:word:connecting-flight:r1",
+            "targetText": "connecting flight",
+            "meaningByLocale": {
+              "ru": "стыковочный рейс при пересадке.",
+              "uk": "стикувальний рейс під час пересадки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "connecting flight",
+          "definitionByLocale": {
+            "ru": "стыковочный рейс при пересадке.",
+            "uk": "стикувальний рейс під час пересадки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-56:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты успел на свой стыковочный рейс?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты успел на свой стыковочный рейс?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you catch your connecting flight?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты успел на свой стыковочный рейс?",
+          "uk": "Скажіть: Ти встиг на свій стикувальний рейс?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "catch",
+          "your",
+          "connecting",
+          "flight"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-56:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-56:i08:r1",
+          "text": "Did she catch your connecting flight?"
+        },
+        {
+          "responseId": "en:lesson-13:session-56:i08:r2",
+          "text": "Did you catch your connecting flight?"
+        },
+        {
+          "responseId": "en:lesson-13:session-56:i08:r3",
+          "text": "Did they catch your connecting flight?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-56:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-56:i08:audio",
+          "transcript": "Did she catch your connecting flight?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-56:i08:r1",
+            "targetText": "Did she catch your connecting flight?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i08:r2",
+            "targetText": "Did you catch your connecting flight?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i08:r3",
+            "targetText": "Did they catch your connecting flight?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-56:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she catch your connecting flight?",
+              "uk": "У записі звучить Did she catch your connecting flight?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she catch your connecting flight?",
+              "uk": "У записі звучить Did she catch your connecting flight?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-56:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-56:i09:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-56:i09:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-56:i09:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you catch your connecting flight?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-56:i09:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i09:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i09:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-56:i09:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i09:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-56:word:overnight-stay",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — overnight stay",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-56:word:overnight-stay:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — overnight stay",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-56:word:overnight-stay:audio",
+          "transcript": "overnight stay"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-56:word:overnight-stay:r1",
+            "targetText": "overnight stay",
+            "meaningByLocale": {
+              "ru": "ночёвка — пребывание где-то на одну ночь.",
+              "uk": "ночівля — перебування десь одну ніч."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "overnight stay",
+          "definitionByLocale": {
+            "ru": "ночёвка — пребывание где-то на одну ночь.",
+            "uk": "ночівля — перебування десь одну ніч."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-56:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите: Ты забронировал ночёвку?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите: Ты забронировал ночёвку?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Did you book an overnight stay?",
+        "localizedMeaning": {
+          "ru": "Скажите: Ты забронировал ночёвку?",
+          "uk": "Скажіть: Ти забронював ночівлю?"
+        },
+        "orderedTokens": [
+          "Did",
+          "you",
+          "book",
+          "an",
+          "overnight",
+          "stay"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-56:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-56:i11:r1",
+          "text": "Did she book an overnight stay?"
+        },
+        {
+          "responseId": "en:lesson-13:session-56:i11:r2",
+          "text": "Did you book an overnight stay?"
+        },
+        {
+          "responseId": "en:lesson-13:session-56:i11:r3",
+          "text": "Did they book an overnight stay?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-56:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-56:i11:audio",
+          "transcript": "Did she book an overnight stay?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-56:i11:r1",
+            "targetText": "Did she book an overnight stay?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i11:r2",
+            "targetText": "Did you book an overnight stay?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i11:r3",
+            "targetText": "Did they book an overnight stay?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-56:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she book an overnight stay?",
+              "uk": "У записі звучить Did she book an overnight stay?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Did she book an overnight stay?",
+              "uk": "У записі звучить Did she book an overnight stay?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-56:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-56:i12:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-56:i12:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-56:i12:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вопрос о вчерашнем действии. Выберите начало",
+          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        },
+        "gappedTargetPhrase": "___ you book an overnight stay?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-56:i12:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i12:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i12:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-56:i12:r2",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна форма Did.",
+              "uk": "Для минулого потрібна форма Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-56:i12:r3",
+            "correct": false,
+            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "feedbackByLocale": {
+              "ru": "Это не форма прошлого. Нужна Did.",
+              "uk": "Це не форма минулого. Потрібна Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-56:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините выражения с переводом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините выражения с переводом",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-13:session-56:i13:p1",
+            "target": "outward journey",
+            "meaningByLocale": {
+              "ru": "дорога из дома к месту поездки",
+              "uk": "дорога з дому до місця поїздки"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-56:i13:p2",
+            "target": "return journey",
+            "meaningByLocale": {
+              "ru": "обратная дорога домой",
+              "uk": "зворотна дорога додому"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-56:i13:p3",
+            "target": "connecting flight",
+            "meaningByLocale": {
+              "ru": "стыковочный рейс при пересадке",
+              "uk": "стикувальний рейс під час пересадки"
+            }
+          },
+          {
+            "pairId": "en:lesson-13:session-56:i13:p4",
+            "target": "overnight stay",
+            "meaningByLocale": {
+              "ru": "ночёвка",
+              "uk": "ночівля"
+            }
+          }
+        ],
+        "leftColumn": [
+          "outward journey",
+          "return journey",
+          "connecting flight",
+          "overnight stay"
+        ],
+        "rightColumn": [
+          "дорога из дома к месту поездки",
+          "обратная дорога домой",
+          "стыковочный рейс при пересадке",
+          "ночёвка"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-56:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-56:i14:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-56:i14:audio",
+          "transcript": "First we caught our connecting flight."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "First we caught our connecting flight.",
+        "orderedTokens": [
+          "First",
+          "we",
+          "caught",
+          "our",
+          "connecting",
+          "flight"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-56:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите услышанную фразу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-56:i15:audio"
+      ],
+      "accessibilityLabel": "Соберите услышанную фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-56:i15:audio",
+          "transcript": "Then we went home."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Then we went home.",
+        "orderedTokens": [
+          "Then",
+          "we",
+          "went",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-56:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите: ты вчера забронировал ночёвку?",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-56:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите: ты вчера забронировал ночёвку?",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-56:i16:audio",
+          "transcript": "Did you book an overnight stay yesterday?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Did you book an overnight stay yesterday?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-56:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите: затем нам понравилась обратная дорога",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-56:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите: затем нам понравилась обратная дорога",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-56:i17:audio",
+          "transcript": "Then we enjoyed the return journey."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Then we enjoyed the return journey.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e066b2dd1e9db6b9a9fc03724d1e766c18f8d18f0c5c570456877efee4bf15d5"
+}

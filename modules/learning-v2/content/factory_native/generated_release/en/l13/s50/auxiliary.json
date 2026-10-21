@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-13:session-50",
+  "entries": [
+    {
+      "interactionId": "en:lesson-13:session-50:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-50:intro1:r2": {
+          "ru": "Для вчера нужна was.",
+          "uk": "Для вчора потрібна was."
+        },
+        "en:lesson-13:session-50:intro1:r3": {
+          "ru": "Did здесь не нужен.",
+          "uk": "Did тут не потрібне."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-50:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-50:intro2:r2": {
+          "ru": "Здесь спрашивают о покупке копилки.",
+          "uk": "Тут запитують про купівлю скарбнички."
+        },
+        "en:lesson-13:session-50:intro2:r3": {
+          "ru": "После did нужна save.",
+          "uk": "Після did потрібна save."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-13:session-50:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-13:session-50:intro3:r2": {
+          "ru": "Do не обозначает прошлое.",
+          "uk": "Do не позначає минуле."
+        },
+        "en:lesson-13:session-50:intro3:r3": {
+          "ru": "После did нужна find.",
+          "uk": "Після did потрібна find."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7b1960651aad091086670d20bdd244bf5121bd64d59239f410a6a97a6e42f566"
+}

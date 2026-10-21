@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "review: past questions and event sequence",
+    "uk": "review: past questions and event sequence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Готовить самим",
+        "uk": "Готувати самим"
+      },
+      "bodyByLocale": {
+        "ru": "Self-catering — проживание с самостоятельным приготовлением еды. Did you choose self-catering? — Ты выбрал вариант, где готовишь сам? Это не название блюда. Выберите вопрос о выборе.",
+        "uk": "Self-catering — проживання із самостійним приготуванням їжі. Did you choose self-catering? — Ти обрав варіант, де готуєш сам? Це не назва страви. Виберіть запитання про вибір."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-54:intro1:r1",
+              "text": "Did you choose self-catering?"
+            },
+            {
+              "responseId": "en:lesson-13:session-54:intro1:r2",
+              "text": "Did you chose self-catering?"
+            },
+            {
+              "responseId": "en:lesson-13:session-54:intro1:r3",
+              "text": "You chose self-catering."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-54:intro1:r1",
+              "text": "Did you choose self-catering?"
+            },
+            {
+              "responseId": "en:lesson-13:session-54:intro1:r2",
+              "text": "Did you chose self-catering?"
+            },
+            {
+              "responseId": "en:lesson-13:session-54:intro1:r3",
+              "text": "You chose self-catering."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Два или три приёма пищи",
+        "uk": "Два чи три прийоми їжі"
+      },
+      "bodyByLocale": {
+        "ru": "Half board — проживание с завтраком и ещё одним основным приёмом пищи, обычно ужином. Full board — с завтраком, обедом и ужином. Did you choose full board? — Ты выбрал питание три раза в день? Выберите три приёма пищи.",
+        "uk": "Half board — проживання зі сніданком і ще одним основним прийомом їжі, зазвичай вечерею. Full board — зі сніданком, обідом і вечерею. Did you choose full board? — Ти обрав харчування тричі на день? Виберіть три прийоми їжі."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-54:intro2:r1",
+              "text": "Did you choose full board?"
+            },
+            {
+              "responseId": "en:lesson-13:session-54:intro2:r2",
+              "text": "Did you choose half board?"
+            },
+            {
+              "responseId": "en:lesson-13:session-54:intro2:r3",
+              "text": "Did you chose full board?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-54:intro2:r1",
+              "text": "Did you choose full board?"
+            },
+            {
+              "responseId": "en:lesson-13:session-54:intro2:r2",
+              "text": "Did you choose half board?"
+            },
+            {
+              "responseId": "en:lesson-13:session-54:intro2:r3",
+              "text": "Did you chose full board?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ночлег и завтрак",
+        "uk": "Ночівля й сніданок"
+      },
+      "bodyByLocale": {
+        "ru": "Bed and breakfast — проживание с завтраком. Также так называют небольшой гостевой дом. Здесь выбираем вариант питания: Did you choose bed and breakfast? — Ты выбрал проживание с завтраком?",
+        "uk": "Bed and breakfast — проживання зі сніданком. Також так називають невеликий гостьовий будинок. Тут обираємо варіант харчування: Did you choose bed and breakfast? — Ти обрав проживання зі сніданком?"
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-54:intro3:r1",
+              "text": "Did you choose bed and breakfast?"
+            },
+            {
+              "responseId": "en:lesson-13:session-54:intro3:r2",
+              "text": "Did you choose full board?"
+            },
+            {
+              "responseId": "en:lesson-13:session-54:intro3:r3",
+              "text": "Did you chose bed and breakfast?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-54:intro3:r1",
+              "text": "Did you choose bed and breakfast?"
+            },
+            {
+              "responseId": "en:lesson-13:session-54:intro3:r2",
+              "text": "Did you choose full board?"
+            },
+            {
+              "responseId": "en:lesson-13:session-54:intro3:r3",
+              "text": "Did you chose bed and breakfast?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "430c77ad2b3e8323f16c7d7c171d905540cebf56be9c40b76f903f8ed83c5a1e"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-49:word:half-price",
+    "correctText": "half-price",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-49:i01",
+    "correctText": "Did you buy the half-price bread?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-49:i02",
+    "correctText": "Did she buy the half-price bread?",
+    "correctResponseId": "en:lesson-13:session-49:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-49:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-49:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-49:word:full-price",
+    "correctText": "full price",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-49:i04",
+    "correctText": "Did you pay full price?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-49:i05",
+    "correctText": "Did she pay full price?",
+    "correctResponseId": "en:lesson-13:session-49:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-49:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-49:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-49:word:special-offer",
+    "correctText": "special offer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-49:i07",
+    "correctText": "Did you find a special offer?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-49:i08",
+    "correctText": "Did she find a special offer?",
+    "correctResponseId": "en:lesson-13:session-49:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-49:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-49:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-49:word:out-of-stock",
+    "correctText": "out of stock",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-49:i10",
+    "correctText": "Was the milk out of stock?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-49:i11",
+    "correctText": "Was the milk out of stock?",
+    "correctResponseId": "en:lesson-13:session-49:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-49:i12",
+    "correctText": "Was",
+    "correctResponseId": "en:lesson-13:session-49:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-49:i13",
+    "correctText": "en:lesson-13:session-49:i13:p1=half-price\nen:lesson-13:session-49:i13:p2=full price\nen:lesson-13:session-49:i13:p3=special offer\nen:lesson-13:session-49:i13:p4=out of stock",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-49:i14",
+    "correctText": "First I checked the price.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-49:i15",
+    "correctText": "Then I bought the half-price bread.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-49:i16",
+    "correctText": "Did you pay full price yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-49:i17",
+    "correctText": "The milk was out of stock yesterday.",
+    "correctResponseId": null
+  }
+]

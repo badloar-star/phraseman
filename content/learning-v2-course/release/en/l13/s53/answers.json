@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-13:session-53:word:sightseeing",
+    "correctText": "sightseeing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-53:i01",
+    "correctText": "Did you go sightseeing?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-53:i02",
+    "correctText": "Did she go sightseeing?",
+    "correctResponseId": "en:lesson-13:session-53:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-53:i03",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-53:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-53:word:coach-tour",
+    "correctText": "coach tour",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-53:i04",
+    "correctText": "Did you book a coach tour?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-53:i05",
+    "correctText": "Did she book a coach tour?",
+    "correctResponseId": "en:lesson-13:session-53:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-53:i06",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-53:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-53:word:walking-tour",
+    "correctText": "walking tour",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-53:i07",
+    "correctText": "Did you enjoy the walking tour?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-53:i08",
+    "correctText": "Did she enjoy the walking tour?",
+    "correctResponseId": "en:lesson-13:session-53:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-53:i09",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-53:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-53:word:round-trip",
+    "correctText": "round trip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-53:i10",
+    "correctText": "Did you enjoy the round trip?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-53:i11",
+    "correctText": "Did she enjoy the round trip?",
+    "correctResponseId": "en:lesson-13:session-53:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-53:i12",
+    "correctText": "Did",
+    "correctResponseId": "en:lesson-13:session-53:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-53:i13",
+    "correctText": "en:lesson-13:session-53:i13:p1=sightseeing\nen:lesson-13:session-53:i13:p2=coach tour\nen:lesson-13:session-53:i13:p3=walking tour\nen:lesson-13:session-53:i13:p4=round trip",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-53:i14",
+    "correctText": "First we went sightseeing.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-53:i15",
+    "correctText": "Then we had lunch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-53:i16",
+    "correctText": "Did you book a coach tour yesterday?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-53:i17",
+    "correctText": "Then we enjoyed the walking tour.",
+    "correctResponseId": null
+  }
+]

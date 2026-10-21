@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-13:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "review: past questions and event sequence",
+    "uk": "review: past questions and event sequence"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-13:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Посмотреть достопримечательности",
+        "uk": "Подивитися визначні місця"
+      },
+      "bodyByLocale": {
+        "ru": "Sightseeing — осмотр достопримечательностей. Go sightseeing — ходить или ездить смотреть интересные места. Did you go sightseeing? — Ты ходил смотреть достопримечательности? После did нужна go.",
+        "uk": "Sightseeing — огляд визначних місць. Go sightseeing — ходити або їздити дивитися цікаві місця. Did you go sightseeing? — Ти ходив оглядати визначні місця? Після did потрібна go."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-53:intro1:r1",
+              "text": "Did you go sightseeing?"
+            },
+            {
+              "responseId": "en:lesson-13:session-53:intro1:r2",
+              "text": "Did you went sightseeing?"
+            },
+            {
+              "responseId": "en:lesson-13:session-53:intro1:r3",
+              "text": "You went sightseeing."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-53:intro1:r1",
+              "text": "Did you go sightseeing?"
+            },
+            {
+              "responseId": "en:lesson-13:session-53:intro1:r2",
+              "text": "Did you went sightseeing?"
+            },
+            {
+              "responseId": "en:lesson-13:session-53:intro1:r3",
+              "text": "You went sightseeing."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-13:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Автобусная или пешая экскурсия",
+        "uk": "Автобусна чи піша екскурсія"
+      },
+      "bodyByLocale": {
+        "ru": "Coach tour — автобусная экскурсия; walking tour — пешая экскурсия. Did you enjoy the walking tour? — Тебе понравилась пешая экскурсия? Выберите пешую прогулку с экскурсией.",
+        "uk": "Coach tour — автобусна екскурсія; walking tour — піша екскурсія. Did you enjoy the walking tour? — Тобі сподобалася піша екскурсія? Виберіть пішу прогулянку з екскурсією."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-53:intro2:r1",
+              "text": "Did you enjoy the walking tour?"
+            },
+            {
+              "responseId": "en:lesson-13:session-53:intro2:r2",
+              "text": "Did you enjoy the coach tour?"
+            },
+            {
+              "responseId": "en:lesson-13:session-53:intro2:r3",
+              "text": "Did you enjoyed the walking tour?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-53:intro2:r1",
+              "text": "Did you enjoy the walking tour?"
+            },
+            {
+              "responseId": "en:lesson-13:session-53:intro2:r2",
+              "text": "Did you enjoy the coach tour?"
+            },
+            {
+              "responseId": "en:lesson-13:session-53:intro2:r3",
+              "text": "Did you enjoyed the walking tour?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-13:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Туда и обратно",
+        "uk": "Туди й назад"
+      },
+      "bodyByLocale": {
+        "ru": "Round trip — вся поездка туда и обратно. Did you enjoy the round trip? — Тебе понравилась поездка туда и обратно? Речь обо всём маршруте с возвращением. Выберите вопрос о поездке.",
+        "uk": "Round trip — уся поїздка туди й назад. Did you enjoy the round trip? — Тобі сподобалася поїздка туди й назад? Ідеться про весь маршрут із поверненням. Виберіть запитання про поїздку."
+      },
+      "question": {
+        "interactionId": "en:lesson-13:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-13:session-53:intro3:r1",
+              "text": "Did you enjoy the round trip?"
+            },
+            {
+              "responseId": "en:lesson-13:session-53:intro3:r2",
+              "text": "Did you book a coach tour?"
+            },
+            {
+              "responseId": "en:lesson-13:session-53:intro3:r3",
+              "text": "Did you enjoyed the round trip?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-13:session-53:intro3:r1",
+              "text": "Did you enjoy the round trip?"
+            },
+            {
+              "responseId": "en:lesson-13:session-53:intro3:r2",
+              "text": "Did you book a coach tour?"
+            },
+            {
+              "responseId": "en:lesson-13:session-53:intro3:r3",
+              "text": "Did you enjoyed the round trip?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f4a06f4bb815077ffc604a583ddc2595c24e1b9fe75be3275dda4c10a9601289"
+}
